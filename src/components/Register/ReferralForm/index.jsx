@@ -115,8 +115,8 @@ const ReferralForm = ({
         )}
         <Message
           error
-          visible={errors.ReferralPID || false}
-          content={errors.ReferralPID}
+          visible={errors.ReferralPID || error || false}
+          content={errors.ReferralPID || error?.Description}
         />
         {data &&
         data[0].Result === 'Success' &&
