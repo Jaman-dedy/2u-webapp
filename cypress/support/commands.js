@@ -23,3 +23,31 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('login', (username, password, pin) => {
+  cy.get('input[name="PID"]').type(username);
+  cy.get('input[name="Password"]').type(password);
+  cy.enterPin(pin);
+  cy.contains('CONNECT').click({ force: true });
+});
+
+Cypress.Commands.add('enterPin', pin => {
+  cy.get('input[name="digit0"]').type(pin[0]);
+  cy.get('input[name="digit1"]').type(pin[1]);
+  cy.get('input[name="digit2"]').type(pin[2]);
+  cy.get('input[name="digit3"]').type(pin[3]);
+});
+
+const LOCAL_STORAGE_MEMORY = {};
+
+Cypress.Commands.add('saveLocalStorageCache', () => {
+  Object.keys(localStorage).forEach(key => {
+    LOCAL_STORAGE_MEMORY[key] = localStorage[key];
+  });
+});
+
+Cypress.Commands.add('restoreLocalStorageCache', () => {
+  Object.keys(LOCAL_STORAGE_MEMORY).forEach(key => {
+    localStorage.setItem(key, LOCAL_STORAGE_MEMORY[key]);
+  });
+});

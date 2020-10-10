@@ -29,10 +29,6 @@ import { Icon, Image } from 'semantic-ui-react';
 
 
 
-
-
-
-
 const SideBar = () => {
   const history = useHistory();
   const dispatch = useDispatch();
