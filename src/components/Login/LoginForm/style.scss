@@ -26,6 +26,10 @@
 .ui.form .field.field input {
   padding: 14px 18px !important;
 }
+
+.ui.search.dropdown > .text {
+  padding: 4px 8px !important;
+}
 .ui.form .field.field input:-webkit-autofill {
   box-shadow: 0 0 0 100px #ffffff inset !important;
 }

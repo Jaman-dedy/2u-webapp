@@ -193,10 +193,9 @@ const ProfileDropdown = ({
               icon: 'user',
             },
             {
-              label: global.translate('Offer a service', 625),
-              to: `/marketplace/user/${profileData?.PID?.toLowerCase() ||
-                'me'}`,
-              icon: 'user',
+              label: global.translate('Marketplace'),
+              to: `/marketplace`,
+              icon: 'buysellads',
             },
             {
               label: global.translate('My wallets', 68),
