@@ -1,5 +1,5 @@
-import React from 'react';
-import { Tab } from 'semantic-ui-react';
+import React, { useState } from 'react';
+import { Tab, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import AppTable from 'components/common/Table';
 import CancelTransactionImage from 'assets/images/cancel.png';
@@ -7,6 +7,7 @@ import Message from 'components/common/Message';
 import LoaderComponent from 'components/common/Loader';
 import ViewVochersImage from 'assets/images/gift.png';
 import ConfirmRejectVoucherModal from './ConfirmRejectVoucherModal';
+import RedeemVoucherModal from './RedeemVoucherModal';
 
 const StorePendingVoucherTab = ({
   pendingVouchers: { data, loading, error },
@@ -17,15 +18,17 @@ const StorePendingVoucherTab = ({
   setCancelOpen,
   onRejectVoucher,
 }) => {
+  const [openRedeemVoucher, setOpenRedeemVoucher] = useState(false);
+  const [openRejectVoucher, setOpenRejectVoucher] = useState(false);
   const pendingVoucherHeaders = [
     { key: 'Date', value: global.translate('Date') },
     {
       key: 'SenderFirstName',
-      value: global.translate('Sender full name', 1105),
+      value: global.translate('Sender', 1105),
     },
     {
       key: 'FirstName',
-      value: global.translate('Recipient full name'),
+      value: global.translate('Recipient'),
     },
     {
       key: 'SourceAmount',
@@ -92,14 +95,19 @@ const StorePendingVoucherTab = ({
   return (
     <Tab.Pane attached>
       <ConfirmRejectVoucherModal
-        open={cancelOpen}
-        setOpen={setCancelOpen}
+        open={openRejectVoucher}
+        setOpen={setOpenRejectVoucher}
         fromStoreVouchers
         onRejectVoucher={onRejectVoucher}
         item={selectedItem}
         onPositiveConfirm={items => {
           onRejectVoucher(items);
         }}
+      />
+
+      <RedeemVoucherModal
+        open={openRedeemVoucher}
+        setOpen={setOpenRedeemVoucher}
       />
       {loading && (
         <LoaderComponent
@@ -134,6 +142,13 @@ const StorePendingVoucherTab = ({
         />
       )}
 
+      <Button
+        style={{ backgroundColor: '#282b4e', color: '#ffffff' }}
+        onClick={() => setOpenRedeemVoucher(true)}
+      >
+        {global.translate('Redeem a voucher', 820)}
+      </Button>
+
       {!error && !loading && !noItems && (
         <AppTable
           data={mappedData}
@@ -142,21 +157,14 @@ const StorePendingVoucherTab = ({
           fromStoreVouchers
           fromVouchers
           showOptions
+          showPagination
           options={[
-            {
-              name: global.translate('Redeem a voucher.', 810),
-              image: ViewVochersImage,
-              onClick: () => {
-                setSelectedItem(selectedItem);
-                setCancelOpen(true);
-              },
-            },
             {
               name: global.translate('Reject voucher'),
               image: CancelTransactionImage,
               onClick: () => {
                 setSelectedItem(selectedItem);
-                setCancelOpen(true);
+                setOpenRejectVoucher(true);
               },
             },
           ]}

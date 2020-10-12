@@ -111,6 +111,14 @@ const SearchStores = ({
         <div className="searchStorePage__stores-list">
           <div className="searchStorePage__stores-list__item">
             <Stores
+              searchStoreList={searchStoreList}
+              options={options}
+              selectingStore={selectingStore}
+              title={global.translate('Stores', 1624)}
+            />
+          </div>
+          <div className="searchStorePage__stores-list__item">
+            <Stores
               searchStoreList={recentStores?.data}
               selectingStore={selectingStore}
               options={options}
@@ -118,15 +126,6 @@ const SearchStores = ({
                 'Recently visited stores',
                 1739,
               )}
-            />
-          </div>
-
-          <div className="searchStorePage__stores-list__item">
-            <Stores
-              searchStoreList={searchStoreList}
-              options={options}
-              selectingStore={selectingStore}
-              title={global.translate('Stores', 1624)}
             />
           </div>
         </div>

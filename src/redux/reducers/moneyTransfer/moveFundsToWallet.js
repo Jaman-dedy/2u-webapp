@@ -57,6 +57,12 @@ export default (state, { type, payload }) => {
           loading: false,
           error: null,
         },
+        verifyVoucher: {
+          ...state.verifyVoucher,
+          data: null,
+          loading: false,
+          error: null,
+        },
       };
     }
     default:

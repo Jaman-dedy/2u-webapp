@@ -23,9 +23,16 @@
     }
   }
 
+  @media (min-width: 760px) {
+    .wrap-this-text {
+      width: 80px !important;
+      font-size: 12px;
+    }
+  }
+
   .card-description {
     position: relative;
-    left: 55px;
+    left: 60px;
     color: #454545;
     width: 80px;
   }

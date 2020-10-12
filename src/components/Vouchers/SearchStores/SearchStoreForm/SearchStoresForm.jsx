@@ -73,6 +73,17 @@ const SearchStoresForm = ({
           value: Category,
         }));
 
+  useEffect(() => {
+    if (form.StoreName && form.StoreName.length >= 1) {
+      handleInputChange({
+        target: {
+          name: 'Scope',
+          value: 'AND',
+        },
+      });
+    }
+  }, [form.StoreName]);
+
   return (
     <div className="searchStores">
       <div className="add-money-container">
@@ -114,9 +125,10 @@ const SearchStoresForm = ({
             </span>
             <div className="icon-form-el">
               <Dropdown
+                clearable
                 name="Category"
                 className="custom-forms-el"
-                placeholder="Category"
+                placeholder="Select a category"
                 fluid
                 search
                 selection
@@ -150,7 +162,8 @@ const SearchStoresForm = ({
                   <ToggleSwitch
                     id="Scope"
                     name="Scope"
-                    onChange={value =>
+                    currentValue={!!form?.StoreName?.length}
+                    onChange={() =>
                       handleInputChange({
                         target: {
                           name: 'Scope',

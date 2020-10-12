@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Pagination } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import './style.scss';
+import { propTypes } from 'mgr-pdf-viewer-react/dist/mgr-pdf-viewer-react';
 
 function AppPagination({
   data,
@@ -11,6 +12,7 @@ function AppPagination({
   itemsPerPage,
   onPageChange: onChange,
   showLabel,
+  showPagination,
 }) {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages =
@@ -37,7 +39,7 @@ function AppPagination({
           {global.translate('of')} {totalPages}
         </span>
       )}
-      {data.length > itemsPerPage && (
+      {(data.length > itemsPerPage || showPagination) && (
         <Pagination
           boundaryRange={0}
           floated="right"
@@ -59,11 +61,13 @@ AppPagination.propTypes = {
   data: PropTypes.arrayOf(PropTypes.instanceOf(Object)).isRequired,
   showLabel: PropTypes.bool,
   totalPages: PropTypes.number,
+  showPagination: propTypes.bool,
 };
 AppPagination.defaultProps = {
   totalItems: 0,
   itemsPerPage: 7,
   showLabel: false,
   totalPages: 1,
+  showPagination: false,
 };
 export default AppPagination;

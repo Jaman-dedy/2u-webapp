@@ -19,7 +19,9 @@ const ActionOption = ({ image, iconProps, text, ...props }) => {
           />
         )}
       </div>
-      <span className="card-description">{text}</span>
+      <div className="wrap-this-text">
+        <span className="card-description">{text}</span>
+      </div>
     </div>
   );
 };

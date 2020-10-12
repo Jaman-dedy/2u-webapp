@@ -31,9 +31,7 @@ export default () => {
         notifAction({ PID: data.PID })(newDispatch);
         const { message } = notification || {};
 
-        if (!isAppDisplayedInWebView) {
-          toast.success(global.translate(message));
-        }
+        toast.success(global.translate(message));
       });
     }
     return () => {

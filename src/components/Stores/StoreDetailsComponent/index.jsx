@@ -2,16 +2,20 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Tab, Grid, Menu, Label } from 'semantic-ui-react';
+import { Tab, Grid, Menu, Label, Button } from 'semantic-ui-react';
 import { Link, useLocation, useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import queryString from 'query-string';
+import NewAgentModal from 'components/Stores/StoreDetailsComponent/AgentsView/New/AddNewAgentModal';
 import useWindowSize from 'utils/useWindowSize';
 import DashboardLayout from 'components/common/DashboardLayout';
 import WelcomeBar from 'components/Dashboard/WelcomeSection';
 import './style.scss';
 import AddStoreContainer from 'containers/Stores/AddStore';
 import GoBack from 'components/common/GoBack';
+import AgentsView from 'components/Stores/StoreDetailsComponent/AgentsView';
+import addStoreAgentAction from 'redux/actions/stores/addStoreAgents';
+import locateUser from 'redux/actions/contacts/locateUser'; // clearFoundUser,
 import StoreInfoTab from './StoreInfoTab';
 import StorePendingVoucherTab from './StorePendingVoucherTab';
 import NotificationSettingsTab from './NotificationSettingsTab';
@@ -115,6 +119,15 @@ const StoreDetailsComponent = ({
   const [cancelOpen, setCancelOpen] = useState(false);
   const { setStoreStatus } = useSelector(state => state.user);
   const [activeSettingTab, setActiveSettingTab] = useState(0);
+  const [isOpenAddAgent, setIsOpenAddAgent] = useState(false);
+
+  const [localError, setLocalError] = useState(null);
+
+  const {
+    // error: addAgentError,
+    data: addNewUserData,
+    loading: addAgentsLoading,
+  } = useSelector(state => state.stores.addStoreAgents);
 
   const panes = [
     {
@@ -167,6 +180,25 @@ const StoreDetailsComponent = ({
         </Tab.Pane>
       ),
     },
+    {
+      menuItem: global.translate('Agents'),
+      render: ({
+        form,
+        onEditChange,
+        isOpenAddAgent,
+        setIsOpenAddAgent,
+      }) => (
+        <Tab.Pane attached={false}>
+          <AgentsView
+            form={form}
+            onEditChange={onEditChange}
+            currentStore={currentStore}
+            isOpenAddAgent={isOpenAddAgent}
+            setIsOpenAddAgent={setIsOpenAddAgent}
+          />
+        </Tab.Pane>
+      ),
+    },
   ];
 
   const tabRef = useRef(null);
@@ -202,6 +234,60 @@ const StoreDetailsComponent = ({
     }
   }, [activeTab]);
 
+  const { userData } = useSelector(state => state.user);
+  const searchData = useSelector(state => state.contacts.locateUser);
+  const dispatch = useDispatch();
+  const {
+    // error: agentsError,
+    data: agentsData,
+    loading: agentsLoading,
+  } = useSelector(state => state.stores.listStoreAgents);
+
+  const onChange = (e, { name, value }) => {
+    setForm({ ...form, [name]: value });
+  };
+  const checkExists = () => {
+    let exists = false;
+    if (agentsData) {
+      agentsData.forEach(element => {
+        if (
+          element.ContactPID &&
+          element.ContactPID.toLowerCase() ===
+            form.PID.trim().toLowerCase()
+        ) {
+          exists = true;
+        }
+      });
+    }
+    return exists;
+  };
+  const onSearchUser = () => {
+    if (form.PID && userData.data) {
+      if (
+        form.PID.trim().toLowerCase() ===
+        userData.data.PID.toLowerCase()
+      ) {
+        setLocalError(global.translate('You cannot add your self'));
+        return;
+      }
+      if (checkExists()) {
+        setLocalError(
+          form.PID.trim() + global.translate('is already your agent'),
+        );
+        return;
+      }
+      setLocalError(null);
+      locateUser({
+        PID: form.PID.trim(),
+        userPID: userData.data && userData.data.PID,
+      })(dispatch);
+    }
+  };
+
+  const addAgentFn = () => {
+    addStoreAgentAction(form)(dispatch);
+  };
+
   const onTabChange = (e, data = {}) => {
     const { activeIndex = 2 } = data;
     let tab = '';
@@ -215,6 +301,9 @@ const StoreDetailsComponent = ({
         break;
       case 2:
         tab = 'settings';
+        break;
+      case 3:
+        tab = 'agents';
         break;
       default:
         break;
@@ -244,38 +333,68 @@ const StoreDetailsComponent = ({
             {currentStore.StoreName}
           </h2>
           <div className="clear" />
+          {activeTab === 3 && (
+            <div className="head-buttons">
+              <button
+                type="button"
+                onClick={() => setIsOpenAddAgent(!isOpenAddAgent)}
+              >
+                {global.translate('Add store agent')}
+              </button>
+            </div>
+          )}
         </div>
       </WelcomeBar>
       <></>
       {currentStore && (
-        <div className="my-store-container">
-          <Tab
-            ref={tabRef}
-            onTabChange={onTabChange}
-            onChangeTab={onTabChange}
-            activeIndex={activeTab}
-            menu={{ secondary: true, pointing: true, fluid: true }}
-            panes={panes}
-            pendingVouchers={pendingVouchers}
-            onCancelTransactionConfirm={onCancelTransactionConfirm}
-            store={store}
-            setSelectedItem={setSelectedItem}
-            selectedItem={selectedItem}
-            setCancelOpen={setCancelOpen}
-            cancelOpen={cancelOpen}
-            onRejectVoucher={onRejectVoucher}
+        <>
+          <div className="my-store-container">
+            <Tab
+              ref={tabRef}
+              onTabChange={onTabChange}
+              onChangeTab={onTabChange}
+              activeIndex={location?.state?.detailTab}
+              menu={{ secondary: true, pointing: true, fluid: true }}
+              panes={panes}
+              pendingVouchers={pendingVouchers}
+              onCancelTransactionConfirm={onCancelTransactionConfirm}
+              store={store}
+              setSelectedItem={setSelectedItem}
+              selectedItem={selectedItem}
+              setCancelOpen={setCancelOpen}
+              cancelOpen={cancelOpen}
+              onRejectVoucher={onRejectVoucher}
+              form={form}
+              currentStore={currentStore}
+              setStoreStatus={setStoreStatus}
+              getPendingStoreVouchers={getPendingStoreVouchers}
+              onEditChange={onEditChange}
+              setForm={setForm}
+              deleteStore={deleteStore}
+              deleteStoreData={deleteStoreData}
+              activeSettingTab={activeSettingTab}
+              setActiveSettingTab={setActiveSettingTab}
+              isOpenAddAgent={isOpenAddAgent}
+              setIsOpenAddAgent={setIsOpenAddAgent}
+            />
+          </div>
+
+          <NewAgentModal
+            open={isOpenAddAgent}
+            setOpen={setIsOpenAddAgent}
+            onChange={onChange}
+            onSearchUser={onSearchUser}
             form={form}
-            currentStore={currentStore}
-            setStoreStatus={setStoreStatus}
-            getPendingStoreVouchers={getPendingStoreVouchers}
-            onEditChange={onEditChange}
             setForm={setForm}
-            deleteStore={deleteStore}
-            deleteStoreData={deleteStoreData}
-            activeSettingTab={activeSettingTab}
-            setActiveSettingTab={setActiveSettingTab}
+            onSubmit={addAgentFn}
+            searchData={searchData}
+            localError={localError}
+            setLocalError={setLocalError}
+            addNewUserData={addNewUserData}
+            currentStore={currentStore}
+            addAgentsLoading={addAgentsLoading}
           />
-        </div>
+        </>
       )}
     </DashboardLayout>
   );
@@ -296,6 +415,8 @@ StoreDetailsComponent.propTypes = {
   setStoreStatus: PropTypes.func,
   activeTab: PropTypes.number,
   setActiveTab: PropTypes.func,
+  isOpenAddAgent: PropTypes.bool,
+  setIsOpenAddAgent: PropTypes.func,
 };
 
 StoreDetailsComponent.defaultProps = {
@@ -313,5 +434,7 @@ StoreDetailsComponent.defaultProps = {
   setStoreStatus: () => {},
   activeTab: 1,
   setActiveTab: () => {},
+  isOpenAddAgent: false,
+  setIsOpenAddAgent: () => {},
 };
 export default StoreDetailsComponent;

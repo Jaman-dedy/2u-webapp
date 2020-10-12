@@ -12,6 +12,7 @@ const EllipseMenu = ({
   userItemStyle,
   currentItem,
   direction,
+  onSelectItem,
   hadleLoadCardOptions,
   wallet,
   onClick,
@@ -94,5 +95,6 @@ EllipseMenu.defaultProps = {
   wallet: {},
   onClick: () => {},
   hadleLoadCardOptions: () => {},
+  onSelectItem: () => {},
 };
 export default EllipseMenu;
