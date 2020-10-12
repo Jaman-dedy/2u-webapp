@@ -1,15 +1,10 @@
 .entity-wrapper {
   display: flex;
-
   .rightItems {
     align-self: center !important;
     margin-top: 12px;
   }
   .choose-wallet {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 300;
-    font-size: 13px;
     line-height: 20px;
     color: #000000;
   }
@@ -52,7 +47,7 @@
 }
 
 
-@media(max-width:600px){
+@media(max-width:1030px){
   .transacters {
     align-items: center;
     justify-content: center;

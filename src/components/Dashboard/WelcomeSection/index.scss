@@ -10,7 +10,7 @@
   flex-wrap: wrap;
   align-content: space-between;
   .go-back {
-    flex: 0 0 100px;
+    align-items: stretch;
     button {
       cursor: pointer;
       background: #ffffff;
@@ -27,7 +27,7 @@
   }
   .head-title {
     margin: 0;
-    padding: 8px 0;
+    padding: 10px 12px;
     color: #282b4e;
     font-weight: 700;
     font-size: 16px;
@@ -74,9 +74,6 @@
       button {
         padding: 10px;
       }
-    }
-    .head-title {
-      width: calc(100% - 120px);
     }
     .head-buttons {
       width: 100%;

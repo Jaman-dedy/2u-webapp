@@ -26,7 +26,8 @@
     }
   }
   .btns-shortcut {
-    flex: 0 0 220px;
+    margin-left: auto;
+    align-items: stretch;
     padding: 0px 1%;
   }
   .btns-shortcut button {
@@ -39,8 +40,9 @@
     background: #da6138
   }
   .btns-header-actions {
+   
     margin: 12px 0;
-    width:  calc(100% - 230px);
+    flex-grow: 1;
     padding:0;
   }
   .btns-header-actions ul {
