@@ -9,11 +9,13 @@ import MyWalletIcon from 'assets/images/DashWalletIcon.svg';
 import DashCreditCardIcon from 'assets/images/TransCreditCard.svg';
 import DashGetPaid from 'assets/images/DashGetpaid.svg';
 import DashQuickPay from 'assets/images/DashQuickPay.svg';
+import DashRedeemVoucher from 'assets/images/DashRedeemVoucher.svg';
 import ChartModal from 'components/Chat/ChatModal';
 import DashboardLayout from 'components/common/DashboardLayout';
 import GraphDataContainer from 'containers/Dashboard/cumulativeGraph';
 import DefaultWalletContainer from 'containers/Dashboard/defaultWallet';
 import UserCurrenciesContainer from 'containers/Dashboard/userCurrencies';
+import RedeemVoucherModal from 'components/Stores/StoreDetailsComponent/RedeemVoucherModal';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -31,6 +33,10 @@ const Dashboard = ({ userData, authData, chartList: { open } }) => {
   const [fithTourStep, setFithTourStep] = useState(false);
   const [sixthTourStep, setSixthTourStep] = useState(false);
   const [seventhTourStep, setSeventhTourStep] = useState(false);
+  const [
+    isOpenRedeemVoucherModal,
+    setIsOpenRedeemVoucherModal,
+  ] = useState(false);
 
   useEffect(() => {
     if (userData?.data) {
@@ -420,6 +426,27 @@ const Dashboard = ({ userData, authData, chartList: { open } }) => {
                       />
                     }
                   />
+                  <TourSteps
+                    bodyContent={sithStepBodyContent}
+                    open={sixthTourStep}
+                    setOpen={setSixthTourStep}
+                    content={tourStepHeader}
+                    tourStep={tourStep}
+                    setTourStep={setTourStep}
+                    handleNextStep={handleNextStep}
+                    trigger={
+                      <CardComponent
+                        image={DashRedeemVoucher}
+                        title={global.translate('Redeem Voucher')}
+                        subtitle={global.translate(
+                          'Verify and redeem customer voucher',
+                        )}
+                        onClick={() => {
+                          setIsOpenRedeemVoucherModal(true);
+                        }}
+                      />
+                    }
+                  />
                 </div>
               </div>
             </div>
@@ -440,6 +467,10 @@ const Dashboard = ({ userData, authData, chartList: { open } }) => {
             </div>
           </div>
         </div>
+        <RedeemVoucherModal
+          open={isOpenRedeemVoucherModal}
+          setOpen={setIsOpenRedeemVoucherModal}
+        />
       </DashboardLayout>
     </>
   );

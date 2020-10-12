@@ -11,6 +11,7 @@ import {
 import socketIOClient from 'services/socketIO';
 import notifAction from 'redux/actions/users/notifications';
 import isAppDisplayedInWebView from 'helpers/isAppDisplayedInWebView';
+import { VOUCHER } from 'constants/events/common';
 
 export default () => {
   const dispatch = useDispatch();

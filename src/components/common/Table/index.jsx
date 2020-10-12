@@ -1,11 +1,21 @@
 import './style.scss';
 
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import {
+  Button,
+  Header,
+  Icon,
+  Image,
+  Input,
+  Modal,
+  Pagination,
+  Segment,
+  Table,
+} from 'semantic-ui-react';
 import AllTransactionDetails from 'components/Transactions/AllTransactionDetails';
 import PendingVoucherDetails from 'components/Transactions/pendingVoucherDetail';
 import TransactionDetails from 'components/Transactions/TransactionDetails';
-import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
-import { Button, Header, Icon, Image, Input, Modal, Pagination, Segment, Table } from 'semantic-ui-react';
 import formatNumber from 'utils/formatNumber';
 import useWindowSize from 'utils/useWindowSize';
 
@@ -13,7 +23,6 @@ import EllipseMenu from '../EllipseOptions';
 import Message from '../Message';
 import AppPagination from '../Pagination';
 import TableFilters from './TableFilters';
-
 
 const AppTable = ({
   headers,
@@ -26,7 +35,6 @@ const AppTable = ({
   onMoreClicked,
   filterUi,
   isAtAllTransactions,
-
   showFilter,
   allDestFilterOptions,
   allSourceFilterOptions,
@@ -36,6 +44,7 @@ const AppTable = ({
   fromStoreVouchers,
   walletPaginationInfo,
   getMoreResults,
+  showPagination,
 }) => {
   const [form, setForm] = useState({});
   const [visible, setVisible] = useState(false);
@@ -460,14 +469,14 @@ const AppTable = ({
                                     header.key === 'Amount' &&
                                     header.operation === 'Debit' &&
                                     item.OpsType === '-' &&
-                                    formatNumber(item['Amount'], {
+                                    formatNumber(item.Amount, {
                                       locales: localStorage.language,
                                     })}
                                   {item[header.key] &&
                                     header.key === 'Amount' &&
                                     header.operation === 'Credit' &&
                                     item.OpsType === '+' &&
-                                    formatNumber(item['Amount'], {
+                                    formatNumber(item.Amount, {
                                       locales: localStorage.language,
                                     })}
                                   {item[header.key] &&
@@ -809,6 +818,7 @@ const AppTable = ({
                             )}
                             {!walletPaginationInfo?.CurrentPage && (
                               <AppPagination
+                                showPagination={showPagination}
                                 data={data}
                                 className="app-pagination"
                                 onPageChange={onPageChange}
@@ -847,6 +857,7 @@ AppTable.propTypes = {
   type: PropTypes.string,
   fromStoreVouchers: PropTypes.bool,
   walletPaginationInfo: PropTypes.objectOf(PropTypes.any).isRequired,
+  showPagination: PropTypes.bool,
 };
 AppTable.defaultProps = {
   loading: false,
@@ -861,5 +872,6 @@ AppTable.defaultProps = {
   tableVisible: true,
   onMoreClicked: () => null,
   fromStoreVouchers: false,
+  showPagination: false,
 };
 export default AppTable;

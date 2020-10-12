@@ -57,7 +57,7 @@ const PhoneNUmberForm = ({
       defaultCountry =
         defaultCountry ||
         countries.find(
-          country => country.value === defaultCountryCode,
+          country => country?.value === defaultCountryCode,
         );
       setCountry(defaultCountry);
     }
