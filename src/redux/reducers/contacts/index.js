@@ -15,6 +15,7 @@ import getBlockedContactsList from './getBlockedContacts';
 import getBlockedBy from './getBlockedBy';
 import setNewContactPresence from './setNewContactPresence';
 import setCurrentContact from './setCurrentContact';
+import locateWallet from './locateWallet';
 
 export default (state = initialState, action = {}) => ({
   ...state,
@@ -35,4 +36,5 @@ export default (state = initialState, action = {}) => ({
   ...getBlockedBy(state, action),
   ...getBlockedBy(state, action),
   ...setCurrentContact(state, action),
+  ...locateWallet(state, action),
 });
