@@ -89,7 +89,6 @@ const TransactionEntity = ({
     >
       {data && data.data && (
         <div className="transacters">
-          {' '}
           <Thumbnail
             name={data.data.FirstName}
             avatar={data.data.PictureURL}
@@ -135,12 +134,12 @@ const TransactionEntity = ({
       )}
 
       <div className="rightItems">
-        <p
+        <div
           className="choose-wallet"
           style={isSendingCash ? { textAlign: 'center' } : {}}
         >
           {global.translate(walletTitle)}
-        </p>
+        </div>
         <CustomDropdown
           options={walletOptions}
           currentOption={currentOption}
