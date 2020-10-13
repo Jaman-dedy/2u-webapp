@@ -2,15 +2,17 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable import/no-unresolved */
-import React, { useState, useEffect } from 'react';
-import { Dropdown, Input, Image } from 'semantic-ui-react';
-import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
 import './SelectLanguage.scss';
-import changeLanguage from 'redux/actions/users/changeLanguage';
-import replaceCountryFlag from 'helpers/replaceCountryFlag';
-import useWindowSize from 'utils/useWindowSize';
+
 import languageIcon from 'assets/images/h-languages.svg';
+import replaceCountryFlag from 'helpers/replaceCountryFlag';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import changeLanguage from 'redux/actions/users/changeLanguage';
+import { Dropdown, Input } from 'semantic-ui-react';
+import useWindowSize from 'utils/useWindowSize';
+
 import LoaderComponent from '../Loader';
 
 const SelectLanguage = ({ pointing, hasLabel, open, setOpen }) => {
@@ -105,7 +107,6 @@ const SelectLanguage = ({ pointing, hasLabel, open, setOpen }) => {
                   }}
                 />
               ))}
-              {console.log('filteredCountries', filteredCountries)}
             </Dropdown.Menu>
           </Dropdown.Menu>
         </Dropdown>

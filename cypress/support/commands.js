@@ -1,3 +1,5 @@
+import 'cypress-localstorage-commands';
+
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -38,16 +40,39 @@ Cypress.Commands.add('enterPin', pin => {
   cy.get('input[name="digit3"]').type(pin[3]);
 });
 
-const LOCAL_STORAGE_MEMORY = {};
 
-Cypress.Commands.add('saveLocalStorageCache', () => {
-  Object.keys(localStorage).forEach(key => {
-    LOCAL_STORAGE_MEMORY[key] = localStorage[key];
-  });
-});
 
-Cypress.Commands.add('restoreLocalStorageCache', () => {
-  Object.keys(LOCAL_STORAGE_MEMORY).forEach(key => {
-    localStorage.setItem(key, LOCAL_STORAGE_MEMORY[key]);
-  });
-});
+
+Cypress.Commands.add('loginAs', (PID, password, pin) => {
+  cy.request({
+    method: 'POST',
+    url: 'https://sandbox.2u.money:9090/CheckUserCredential',
+    body: {
+      APIKey: "k8a2miv9WKLP6Bv2LEFl0rCxAHw0BIVxW3Am3L3Y6OZzq",
+      AppID: "kjcSNdVw2AiMdtDubTJJ1C3Mk",
+      AppType: 4,
+      ClientName: "Chrome",
+      ClientVersion: "85.0",
+      CountryCode: "rw",
+      Description: "2U Web Authentication",
+      DeviceOS: "GNU/Linux",
+      DeviceType: 6,
+      IMEI: "",
+      Latitude: -1.9496959999999999,
+      LoginName: "2UDev",
+      Longitude: 30.1006848,
+      MAC: "Not found",
+      OSVersion: "",
+      PID: PID,
+      PIN: pin,
+      Password: password,
+      PhoneNumber: "",
+      Roaming: "0",
+      SerialNumber: "",
+    }
+  }).its('body').then((response) => {
+    cy.setLocalStorage('token',response[0].LiveToken)
+    cy.setLocalStorage('refresh_token',response[0].RefreshToken)
+    cy.setLocalStorage('MAX_USER_IDLE_TIME', Number(response[0].MaxIdleTimeForLogoff) * 90000)
+  })
+})
