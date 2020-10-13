@@ -1,18 +1,15 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './DashboardLayout.scss';
 import PropTypes from 'prop-types';
-
 import { useHistory } from 'react-router';
-import { useWindowWidth } from '@react-hook/window-size';
 import toggleSidebar from 'redux/actions/dashboard/dashboard';
 import isAppDisplayedInWebView from 'helpers/isAppDisplayedInWebView';
 
 import SideBar from './SideBar/SideBar';
 import NavBar from './NavBar/NavBar';
 import Fab from './Fab';
+import useWindowSize from 'utils/useWindowSize';
 
 const DashboardLayout = ({
   children,
@@ -26,7 +23,7 @@ const DashboardLayout = ({
     dashboardData: { isSidebarActive },
   } = useSelector(({ dashboard }) => dashboard);
 
-  const onlyWidth = useWindowWidth();
+  const { width } = useWindowSize();
 
   const goToVoucher = () => {
     history.push({
@@ -76,7 +73,7 @@ const DashboardLayout = ({
 
         <main className="main">
           {children}
-          {onlyWidth < 775 && (
+          {width < 775 && !isAppDisplayedInWebView() && (
             <Fab
               goToVoucher={goToVoucher}
               goToSendCash={goToSendCash}
