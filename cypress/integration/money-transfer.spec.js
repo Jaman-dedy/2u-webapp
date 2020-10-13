@@ -3,8 +3,8 @@ const username = 'FLORIBERT';
 const password = 'Password@1996';
 
 const fillAmountField = value => {
-  cy.wait(3000)
-  cy.get('input[name="amount"]',{timeout:3000}).type(`${value}`);
+  cy.wait(3000);
+  cy.get('input[name="amount"]', { timeout: 3000 }).type(`${value}`);
 };
 
 const fillDetailsForm = () => {
@@ -17,7 +17,9 @@ const fillDetailsForm = () => {
 };
 
 const submitAmountForm = () => {
-  cy.get('.actions button.ui.positive.button',{timeout:3000}).click();
+  cy.get('.actions button.ui.positive.button', {
+    timeout: 3000,
+  }).click();
 };
 
 const fillRecurringForm = (startDateIndex = 3, endDateIndex = 4) => {
@@ -59,26 +61,23 @@ const showAmountForm = amount => {
 };
 
 describe('Test Transfer Money to contact', () => {
-
   before(() => {
     cy.clearLocalStorageSnapshot();
-    cy.loginAs('FLORIBERT', 'Password@1996', '2580')
-    cy.saveLocalStorage()
-  })
+    cy.loginAs('FLORIBERT', 'Password@1996', '2580');
+    cy.saveLocalStorage();
+  });
   beforeEach(() => {
-    cy.restoreLocalStorage()
+    cy.restoreLocalStorage();
     cy.visit('/contacts?ref=send-money');
   });
 
   afterEach(() => {
-    cy.saveLocalStorage()
-  })
-
-
-   it('should have token in localStorage', () => {
-    cy.getLocalStorage("token").should("exist");
+    cy.saveLocalStorage();
   });
 
+  it('should have token in localStorage', () => {
+    cy.getLocalStorage('token').should('exist');
+  });
 
   it('Should send money to contact', () => {
     showAmountForm(1);
@@ -116,11 +115,8 @@ describe('Test Transfer Money to contact', () => {
   });
 
   it('Should not send amount of money greater than wallet balance.', () => {
-
     showAmountForm(10000000000000000000011000000001);
     submitAmountForm();
-
-
 
     cy.get('.message-component span', { timeout: 10000 })
       .first()
@@ -128,8 +124,6 @@ describe('Test Transfer Money to contact', () => {
         'contain',
         'You do not have enough money in this wallet for this',
       );
-
-
   });
 
   it('Should raise an error if the amount field has no value.', () => {
