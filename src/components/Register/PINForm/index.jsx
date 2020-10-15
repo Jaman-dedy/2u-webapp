@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Container, Form, Label } from 'semantic-ui-react';
+import { Container, Form, Icon, Label } from 'semantic-ui-react';
 import './style.scss';
 
 import PinCodeForm from 'components/common/PinCodeForm';
@@ -23,7 +23,13 @@ const PINForm = ({ onInputChange, screenSix, onClickHandler }) => {
     digit3: '',
   });
 
-  const { errors, handleNext, clearError } = screenSix;
+  const {
+    errors,
+    handleNext,
+    clearError,
+    registerUser,
+    registerNow,
+  } = screenSix;
   const backButtonHandler = () => {
     onClickHandler();
   };
@@ -83,12 +89,14 @@ const PINForm = ({ onInputChange, screenSix, onClickHandler }) => {
           </Form.Field>
         )}
         <button
+          onClick={() => !registerUser?.loading && handleNext()}
           type="button"
           className="btn-auth btn-secondary"
-          primary
-          onClick={() => handleNext()}
         >
-          {global.translate('NEXT', 10)}
+          {registerUser?.loading && (
+            <span className="loading-button" />
+          )}
+          {global.translate(`NEXT`)}
         </button>
         {global.translate('Already registered?', 1200)}{' '}
         <Link to="/login">{global.translate('Login', 190)}</Link>
