@@ -1,9 +1,15 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import registerUserAction from 'redux/actions/users/registerUser';
 
 export default ({ registrationData, setScreenNumber }) => {
   const [errors, setErrors] = useState({});
-  const { pin, confirmPin } = registrationData;
+  const { pin, confirmPin, ReferralPID } = registrationData;
+  const dispatch = useDispatch();
 
+  const { registerUser, countryCurrencies } = useSelector(
+    ({ user }) => user,
+  );
   const clearError = ({ target: { name } }) => {
     setErrors({
       ...errors,
@@ -104,11 +110,20 @@ export default ({ registrationData, setScreenNumber }) => {
     setScreenNumber(6);
     return true;
   };
+  const registerNow = stat => {
+    if (ReferralPID === '') {
+      delete registrationData.ContactPID;
+      delete registrationData.ReferralPID;
+      return registerUserAction(registrationData)(dispatch);
+    }
+  };
 
   return {
     handleNext,
     validate,
     errors,
     clearError,
+    registerNow,
+    registerUser,
   };
 };

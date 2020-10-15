@@ -41,6 +41,17 @@
     }
   }
 }
+.money-sections {
+  width: 59%;
+  margin: auto;
+  margin-top: -20px;
+  input {
+    width: 68%;
+  }
+  .ui.input {
+    width: 68%;
+  }
+}
 
 @media only screen and (max-width: 768px) {
   .phone-bank {

@@ -194,6 +194,12 @@ const TopUpContainer = ({
       clearConfirmation()(dispatch);
     }
   }, [accountValue]);
+  useEffect(() => {
+    if (confirmationData) {
+      clearConfirmation()(dispatch);
+      setNextStep(false);
+    }
+  }, [accountValue]);
 
   useEffect(() => {
     if (userData.data) {
@@ -315,9 +321,18 @@ const TopUpContainer = ({
       updateMoneyTransferStep(1)(dispatch);
       setNextStep(true);
     }
+    if (
+      confirmationData &&
+      confirmationData[0] &&
+      confirmationData?.[0]?.VerificationError
+    ) {
+      updateMoneyTransferStep(1)(dispatch);
+    }
   }, [confirmationData]);
   const moveToNextStep = () => {
-    updateMoneyTransferStep(2)(dispatch);
+    if (confirmationData?.[0]?.TargetAccountVerified === 'YES') {
+      updateMoneyTransferStep(2)(dispatch);
+    }
   };
 
   useEffect(() => {
@@ -409,7 +424,8 @@ const TopUpContainer = ({
         destinationContact.Country ||
         (selectedCountry && selectedCountry.CountryCode),
       OperatorID: form.OperatorID,
-      DestCurrency: form?.destCurrency,
+      DestCurrency:
+        confirmationData?.[0]?.AccountCurrency || form?.destCurrency,
       OperationType,
       AccountNumber:
         accountValue?.number ||

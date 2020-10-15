@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import {
   Modal,
   Button,
-  Icon,
+  Label,
   Input,
   Dropdown,
   Checkbox,
@@ -346,15 +346,15 @@ const TopUpModal = ({
                 )}
               </div>
               <div className="currency">
-                <p className="choose-dest-country">
-                  <br />
+                <span className="choose-dest-country">
+                  {/* <br /> */}
                   {global.translate(`Providers in `, 1733)}
                   &nbsp;
                   <strong>
                     {(currentOption && currentOption?.CountryName) ||
                       currentOption?.Title}
                   </strong>
-                </p>
+                </span>
                 {loadProvidersList ? (
                   <LoaderComponent />
                 ) : (
@@ -407,26 +407,37 @@ const TopUpModal = ({
                     )}
                     {!currentBankAccount && (
                       <div className="new-dest-bank">
-                        <br />
+                        {/* <br /> */}
                         <span>
                           {global.translate(
                             `Provide a new bank account number`,
                           )}
                         </span>
-                        <br />
-                        <NumberFormat
-                          className="new-bank-account"
-                          format={
-                            currentProviderOption?.AccountPattern
-                          }
-                          mask="_"
-                          onValueChange={values => {
-                            const { formattedValue, value } = values;
-                            setAccountValue({
-                              number: formattedValue,
-                            });
-                          }}
-                        />
+                        {/* <br /> */}
+                        <div>
+                          <NumberFormat
+                            className="new-bank-account"
+                            format={
+                              currentProviderOption?.AccountPattern
+                            }
+                            mask="_"
+                            onValueChange={values => {
+                              const {
+                                formattedValue,
+                                value,
+                              } = values;
+                              setAccountValue({
+                                number: formattedValue,
+                              });
+                            }}
+                          />
+                          {confirmationData?.[0]?.AccountCurrency && (
+                            <Label size="large">
+                              {confirmationData[0].AccountCurrency}
+                            </Label>
+                          )}
+                        </div>
+
                         <div>
                           <span>
                             {currentProviderOption?.AccountPattern}
@@ -480,30 +491,6 @@ const TopUpModal = ({
                   </>
                 ) : (
                   <>
-                    {!phoneValue && (
-                      <div className="dest-phone">
-                        {phoneOptions && (
-                          <>
-                            <span>
-                              {global.translate(
-                                `Select a phone number`,
-                              )}
-                            </span>
-                            <ReusableDrowdown
-                              options={phoneOptions && phoneOptions}
-                              currentOption={currentPhone}
-                              onChange={e => {
-                                onOptionsChange(e, {
-                                  name: 'PhoneNumber',
-                                  value: e.target.value,
-                                });
-                              }}
-                              setCurrentOption={setCurrentPhone}
-                            />
-                          </>
-                        )}
-                      </div>
-                    )}
                     {!currentPhone && (
                       <div className="add-new-phone">
                         <span>
@@ -569,8 +556,7 @@ const TopUpModal = ({
               </div>
             )}
           </Wrapper>
-
-          <div className="money-section">
+          <div className="money-sections">
             <div className="amount">
               <span>{global.translate('Amount', 116)}</span>
             </div>
@@ -583,38 +569,7 @@ const TopUpModal = ({
                   onChange={onOptionsChange}
                   value={form.amount || null}
                 />
-                <strong>{currency}</strong>
-              </div>
-            </div>
-
-            <div className="plus-minus-icons">
-              <div
-                role="button"
-                tabIndex="0"
-                onKeyPress={() => {}}
-                className="icon"
-                onClick={() => {
-                  setForm({
-                    ...form,
-                    amount: parseInt(form.amount, 10) - 1,
-                  });
-                }}
-              >
-                <Icon name="minus" className="inner-icon" />
-              </div>
-              <div
-                className="icon"
-                role="button"
-                tabIndex="0"
-                onClick={() => {
-                  setForm({
-                    ...form,
-                    amount: parseInt(form.amount, 10) + 1,
-                  });
-                }}
-                onKeyPress={() => {}}
-              >
-                <Icon name="add" className="inner-icon" />
+                {currency && <Label size="large">{currency}</Label>}
               </div>
             </div>
           </div>
@@ -958,7 +913,10 @@ const TopUpModal = ({
               if (step === 1) {
                 checkTransactionConfirmation();
               }
-              if (nextStep) {
+              if (
+                nextStep &&
+                !confirmationData?.[0]?.VerificationError
+              ) {
                 moveToNextStep();
               }
               if (step === 2) {
