@@ -5,10 +5,25 @@
   display: block;
   justify-content: space-between;
 }
+.ui.dropdown.custom-dropdown {
+  max-width: 270px !important;
+}
 .phone-bank {
   width: 59%;
 
   margin: 0 auto;
+  .select-bank-account {
+    display: flex;
+    label {
+      padding-top: 17px;
+    }
+    .currency-label {
+      padding-top: 17px;
+    }
+  }
+  .ui.dropdown.custom-dropdown {
+    max-width: 270px !important;
+  }
   .dest-phone {
     width: 68%;
   }
@@ -36,7 +51,7 @@
       height: 42px !important;
       border-color: #ccc;
       border-radius: 5px;
-      width: 55%;
+      width: 68%;
       padding-left: 16px;
     }
   }
@@ -44,7 +59,7 @@
 .money-sections {
   width: 59%;
   margin: auto;
-  margin-top: -20px;
+  margin-top: -8px;
   input {
     width: 68%;
   }

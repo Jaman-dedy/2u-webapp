@@ -79,4 +79,10 @@ export default {
     loading: false,
     error: null,
   },
+  accountNumber: {
+    data: null,
+    loading: false,
+    error: null,
+    success: false,
+  },
 };

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable no-unused-vars */
 /* eslint-disable array-callback-return */
 /* eslint-disable react-hooks/exhaustive-deps */
@@ -87,6 +88,9 @@ const TopUpContainer = ({
   ] = useState(false);
   const [verifyAccout, setVerifyAccount] = useState(false);
   const [nextStep, setNextStep] = useState(false);
+  const { allContacts, accountNumber } = useSelector(
+    ({ contacts }) => contacts,
+  );
   const history = useHistory();
 
   const {
@@ -116,10 +120,6 @@ const TopUpContainer = ({
     state => state.moneyTransfer.transferToOthers,
   );
   useEffect(() => {
-    if (confirmationData) {
-      clearConfirmation()(dispatch);
-    }
-
     setCurrentPhone(null);
     setPhoneValue();
     setAccountValue(null);
@@ -136,6 +136,8 @@ const TopUpContainer = ({
       clearConfirmation()(dispatch);
       setCurrentBankAccount(null);
       setNextStep(false);
+      setSelectedProvider(null);
+      setErrors(null);
     }
   }, [data]);
 
@@ -193,13 +195,12 @@ const TopUpContainer = ({
     if (confirmationData?.[0]?.VerificationError) {
       clearConfirmation()(dispatch);
     }
-  }, [accountValue]);
+  }, [accountValue, currentBankAccount]);
   useEffect(() => {
     if (confirmationData) {
-      clearConfirmation()(dispatch);
       setNextStep(false);
     }
-  }, [accountValue]);
+  }, [accountValue, currentBankAccount]);
 
   useEffect(() => {
     if (userData.data) {
@@ -346,6 +347,7 @@ const TopUpContainer = ({
     updateMoneyTransferStep(1)(dispatch);
     clearConfirmation()(dispatch);
   };
+
   const checkTransactionConfirmation = () => {
     const data = {
       CountryCode: form.CountryCode,
@@ -354,7 +356,10 @@ const TopUpContainer = ({
       TargetType: form.Category,
       OperatorID: form.OperatorID,
       SourceWallet: form.sourceWallet || sourceWallet,
-      AccountNumber: accountValue?.number || form?.phoneNumber,
+      AccountNumber:
+        accountValue?.number ||
+        currentBankAccount?.Title ||
+        form?.phoneNumber,
     };
     setErrors(null);
     if (!validate()) {
@@ -384,9 +389,12 @@ const TopUpContainer = ({
   const { digit0, digit1, digit2, digit3 } = form;
   const PIN = `${digit0}${digit1}${digit2}${digit3}`;
   const pinIsValid = () => PIN.length === 4;
+
   const moveFundsToToUWallet = () => {
     const contactData = {
-      OwnerID: destinationContact?.ContactPID,
+      OwnerID:
+        destinationContact?.ContactPID ||
+        destinationContact?.PhoneNumber,
       CountryCode:
         form?.CountryCode ||
         (destinationContact && destinationContact.CountryCode) ||
@@ -471,6 +479,7 @@ const TopUpContainer = ({
         return;
       }
     }
+
     setErrors(null);
     if (saveAccount) {
       savingBankAccount(contactData)(dispatch);
@@ -726,6 +735,7 @@ const TopUpContainer = ({
       nextStep={nextStep}
       setAccountValue={setAccountValue}
       setNextStep={setNextStep}
+      accountValue={accountValue}
     />
   );
 };

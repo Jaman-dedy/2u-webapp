@@ -77,10 +77,8 @@ const SendMoneyContainer = ({
     }
   }, [error]);
 
-  console.log('confirmationData', confirmationData);
   useEffect(() => {
     if (confirmationData && confirmationData[0]) {
-      console.log('here');
       updateMoneyTransferStep(2)(dispatch);
     }
   }, [confirmationData]);

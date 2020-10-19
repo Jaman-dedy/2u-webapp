@@ -19,14 +19,14 @@ export default (phoneNumber, OTP) => dispatch =>
           type: VERIFY_OTP_START,
         }),
       onSuccess: data => dispatch => {
-        // if (data[0].Result === false) {
-        //   return dispatch({
-        //     type: VERIFY_OTP_ERROR,
-        //     payload: {
-        //       message: data[0].Description,
-        //     },
-        //   });
-        // }
+        if (data[0].Result === false) {
+          return dispatch({
+            type: VERIFY_OTP_ERROR,
+            payload: {
+              message: data[0].Description,
+            },
+          });
+        }
         return dispatch({
           type: VERIFY_OTP_SUCCESS,
           payload: {
@@ -37,14 +37,9 @@ export default (phoneNumber, OTP) => dispatch =>
       },
       onFailure: error => dispatch => {
         return dispatch({
-          // type: VERIFY_OTP_ERROR,
-          // payload: {
-          //   ...error[0],
-          // },
-          type: VERIFY_OTP_SUCCESS,
+          type: VERIFY_OTP_ERROR,
           payload: {
-            isValid: true,
-            // message: data[0].Description,
+            ...error[0],
           },
         });
       },

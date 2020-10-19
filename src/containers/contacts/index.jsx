@@ -369,7 +369,7 @@ const Index = () => {
       locateUser({
         PID: form.PID.trim(),
         userPID: userData.data && userData.data?.PID,
-      })(dispatch);
+      })(dispatch)();
     }
   };
 

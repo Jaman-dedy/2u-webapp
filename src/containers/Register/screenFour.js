@@ -37,11 +37,25 @@ export default ({ registrationData, setScreenNumber }) => {
             'Your personal Id should not contain special characters',
           );
 
+    const noSpaceAllowedError =
+      /\s/.test(personalId) === false
+        ? ''
+        : global.translate(
+            'Your personal Id should not contain spaces',
+          );
+
     setErrors({
       ...errors,
-      personalId: personalIdError || personalIdSpecialCharacterError,
+      personalId:
+        personalIdError ||
+        personalIdSpecialCharacterError ||
+        noSpaceAllowedError,
     });
-    return !(personalIdError || personalIdSpecialCharacterError);
+    return !(
+      personalIdError ||
+      personalIdSpecialCharacterError ||
+      noSpaceAllowedError
+    );
   };
 
   const handleNext = () => {

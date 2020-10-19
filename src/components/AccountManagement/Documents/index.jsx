@@ -51,7 +51,6 @@ const Documents = ({ userData, documents }) => {
         return null;
     }
   };
-  // console.log('payload', userDocs);
   return (
     <div className="documents-container">
       <ImagePreviewModal
