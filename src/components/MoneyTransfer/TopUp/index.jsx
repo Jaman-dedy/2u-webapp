@@ -90,6 +90,7 @@ const TopUpModal = ({
   moveToNextStep,
   nextStep,
   setAccountValue,
+  accountValue,
   setNextStep,
 }) => {
   const [buttonAction, setButtonAction] = useState();
@@ -262,6 +263,8 @@ const TopUpModal = ({
         setButtonAction(global.translate('NEXT', 1950));
         setVerifyAccount(true);
       }
+    } else {
+      setButtonAction(global.translate('Transfer money', 1950));
     }
   }, [currentProviderOption, confirmationData]);
 
@@ -347,7 +350,6 @@ const TopUpModal = ({
               </div>
               <div className="currency">
                 <span className="choose-dest-country">
-                  {/* <br /> */}
                   {global.translate(`Providers in `, 1733)}
                   &nbsp;
                   <strong>
@@ -369,51 +371,71 @@ const TopUpModal = ({
                       });
                     }}
                     setCurrentOption={setCurrentProviderOption}
+                    search
                   />
                 )}
               </div>
             </div>
+
             {!isTopingUp && (
               <div className="phone-bank">
                 {currentProviderOption?.Category === '4' ? (
                   <>
-                    {destinationContact?.BankAccountCount !== '0' && (
-                      <>
-                        {' '}
-                        <div>
-                          <span>
-                            {global.translate(
-                              `Select a bank account number`,
-                            )}
-                          </span>
-                          <ReusableDrowdown
-                            options={
-                              destinationContact &&
-                              destinationContact.BankAccounts
-                            }
-                            currentOption={
-                              currentBankAccount && currentBankAccount
-                            }
-                            onChange={e => {
-                              onOptionsChange(e, {
-                                name: 'AccountNumber',
-                                value: e.target.value,
-                              });
-                            }}
-                            setCurrentOption={setCurrentBankAccount}
-                          />
-                        </div>
-                      </>
-                    )}
+                    {destinationContact?.BankAccountCount !== '0' &&
+                      !accountValue && (
+                        <>
+                          {' '}
+                          <div>
+                            <span>
+                              {global.translate(
+                                `Select a bank account number`,
+                              )}
+                            </span>
+
+                            <div className="select-bank-account">
+                              <ReusableDrowdown
+                                options={
+                                  destinationContact &&
+                                  destinationContact.BankAccounts
+                                }
+                                currentOption={
+                                  currentBankAccount &&
+                                  currentBankAccount
+                                }
+                                onChange={e => {
+                                  onOptionsChange(e, {
+                                    name: 'AccountNumber',
+                                    value: e.target.value,
+                                  });
+                                }}
+                                setCurrentOption={
+                                  setCurrentBankAccount
+                                }
+                              />
+                              {confirmationData?.[0]
+                                ?.AccountCurrency && (
+                                <Label
+                                  className="currency-label"
+                                  size="large"
+                                >
+                                  {
+                                    confirmationData[0]
+                                      .AccountCurrency
+                                  }
+                                </Label>
+                              )}
+                            </div>
+                          </div>
+                        </>
+                      )}
                     {!currentBankAccount && (
                       <div className="new-dest-bank">
-                        {/* <br /> */}
                         <span>
                           {global.translate(
                             `Provide a new bank account number`,
                           )}
                         </span>
-                        {/* <br /> */}
+
                         <div>
                           <NumberFormat
                             className="new-bank-account"
@@ -444,23 +466,20 @@ const TopUpModal = ({
                           </span>
                         </div>
                         <div>
-                          {destinationContact?.ContactType ===
-                            'INTERNAL' && (
-                            <Checkbox
-                              disabled={
-                                !form.AccountNumber ||
-                                !!currentBankAccount?.Title
-                              }
-                              style={{ marginTop: '10px' }}
-                              label={global.translate(
-                                `Save bank account number`,
-                              )}
-                              checked={saveAccount}
-                              onChange={() =>
-                                setSaveAccount(!saveAccount)
-                              }
-                            />
-                          )}
+                          <Checkbox
+                            disabled={
+                              !accountValue ||
+                              !!currentBankAccount?.Title
+                            }
+                            style={{ marginTop: '10px' }}
+                            label={global.translate(
+                              `Save bank account number`,
+                            )}
+                            checked={saveAccount}
+                            onChange={() =>
+                              setSaveAccount(!saveAccount)
+                            }
+                          />
                         </div>
                       </div>
                     )}
@@ -599,6 +618,7 @@ const TopUpModal = ({
           </div>
         </Modal.Content>
       )}
+
       {step === 2 && (
         <Modal.Content className="ss-content">
           {confirmationData && confirmationData[0] && (
@@ -873,6 +893,7 @@ const TopUpModal = ({
                 setNextStep(false);
                 setPhoneValue();
                 setAccountValue(null);
+                setErrors(null);
               }}
             >
               {global.translate('Back', 174)}
@@ -993,6 +1014,12 @@ TopUpModal.propTypes = {
   currentBankAccount: PropTypes.objectOf(PropTypes.any).isRequired,
   setCurrentBankAccount: PropTypes.func.isRequired,
   dispatch: PropTypes.func.isRequired,
+  setVerifyAccount: PropTypes.func.isRequired,
+  moveToNextStep: PropTypes.func.isRequired,
+  nextStep: PropTypes.func.isRequired,
+  setAccountValue: PropTypes.func.isRequired,
+  accountValue: PropTypes.string.isRequired,
+  setNextStep: PropTypes.func.isRequired,
 };
 
 TopUpModal.defaultProps = {

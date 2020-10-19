@@ -539,6 +539,19 @@ const Transactions = ({
               },
               {
                 menuItem: (
+                  <Menu.Item key="Other transfer">
+                    {global.translate('Other transfer', 2030)}
+                    <Label as={Link} color="orange">
+                      {(pendingVouchersOnWallet &&
+                        pendingVouchersOnWallet.length) ||
+                        0}
+                    </Label>
+                  </Menu.Item>
+                ),
+                render: () => showVoucherTransactionsUI(),
+              },
+              {
+                menuItem: (
                   <Menu.Item key="Recent Stores">
                     {global.translate('Recent Stores', 1740)}
                     <Label as={Link} color="orange">
