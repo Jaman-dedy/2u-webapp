@@ -26,6 +26,7 @@ import handleSidebarHide from './handleSidebarHide';
 import addUserBookMark from './addUserBookMark';
 import removeUserBookMark from './removeUserBookMark';
 import getBookmarkedServices from './getBookmarkedServices';
+import handleNavbarFixed from './handleNavbarFixed';
 
 export default (state = initialState, action = {}) => ({
   ...state,
@@ -56,4 +57,5 @@ export default (state = initialState, action = {}) => ({
   ...addUserBookMark(state, action),
   ...removeUserBookMark(state, action),
   ...getBookmarkedServices(state, action),
+  ...handleNavbarFixed(state, action),
 });

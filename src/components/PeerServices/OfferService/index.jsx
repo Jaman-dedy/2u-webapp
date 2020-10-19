@@ -23,6 +23,9 @@ import EditPricingModal from './NewService/PricingModal';
 const ProfileComponent = ({ userPID }) => {
   const history = useHistory();
   const [activeIndex, setActiveIndex] = useState(0);
+  const { navbarFixed: fixed } = useSelector(
+    state => state.peerServices.desktopLayout,
+  );
 
   const { data: user } = useSelector(state => state.user.userData);
 
@@ -181,7 +184,9 @@ const ProfileComponent = ({ userPID }) => {
             </Grid.Column>
 
             <Grid.Column width={3} id="right-services-side-column">
-              <SidebarAd />
+              <div>
+                <SidebarAd className={fixed ? 'sidebar-add' : ''} />
+              </div>
             </Grid.Column>
           </Grid>
         </Container>

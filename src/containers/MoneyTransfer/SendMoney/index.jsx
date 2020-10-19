@@ -131,6 +131,7 @@ const SendMoneyContainer = ({
   }, [form.user2wallets]);
 
   const loadContacts = () => getallContacts()(dispatch);
+
   useEffect(() => {
     if (!allContacts.data) {
       loadContacts();

@@ -39,7 +39,7 @@ const ExchangeCurrencyModal = ({
   resetState,
 }) => {
   useEffect(() => {
-    if (data && data[0]) {
+    if (data && data?.[0]) {
       setForm({});
       resetState();
       setErrors(null);
@@ -72,7 +72,6 @@ const ExchangeCurrencyModal = ({
     if (defaultOption) {
       setCurrentOption(defaultOption);
     }
-    return () => {};
   }, [defaultOption]);
 
   return (

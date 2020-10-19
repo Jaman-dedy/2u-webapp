@@ -9,6 +9,7 @@ import './Edit.scss';
 import PositionPickerModal from 'components/common/PositionPicker';
 import CountryDropdown from 'components/common/Dropdown/CountryDropdown';
 import rawCountries from 'utils/countries';
+import useWindowSize from 'utils/useWindowSize';
 
 const EditGeneralInfo = ({ general }) => {
   const { userLocationData } = useSelector(({ user }) => user);
@@ -25,7 +26,7 @@ const EditGeneralInfo = ({ general }) => {
     Flag: `https://www.countryflags.io/${flag}/flat/32.png`,
     CountryCode: key,
   }));
-
+  const { width } = useWindowSize();
   const [selectedCountry, setSelectedCountry] = useState({});
 
   const [open, setOpen] = useState(false);
@@ -128,7 +129,7 @@ const EditGeneralInfo = ({ general }) => {
                 <Icon
                   name="map marker alternate"
                   inverted
-                  size="big"
+                  size={width > 500 ? 'big' : 'small'}
                 />
               </button>
             }
@@ -140,7 +141,7 @@ const EditGeneralInfo = ({ general }) => {
             value={generalData.Address2}
             onChange={handleInputChange}
             error={errors.Address2 || false}
-            placeholder={global.translate('Description', 119)}
+            placeholder={global.translate('Bio')}
             className="description"
             type="text"
             required
@@ -196,6 +197,7 @@ const EditGeneralInfo = ({ general }) => {
         <Form.Button
           type="button"
           secondary
+          className="update-btn"
           color="gray"
           loading={saveUserData.loading}
           onClick={() => !saveUserData.loading && handleSubmit()}

@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -16,6 +15,7 @@ import { CELINE_MONEY } from 'constants/general';
 const CurrencyExchangeContainer = ({
   setSendMoneyOpen,
   sendMoneyOpen,
+  selectedWallet,
 }) => {
   const { allContacts } = useSelector(state => state.contacts);
   const { walletList } = useSelector(state => state.user.myWallets);
@@ -42,10 +42,15 @@ const CurrencyExchangeContainer = ({
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (DefaultWallet) {
+    if (selectedWallet) {
+      setForm({
+        ...form,
+        sourceWallet: selectedWallet.AccountNumber,
+      });
+    } else if (DefaultWallet) {
       setForm({ ...form, sourceWallet: DefaultWallet.AccountNumber });
     }
-  }, [DefaultWallet, sendMoneyOpen]);
+  }, [DefaultWallet, sendMoneyOpen, selectedWallet]);
 
   const {
     checking,

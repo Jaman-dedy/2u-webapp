@@ -46,7 +46,7 @@ const WalletComponents = ({
   onChange,
   form,
   searchData,
-  error,
+
   currencies,
   addwalletFX,
   editWalletFX,
@@ -199,6 +199,7 @@ const WalletComponents = ({
       <CurrencyExchangeContainer
         setSendMoneyOpen={setSendMoneyOpen}
         sendMoneyOpen={sendMoneyOpen}
+        selectedWallet={item || null}
       />
       <WelcomeBar>
         <div className="head-content">

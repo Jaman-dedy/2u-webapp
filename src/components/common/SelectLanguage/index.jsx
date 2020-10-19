@@ -12,7 +12,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import changeLanguage from 'redux/actions/users/changeLanguage';
 import { Dropdown, Input } from 'semantic-ui-react';
 import useWindowSize from 'utils/useWindowSize';
-
 import LoaderComponent from '../Loader';
 
 const SelectLanguage = ({ pointing, hasLabel, open, setOpen }) => {
@@ -103,6 +102,7 @@ const SelectLanguage = ({ pointing, hasLabel, open, setOpen }) => {
                   text={text}
                   onClick={() => {
                     changeLanguage(key)(dispatch);
+
                     setOpen(false);
                   }}
                 />

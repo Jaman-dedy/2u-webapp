@@ -22,6 +22,9 @@ const ServiceFeedList = () => {
   const { open, service } = useSelector(
     state => state.peerServices.editPricingModal,
   );
+  const { navbarFixed: fixed } = useSelector(
+    state => state.peerServices.desktopLayout,
+  );
   const [activeIndex, setActiveIndex] = useState(0);
 
   const posts = usePosts();
@@ -149,7 +152,9 @@ const ServiceFeedList = () => {
               )}
             </Grid.Column>
             <Grid.Column width={3} id="right-services-side-column">
-              <SidebarAd />
+              <div className={fixed ? 'sidebar-add' : ''}>
+                <SidebarAd />
+              </div>
             </Grid.Column>
           </Grid>
         </Container>
