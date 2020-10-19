@@ -299,3 +299,10 @@ h5 {
 .ui.dropdown .menu {
   z-index: 999999 !important;
 }
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+}

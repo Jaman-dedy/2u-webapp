@@ -15,7 +15,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import IdleTimer from 'react-idle-timer';
 import { Modal, Button } from 'semantic-ui-react';
-
 import 'assets/styles/style.scss';
 import ChatModal from 'components/Chat/ChatModal';
 import getUserInfo from 'redux/actions/users/getUserInfo';
@@ -54,13 +53,9 @@ import ReloadApp from 'components/ReloadApp';
 import { LOGIN_RETURN_URL } from 'constants/general';
 import ErrorFallback from './Error';
 import * as serviceWorker from './serviceWorker';
-
 import 'react-bnb-gallery/dist/style.css';
-
 const { REACT_APP_GOOGLE_ANALYTICS_NUMBER } = process.env;
-
 const history = createBrowserHistory();
-
 ReactGA.initialize(REACT_APP_GOOGLE_ANALYTICS_NUMBER);
 history.listen(location => {
   const queryParams = queryString.parseUrl(window.location.href, {
@@ -74,37 +69,28 @@ history.listen(location => {
     }`,
   );
 });
-
 const App = () => {
   const dispatch = useDispatch();
   global.translate = useTranslate();
-
   handleSocketIOClientEvents();
-
   walletEvent();
   generalEvent();
   cashRequestEvent();
   contactRequestEvent();
   voucherEvent();
-
   // chat
   chatThreads();
   directMessage();
   deleteMessages();
   updateUnreadCount();
-
   // check user went offline
   checkUserConnected();
-
   // user presence
   userPresence();
-
   // contact block/unblock updates
   blockUnblock();
-
   // notify user online
   useNotifyOnlineStatus();
-
   const {
     showInstallBtn,
     deferredPrompt,
@@ -112,27 +98,22 @@ const App = () => {
     cancelInstallApp,
   } = useInstallApp();
   const [waitingWorker, setWaitingWorker] = React.useState(null);
-
   const routeRef = useRef(null);
   const appRef = useRef(null);
   const sessionTimeoutRef = useRef(null);
   const [open, setOpen] = useState(false);
   const [confirmOpen, setConfirmOpen] = useState(true);
-
   const {
     userData: { data, loading: userDataLoading },
   } = useSelector(({ user }) => user);
   const { open: chatOpen } = useSelector(state => state.chat.appChat);
-
   const MAX_USER_IDLE_TIME = Number(
     localStorage.getItem('MAX_USER_IDLE_TIME'),
   );
-
   const DEBOUNCE_TIME = MAX_USER_IDLE_TIME * (1 / 4);
   const INITIAL_TIMEOUT_DURATION = Math.floor(
     MAX_USER_IDLE_TIME * (3 / 4),
   );
-
   const reloadPage = () => {
     if (waitingWorker) {
       waitingWorker.postMessage({ type: 'SKIP_WAITING' });
@@ -141,7 +122,6 @@ const App = () => {
       window.location.reload(true);
     }, 1000);
   };
-
   const onSWUpdate = registration => {
     const reloadAppBtn = document.querySelector('.reload-app-toast');
     if (!reloadAppBtn && !isAppDisplayedInWebView()) {
@@ -155,23 +135,19 @@ const App = () => {
       registration.waiting.postMessage({ type: 'SKIP_WAITING' });
     }
   };
-
   const stayActive = () => {
     clearTimeout(sessionTimeoutRef.current);
     setOpen(false);
   };
-
   const logUserOut = () => {
     setOpen(false);
     localStorage.setItem('userWasIdle', true);
     logout()(dispatch);
   };
-
   const onIdle = () => {
     setOpen(true);
     sessionTimeoutRef.current = setTimeout(logUserOut, DEBOUNCE_TIME);
   };
-
   useEffect(() => {
     const installAppBtn = document.querySelector(
       '.install-app-toast',
@@ -195,7 +171,6 @@ const App = () => {
       );
     }
   }, [showInstallBtn, deferredPrompt]);
-
   useEffect(() => {
     serviceWorker.unregister({ onUpdate: onSWUpdate });
     getUserLocationData()(dispatch);
@@ -208,32 +183,26 @@ const App = () => {
       getLanguage()(dispatch);
     }
   }, []);
-
   useEffect(() => {
     if (!userDataLoading && data && Object.keys(data).length) {
       notifAction({ PID: data.PID })(dispatch);
       getContactList()(dispatch);
     }
   }, [userDataLoading, data]);
-
   useEffect(() => {
     welcomeEvent.listen();
-
     return () => {
       welcomeEvent.off();
     };
   }, []);
-
   useEffect(() => {
     scroll();
   }, [window.location.href]);
-
   useEffect(() => {
     ReactGA.pageview(
       window.location.pathname + window.location.search,
     );
   }, []);
-
   const AppRoutes = (
     <Router
       ref={routeRef}
@@ -286,7 +255,6 @@ const App = () => {
   return (
     <>
       <ChatModal open={chatOpen} routeRef={routeRef} />
-
       <ToastContainer position={toast.POSITION.TOP_RIGHT} />
       <div className="App">
         <Modal
@@ -327,7 +295,6 @@ const App = () => {
             />
           </Modal.Actions>
         </Modal>
-
         {isAppDisplayedInWebView() ? (
           <ErrorBoundary FallbackComponent={ErrorFallback}>
             {AppRoutes}
@@ -352,13 +319,11 @@ const App = () => {
     </>
   );
 };
-
 App.defaultProps = {
   location: {},
   history: {},
   match: {},
 };
-
 App.propTypes = {
   location: PropTypes.shape({
     pathname: PropTypes.string,
@@ -368,5 +333,4 @@ App.propTypes = {
   }),
   match: PropTypes.shape({}),
 };
-
 export default App;

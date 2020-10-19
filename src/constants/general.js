@@ -3,11 +3,13 @@ export const DEFAULT_LANGUAGE = 'en';
 export const HOME_WEBSITE = 'https://2u.money';
 export const LOGIN_RETURN_URL = 'next';
 export const COMPANY_NAME = 'Ossix Technologies LLC';
-export const TERMS_AND_CONDITIONS_URL = 'TERMS_AND_CONDITIONS_URL';
+export const TERMS_AND_CONDITIONS_URL =
+  'https://2u.money/terms-and-conditions/';
 export const PEER_SERVICES_OG_IMAGE_URL =
   'https://www.app.2u.money/marketplace';
 export const PEER_SERVICES_OG_URL =
   'https://www.app.2u.money/marketplace';
+export const PRIVACY_POLICY_URL = 'https://2u.money/privacy-policy';
 
 // contact blocking status
 

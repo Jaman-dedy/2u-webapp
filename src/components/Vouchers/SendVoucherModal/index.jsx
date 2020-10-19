@@ -66,7 +66,7 @@ const SendMoneyModal = ({ SendVoucherModal }) => {
   const clearSendVoucher = () => {
     history.push({
       pathname: '/contacts',
-      search: '?ref=send-voucher',
+      search: '?send-voucher-success=1',
     });
 
     setForm({ Scope: 'AND' });
