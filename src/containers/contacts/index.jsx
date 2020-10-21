@@ -25,7 +25,6 @@ import countryCodes from 'utils/countryCodes';
 
 import watchContactPresence from './watchContactPresence';
 
-
 const Index = () => {
   // init watch contacts
   watchContactPresence();
@@ -417,10 +416,20 @@ const Index = () => {
             ),
           );
           setOpen(false);
+          const newContact = addNewUserData.data[0];
+          if (newContact.ContactPID) {
+            newContact.ContactType = 'INTERNAL';
+          } else {
+            newContact.ContactType = 'EXTERNAL';
+          }
+          history.push(
+            `/contact/${newContact.ContactPID ??
+              newContact.PhoneNumber}?type=${newContact.ContactType}`,
+          );
           setIsDetail(true);
         }
 
-        setContact(addNewUserData.data[0]);
+        // setContact(addNewUserData.data[0]);
       }
 
       clearSuccess();
