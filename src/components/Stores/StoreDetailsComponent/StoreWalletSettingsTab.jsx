@@ -69,7 +69,7 @@ const StoreWalletSettingsTab = ({ currentStore }) => {
             <Card.Content>
               <p className="stat-header">
                 {global.translate('Total', 269)}{' '}
-                {global.translate('Transactions').toLowerCase()}
+                {global.translate('Transactions', 62).toLowerCase()}
               </p>
               <span className="stats-value">
                 {currentStore.TransCount}
