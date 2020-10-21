@@ -43,6 +43,7 @@ const QuickPay = ({
   const { language: { preferred } = {} } = useSelector(
     ({ user }) => user,
   );
+
   const history = useHistory();
   const onClickHandler = () => history.goBack();
   const location = (

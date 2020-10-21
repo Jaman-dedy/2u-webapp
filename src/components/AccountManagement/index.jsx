@@ -21,12 +21,12 @@ import {
   AWAY,
   DO_NOT_DISTURB,
 } from 'constants/general';
+import isAppDisplayedInWebView from 'helpers/isAppDisplayedInWebView';
 import ImageCroper from 'components/common/ImageCroper/CropImage';
 import General from './General';
 import EmailPhone from './EmailAndPhone';
 import Security from './Security';
 import Documents from './Documents';
-import isAppDisplayedInWebView from 'helpers/isAppDisplayedInWebView';
 
 const AccountManagement = ({
   userData,
@@ -47,14 +47,34 @@ const AccountManagement = ({
   const history = useHistory();
   const imageInputRef = useRef(null);
   const { data } = userData;
+
   const {
     profileImage,
     onImageChange: uploadImage,
   } = profileImageData;
+
   const [hasError, setHasError] = useState(false);
   const [open, setOpen] = useState(false);
   const [file, setFile] = useState();
+
   const onClickHandler = () => history.goBack();
+
+  const handleSelectFile = () => {
+    imageInputRef.current.click();
+  };
+  const onImageChange = ({ target }) => {
+    const { files } = target;
+    if (files[0]) {
+      setFile(files[0]);
+      setOpen(true);
+    }
+  };
+
+  const onImageUpload = file => {
+    uploadImage(file);
+    setOpen(false);
+  };
+
   const panes = [
     {
       menuItem: global.translate('General', 293),
@@ -85,7 +105,7 @@ const AccountManagement = ({
       ),
     },
     {
-      menuItem: global.translate('Security', 1593),
+      menuItem: global.translate('Security', 84),
       render: () => (
         <Tab.Pane
           className="bottom-tab-pane security"
@@ -115,21 +135,6 @@ const AccountManagement = ({
     },
   ];
   const isCurrentStatus = item => item === data?.PresenceStatus;
-  const handleSelectFile = () => {
-    imageInputRef.current.click();
-  };
-  const onImageChange = ({ target }) => {
-    const { files } = target;
-    if (files[0]) {
-      setFile(files[0]);
-      setOpen(true);
-    }
-  };
-
-  const onImageUpload = file => {
-    uploadImage(file);
-    setOpen(false);
-  };
   return (
     <DashboardLayout>
       <ImageCroper
@@ -140,6 +145,7 @@ const AccountManagement = ({
         uploadImage={onImageUpload}
         chooseImage={handleSelectFile}
       />
+
       <WelcomeBar loading={userData.loading}>
         <div className="head-content">
           {!isAppDisplayedInWebView() && (

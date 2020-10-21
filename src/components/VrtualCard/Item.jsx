@@ -92,7 +92,7 @@ const VirtualCard = ({
         value={virtualCard && virtualCard.CardNumber}
       />
       <Card virtualCard={virtualCard} userData={userData} />
-    <br/>
+      <br />
       <Item.Content verticalAlign="middle">
         <Item.Header className="vc-currency">
           {virtualCard && `${virtualCard.Currency} `}{' '}
@@ -144,7 +144,8 @@ const VirtualCard = ({
             <br />
             <hr style={{ border: 'none' }} />
             <span className="vc-info">
-              CVV: <strong>{virtualCard?.CVV}</strong>{' '}
+              {global.translate('CVV')}:{' '}
+              <strong>{virtualCard?.CVV}</strong>{' '}
             </span>
             <br />
             <hr style={{ border: 'none' }} />

@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
@@ -65,6 +64,11 @@ export default () => {
     setScreenNumber(1);
     clearTransferFundAction()(dispatch);
   };
+
+  useEffect(() => {
+    getSuppliersCountries()(dispatch);
+  }, []);
+
   useEffect(() => {
     setListOfWallet(myWallets?.walletList);
   }, []);
@@ -73,13 +77,12 @@ export default () => {
     if (queryParams.ref === 'pay-bills') {
       setOpenPayBills(true);
     }
-  }, [queryParams]);
+  }, [queryParams.ref]);
 
   useEffect(() => {
-    if (myWallets.walletList) {
+    if (myWallets.walletList.length < 1) {
       getMyWallets()(dispatch);
     }
-    getSuppliersCountries()(dispatch);
 
     const defaultWallet = myWallets.walletList.find(
       ({ Default }) => Default === 'YES',
@@ -93,7 +96,7 @@ export default () => {
 
   useEffect(() => {
     if (
-      suppliersCountries.countries.length !== 0 &&
+      suppliersCountries.countries?.length !== 0 &&
       !suppliersCountries.loading
     ) {
       const Country = suppliersCountries.countries.find(
@@ -101,23 +104,27 @@ export default () => {
           CountryCode === userLocationData.CountryCode,
       );
 
-      setPayBillsData({
-        ...payBillsData,
-        CountryCode: Country
-          ? Country.CountryCode
-          : suppliersCountries.countries[0].CountryCode,
-      });
+      if (Country) {
+        setPayBillsData({
+          ...payBillsData,
+          CountryCode: Country
+            ? Country.CountryCode
+            : suppliersCountries.countries[0].CountryCode,
+        });
 
-      getSuppliers(
-        Country
-          ? Country.CountryCode
-          : suppliersCountries.countries[0].CountryCode,
-      )(dispatch);
+        getSuppliers(
+          Country
+            ? Country.CountryCode
+            : suppliersCountries.countries[0].CountryCode,
+        )(dispatch);
+      }
     }
-  }, [suppliersCountries]);
+  }, [suppliersCountries.countries]);
 
   useEffect(() => {
-    getSuppliers(payBillsData.CountryCode)(dispatch);
+    if (payBillsData.CountryCode) {
+      getSuppliers(payBillsData.CountryCode)(dispatch);
+    }
   }, [payBillsData.CountryCode]);
 
   return {
