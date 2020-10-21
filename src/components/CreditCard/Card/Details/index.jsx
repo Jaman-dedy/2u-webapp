@@ -24,7 +24,8 @@ const Details = ({ wallet }) => {
             />
             <List.Item>
               <List.Content>
-                CVV: <strong>{wallet && wallet.CVV}</strong>
+                {global.translate('CVV')}:
+                <strong>{wallet && wallet.CVV}</strong>
               </List.Content>
             </List.Item>
             <List.Item>
