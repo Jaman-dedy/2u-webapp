@@ -61,14 +61,6 @@ const MoneyTransfer = ({ userData }) => {
                 )}
               />
               <CardComponent
-                image={offerServicesIcon}
-                to="/marketplace/user/me"
-                title={global.translate('Offer a product or service')}
-                subtitle={global.translate(
-                  'Offer products or services to people around you',
-                )}
-              />
-              <CardComponent
                 isComingSoon
                 image={agricultureIcon}
                 title={global.translate('Farmers Corner', 2022)}

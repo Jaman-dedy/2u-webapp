@@ -6,7 +6,6 @@ import './style.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import queryString from 'query-string';
-
 import { useHistory } from 'react-router-dom';
 import openEditPricingModal from 'redux/actions/peerServices/openEditPricingModal';
 import {

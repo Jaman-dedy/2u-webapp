@@ -37,13 +37,13 @@
     font-weight: bold;
     color: #ffffff;
     border-radius: 4px;
-    background: #da6138
+    background: #da6138;
   }
   .btns-header-actions {
-   
     margin: 12px 0;
     flex-grow: 1;
-    padding:0;
+    padding: 0;
+    width: calc(100% - 230px);
   }
   .btns-header-actions ul {
     list-style-type: none;
@@ -51,11 +51,12 @@
     padding: 0;
     width: auto;
     position: relative;
-    float:right;
+    float: right;
+    margin-right: 5px;
   }
   .btns-header-actions ul li {
     border: 1px solid transparent;
-    float:left;
+    float: left;
     position: relative;
     padding: 0 0;
     min-width: 40px;
