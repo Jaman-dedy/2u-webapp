@@ -1,14 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Label } from 'semantic-ui-react';
+import { Label, Form, Dropdown, Message } from 'semantic-ui-react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import Img from 'components/common/Img';
 import checkImageExists from 'helpers/checkImageExists';
 import ImagePreviewModal from 'components/common/ImagePreviewModal';
-import DocPlaceholder from './DocPlaceholder';
 import './Documents.scss';
+import {
+  idID,
+  idPassport,
+  idDriverLicence,
+  idOther,
+} from 'constants/general';
+import countryCodeLetters from 'utils/countryCodeLetters';
+import DocPlaceholder from './DocPlaceholder';
 
 const Documents = ({ userData, documents }) => {
-  const { userDocs, onImageChange } = documents;
+  const {
+    userDocs,
+    onImageChange,
+    onOptionsChange,
+    submitHandler,
+    expiryDate,
+    setExpiryDate,
+    setIssueDate,
+    issueDate,
+    form,
+    errors,
+    loading,
+    iDCardInfo,
+    IdInfo,
+  } = documents;
+
   const { data } = userData;
 
   const [open, setOpen] = useState(false);
@@ -51,6 +75,28 @@ const Documents = ({ userData, documents }) => {
         return null;
     }
   };
+  const options = [
+    {
+      key: idID,
+      text: global.translate('ID card', 1143),
+      value: idID,
+    },
+    {
+      key: idPassport,
+      text: global.translate('Passport', 1142),
+      value: idPassport,
+    },
+    {
+      key: idDriverLicence,
+      text: global.translate("Driver's license", 1144),
+      value: idDriverLicence,
+    },
+    {
+      key: idOther,
+      text: global.translate('Other', 1409),
+      value: idOther,
+    },
+  ];
   return (
     <div className="documents-container">
       <ImagePreviewModal
@@ -58,28 +104,27 @@ const Documents = ({ userData, documents }) => {
         setOpen={setOpen}
         src={imagePreviewSrc}
       />
-      <div className="large-v-margin">
+      <div className="doc-title">
         <span>{global.translate('Official ID document')}</span>
       </div>
-      <div className="flex docs">
-        <div className="description text-overflow-ellipsis center-align xlarge-v-padding large-h-padding border-radius-4">
-          <span className="text-overflow-ellipsis">
-            {global.translate(
-              'This could be any government issued picture ID such as Passport, driving license, national ID card.',
-              891,
-            )}
-          </span>
-        </div>
+      <span className="doc-sub-title">
+        {global.translate(
+          'This could be any government issued picture ID such as Passport, driving license, national ID card.',
+          891,
+        )}
+      </span>
+      <div className="doc-status">
+        {IdDocExist && (
+          <Label
+            color={getDocStatus(data && data.IDVerified)?.color}
+            className="status-label"
+          >
+            Status : {getDocStatus(data && data.IDVerified)?.label}
+          </Label>
+        )}
+      </div>
+      <div className="justify-content-space-between id-forms">
         <div className="document-image">
-          {IdDocExist && (
-            <Label
-              ribbon
-              color={getDocStatus(data && data.IDVerified)?.color}
-              className="status-label"
-            >
-              {getDocStatus(data && data.IDVerified)?.label}
-            </Label>
-          )}
           <Img
             compress
             format="png"
@@ -108,11 +153,120 @@ const Documents = ({ userData, documents }) => {
             }
           />
         </div>
+
+        <div className="id-doc-form">
+          <Form size="mini">
+            <div>
+              <span> Select the ID type </span>
+              <br />
+              <Dropdown
+                fluid
+                label="Select the ID type"
+                options={options}
+                selection
+                placeholder="ID type"
+                onChange={onOptionsChange}
+                name="IDType"
+                defaultValue={iDCardInfo?.IDType}
+              />
+              {errors?.IDType && (
+                <Message color="orange">{errors.IDType}</Message>
+              )}
+            </div>
+            <br />
+
+            <div>
+              <Form.Input
+                fluid
+                label="Id number"
+                placeholder="Id number"
+                onChange={onOptionsChange}
+                name="IDNumber"
+                value={
+                  form?.IDNumber ||
+                  IdInfo?.IDNumber ||
+                  iDCardInfo?.IDNumber
+                }
+              />
+              {errors?.IDNumber && (
+                <Message color="orange">{errors.IDNumber}</Message>
+              )}
+            </div>
+            <br />
+            <div>
+              <span> Date of issue</span>
+              <br />
+
+              <DatePicker
+                selected={issueDate}
+                onChange={date => setIssueDate(date)}
+                peekNextMonth
+                showMonthDropdown
+                showYearDropdown
+                dropdownMode="select"
+                value={IdInfo?.DateIssue || iDCardInfo?.IssueDate}
+              />
+            </div>
+            <br />
+            <div>
+              <span> Expiration date </span>
+              <br />
+              <DatePicker
+                selected={expiryDate}
+                onChange={date => setExpiryDate(date)}
+                peekNextMonth
+                showMonthDropdown
+                showYearDropdown
+                dropdownMode="select"
+                value={
+                  IdInfo?.ExpirationDate || iDCardInfo?.ExpirationDate
+                }
+              />
+            </div>
+            <br />
+
+            <div>
+              <span> Select Country </span>
+              <br />
+              <Dropdown
+                label="Select Country"
+                placeholder="Select Country"
+                fluid
+                search
+                selection
+                options={countryCodeLetters}
+                onChange={onOptionsChange}
+                name="IDCountryCode"
+                defaultValue="rw"
+              />
+              {errors?.IDCountryCode && (
+                <Message color="orange">
+                  {errors.IDCountryCode}
+                </Message>
+              )}
+            </div>
+            <div className="submit-button">
+              <Form.Button
+                loading={loading}
+                disabled={
+                  loading ||
+                  !!errors?.IDCountryCode ||
+                  !!errors?.IDNumber ||
+                  !!errors?.IDType
+                }
+                onClick={() => submitHandler()}
+              >
+                Submit
+              </Form.Button>
+            </div>
+          </Form>
+        </div>
       </div>
-      <div className="large-v-margin">
+
+      {/* <div className="large-v-margin">
         <span>{global.translate('Proof of current address')}</span>
-      </div>
-      <div className="flex docs">
+      </div> */}
+      {/* <div className="flex docs">
         <div className="description center-align large-padding border-radius-4">
           <span>
             {global.translate(
@@ -161,11 +315,11 @@ const Documents = ({ userData, documents }) => {
             }
           />
         </div>
-      </div>
-      <div className="large-v-margin">
+      </div> */}
+      {/* <div className="large-v-margin">
         <span>{global.translate('Other documents')}</span>
-      </div>
-      <div className="other-documents flex">
+      </div> */}
+      {/* <div className="other-documents flex">
         {Array(5)
           .fill()
           .map((_, index) => {
@@ -207,7 +361,7 @@ const Documents = ({ userData, documents }) => {
               </div>
             );
           })}
-      </div>
+      </div> */}
     </div>
   );
 };

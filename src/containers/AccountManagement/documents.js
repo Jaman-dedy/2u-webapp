@@ -1,17 +1,27 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
+import moment from 'moment';
 
 import updateUserDocsAction from 'redux/actions/userAccountManagement/updateUserDocs';
 import uploadFile from 'helpers/uploadImages/uploadFile';
 import isFileImage from 'utils/isFileImage';
 import { updateAuthData } from 'redux/actions/users/login';
+import saveUserIdData from 'redux/actions/users/saveUserIdData';
 
 export default () => {
   const dispatch = useDispatch();
-  const { userData } = useSelector(({ user }) => user);
+  const {
+    userData,
+    userIdData: { loading, data: IdInfo },
+  } = useSelector(({ user }) => user);
 
+  const [iDCardInfo, setIDCardInfo] = useState({});
   const [userDocs, setUserDocs] = useState({});
+  const [form, setForm] = useState({});
+  const [expiryDate, setExpiryDate] = useState(new Date());
+  const [issueDate, setIssueDate] = useState(new Date());
+  const [errors, setErrors] = useState(null);
 
   const [imageUploadState, setImageUploadState] = useState({
     loading: false,
@@ -85,6 +95,22 @@ export default () => {
     return null;
   };
 
+  useEffect(() => {
+    if (userData.data) {
+      setIDCardInfo(userData.data.IDCardInfo);
+    }
+  }, [userData]);
+
+  const onOptionsChange = (e, { name, value }) => {
+    setForm({ ...form, [name]: value });
+    if (errors) {
+      setErrors({
+        ...errors,
+        [name]: '',
+      });
+    }
+  };
+
   const onImageChange = ({ target }) => {
     const { name, files, value } = target;
 
@@ -106,10 +132,57 @@ export default () => {
         );
     }
   };
+  const { IDType, IDNumber, IDCountryCode } = form;
+  /**
+   * @return {bool} true if no error
+   */
+  const validate = () => {
+    const IDTypeError = IDType
+      ? ''
+      : global.translate('Please provide your Id type');
+    const IDNumberError = IDNumber
+      ? ''
+      : global.translate('Please provide your Id number');
+    const IDCountryCodeError = IDCountryCode
+      ? ''
+      : global.translate('Please select your country');
+
+    setErrors({
+      ...errors,
+      IDType: IDTypeError,
+      IDNumber: IDNumberError,
+      IDCountryCode: IDCountryCodeError,
+    });
+    return !(IDTypeError, IDNumberError, IDCountryCodeError);
+  };
+
+  const submitHandler = () => {
+    if (validate()) {
+      const data = {
+        IDNumber,
+        IDType,
+        ExpirationDate: expiryDate,
+        DOIssue: issueDate,
+        IDCountryCode,
+      };
+      saveUserIdData(data)(dispatch);
+    }
+  };
 
   return {
     userDocs,
     onImageChange,
     imageUploadState,
+    onOptionsChange,
+    submitHandler,
+    expiryDate,
+    setExpiryDate,
+    issueDate,
+    setIssueDate,
+    errors,
+    setErrors,
+    loading,
+    iDCardInfo,
+    IdInfo,
   };
 };
