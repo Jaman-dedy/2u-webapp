@@ -1,27 +1,24 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from 'react';
-import { toast } from 'react-toastify';
-import { useHistory } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
 import SendCashModal from 'components/MoneyTransfer/sendCash';
-import moveFunds, {
-  clearMoveFundsErrors,
-} from 'redux/actions/moneyTransfer/moveFunds';
-import confirmTransaction from 'redux/actions/moneyTransfer/confirmTransaction';
+import { CASH_OUT } from 'constants/general';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { clearFoundUser } from 'redux/actions/contacts/locateUser';
-import countryCodes from 'utils/countryCodes';
 import getSupportedCountries from 'redux/actions/countries/getSupportedCountries';
+import { updateMoneyTransferStep } from 'redux/actions/dashboard/dashboard';
+import confirmTransaction from 'redux/actions/moneyTransfer/confirmTransaction';
+import modifyCash, { clearModifyCash } from 'redux/actions/moneyTransfer/modifyCash';
+import moveFunds, { clearMoveFundsErrors } from 'redux/actions/moneyTransfer/moveFunds';
+import getUnpaidCashList from 'redux/actions/transactions/getUnpaidCashList';
 import getMyWallets from 'redux/actions/users/getMyWallets';
 import getUserLocationData from 'redux/actions/users/userLocationData';
-import modifyCash, {
-  clearModifyCash,
-} from 'redux/actions/moneyTransfer/modifyCash';
-import getUnpaidCashList from 'redux/actions/transactions/getUnpaidCashList';
+import countryCodes from 'utils/countryCodes';
 import formatNumber from 'utils/formatNumber';
-import { updateMoneyTransferStep } from 'redux/actions/dashboard/dashboard';
-import { CASH_OUT } from 'constants/general';
 
+/* eslint-disable react-hooks/exhaustive-deps */
 const SendCashContainer = ({
   open,
   setOpen,
@@ -315,8 +312,8 @@ const SendCashContainer = ({
   }, [destinationContact]);
 
   useEffect(() => {
-    setForm({ ...form, isRecurring: false });
-    setForm({ ...form, sendNow: true });
+    setForm({ ...form, isRecurring: form.isRecurring || false });
+    setForm({ ...form, sendNow: form.sendNow || false });
   }, [confirmationData]);
 
   useEffect(() => {
@@ -384,7 +381,7 @@ const SendCashContainer = ({
       DateTo: (form.isRecurring && form.endDate) || '',
       Day: form.isRecurring ? form.day && form.day.toString() : '0',
       Reccurent: form.isRecurring ? 'YES' : 'NO',
-      SendNow: form.sendNow ? 'YES' : 'NO',
+      SendNow: form.isRecurring && form.sendNow ? 'No' : 'YES',
       Reference: form.reference || '',
       Description: form.description || '',
       TargetType: CASH_OUT,
