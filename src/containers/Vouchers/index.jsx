@@ -204,7 +204,9 @@ const Vouchers = () => {
     }
     if (queryParams.receiverPID) {
       const contact = allContacts?.data?.filter(
-        contact => contact.ContactPID === queryParams.receiverPID,
+        contact =>
+          contact.ContactPID === queryParams.receiverPID ||
+          contact.PhoneNumber === queryParams.receiverPID,
       );
 
       if (Array.isArray(contact) && contact.length) {
