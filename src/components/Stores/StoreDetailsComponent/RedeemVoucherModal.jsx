@@ -1,28 +1,32 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Modal, Button } from 'semantic-ui-react';
-import { useHistory } from 'react-router-dom';
+
 import { useSelector, useDispatch } from 'react-redux';
 import redeemStoreVoucher from 'redux/actions/vouchers/redeemStoreVoucher';
 import VoucherTokenVerification from 'components/common/VoucherTokenVerification';
 import VoucherSecurityCode from 'components/common/VoucherSecurityCode';
 import Message from 'components/common/Message';
-import { clearMoveFundsErrors } from 'redux/actions/moneyTransfer/moveFunds';
-import PinCodeForm from 'components/common/PinCodeForm';
+
 import verifyVoucherFn from 'redux/actions/vouchers/verifyStoreVoucher';
 import PendingVoucherDetails from './pendingVoucherDetail';
+import VoucherReceiptModal from './VoucherReceiptModal';
 
-const ConfirmRejectVoucherModal = ({ open, setOpen, item }) => {
+const RedeemVoucherModal = ({ open, setOpen, item }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
+
   const [step, setStep] = useState(1);
   const [form, setForm] = useState({
     VoucherNumber: '',
     SecurityCode: '',
   });
 
-  const [error, setError] = useState(null);
+  const [
+    openVoucherReceiptModal,
+    setOpenVoucherReceiptModal,
+  ] = useState(false);
+
+  const [error] = useState(null);
   const onChange = (e, { name, value }) => {
     setForm({ ...form, [name]: value });
   };
@@ -48,7 +52,73 @@ const ConfirmRejectVoucherModal = ({ open, setOpen, item }) => {
   useEffect(() => {
     setStep(1);
     setOpen(false);
+
+    if (redeemData) {
+      setOpenVoucherReceiptModal(true);
+    }
   }, [redeemData]);
+
+  const dataTest = [
+    {
+      OK: '200',
+      ReturnCode: '0',
+      Description: 'This transaction has been completed.',
+      PID: 'LAFOUINEBABY',
+      Result: 'Success',
+      AmountToBeReceived: '0.00 CDF',
+      Amount: '11.00 AED',
+      Fees: '0.00 AED',
+      ExternalFees: '3.67 AED',
+      ExchangeFees: '0.07 AED',
+      Taxes: '0.00 AED',
+      TotalAmount: '14.74 AED',
+      ExchangeRate: '1:0.000000',
+      SecurityCode: '3321',
+      VoucherPIN: '0905733892',
+      VoucherQRCode:
+        'http://chart.apis.google.com/chart?chs=200x200&cht=qr&chld=M&chl=09057338923321',
+      Sender: {
+        ContactType: 'INTERNAL',
+        SenderPID: 'LAFOUINEBABY',
+        FirstName: 'LaFouine',
+        LastName: 'Ouinny',
+        PhoneNumber: '32460227441',
+        Email: 'lafouine@gmail.com',
+        DefaultWallet: 'AED-05-LAFOUINEBABY',
+        PictureURL:
+          'https://celinemoneypicfiles.blob.core.windows.net/zones/lafouinebaby-0.png',
+      },
+      Beneficiary: {
+        ContactType: 'INTERNAL',
+        BenefPID: 'DANSON777',
+        FirstName: 'Danson',
+        LastName: 'Serge',
+        PhoneNumber: '250788211908',
+        Email: '',
+        DefaultWallet: 'USD-01-DANSON777',
+        PictureURL:
+          'https://celinemoneypicfiles.blob.core.windows.net/zones/danson777-0.png',
+      },
+      Address: 'Kigali/Rwanda',
+      Store: {
+        StoreID: 'ST-01-LAFOUINEBABY',
+        StoreName: 'First Store',
+        ShortDesc: 'Store Leading words',
+        City: 'Kigali',
+        Country: 'Rwanda',
+        CountryCode: 'rw',
+        Flag:
+          'https://celinemoneypicfiles.blob.core.windows.net/icons/rw.png',
+        PhoneNumber: '250781234567',
+        PhonePrefix: '250',
+        Phone: '781 234 567',
+        StoreBanner:
+          'https://celinemoneypicfiles.blob.core.windows.net/medias/st-01-lafouinebaby.png',
+        StoreLogo:
+          'https://celinemoneypicfiles.blob.core.windows.net/medias/st-01-lafouinebabylogo.png',
+      },
+    },
+  ];
 
   return (
     <div>
@@ -171,17 +241,28 @@ const ConfirmRejectVoucherModal = ({ open, setOpen, item }) => {
           )}
         </Modal.Actions>
       </Modal>
+
+      <VoucherReceiptModal
+        data={redeemData?.[0]}
+        isOpened={openVoucherReceiptModal}
+        onClose={() => setOpenVoucherReceiptModal(false)}
+      />
+
+      {/*  <VoucherReceiptModal
+        data={dataTest?.[0]}
+        isOpened={open}
+        onClose={() => setOpen(false)}
+      /> */}
     </div>
   );
 };
-ConfirmRejectVoucherModal.propTypes = {
+RedeemVoucherModal.propTypes = {
   open: PropTypes.bool,
   item: PropTypes.objectOf(PropTypes.any).isRequired,
-
   setOpen: PropTypes.func.isRequired,
 };
 
-ConfirmRejectVoucherModal.defaultProps = {
+RedeemVoucherModal.defaultProps = {
   open: false,
 };
-export default ConfirmRejectVoucherModal;
+export default RedeemVoucherModal;

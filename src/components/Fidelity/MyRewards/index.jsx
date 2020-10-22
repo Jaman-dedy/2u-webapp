@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Image, Button, Grid, Modal, Icon } from 'semantic-ui-react';
 
 import ReactToPrint from 'react-to-print';
+
 import LevelsGraph from 'containers/Fidelity/LevelsGraph';
 import NotifImage from 'assets/images/notif-type-transaction.png';
 import Referals from 'assets/images/referalsIcon.png';

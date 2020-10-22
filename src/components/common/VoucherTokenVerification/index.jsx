@@ -12,7 +12,6 @@ const OTPForm = ({ form, onInputChange }) => {
   useEffect(() => {
     if (form.VoucherNumber.length >= otpCharacters) {
       hiddenInput.current.focus();
-      // handleNext();
     }
   }, [form]);
 
