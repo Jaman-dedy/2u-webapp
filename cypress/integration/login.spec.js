@@ -1,4 +1,4 @@
-describe('Login', () => {
+xdescribe('Login', () => {
   beforeEach(() => {
     cy.server();
     cy.visit('/login');
