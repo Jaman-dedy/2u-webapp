@@ -44,6 +44,7 @@
     "emoji-mart": "^3.0.0",
     "file-saver": "^2.0.2",
     "google-map-react": "^1.1.7",
+    "html2canvas": "^1.0.0-rc.7",
     "i18next": "^19.1.0",
     "lodash": "^4.17.19",
     "mgr-pdf-viewer-react": "^1.0.3",
