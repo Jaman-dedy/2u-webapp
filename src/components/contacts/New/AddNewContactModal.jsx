@@ -167,7 +167,7 @@ const AddNewContactModal = ({
                         </p>
                       </div>
                     )}
-                  <br/>
+                  <br />
                   {!addNewUserData.loading && (
                     <div className="wallet-text">
                       {global.translate(
