@@ -22,6 +22,7 @@ export default () => {
   const [expiryDate, setExpiryDate] = useState(new Date());
   const [issueDate, setIssueDate] = useState(new Date());
   const [errors, setErrors] = useState(null);
+  const [isEditing, setIsEditing] = useState(true);
 
   const [imageUploadState, setImageUploadState] = useState({
     loading: false,
@@ -96,7 +97,7 @@ export default () => {
   };
 
   useEffect(() => {
-    if (userData.data) {
+    if (userData?.data?.IDCardInfo) {
       setIDCardInfo(userData.data.IDCardInfo);
     }
   }, [userData]);
@@ -166,6 +167,7 @@ export default () => {
         IDCountryCode,
       };
       saveUserIdData(data)(dispatch);
+      setIsEditing(true);
     }
   };
 
@@ -184,5 +186,7 @@ export default () => {
     loading,
     iDCardInfo,
     IdInfo,
+    isEditing,
+    setIsEditing,
   };
 };

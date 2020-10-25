@@ -1,21 +1,23 @@
 .doc-placeholder {
-    background: #FFFFFF;
-    border: 1px solid rgba(50, 53, 83, 0.12);
-    box-sizing: border-box;
-    border-radius: 5px;
+  width: 210px;
+  height: 130px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+  padding: 31px 50px;
+  margin-left: 10px;
+  &:hover {
     cursor: pointer;
+  }
 
+  .file-drop {
+    margin: auto;
+  }
+
+  .file-drop-target {
     display: flex;
+    flex-direction: column;
     align-items: center;
-
-    .file-drop {
-        margin: auto;
-    }
-
-    .file-drop-target {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-    }
+    justify-content: space-between;
+  }
 }
