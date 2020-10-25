@@ -11,6 +11,7 @@ import saveToBackend from './saveToBackend';
  * @returns {object} error if there was an error
  */
 const uploadFile = async (files, url, type, PID) => {
+  // console.log('types', type);
   try {
     const res = await saveTemp(files);
     if (res.data && url) {

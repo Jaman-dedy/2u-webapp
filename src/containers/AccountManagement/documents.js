@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import moment from 'moment';
 
 import updateUserDocsAction from 'redux/actions/userAccountManagement/updateUserDocs';
 import uploadFile from 'helpers/uploadImages/uploadFile';
