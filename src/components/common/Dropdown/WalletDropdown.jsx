@@ -66,7 +66,8 @@ const CustomDropdown = ({
                     setCurrentOption({
                       AccountNumber,
                       Flag,
-                      AccountName: AccountName || '',
+                      AccountName:
+                        `${AccountName.substring(0, 13)}...` || '',
                       Currency,
                     });
                   }}

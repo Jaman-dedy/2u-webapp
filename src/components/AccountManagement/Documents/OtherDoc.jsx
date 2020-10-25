@@ -99,7 +99,7 @@ const Documents = ({ userData, documents }) => {
                       (data && data[`UserExtraDoc${index + 1}URL`])
                     }
                     onImageChange={onImageChange}
-                    name={[`UserExtraDoc${index + 1}URL`]}
+                    name={`UserExtraDoc${index + 1}URL`}
                     className="other-doc__image cursor-pointer"
                     camStyle={{
                       width: 25,
@@ -124,7 +124,7 @@ const Documents = ({ userData, documents }) => {
           {imgStatusCount < 5 && (
             <DocPlaceholder
               other
-              name={[`UserExtraDoc${imgStatusCount + 1}URL`]}
+              name={`UserExtraDoc${imgStatusCount + 1}URL`}
               onChooseFile={onImageChange}
             />
           )}
