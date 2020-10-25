@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Label, Form, Dropdown, Message } from 'semantic-ui-react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import moment from 'moment';
 import Img from 'components/common/Img';
 import checkImageExists from 'helpers/checkImageExists';
 import ImagePreviewModal from 'components/common/ImagePreviewModal';
@@ -31,6 +32,8 @@ const Documents = ({ userData, documents }) => {
     loading,
     iDCardInfo,
     IdInfo,
+    isEditing,
+    setIsEditing,
   } = documents;
 
   const { data } = userData;
@@ -39,6 +42,8 @@ const Documents = ({ userData, documents }) => {
   const [imagePreviewSrc, setImagePreviewSrc] = useState('');
   const [IdDocExist, setIdDocExist] = useState(false);
   const [PoRDocExist, setPoRDocExist] = useState(false);
+  const [newIssueDate, setNewIssueDate] = useState(null);
+  const [newExpiryDate, setNewExpiryDate] = useState(null);
 
   useEffect(() => {
     if (data) {
@@ -97,6 +102,30 @@ const Documents = ({ userData, documents }) => {
       value: idOther,
     },
   ];
+  useEffect(() => {
+    if (iDCardInfo?.IssueDate) {
+      setNewIssueDate(moment(iDCardInfo?.IssueDate).format('ll'));
+    }
+  }, [iDCardInfo]);
+  useEffect(() => {
+    if (iDCardInfo?.ExpirationDate) {
+      setNewExpiryDate(
+        moment(iDCardInfo?.ExpirationDate).format('ll'),
+      );
+    }
+  }, [iDCardInfo]);
+
+  useEffect(() => {
+    if (IdInfo?.DateIssue) {
+      setNewIssueDate(moment(IdInfo?.DateIssue).format('ll'));
+    }
+  }, [IdInfo]);
+  useEffect(() => {
+    if (IdInfo?.DateIssue) {
+      setNewExpiryDate(moment(IdInfo?.ExpirationDate).format('ll'));
+    }
+  }, [IdInfo]);
+
   return (
     <div className="documents-container">
       <ImagePreviewModal
@@ -160,6 +189,7 @@ const Documents = ({ userData, documents }) => {
               <span> Select the ID type </span>
               <br />
               <Dropdown
+                style={{ height: '42px' }}
                 fluid
                 label="Select the ID type"
                 options={options}
@@ -167,7 +197,11 @@ const Documents = ({ userData, documents }) => {
                 placeholder="ID type"
                 onChange={onOptionsChange}
                 name="IDType"
-                defaultValue={iDCardInfo?.IDType}
+                defaultValue={
+                  isEditing
+                    ? iDCardInfo?.IDType || IdInfo?.IDType
+                    : form?.IDType
+                }
               />
               {errors?.IDType && (
                 <Message color="orange">{errors.IDType}</Message>
@@ -178,14 +212,14 @@ const Documents = ({ userData, documents }) => {
             <div>
               <Form.Input
                 fluid
-                label="Id number"
-                placeholder="Id number"
+                label="ID number"
+                placeholder="ID number"
                 onChange={onOptionsChange}
                 name="IDNumber"
                 value={
-                  form?.IDNumber ||
-                  IdInfo?.IDNumber ||
-                  iDCardInfo?.IDNumber
+                  isEditing
+                    ? IdInfo?.IDNumber || iDCardInfo?.IDNumber
+                    : form?.IDNumber
                 }
               />
               {errors?.IDNumber && (
@@ -204,9 +238,10 @@ const Documents = ({ userData, documents }) => {
                 showMonthDropdown
                 showYearDropdown
                 dropdownMode="select"
-                value={IdInfo?.DateIssue || iDCardInfo?.IssueDate}
+                value={isEditing ? newIssueDate : issueDate}
               />
             </div>
+
             <br />
             <div>
               <span> Expiration date </span>
@@ -218,9 +253,7 @@ const Documents = ({ userData, documents }) => {
                 showMonthDropdown
                 showYearDropdown
                 dropdownMode="select"
-                value={
-                  IdInfo?.ExpirationDate || iDCardInfo?.ExpirationDate
-                }
+                value={isEditing ? newExpiryDate : expiryDate}
               />
             </div>
             <br />
@@ -229,6 +262,7 @@ const Documents = ({ userData, documents }) => {
               <span> Select Country </span>
               <br />
               <Dropdown
+                style={{ height: '42px' }}
                 label="Select Country"
                 placeholder="Select Country"
                 fluid
@@ -237,7 +271,12 @@ const Documents = ({ userData, documents }) => {
                 options={countryCodeLetters}
                 onChange={onOptionsChange}
                 name="IDCountryCode"
-                defaultValue="rw"
+                // defaultValue={
+                //   isEditing
+                //     ? iDCardInfo?.IDCountryCode ||
+                //       IdInfo?.IDCountryCode
+                //     : form?.IDCountryCode
+                // }
               />
               {errors?.IDCountryCode && (
                 <Message color="orange">
@@ -254,9 +293,16 @@ const Documents = ({ userData, documents }) => {
                   !!errors?.IDNumber ||
                   !!errors?.IDType
                 }
-                onClick={() => submitHandler()}
+                onClick={() => {
+                  setIsEditing(false);
+                  if (!isEditing) {
+                    submitHandler();
+                  }
+                }}
               >
-                Submit
+                {isEditing
+                  ? global.translate('Edit')
+                  : global.translate('Submit')}
               </Form.Button>
             </div>
           </Form>

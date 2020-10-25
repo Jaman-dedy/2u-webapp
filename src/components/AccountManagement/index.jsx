@@ -27,6 +27,7 @@ import General from './General';
 import EmailPhone from './EmailAndPhone';
 import Security from './Security';
 import Documents from './Documents';
+import OtherDoc from './Documents/OtherDoc';
 
 const AccountManagement = ({
   userData,
@@ -140,7 +141,7 @@ const AccountManagement = ({
           className="bottom-tab-pane documents"
           attached={false}
         >
-          <Documents userData={userData} documents={documents} />
+          <OtherDoc userData={userData} documents={documents} />
         </Tab.Pane>
       ),
     },
