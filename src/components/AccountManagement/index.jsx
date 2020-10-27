@@ -135,7 +135,7 @@ const AccountManagement = ({
       ),
     },
     {
-      menuItem: global.translate('Other official document'),
+      menuItem: global.translate('Other supporting documents'),
       render: () => (
         <Tab.Pane
           className="bottom-tab-pane documents"
