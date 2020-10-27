@@ -182,6 +182,7 @@ export default () => {
     const file = (files && files[0]) || (value && value[0]);
     setImgFile(file);
     setCropImgState(true);
+  };
 
   useEffect(() => {
     if (saveUserData.success) {
