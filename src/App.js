@@ -15,6 +15,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import IdleTimer from 'react-idle-timer';
 import { Modal, Button } from 'semantic-ui-react';
+import 'react-bnb-gallery/dist/style.css';
+
 import 'assets/styles/style.scss';
 import ChatModal from 'components/Chat/ChatModal';
 import getUserInfo from 'redux/actions/users/getUserInfo';
@@ -51,12 +53,15 @@ import NotFoundPage from 'components/NotFoundPage';
 import InstallApp from 'components/InstallApp';
 import ReloadApp from 'components/ReloadApp';
 import { LOGIN_RETURN_URL } from 'constants/general';
+
 import ErrorFallback from './Error';
 import * as serviceWorker from './serviceWorker';
-import 'react-bnb-gallery/dist/style.css';
+
 const { REACT_APP_GOOGLE_ANALYTICS_NUMBER } = process.env;
 const history = createBrowserHistory();
+
 ReactGA.initialize(REACT_APP_GOOGLE_ANALYTICS_NUMBER);
+
 history.listen(location => {
   const queryParams = queryString.parseUrl(window.location.href, {
     parseFragmentIdentifier: true,
@@ -97,7 +102,6 @@ const App = () => {
     installApp,
     cancelInstallApp,
   } = useInstallApp();
-  const [waitingWorker, setWaitingWorker] = React.useState(null);
   const routeRef = useRef(null);
   const appRef = useRef(null);
   const sessionTimeoutRef = useRef(null);
@@ -114,19 +118,19 @@ const App = () => {
   const INITIAL_TIMEOUT_DURATION = Math.floor(
     MAX_USER_IDLE_TIME * (3 / 4),
   );
-  const reloadPage = () => {
-    if (waitingWorker) {
-      waitingWorker.postMessage({ type: 'SKIP_WAITING' });
+  const reloadPage = registration => {
+    if (registration.waiting?.postMessage) {
+      registration.waiting.postMessage({ type: 'SKIP_WAITING' });
     }
     setTimeout(() => {
-      window.location.reload(true);
-    }, 1000);
+      window.location.reload();
+    }, 300);
   };
+
   const onSWUpdate = registration => {
     const reloadAppBtn = document.querySelector('.reload-app-toast');
     if (!reloadAppBtn && !isAppDisplayedInWebView()) {
-      setWaitingWorker(registration?.waiting);
-      toast(<ReloadApp onReload={reloadPage} />, {
+      toast(<ReloadApp onReload={() => reloadPage(registration)} />, {
         autoClose: false,
         closeButton: false,
         className: 'reload-app-toast',
@@ -172,7 +176,7 @@ const App = () => {
     }
   }, [showInstallBtn, deferredPrompt]);
   useEffect(() => {
-    serviceWorker.unregister({ onUpdate: onSWUpdate });
+    serviceWorker.register({ onUpdate: onSWUpdate });
     getUserLocationData()(dispatch);
     getSupportedLanguages()(dispatch);
     if (localStorage.token) {
