@@ -1,20 +1,38 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Image } from 'semantic-ui-react';
 import moment from 'moment';
-
+import validateImg from 'helpers/image/validateImg';
 import logo from 'assets/images/logo-colored.svg';
 import formatNumber from 'utils/formatNumber';
 
 const VoucherReceiptContent = ({ data }) => {
+  const [storeLogo, setStoreLogo] = useState('');
+
+  useEffect(() => {
+    if (data && data.Store) {
+      validateImg(data.Store.StoreLogo).then(function fulfilled(img) {
+        setStoreLogo(data.Store.StoreLogo);
+      });
+    }
+  }, [data]);
+
   return (
     <div className="receipt-content medium-padding small-margin flex flex-column flex-grow-1">
+      {data && data.VoucherAlreadyUsed === 'YES' && (
+        <div className="receipt-background-text flex justify-content-center align-items-center center-align">
+          <span className="uppercase opacity-2">
+            {global.translate('Duplicate')}
+          </span>
+        </div>
+      )}
+
       <div className="flex flex-row justify-content-space-between align-items-top medium-padding">
         <div className="flex bold flex-row justify-content-space-between align-items-center">
           <span>
             {data && data.Store && data.Store.StoreLogo && (
               <div className="receipt-store-logo">
-                <Image src={data.Store.StoreLogo} />
+                {storeLogo && <Image src={storeLogo} />}
               </div>
             )}
           </span>
@@ -63,11 +81,15 @@ const VoucherReceiptContent = ({ data }) => {
                 {data?.Sender?.SenderPID && data?.Sender?.SenderPID}
               </span>
               <span className="medium-margin-bottom text-grey-color">
-                Tel:{' '}
+                {/*  Tel:{' '}
                 {`+${String(data?.Sender?.PhoneNumber || '').replace(
                   '+',
                   '',
-                )}`}
+                )}`} */}
+                {data &&
+                  data.Store &&
+                  data.Sender.PhonePrefix &&
+                  `Tel: + ${data?.Sender?.PhonePrefix} ${data?.Sender?.Phone}`}
               </span>
             </div>
           </div>
@@ -88,10 +110,15 @@ const VoucherReceiptContent = ({ data }) => {
               </span>
 
               <span className="medium-margin-bottom text-grey-color">
-                Tel:{' '}
+                {/*  Tel:{' '}
                 {`+${String(
                   data?.Beneficiary?.PhoneNumber || '',
-                ).replace('+', '')}`}
+                ).replace('+', '')}`} */}
+
+                {data &&
+                  data.Store &&
+                  data.Beneficiary.PhonePrefix &&
+                  `Tel: + ${data?.Beneficiary?.PhonePrefix} ${data?.Beneficiary?.Phone}`}
               </span>
             </div>
           </div>
