@@ -29,9 +29,11 @@ const VoucherReceiptModal = ({ data, isOpened, onClose }) => {
           <div className="flex flex-column receipt-modal__container">
             <div className="large-h-padding">
               <div className="receipt-modal__container__message">
-                {global.translate(
-                  'This transaction has been completed successfully.',
-                )}
+                {data?.VoucherAlreadyUsed === 'YES'
+                  ? data?.Description
+                  : global.translate(
+                      'This transaction has been completed successfully.',
+                    )}
               </div>
               <VoucherReceipt
                 data={data}

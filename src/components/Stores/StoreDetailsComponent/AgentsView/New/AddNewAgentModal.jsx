@@ -61,6 +61,7 @@ const AddNewContactModal = ({
         }}
         onOpen={() => setOpen(true)}
         open={open}
+        size="small"
       >
         <Modal.Header className="modal-title">
           {global.translate('Add an agent')}
@@ -87,7 +88,8 @@ const AddNewContactModal = ({
                   <Button
                     content={global.translate('Search')}
                     positive
-                    disabled={addNewUserData?.loading}
+                    disabled={loading}
+                    loading={loading}
                     name="search"
                     link
                     onClick={onSearchUser}
