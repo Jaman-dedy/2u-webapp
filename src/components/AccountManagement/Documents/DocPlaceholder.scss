@@ -1,11 +1,11 @@
 .doc-placeholder {
-  width: 210px;
+  width: 160px;
   height: 130px;
   border: 1px solid #ccc;
   border-radius: 4px;
   text-align: center;
-  padding: 31px 50px;
-  margin-left: 10px;
+  padding: 31px 20px;
+  margin-top: 10px;
   &:hover {
     cursor: pointer;
   }
@@ -19,5 +19,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+  }
+}
+@media (max-width: 500px) {
+  .doc-placeholder {
+    margin: auto;
   }
 }

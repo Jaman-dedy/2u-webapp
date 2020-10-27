@@ -11,7 +11,7 @@ import ToggleSwitch from 'components/common/ToggleButton';
 import Message from 'components/common/Message';
 import { clearFoundUser } from 'redux/actions/contacts/locateUser';
 
-const SendMoneyModal = ({ sendMoneyModal }) => {
+const SendMoneyModal = ({ sendMoneyModal, locateUser }) => {
   const dispatch = useDispatch();
   const {
     form,
@@ -26,7 +26,6 @@ const SendMoneyModal = ({ sendMoneyModal }) => {
     resetState,
     loading,
     moveFundError,
-    setResult,
   } = sendMoneyModal;
   const days = getPossibleDates().map(item => ({
     key: item.day,
@@ -54,7 +53,9 @@ const SendMoneyModal = ({ sendMoneyModal }) => {
     >
       <Modal.Header className="modal-title">
         {global.translate(`Transfer Money to  `, 1950)}
-        <strong>&nbsp; Whoever</strong>
+        <strong>
+          &nbsp; {locateUser?.data && locateUser?.data[0].FirstName}
+        </strong>
       </Modal.Header>
 
       {step === 2 && confirmationData && confirmationData[0] && (
@@ -299,7 +300,7 @@ const SendMoneyModal = ({ sendMoneyModal }) => {
               clearForm();
               setOpen(false);
               clearFoundUser()(dispatch);
-              setResult(null);
+              // setResult(null);
             }}
           >
             {global.translate('Cancel', 86)}
@@ -324,6 +325,7 @@ const SendMoneyModal = ({ sendMoneyModal }) => {
 
 SendMoneyModal.propTypes = {
   sendMoneyModal: PropTypes.objectOf(PropTypes.any).isRequired,
+  locateUser: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 SendMoneyModal.defaultProps = {};
 
