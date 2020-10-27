@@ -454,10 +454,19 @@ const fillRecurringForm = (startDateIndex = 3, endDateIndex = 4) => {
 };
 
 describe('Test Send Cash to contact', () => {
+  before(() => {
+    cy.clearLocalStorageSnapshot();
+    cy.loginAs(username, password, pin);
+    cy.saveLocalStorage();
+  });
   beforeEach(() => {
-    cy.visit('/login');
-    cy.login(username, password, pin);
     cy.server();
+    cy.restoreLocalStorage();
+    cy.visit('/contacts?ref=send-cash');
+  });
+
+  afterEach(() => {
+    cy.saveLocalStorage();
   });
 
   it('Should send cash to contact', () => {
@@ -500,24 +509,7 @@ describe('Test Send Cash to contact', () => {
   it('Should not send amount of money greater than wallet balance.', () => {
     showAmountForm();
 
-    cy.window()
-      .its('store')
-      .invoke('getState')
-      .then(
-        ({
-          user: {
-            myWallets: { walletList },
-          },
-        }) => {
-          const defaultWallet = walletList.find(
-            wallet => wallet.Default.toLowerCase() === 'yes',
-          );
-
-          const balance = Math.ceil(+defaultWallet.Balance);
-
-          cy.get('input[name="amount"]').type(`${balance}`);
-        },
-      );
+    cy.get('input[name="amount"]').type(1000000000);
     mockTransferConfirmation('error');
 
     submitAmountForm();
