@@ -520,7 +520,10 @@ const TopUpModal = ({
                         <PhoneInput
                           enableSearch
                           className="new-phone-number"
-                          country="rw"
+                          country={
+                            currentOption?.CountryCode.toLowerCase() ||
+                            'rw'
+                          }
                           value={phoneValue}
                           onChange={phone => setPhoneValue(phone)}
                         />
