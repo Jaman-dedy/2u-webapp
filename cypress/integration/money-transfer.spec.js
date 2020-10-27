@@ -111,6 +111,7 @@ const submitForm = (
   }).as('sendMoney');
   cy.get('button.ui.positive.button').click();
 };
+
 const fillAmountField = value => {
   cy.get(
     ':nth-child(1) > .rightItems > .dropdown > :nth-child(1) > .caret',
@@ -118,10 +119,8 @@ const fillAmountField = value => {
   cy.get('.visible > .scrolling > :nth-child(1)')
     .first()
     .click();
-
   cy.get('input[name="amount"]', { timeout: 3000 }).type(`${value}`);
 };
-
 const fillDetailsForm = () => {
   cy.get('input[name="reference"]', { timeout: 60000 }).type(
     'Test send money',
