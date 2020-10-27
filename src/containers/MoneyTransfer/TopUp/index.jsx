@@ -1,29 +1,24 @@
 /* eslint-disable no-unused-expressions */
+import TopUpModal from 'components/MoneyTransfer/TopUp';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import savingBankAccount from 'redux/actions/contacts/saveBankAccount';
+import { updateMoneyTransferStep } from 'redux/actions/dashboard/dashboard';
+import confirmTransaction, { clearConfirmation } from 'redux/actions/moneyTransfer/confirmTransaction';
+import tranferToOther, { clearTransferToOthersErrors } from 'redux/actions/moneyTransfer/transferToOthers';
+import getProviders from 'redux/actions/providers/getProviders';
+import getProvidersCountries from 'redux/actions/providers/getProvidersCountries';
+import getUnpaidCashList from 'redux/actions/transactions/getUnpaidCashList';
+import getMyWallets from 'redux/actions/users/getMyWallets';
+import getUserLocationData from 'redux/actions/users/userLocationData';
+import countryCodes from 'utils/countryCodes';
+
 /* eslint-disable no-unused-vars */
 /* eslint-disable array-callback-return */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable consistent-return */
-import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
-import getProvidersCountries from 'redux/actions/providers/getProvidersCountries';
-import getUserLocationData from 'redux/actions/users/userLocationData';
-import getProviders from 'redux/actions/providers/getProviders';
-import getMyWallets from 'redux/actions/users/getMyWallets';
-import getUnpaidCashList from 'redux/actions/transactions/getUnpaidCashList';
-import tranferToOther, {
-  clearTransferToOthersErrors,
-} from 'redux/actions/moneyTransfer/transferToOthers';
-import savingBankAccount from 'redux/actions/contacts/saveBankAccount';
-
-import TopUpModal from 'components/MoneyTransfer/TopUp';
-import confirmTransaction, {
-  clearConfirmation,
-} from 'redux/actions/moneyTransfer/confirmTransaction';
-import countryCodes from 'utils/countryCodes';
-import { updateMoneyTransferStep } from 'redux/actions/dashboard/dashboard';
-
 const TopUpContainer = ({
   open,
   setOpen,
@@ -415,7 +410,7 @@ const TopUpContainer = ({
         ? form?.day && form?.day.toString()
         : '0',
       Reccurent: form?.isRecurring ? 'YES' : 'NO',
-      SendNow: form?.sendNow ? 'YES' : 'NO',
+      SendNow: form?.sendNow && form.isRecurring ? 'NO' : 'YES',
       Reference: form?.reference || '',
       Description: form?.description || '',
       TargetType: form.Category,
