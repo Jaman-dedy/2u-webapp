@@ -13,8 +13,6 @@ import { getPossibleDates } from 'utils/monthdates';
 import ConfirmationForm from '../../ConfirmationForm';
 import TransactionEntity from './TransactionEntity';
 
-
-
 /* eslint-disable react-hooks/exhaustive-deps */
 
 const SendMoneyModal = ({
