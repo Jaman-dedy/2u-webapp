@@ -1,15 +1,17 @@
 /* eslint-disable consistent-return */
 /* eslint-disable react-hooks/exhaustive-deps */
-import SendMoney from 'components/MoneyTransfer/SendMoney';
-import { CELINE_MONEY } from 'constants/general';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { CELINE_MONEY } from 'constants/general';
+import SendMoney from 'components/MoneyTransfer/SendMoney';
 import getallContacts from 'redux/actions/contacts/getContactList';
 import { updateMoneyTransferStep } from 'redux/actions/dashboard/dashboard';
 import confirmTransaction from 'redux/actions/moneyTransfer/confirmTransaction';
-import moveFunds, { clearMoveFundsErrors } from 'redux/actions/moneyTransfer/moveFunds';
+import moveFunds, {
+  clearMoveFundsErrors,
+} from 'redux/actions/moneyTransfer/moveFunds';
 import getMyWallets from 'redux/actions/users/getMyWallets';
 
 const SendMoneyContainer = ({
