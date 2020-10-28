@@ -111,9 +111,14 @@ const TopUpContainer = ({
   const { providersCountries, providersList } = useSelector(
     ({ providersCountries }) => providersCountries,
   );
+  const [transferError, setTransferError] = useState('');
   const { loading, error, data } = useSelector(
     state => state.moneyTransfer.transferToOthers,
   );
+
+  useEffect(() => {
+    setTransferError(error);
+  }, [error]);
   useEffect(() => {
     setCurrentPhone(null);
     setPhoneValue();
@@ -184,6 +189,10 @@ const TopUpContainer = ({
     setForm({ ...form, [name]: value });
     if (confirmationData?.[0]?.VerificationError) {
       clearConfirmation()(dispatch);
+    }
+    if (name === 'OperatorName') {
+      setAccountValue(null);
+      setCurrentBankAccount(null);
     }
   };
   useEffect(() => {
@@ -276,6 +285,29 @@ const TopUpContainer = ({
       hasError = true;
     }
 
+    if (
+      form.Category === '4' &&
+      !accountValue?.number &&
+      !currentBankAccount?.Title
+    ) {
+      setErrors(
+        global.translate(
+          'You must provide the account number',
+          '1551',
+        ),
+      );
+      hasError = true;
+    }
+
+    if (
+      (form.Category === '21' || form.Category === '19') &&
+      !form?.phoneNumber
+    ) {
+      setErrors(
+        global.translate('You must provide the phone number', '1551'),
+      );
+      hasError = true;
+    }
     return hasError;
   };
 
@@ -359,6 +391,7 @@ const TopUpContainer = ({
     setErrors(null);
     if (!validate()) {
       confirmTransaction(data)(dispatch);
+      setTransferError(null);
     }
   };
 
@@ -683,7 +716,7 @@ const TopUpContainer = ({
       confirmationData={confirmationData}
       moveFundsToToUWallet={moveFundsToToUWallet}
       loading={loading}
-      error={error}
+      error={transferError}
       data={data}
       userLocationData={userLocationData}
       setBalance={setBalance}
