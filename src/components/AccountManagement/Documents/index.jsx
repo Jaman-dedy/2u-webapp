@@ -195,12 +195,12 @@ const Documents = ({ userData, documents }) => {
         <div className="id-doc-form">
           <Form size="mini">
             <div>
-              <span> Select the ID type </span>
+              <span> {global.translate('Select the ID type')} </span>
               <br />
               <Dropdown
                 style={{ height: '42px', fontSize: '14px' }}
                 fluid
-                label="Select the ID type"
+                label={global.translate('Select the ID type')}
                 options={options}
                 selection
                 placeholder="ID type"
