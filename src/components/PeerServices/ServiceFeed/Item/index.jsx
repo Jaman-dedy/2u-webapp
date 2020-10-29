@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable react/prop-types */
 import React, { useEffect, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { Icon, Button, Dropdown, Label } from 'semantic-ui-react';
@@ -138,7 +135,7 @@ const Index = React.forwardRef(({ service, allowView }, ref) => {
 
   const serviceMedia = [
     ...service.Media?.filter(item =>
-      ['JPEG', 'PNG']?.includes(item.Extension),
+      ['jpeg', 'png']?.includes(item.Extension?.toLowerCase()),
     ),
     ...service.ExternalMedia?.filter(
       item => item.MediaType === PEER_SERVICE_IMAGE,
@@ -152,12 +149,14 @@ const Index = React.forwardRef(({ service, allowView }, ref) => {
           return index;
         }
       })
-      .filter(item => item)?.[0];
+      .filter(item => Number.isInteger(item))?.[0];
+
+    const photos = serviceMedia.map(item => item.MediaURL);
 
     openImageGallery({
       open: true,
       activePhotoIndex: index || 0,
-      photos: serviceMedia.map(item => item.MediaURL),
+      photos,
     })(dispatch);
   }, []);
 
