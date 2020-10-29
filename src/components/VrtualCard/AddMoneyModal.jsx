@@ -208,7 +208,7 @@ const AddMoneyModal = ({
               {isRedeeming ? (
                 ''
               ) : (
-                <div className="load-stuff">
+                <div className="loader-section">
                   {errors && <Message message={errors} />}
                   {confirmationError && confirmationError[0] && (
                     <Message
@@ -356,7 +356,7 @@ const AddMoneyModal = ({
                   />
                 </div>
                 <div
-                  className="load-stuff"
+                  className="loader-section"
                   style={{ alignSelf: 'center' }}
                 >
                   {' '}

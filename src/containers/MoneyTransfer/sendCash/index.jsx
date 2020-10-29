@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import SendCashModal from 'components/MoneyTransfer/sendCash';
 import { CASH_OUT } from 'constants/general';
+import SendCashModal from 'components/MoneyTransfer/sendCash';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,8 +10,12 @@ import { clearFoundUser } from 'redux/actions/contacts/locateUser';
 import getSupportedCountries from 'redux/actions/countries/getSupportedCountries';
 import { updateMoneyTransferStep } from 'redux/actions/dashboard/dashboard';
 import confirmTransaction from 'redux/actions/moneyTransfer/confirmTransaction';
-import modifyCash, { clearModifyCash } from 'redux/actions/moneyTransfer/modifyCash';
-import moveFunds, { clearMoveFundsErrors } from 'redux/actions/moneyTransfer/moveFunds';
+import modifyCash, {
+  clearModifyCash,
+} from 'redux/actions/moneyTransfer/modifyCash';
+import moveFunds, {
+  clearMoveFundsErrors,
+} from 'redux/actions/moneyTransfer/moveFunds';
 import getUnpaidCashList from 'redux/actions/transactions/getUnpaidCashList';
 import getMyWallets from 'redux/actions/users/getMyWallets';
 import getUserLocationData from 'redux/actions/users/userLocationData';

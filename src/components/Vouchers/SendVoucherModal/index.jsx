@@ -240,7 +240,7 @@ const SendMoneyModal = ({ SendVoucherModal }) => {
                 <span>{currency}</span>
               </div>
             </div>
-            <div className="load-stuff">
+            <div className="loader-section">
               {errors && <Message message={errors} />}
               {confirmationError && confirmationError[0] && (
                 <Message
@@ -452,7 +452,7 @@ const SendMoneyModal = ({ SendVoucherModal }) => {
               />
             </div>
             <div
-              className="load-stuff"
+              className="loader-section"
               style={{ alignSelf: 'center' }}
             >
               {errors && <Message message={errors} />}
