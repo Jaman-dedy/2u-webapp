@@ -13,15 +13,19 @@ import PhoneInput from 'react-phone-input-2';
 import { useSelector } from 'react-redux';
 import { updateMoneyTransferStep } from 'redux/actions/dashboard/dashboard';
 import { clearConfirmation } from 'redux/actions/moneyTransfer/confirmTransaction';
-import { Button, Checkbox, Input, Label, Modal } from 'semantic-ui-react';
+import {
+  Button,
+  Checkbox,
+  Input,
+  Label,
+  Modal,
+} from 'semantic-ui-react';
 import countryCodes from 'utils/countryCodes';
 import formatNumber from 'utils/formatNumber';
 import { getPossibleDates } from 'utils/monthdates';
 
 import ConfirmationForm from '../../ConfirmationForm';
 import TransactionEntity from '../SendMoney/TransactionEntity';
-
-
 
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
@@ -592,7 +596,7 @@ const TopUpModal = ({
               </div>
             </div>
           </div>
-          <div className="load-stuff">
+          <div className="loader-section">
             {errors && <Message message={errors} />}
             {confirmationError && confirmationError[0] && (
               <Message

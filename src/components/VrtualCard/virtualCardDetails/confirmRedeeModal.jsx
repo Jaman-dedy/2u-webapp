@@ -56,7 +56,10 @@ const NestedModal = ({
             name="pin"
           />
         </div>
-        <div className="load-stuff" style={{ alignSelf: 'center' }}>
+        <div
+          className="loader-section"
+          style={{ alignSelf: 'center' }}
+        >
           {' '}
           {errors && <Message message={errors} />}
           <>

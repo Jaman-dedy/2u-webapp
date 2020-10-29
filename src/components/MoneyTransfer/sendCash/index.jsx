@@ -3,24 +3,20 @@ import '../SendMoney/modal.scss';
 import './style.scss';
 import 'moment/locale/fr';
 
-import CustomDropdown from 'components/common/Dropdown/CountryDropdown';
-import LoaderComponent from 'components/common/Loader';
-import Message from 'components/common/Message';
-import SelectCountryCode from 'components/common/SelectCountryCode';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Button, Form, Icon, Input, Modal } from 'semantic-ui-react';
+import CustomDropdown from 'components/common/Dropdown/CountryDropdown';
+import LoaderComponent from 'components/common/Loader';
+import Message from 'components/common/Message';
+import SelectCountryCode from 'components/common/SelectCountryCode';
 import countryCodes from 'utils/countryCodes';
 import formatNumber from 'utils/formatNumber';
 import { getPossibleDates } from 'utils/monthdates';
 
 import ConfirmationForm from '../../ConfirmationForm';
 import TransactionEntity from '../SendMoney/TransactionEntity';
-
-/* eslint-disable import/no-duplicates */
-
-/* eslint-disable react-hooks/exhaustive-deps */
 
 const countries = countryCodes;
 const SendCashModal = ({
@@ -403,7 +399,7 @@ const SendCashModal = ({
             </div>
           )}
 
-          <div className="load-stuff">
+          <div className="loader-section">
             {errors && <Message message={errors} />}
             {confirmationError && confirmationError[0] && (
               <Message
@@ -429,16 +425,19 @@ const SendCashModal = ({
           </div>
         </Modal.Content>
       )}
-      {step === 2 && confirmationData && confirmationData[0] && (
+      {step === 2 && (confirmationData?.[0] || isEditing) && (
         <ConfirmationForm
-          confirmationData={confirmationData[0]}
+          confirmationData={confirmationData?.[0]}
           onOptionsChange={onOptionsChange}
           form={form}
           shouldClear={shouldClear}
           setShouldClear={setShouldClear}
+          isEditing={isEditing}
           errors={errors}
           error={error}
           loading={loading}
+          updatingError={updatingError}
+          updating={updating}
           days={days}
         />
       )}
@@ -446,7 +445,7 @@ const SendCashModal = ({
         <>
           {step !== 1 && (
             <Button
-              disabled={checking || loading}
+              disabled={checking || loading || updating}
               basic
               color="red"
               onClick={() => {
@@ -459,7 +458,7 @@ const SendCashModal = ({
 
           {step !== 3 && (
             <Button
-              disabled={checking || loading}
+              disabled={checking || loading || updating}
               basic
               color="red"
               onClick={() => {
@@ -480,7 +479,7 @@ const SendCashModal = ({
           )}
           <Button
             positive
-            disabled={checking || loading}
+            disabled={checking || loading || updating}
             onClick={() => {
               if (step === 1) {
                 checkTransactionConfirmation();
