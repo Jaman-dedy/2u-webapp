@@ -252,6 +252,19 @@ const ChartListComponent = ({
     }
   };
 
+  const formatMessageBody = item => {
+    if (item?.body !== '') {
+      return item?.body;
+    }
+
+    if (item.fileType?.startsWith('application')) {
+      return global.translate('Document');
+    }
+
+    if (item.fileType?.startsWith('image')) {
+      return global.translate('Image');
+    }
+  };
   return (
     <aside className="recent-chats">
       <Header className="chart_list_header">
@@ -411,7 +424,7 @@ const ChartListComponent = ({
                 )}
                 itemDescription={formatLastMessage(
                   (Array.isArray(item.directMessages) &&
-                    item.directMessages[0]?.body) ||
+                    formatMessageBody(item.directMessages[0])) ||
                     '',
                 )}
                 topRightText={formatTime(item.updatedAt)}

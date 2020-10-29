@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Placeholder } from 'semantic-ui-react';
 import { useSelector, useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 import ImageGallery from 'components/PeerServices/ServiceFeed/MediaViewer';
 import openImageGallery from 'redux/actions/imageGallery/openImageGallery';
 import ChatMessage from './ChatMessage/ChatMessage';
 
 const MessagesArea = React.forwardRef(
-  ({ loadUserChatThread, deleteMessage }) => {
-    const [availableImages, setAvailableImages] = useState([]);
+  ({
+    loadUserChatThread,
+    deleteMessage,
+    availableImages,
+    setAvailableImages,
+  }) => {
     const { threadLoading } = useSelector(
       state => state.chat.messages,
     );
@@ -15,6 +20,7 @@ const MessagesArea = React.forwardRef(
       userData: { data },
     } = useSelector(state => state.user);
     const threadMessages = loadUserChatThread();
+
     const dispatch = useDispatch();
     const onImageClicked = React.useCallback(
       url => {
@@ -80,5 +86,10 @@ const MessagesArea = React.forwardRef(
     );
   },
 );
-
+MessagesArea.propTypes = {
+  loadUserChatThread: PropTypes.func.isRequired,
+  deleteMessage: PropTypes.func.isRequired,
+  availableImages: PropTypes.arrayOf(PropTypes.string).isRequired,
+  setAvailableImages: PropTypes.func.isRequired,
+};
 export default MessagesArea;

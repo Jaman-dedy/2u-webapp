@@ -14,6 +14,7 @@ const ImageGallery = () => {
     showPhotoList: global.translate('Show photos List', 1886),
     hidePhotoList: global.translate('Hide photos to show', 1887),
   };
+
   return (
     <ReactBnbGallery
       show={open}
