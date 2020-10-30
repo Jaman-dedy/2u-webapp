@@ -40,6 +40,9 @@ const MyVirtualCardsContainer = () => {
   ];
   const onOptionsChange = (e, { name, value }) => {
     setForm({ ...form, [name]: value });
+    if (errors) {
+      setErrors(null);
+    }
   };
   const fetchVirtualCardList = () => {
     if (!virtualCardList.data) {

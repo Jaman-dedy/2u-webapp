@@ -33,6 +33,7 @@ const AddNewContactModal = ({
   contactType,
   country,
   setCountry,
+  clearSuccess,
 }) => {
   const [hasError, setHasError] = useState(false);
   const options =
@@ -284,6 +285,7 @@ const AddNewContactModal = ({
                 setForm({});
                 setLocalError(null);
                 setOpen(!open);
+                clearSuccess();
               }}
               disabled={addNewUserData.loading}
               content={global.translate('Cancel', 86)}

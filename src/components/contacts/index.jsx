@@ -1,8 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import './style.scss';
-import PropTypes from 'prop-types';
-import { Input } from 'semantic-ui-react';
+
 import ChatImage from 'assets/images/chat.png';
 import ContactInfoImage from 'assets/images/contactInfo2.png';
 import DeleteContactImage from 'assets/images/deletecontact2.png';
@@ -22,6 +19,9 @@ import Favorite from 'containers/contacts/Favorite';
 import SendCashContainer from 'containers/MoneyTransfer/sendCash';
 import SendMoneyContainer from 'containers/MoneyTransfer/SendMoney';
 import TopUpContainer from 'containers/MoneyTransfer/TopUp';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import {
   openChatList,
   setGlobalChat,
@@ -31,6 +31,7 @@ import {
   setIsTopingUp,
 } from 'redux/actions/dashboard/dashboard';
 import { setSelectedStore } from 'redux/actions/vouchers/selectedStore';
+import { Input } from 'semantic-ui-react';
 
 import DeleteContactModal from './Delete/DeleteContactModal';
 import ContactDetailsModal from './Detail/ContactDetailsModal';
@@ -38,6 +39,7 @@ import ItemsPlaceholder from './Favorite/ItemsLoading';
 import ListItem from './List/ListItem';
 import AddNewContactModal from './New/AddNewContactModal';
 
+window.countRenderes = 0;
 const ManageContacts = ({
   walletList,
   history,
@@ -100,8 +102,9 @@ const ManageContacts = ({
   const [isSelfBuying, setIsSelfBuying] = useState(false);
 
   const dispatch = useDispatch();
+
   useEffect(() => {
-    setAllContacts(allContacts.data?.filter(item => !item.Error));
+    setAllContacts(allContacts.data);
   }, [allContacts]);
 
   const [isDeletingContact, setIsDeletingContact] = useState(false);
@@ -206,7 +209,7 @@ const ManageContacts = ({
           item => item.ContactType === 'INTERNAL',
         ),
     );
-    setAllContacts(allContacts.data?.filter(item => !item.Error));
+    setAllContacts(allContacts.data);
     setIsSearching(false);
   };
 
@@ -426,7 +429,7 @@ const ManageContacts = ({
         }}
       />
       <div className="search-area">
-        {(allMyContacts?.length !== 0 || !allContacts.loading) && (
+        {(allMyContacts?.length !== 0 || !allContacts?.loading) && (
           <Input
             placeholder={global.translate('Search')}
             icon="search"
@@ -440,22 +443,25 @@ const ManageContacts = ({
         {global.translate('Select a contact', 485)}
       </div>
       <div className="contact-list">
-        {!isSearching && allMyContacts?.length === 0 && (
-          <EmptyCard
-            header={global.translate(
-              "Looks like you don't have any contact yet",
-            )}
-            body={global.translate(
-              'You can add new contacts to your list',
-            )}
-            imgSrc={EmptyContactList}
-            createText={global.translate('Add contact', 574)}
-            onAddClick={() => {
-              setOpen(true);
-              setNewContactType('INTERNAL');
-            }}
-          />
-        )}
+        {!isSearching &&
+          !allMyContacts?.loading &&
+          allContacts?.data?.length === 0 &&
+          allMyContacts?.length === 0 && (
+            <EmptyCard
+              header={global.translate(
+                "Looks like you don't have any contact yet",
+              )}
+              body={global.translate(
+                'You can add new contacts to your list',
+              )}
+              imgSrc={EmptyContactList}
+              createText={global.translate('Add contact', 574)}
+              onAddClick={() => {
+                setOpen(true);
+                setNewContactType('INTERNAL');
+              }}
+            />
+          )}
         {Array.isArray(allMyContacts) &&
           !allContacts.loading &&
           !isSendingMoney &&
@@ -854,4 +860,4 @@ ManageContacts.defaultProps = {
   setCountry: () => {},
   handleCreateExternalContact: () => {},
 };
-export default ManageContacts;
+export default React.memo(ManageContacts);

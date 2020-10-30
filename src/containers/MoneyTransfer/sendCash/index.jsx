@@ -10,8 +10,12 @@ import { clearFoundUser } from 'redux/actions/contacts/locateUser';
 import getSupportedCountries from 'redux/actions/countries/getSupportedCountries';
 import { updateMoneyTransferStep } from 'redux/actions/dashboard/dashboard';
 import confirmTransaction from 'redux/actions/moneyTransfer/confirmTransaction';
-import modifyCash, { clearModifyCash } from 'redux/actions/moneyTransfer/modifyCash';
-import moveFunds, { clearMoveFundsErrors } from 'redux/actions/moneyTransfer/moveFunds';
+import modifyCash, {
+  clearModifyCash,
+} from 'redux/actions/moneyTransfer/modifyCash';
+import moveFunds, {
+  clearMoveFundsErrors,
+} from 'redux/actions/moneyTransfer/moveFunds';
 import getUnpaidCashList from 'redux/actions/transactions/getUnpaidCashList';
 import getMyWallets from 'redux/actions/users/getMyWallets';
 import getUserLocationData from 'redux/actions/users/userLocationData';
@@ -196,6 +200,12 @@ const SendCashContainer = ({
 
   const onOptionsChange = (e, { name, value }) => {
     setForm({ ...form, [name]: value });
+    if (errors) {
+      setErrors(null);
+    }
+    if (step === 1 && confirmationError) {
+      clearMoveFundsErrors()(dispatch);
+    }
   };
 
   const validate = () => {
@@ -312,8 +322,8 @@ const SendCashContainer = ({
   }, [destinationContact]);
 
   useEffect(() => {
-    setForm({ ...form, isRecurring: form.isRecurring || false });
-    setForm({ ...form, sendNow: form.sendNow || false });
+    setForm({ ...form, isRecurring: false });
+    setForm({ ...form, sendNow: false });
   }, [confirmationData]);
 
   useEffect(() => {
