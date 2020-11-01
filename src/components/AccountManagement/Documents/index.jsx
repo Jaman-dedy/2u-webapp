@@ -142,15 +142,15 @@ const Documents = ({ userData, documents }) => {
         setOpen={setOpen}
         src={imagePreviewSrc}
       />
-      <div className="doc-title">
-        <span>{global.translate('Official ID document')}</span>
-      </div>
-      <span className="doc-sub-title">
+      <h4 className="doc-title">
+        {global.translate('Official ID document')}
+      </h4>
+      <div className="doc-sub-title">
         {global.translate(
           'This could be any government issued picture ID such as Passport, driving license, national ID card.',
           891,
         )}
-      </span>
+      </div>
       <div className="doc-status">
         {IdDocExist && (
           <Label
