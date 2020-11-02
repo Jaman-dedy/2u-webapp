@@ -8,7 +8,7 @@ const CropImage = ({
   open,
   setOpen,
   loading,
-  // imageUrl,
+  aspectRatio,
   file,
   uploadImage,
   chooseImage,
@@ -38,7 +38,7 @@ const CropImage = ({
     <Modal
       className="ProfilePictureModal"
       size="tiny"
-      open={open}
+      open={open || loading}
       onClose={() => setOpen(false)}
     >
       <Modal.Header>
@@ -59,6 +59,7 @@ const CropImage = ({
             setCropper(instance);
           }}
           rotatable
+          aspectRatio={aspectRatio}
         />
         <div className="center-align rotate-actions">
           <Button
@@ -135,7 +136,7 @@ CropImage.propTypes = {
   uploadImage: PropTypes.func,
   chooseImage: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
   loading: PropTypes.bool,
-  imageUrl: PropTypes.string,
+  aspectRatio: PropTypes.number,
   file: PropTypes.instanceOf(File).isRequired,
 };
 CropImage.defaultProps = {
@@ -144,7 +145,7 @@ CropImage.defaultProps = {
   uploadImage: () => undefined,
   chooseImage: false,
   loading: false,
-  imageUrl: '',
+  aspectRatio: NaN,
 };
 
 export default CropImage;
