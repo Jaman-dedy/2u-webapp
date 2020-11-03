@@ -152,6 +152,10 @@
 }
 
 @media (max-width: 600px) {
+  .my-store-container {
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+  }
   .stat-header {
     font-size: 11px;
   }
