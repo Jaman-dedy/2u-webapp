@@ -58,7 +58,7 @@ const StoreDetails = () => {
 
       setCurrentStore(store);
     }
-  }, [myStores]);
+  }, [myStores, storeId]);
 
   const getVoucherTransactions = () => {
     getPendingVouchers({ StoreID: storeId })(dispatch);
@@ -148,7 +148,7 @@ const StoreDetails = () => {
         break;
     }
     setActiveTab(activeTabIndex);
-  }, []);
+  }, [queryParams.tab]);
 
   return (
     <StoreDetailsComponent
