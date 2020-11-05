@@ -6,8 +6,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import savingBankAccount from 'redux/actions/contacts/saveBankAccount';
 import { updateMoneyTransferStep } from 'redux/actions/dashboard/dashboard';
-import confirmTransaction, { clearConfirmation } from 'redux/actions/moneyTransfer/confirmTransaction';
-import tranferToOther, { clearTransferToOthersErrors } from 'redux/actions/moneyTransfer/transferToOthers';
+import confirmTransaction, {
+  clearConfirmation,
+} from 'redux/actions/moneyTransfer/confirmTransaction';
+import tranferToOther, {
+  clearTransferToOthersErrors,
+} from 'redux/actions/moneyTransfer/transferToOthers';
 import getProviders from 'redux/actions/providers/getProviders';
 import getProvidersCountries from 'redux/actions/providers/getProvidersCountries';
 import getUnpaidCashList from 'redux/actions/transactions/getUnpaidCashList';
