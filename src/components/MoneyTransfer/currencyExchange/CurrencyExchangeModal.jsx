@@ -185,7 +185,7 @@ const ExchangeCurrencyModal = ({
                 </div>
               </div>
             </div>
-            <div className="load-stuff">
+            <div className="loader-section">
               {errors && <Message message={errors} />}
               {confirmationError && confirmationError[0] && (
                 <Message
@@ -325,7 +325,7 @@ const ExchangeCurrencyModal = ({
               />
             </div>
             <div
-              className="load-stuff"
+              className="loader-section"
               style={{ alignSelf: 'center' }}
             >
               {errors && <Message message={errors} />}

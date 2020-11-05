@@ -245,7 +245,7 @@ const SendMoneyModal = ({
               </div>
             </div>
           </div>
-          <div className="load-stuff">
+          <div className="loader-section">
             {errors && <Message message={errors} />}
             {confirmationError && confirmationError[0] && (
               <Message

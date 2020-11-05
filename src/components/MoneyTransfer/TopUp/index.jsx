@@ -2,18 +2,24 @@ import '../SendMoney/modal.scss';
 import './TopUp.scss';
 import 'react-phone-input-2/lib/style.css';
 
-import ReusableDrowdown from 'components/common/Dropdown/ReusableDropdown';
-import LoaderComponent from 'components/common/Loader';
-import Message from 'components/common/Message';
-import Wrapper from 'hoc/Wrapper';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import NumberFormat from 'react-number-format';
 import PhoneInput from 'react-phone-input-2';
 import { useSelector } from 'react-redux';
+import {
+  Button,
+  Checkbox,
+  Input,
+  Label,
+  Modal,
+} from 'semantic-ui-react';
+import ReusableDrowdown from 'components/common/Dropdown/ReusableDropdown';
+import LoaderComponent from 'components/common/Loader';
+import Message from 'components/common/Message';
+import Wrapper from 'hoc/Wrapper';
 import { updateMoneyTransferStep } from 'redux/actions/dashboard/dashboard';
 import { clearConfirmation } from 'redux/actions/moneyTransfer/confirmTransaction';
-import { Button, Checkbox, Input, Label, Modal } from 'semantic-ui-react';
 import countryCodes from 'utils/countryCodes';
 import formatNumber from 'utils/formatNumber';
 import { getPossibleDates } from 'utils/monthdates';
@@ -21,10 +27,7 @@ import { getPossibleDates } from 'utils/monthdates';
 import ConfirmationForm from '../../ConfirmationForm';
 import TransactionEntity from '../SendMoney/TransactionEntity';
 
-
-
 /* eslint-disable no-unused-vars */
-/* eslint-disable react-hooks/exhaustive-deps */
 
 const countries = countryCodes;
 
@@ -74,7 +77,6 @@ const TopUpModal = ({
   isTopingUp,
   isSendingOthers,
   loadProvidersCountries,
-  phoneOptions,
   currentPhone,
   setCurrentPhone,
   phoneValue,
@@ -514,13 +516,10 @@ const TopUpModal = ({
                             `Provide a new phone number`,
                           )}
                         </span>
+
                         <PhoneInput
                           enableSearch
                           className="new-phone-number"
-                          country={
-                            currentOption?.CountryCode.toLowerCase() ||
-                            'rw'
-                          }
                           value={phoneValue}
                           onChange={phone => setPhoneValue(phone)}
                         />
@@ -592,7 +591,7 @@ const TopUpModal = ({
               </div>
             </div>
           </div>
-          <div className="load-stuff">
+          <div className="loader-section">
             {errors && <Message message={errors} />}
             {confirmationError && confirmationError[0] && (
               <Message
