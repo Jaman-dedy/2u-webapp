@@ -1,11 +1,11 @@
-import { toast } from 'react-toastify';
 import {
+  CLEAR_MOVE_FUNDS_ERRORS,
   MOVE_FUNDS_ERROR,
   MOVE_FUNDS_START,
   MOVE_FUNDS_SUCCESS,
-  CLEAR_MOVE_FUNDS_ERRORS,
 } from 'constants/action-types/moneyTransfer';
 import apiAction from 'helpers/apiAction';
+import { toast } from 'react-toastify';
 
 export default (
   data,
@@ -27,6 +27,11 @@ export default (
           type: MOVE_FUNDS_SUCCESS,
           payload: [{ ...data[0], type }],
         });
+        if (data[0].ReccurentTransactionsSet === 'YES') {
+          toast.success(
+            global.translate('Recurrent transaction set'),
+          );
+        }
         if (callback) callback(data[0]);
       },
       onFailure: error => dispatch => {

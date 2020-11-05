@@ -23,6 +23,7 @@ import redeeMyMoney, {
   clearRedeeMoney,
 } from 'redux/actions/virtualCard/redeeMoney';
 import { VIRTUAL_CARD } from 'constants/general';
+import { clearMoveFundsErrors } from 'redux/actions/moneyTransfer/moveFunds';
 
 const VirtualCardDetailsContainer = () => {
   const dispatch = useDispatch();
@@ -70,6 +71,13 @@ const VirtualCardDetailsContainer = () => {
   const onOptionsChange = (e, { name, value }) => {
     setShouldClear(false);
     setForm({ ...form, [name]: value });
+    if (errors) {
+      setErrors(null);
+    }
+
+    if (confirmationError) {
+      clearMoveFundsErrors()(dispatch);
+    }
   };
 
   useEffect(() => {

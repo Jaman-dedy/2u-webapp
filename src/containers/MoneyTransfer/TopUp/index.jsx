@@ -1,29 +1,28 @@
 /* eslint-disable no-unused-expressions */
+import TopUpModal from 'components/MoneyTransfer/TopUp';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import savingBankAccount from 'redux/actions/contacts/saveBankAccount';
+import { updateMoneyTransferStep } from 'redux/actions/dashboard/dashboard';
+import confirmTransaction, {
+  clearConfirmation,
+} from 'redux/actions/moneyTransfer/confirmTransaction';
+import tranferToOther, {
+  clearTransferToOthersErrors,
+} from 'redux/actions/moneyTransfer/transferToOthers';
+import getProviders from 'redux/actions/providers/getProviders';
+import getProvidersCountries from 'redux/actions/providers/getProvidersCountries';
+import getUnpaidCashList from 'redux/actions/transactions/getUnpaidCashList';
+import getMyWallets from 'redux/actions/users/getMyWallets';
+import getUserLocationData from 'redux/actions/users/userLocationData';
+import countryCodes from 'utils/countryCodes';
+
 /* eslint-disable no-unused-vars */
 /* eslint-disable array-callback-return */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable consistent-return */
-import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
-import getProvidersCountries from 'redux/actions/providers/getProvidersCountries';
-import getUserLocationData from 'redux/actions/users/userLocationData';
-import getProviders from 'redux/actions/providers/getProviders';
-import getMyWallets from 'redux/actions/users/getMyWallets';
-import getUnpaidCashList from 'redux/actions/transactions/getUnpaidCashList';
-import tranferToOther, {
-  clearTransferToOthersErrors,
-} from 'redux/actions/moneyTransfer/transferToOthers';
-import savingBankAccount from 'redux/actions/contacts/saveBankAccount';
-
-import TopUpModal from 'components/MoneyTransfer/TopUp';
-import confirmTransaction, {
-  clearConfirmation,
-} from 'redux/actions/moneyTransfer/confirmTransaction';
-import countryCodes from 'utils/countryCodes';
-import { updateMoneyTransferStep } from 'redux/actions/dashboard/dashboard';
-
 const TopUpContainer = ({
   open,
   setOpen,
@@ -116,12 +115,17 @@ const TopUpContainer = ({
   const { providersCountries, providersList } = useSelector(
     ({ providersCountries }) => providersCountries,
   );
+  const [transferError, setTransferError] = useState('');
   const { loading, error, data } = useSelector(
     state => state.moneyTransfer.transferToOthers,
   );
+
+  useEffect(() => {
+    setTransferError(error);
+  }, [error]);
   useEffect(() => {
     setCurrentPhone(null);
-    setPhoneValue();
+    // setPhoneValue();
     setAccountValue(null);
   }, [selectedCountry, selectedProvider]);
 
@@ -132,7 +136,7 @@ const TopUpContainer = ({
       setOpen(false);
       clearTransferToOthersErrors()(dispatch);
       setCurrentPhone(null);
-      setPhoneValue();
+      // setPhoneValue();
       clearConfirmation()(dispatch);
       setCurrentBankAccount(null);
       setNextStep(false);
@@ -190,6 +194,11 @@ const TopUpContainer = ({
     if (confirmationData?.[0]?.VerificationError) {
       clearConfirmation()(dispatch);
     }
+    if (name === 'OperatorName') {
+      setAccountValue(null);
+      setCurrentBankAccount(null);
+    }
+    setErrors(null);
   };
   useEffect(() => {
     if (confirmationData?.[0]?.VerificationError) {
@@ -226,6 +235,7 @@ const TopUpContainer = ({
   useEffect(() => {
     if (destinationContact) {
       setDefaultDestinationCurrency(destinationContact.Currency);
+      setPhoneValue(destinationContact.PhoneNumber);
     }
   }, [destinationContact]);
   useEffect(() => {
@@ -281,6 +291,29 @@ const TopUpContainer = ({
       hasError = true;
     }
 
+    if (
+      form.Category === '4' &&
+      !accountValue?.number &&
+      !currentBankAccount?.Title
+    ) {
+      setErrors(
+        global.translate(
+          'You must provide the account number',
+          '1551',
+        ),
+      );
+      hasError = true;
+    }
+
+    if (
+      (form.Category === '21' || form.Category === '19') &&
+      !form?.phoneNumber
+    ) {
+      setErrors(
+        global.translate('You must provide the phone number', '1551'),
+      );
+      hasError = true;
+    }
     return hasError;
   };
 
@@ -364,6 +397,7 @@ const TopUpContainer = ({
     setErrors(null);
     if (!validate()) {
       confirmTransaction(data)(dispatch);
+      setTransferError(null);
     }
   };
 
@@ -415,7 +449,7 @@ const TopUpContainer = ({
         ? form?.day && form?.day.toString()
         : '0',
       Reccurent: form?.isRecurring ? 'YES' : 'NO',
-      SendNow: form?.sendNow ? 'YES' : 'NO',
+      SendNow: form?.sendNow && form.isRecurring ? 'NO' : 'YES',
       Reference: form?.reference || '',
       Description: form?.description || '',
       TargetType: form.Category,
@@ -688,7 +722,7 @@ const TopUpContainer = ({
       confirmationData={confirmationData}
       moveFundsToToUWallet={moveFundsToToUWallet}
       loading={loading}
-      error={error}
+      error={transferError}
       data={data}
       userLocationData={userLocationData}
       setBalance={setBalance}

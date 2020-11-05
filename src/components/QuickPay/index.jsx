@@ -309,7 +309,10 @@ const QuickPay = ({
           </Grid.Column>
         </Grid>
       </div>
-      <SendMoneyModal sendMoneyModal={sendMoneyModal} />
+      <SendMoneyModal
+        sendMoneyModal={sendMoneyModal}
+        locateUser={locateUser}
+      />
     </DashboardLayout>
   );
 };

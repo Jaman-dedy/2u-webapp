@@ -28,7 +28,10 @@ const CustomDropdown = ({
                 </div>
                 <span className="account-name-span">
                   {currentOption.AccountName &&
-                    `(${currentOption.AccountName})`}
+                    `(${currentOption.AccountName.substring(
+                      0,
+                      13,
+                    )}...)`}
                 </span>
               </div>
             </div>

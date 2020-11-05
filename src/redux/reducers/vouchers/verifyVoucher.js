@@ -29,6 +29,11 @@ export default (state, { type, payload }) => {
     case VERIFY_STORE_VOUCHER_SUCCESS:
       return {
         ...state,
+        redeemVoucher: {
+          data: null,
+          loading: false,
+          error: null,
+        },
         verifyVoucher: {
           ...state.verifyVoucher,
           error: null,

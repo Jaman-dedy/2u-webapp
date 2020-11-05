@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Label, Form, Dropdown, Message } from 'semantic-ui-react';
+import {
+  Label,
+  Form,
+  Dropdown,
+  Message,
+  Button,
+} from 'semantic-ui-react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import moment from 'moment';
+import ReactFlagsSelect from 'react-flags-select';
 import Img from 'components/common/Img';
 import checkImageExists from 'helpers/checkImageExists';
 import ImagePreviewModal from 'components/common/ImagePreviewModal';
@@ -14,7 +21,8 @@ import {
   idDriverLicence,
   idOther,
 } from 'constants/general';
-import countryCodeLetters from 'utils/countryCodeLetters';
+
+import 'react-flags-select/scss/react-flags-select.scss';
 import DocPlaceholder from './DocPlaceholder';
 
 const Documents = ({ userData, documents }) => {
@@ -34,6 +42,7 @@ const Documents = ({ userData, documents }) => {
     IdInfo,
     isEditing,
     setIsEditing,
+    onSelectFlag,
   } = documents;
 
   const { data } = userData;
@@ -186,12 +195,12 @@ const Documents = ({ userData, documents }) => {
         <div className="id-doc-form">
           <Form size="mini">
             <div>
-              <span> Select the ID type </span>
+              <span> {global.translate('Select the ID type')} </span>
               <br />
               <Dropdown
-                style={{ height: '42px' }}
+                style={{ height: '42px', fontSize: '14px' }}
                 fluid
-                label="Select the ID type"
+                label={global.translate('Select the ID type')}
                 options={options}
                 selection
                 placeholder="ID type"
@@ -208,9 +217,9 @@ const Documents = ({ userData, documents }) => {
               )}
             </div>
             <br />
-
             <div>
               <Form.Input
+                style={{ fontSize: '14px' }}
                 fluid
                 label="ID number"
                 placeholder="ID number"
@@ -261,22 +270,16 @@ const Documents = ({ userData, documents }) => {
             <div>
               <span> Select Country </span>
               <br />
-              <Dropdown
-                style={{ height: '42px' }}
-                label="Select Country"
-                placeholder="Select Country"
-                fluid
-                search
-                selection
-                options={countryCodeLetters}
-                onChange={onOptionsChange}
-                name="IDCountryCode"
-                // defaultValue={
-                //   isEditing
-                //     ? iDCardInfo?.IDCountryCode ||
-                //       IdInfo?.IDCountryCode
-                //     : form?.IDCountryCode
-                // }
+              <ReactFlagsSelect
+                searchable
+                onSelect={onSelectFlag}
+                className="menu-flags"
+                defaultCountry={
+                  (iDCardInfo?.IDCountryCode &&
+                    iDCardInfo.IDCountryCode.toUpperCase()) ||
+                  IdInfo?.IDCountryCode?.toUpperCase() ||
+                  'RW'
+                }
               />
               {errors?.IDCountryCode && (
                 <Message color="orange">
@@ -285,7 +288,7 @@ const Documents = ({ userData, documents }) => {
               )}
             </div>
             <div className="submit-button">
-              <Form.Button
+              <Button
                 loading={loading}
                 disabled={
                   loading ||
@@ -299,115 +302,17 @@ const Documents = ({ userData, documents }) => {
                     submitHandler();
                   }
                 }}
+                secondary
+                color="grey"
               >
                 {isEditing
                   ? global.translate('Edit')
                   : global.translate('Submit')}
-              </Form.Button>
+              </Button>
             </div>
           </Form>
         </div>
       </div>
-
-      {/* <div className="large-v-margin">
-        <span>{global.translate('Proof of current address')}</span>
-      </div> */}
-      {/* <div className="flex docs">
-        <div className="description center-align large-padding border-radius-4">
-          <span>
-            {global.translate(
-              'This could be any official document bearing your name and your address such as utilities bill, bank statement, and landline telephone bill. In respect of close relatives or roommates living together, a certified statement of the person with the name on the document is required.',
-              893,
-            )}
-          </span>
-        </div>
-        <div className="document-image">
-          {PoRDocExist && (
-            <Label
-              ribbon
-              color={getDocStatus(data && data.PoRVerified)?.color}
-              className="status-label"
-            >
-              {getDocStatus(data && data.PoRVerified)?.label}
-            </Label>
-          )}
-          <Img
-            compress
-            hasError
-            format="png"
-            height="235"
-            width="138"
-            src={
-              (userDocs.UserProofOfAddressURL &&
-                userDocs.UserProofOfAddressURL.imageUrl) ||
-              (data && data.UserProofOfAddressURL)
-            }
-            onImageChange={onImageChange}
-            name="UserProofOfAddressURL"
-            className="id-doc cursor-pointer"
-            onClick={() => {
-              setOpen(!open);
-              setImagePreviewSrc(
-                (userDocs.UserProofOfAddressURL &&
-                  userDocs.UserProofOfAddressURL.imageUrl) ||
-                  (data && data.UserProofOfAddressURL),
-              );
-            }}
-            alt={
-              <DocPlaceholder
-                name="UserProofOfAddressURL"
-                onChooseFile={onImageChange}
-              />
-            }
-          />
-        </div>
-      </div> */}
-      {/* <div className="large-v-margin">
-        <span>{global.translate('Other documents')}</span>
-      </div> */}
-      {/* <div className="other-documents flex">
-        {Array(5)
-          .fill()
-          .map((_, index) => {
-            return (
-              <div className="other-doc">
-                <Img
-                  hasError
-                  compress
-                  format="png"
-                  height="83px"
-                  width="100px"
-                  src={
-                    (userDocs[`UserExtraDoc${index + 1}URL`] &&
-                      userDocs[`UserExtraDoc${index + 1}URL`]
-                        .imageUrl) ||
-                    (data && data[`UserExtraDoc${index + 1}URL`])
-                  }
-                  onImageChange={onImageChange}
-                  name={[`UserExtraDoc${index + 1}URL`]}
-                  className="other-doc__image cursor-pointer"
-                  camStyle={{ width: 25, height: 20 }}
-                  onClick={() => {
-                    setOpen(!open);
-                    setImagePreviewSrc(
-                      (userDocs[`UserExtraDoc${index + 1}URL`] &&
-                        userDocs[`UserExtraDoc${index + 1}URL`]
-                          .imageUrl) ||
-                        (data && data[`UserExtraDoc${index + 1}URL`]),
-                    );
-                  }}
-                  alt={
-                    <DocPlaceholder
-                      other
-                      name={[`UserExtraDoc${index + 1}URL`]}
-                      onChooseFile={onImageChange}
-                    />
-                  }
-                />
-              </div>
-            );
-          })}
-      </div> */}
     </div>
   );
 };

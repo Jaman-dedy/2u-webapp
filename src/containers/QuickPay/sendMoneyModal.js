@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearFoundUser } from 'redux/actions/contacts/locateWallet';
+import { updateMoneyTransferStep } from 'redux/actions/dashboard/dashboard';
 import moveFunds, {
   clearMoveFundsErrors,
 } from 'redux/actions/moneyTransfer/moveFunds';
-import { updateMoneyTransferStep } from 'redux/actions/dashboard/dashboard';
-import { clearFoundUser } from 'redux/actions/contacts/locateWallet';
 
 export default ({
   form,
@@ -26,6 +26,12 @@ export default ({
   );
   const onOptionsChange = (e, { name, value }) => {
     setForm({ ...form, [name]: value });
+    if (errors) {
+      setErrors(null);
+    }
+    if (step === 1 && moveFundError) {
+      clearMoveFundsErrors()(dispatch);
+    }
   };
   const resetState = () => {
     clearMoveFundsErrors()(dispatch);
@@ -33,7 +39,7 @@ export default ({
   };
   useEffect(() => {
     setForm({ ...form, isRecurring: false });
-    setForm({ ...form, sendNow: true });
+    setForm({ ...form, sendNow: false });
   }, [confirmationData]);
 
   const { digit0, digit1, digit2, digit3 } = form;
@@ -54,7 +60,7 @@ export default ({
       DateTo: (form.isRecurring && form.endDate) || '',
       Day: form.isRecurring ? form.day && form.day.toString() : '0',
       Reccurent: form.isRecurring ? 'YES' : 'No',
-      SendNow: form.sendNow ? 'YES' : 'No',
+      SendNow: form.isRecurring && form.sendNow ? 'NO' : 'YES',
       Reference: form.reference || '',
       Description: form.description || '',
     };

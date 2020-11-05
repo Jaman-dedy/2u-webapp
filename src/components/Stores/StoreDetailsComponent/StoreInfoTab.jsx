@@ -98,19 +98,6 @@ const StoreInfoTab = ({ currentStore, onChangeTab }) => {
               {currentStore.StoreName}
             </span>
           </div>
-
-          <div className="button-plus-icon">
-            <div className="edit-button ">
-              <Button
-                basic
-                color="orange"
-                content={`${global.translate(
-                  'Edit',
-                )} ${global.translate('Store')}`}
-                onClick={() => onChangeTab()}
-              />
-            </div>
-          </div>
         </div>
         <div className="stats">
           <div className="likes">

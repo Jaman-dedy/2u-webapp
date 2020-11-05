@@ -43,9 +43,11 @@ export default (state, { type, payload }) => {
                 FirstName: payload.requestData.FirstName,
                 LastName: payload.requestData.LastName,
                 SecurityCode: payload.requestData.SecurityCode,
+                PhoneNumber: payload.requestData.TargetPhoneNumber,
                 SourcePhoneNumber:
                   payload.requestData.TargetPhoneNumber,
               };
+
               const merged = { ...allOther, ...updatedItem };
 
               const newMerged = { SecurityCode };

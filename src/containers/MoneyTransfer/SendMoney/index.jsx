@@ -1,18 +1,18 @@
 /* eslint-disable consistent-return */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { CELINE_MONEY } from 'constants/general';
+import SendMoney from 'components/MoneyTransfer/SendMoney';
+import getallContacts from 'redux/actions/contacts/getContactList';
+import { updateMoneyTransferStep } from 'redux/actions/dashboard/dashboard';
+import confirmTransaction from 'redux/actions/moneyTransfer/confirmTransaction';
 import moveFunds, {
   clearMoveFundsErrors,
 } from 'redux/actions/moneyTransfer/moveFunds';
-import SendMoney from 'components/MoneyTransfer/SendMoney';
-import getallContacts from 'redux/actions/contacts/getContactList';
 import getMyWallets from 'redux/actions/users/getMyWallets';
-import confirmTransaction from 'redux/actions/moneyTransfer/confirmTransaction';
-import { updateMoneyTransferStep } from 'redux/actions/dashboard/dashboard';
-import { CELINE_MONEY } from 'constants/general';
 
 const SendMoneyContainer = ({
   setSendMoneyOpen,
@@ -98,7 +98,7 @@ const SendMoneyContainer = ({
 
   useEffect(() => {
     setForm({ ...form, isRecurring: false });
-    setForm({ ...form, sendNow: true });
+    setForm({ ...form, sendNow: false });
   }, [confirmationData]);
 
   useEffect(() => {
@@ -224,7 +224,7 @@ const SendMoneyContainer = ({
       DateTo: (form.isRecurring && form.endDate) || '',
       Day: form.isRecurring ? form.day && form.day.toString() : '0',
       Reccurent: form.isRecurring ? 'YES' : 'No',
-      SendNow: form.sendNow ? 'YES' : 'No',
+      SendNow: form.isRecurring && form.sendNow ? 'No' : 'YES',
       Reference: form.reference || '',
       Description: form.description || '',
     };
@@ -302,6 +302,9 @@ const SendMoneyContainer = ({
 
   const onOptionsChange = (e, { name, value }) => {
     setForm({ ...form, [name]: value });
+    if (step === 1 && confirmationError) {
+      clearMoveFundsErrors()(dispatch);
+    }
   };
 
   return (

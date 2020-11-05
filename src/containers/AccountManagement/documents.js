@@ -22,6 +22,7 @@ export default () => {
   const [issueDate, setIssueDate] = useState(new Date());
   const [errors, setErrors] = useState(null);
   const [isEditing, setIsEditing] = useState(true);
+  const [IDCountryCode, setIDCountryCode] = useState(null);
 
   const [imageUploadState, setImageUploadState] = useState({
     loading: false,
@@ -94,6 +95,9 @@ export default () => {
     }
     return null;
   };
+  const onSelectFlag = countryCode => {
+    setIDCountryCode(countryCode);
+  };
 
   useEffect(() => {
     if (userData?.data?.IDCardInfo) {
@@ -132,7 +136,7 @@ export default () => {
         );
     }
   };
-  const { IDType, IDNumber, IDCountryCode } = form;
+  const { IDType, IDNumber } = form;
   /**
    * @return {bool} true if no error
    */
@@ -143,17 +147,13 @@ export default () => {
     const IDNumberError = IDNumber
       ? ''
       : global.translate('Please provide your Id number');
-    const IDCountryCodeError = IDCountryCode
-      ? ''
-      : global.translate('Please select your country');
 
     setErrors({
       ...errors,
       IDType: IDTypeError,
       IDNumber: IDNumberError,
-      IDCountryCode: IDCountryCodeError,
     });
-    return !(IDTypeError, IDNumberError, IDCountryCodeError);
+    return !(IDTypeError, IDNumberError);
   };
 
   const submitHandler = () => {
@@ -187,5 +187,6 @@ export default () => {
     IdInfo,
     isEditing,
     setIsEditing,
+    onSelectFlag,
   };
 };

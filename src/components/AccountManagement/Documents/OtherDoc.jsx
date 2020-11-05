@@ -67,7 +67,7 @@ const Documents = ({ userData, documents }) => {
       />
       <div className="doc-title">
         <span>
-          {global.translate('Provide other official documents')}
+          {global.translate('Provide other supporting documents')}
         </span>
       </div>
       <span className="doc-sub-title">
@@ -90,8 +90,8 @@ const Documents = ({ userData, documents }) => {
                     hasError
                     compress
                     format="png"
-                    height="138px"
-                    width="200px"
+                    height="130px"
+                    width="160px"
                     src={
                       (userDocs[`UserExtraDoc${index + 1}URL`] &&
                         userDocs[`UserExtraDoc${index + 1}URL`]

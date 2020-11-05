@@ -8,6 +8,9 @@
   height: 70vh;
 
   .receipt-container {
+    .receipt-background-text {
+      color: #fff;
+    }
     overflow-y: scroll;
     overflow-x: scroll;
     height: 70vh;
@@ -121,6 +124,23 @@
     width: $A4-width;
 
     .receipt-container {
+      .receipt-background-text {
+        position: absolute;
+        width: $A4-width;
+        height: 138mm;
+        margin-top: -15px;
+        margin-left: -15px;
+        overflow: hidden;
+        color: $grey;
+        span {
+          transform: rotate(-40deg);
+          font-size: 500%;
+          font-weight: bolder;
+          text-transform: uppercase;
+          line-height: 1em;
+        }
+      }
+
       overflow-y: hidden;
       overflow-x: hidden;
       height: 98vh;

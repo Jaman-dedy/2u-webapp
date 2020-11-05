@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'semantic-ui-react';
+import { Button, Input } from 'semantic-ui-react';
 import './Info.scss';
 
 const EditGeneralInfo = ({ userData, setInfoOrEdit }) => {
@@ -40,7 +40,7 @@ const EditGeneralInfo = ({ userData, setInfoOrEdit }) => {
         </div>
       </div>
       <Button
-        basic
+        secondary
         color="gray"
         onClick={() => setInfoOrEdit('edit')}
       >
