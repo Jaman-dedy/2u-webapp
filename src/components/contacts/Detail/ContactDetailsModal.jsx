@@ -21,11 +21,25 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { openChatList, setGlobalChat } from 'redux/actions/chat/globalchat';
+import {
+  openChatList,
+  setGlobalChat,
+} from 'redux/actions/chat/globalchat';
 import { clearDeleteContact } from 'redux/actions/contacts/deleteContact';
-import { setIsendingCash, setIsSendingMoney, setIsSendingOhters, setIsTopingUp } from 'redux/actions/dashboard/dashboard';
+import {
+  setIsendingCash,
+  setIsSendingMoney,
+  setIsSendingOhters,
+  setIsTopingUp,
+} from 'redux/actions/dashboard/dashboard';
 import getAllTransactionHistory from 'redux/actions/transactions/getHistory';
-import { Button, Grid, Icon, Modal, TransitionablePortal } from 'semantic-ui-react';
+import {
+  Button,
+  Grid,
+  Icon,
+  Modal,
+  TransitionablePortal,
+} from 'semantic-ui-react';
 import allCountries from 'utils/countries';
 import countries from 'utils/countryCodes';
 import useWindowSize from 'utils/useWindowSize';
@@ -33,8 +47,6 @@ import useWindowSize from 'utils/useWindowSize';
 import DragDropWallets from '../Edit/DragDropWallets';
 import EditContactContents from '../Edit/EditContactContents';
 import PreviewProfileImg from './PreviewProfileImg';
-
-
 
 const ContactDetailsModal = ({
   open,
@@ -64,7 +76,7 @@ const ContactDetailsModal = ({
   const [openPreviewImgModal, setOpenPreviewImgModal] = useState(
     false,
   );
-  const [avatarClassName, setAvatarClassName] = useState('no-image');
+  const [showPreviewButton, setShowPreviewButton] = useState(false);
 
   const [contact, setContact] = useState({});
 
@@ -106,7 +118,7 @@ const ContactDetailsModal = ({
         setContact(globalContact);
       }
     }
-  }, [allContacts.data, pathContact]);
+  }, [allContacts.data, pathContact, parsedQueries]);
 
   useEffect(() => {
     if (localContact) {
@@ -196,13 +208,6 @@ const ContactDetailsModal = ({
       total: 0,
     },
   ]);
-
-  const { PictureURL } = contact || {};
-  useEffect(() => {
-    setAvatarClassName(
-      !PictureURL || hasError ? 'no-image' : 'image-preview',
-    );
-  }, [PictureURL, hasError]);
 
   const getChartData = () => {
     let creditCount = 0;
@@ -537,7 +542,9 @@ const ContactDetailsModal = ({
                             setOpenPreviewImgModal(true);
                           }
                         }}
-                        className={avatarClassName}
+                        className={
+                          !hasError ? 'image-preview' : 'no-image'
+                        }
                         role="none"
                         onKeyDown={() => {}}
                       >
@@ -558,7 +565,14 @@ const ContactDetailsModal = ({
                             (contact && contact.LastName) || ''
                           }
                           hasError={hasError}
-                          setHasError={setHasError}
+                          setHasError={value => {
+                            setHasError(value);
+                            if (!value) {
+                              setShowPreviewButton(true);
+                            } else {
+                              setShowPreviewButton(false);
+                            }
+                          }}
                         />
                       </div>
 

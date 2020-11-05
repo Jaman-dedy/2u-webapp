@@ -1,15 +1,21 @@
 /* eslint-disable no-case-declarations */
 import ManageContacts from 'components/contacts';
 import queryString from 'query-string';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import addNewContact from 'redux/actions/contacts/addNewContact';
-import addRemoveFromFavoriteAction, { clearFavoritesSuccess } from 'redux/actions/contacts/addRemoveFromFavorite';
-import deleteContact, { clearDeleteContact } from 'redux/actions/contacts/deleteContact';
+import addRemoveFromFavoriteAction, {
+  clearFavoritesSuccess,
+} from 'redux/actions/contacts/addRemoveFromFavorite';
+import deleteContact, {
+  clearDeleteContact,
+} from 'redux/actions/contacts/deleteContact';
 import getContactList from 'redux/actions/contacts/getContactList';
-import locateUser, { clearFoundUser } from 'redux/actions/contacts/locateUser';
+import locateUser, {
+  clearFoundUser,
+} from 'redux/actions/contacts/locateUser';
 import setCurrentContact from 'redux/actions/contacts/setCurrentContact';
 import {
   setIsendingCash,
@@ -41,6 +47,7 @@ const Index = () => {
     isTopingUp,
     isSendingVoucher,
   } = useSelector(state => state.dashboard.contactActions);
+
   const [sendCashOpen, setSendCashOpen] = useState(false);
   const [sendMoneyOpen, setSendMoneyOpen] = useState(false);
   const [topUpOpen, setTopUpOpen] = useState(false);
@@ -202,14 +209,17 @@ const Index = () => {
     }
   }, [addRemoveFavorite]);
 
-  const getContacts = (forceRefresh = false) => {
-    if (forceRefresh) {
-      getContactList()(dispatch);
-    }
-    if (!data || error) {
-      getContactList()(dispatch);
-    }
-  };
+  const getContacts = useCallback(
+    (forceRefresh = false) => {
+      if (forceRefresh) {
+        getContactList()(dispatch);
+      }
+      if (!data || error) {
+        getContactList()(dispatch);
+      }
+    },
+    [getContactList, dispatch],
+  );
 
   useEffect(() => {
     if (walletList.length === 0) {
@@ -316,12 +326,23 @@ const Index = () => {
     }
   }
 
+  const clearSuccess = () => {
+    setForm({});
+    setOpen(false);
+    clearFoundUser()(dispatch);
+    clearRemoveContact();
+  };
+
   const addToContact = () => {
     addNewContact(contactData, '/AddToContact')(dispatch);
+    clearSuccess();
   };
 
   const onChange = (e, { name, value }) => {
     setForm({ ...form, [name]: value });
+    if (localError) {
+      setLocalError(null);
+    }
   };
 
   const checkExists = () => {
@@ -370,13 +391,6 @@ const Index = () => {
         userPID: userData.data && userData.data?.PID,
       })(dispatch)();
     }
-  };
-
-  const clearSuccess = () => {
-    setForm({});
-    setOpen(false);
-    clearFoundUser()(dispatch);
-    clearRemoveContact();
   };
 
   useEffect(() => {
@@ -476,9 +490,11 @@ const Index = () => {
 
         if (!editErrors) {
           const externalContactData = {
-            ...contact,
+            // ...contact,
             FirstName: editForm.firstName,
             LastName: editForm.lastName,
+            DestPhoneNum: contact.PhoneNumber,
+            CountryCode: contact.CountryCode,
           };
           addNewContact(
             externalContactData,
@@ -597,7 +613,6 @@ const Index = () => {
       handleCreateExternalContact={handleCreateExternalContact}
       isTopingUp={isTopingUp}
       isSendingOthers={isSendingOthers}
-      // isTopingUp={isTopingUp}
       isSendingVoucher={isSendingVoucher}
     />
   );

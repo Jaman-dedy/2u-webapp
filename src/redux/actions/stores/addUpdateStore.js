@@ -22,10 +22,13 @@ export default (requestData, isEditing) => dispatch => {
         toast.success(
           global.translate('Your store data is saved.', 913),
         );
+
         return dispatch({
           type: ADD_UPDATE_STORE_SUCCESS,
           payload: {
             ...data[0],
+            StoreBanner: requestData?.BannerURL,
+            StoreLogo: requestData?.LogoURL,
             success: data[0].Result === 'Success',
             isEditing,
           },

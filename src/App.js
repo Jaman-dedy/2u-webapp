@@ -1,58 +1,53 @@
-import React, { useEffect, useRef, useState } from 'react';
-import PropTypes from 'prop-types';
-import { ErrorBoundary } from 'react-error-boundary';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from 'react-router-dom';
-import { createBrowserHistory } from 'history';
-import ReactGA from 'react-ga';
-import queryString from 'query-string';
-import { useDispatch, useSelector } from 'react-redux';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import IdleTimer from 'react-idle-timer';
-import { Modal, Button } from 'semantic-ui-react';
-import 'react-bnb-gallery/dist/style.css';
-
 import 'assets/styles/style.scss';
+import 'react-bnb-gallery/dist/style.css';
+import 'react-toastify/dist/ReactToastify.css';
+
 import ChatModal from 'components/Chat/ChatModal';
-import getUserInfo from 'redux/actions/users/getUserInfo';
-import getUserLocationData from 'redux/actions/users/userLocationData';
-import handleSocketIOClientEvents from 'services/socketIO/events';
-import * as welcomeEvent from 'services/socketIO/events/welcome';
-import notifAction from 'redux/actions/users/notifications';
-import getContactList from 'redux/actions/contacts/getContactList';
-import walletEvent from 'services/socketIO/events/wallet';
-import generalEvent from 'services/socketIO/events/general';
-import cashRequestEvent from 'services/socketIO/events/cashRequest';
-import contactRequestEvent from 'services/socketIO/events/contactRequest';
-import voucherEvent from 'services/socketIO/events/voucher';
-import logout from 'redux/actions/users/logout';
-import directMessage from 'services/socketIO/chat/directMessage';
-import routes from 'routes';
-import isAuth from 'utils/isAuth';
-import scroll from 'helpers/scroll';
-import isAppDisplayedInWebView from 'helpers/isAppDisplayedInWebView';
-import getUserData from 'redux/actions/users/getUserData';
-import getLanguage from 'redux/actions/users/getLanguage';
-import getSupportedLanguages from 'redux/actions/users/getSupportedLanguages';
-import useTranslate from 'hooks/useTranslate';
-import useInstallApp from 'hooks/useInstallApp';
-import deleteMessages from 'services/socketIO/chat/deleteMessages';
-import updateUnreadCount from 'services/socketIO/chat/updateUnreadCount';
-import chatThreads from 'services/socketIO/chat/chatThreads';
-import userPresence from 'services/socketIO/events/contactPresence';
-import blockUnblock from 'services/socketIO/events/blockUnblock';
-import useNotifyOnlineStatus from 'containers/Dashboard/useNotifyOnlineStatus';
-import checkUserConnected from 'services/socketIO/events/checkUserConnected';
 import UserLeaveConfirmation from 'components/common/UserConfirmation';
-import NotFoundPage from 'components/NotFoundPage';
 import InstallApp from 'components/InstallApp';
+import NotFoundPage from 'components/NotFoundPage';
 import ReloadApp from 'components/ReloadApp';
 import { LOGIN_RETURN_URL } from 'constants/general';
+import useNotifyOnlineStatus from 'containers/Dashboard/useNotifyOnlineStatus';
+import isAppDisplayedInWebView from 'helpers/isAppDisplayedInWebView';
+import scroll from 'helpers/scroll';
+import { createBrowserHistory } from 'history';
+import useInstallApp from 'hooks/useInstallApp';
+import useTranslate from 'hooks/useTranslate';
+import PropTypes from 'prop-types';
+import queryString from 'query-string';
+import React, { useEffect, useRef, useState } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+import ReactGA from 'react-ga';
+import IdleTimer from 'react-idle-timer';
+import { useDispatch, useSelector } from 'react-redux';
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import getContactList from 'redux/actions/contacts/getContactList';
+import getLanguage from 'redux/actions/users/getLanguage';
+import getSupportedLanguages from 'redux/actions/users/getSupportedLanguages';
+import getUserData from 'redux/actions/users/getUserData';
+import getUserInfo from 'redux/actions/users/getUserInfo';
+import logout from 'redux/actions/users/logout';
+import notifAction from 'redux/actions/users/notifications';
+import getUserLocationData from 'redux/actions/users/userLocationData';
+import routes from 'routes';
+import { Button, Modal } from 'semantic-ui-react';
+import chatThreads from 'services/socketIO/chat/chatThreads';
+import deleteMessages from 'services/socketIO/chat/deleteMessages';
+import directMessage from 'services/socketIO/chat/directMessage';
+import updateUnreadCount from 'services/socketIO/chat/updateUnreadCount';
+import handleSocketIOClientEvents from 'services/socketIO/events';
+import blockUnblock from 'services/socketIO/events/blockUnblock';
+import cashRequestEvent from 'services/socketIO/events/cashRequest';
+import checkUserConnected from 'services/socketIO/events/checkUserConnected';
+import userPresence from 'services/socketIO/events/contactPresence';
+import contactRequestEvent from 'services/socketIO/events/contactRequest';
+import generalEvent from 'services/socketIO/events/general';
+import voucherEvent from 'services/socketIO/events/voucher';
+import walletEvent from 'services/socketIO/events/wallet';
+import * as welcomeEvent from 'services/socketIO/events/welcome';
+import isAuth from 'utils/isAuth';
 
 import ErrorFallback from './Error';
 import * as serviceWorker from './serviceWorker';
@@ -206,6 +201,10 @@ const App = () => {
     ReactGA.pageview(
       window.location.pathname + window.location.search,
     );
+  }, []);
+
+  useEffect(() => {
+    getContactList()(dispatch);
   }, []);
   const AppRoutes = (
     <Router

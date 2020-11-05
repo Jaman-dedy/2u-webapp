@@ -200,6 +200,12 @@ const SendCashContainer = ({
 
   const onOptionsChange = (e, { name, value }) => {
     setForm({ ...form, [name]: value });
+    if (errors) {
+      setErrors(null);
+    }
+    if (step === 1 && confirmationError) {
+      clearMoveFundsErrors()(dispatch);
+    }
   };
 
   const validate = () => {
@@ -316,8 +322,8 @@ const SendCashContainer = ({
   }, [destinationContact]);
 
   useEffect(() => {
-    setForm({ ...form, isRecurring: form.isRecurring || false });
-    setForm({ ...form, sendNow: form.sendNow || false });
+    setForm({ ...form, isRecurring: false });
+    setForm({ ...form, sendNow: false });
   }, [confirmationData]);
 
   useEffect(() => {
