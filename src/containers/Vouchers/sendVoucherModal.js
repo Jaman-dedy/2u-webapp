@@ -88,7 +88,6 @@ export default ({
 
   const resetState = () => {
     updateMoneyTransferStep(1)(dispatch);
-
     clearVoucherErrors()(dispatch);
   };
 
@@ -255,6 +254,13 @@ export default ({
       ...form,
       [name]: value,
     });
+
+    if (errors) {
+      setErrors(null);
+    }
+    if (step === 1 && confirmationError) {
+      clearVoucherErrors()(dispatch);
+    }
   };
   const onChange = e => {
     e.persist();

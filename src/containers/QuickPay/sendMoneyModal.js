@@ -2,7 +2,9 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearFoundUser } from 'redux/actions/contacts/locateWallet';
 import { updateMoneyTransferStep } from 'redux/actions/dashboard/dashboard';
-import moveFunds, { clearMoveFundsErrors } from 'redux/actions/moneyTransfer/moveFunds';
+import moveFunds, {
+  clearMoveFundsErrors,
+} from 'redux/actions/moneyTransfer/moveFunds';
 
 export default ({
   form,
@@ -24,6 +26,12 @@ export default ({
   );
   const onOptionsChange = (e, { name, value }) => {
     setForm({ ...form, [name]: value });
+    if (errors) {
+      setErrors(null);
+    }
+    if (step === 1 && moveFundError) {
+      clearMoveFundsErrors()(dispatch);
+    }
   };
   const resetState = () => {
     clearMoveFundsErrors()(dispatch);

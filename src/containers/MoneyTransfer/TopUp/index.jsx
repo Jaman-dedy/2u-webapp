@@ -125,7 +125,7 @@ const TopUpContainer = ({
   }, [error]);
   useEffect(() => {
     setCurrentPhone(null);
-    setPhoneValue();
+    // setPhoneValue();
     setAccountValue(null);
   }, [selectedCountry, selectedProvider]);
 
@@ -136,7 +136,7 @@ const TopUpContainer = ({
       setOpen(false);
       clearTransferToOthersErrors()(dispatch);
       setCurrentPhone(null);
-      setPhoneValue();
+      // setPhoneValue();
       clearConfirmation()(dispatch);
       setCurrentBankAccount(null);
       setNextStep(false);
@@ -198,6 +198,7 @@ const TopUpContainer = ({
       setAccountValue(null);
       setCurrentBankAccount(null);
     }
+    setErrors(null);
   };
   useEffect(() => {
     if (confirmationData?.[0]?.VerificationError) {
@@ -234,6 +235,7 @@ const TopUpContainer = ({
   useEffect(() => {
     if (destinationContact) {
       setDefaultDestinationCurrency(destinationContact.Currency);
+      setPhoneValue(destinationContact.PhoneNumber);
     }
   }, [destinationContact]);
   useEffect(() => {

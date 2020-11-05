@@ -1,13 +1,14 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { Image, Icon } from 'semantic-ui-react';
-import Thumbnail from 'components/common/Thumbnail';
 import './optionItems.scss';
-import EllipseMenu from 'components/common/EllipseOptions';
+
 import Logo from 'assets/images/logo.png';
 import VerifiedIcon from 'assets/images/verified.png';
+import EllipseMenu from 'components/common/EllipseOptions';
+import Thumbnail from 'components/common/Thumbnail';
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import { Icon, Image } from 'semantic-ui-react';
 
 const ListItem = ({ item, onItemClick, moreOptions }) => {
   const [hasError, setHasError] = useState(false);
@@ -80,7 +81,10 @@ const ListItem = ({ item, onItemClick, moreOptions }) => {
 
 ListItem.propTypes = {
   item: PropTypes.objectOf(PropTypes.any).isRequired,
+  onItemClick: PropTypes.func.isRequired,
+  moreOptions: PropTypes.func.isRequired,
 };
 
 ListItem.defaultProps = {};
-export default ListItem;
+
+export default React.memo(ListItem);
