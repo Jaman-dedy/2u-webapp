@@ -257,7 +257,8 @@ const TopUpModal = ({
       }
       if (
         confirmationData &&
-        confirmationData?.[0]?.TargetAccountVerified === 'YES'
+        confirmationData?.[0]?.TargetAccountVerified === 'YES' &&
+        nextStep
       ) {
         setButtonAction(global.translate('NEXT', 1950));
         setVerifyAccount(true);
@@ -265,13 +266,14 @@ const TopUpModal = ({
     } else {
       setButtonAction(global.translate('Transfer money', 1950));
     }
-  }, [currentProviderOption, confirmationData]);
+  }, [currentProviderOption, confirmationData, nextStep]);
 
   const days = getPossibleDates().map(item => ({
     key: item.day,
     value: item.day,
     text: item.val,
   }));
+
   return (
     <Modal
       size="small"
@@ -376,185 +378,178 @@ const TopUpModal = ({
               </div>
             </div>
 
-            {!isTopingUp && (
-              <div className="phone-bank">
-                {currentProviderOption?.Category === '4' ? (
-                  <>
-                    {destinationContact?.BankAccountCount !== '0' &&
-                      !accountValue && (
-                        <>
-                          {' '}
-                          <div>
-                            <span>
-                              {global.translate(
-                                `Select a bank account number`,
-                              )}
-                            </span>
-
-                            <div className="select-bank-account">
-                              <ReusableDrowdown
-                                options={
-                                  destinationContact &&
-                                  destinationContact.BankAccounts
-                                }
-                                currentOption={
-                                  currentBankAccount &&
-                                  currentBankAccount
-                                }
-                                onChange={e => {
-                                  onOptionsChange(e, {
-                                    name: 'AccountNumber',
-                                    value: e.target.value,
-                                  });
-                                }}
-                                setCurrentOption={
-                                  setCurrentBankAccount
-                                }
-                              />
-                              {confirmationData?.[0]
-                                ?.AccountCurrency && (
-                                <Label
-                                  className="currency-label"
-                                  size="large"
-                                >
-                                  {
-                                    confirmationData[0]
-                                      .AccountCurrency
-                                  }
-                                </Label>
-                              )}
-                            </div>
-                          </div>
-                        </>
-                      )}
-                    {!currentBankAccount && (
-                      <div className="new-dest-bank">
-                        <span>
-                          {global.translate(
-                            `Provide a new bank account number`,
-                          )}
-                        </span>
-
-                        <div>
-                          <NumberFormat
-                            className="new-bank-account"
-                            format={
-                              currentProviderOption?.AccountPattern
-                            }
-                            mask="_"
-                            onValueChange={values => {
-                              const {
-                                formattedValue,
-                                value,
-                              } = values;
-                              setAccountValue({
-                                number: formattedValue,
-                              });
-                            }}
-                          />
-                          {confirmationData?.[0]?.AccountCurrency && (
-                            <Label size="large">
-                              {confirmationData[0].AccountCurrency}
-                            </Label>
-                          )}
-                        </div>
-
+            <div className="phone-bank">
+              {currentProviderOption?.Category === '4' ? (
+                <>
+                  {destinationContact?.BankAccountCount !== '0' &&
+                    !accountValue && (
+                      <>
+                        {' '}
                         <div>
                           <span>
-                            {currentProviderOption?.AccountPattern}
-                          </span>
-                        </div>
-                        <div>
-                          <Checkbox
-                            disabled={
-                              !accountValue ||
-                              !!currentBankAccount?.Title
-                            }
-                            style={{ marginTop: '10px' }}
-                            label={global.translate(
-                              `Save bank account number`,
+                            {global.translate(
+                              `Select a bank account number`,
                             )}
-                            checked={saveAccount}
-                            onChange={() =>
-                              setSaveAccount(!saveAccount)
-                            }
-                          />
-                        </div>
-                      </div>
-                    )}
+                          </span>
 
-                    <div
-                      style={{
-                        marginTop: '5px',
-                        marginBottom: '5px',
-                      }}
-                    >
-                      {' '}
-                      {confirmationData &&
-                        confirmationData[0].AccountName && (
-                          <span>Account name :</span>
+                          <div className="select-bank-account">
+                            <ReusableDrowdown
+                              options={
+                                destinationContact &&
+                                destinationContact.BankAccounts
+                              }
+                              currentOption={
+                                currentBankAccount &&
+                                currentBankAccount
+                              }
+                              onChange={e => {
+                                onOptionsChange(e, {
+                                  name: 'AccountNumber',
+                                  value: e.target.value,
+                                });
+                              }}
+                              setCurrentOption={setCurrentBankAccount}
+                            />
+                            {confirmationData?.[0]
+                              ?.AccountCurrency && (
+                              <Label
+                                className="currency-label"
+                                size="large"
+                              >
+                                {confirmationData[0].AccountCurrency}
+                              </Label>
+                            )}
+                          </div>
+                        </div>
+                      </>
+                    )}
+                  {!currentBankAccount && (
+                    <div className="new-dest-bank">
+                      <span>
+                        {global.translate(
+                          `Provide a new bank account number`,
                         )}
-                      <strong>
-                        &nbsp;
-                        {confirmationData &&
-                          confirmationData[0].AccountName}
-                      </strong>
+                      </span>
+
+                      <div>
+                        <NumberFormat
+                          className="new-bank-account"
+                          format={
+                            currentProviderOption?.AccountPattern
+                          }
+                          mask="_"
+                          onValueChange={values => {
+                            const { formattedValue, value } = values;
+                            setAccountValue({
+                              number: formattedValue,
+                            });
+                          }}
+                        />
+                        {confirmationData?.[0]?.AccountCurrency && (
+                          <Label size="large">
+                            {confirmationData[0].AccountCurrency}
+                          </Label>
+                        )}
+                      </div>
+
+                      <div>
+                        <span>
+                          {currentProviderOption?.AccountPattern}
+                        </span>
+                      </div>
+                      <div>
+                        <Checkbox
+                          disabled={
+                            !accountValue ||
+                            !!currentBankAccount?.Title
+                          }
+                          style={{ marginTop: '10px' }}
+                          label={global.translate(
+                            `Save bank account number`,
+                          )}
+                          checked={saveAccount}
+                          onChange={() =>
+                            setSaveAccount(!saveAccount)
+                          }
+                        />
+                      </div>
                     </div>
+                  )}
+
+                  <div
+                    style={{
+                      marginTop: '5px',
+                      marginBottom: '5px',
+                    }}
+                  >
+                    {' '}
+                    {confirmationData &&
+                      confirmationData[0].AccountName && (
+                        <span>Account name :</span>
+                      )}
+                    <strong>
+                      &nbsp;
+                      {confirmationData &&
+                        confirmationData[0].AccountName}
+                    </strong>
+                  </div>
+                  {confirmationData?.[0]?.VerificationError && (
+                    <Message
+                      style={{ marginTop: '-17px' }}
+                      message={confirmationData?.[0]?.Description}
+                    />
+                  )}
+                </>
+              ) : (
+                <>
+                  {!currentPhone && (
+                    <div className="add-new-phone">
+                      <span>
+                        {global.translate(
+                          `Provide a new phone number`,
+                        )}
+                      </span>
+
+                      <PhoneInput
+                        enableSearch
+                        className="new-phone-number"
+                        value={phoneValue}
+                        onChange={phone => {
+                          setPhoneValue(phone);
+                          setNextStep(false);
+                        }}
+                      />
+                    </div>
+                  )}
+
+                  <div
+                    style={{
+                      marginTop: '5px',
+                      marginBottom: '5px',
+                    }}
+                  >
+                    {confirmationData &&
+                      confirmationData[0].AccountName && (
+                        <span> Account name :</span>
+                      )}
+                    <strong>
+                      &nbsp;
+                      {confirmationData &&
+                        confirmationData[0].AccountName}
+                    </strong>
                     {confirmationData?.[0]?.VerificationError && (
                       <Message
-                        style={{ marginTop: '-17px' }}
-                        message={confirmationData?.[0]?.Description}
+                        style={{ marginTop: '-17px', width: '68%' }}
+                        message={global.translate(
+                          'Account not found',
+                        )}
                       />
                     )}
-                  </>
-                ) : (
-                  <>
-                    {!currentPhone && (
-                      <div className="add-new-phone">
-                        <span>
-                          {global.translate(
-                            `Provide a new phone number`,
-                          )}
-                        </span>
+                  </div>
+                </>
+              )}
+            </div>
 
-                        <PhoneInput
-                          enableSearch
-                          className="new-phone-number"
-                          value={phoneValue}
-                          onChange={phone => setPhoneValue(phone)}
-                        />
-                      </div>
-                    )}
-
-                    <div
-                      style={{
-                        marginTop: '5px',
-                        marginBottom: '5px',
-                      }}
-                    >
-                      {confirmationData &&
-                        confirmationData[0].AccountName && (
-                          <span> Account name :</span>
-                        )}
-                      <strong>
-                        &nbsp;
-                        {confirmationData &&
-                          confirmationData[0].AccountName}
-                      </strong>
-                      {confirmationData?.[0]?.VerificationError && (
-                        <Message
-                          style={{ marginTop: '-17px', width: '68%' }}
-                          message={global.translate(
-                            'Account not found',
-                          )}
-                        />
-                      )}
-                    </div>
-                  </>
-                  // )
-                )}
-              </div>
-            )}
             {isSelfBuying && (
               <div className="dest-counties medium-padding-top">
                 <div className="small-padding-bottom">

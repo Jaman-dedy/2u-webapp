@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-expressions */
-import TopUpModal from 'components/MoneyTransfer/TopUp';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import TopUpModal from 'components/MoneyTransfer/TopUp';
 import savingBankAccount from 'redux/actions/contacts/saveBankAccount';
 import { updateMoneyTransferStep } from 'redux/actions/dashboard/dashboard';
 import confirmTransaction, {
@@ -307,7 +307,7 @@ const TopUpContainer = ({
 
     if (
       (form.Category === '21' || form.Category === '19') &&
-      !form?.phoneNumber
+      !phoneValue
     ) {
       setErrors(
         global.translate('You must provide the phone number', '1551'),
@@ -330,6 +330,7 @@ const TopUpContainer = ({
         lastName,
         phoneNumber,
       });
+      setPhoneValue(phoneNumber);
     }
   }, [destinationContact]);
 
