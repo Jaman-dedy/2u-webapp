@@ -156,7 +156,11 @@ const ChatInfoSideBar = ({
                 chatUserList.map(item => (
                   <AppListItem
                     imageURL={item.PictureURL}
-                    itemTitle={`${item.FirstName} ${item.LastName}`}
+                    itemTitle={
+                      item.FirstName
+                        ? `${item.FirstName} ${item.LastName}`
+                        : item.ContactPID
+                    }
                     itemDescription={global.translate(
                       'From your Contacts',
                       1640,
