@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-
 import Fidelity from 'components/Fidelity';
 import referrals from './referrals';
 import transactionOverview from './transactionOverview';
