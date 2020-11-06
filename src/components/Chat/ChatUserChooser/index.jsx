@@ -126,7 +126,11 @@ const ChooseChatUserModal = ({ open, setOpen }) => {
                   <AppListItem
                     imageURL={item.PictureURL}
                     key={item.PictureURL}
-                    itemTitle={`${item.FirstName} ${item.LastName}`}
+                    itemTitle={
+                      item.FirstName
+                        ? `${item.FirstName} ${item.LastName}`
+                        : item.ContactPID
+                    }
                     noHorizontalRule={selectedContacts?.length === 1}
                     secondaryContent={
                       <span
@@ -175,7 +179,11 @@ const ChooseChatUserModal = ({ open, setOpen }) => {
               appContacts.map(item => (
                 <AppListItem
                   imageURL={item.PictureURL}
-                  itemTitle={`${item.FirstName} ${item.LastName}`}
+                  itemTitle={
+                    item.FirstName
+                      ? `${item.FirstName} ${item.LastName}`
+                      : item.ContactPID
+                  }
                   secondaryContent={
                     item.AccountVerified === 'YES' && (
                       <span

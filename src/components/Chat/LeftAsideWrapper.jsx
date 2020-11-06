@@ -169,8 +169,10 @@ const ChartListComponent = ({
 
     return `${text.substr(0, MAX_TEXT_LENGTH)}...`;
   };
-  const getItemTitle = (firstName, lastName) => {
-    if (!firstName) return global.translate('Loading...', 194);
+  const getItemTitle = (firstName, lastName, contractPid) => {
+    if (!firstName && !contractPid)
+      return global.translate('Loading...', 194);
+    if (!firstName && contractPid) return `${contractPid}`;
     return `${firstName} ${lastName}`;
   };
 
@@ -358,9 +360,19 @@ const ChartListComponent = ({
                               circular
                               className="user-avatar-image"
                               avatar={user.PictureURL || ''}
-                              name={user.FirstName}
-                              secondName={user.LastName}
-                              alt={user.LastName}
+                              name={
+                                user.FirstName
+                                  ? user.FirstName
+                                  : user.ContactPID
+                              }
+                              secondName={
+                                user.LastName ? user.LastName : ''
+                              }
+                              alt={
+                                user.LastName
+                                  ? user.LastName
+                                  : user.ContactPID
+                              }
                               hasError={hasError}
                               setHasError={setHasError}
                             />
@@ -370,7 +382,9 @@ const ChartListComponent = ({
                             </div>
                           </div>
                           <p className="single-line">
-                            {user.FirstName} {user.LastName}
+                            {user.FirstName
+                              ? `${user.FirstName} ${user.LastName}`
+                              : user.ContactPID}
                           </p>
                         </div>
                       ))
@@ -421,6 +435,7 @@ const ChartListComponent = ({
                 itemTitle={getItemTitle(
                   item.receiver.FirstName,
                   item.receiver.LastName,
+                  item.receiver.ContactPID,
                 )}
                 itemDescription={formatLastMessage(
                   (Array.isArray(item.directMessages) &&
