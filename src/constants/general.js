@@ -3,6 +3,7 @@ export const DEFAULT_LANGUAGE = 'en';
 export const HOME_WEBSITE = 'https://2u.money';
 export const LOGIN_RETURN_URL = 'next';
 export const COMPANY_NAME = 'Ossix Technologies LLC';
+export const APP_NAME = '2U Money';
 export const TERMS_AND_CONDITIONS_URL =
   'https://2u.money/terms-and-conditions/';
 export const PEER_SERVICES_OG_IMAGE_URL =

@@ -1,6 +1,6 @@
 .cards {
   height: 220px;
-  padding: 25px 4%;
+  padding: 25px 2%;
   background-color: #ffffff;
   cursor: pointer;
   border-radius: 5px;
@@ -63,7 +63,7 @@
     flex-direction: row;
     .cards {
       flex: 0 0 31.3%;
-      margin: 1%;
+      margin: 0.7%;
     }
   }
 }

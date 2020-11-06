@@ -201,16 +201,18 @@ const Dashboard = ({ userData, authData, chartList: { open } }) => {
       <ChartModal open={open} />
       <DashboardLayout>
         <div className="dashboard">
-          {getStatusMessage() && (
-            <div className="dashboard-content-wrapper">
-              <StatusBar
-                onEdit={onEdit}
-                message={global.translate(getStatusMessage().message)}
-              />
-            </div>
-          )}
           <div className="dashboard-content-wrapper">
             <div className="dash__left">
+              {getStatusMessage() && (
+                <div className="dashboard-content-wrapper">
+                  <StatusBar
+                    onEdit={onEdit}
+                    message={global.translate(
+                      getStatusMessage().message,
+                    )}
+                  />
+                </div>
+              )}
               <div className="dash_welcome">
                 <div loading={userData.loading}>
                   <h2 className="dash-title">

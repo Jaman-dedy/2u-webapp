@@ -1,7 +1,7 @@
 /* eslint-disable */
 import './SideBar.scss';
 
-import Logo from 'assets/images/logo-admin.svg';
+import Logo from 'assets/images/logo-colored.svg';
 import NavAddMoney from 'assets/images/NavAddMoney.svg';
 import CreditCardIcon from 'assets/images/NavCardsIcon.svg';
 import NavContactIcon from 'assets/images/NavContactIcon.svg';
@@ -11,6 +11,8 @@ import NavServicesIcon from 'assets/images/NavServicesIcon.svg';
 import NavTransaction from 'assets/images/NavTransactionIcon.svg';
 import NavTransferIcon from 'assets/images/NavTransferIcon.svg';
 import NavWalletIcon from 'assets/images/NavWalletIcon.svg';
+import AppStore from 'assets/images/app-store.svg';
+import GooglePlay from 'assets/images/google-play.svg';
 import CurrencyExchangeContainer from 'containers/MoneyTransfer/Exchange/Exchange';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -26,9 +28,6 @@ import toggleSidebar, {
 import { clearSelectedStore } from 'redux/actions/vouchers/selectedStore';
 import { Icon, Image } from 'semantic-ui-react';
 
-
-
-
 const SideBar = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -43,7 +42,6 @@ const SideBar = () => {
     setExpand(!expand);
     setRouteName(name);
   };
-
   return (
     <>
       <aside
@@ -81,6 +79,9 @@ const SideBar = () => {
             <li>
               <Link
                 to="/"
+                className={
+                  location.pathname !== '/' ? null : 'nav-visited'
+                }
                 onClick={() => {
                   toggleSidebar(dispatch);
                   setManageContacts(dispatch);
@@ -128,7 +129,15 @@ const SideBar = () => {
                       {global.translate('Transfer Money', 1950)}
                     </Link>
                   </li>
-                  <li>
+                  <li
+                    className={
+                      (location.pathname + location.search).substr(
+                        1,
+                      ) === 'money-transfer?ref=pay-bills'
+                        ? 'sub-nav-visited'
+                        : null
+                    }
+                  >
                     <Link
                       to="/money-transfer?ref=pay-bills"
                       onClick={() => {
@@ -139,7 +148,15 @@ const SideBar = () => {
                     </Link>
                   </li>
 
-                  <li>
+                  <li
+                    className={
+                      (location.pathname + location.search).substr(
+                        1,
+                      ) === 'contacts?ref=send-voucher'
+                        ? 'sub-nav-visited'
+                        : null
+                    }
+                  >
                     <Link
                       to="/contacts?ref=send-voucher"
                       onClick={() => {
@@ -151,7 +168,15 @@ const SideBar = () => {
                       {global.translate('Send Voucher', 863)}
                     </Link>
                   </li>
-                  <li>
+                  <li
+                    className={
+                      (location.pathname + location.search).substr(
+                        1,
+                      ) === 'contacts?ref=send-cash'
+                        ? 'sub-nav-visited'
+                        : null
+                    }
+                  >
                     <Link
                       to="/contacts?ref=send-cash"
                       onClick={() => {
@@ -169,9 +194,17 @@ const SideBar = () => {
                       toggleSidebar(dispatch);
                     }}
                   >
-                    {global.translate('Currency exchange',87)}
+                    {global.translate('Currency exchange', 87)}
                   </li>
-                  <li>
+                  <li
+                    className={
+                      (location.pathname + location.search).substr(
+                        1,
+                      ) === 'contacts?ref=to-others'
+                        ? 'sub-nav-visited'
+                        : null
+                    }
+                  >
                     <Link
                       to="/contacts?ref=to-others"
                       onClick={() => {
@@ -179,10 +212,18 @@ const SideBar = () => {
                         toggleSidebar(dispatch);
                       }}
                     >
-                      {global.translate('Other networks',2148)}
+                      {global.translate('Other networks', 2148)}
                     </Link>
                   </li>
-                  <li>
+                  <li
+                    className={
+                      (location.pathname + location.search).substr(
+                        1,
+                      ) === 'contacts?ref=to-up'
+                        ? 'sub-nav-visited'
+                        : null
+                    }
+                  >
                     <Link
                       to="/contacts?ref=to-up"
                       onClick={() => {
@@ -193,7 +234,15 @@ const SideBar = () => {
                       {global.translate('Buy Airtime', 1552)}
                     </Link>
                   </li>
-                  <li>
+                  <li
+                    className={
+                      (location.pathname + location.search).substr(
+                        1,
+                      ) === 'virtual-card'
+                        ? 'sub-nav-visited'
+                        : null
+                    }
+                  >
                     <Link
                       to="/virtual-card"
                       onClick={() => {
@@ -209,6 +258,12 @@ const SideBar = () => {
             <li>
               <Link
                 to="add-money"
+                className={
+                  (location.pathname + location.search).substr(1) ===
+                  'add-money'
+                    ? 'nav-visited'
+                    : null
+                }
                 onClick={() => {
                   toggleSidebar(dispatch);
                 }}
@@ -222,6 +277,12 @@ const SideBar = () => {
             <li>
               <Link
                 to="/wallets"
+                className={
+                  (location.pathname + location.search).substr(1) ===
+                  'wallets'
+                    ? 'nav-visited'
+                    : null
+                }
                 onClick={() => {
                   toggleSidebar(dispatch);
                 }}
@@ -229,12 +290,18 @@ const SideBar = () => {
                 <i>
                   <Image src={NavWalletIcon} />
                 </i>
-                {global.translate('My Wallets',68)}{' '}
+                {global.translate('My Wallets', 68)}{' '}
               </Link>
             </li>
             <li>
               <Link
                 to="/transactions"
+                className={
+                  (location.pathname + location.search).substr(1) ===
+                  'transactions'
+                    ? 'nav-visited'
+                    : null
+                }
                 onClick={() => {
                   toggleSidebar(dispatch);
                 }}
@@ -248,6 +315,12 @@ const SideBar = () => {
             <li>
               <Link
                 to="/credit-cards"
+                className={
+                  (location.pathname + location.search).substr(1) ===
+                  'credit-cards'
+                    ? 'nav-visited'
+                    : null
+                }
                 onClick={() => {
                   toggleSidebar(dispatch);
                 }}
@@ -261,6 +334,12 @@ const SideBar = () => {
             <li>
               <Link
                 to="/contacts"
+                className={
+                  (location.pathname + location.search).substr(1) ===
+                  'contacts'
+                    ? 'nav-visited'
+                    : null
+                }
                 onClick={() => {
                   toggleSidebar(dispatch);
                   setManageContacts(dispatch);
@@ -276,6 +355,12 @@ const SideBar = () => {
             <li>
               <Link
                 to="/services"
+                className={
+                  (location.pathname + location.search).substr(1) ===
+                  'services'
+                    ? 'nav-visited'
+                    : null
+                }
                 onClick={() => {
                   toggleSidebar(dispatch);
                   setManageContacts(dispatch);
@@ -284,12 +369,18 @@ const SideBar = () => {
                 <i>
                   <Image src={NavServicesIcon} />
                 </i>
-                {global.translate('Services',1754)}
+                {global.translate('Services', 1754)}
               </Link>
             </li>
             <li>
               <Link
                 to="/get-help"
+                className={
+                  (location.pathname + location.search).substr(1) ===
+                  'get-help'
+                    ? 'nav-visited'
+                    : null
+                }
                 onClick={() => {
                   toggleSidebar(dispatch);
                   setManageContacts(dispatch);
@@ -298,8 +389,28 @@ const SideBar = () => {
                 <i>
                   <Image src={NavReportBugIcon} />
                 </i>
-                {global.translate('Report a bug',2137)}
+                {global.translate('Report a bug', 2137)}
               </Link>
+            </li>
+            <li>
+              <div className="mobile-apps">
+                <h4>Download our mobile app.</h4>
+                <a
+                  href="https://play.google.com/store/apps/details?id=technology.ossix.toumoney"
+                  target="_blank"
+                  alt="Android"
+                >
+                  <Image src={GooglePlay} />
+                </a>
+                <a
+                  href="https://www.apple.com/app-store/"
+                  target="_blank"
+                  alt="iOS"
+                >
+                  <Image src={AppStore} />
+                </a>
+                <div className="clear" />
+              </div>
             </li>
           </ul>
         </div>
