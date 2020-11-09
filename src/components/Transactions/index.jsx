@@ -586,8 +586,13 @@ const Transactions = ({
                   tab = 'pending-voucher';
                   break;
                 case 3:
+                  tab = 'other-transfer';
+                  break;
+
+                case 4:
                   tab = 'recent-stores';
                   break;
+
                 default:
                   break;
               }

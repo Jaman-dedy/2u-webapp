@@ -26,6 +26,7 @@ const Comments = ({
   };
 
   const { userData } = useSelector(({ user }) => user);
+  const { postComment } = useSelector(({ stores }) => stores);
 
   const postCommentHelper = () => {
     const today = new Date();
@@ -53,13 +54,12 @@ const Comments = ({
           )}
 
           {comments &&
-            comments.data &&
-            comments.data[0] &&
-            comments.data[0].Comments && (
+            comments?.data &&
+            comments?.data[0]?.CanComment === 'YES' && (
               <div>
                 <div className="comments-title">
                   {global.translate('Comments')}
-                </div>{' '}
+                </div>
                 <div className="comments-container">
                   <div className="flex flex-column commentBox">
                     <Form>
@@ -116,20 +116,20 @@ const Comments = ({
                           <span>{item.Comment}</span>
                         </span>
                       </span>
-                    ))}{' '}
+                    ))}
                 </div>
               </div>
             )}
 
-          {comments &&
-            comments.data &&
-            comments.data[0] &&
-            comments.data[0].Error === '2016' && (
+          {Array.isArray(comments?.data) &&
+            !postComment?.success &&
+            !postComment?.loading &&
+            !comments?.data[0]?.Comments?.length && (
               <Message
                 error={false}
                 message={global.translate('No comment', 871)}
                 style={{
-                  width: '95%',
+                  width: '100%',
                   margin: 'auto',
                   marginTop: '10px',
                 }}

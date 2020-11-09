@@ -74,10 +74,10 @@ const SettingView = props => {
       menu={{ fluid: true, vertical: width > 800, tabular: true }}
       panes={settingsPanes}
       activeIndex={activeSettingTab}
+      defaultActiveIndex={0}
       onTabChange={(event, data) => {
         let tabHash = '';
-
-        switch (data.activeIndex) {
+        switch (data?.activeIndex) {
           case 0:
             tabHash = 'edit';
             break;
@@ -91,6 +91,7 @@ const SettingView = props => {
             tabHash = 'general';
             break;
           default:
+            tabHash = 'edit';
             break;
         }
 
@@ -154,7 +155,7 @@ const StoreDetailsComponent = ({
         <Menu.Item key="'Pending Vouchers'">
           {global.translate('My pending vouchers', 2030)}
           <Label as={Link} color="orange">
-            {currentStore.PendingVouchers}
+            {currentStore?.PendingVouchers}
           </Label>
         </Menu.Item>
       ),
@@ -234,6 +235,7 @@ const StoreDetailsComponent = ({
             activeSettingTabIndex = 3;
             break;
           default:
+            activeSettingTabIndex = 0;
             break;
         }
 
@@ -294,10 +296,10 @@ const StoreDetailsComponent = ({
     addStoreAgentAction(form)(dispatch);
   };
 
+  const history = useHistory();
   const onTabChange = (e, data = {}) => {
-    const { activeIndex = 2 } = data;
+    const { activeIndex } = data;
     let tab = '';
-
     switch (activeIndex) {
       case 0:
         tab = 'details';
@@ -312,12 +314,13 @@ const StoreDetailsComponent = ({
         tab = 'agents';
         break;
       default:
+        tab = 'details';
         break;
     }
     history.push({
       pathname: '/store-details',
       search: `?tab=${tab}`,
-      state: { store: currentStore.StoreID },
+      state: { store: currentStore?.StoreID },
     });
 
     setActiveTab(activeIndex);
@@ -328,7 +331,7 @@ const StoreDetailsComponent = ({
       onTabChange({}, { activeIndex: location.state.detailTab });
     }
   }, []);
-  const history = useHistory();
+
   const onClickHandler = () => history.goBack();
 
   return (
