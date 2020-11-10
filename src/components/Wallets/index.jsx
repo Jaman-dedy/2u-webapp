@@ -173,7 +173,8 @@ const WalletComponents = ({
     {
       name: global.translate('Currency exchange', 87),
       image: CurrencyExchangeIcon,
-      onClick: () => {
+      onClick: wallet => {
+        setSelectedWallet(wallet);
         setSendMoneyOpen(!sendMoneyOpen);
         setIsSendingMoney(dispatch);
       },
@@ -199,7 +200,7 @@ const WalletComponents = ({
       <CurrencyExchangeContainer
         setSendMoneyOpen={setSendMoneyOpen}
         sendMoneyOpen={sendMoneyOpen}
-        selectedWallet={item || null}
+        selectedWallet={selectedWallet}
       />
       <WelcomeBar>
         <div className="head-content">

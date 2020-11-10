@@ -32,7 +32,9 @@ const CurrencyExchangeContainer = ({
       state.user.userData.data?.DefaultWallet,
   );
 
-  const [DefaultWallet, setDefaultWallet] = useState(wallet);
+  const [DefaultWallet, setDefaultWallet] = useState(
+    selectedWallet ?? wallet,
+  );
 
   const {
     moneyTransfer: { step },
@@ -42,15 +44,13 @@ const CurrencyExchangeContainer = ({
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (selectedWallet) {
+    if (DefaultWallet) {
       setForm({
         ...form,
-        sourceWallet: selectedWallet.AccountNumber,
+        sourceWallet: DefaultWallet?.AccountNumber,
       });
-    } else if (DefaultWallet) {
-      setForm({ ...form, sourceWallet: DefaultWallet.AccountNumber });
     }
-  }, [DefaultWallet, sendMoneyOpen, selectedWallet]);
+  }, [DefaultWallet]);
 
   const {
     checking,
@@ -76,6 +76,11 @@ const CurrencyExchangeContainer = ({
     clearMoveFundsErrors()(dispatch);
   };
 
+  useEffect(() => {
+    if (selectedWallet) {
+      setDefaultWallet(selectedWallet);
+    }
+  }, [selectedWallet]);
   useEffect(() => {
     if (data && data[0]) {
       resetState();
@@ -289,5 +294,6 @@ const CurrencyExchangeContainer = ({
 CurrencyExchangeContainer.propTypes = {
   setSendMoneyOpen: PropTypes.func.isRequired,
   sendMoneyOpen: PropTypes.bool.isRequired,
+  selectedWallet: PropTypes.bool.isRequired,
 };
 export default CurrencyExchangeContainer;
