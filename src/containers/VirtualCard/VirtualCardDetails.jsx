@@ -1,5 +1,4 @@
 /* eslint-disable array-callback-return */
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
@@ -30,16 +29,13 @@ const VirtualCardDetailsContainer = () => {
   const [selectedWallet, setSelectedWallet] = useState(null);
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState(null);
-  const [balanceOnWallet, setBalance] = useState(0.0);
   const [step, setStep] = useState(1);
-  const [currency, setCurrency] = useState(null);
   const { userData } = useSelector(({ user }) => user);
   const [toastMessage, setToasMessage] = useState(null);
   const [toastCardStatus, setToastCardStatus] = useState(null);
   const [redeemMoneyToast, setRedeemMoneyToast] = useState(null);
   const [renewCardToast, setrenewCardToast] = useState(null);
   const [isViewingDetail, setIsViewingDetail] = useState(false);
-  const [sourceWallet, setSourceWallet] = useState(null);
   const [cardsStatus, setCardStatus] = useState('YES');
   const [isLoadingStatus, setIsLoadingStatus] = useState(false);
   const [renewCardLoad, setRenewCardLoad] = useState(false);
@@ -97,38 +93,25 @@ const VirtualCardDetailsContainer = () => {
   }, [userData.data]);
 
   useEffect(() => {
-    setSourceWallet(userData.data?.DefaultWallet);
-  }, [userData.data]);
-  useEffect(() => {
     if (walletList.length === 0) {
       getMyWallets()(dispatch);
     }
   }, [walletList]);
 
   useEffect(() => {
-    if (walletList.length && sourceWallet) {
+    if (walletList.length) {
       const defaultWalletData = walletList.find(item => {
-        return item.AccountNumber === sourceWallet;
+        return item.AccountNumber === selectedWallet?.AccountNumber;
       });
-      setBalance(
-        `${defaultWalletData?.Balance} ${defaultWalletData?.CurrencyCode}`,
-      );
-      setForm({ ...form, sourceWallet });
-      setCurrency(defaultWalletData?.CurrencyCode);
-    }
-  }, [sourceWallet, walletList]);
 
-  useEffect(() => {
-    if (walletList.length && form.sourceWallet) {
-      const defaultWalletData = walletList.find(item => {
-        return item.AccountNumber === form.sourceWallet;
+      setSelectedWallet(defaultWalletData);
+
+      setForm({
+        ...form,
+        sourceWallet: defaultWalletData?.AccountNumber,
       });
-      setBalance(
-        `${defaultWalletData?.Balance} ${defaultWalletData?.CurrencyCode}`,
-      );
-      setCurrency(defaultWalletData?.CurrencyCode);
     }
-  }, [form.sourceWallet, walletList]);
+  }, [walletList]);
 
   useEffect(() => {
     if (addMoneyToVirtualCard?.data) {
@@ -162,7 +145,6 @@ const VirtualCardDetailsContainer = () => {
 
   useEffect(() => {
     if (toastMessage) {
-      toast.success(toastMessage);
       setToasMessage(null);
       clearAddMoneyToVirtuaCard()(dispatch);
       clearConfirmation()(dispatch);
@@ -262,7 +244,7 @@ const VirtualCardDetailsContainer = () => {
       );
       hasError = true;
     }
-    if (parseFloat(balanceOnWallet, 10) === 0) {
+    if (parseFloat(selectedWallet.Balance, 10) === 0) {
       setErrors(
         global.translate(
           "You don't have enough money in this wallet for this operation",
@@ -291,7 +273,8 @@ const VirtualCardDetailsContainer = () => {
       Amount: form.amount && form.amount.toString(),
       TargetCurrency: destCurrency && destCurrency,
       TargetType: VIRTUAL_CARD,
-      SourceWallet: form.sourceWallet || sourceWallet,
+      SourceWallet:
+        form.sourceWallet || selectedWallet?.AccountNumber,
       CardNumber: form?.CardNumber,
     };
     setErrors(null);
@@ -309,8 +292,10 @@ const VirtualCardDetailsContainer = () => {
       PIN,
       Amount: form?.amount.toString(),
       Currency: form?.CurrencyCode,
-      SourceWallet: form?.sourceWallet || sourceWallet,
+      SourceWallet:
+        form?.sourceWallet || selectedWallet?.AccountNumber,
       CardNumber: form?.CardNumber,
+      TargetType: VIRTUAL_CARD,
     };
     if (!pinIsValid()) {
       setErrors(
@@ -361,7 +346,7 @@ const VirtualCardDetailsContainer = () => {
     const data = {
       PIN,
       CardNumber: form?.CardNumber,
-      TargetWallet: form?.sourceWallet,
+      TargetWallet: selectedWallet.AccountNumber,
     };
     if (!pinIsValid()) {
       setErrors(
@@ -392,7 +377,6 @@ const VirtualCardDetailsContainer = () => {
       step={step}
       setStep={setStep}
       setErrors={setErrors}
-      balanceOnWallet={balanceOnWallet}
       checkTransactionConfirmation={checkTransactionConfirmation}
       checking={checking}
       confirmationError={confirmationError}
