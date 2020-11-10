@@ -21,7 +21,12 @@ import { ErrorBoundary } from 'react-error-boundary';
 import ReactGA from 'react-ga';
 import IdleTimer from 'react-idle-timer';
 import { useDispatch, useSelector } from 'react-redux';
-import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import getContactList from 'redux/actions/contacts/getContactList';
 import getLanguage from 'redux/actions/users/getLanguage';
@@ -185,7 +190,6 @@ const App = () => {
   useEffect(() => {
     if (!userDataLoading && data && Object.keys(data).length) {
       notifAction({ PID: data.PID })(dispatch);
-      getContactList()(dispatch);
     }
   }, [userDataLoading, data]);
   useEffect(() => {

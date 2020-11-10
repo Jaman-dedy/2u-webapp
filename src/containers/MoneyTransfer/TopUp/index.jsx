@@ -184,7 +184,7 @@ const TopUpContainer = ({
   }, [sourceWallet]);
 
   useEffect(() => {
-    if (!userLocationData.data) {
+    if (!userLocationData.success) {
       getUserLocationData()(dispatch);
     }
   }, []);

@@ -22,7 +22,10 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { openChatList, setGlobalChat } from 'redux/actions/chat/globalchat';
+import {
+  openChatList,
+  setGlobalChat,
+} from 'redux/actions/chat/globalchat';
 import getContactList from 'redux/actions/contacts/getContactList';
 import deleteNotifications from 'redux/actions/users/deleteNotifications';
 import makeNotificationsSeen from 'redux/actions/users/makeNotificationsSeen';

@@ -9,13 +9,13 @@ export default () => {
   const dispatch = useDispatch();
   const contactRef = useRef([]);
   const { allContacts } = useSelector(state => state.contacts);
-  const { data } = allContacts;
+  const { data, loading } = allContacts;
   const {
     userData: { data: currentUserData },
   } = useSelector(state => state.user);
 
   useEffect(() => {
-    if (!data && currentUserData) {
+    if (!data && currentUserData && !loading) {
       getContactList()(dispatch);
     }
   }, [currentUserData]);
