@@ -135,7 +135,7 @@ const Index = React.forwardRef(({ service, allowView }, ref) => {
 
   const serviceMedia = [
     ...service.Media?.filter(item =>
-      ['jpeg', 'png']?.includes(item.Extension?.toLowerCase()),
+      ['jpeg', 'png', 'jpg']?.includes(item.Extension?.toLowerCase()),
     ),
     ...service.ExternalMedia?.filter(
       item => item.MediaType === PEER_SERVICE_IMAGE,
