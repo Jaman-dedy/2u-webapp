@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Dropdown } from 'semantic-ui-react';
 import './style.scss';
 import { useHistory } from 'react-router-dom';
 import Img from 'components/PeerServices/Image';
+import Thumbnail from 'components/common/Thumbnail';
 
 import TimeAgo from 'components/common/TimeAgo';
 import InlineActionItem from '../ActionItem';
@@ -23,6 +24,7 @@ const CommentItem = ({
   onDeleteComment,
 }) => {
   const history = useHistory();
+  const [hasError, setHasError] = useState(false);
   return (
     <div
       key={CommentNumber}
@@ -31,12 +33,21 @@ const CommentItem = ({
       }`}
     >
       <div className="image-thumb">
-        <Img
-          compress
+        <Thumbnail
+          avatar={PictureURL}
+          size="small"
+          name={FullName?.split(' ')?.[0]}
+          secondName={FullName?.split(' ')?.[1]}
           circular
-          width={31}
+          compress
           id="comment-author-image"
-          src={PictureURL}
+          style={{
+            height: '36px',
+            width: '36px',
+            objectFit: 'cover',
+            marginRight: '0px',
+          }}
+          setHasError={setHasError}
         />
       </div>
       <div className="contents">

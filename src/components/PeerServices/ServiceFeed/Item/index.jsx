@@ -20,10 +20,10 @@ import { openChatList } from 'redux/actions/dashboard/dashboard';
 import openCreateModal from 'redux/actions/peerServices/openCreateModal';
 import openEditPricingModal from 'redux/actions/peerServices/openEditPricingModal';
 import openDeleteServiceModal from 'redux/actions/peerServices/openDeleteServiceModal ';
-import Img from 'components/PeerServices/Image';
 
 import openReportServiceOrComment from 'redux/actions/peerServices/openReportServiceOrComment';
 import myServices from 'containers/PeerServices/myServices';
+import Thumbnail from 'components/common/Thumbnail';
 import CommentItem from '../Comment';
 import AddCommentForm from '../Comment/AddComment';
 import PricingSection from '../PricingSection';
@@ -45,6 +45,7 @@ const Index = React.forwardRef(({ service, allowView }, ref) => {
   );
   const history = useHistory();
   const location = useLocation();
+  const [hasError, setHasError] = useState(false);
 
   const { pathname } = location;
 
@@ -198,11 +199,20 @@ const Index = React.forwardRef(({ service, allowView }, ref) => {
             );
           }}
         >
-          <Img
+          <Thumbnail
+            avatar={service?.Owner?.PictureURL}
+            size="small"
+            name={service.Owner?.FirstName}
+            secondName={service.Owner?.LastName}
             circular
-            width={49}
-            height={49}
-            src={service?.Owner?.PictureURL}
+            compress
+            id="comment-author-image"
+            style={{
+              height: '49px',
+              width: '49px',
+              objectFit: 'cover',
+              marginRight: '0px',
+            }}
           />
         </div>
         <div
