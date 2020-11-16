@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import './entity-wrapper.scss';
 import PropTypes from 'prop-types';
@@ -24,6 +24,16 @@ const TransactionEntity = ({
     state => state.dashboard.contactActions,
   );
   const [hasError, setHasError] = useState(false);
+
+  // set default selected wallet.
+  useEffect(() => {
+    const defaultWallet = walletList.filter(
+      wallet => wallet.Default === 'YES',
+    );
+    if (Object.keys(currentOption).length === 0) {
+      setCurrentOption(defaultWallet[0]);
+    }
+  }, []);
 
   const walletOptions =
     walletList &&
@@ -108,31 +118,32 @@ const TransactionEntity = ({
           />
           {!isSendingMoney && !isSelfBuying && (
             <Wrapper>
-              {Object.keys(destinationContact).length > 0 && (
-                <>
-                  <span className="destination">
-                    {global.translate('To', 115)}{' '}
-                  </span>
-                  <Thumbnail
-                    width={75}
-                    height={75}
-                    style={{
-                      width: 75,
-                      height: 75,
-                      marginLeft: isSendingCash ? '24px' : '0px',
-                      alignSelf: isSendingCash
-                        ? 'center'
-                        : 'flex-end',
-                      borderRadius: '50%',
-                    }}
-                    name={destinationContact.FirstName}
-                    avatar={destinationContact.PictureURL}
-                    secondName={destinationContact.LastName}
-                    hasError={hasError}
-                    setHasError={setHasError}
-                  />
-                </>
-              )}
+              {destinationContact &&
+                Object.keys(destinationContact).length > 0 && (
+                  <>
+                    <span className="destination">
+                      {global.translate('To', 115)}{' '}
+                    </span>
+                    <Thumbnail
+                      width={75}
+                      height={75}
+                      style={{
+                        width: 75,
+                        height: 75,
+                        marginLeft: isSendingCash ? '24px' : '0px',
+                        alignSelf: isSendingCash
+                          ? 'center'
+                          : 'flex-end',
+                        borderRadius: '50%',
+                      }}
+                      name={destinationContact.FirstName}
+                      avatar={destinationContact.PictureURL}
+                      secondName={destinationContact.LastName}
+                      hasError={hasError}
+                      setHasError={setHasError}
+                    />
+                  </>
+                )}
             </Wrapper>
           )}
         </div>
