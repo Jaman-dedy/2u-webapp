@@ -12,17 +12,19 @@ export default () => {
   const dispatch = useDispatch();
   const {
     userData,
-    userIdData: { loading, data: IdInfo },
+    userIdData: { loading },
   } = useSelector(({ user }) => user);
 
   const [iDCardInfo, setIDCardInfo] = useState({});
   const [userDocs, setUserDocs] = useState({});
   const [form, setForm] = useState({});
-  const [expiryDate, setExpiryDate] = useState(new Date());
-  const [issueDate, setIssueDate] = useState(new Date());
+  const [expiryDate, setExpiryDate] = useState();
+  const [issueDate, setIssueDate] = useState();
   const [errors, setErrors] = useState(null);
   const [isEditing, setIsEditing] = useState(true);
   const [IDCountryCode, setIDCountryCode] = useState(null);
+  const [defaultExpiryDate, setDefaultExpiryDate] = useState();
+  const [defaultIssueDate, setDefaultIssueDate] = useState();
 
   const [imageUploadState, setImageUploadState] = useState({
     loading: false,
@@ -102,7 +104,19 @@ export default () => {
       loading: false,
     });
 
+    if (!data) {
+      toast.error(global.translate('Upload failed', 1744));
+    }
     if (data) {
+      toast.success(
+        global.translate('Document uploaded successfully', 2055),
+      );
+      updateAuthData({ UserVerified: 'YES' })(dispatch);
+      setImageUploadState({
+        ...imageUploadState,
+        loading: false,
+      });
+
       updateUserDocsAction(data[0].url, name)(dispatch);
     }
     return null;
@@ -112,8 +126,26 @@ export default () => {
   };
 
   useEffect(() => {
+    if (userData?.data && IDCountryCode === null) {
+      if (userData?.data?.IDCardInfo)
+        setIDCountryCode(userData?.data?.IDCardInfo?.IDCountryCode);
+    }
+  }, [userData]);
+
+  useEffect(() => {
+    setIDCardInfo({ ...iDCardInfo, ...userData?.data?.IDCardInfo });
+  }, [userData]);
+
+  useEffect(() => {
     if (userData?.data?.IDCardInfo) {
+      const {
+        data: { IDCardInfo },
+      } = userData;
       setIDCardInfo(userData.data.IDCardInfo);
+      setForm({
+        IDNumber: IDCardInfo.IDNumber,
+        IDType: IDCardInfo.IDType,
+      });
     }
   }, [userData]);
 
@@ -163,11 +195,14 @@ export default () => {
 
   const submitHandler = () => {
     if (validate()) {
+      const {
+        data: { IDCardInfo },
+      } = userData;
       const data = {
         IDNumber,
         IDType,
-        ExpirationDate: expiryDate,
-        DOIssue: issueDate,
+        ExpirationDate: expiryDate ?? IDCardInfo?.ExpirationDate,
+        DOIssue: issueDate ?? IDCardInfo?.IssueDate,
         IDCountryCode,
       };
       saveUserIdData(data)(dispatch);
@@ -189,9 +224,11 @@ export default () => {
     setErrors,
     loading,
     iDCardInfo,
-    IdInfo,
     isEditing,
     setIsEditing,
     onSelectFlag,
+    form,
+    defaultExpiryDate,
+    defaultIssueDate,
   };
 };
