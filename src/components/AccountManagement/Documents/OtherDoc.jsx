@@ -8,7 +8,7 @@ import './Documents.scss';
 import DocPlaceholder from './DocPlaceholder';
 
 const Documents = ({ userData, documents }) => {
-  const { userDocs, onImageChange } = documents;
+  const { userDocs, onImageChange, imageUploadState } = documents;
 
   const { data } = userData;
 
@@ -115,6 +115,11 @@ const Documents = ({ userData, documents }) => {
                             data[`UserExtraDoc${index + 1}URL`]),
                       );
                     }}
+                    uploadIsLoading={
+                      imageUploadState.name ===
+                        `UserExtraDoc${index + 1}URL` &&
+                      imageUploadState.loading
+                    }
                   />
                 </div>
               );
@@ -124,6 +129,11 @@ const Documents = ({ userData, documents }) => {
               other
               name={`UserExtraDoc${imgStatusCount + 1}URL`}
               onChooseFile={onImageChange}
+              loading={
+                imageUploadState.name ===
+                  `UserExtraDoc${imgStatusCount + 1}URL` &&
+                imageUploadState.loading
+              }
             />
           )}
         </div>

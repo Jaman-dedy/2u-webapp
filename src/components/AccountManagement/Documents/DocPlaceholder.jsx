@@ -4,12 +4,11 @@ import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { FileDrop } from 'react-file-drop';
 import { Image } from 'semantic-ui-react';
-
 import uploadFile from 'assets/images/add-img-plhd.svg';
 import './DocPlaceholder.scss';
 import ImageCroper from 'components/common/ImageCroper/CropImage';
 
-const DocPlaceholder = ({ name, onChooseFile, other }) => {
+const DocPlaceholder = ({ name, onChooseFile, other, loading }) => {
   const imageInputRef = useRef(null);
   const [open, setOpen] = useState(false);
   const [file, setFile] = useState();
@@ -31,7 +30,7 @@ const DocPlaceholder = ({ name, onChooseFile, other }) => {
       <ImageCroper
         open={open}
         setOpen={setOpen}
-        loading={false}
+        loading={loading}
         file={file}
         uploadImage={upload}
         chooseImage={handleImageSelect}
@@ -45,8 +44,8 @@ const DocPlaceholder = ({ name, onChooseFile, other }) => {
             handleImageCropping(files[0]);
           }}
         >
-          <Image src={uploadFile} />
-          <span>
+          <Image src={uploadFile} width={40} />
+          <span style={{ fontSize: '0.9em' }}>
             {global.translate('Drop your document here', 1756)}
           </span>
         </FileDrop>
@@ -70,6 +69,7 @@ DocPlaceholder.propTypes = {
   onChooseFile: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   other: PropTypes.bool,
+  loading: PropTypes.bool.isRequired,
 };
 
 DocPlaceholder.defaultProps = {

@@ -51,10 +51,12 @@ const AccountManagement = ({
   const {
     profileImage,
     onImageChange: uploadImage,
+    profileImageState,
+    open,
+    setOpen,
   } = profileImageData;
 
   const [hasError, setHasError] = useState(false);
-  const [open, setOpen] = useState(false);
   const [file, setFile] = useState();
   const [statusIcon, setStatusIcon] = useState();
 
@@ -73,7 +75,6 @@ const AccountManagement = ({
 
   const onImageUpload = file => {
     uploadImage(file);
-    setOpen(false);
   };
 
   const panes = [
@@ -158,10 +159,11 @@ const AccountManagement = ({
       <ImageCroper
         open={open}
         setOpen={setOpen}
-        loading={loading}
         file={file}
         uploadImage={onImageUpload}
         chooseImage={handleSelectFile}
+        aspectRatio={1 / 1}
+        loading={profileImageState?.loading}
       />
 
       <WelcomeBar loading={userData.loading}>
