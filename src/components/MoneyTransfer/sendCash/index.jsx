@@ -54,7 +54,7 @@ const SendCashModal = ({
   updatingError,
   defaultDestinationCurrency,
   transactionType,
-  preferredLanguage,
+  loadingOther,
 }) => {
   const defaultCountry = countries.find(
     country => country.flag === userLocationData.CountryCode,
@@ -214,7 +214,7 @@ const SendCashModal = ({
     >
       {transactionType === 'CASH_TRANSACTION' && destinationContact && (
         <Modal.Header centered className="modal-title">
-          {isEditing && global.translate(`Edit Cash Transaction `)}
+          {isEditing && global.translate(`Edit Transaction `)}
           {!isEditing && global.translate(`Send cash to `)}
           {!isEditing && (
             <strong>{destinationContact.FirstName}</strong>
@@ -226,11 +226,7 @@ const SendCashModal = ({
           {global.translate(`Send cash`, 1948)}
         </Modal.Header>
       )}
-      {destinationContact && transactionType !== 'CASH_TRANSACTION' && (
-        <Modal.Header centered className="modal-title">
-          {global.translate(`T opup bla bla bla`)}
-        </Modal.Header>
-      )}
+
       {step === 1 && (
         <Modal.Content className="entities">
           {!isEditing && (
@@ -335,6 +331,7 @@ const SendCashModal = ({
                         setCountry={setCountry}
                         iconClass="inline-block small-h-margin dropdown-flag"
                       >
+                        {console.log('country', country)}
                         <span className="country-code">
                           {country && country.value}
                         </span>
@@ -479,7 +476,8 @@ const SendCashModal = ({
           )}
           <Button
             positive
-            disabled={checking || loading || updating}
+            disabled={checking || loading || updating || loadingOther}
+            loading={checking || loading || updating || loadingOther}
             onClick={() => {
               if (step === 1) {
                 checkTransactionConfirmation();
@@ -528,7 +526,6 @@ SendCashModal.propTypes = {
   currentOption: PropTypes.objectOf(PropTypes.any).isRequired,
   setCurrentOption: PropTypes.func.isRequired,
   userLocationData: PropTypes.objectOf(PropTypes.any).isRequired,
-  preferredLanguage: PropTypes.string.isRequired,
 };
 
 SendCashModal.defaultProps = {

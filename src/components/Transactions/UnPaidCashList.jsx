@@ -13,8 +13,8 @@ import AppTable from 'components/common/Table';
 import EditTransactionImage from 'assets/images/edit.png';
 import SendCashContainer from 'containers/MoneyTransfer/sendCash';
 import EmptyCard from 'components/common/EmptyCard';
-import ConfirmCancelTransaction from './ConfirmCancelTransaction';
 import SendCashIcon from 'assets/images/TransSendCash.svg';
+import ConfirmCancelTransaction from './ConfirmCancelTransaction';
 
 const UnPaidCashList = ({
   unPaidCashList: { loading, error, data },
@@ -29,6 +29,8 @@ const UnPaidCashList = ({
   contactType,
   pendingVouchersOnWallets,
   fromVouchers,
+  sendToOther,
+  transactionsPaginationInfo,
 }) => {
   const history = useHistory();
   const [optionOpen, setOptionsOpen] = useState(false);
@@ -121,7 +123,7 @@ const UnPaidCashList = ({
       key: 'Store',
       value: global.translate('Store Name', 837),
     },
-    showAll && {
+    {
       key: 'SourceAccountNumber',
       value: global.translate('Source Wallet', 1260),
     },
@@ -146,7 +148,7 @@ const UnPaidCashList = ({
       key: 'DestAmount',
       value: global.translate('Amount To Be Received', 397),
     },
-    showAll && {
+    {
       key: 'SourceAccountNumber',
       value: global.translate('Source Wallet', 1260),
     },
@@ -155,8 +157,10 @@ const UnPaidCashList = ({
       value: global.translate('Transfer number'),
     },
     {
-      key: 'DisplaySecurityCode',
-      value: global.translate('Security code'),
+      key: sendToOther ? 'PhoneNumber' : 'DisplaySecurityCode',
+      value: sendToOther
+        ? global.translate('Phone number')
+        : global.translate('Security code'),
     },
   ];
   const tableHeadersSingleContactTransactions = [
@@ -190,7 +194,10 @@ const UnPaidCashList = ({
               pathname: '/cash-list',
               search: '?sort=name',
               hash: '#the-hash',
-              state: { fromVouchers: !!unpaidVouchers },
+              state: {
+                fromVouchers: !!unpaidVouchers,
+                pendingOther: sendToOther,
+              },
             }}
             floated={!noItems ? 'right' : 'none'}
             content={global.translate('View all', 1753)}
@@ -266,6 +273,7 @@ const UnPaidCashList = ({
           setOpen={setEditTransactionOpen}
           isSendingCash
           isEditing
+          EditSendToOther={sendToOther}
           setOptionsOpen={setOptionsOpen}
           setIsEditing={setEditTransactionOpen}
           destinationContact={selectedItem}
@@ -277,6 +285,7 @@ const UnPaidCashList = ({
           open={cancelOpen}
           setOpen={setCancelOpen}
           fromVouchers={unpaidVouchers || fromVouchers}
+          sendToOther={sendToOther}
           item={selectedItem}
           cancelTransactionData={cancelTransactionData}
           language={preferred}
@@ -328,6 +337,11 @@ const UnPaidCashList = ({
           !unpaidVouchers &&
           !fromVouchers && (
             <AppTable
+              transactionsPaginationInfo={
+                transactionsPaginationInfo &&
+                transactionsPaginationInfo
+              }
+              firstColumn={sendToOther}
               data={
                 !showAll
                   ? pendingTransactions

@@ -21,6 +21,7 @@ import getMyWallets from 'redux/actions/users/getMyWallets';
 import getUserLocationData from 'redux/actions/users/userLocationData';
 import countryCodes from 'utils/countryCodes';
 import formatNumber from 'utils/formatNumber';
+import cancelOther from 'redux/actions/transactions/cancelOther';
 
 /* eslint-disable react-hooks/exhaustive-deps */
 const SendCashContainer = ({
@@ -34,6 +35,7 @@ const SendCashContainer = ({
   setOptionsOpen,
   setIsEditing,
   transactionType,
+  EditSendToOther,
 }) => {
   const [form, setForm] = useState({});
   const [phonePrefix, setPhonePrefix] = useState('');
@@ -59,6 +61,11 @@ const SendCashContainer = ({
     data: updatingData,
     error: updatingError,
   } = useSelector(state => state.transactions.modifyCash);
+  const {
+    loading: loadingOther,
+    data: otherData,
+    error: otherError,
+  } = useSelector(state => state.transactions.editOrCancelOther);
 
   const { isTopingUp, isSendingOthers } = useSelector(
     state => state.dashboard.contactActions,
@@ -286,6 +293,17 @@ const SendCashContainer = ({
     }
   }, [updatingData]);
   useEffect(() => {
+    if (otherData && otherData.length) {
+      clearModifyCash()(dispatch);
+      setForm({});
+      updateMoneyTransferStep(1)(dispatch);
+      setOptionsOpen(false);
+      setOpen(false);
+      setIsEditing(false);
+    }
+  }, [otherData]);
+
+  useEffect(() => {
     if (destinationContact) {
       const {
         FirstName: firstName,
@@ -450,7 +468,7 @@ const SendCashContainer = ({
     }
     setErrors(null);
 
-    if (isEditing) {
+    if (isEditing && !EditSendToOther) {
       const regex = / | + /gi;
       modifyCash({
         PIN,
@@ -466,7 +484,28 @@ const SendCashContainer = ({
         CountryCode:
           form.countryCode || destinationContact.CountryCode,
       })(dispatch);
-    } else {
+    }
+
+    if (EditSendToOther) {
+      const {
+        TransferNumber,
+        TransactionID,
+        OperatorID,
+      } = destinationContact;
+      const data = {
+        TransferNumber,
+        TransactionID,
+        TargetPhoneNumber: form?.phoneNumber,
+        DestFirstName: form?.firstName,
+        DestLastName: form?.lastName,
+        OperatorID,
+        PIN,
+        Cancel: 'No',
+        Modify: 'Yes',
+      };
+      cancelOther(data)(dispatch);
+    }
+    if (!isEditing) {
       moveFunds(data, '/SendCash', 'send-cash')(dispatch)(data => {
         toast.success(global.translate(data?.Description));
       });
@@ -516,6 +555,9 @@ const SendCashContainer = ({
       defaultDestinationCurrency={defaultDestinationCurrency}
       transactionType={transactionType}
       preferredLanguage={preferredLanguage}
+      loadingOther={loadingOther}
+      otherData={otherData}
+      otherError={otherError}
     />
   );
 };

@@ -11,6 +11,9 @@ import cancelVoucher, {
 } from 'redux/actions/transactions/cancelVoucher';
 import voucher from 'routes/voucher';
 import cancelTransaction from 'redux/actions/transactions/cancelTransaction';
+import cancelOther, {
+  clearOtherTransactionSuccess,
+} from 'redux/actions/transactions/cancelOther';
 import CashListTransactionDetails from './TransactionDetails';
 import PendingVoucherDetails from './pendingVoucherDetail';
 
@@ -19,6 +22,7 @@ const ConfirmCancelTransaction = ({
   setOpen,
   item,
   fromVouchers,
+  sendToOther,
 }) => {
   const dispatch = useDispatch();
   const [step, setStep] = useState(1);
@@ -26,6 +30,11 @@ const ConfirmCancelTransaction = ({
   const [error, setError] = useState(null);
   const {
     cancelTransaction: { loading, data, error: err },
+    editOrCancelOther: {
+      loading: loadOther,
+      data: otherData,
+      error: otherError,
+    },
     cancelVoucher: {
       loading: voucherLoading,
       data: voucherData,
@@ -35,6 +44,7 @@ const ConfirmCancelTransaction = ({
   const onChange = (e, { name, value }) => {
     setForm({ ...form, [name]: value });
   };
+
   useEffect(() => {
     if (voucherData) {
       setStep(1);
@@ -52,14 +62,31 @@ const ConfirmCancelTransaction = ({
         ),
       );
     }
-
     setStep(1);
     setOpen(false);
     clearTransactionSucess()(dispatch);
   }, [data]);
 
+  useEffect(() => {
+    if (otherData) {
+      toast.success(otherData[0].Description);
+
+      setStep(1);
+      setOpen(false);
+      clearOtherTransactionSuccess()(dispatch);
+    }
+  }, [otherData]);
+
   const onCancelTransactionConfirm = ({
-    item: { SecurityCode, TransferNumber },
+    item: {
+      SecurityCode,
+      TransferNumber,
+      TransactionID,
+      PhoneNumber: TargetPhoneNumber,
+      FirstName: DestFirstName,
+      LastName: DestLastName,
+      OperatorID,
+    },
     PIN,
     fromVouchers,
   }) => {
@@ -68,8 +95,23 @@ const ConfirmCancelTransaction = ({
       SecurityCode,
       VoucherNumber: TransferNumber,
     };
+    const dataToCancel = {
+      PIN,
+      TransactionID,
+      TransferNumber,
+      TargetPhoneNumber,
+      DestFirstName,
+      DestLastName,
+      OperatorID,
+      Cancel: 'Yes',
+      Modify: 'No',
+    };
+
     if (fromVouchers) {
       cancelVoucher(body)(dispatch);
+    }
+    if (sendToOther) {
+      cancelOther(dataToCancel)(dispatch);
     } else {
       cancelTransaction(body)(dispatch);
     }
@@ -152,7 +194,7 @@ const ConfirmCancelTransaction = ({
               disabled={loading}
               basic
               color="red"
-              ative
+              active
               onClick={() => setOpen(false)}
             >
               {global.translate('Close', 186)}
@@ -161,7 +203,7 @@ const ConfirmCancelTransaction = ({
 
           {step === 2 && (
             <Button
-              disabled={loading || voucherLoading}
+              disabled={loading || voucherLoading || loadOther}
               basic
               color="red"
               onClick={() => setStep(step - 1)}
@@ -170,8 +212,8 @@ const ConfirmCancelTransaction = ({
             </Button>
           )}
           <Button
-            disabled={loading || voucherLoading}
-            loading={loading || voucherLoading}
+            disabled={loading || voucherLoading || loadOther}
+            loading={loading || voucherLoading || loadOther}
             positive
             onClick={() => {
               if (step === 1) {
