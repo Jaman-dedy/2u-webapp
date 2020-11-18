@@ -21,12 +21,16 @@ import { ErrorBoundary } from 'react-error-boundary';
 import ReactGA from 'react-ga';
 import IdleTimer from 'react-idle-timer';
 import { useDispatch, useSelector } from 'react-redux';
-import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import getContactList from 'redux/actions/contacts/getContactList';
 import getLanguage from 'redux/actions/users/getLanguage';
 import getSupportedLanguages from 'redux/actions/users/getSupportedLanguages';
-import getUserData from 'redux/actions/users/getUserData';
 import getUserInfo from 'redux/actions/users/getUserInfo';
 import logout from 'redux/actions/users/logout';
 import notifAction from 'redux/actions/users/notifications';
@@ -175,7 +179,6 @@ const App = () => {
     getUserLocationData()(dispatch);
     getSupportedLanguages()(dispatch);
     if (localStorage.token) {
-      getUserData()(dispatch);
       getUserInfo()(dispatch);
     }
     if (!localStorage.getItem('fromUserLogout')) {

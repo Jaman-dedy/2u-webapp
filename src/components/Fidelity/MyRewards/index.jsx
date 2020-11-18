@@ -268,8 +268,6 @@ const MyRewards = ({ userData }) => {
                         </span>
                         {data.Rewards && data.Rewards.ReferralPoints && (
                           <span>
-                            {data.Rewards.NextLevel.PointsText}
-
                             {global.translate(
                               'Additional points needed for next level',
                               1192,
