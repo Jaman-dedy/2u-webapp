@@ -177,14 +177,14 @@ const ContactDetailsModal = ({
   }, [updatePic]);
 
   useEffect(() => {
-    if (contact && contact.FirstName) {
+    if (contact && contact?.FirstName) {
       getAllTransactionHistory({
         WalletNumber: '',
         ContactWalletNumber: '',
         ContactPID:
           contactType === 'EXTERNAL'
-            ? contact.PhoneNumber
-            : contact.ContactPID,
+            ? contact?.PhoneNumber
+            : contact?.ContactPID,
         DateFrom: moment()
           .subtract(12, 'months')
           .format('YYYY-MM-DD'),
@@ -248,13 +248,14 @@ const ContactDetailsModal = ({
   }, [historyData]);
 
   useEffect(() => {
-    if (contact && contact.CountryCode) {
+    if (contact && contact?.CountryCode) {
       setCountry(
         countries.find(c => {
           const prefixed =
-            contact.PhonePrefix && contact.PhonePrefix.startsWith('+')
-              ? contact.PhonePrefix
-              : `+${contact.PhonePrefix}`;
+            contact?.PhonePrefix &&
+            contact?.PhonePrefix.startsWith('+')
+              ? contact?.PhonePrefix
+              : `+${contact?.PhonePrefix}`;
           return c.value === prefixed;
         }),
       );
@@ -263,19 +264,19 @@ const ContactDetailsModal = ({
 
   useEffect(() => {
     if (contact) {
-      setEditForm({ ...editForm, phoneNumber: contact.PhoneNumber });
+      setEditForm({ ...editForm, phoneNumber: contact?.PhoneNumber });
     }
   }, [contact]);
 
   useEffect(() => {
     if (editForm.phoneNumber) {
-      setEditForm({ ...editForm, firstName: contact.FirstName });
+      setEditForm({ ...editForm, firstName: contact?.FirstName });
     }
   }, [editForm.phoneNumber]);
 
   useEffect(() => {
     if (editForm.firstName) {
-      setEditForm({ ...editForm, lastName: contact.LastName });
+      setEditForm({ ...editForm, lastName: contact?.LastName });
     }
   }, [editForm.firstName]);
 
@@ -290,10 +291,10 @@ const ContactDetailsModal = ({
     ({ user: { myWallets } }) => myWallets,
   );
   const checkSize = () => {
-    if (width < 700 && contact.MySharedWallets.length < 3) {
+    if (width < 700 && contact?.MySharedWallets.length < 3) {
       return false;
     }
-    if (width > 700 && contact.MySharedWallets.length < 3) {
+    if (width > 700 && contact?.MySharedWallets.length < 3) {
       return false;
     }
     return true;
@@ -303,26 +304,26 @@ const ContactDetailsModal = ({
       return false;
     }
 
-    return contact.MySharedWallets.length > 5 || checkSize();
+    return contact?.MySharedWallets.length > 5 || checkSize();
   };
   const contactCountry =
     contact &&
-    contact.CountryCode &&
+    contact?.CountryCode &&
     allCountries.find(
       c =>
         c.key &&
-        c.key.toLowerCase() === contact.CountryCode &&
-        contact.CountryCode.toLowerCase(),
+        c.key.toLowerCase() === contact?.CountryCode &&
+        contact?.CountryCode.toLowerCase(),
     );
 
   useEffect(() => {
     if (
       contact &&
       contactType === 'INTERNAL' &&
-      contact.MySharedWallets &&
-      contact.MySharedWallets.length > 0
+      contact?.MySharedWallets &&
+      contact?.MySharedWallets.length > 0
     ) {
-      setSelected(contact.MySharedWallets);
+      setSelected(contact?.MySharedWallets);
     }
   }, [contact]);
 
@@ -336,11 +337,11 @@ const ContactDetailsModal = ({
 
   const shareWallets = () => {
     const getShareWalletTitle = () => {
-      if (contact && contact.FirstName) {
+      if (contact && contact?.FirstName) {
         return `${global.translate(`Share `, 896)} ${global.translate(
           'Wallets',
           61,
-        )} ${global.translate('with', 1954)} ${contact.FirstName}`;
+        )} ${global.translate('with', 1954)} ${contact?.FirstName}`;
       }
       return global.translate('Please wait a moment.');
     };
@@ -356,9 +357,9 @@ const ContactDetailsModal = ({
             setOpen(false);
             history.push(
               `/contact/${
-                contact.ContactPID
-                  ? contact.ContactPID
-                  : contact.PhoneNumber
+                contact?.ContactPID
+                  ? contact?.ContactPID
+                  : contact?.PhoneNumber
               }?redirect_back=1`,
             );
           }}
@@ -384,16 +385,16 @@ const ContactDetailsModal = ({
                 onClick={() => {
                   history.push(
                     `/contact/${
-                      contact.ContactPID
-                        ? contact.ContactPID
-                        : contact.PhoneNumber
+                      contact?.ContactPID
+                        ? contact?.ContactPID
+                        : contact?.PhoneNumber
                     }?redirect_back=1`,
                   );
                 }}
               />
             </Modal.Header>
             <Modal.Content>
-              {contact.FirstName && userData.data?.FirstName && (
+              {contact?.FirstName && userData.data?.FirstName && (
                 <DragDropWallets
                   selected={selected}
                   user2={contact}
@@ -405,7 +406,7 @@ const ContactDetailsModal = ({
                 />
               )}
 
-              {(!contact.FirstName || !userData.data?.FirstName) && (
+              {(!contact?.FirstName || !userData.data?.FirstName) && (
                 <LoaderComponent
                   size="large"
                   style={{
@@ -427,9 +428,9 @@ const ContactDetailsModal = ({
                   clearDeleteContact();
                   history.push(
                     `/contact/${
-                      contact.ContactPID
-                        ? contact.ContactPID
-                        : contact.PhoneNumber
+                      contact?.ContactPID
+                        ? contact?.ContactPID
+                        : contact?.PhoneNumber
                     }?redirect_back=1`,
                   );
                 }}
@@ -457,7 +458,7 @@ const ContactDetailsModal = ({
     if (addRemoveFavorite.loading) {
       return 'updating...';
     }
-    if (contact && contact.Favorite === 'YES') {
+    if (contact && contact?.Favorite === 'YES') {
       return global.translate('Favorite', 1955);
     }
 
@@ -465,7 +466,7 @@ const ContactDetailsModal = ({
   };
 
   const getContactDetailModalTitle = () => {
-    if (contact.FirstName) {
+    if (contact?.FirstName) {
       return `${global.translate(`Contact`, 109)} ${global.translate(
         'details',
         94,
@@ -550,9 +551,9 @@ const ContactDetailsModal = ({
                       >
                         <Thumbnail
                           avatar={
-                            (contact && contact.PictureURL) || ''
+                            (contact && contact?.PictureURL) || ''
                           }
-                          name={(contact && contact.FirstName) || ''}
+                          name={(contact && contact?.FirstName) || ''}
                           width={120}
                           height={120}
                           style={{
@@ -562,7 +563,7 @@ const ContactDetailsModal = ({
                             margin: '0 auto 5px auto',
                           }}
                           secondName={
-                            (contact && contact.LastName) || ''
+                            (contact && contact?.LastName) || ''
                           }
                           hasError={hasError}
                           setHasError={value => {
@@ -578,15 +579,15 @@ const ContactDetailsModal = ({
 
                       {contact && (
                         <div className="bio-info">
-                          {contact.FirstName && contact.LastName && (
+                          {contact?.FirstName && contact?.LastName && (
                             <h4 className="names">
-                              {contact.FirstName} {contact.LastName}
+                              {contact?.FirstName} {contact?.LastName}
                             </h4>
                           )}
-                          {contact.EMail && (
+                          {contact?.EMail && (
                             <div className="email">
                               <Icon name="envelope" />
-                              {contact.EMail}
+                              {contact?.EMail}
                             </div>
                           )}
                           <div className="email">
@@ -594,29 +595,29 @@ const ContactDetailsModal = ({
                           </div>
 
                           {contactType === 'EXTERNAL' &&
-                            contact.Phone && (
+                            contact?.Phone && (
                               <p className="phone-contact">
                                 <Icon name="phone" />
-                                {(contact.PhonePrefix !== '' &&
-                                  `+${contact.PhonePrefix}`) ||
+                                {(contact?.PhonePrefix !== '' &&
+                                  `+${contact?.PhonePrefix}`) ||
                                   ''}
-                                <span>{contact.Phone}</span>
+                                <span>{contact?.Phone}</span>
                               </p>
                             )}
 
                           {contactType !== 'EXTERNAL' &&
-                            contact.PhoneNumber && (
+                            contact?.PhoneNumber && (
                               <p className="phone-contact">
                                 <Icon name="phone" />
-                                {contact.PhoneNumber}
+                                {contact?.PhoneNumber}
                               </p>
                             )}
 
-                          {contact.address && (
+                          {contact?.address && (
                             <div className="address">
                               <small>
-                                {(contact.address !== '' &&
-                                  contact.address) ||
+                                {(contact?.address !== '' &&
+                                  contact?.address) ||
                                   ''}
                               </small>
                             </div>
@@ -708,15 +709,15 @@ const ContactDetailsModal = ({
                             style: { margin: 'auto' },
                             name:
                               contact &&
-                              contact.Favorite &&
-                              contact.Favorite !== 'NO'
+                              contact?.Favorite &&
+                              contact?.Favorite !== 'NO'
                                 ? 'heart'
                                 : 'heart outline',
                             size: 'large',
                             color:
                               contact &&
-                              contact.Favorite &&
-                              contact.Favorite !== 'NO'
+                              contact?.Favorite &&
+                              contact?.Favorite !== 'NO'
                                 ? 'red'
                                 : 'white',
                           }}
@@ -831,8 +832,8 @@ const ContactDetailsModal = ({
                           onClick={() => {
                             history.push(
                               `/contact/${
-                                contact.ContactPID
-                              }/share-wallets?type=${contact.ContactType ||
+                                contact?.ContactPID
+                              }/share-wallets?type=${contact?.ContactType ||
                                 ''}`,
                             );
                           }}
@@ -846,12 +847,12 @@ const ContactDetailsModal = ({
                           iconProps={{
                             style: { margin: 'auto' },
                             name:
-                              contact && contact.Favorite !== 'NO'
+                              contact && contact?.Favorite !== 'NO'
                                 ? 'heart'
                                 : 'heart outline',
                             size: 'large',
                             color:
-                              contact && contact.Favorite !== 'NO'
+                              contact && contact?.Favorite !== 'NO'
                                 ? 'gray'
                                 : 'white',
                           }}
@@ -871,7 +872,7 @@ const ContactDetailsModal = ({
                 <div className="contact-inner">
                   {contact && (
                     <div className="shared-wallets">
-                      {contact.MySharedWallets?.filter(
+                      {contact?.MySharedWallets?.filter(
                         item => item.WalletNumber !== '',
                       )?.length > 0 && (
                         <WalletCarousel
@@ -881,8 +882,8 @@ const ContactDetailsModal = ({
                           onAddClick={() => {
                             history.push(
                               `/contact/${
-                                contact.ContactPID
-                              }/share-wallets?type=${contact.ContactType ||
+                                contact?.ContactPID
+                              }/share-wallets?type=${contact?.ContactType ||
                                 ''}`,
                             );
                           }}
@@ -895,7 +896,7 @@ const ContactDetailsModal = ({
                           )}
                           myWallets={{
                             loading: false,
-                            walletList: contact.MySharedWallets?.filter(
+                            walletList: contact?.MySharedWallets?.filter(
                               item => item.WalletNumber !== '',
                             ).map((item, ...rest) => {
                               return {
@@ -944,7 +945,7 @@ const ContactDetailsModal = ({
             </Modal.Actions>
             {!hasError && (
               <PreviewProfileImg
-                pictureURL={contact && contact.PictureURL}
+                pictureURL={contact && contact?.PictureURL}
                 openPreviewImgModal={openPreviewImgModal}
                 setOpenPreviewImgModal={setOpenPreviewImgModal}
               />
