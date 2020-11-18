@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Card, Button, Item } from 'semantic-ui-react';
 import { useSelector, useDispatch } from 'react-redux';
 import './style.scss';

@@ -110,13 +110,9 @@ const CurrencyExchangeContainer = ({
     }
   }, []);
 
-  const loadContacts = () => getallContacts()(dispatch);
-
-  useEffect(() => {
-    if (!allContacts.data) {
-      loadContacts();
-    }
-  }, []);
+  const loadContacts = () => {
+    getallContacts()(dispatch);
+  };
 
   const validate = () => {
     let hasError = false;

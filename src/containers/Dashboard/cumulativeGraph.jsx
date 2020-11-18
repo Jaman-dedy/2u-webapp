@@ -12,7 +12,11 @@ const GraphDataContainer = () => {
   } = useSelector(state => state.user);
 
   const getGraphData = () => {
-    if (data) {
+    if (
+      data &&
+      !transactionHistory.data &&
+      !transactionHistory.loading
+    ) {
       getUserTransactionHistory({
         WalletNumber: data.DefaultWallet,
       })(dispatch);

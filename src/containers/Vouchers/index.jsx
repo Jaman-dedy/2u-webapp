@@ -236,7 +236,9 @@ const Vouchers = () => {
 
   useEffect(() => {
     getStoreCategoriesAction(preferred)(dispatch);
-    getUserLocationData()(dispatch);
+    if (!userLocationData.success) {
+      getUserLocationData()(dispatch);
+    }
   }, []);
 
   useEffect(() => {

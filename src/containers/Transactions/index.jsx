@@ -158,6 +158,8 @@ const Transactions = () => {
         })(dispatch);
       }
     } else {
+      // console.log('alain', form, walletTransactions);
+      // if (!walletTransactions.data)
       getWalletTransactions({
         WalletNumber: form.WalletNumber || '',
         DateFrom: form.fromDate,
@@ -223,6 +225,7 @@ const Transactions = () => {
   useEffect(() => {
     if (form.WalletNumber || data) {
       getTransactions();
+      // console.log('alain', walletTransactions);
       getUnPaidCashList();
     }
   }, [form.WalletNumber, data]);

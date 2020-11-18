@@ -188,7 +188,6 @@ const App = () => {
   useEffect(() => {
     if (!userDataLoading && data && Object.keys(data).length) {
       notifAction({ PID: data.PID })(dispatch);
-      getContactList()(dispatch);
     }
   }, [userDataLoading, data]);
   useEffect(() => {
