@@ -12,6 +12,7 @@ const CustomDropdown = ({
   setCurrentOption,
   placeholder,
   style,
+  customstyle,
 }) => {
   return (
     <Dropdown
@@ -43,7 +44,12 @@ const CustomDropdown = ({
       }
       icon={null}
     >
-      <Dropdown.Menu>
+      <Dropdown.Menu
+        style={{
+          width: customstyle ? '100%' : 'auto',
+          maxWidth: customstyle ? '100%' : 'auto',
+        }}
+      >
         <Dropdown.Menu scrolling>
           {options &&
             options.map(
@@ -110,7 +116,7 @@ CustomDropdown.defaultProps = {
   onChange: () => null,
   keyName: 'WalletNumber',
   setCurrentOption: () => {},
-  placeholder: 'Select Wallet',
+  placeholder: 'Select a Wallet',
 };
 
 CustomDropdown.propTypes = {

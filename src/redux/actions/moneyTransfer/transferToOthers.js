@@ -28,6 +28,7 @@ export default (
             global.translate(data[0].Description || data[0].Result),
           );
         }
+
         return dispatch({
           type: TRANSFER_TO_OTHERS_SUCCESS,
           payload: [{ ...data[0], type }],

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/no-unused-prop-types */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
@@ -13,6 +14,7 @@ function AppPagination({
   onPageChange: onChange,
   showLabel,
   showPagination,
+  ...props
 }) {
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages =
@@ -48,6 +50,7 @@ function AppPagination({
           siblingRange={1}
           activePage={currentPage}
           totalPages={totalPages}
+          {...props}
         />
       )}
     </>

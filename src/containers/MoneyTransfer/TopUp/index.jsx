@@ -18,6 +18,7 @@ import getUnpaidCashList from 'redux/actions/transactions/getUnpaidCashList';
 import getMyWallets from 'redux/actions/users/getMyWallets';
 import getUserLocationData from 'redux/actions/users/userLocationData';
 import countryCodes from 'utils/countryCodes';
+import getPendingOtherTransfer from 'redux/actions/transactions/getPendingOtherTransfer';
 
 /* eslint-disable no-unused-vars */
 /* eslint-disable array-callback-return */
@@ -125,7 +126,6 @@ const TopUpContainer = ({
   }, [error]);
   useEffect(() => {
     setCurrentPhone(null);
-    // setPhoneValue();
     setAccountValue(null);
   }, [selectedCountry, selectedProvider]);
 
@@ -136,12 +136,17 @@ const TopUpContainer = ({
       setOpen(false);
       clearTransferToOthersErrors()(dispatch);
       setCurrentPhone(null);
-      // setPhoneValue();
       clearConfirmation()(dispatch);
       setCurrentBankAccount(null);
       setNextStep(false);
       setSelectedProvider(null);
       setErrors(null);
+      const data = {
+        Proxy: 'Yes',
+        PageNumber: '1',
+        RecordPerPage: '10',
+      };
+      getPendingOtherTransfer(data)(dispatch);
     }
   }, [data]);
 
