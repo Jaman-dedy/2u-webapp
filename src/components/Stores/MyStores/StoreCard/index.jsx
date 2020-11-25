@@ -1,18 +1,19 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { Icon, Image } from 'semantic-ui-react';
 import './StoreCard.scss';
 
 import EditTransactionImage from 'assets/images/edit.png';
 import ViewVochersImage from 'assets/images/gift.png';
 import imagePlaceholder from 'assets/images/ShopIcon.svg';
 import Advertisementsmage from 'assets/images/shout.png';
+import VoucherImage from 'assets/images/voucher.png';
 import ViewEyeImage from 'assets/images/vieweye.png';
 import EllipseMenu from 'components/common/EllipseOptions';
 import Img from 'components/common/Img';
-import PropTypes from 'prop-types';
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { Icon, Image } from 'semantic-ui-react';
 
 const StoreCard = ({ store, onClick }) => {
   const {
@@ -79,6 +80,19 @@ const StoreCard = ({ store, onClick }) => {
               Address,
               Logo: StoreLogo,
             },
+          },
+        });
+      },
+    },
+    {
+      name: `${global.translate('Send Voucher', 128)}`,
+      image: VoucherImage,
+      onClick: () => {
+        history.push({
+          pathname: '/contacts',
+          search: 'ref=send-voucher',
+          state: {
+            targetStore: store,
           },
         });
       },
