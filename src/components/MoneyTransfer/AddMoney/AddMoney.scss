@@ -32,19 +32,21 @@
       }
     }
 
-    button {
-      width: 100%;
-      background-color: #333556 !important;
-      border-radius: 0;
-      text-transform: uppercase;
-      margin-top: 15px;
-      padding: 17px;
+    .confirm-button {
+      button {
+        width: 100%;
+        background-color: #333556 !important;
+        border-radius: 0;
+        text-transform: uppercase;
+        margin-top: 15px;
+        padding: 17px;
 
-      &:hover {
-        background-color: #333556;
-      }
-      &:focus {
-        background-color: #333556;
+        &:hover {
+          background-color: #333556;
+        }
+        &:focus {
+          background-color: #333556;
+        }
       }
     }
 
