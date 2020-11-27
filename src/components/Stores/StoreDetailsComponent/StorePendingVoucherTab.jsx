@@ -92,6 +92,7 @@ const StorePendingVoucherTab = ({
         .filter(item => item && item.ContactPID)
         .map(item => item && item.ContactPID);
   }
+
   return (
     <Tab.Pane attached>
       <ConfirmRejectVoucherModal
@@ -142,12 +143,14 @@ const StorePendingVoucherTab = ({
         />
       )}
 
-      <Button
-        style={{ backgroundColor: '#282b4e', color: '#ffffff' }}
-        onClick={() => setOpenRedeemVoucher(true)}
-      >
-        {global.translate('Redeem a voucher', 820)}
-      </Button>
+      {mappedData && (
+        <Button
+          style={{ backgroundColor: '#282b4e', color: '#ffffff' }}
+          onClick={() => setOpenRedeemVoucher(true)}
+        >
+          {global.translate('Redeem a voucher', 820)}
+        </Button>
+      )}
 
       {!error && !loading && !noItems && (
         <AppTable

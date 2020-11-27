@@ -43,7 +43,6 @@ const SettingView = props => {
         <Tab.Pane>
           <Grid>
             <Grid.Column>
-              {' '}
               <AddStoreContainer currentStore={currentStore} />
             </Grid.Column>
           </Grid>
@@ -100,7 +99,7 @@ const SettingView = props => {
           pathname: '/store-details',
           search: '?tab=settings',
           hash: `#${tabHash}`,
-          state: { store: currentStore.StoreID },
+          state: { store: currentStore?.StoreID },
         });
         setActiveSettingTab(data.activeIndex);
       }}
@@ -328,7 +327,7 @@ const StoreDetailsComponent = ({
 
   React.useEffect(() => {
     if (location.state && location.state.detailTab) {
-      onTabChange(location.state.detailTab);
+      onTabChange({}, { activeIndex: location.state.detailTab });
     }
   }, []);
   const history = useHistory();
