@@ -247,11 +247,13 @@ const TopUpModal = ({
 
   useEffect(() => {
     if (step === 1) {
-      if (currentProviderOption?.Category === '0') {
+      if (
+        currentProviderOption?.Category === '0' ||
+        currentProviderOption?.Category === '19'
+      ) {
         setButtonAction(global.translate('Transfer money', 1950));
         setVerifyAccount(false);
-      }
-      if (currentProviderOption?.Category !== '0') {
+      } else {
         setButtonAction(global.translate('Verify', 1950));
         setVerifyAccount(false);
       }
@@ -346,6 +348,10 @@ const TopUpModal = ({
                     }}
                     search
                     setCurrentOption={setCurrentOption}
+                    placeholder={global.translate(
+                      'Select a country',
+                      311,
+                    )}
                   />
                 )}
               </div>
@@ -362,7 +368,6 @@ const TopUpModal = ({
                   <LoaderComponent />
                 ) : (
                   <ReusableDrowdown
-                    placeholder={canSetProviderPlaceHolder}
                     options={providersListOption}
                     currentOption={currentProviderOption}
                     onChange={e => {
@@ -373,6 +378,10 @@ const TopUpModal = ({
                     }}
                     setCurrentOption={setCurrentProviderOption}
                     search
+                    placeholder={global.translate(
+                      'Select a provider',
+                      312,
+                    )}
                   />
                 )}
               </div>

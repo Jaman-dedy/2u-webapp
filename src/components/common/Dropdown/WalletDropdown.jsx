@@ -96,7 +96,10 @@ const CustomDropdown = ({
                           {AccountNumber}
                         </div>
                         <span className="account-name-span">
-                          {AccountName && `(${AccountName})`}
+                          {AccountName &&
+                            `(${AccountName.substring(0, 18)} ${
+                              AccountName.length > 18 ? '...' : ''
+                            })`}
                         </span>
                       </div>
                     </div>

@@ -2,7 +2,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Input, Label } from 'semantic-ui-react';
-import { MonthRangeInput } from 'semantic-ui-calendar-react';
 import { useHistory, Prompt, useLocation } from 'react-router-dom';
 import './AddMoney.scss';
 import DashboardLayout from 'components/common/DashboardLayout';
@@ -13,6 +12,8 @@ import WelcomeBar from 'components/Dashboard/WelcomeSection';
 import MyWallets from 'components/common/WalletCarousselSelector';
 import CreditCardNumberInput from './CreditCardNumberInput';
 import AddMoneyModal from './AddMoneyModal';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const defaultOptions = [
   { key: 'usd', text: 'USD', value: 'USD' },
@@ -117,6 +118,24 @@ const AddMoney = ({
     Object.values(addMoneyData).filter(item => item && item !== '')
       .length > 2 && !justSuccessful;
 
+  const [selectedMonth, setSelectedMonth] = useState();
+
+  const CustomInput = ({ value, onClick }) => {
+    useEffect(() => {
+      if (value !== date) {
+        setDate(value);
+      }
+    }, [value]);
+    return (
+      <Form.Input
+        value={date}
+        onClick={onClick}
+        error={errors.date || false}
+        placeholder={global.translate('Date')}
+      />
+    );
+  };
+
   return (
     <>
       <Prompt
@@ -198,17 +217,13 @@ const AddMoney = ({
               />
               <span>{global.translate('Expiration date', 492)}</span>
               <Form.Field className="expiry-date">
-                <MonthRangeInput
-                  name="date"
-                  placeholder={global.translate('Date')}
-                  value={date}
-                  error={errors.date || false}
-                  icon="calendar alternate outline"
-                  popupPosition="bottom left"
-                  iconPosition="left"
-                  onChange={handleChange}
-                  animation="fade"
-                  localization={localStorage.language || 'en'}
+                <DatePicker
+                  selected={selectedMonth}
+                  minDate={new Date()}
+                  onChange={date => setSelectedMonth(date)}
+                  customInput={<CustomInput />}
+                  dateFormat="MM-yyyy"
+                  showMonthYearPicker
                 />
 
                 <Form.Input
@@ -289,8 +304,9 @@ const AddMoney = ({
                 onClick={() =>
                   !cardOperationFees.loading && handleSubmit()
                 }
+                className="confirm-button"
               >
-                {global.translate('next')}
+                {global.translate('Add')}
               </Form.Button>
             </Form>
           </div>
