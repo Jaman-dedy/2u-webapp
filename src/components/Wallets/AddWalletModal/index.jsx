@@ -200,7 +200,9 @@ const AddWalletModal = ({
             }}
             loading={addWallet.loading}
             disabled={
-              form[0].Name.length < 1 || form[0].Currency.length < 1
+              addWallet.loading ||
+              form[0].Name.length < 1 ||
+              form[0].Currency.length < 1
             }
           >
             {global.translate('Add', 112)}
