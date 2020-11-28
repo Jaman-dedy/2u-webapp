@@ -13,6 +13,7 @@ import {
   REPORT_SERVICE_COMMENT,
   REPORT_SERVICE,
   PEER_SERVICE_IMAGE,
+  PEER_SERVICE_VIDEO,
 } from 'constants/general';
 import { setGlobalChat } from 'redux/actions/chat/globalchat';
 import openImageGallery from 'redux/actions/imageGallery/openImageGallery';
@@ -135,10 +136,12 @@ const Index = React.forwardRef(({ service, allowView }, ref) => {
 
   const serviceMedia = [
     ...service.Media?.filter(item =>
-      ['jpeg', 'png']?.includes(item.Extension?.toLowerCase()),
+      ['jpeg', 'png', 'jpg']?.includes(item.Extension?.toLowerCase()),
     ),
     ...service.ExternalMedia?.filter(
-      item => item.MediaType === PEER_SERVICE_IMAGE,
+      item =>
+        item.MediaType === PEER_SERVICE_IMAGE ||
+        item.MediaType === PEER_SERVICE_VIDEO,
     ).map(({ Link: MediaURL, ...rest }) => ({ MediaURL, ...rest })),
   ];
 
