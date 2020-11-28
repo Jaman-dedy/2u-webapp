@@ -6,6 +6,10 @@ import { useHistory } from 'react-router-dom';
 import { Icon, Image } from 'semantic-ui-react';
 import './StoreCard.scss';
 
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { Icon, Image } from 'semantic-ui-react';
 import EditTransactionImage from 'assets/images/edit.png';
 import ViewVochersImage from 'assets/images/gift.png';
 import imagePlaceholder from 'assets/images/ShopIcon.svg';
@@ -132,7 +136,7 @@ const StoreCard = ({ store, onClick }) => {
           </div>
 
           <div className="down-votes">
-            <Icon name="calculator" />
+            <Icon name="clock outline" />
             <span>{PendingVouchers}</span>
           </div>
         </div>
