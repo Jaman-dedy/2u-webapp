@@ -81,10 +81,7 @@ const VirtualCard = ({
     });
   };
   return (
-    <Item
-      className="virtual-card-item "
-      onClick={() => handleOnClick(virtualCard, userData)}
-    >
+    <Item className="virtual-card-item ">
       <textarea
         style={{ display: 'none' }}
         ref={textAreaRef}
@@ -153,6 +150,17 @@ const VirtualCard = ({
               <strong>{`${virtualCard?.MM}/${virtualCard?.YYYY}`}</strong>
             </span>
             <br />
+            {!canViewDetail && (
+              <Button
+                type="button"
+                basic
+                onClick={() => handleOnClick(virtualCard, userData)}
+                className="view-button"
+                color="orange"
+              >
+                {global.translate('View Details', 1445)}
+              </Button>
+            )}
             {!canViewDetail && (
               <Popup
                 content={copySuccess}

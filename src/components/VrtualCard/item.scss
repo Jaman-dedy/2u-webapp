@@ -19,9 +19,29 @@
   width: 100%;
   max-width: 860px;
   transition: background-color 2s;
+  position: relative;
+  cursor: default !important;
+}
+.view-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+}
 
-  &:hover {
-    background-color: #f1f1f163 !important;
+@media screen and (max-width: 480px) {
+  .virtual-card-item {
+    .view-button {
+      position: relative;
+      margin: 0.3rem 0.1rem;
+    }
+  }
+}
+@include respond-to(mobile) {
+  .virtual-card-item {
+    .view-button {
+      margin: 0.3rem 0.2rem;
+    }
   }
 }
 
