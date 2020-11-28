@@ -1,3 +1,8 @@
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Input } from 'semantic-ui-react';
+
 import './style.scss';
 
 import ChatImage from 'assets/images/chat.png';
@@ -5,7 +10,6 @@ import ContactInfoImage from 'assets/images/contactInfo2.png';
 import DeleteContactImage from 'assets/images/deletecontact2.png';
 import EmptyContactList from 'assets/images/empty_contact.svg';
 import SendOthersImage from 'assets/images/to_other_provider.png';
-import TopuUpImage from 'assets/images/top-up.png';
 import TransactionsImage from 'assets/images/transactionsimage.png';
 import ViewHistoryImage from 'assets/images/viewhistory2.png';
 import SendVoucherIcon from 'assets/images/voucher.png';
@@ -19,9 +23,7 @@ import Favorite from 'containers/contacts/Favorite';
 import SendCashContainer from 'containers/MoneyTransfer/sendCash';
 import SendMoneyContainer from 'containers/MoneyTransfer/SendMoney';
 import TopUpContainer from 'containers/MoneyTransfer/TopUp';
-import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { setSelectedStore } from 'redux/actions/vouchers/selectedStore';
 import {
   openChatList,
   setGlobalChat,
@@ -30,8 +32,7 @@ import {
   setIsSendingOhters,
   setIsTopingUp,
 } from 'redux/actions/dashboard/dashboard';
-import { setSelectedStore } from 'redux/actions/vouchers/selectedStore';
-import { Input } from 'semantic-ui-react';
+import TopuUpImage from 'assets/images/top-up.png';
 
 import DeleteContactModal from './Delete/DeleteContactModal';
 import ContactDetailsModal from './Detail/ContactDetailsModal';
@@ -94,6 +95,7 @@ const ManageContacts = ({
   handleCreateExternalContact,
   isSendingOthers,
   isSendingVoucher,
+  targetStore,
 }) => {
   const [isSearching, setIsSearching] = useState(false);
   const [allMyContacts, setAllContacts] = useState([]);
@@ -138,6 +140,7 @@ const ManageContacts = ({
           search: '?ref=send-voucher',
           state: {
             contact: item,
+            targetStore,
           },
         });
       },
@@ -423,6 +426,7 @@ const ManageContacts = ({
               search: '?ref=send-voucher',
               state: {
                 contact,
+                targetStore,
               },
             });
           }
@@ -562,6 +566,7 @@ const ManageContacts = ({
                       search: '?ref=send-voucher',
                       state: {
                         contact: item,
+                        targetStore,
                       },
                     });
                   }
@@ -635,6 +640,7 @@ const ManageContacts = ({
                       search: '?ref=send-voucher',
                       state: {
                         contact: item,
+                        targetStore,
                       },
                     });
                   }
@@ -804,6 +810,7 @@ ManageContacts.propTypes = {
   country: PropTypes.objectOf(PropTypes.any),
   setCountry: PropTypes.func,
   handleCreateExternalContact: PropTypes.func,
+  targetStore: PropTypes.objectOf(PropTypes.any),
 };
 
 ManageContacts.defaultProps = {
@@ -859,5 +866,6 @@ ManageContacts.defaultProps = {
   country: {},
   setCountry: () => {},
   handleCreateExternalContact: () => {},
+  targetStore: {},
 };
 export default React.memo(ManageContacts);

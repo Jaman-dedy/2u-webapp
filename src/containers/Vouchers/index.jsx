@@ -70,6 +70,8 @@ const Vouchers = () => {
 
   const [errors, setErrors] = useState({});
 
+  const targetStore = location?.state?.targetStore;
+
   const [form, setForm] = useState({
     CountryCode: '',
     StoreName: '',
@@ -95,6 +97,12 @@ const Vouchers = () => {
     setScreenNumber(4);
     storeComments({ StoreID: item.StoreID })(dispatch);
   };
+
+  useEffect(() => {
+    if (targetStore && Object.keys(targetStore).length) {
+      selectingStore(targetStore);
+    }
+  }, [targetStore]);
 
   const clearSearchStoreFx = () => {
     clearSearchStoreAction()(dispatch);

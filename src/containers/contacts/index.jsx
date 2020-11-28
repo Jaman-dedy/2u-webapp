@@ -75,6 +75,7 @@ const Index = () => {
   const params = useParams();
 
   const targetContact = location.state?.contact;
+  const targetStore = location.state?.targetStore; // get store to send voucher from
 
   const { userData } = useSelector(state => state.user);
   const [destinationContact, setDestinationContact] = useState(null);
@@ -614,6 +615,7 @@ const Index = () => {
       isTopingUp={isTopingUp}
       isSendingOthers={isSendingOthers}
       isSendingVoucher={isSendingVoucher}
+      targetStore={targetStore}
     />
   );
 };
