@@ -77,15 +77,8 @@ const VoucherReceiptContent = ({ data }) => {
                 {data?.Sender?.FirstName || ''}{' '}
                 {data?.Sender?.LastName || ''}{' '}
               </span>
-              <span className="medium-margin-bottom text-grey-color small-text">
-                {data?.Sender?.SenderPID && data?.Sender?.SenderPID}
-              </span>
+
               <span className="medium-margin-bottom text-grey-color">
-                {/*  Tel:{' '}
-                {`+${String(data?.Sender?.PhoneNumber || '').replace(
-                  '+',
-                  '',
-                )}`} */}
                 {data &&
                   data.Store &&
                   data.Sender.PhonePrefix &&
@@ -104,17 +97,7 @@ const VoucherReceiptContent = ({ data }) => {
                 {data?.Beneficiary?.LastName || ''}
               </span>
 
-              <span className="medium-margin-bottom text-grey-color small-text">
-                {data?.Beneficiary?.BenefPID &&
-                  data?.Beneficiary?.BenefPID}
-              </span>
-
               <span className="medium-margin-bottom text-grey-color">
-                {/*  Tel:{' '}
-                {`+${String(
-                  data?.Beneficiary?.PhoneNumber || '',
-                ).replace('+', '')}`} */}
-
                 {data &&
                   data.Store &&
                   data.Beneficiary.PhonePrefix &&

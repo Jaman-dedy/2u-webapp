@@ -13,7 +13,7 @@ const OTPForm = ({ form, onInputChange }) => {
     if (form.VoucherNumber.length >= otpCharacters) {
       hiddenInput.current.focus();
     }
-  }, [form]);
+  }, [form.VoucherNumber]);
 
   return (
     <Container>

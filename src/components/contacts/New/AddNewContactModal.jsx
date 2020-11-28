@@ -101,6 +101,7 @@ const AddNewContactModal = ({
                         name="search"
                         link
                         onClick={onSearchUser}
+                        loading={loading}
                       />
                     }
                   />

@@ -2,6 +2,10 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import './StoreCard.scss';
 
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { Icon, Image } from 'semantic-ui-react';
 import EditTransactionImage from 'assets/images/edit.png';
 import ViewVochersImage from 'assets/images/gift.png';
 import imagePlaceholder from 'assets/images/ShopIcon.svg';
@@ -9,10 +13,6 @@ import Advertisementsmage from 'assets/images/shout.png';
 import ViewEyeImage from 'assets/images/vieweye.png';
 import EllipseMenu from 'components/common/EllipseOptions';
 import Img from 'components/common/Img';
-import PropTypes from 'prop-types';
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { Icon, Image } from 'semantic-ui-react';
 
 const StoreCard = ({ store, onClick }) => {
   const {
@@ -118,7 +118,7 @@ const StoreCard = ({ store, onClick }) => {
           </div>
 
           <div className="down-votes">
-            <Icon name="calculator" />
+            <Icon name="clock outline" />
             <span>{PendingVouchers}</span>
           </div>
         </div>
