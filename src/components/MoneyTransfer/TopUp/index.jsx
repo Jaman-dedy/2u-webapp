@@ -646,8 +646,6 @@ const TopUpModal = ({
                 updateMoneyTransferStep(1)(dispatch);
                 clearConfirmation()(dispatch);
                 setNextStep(false);
-                setPhoneValue();
-                setAccountValue(null);
                 setErrors(null);
               }}
             >
