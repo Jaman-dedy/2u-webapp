@@ -1,11 +1,8 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Image, Icon } from 'semantic-ui-react';
 import Thumbnail from 'components/common/Thumbnail';
 import './optionItems.scss';
-import { useSelector, useDispatch } from 'react-redux';
 
 import Logo from 'assets/images/logo.png';
 import VerifiedIcon from 'assets/images/verified.png';
@@ -14,7 +11,6 @@ import ConfirmModal from 'components/common/ConfirmModal';
 const ListItem = ({
   item,
   onItemClick,
-  moreOptions,
   isModalOpened,
   setIsModalOpened,
   onDelete,

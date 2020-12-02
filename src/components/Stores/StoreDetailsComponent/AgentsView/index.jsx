@@ -1,22 +1,15 @@
 import './style.scss';
-// import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Input } from 'semantic-ui-react';
 import Message from 'components/common/Message';
 import addStoreAgentAction from 'redux/actions/stores/addStoreAgents';
-import ConfirmModal from 'components/common/ConfirmModal';
 import removeStoreAgentAction from 'redux/actions/stores/removeStoreAgent';
 import LoaderComponent from 'components/common/Loader';
 
 import ListItem from './List/ListItem';
 
-const AgentsView = (
-  currentStore,
-  onEditChange,
-  isOpenAddAgent,
-  setIsOpenAddAgent,
-) => {
+const AgentsView = (currentStore, onEditChange, isOpenAddAgent) => {
   const [isSearching, setIsSearching] = useState(false);
   const [initialInternalUsers, setIUsers] = useState([]);
   const [form, setForm] = useState({});
@@ -24,25 +17,18 @@ const AgentsView = (
   const [thisItem, setThisItem] = useState({});
 
   const dispatch = useDispatch();
-  const {
-    // error: agentsError,
-    data: agentsData,
-    loading: agentsLoading,
-  } = useSelector(state => state.stores.listStoreAgents);
+  const { data: agentsData, loading: agentsLoading } = useSelector(
+    state => state.stores.listStoreAgents,
+  );
 
-  const {
-    data: deleteAgentState,
-    loading: deleteAgentLoading,
-  } = useSelector(state => state.stores.deleteStoreAgents);
+  const { loading: deleteAgentLoading } = useSelector(
+    state => state.stores.deleteStoreAgents,
+  );
   useEffect(() => {}, [isOpenAddAgent]);
 
   const initializeContacts = () => {
     setIUsers(agentsData);
     setIsSearching(false);
-  };
-
-  const addAgentFn = () => {
-    addStoreAgentAction(form)(dispatch);
   };
 
   const handleKeyUp = (e, { value }) => {

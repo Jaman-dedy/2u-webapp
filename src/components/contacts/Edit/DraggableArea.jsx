@@ -7,7 +7,6 @@ const DraggableAreaComponent = ({
   onDrop,
   canDrop,
   children,
-  wrapperStyle,
   contentStyle,
 }) => {
   const [{ isOver, canDrop: canDropHere }, dropRef] = useDrop({
@@ -15,7 +14,7 @@ const DraggableAreaComponent = ({
     drop: (item, monitor) => {
       onDrop(item);
     },
-    canDrop: canDrop,
+    canDrop,
     collect: monitor => ({
       isOver: !!monitor.isOver(),
       canDrop: !!monitor.canDrop(),
@@ -26,9 +25,6 @@ const DraggableAreaComponent = ({
     <div
       ref={dropRef}
       className="droppableColumn"
-      // className={`draggable-content ${
-      //   isOver && !canDropHere ? 'no-drop' : ''
-      // }`}
       style={{
         ...contentStyle,
         background: isOver ? 'rgba(51, 53, 86, 0.34)' : '#E6E8EC',

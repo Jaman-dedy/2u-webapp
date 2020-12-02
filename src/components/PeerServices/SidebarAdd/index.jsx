@@ -1,6 +1,5 @@
 import React from 'react';
-import { Card, Image, List } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { Card, Image } from 'semantic-ui-react';
 import EventsImage from 'assets/images/marketplace/marketplace-ad-banner.jpg';
 import './style.scss';
 import {
@@ -8,7 +7,6 @@ import {
   COMPANY_NAME,
   TERMS_AND_CONDITIONS_URL,
   PRIVACY_POLICY_URL,
-  HOME_WEBSITE,
 } from 'constants/general';
 
 const SidebarAd = ({ className = '' }) => {
@@ -20,11 +18,13 @@ const SidebarAd = ({ className = '' }) => {
           <div className="cp-footer">
             <a href={TERMS_AND_CONDITIONS_URL}>
               {global.translate('Terms and Conditions')}
-            </a> { ''} 
+            </a>{' '}
+            {''}
             <a href={PRIVACY_POLICY_URL}>
-            {global.translate('Privacy Policy.')}
+              {global.translate('Privacy Policy.')}
             </a>
-            <br/><br/>
+            <br />
+            <br />
             &copy; {new Date().getFullYear()} {APP_NAME}, An{' '}
             {COMPANY_NAME}
           </div>

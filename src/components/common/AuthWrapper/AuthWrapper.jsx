@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 import moment from 'moment';
 import './auth-landing-page.scss';
 import './spiner.scss';
@@ -11,7 +9,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Grid, Image } from 'semantic-ui-react';
 import LogoColored from 'assets/images/logo-colored.svg';
-import AdPlaceholder from 'assets/images/PLACEHOLDER_EVENT-01.png';
 import getUserDailyEvent from 'redux/actions/authWrapper';
 import AdPlaceholderDefault from 'assets/images/AD_V1.jpg';
 import SelectLanguage from 'components/common/SelectLanguage';
@@ -20,7 +17,6 @@ import isAppDisplayedInWebView from 'helpers/isAppDisplayedInWebView';
 import { HOME_WEBSITE, HOW_IT_WORKS } from 'constants/general';
 
 const AuthWrapper = ({ children, rightHeadlineText, authHeader }) => {
-  let sideBardWrapper;
   const dispatch = useDispatch();
   const language = localStorage.getItem('language');
   const Country = localStorage.getItem('countryCode');
