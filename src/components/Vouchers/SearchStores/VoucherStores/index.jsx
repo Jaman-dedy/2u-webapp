@@ -29,9 +29,10 @@ const Stores = ({
     setStoresToShow(itemsToShow);
   };
 
+  console.log('$$$$$', recentStores);
   useEffect(() => {
-    if (searchStoreList?.length < 5) {
-      setStoresToShow(searchStoreList);
+    if (searchStoreList) {
+      setStoresToShow(searchStoreList.slice(0, 5));
     }
   }, [searchStoreList]);
 
@@ -185,7 +186,7 @@ const Stores = ({
 
       {searchStoreList && searchStoreList.length > 5 && (
         <Pagination
-          data={searchStoreList}
+          data={recentStores}
           onPageChange={onPageChange}
           itemsPerPage={5}
           style={{ width: '80%' }}
