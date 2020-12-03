@@ -8,7 +8,13 @@ import errorImage from 'assets/images/error.png';
 import successImage from 'assets/images/confirm.png';
 import './feedback.scss';
 
-const Feedback = ({ message, title, success, callbackFn }) => {
+const Feedback = ({
+  message,
+  title,
+  success,
+  callbackFn,
+  autoClose,
+}) => {
   const [show, setShow] = useState(false);
 
   const dispatch = useDispatch();
@@ -16,12 +22,22 @@ const Feedback = ({ message, title, success, callbackFn }) => {
   useEffect(() => {
     setShow(true);
     setTimeout(() => {
-      setShow(false);
-      if (callbackFn) {
-        callbackFn()(dispatch);
+      if (autoClose) {
+        setShow(false);
+        if (callbackFn) {
+          callbackFn()(dispatch);
+        }
       }
-    }, 7000);
+    }, 3000);
   }, []);
+
+  const close = () => {
+    setShow(false);
+    if (callbackFn) {
+      callbackFn()(dispatch);
+    }
+  };
+
   return (
     <>
       {show ? (
@@ -42,6 +58,16 @@ const Feedback = ({ message, title, success, callbackFn }) => {
               </p>
             </div>
           </div>
+          {!autoClose && (
+            <button
+              type="button"
+              name="close"
+              className="close cursor-pointer"
+              onClick={close}
+            >
+              {global.translate('Close', 186)}
+            </button>
+          )}
         </div>
       ) : (
         <></>
@@ -54,11 +80,13 @@ Feedback.propTypes = {
   title: PropTypes.string,
   success: PropTypes.bool,
   callbackFn: PropTypes.func,
+  autoClose: PropTypes.bool,
 };
 Feedback.defaultProps = {
   title: 'SORRY',
   callbackFn: () => {},
   success: false,
   message: 'Invalid credential,please try again',
+  autoClose: true,
 };
 export default Feedback;
