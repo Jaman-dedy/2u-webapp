@@ -43,6 +43,7 @@ function AppPagination({
       )}
       {(data.length > itemsPerPage || showPagination) && (
         <Pagination
+          {...props}
           boundaryRange={0}
           floated="right"
           className="pagination"
@@ -50,7 +51,6 @@ function AppPagination({
           siblingRange={1}
           activePage={currentPage}
           totalPages={totalPages}
-          {...props}
         />
       )}
     </>
