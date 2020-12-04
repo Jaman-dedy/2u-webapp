@@ -6,7 +6,11 @@ import classes from './CardBack.module.scss';
 
 const CardBack = ({ wallet, onClick }) => {
   return (
-    <div onClick={onClick} className={classes.Verso}>
+    <div
+      onClick={onClick}
+      className={`${classes.Verso} ${wallet.levelColor ||
+        wallet.LevelName}`}
+    >
       <div className={classes.Header}>www.2u.money</div>
       <div className={classes.Cvv}>
         <span>
