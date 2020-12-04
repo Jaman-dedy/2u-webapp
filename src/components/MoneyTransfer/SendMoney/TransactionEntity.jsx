@@ -30,7 +30,7 @@ const TransactionEntity = ({
     const defaultWallet = walletList.filter(
       wallet => wallet.Default === 'YES',
     );
-    if (Object.keys(currentOption).length === 0) {
+    if (!currentOption || Object.keys(currentOption).length === 0) {
       setCurrentOption(defaultWallet[0]);
     }
   }, []);
