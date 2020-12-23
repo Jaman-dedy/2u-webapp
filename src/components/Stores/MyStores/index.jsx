@@ -1,7 +1,8 @@
 /* eslint-disable no-nested-ternary */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
+import queryString from 'query-string';
 
 import './MyStores.scss';
 import DashboardLayout from 'components/common/DashboardLayout';
@@ -11,22 +12,33 @@ import Pagination from 'components/common/Pagination';
 import Message from 'components/common/Message';
 import GoBack from 'components/common/GoBack';
 import RedeemVoucherModal from 'components/Stores/StoreDetailsComponent/RedeemVoucherModal';
+import isAppDisplayedInWebView from 'helpers/isAppDisplayedInWebView';
 import StoreCard from './StoreCard';
 import EmptyCard from './EmptyCard';
-import isAppDisplayedInWebView from 'helpers/isAppDisplayedInWebView';
 
 const MyStores = ({ userData, myStores }) => {
+  const locationParams = useLocation();
+  const params = queryString.parse(locationParams.search);
+
   const history = useHistory();
   const [storesToShow, setStoresToShow] = useState([]);
+  const { error, loading } = myStores;
+
   const [
     isOpenRedeemVoucherModal,
     setIsOpenRedeemVoucherModal,
   ] = useState(false);
-  const { error, loading } = myStores;
   const onPageChange = itemsToShow => {
     setStoresToShow(itemsToShow);
   };
   const onClickHandler = () => history.goBack();
+
+  useEffect(() => {
+    if (params.redeem === 'true') {
+      setIsOpenRedeemVoucherModal(true);
+    }
+  }, []);
+
   return (
     <>
       <DashboardLayout>
@@ -125,7 +137,6 @@ const MyStores = ({ userData, myStores }) => {
             )}
           </div>
         </div>
-
         <RedeemVoucherModal
           open={isOpenRedeemVoucherModal}
           setOpen={setIsOpenRedeemVoucherModal}

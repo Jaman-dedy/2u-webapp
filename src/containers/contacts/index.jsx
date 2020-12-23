@@ -1,10 +1,10 @@
 /* eslint-disable no-case-declarations */
-import ManageContacts from 'components/contacts';
+import React, { useEffect, useState } from 'react';
 import queryString from 'query-string';
-import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import ManageContacts from 'components/contacts';
 import addNewContact from 'redux/actions/contacts/addNewContact';
 import addRemoveFromFavoriteAction, {
   clearFavoritesSuccess,
@@ -47,7 +47,6 @@ const Index = () => {
     isTopingUp,
     isSendingVoucher,
   } = useSelector(state => state.dashboard.contactActions);
-
   const [sendCashOpen, setSendCashOpen] = useState(false);
   const [sendMoneyOpen, setSendMoneyOpen] = useState(false);
   const [topUpOpen, setTopUpOpen] = useState(false);
@@ -104,6 +103,25 @@ const Index = () => {
   const [localError, setLocalError] = useState(null);
   const [contact, setContact] = useState(null);
 
+  const { ref } = queryParams;
+  useEffect(() => {
+    switch (ref) {
+      case 'send-cash':
+        setIsendingCash(dispatch);
+        break;
+      case 'send-money':
+        setIsSendingMoney(dispatch);
+        break;
+      case 'to-others':
+        setIsSendingOhters(dispatch);
+        break;
+      case 'to-up':
+        setIsTopingUp(dispatch);
+        break;
+      default:
+        setManageContacts(dispatch);
+    }
+  }, []);
   useEffect(() => {
     if (targetContact) {
       setIsDetail(true);
@@ -210,17 +228,14 @@ const Index = () => {
     }
   }, [addRemoveFavorite]);
 
-  const getContacts = useCallback(
-    (forceRefresh = false) => {
-      if (forceRefresh) {
-        getContactList()(dispatch);
-      }
-      if (!data || error) {
-        getContactList()(dispatch);
-      }
-    },
-    [getContactList, dispatch],
-  );
+  const getContacts = (forceRefresh = false) => {
+    if (forceRefresh) {
+      getContactList()(dispatch);
+    }
+    if (!data || error) {
+      getContactList()(dispatch);
+    }
+  };
 
   useEffect(() => {
     if (walletList.length === 0) {
@@ -232,27 +247,6 @@ const Index = () => {
     getContacts();
   }, []);
 
-  // set modal state on page reload
-  const { ref } = queryParams;
-  useEffect(() => {
-    switch (ref) {
-      case 'send-cash':
-        setIsendingCash(dispatch);
-        break;
-      case 'send-money':
-        setIsSendingMoney(dispatch);
-        break;
-      case 'to-others':
-        setIsSendingOhters(dispatch);
-        break;
-      case 'to-up':
-        setIsTopingUp(dispatch);
-        break;
-      default:
-        setManageContacts(dispatch);
-    }
-  }, []);
-
   useEffect(() => {
     if (searchData.error) {
       setLocalError(searchData.error && searchData.error.Description);
@@ -260,7 +254,11 @@ const Index = () => {
   }, [searchData.error]);
 
   useEffect(() => {
-    if (queryParams.ref === 'send-money' && queryParams.PID) {
+    if (
+      (queryParams.ref === 'send-money' ||
+        queryParams.ref === 'send-cash') &&
+      queryParams.PID
+    ) {
       const contact =
         allContacts.data &&
         allContacts.data.find(
@@ -268,7 +266,11 @@ const Index = () => {
         );
 
       if (contact) {
-        setSendMoneyOpen(true);
+        if (queryParams.ref === 'send-money') {
+          setSendMoneyOpen(true);
+        } else {
+          setSendCashOpen(true);
+        }
         setDestinationContact(contact);
         history.push('/contacts');
       }
@@ -290,6 +292,12 @@ const Index = () => {
       }
     }
   }, [allContacts]);
+
+  useEffect(() => {
+    if (queryParams.add === 'true') {
+      setOpen(true);
+    }
+  }, []);
 
   useEffect(() => {
     if (queryParams.ref === 'send-voucher') {
@@ -326,7 +334,6 @@ const Index = () => {
       contactData[key] = element;
     }
   }
-
   const clearSuccess = () => {
     setForm({});
     setOpen(false);
@@ -336,14 +343,18 @@ const Index = () => {
 
   const addToContact = () => {
     addNewContact(contactData, '/AddToContact')(dispatch);
-    clearSuccess();
   };
 
   const onChange = (e, { name, value }) => {
-    setForm({ ...form, [name]: value });
     if (localError) {
       setLocalError(null);
     }
+    if (value === '' && searchData?.data) {
+      clearFoundUser()(dispatch);
+    }
+
+    setForm({ ...form, [name]: value });
+    setLocalError(null);
   };
 
   const checkExists = () => {
@@ -395,10 +406,10 @@ const Index = () => {
   };
 
   useEffect(() => {
-    if (addNewUserData.success) {
-      if (addNewUserData.data?.ContactType === 'EXTERNAL') {
+    if (addNewUserData?.success) {
+      if (addNewUserData?.data?.ContactType === 'EXTERNAL') {
         setOpen(false);
-        setContact(addNewUserData.data);
+        setContact(addNewUserData?.data);
         setIsDetail(true);
       }
     }
@@ -432,11 +443,17 @@ const Index = () => {
           );
           setOpen(false);
           const newContact = addNewUserData.data[0];
-          if (newContact.ContactPID) {
-            newContact.ContactType = 'INTERNAL';
-          } else {
-            newContact.ContactType = 'EXTERNAL';
+
+          newContact.ContactType = newContact.ContactPID
+            ? 'INTERNAL'
+            : 'EXTERNAL';
+
+          if (queryParams.add === 'true') {
+            return history.push(
+              `/contacts?ref=send-money&PID=${newContact.ContactPID}`,
+            );
           }
+
           history.push(
             `/contact/${newContact.ContactPID ??
               newContact.PhoneNumber}?type=${newContact.ContactType}`,
@@ -444,7 +461,17 @@ const Index = () => {
           setIsDetail(true);
         }
 
-        // setContact(addNewUserData.data[0]);
+        const newContact = addNewUserData?.data[0];
+        if (newContact.ContactPID) {
+          newContact.ContactType = 'INTERNAL';
+        } else {
+          newContact.ContactType = 'EXTERNAL';
+        }
+        history.push(
+          `/contact/${newContact.ContactPID ??
+            newContact.PhoneNumber}?type=${newContact.ContactType}`,
+        );
+        setContact(addNewUserData.data[0]);
       }
 
       clearSuccess();
@@ -497,6 +524,7 @@ const Index = () => {
             DestPhoneNum: contact.PhoneNumber,
             CountryCode: contact.CountryCode,
           };
+
           addNewContact(
             externalContactData,
             '/AddToExternalContact',
@@ -614,6 +642,7 @@ const Index = () => {
       handleCreateExternalContact={handleCreateExternalContact}
       isTopingUp={isTopingUp}
       isSendingOthers={isSendingOthers}
+      // isTopingUp={isTopingUp}
       isSendingVoucher={isSendingVoucher}
       targetStore={targetStore}
     />

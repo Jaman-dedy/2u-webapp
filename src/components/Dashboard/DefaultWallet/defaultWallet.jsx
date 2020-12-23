@@ -1,48 +1,61 @@
 // eslint-disable-line
-import React from 'react';
+import React, { useState } from 'react';
+import { Icon } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { Placeholder } from 'semantic-ui-react';
 import Message from 'components/common/Message';
-import LoaderComponent from 'components/common/Loader';
-import MoneySegment from 'components/common/MoneySegment';
+import WalletPlaceholder from 'assets/images/wallet-placeholder.svg';
 
 const DefaultWallet = ({
   data: { data, error },
   refreshWallet,
   newDefaultWalletLoading,
   loading,
+  wallet,
 }) => {
+  const [showAmount, setShowAmount] = useState(true);
   return (
     <>
-      <div className="overviewcard">
-        <div
-          style={
-            !newDefaultWalletLoading
-              ? {
-                  display: 'flex',
-                  paddingBottom: '12px',
-                }
-              : {
-                  display: 'flex',
-                }
-          }
-        >
-          <h2 className="welcome-text">
-            <span className="medium-text font-light">
-              {global.translate('My default', 1930)}
-            </span>
-            <br />
-            <span className="bold">{global.translate('Wallet')}</span>
-          </h2>
-          {newDefaultWalletLoading && (
-            <Placeholder>
-              <Placeholder.Header image>
-                <Placeholder.Line />
-                <Placeholder.Line />
-              </Placeholder.Header>
-            </Placeholder>
-          )}
-        </div>
+      <div>
+        {!error && !loading && data && (
+          <div className="dash-wallet">
+            <h3>
+              {wallet?.AccountName}{' '}
+              <span>({global.translate(`Default`, 641)})</span>
+            </h3>
+            <div>{wallet?.AccountNumber}</div>
+            <div className="wallet-info">
+              <img src={wallet?.Flag} alt="" />
+              <div className="wallet-amount">
+                {showAmount && (
+                  <div>
+                    {wallet?.Balance}
+
+                    <span> {wallet?.CurrencyCode}</span>
+                  </div>
+                )}
+                {!showAmount && (
+                  <span className="amount-hidden">
+                    <Icon name="circle" />
+                    <Icon name="circle" />
+                    <Icon name="circle" />{' '}
+                  </span>
+                )}
+              </div>
+              <button
+                className="show-amount"
+                onClick={() => setShowAmount(!showAmount)}
+              >
+                {!showAmount && <Icon name="eye" />}
+                {showAmount && <Icon name="eye slash" />}
+              </button>
+            </div>
+          </div>
+        )}
+        {!error && loading && (
+          <div className="animate-placeholder wallet-placeholder">
+            <img src={WalletPlaceholder} />
+          </div>
+        )}
         {error && !loading && (
           <Message
             message={
@@ -57,37 +70,20 @@ const DefaultWallet = ({
             }}
           />
         )}
-        {!error && !loading && data && (
-          <MoneySegment
-            loading={newDefaultWalletLoading}
-            data={{
-              Flag: data.CurrencyFlag,
-              Currency: data.Currency,
-              Balance: data.Balance,
-              Language: data && data.Language,
-            }}
-          />
-        )}
-        {loading && (
-          <LoaderComponent
-            loaderContent={global.translate('Working…', 412)}
-          />
-        )}
       </div>
     </>
   );
 };
-
 DefaultWallet.propTypes = {
   refreshWallet: PropTypes.func,
   data: PropTypes.objectOf(PropTypes.any).isRequired,
   loading: PropTypes.bool,
   newDefaultWalletLoading: PropTypes.bool,
+  wallet: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 DefaultWallet.defaultProps = {
   refreshWallet: () => {},
   loading: false,
   newDefaultWalletLoading: false,
 };
-
 export default DefaultWallet;

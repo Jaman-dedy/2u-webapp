@@ -10,13 +10,13 @@
   flex-wrap: wrap;
   align-content: space-between;
   .go-back {
-    align-items: stretch;
+    flex: 0 0 130px;
     button {
       cursor: pointer;
       background: #ffffff;
       font-size: 16px;
       margin: 0;
-      padding: 10px 15px;
+      padding: 8px 15px;
       border-radius: 5px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
     }
@@ -27,8 +27,8 @@
   }
   .head-title {
     margin: 0;
-    padding: 10px 12px;
-    color: #282b4e;
+    padding: 8px 0;
+    color: #777677;
     font-weight: 700;
     font-size: 16px;
   }
@@ -44,8 +44,8 @@
     margin-left: auto;
     button {
       cursor: pointer;
-      background: #282b4e;
-      color: #d2d3e2e7;
+      background: #323232;
+      color: #d2d3e2;
       font-size: 12px;
       font-size: 14px;
       font-weight: 300;
@@ -60,7 +60,7 @@
       &:hover {
         opacity: 0.9;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.75);
-        background: #292931;
+        background: #1E2120;
         color: #ffffff;
       }
     }
@@ -74,6 +74,9 @@
       button {
         padding: 10px;
       }
+    }
+    .head-title {
+      width: calc(100% - 120px);
     }
     .head-buttons {
       width: 100%;
