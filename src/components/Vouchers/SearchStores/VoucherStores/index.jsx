@@ -30,7 +30,7 @@ const Stores = ({
   };
 
   useEffect(() => {
-    if (searchStoreList?.length) {
+    if (searchStoreList && Array.isArray(searchStoreList)) {
       setStoresToShow(searchStoreList?.slice(0, 5));
     }
   }, [searchStoreList]);
