@@ -1,15 +1,14 @@
-import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Input } from 'semantic-ui-react';
-
 import './style.scss';
-
+import PropTypes from 'prop-types';
+import { Input } from 'semantic-ui-react';
 import ChatImage from 'assets/images/chat.png';
 import ContactInfoImage from 'assets/images/contactInfo2.png';
 import DeleteContactImage from 'assets/images/deletecontact2.png';
 import EmptyContactList from 'assets/images/empty_contact.svg';
 import SendOthersImage from 'assets/images/to_other_provider.png';
+import TopuUpImage from 'assets/images/top-up.png';
 import TransactionsImage from 'assets/images/transactionsimage.png';
 import ViewHistoryImage from 'assets/images/viewhistory2.png';
 import SendVoucherIcon from 'assets/images/voucher.png';
@@ -23,7 +22,6 @@ import Favorite from 'containers/contacts/Favorite';
 import SendCashContainer from 'containers/MoneyTransfer/sendCash';
 import SendMoneyContainer from 'containers/MoneyTransfer/SendMoney';
 import TopUpContainer from 'containers/MoneyTransfer/TopUp';
-import { setSelectedStore } from 'redux/actions/vouchers/selectedStore';
 import {
   openChatList,
   setGlobalChat,
@@ -32,7 +30,7 @@ import {
   setIsSendingOhters,
   setIsTopingUp,
 } from 'redux/actions/dashboard/dashboard';
-import TopuUpImage from 'assets/images/top-up.png';
+import { setSelectedStore } from 'redux/actions/vouchers/selectedStore';
 
 import DeleteContactModal from './Delete/DeleteContactModal';
 import ContactDetailsModal from './Detail/ContactDetailsModal';
@@ -40,7 +38,6 @@ import ItemsPlaceholder from './Favorite/ItemsLoading';
 import ListItem from './List/ListItem';
 import AddNewContactModal from './New/AddNewContactModal';
 
-window.countRenderes = 0;
 const ManageContacts = ({
   walletList,
   history,
@@ -104,9 +101,8 @@ const ManageContacts = ({
   const [isSelfBuying, setIsSelfBuying] = useState(false);
 
   const dispatch = useDispatch();
-
   useEffect(() => {
-    setAllContacts(allContacts.data);
+    setAllContacts(allContacts.data?.filter(item => !item.Error));
   }, [allContacts]);
 
   const [isDeletingContact, setIsDeletingContact] = useState(false);
@@ -158,7 +154,7 @@ const ManageContacts = ({
     },
     {
       image: SendOthersImage,
-      name: global.translate('Other networks'),
+      name: global.translate('Other networks', 2157),
 
       onClick: item => {
         setIsSendingOhters(dispatch);
@@ -212,11 +208,14 @@ const ManageContacts = ({
           item => item.ContactType === 'INTERNAL',
         ),
     );
-    setAllContacts(allContacts.data);
+    setAllContacts(allContacts.data?.filter(item => !item.Error));
     setIsSearching(false);
   };
 
   const handleKeyUp = (e, { value }) => {
+    if (localError) {
+      setLocalError(null);
+    }
     const search = value?.toLowerCase().replace(/"+"/g, '');
     const data = isSendingMoney
       ? initialInternalUsers
@@ -290,7 +289,7 @@ const ManageContacts = ({
               )}
 
             {isSendingVoucher &&
-              global.translate('Select the voucher recipient', 863)}
+              global.translate('Select the voucher recipient', 2161)}
 
             {isSendingMoney &&
               !isManagingContacts &&
@@ -362,7 +361,7 @@ const ManageContacts = ({
                     setNewContactType('INTERNAL');
                   }}
                 >
-                  {global.translate('Add Contact', 574)}
+                  {global.translate('Add Contact', 1732)}
                 </button>
               )}
               {(isSendingCash ||
@@ -433,7 +432,7 @@ const ManageContacts = ({
         }}
       />
       <div className="search-area">
-        {(allMyContacts?.length !== 0 || !allContacts?.loading) && (
+        {(allMyContacts?.length !== 0 || !allContacts.loading) && (
           <Input
             placeholder={global.translate('Search')}
             icon="search"
@@ -447,25 +446,22 @@ const ManageContacts = ({
         {global.translate('Select a contact', 485)}
       </div>
       <div className="contact-list">
-        {!isSearching &&
-          !allMyContacts?.loading &&
-          allContacts?.data?.length === 0 &&
-          allMyContacts?.length === 0 && (
-            <EmptyCard
-              header={global.translate(
-                "Looks like you don't have any contact yet",
-              )}
-              body={global.translate(
-                'You can add new contacts to your list',
-              )}
-              imgSrc={EmptyContactList}
-              createText={global.translate('Add contact', 574)}
-              onAddClick={() => {
-                setOpen(true);
-                setNewContactType('INTERNAL');
-              }}
-            />
-          )}
+        {!isSearching && allMyContacts?.length === 0 && (
+          <EmptyCard
+            header={global.translate(
+              "Looks like you don't have any contact yet",
+            )}
+            body={global.translate(
+              'You can add new contacts to your list',
+            )}
+            imgSrc={EmptyContactList}
+            createText={global.translate('Add contact', 574)}
+            onAddClick={() => {
+              setOpen(true);
+              setNewContactType('INTERNAL');
+            }}
+          />
+        )}
         {Array.isArray(allMyContacts) &&
           !allContacts.loading &&
           !isSendingMoney &&
@@ -549,10 +545,10 @@ const ManageContacts = ({
                   }
                   if (isManagingContacts) {
                     setIsDetail(true);
-
+                    setContact(item);
                     history.push(
                       `/contact/${
-                        item.ContactType === 'INTERNAL'
+                        item?.ContactType === 'INTERNAL'
                           ? item.ContactPID
                           : item.PhoneNumber
                       }?type=${item.ContactType}`,
@@ -560,7 +556,6 @@ const ManageContacts = ({
                   }
                   if (isSendingVoucher) {
                     setDestinationContact(item);
-
                     history.push({
                       pathname: '/vouchers',
                       search: '?ref=send-voucher',
@@ -570,7 +565,6 @@ const ManageContacts = ({
                       },
                     });
                   }
-
                   if (isSendingOthers) {
                     setDestinationContact({
                       ...item,
@@ -634,7 +628,6 @@ const ManageContacts = ({
                   }
                   if (isSendingVoucher) {
                     setDestinationContact(item);
-
                     history.push({
                       pathname: '/vouchers',
                       search: '?ref=send-voucher',
@@ -777,7 +770,6 @@ ManageContacts.propTypes = {
   sendCashOpen: PropTypes.bool,
   topUpOpen: PropTypes.bool,
   setSendCashOpen: PropTypes.func,
-
   setTopUpOpen: PropTypes.func,
   setDestinationContact: PropTypes.func,
   DefaultWallet: PropTypes.string.isRequired,
@@ -812,7 +804,6 @@ ManageContacts.propTypes = {
   handleCreateExternalContact: PropTypes.func,
   targetStore: PropTypes.objectOf(PropTypes.any),
 };
-
 ManageContacts.defaultProps = {
   walletList: [],
   history: {},
@@ -868,4 +859,4 @@ ManageContacts.defaultProps = {
   handleCreateExternalContact: () => {},
   targetStore: {},
 };
-export default React.memo(ManageContacts);
+export default ManageContacts;

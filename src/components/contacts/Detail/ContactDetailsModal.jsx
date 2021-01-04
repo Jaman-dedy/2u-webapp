@@ -76,7 +76,6 @@ const ContactDetailsModal = ({
   const [openPreviewImgModal, setOpenPreviewImgModal] = useState(
     false,
   );
-  const [showPreviewButton, setShowPreviewButton] = useState(false);
 
   const [contact, setContact] = useState({});
 
@@ -88,7 +87,9 @@ const ContactDetailsModal = ({
   const { allContacts } = useSelector(({ contacts }) => contacts);
 
   const parsedQueries = queryString.parse(history.location?.search);
-
+  const [imagePreviewClass, setImagePreviewClass] = useState(
+    'no-preview',
+  );
   const pathContact = params.id;
 
   useEffect(() => {
@@ -103,7 +104,9 @@ const ContactDetailsModal = ({
 
     if (parsedQueries.type === 'EXTERNAL') {
       const globalContact = allContacts.data?.find(
-        item => item.PhoneNumber === pathContact,
+        item =>
+          item.PhoneNumber === pathContact &&
+          item.ContactType === 'EXTERNAL',
       );
       if (globalContact) {
         setContact(globalContact);
@@ -118,7 +121,7 @@ const ContactDetailsModal = ({
         setContact(globalContact);
       }
     }
-  }, [allContacts.data, pathContact, parsedQueries]);
+  }, [allContacts.data, pathContact]);
 
   useEffect(() => {
     if (localContact) {
@@ -177,14 +180,14 @@ const ContactDetailsModal = ({
   }, [updatePic]);
 
   useEffect(() => {
-    if (contact && contact?.FirstName) {
+    if (contact && contact.FirstName) {
       getAllTransactionHistory({
         WalletNumber: '',
         ContactWalletNumber: '',
         ContactPID:
           contactType === 'EXTERNAL'
-            ? contact?.PhoneNumber
-            : contact?.ContactPID,
+            ? contact.PhoneNumber
+            : contact.ContactPID,
         DateFrom: moment()
           .subtract(12, 'months')
           .format('YYYY-MM-DD'),
@@ -248,14 +251,13 @@ const ContactDetailsModal = ({
   }, [historyData]);
 
   useEffect(() => {
-    if (contact && contact?.CountryCode) {
+    if (contact && contact.CountryCode) {
       setCountry(
         countries.find(c => {
           const prefixed =
-            contact?.PhonePrefix &&
-            contact?.PhonePrefix.startsWith('+')
-              ? contact?.PhonePrefix
-              : `+${contact?.PhonePrefix}`;
+            contact.PhonePrefix && contact.PhonePrefix.startsWith('+')
+              ? contact.PhonePrefix
+              : `+${contact.PhonePrefix}`;
           return c.value === prefixed;
         }),
       );
@@ -264,19 +266,22 @@ const ContactDetailsModal = ({
 
   useEffect(() => {
     if (contact) {
-      setEditForm({ ...editForm, phoneNumber: contact?.PhoneNumber });
+      setEditForm({
+        ...editForm,
+        phoneNumber: contact?.PhoneNumber?.substr(3),
+      });
     }
   }, [contact]);
 
   useEffect(() => {
     if (editForm.phoneNumber) {
-      setEditForm({ ...editForm, firstName: contact?.FirstName });
+      setEditForm({ ...editForm, firstName: contact.FirstName });
     }
   }, [editForm.phoneNumber]);
 
   useEffect(() => {
     if (editForm.firstName) {
-      setEditForm({ ...editForm, lastName: contact?.LastName });
+      setEditForm({ ...editForm, lastName: contact.LastName });
     }
   }, [editForm.firstName]);
 
@@ -291,10 +296,10 @@ const ContactDetailsModal = ({
     ({ user: { myWallets } }) => myWallets,
   );
   const checkSize = () => {
-    if (width < 700 && contact?.MySharedWallets.length < 3) {
+    if (width < 700 && contact.MySharedWallets.length < 3) {
       return false;
     }
-    if (width > 700 && contact?.MySharedWallets.length < 3) {
+    if (width > 700 && contact.MySharedWallets.length < 3) {
       return false;
     }
     return true;
@@ -304,28 +309,46 @@ const ContactDetailsModal = ({
       return false;
     }
 
-    return contact?.MySharedWallets.length > 5 || checkSize();
+    return contact.MySharedWallets.length > 5 || checkSize();
   };
   const contactCountry =
     contact &&
-    contact?.CountryCode &&
+    contact.CountryCode &&
     allCountries.find(
       c =>
         c.key &&
-        c.key.toLowerCase() === contact?.CountryCode &&
-        contact?.CountryCode.toLowerCase(),
+        c.key.toLowerCase() === contact.CountryCode &&
+        contact.CountryCode.toLowerCase(),
     );
+
+  useEffect(() => {
+    if (!contact.PictureURL) {
+      setHasError(true);
+    } else {
+      setHasError(false);
+    }
+  }, [open, contact]);
 
   useEffect(() => {
     if (
       contact &&
       contactType === 'INTERNAL' &&
-      contact?.MySharedWallets &&
-      contact?.MySharedWallets.length > 0
+      contact.MySharedWallets &&
+      contact.MySharedWallets.length > 0
     ) {
-      setSelected(contact?.MySharedWallets);
+      setSelected(contact.MySharedWallets);
     }
   }, [contact]);
+
+  useEffect(() => {
+    if (hasError) {
+      setImagePreviewClass('no-preview');
+    } else if (contact?.PictureURL) {
+      setImagePreviewClass('image-preview');
+    } else {
+      setImagePreviewClass('image-preview');
+    }
+  }, [hasError, contact]);
 
   useEffect(() => {
     if (currentPath?.endsWith('/share-wallets')) {
@@ -337,11 +360,11 @@ const ContactDetailsModal = ({
 
   const shareWallets = () => {
     const getShareWalletTitle = () => {
-      if (contact && contact?.FirstName) {
+      if (contact && contact.FirstName) {
         return `${global.translate(`Share `, 896)} ${global.translate(
           'Wallets',
           61,
-        )} ${global.translate('with', 1954)} ${contact?.FirstName}`;
+        )} ${global.translate('with', 1954)} ${contact.FirstName}`;
       }
       return global.translate('Please wait a moment.');
     };
@@ -355,11 +378,12 @@ const ContactDetailsModal = ({
           }}
           onClose={() => {
             setOpen(false);
+            setHasError(false);
             history.push(
               `/contact/${
-                contact?.ContactPID
-                  ? contact?.ContactPID
-                  : contact?.PhoneNumber
+                contact.ContactPID
+                  ? contact.ContactPID
+                  : contact.PhoneNumber
               }?redirect_back=1`,
             );
           }}
@@ -385,16 +409,16 @@ const ContactDetailsModal = ({
                 onClick={() => {
                   history.push(
                     `/contact/${
-                      contact?.ContactPID
-                        ? contact?.ContactPID
-                        : contact?.PhoneNumber
+                      contact.ContactPID
+                        ? contact.ContactPID
+                        : contact.PhoneNumber
                     }?redirect_back=1`,
                   );
                 }}
               />
             </Modal.Header>
             <Modal.Content>
-              {contact?.FirstName && userData.data?.FirstName && (
+              {contact.FirstName && userData.data?.FirstName && (
                 <DragDropWallets
                   selected={selected}
                   user2={contact}
@@ -406,7 +430,7 @@ const ContactDetailsModal = ({
                 />
               )}
 
-              {(!contact?.FirstName || !userData.data?.FirstName) && (
+              {(!contact.FirstName || !userData.data?.FirstName) && (
                 <LoaderComponent
                   size="large"
                   style={{
@@ -428,9 +452,9 @@ const ContactDetailsModal = ({
                   clearDeleteContact();
                   history.push(
                     `/contact/${
-                      contact?.ContactPID
-                        ? contact?.ContactPID
-                        : contact?.PhoneNumber
+                      contact.ContactPID
+                        ? contact.ContactPID
+                        : contact.PhoneNumber
                     }?redirect_back=1`,
                   );
                 }}
@@ -453,38 +477,27 @@ const ContactDetailsModal = ({
       </>
     );
   };
-
   const getText = () => {
     if (addRemoveFavorite.loading) {
       return 'updating...';
     }
-    if (contact && contact?.Favorite === 'YES') {
+    if (contact && contact.Favorite === 'YES') {
       return global.translate('Favorite', 1955);
     }
-
     return global.translate('Favorite', 1955);
   };
-
   const getContactDetailModalTitle = () => {
-    if (contact?.FirstName) {
+    if (contact.FirstName) {
       return `${global.translate(`Contact`, 109)} ${global.translate(
         'details',
         94,
       )}`;
     }
-
     return global.translate('Please wait a moment.', 413);
   };
-
-  useEffect(() => {
-    if (data) {
-      setContact(data[0]);
-    }
-  }, [data]);
   return (
     <>
       {isSharingNewWallet && shareWallets()}
-
       {isEdit && !isSharingNewWallet && (
         <EditContactContents
           contact={contact}
@@ -508,12 +521,17 @@ const ContactDetailsModal = ({
           transition="fade"
           onClose={() => {
             setOpen(false);
-
             history.push('/contacts');
           }}
           open={open}
         >
-          <Modal open={open} onClose={() => setOpen(false)}>
+          <Modal
+            open={open}
+            onClose={() => {
+              setHasError(false);
+              setOpen(false);
+            }}
+          >
             <Modal.Header className="modal-title">
               {getContactDetailModalTitle()}
               {contactType === 'EXTERNAL' && (
@@ -543,17 +561,23 @@ const ContactDetailsModal = ({
                             setOpenPreviewImgModal(true);
                           }
                         }}
-                        className={
-                          !hasError ? 'image-preview' : 'no-image'
-                        }
-                        role="none"
-                        onKeyDown={() => {}}
+                        className="image-preview"
                       >
+                        {!hasError && (
+                          <span
+                            className="zoom-image"
+                            onClick={() =>
+                              setOpenPreviewImgModal(true)
+                            }
+                            role="button"
+                            onKeyDown={() => {}}
+                          />
+                        )}
                         <Thumbnail
                           avatar={
-                            (contact && contact?.PictureURL) || ''
+                            (contact && contact.PictureURL) || ''
                           }
-                          name={(contact && contact?.FirstName) || ''}
+                          name={(contact && contact.FirstName) || ''}
                           width={120}
                           height={120}
                           style={{
@@ -563,61 +587,50 @@ const ContactDetailsModal = ({
                             margin: '0 auto 5px auto',
                           }}
                           secondName={
-                            (contact && contact?.LastName) || ''
+                            (contact && contact.LastName) || ''
                           }
                           hasError={hasError}
-                          setHasError={value => {
-                            setHasError(value);
-                            if (!value) {
-                              setShowPreviewButton(true);
-                            } else {
-                              setShowPreviewButton(false);
-                            }
-                          }}
+                          setHasError={setHasError}
                         />
                       </div>
-
                       {contact && (
                         <div className="bio-info">
-                          {contact?.FirstName && contact?.LastName && (
+                          {contact.FirstName && contact.LastName && (
                             <h4 className="names">
-                              {contact?.FirstName} {contact?.LastName}
+                              {contact.FirstName} {contact.LastName}
                             </h4>
                           )}
-                          {contact?.EMail && (
+                          {contact.EMail && (
                             <div className="email">
                               <Icon name="envelope" />
-                              {contact?.EMail}
+                              {contact.EMail}
                             </div>
                           )}
                           <div className="email">
                             {contactCountry && contactCountry.value}
                           </div>
-
                           {contactType === 'EXTERNAL' &&
-                            contact?.Phone && (
+                            contact.Phone && (
                               <p className="phone-contact">
                                 <Icon name="phone" />
-                                {(contact?.PhonePrefix !== '' &&
-                                  `+${contact?.PhonePrefix}`) ||
+                                {(contact.PhonePrefix !== '' &&
+                                  `+${contact.PhonePrefix}`) ||
                                   ''}
-                                <span>{contact?.Phone}</span>
+                                <span>{contact.Phone}</span>
                               </p>
                             )}
-
                           {contactType !== 'EXTERNAL' &&
-                            contact?.PhoneNumber && (
+                            contact.PhoneNumber && (
                               <p className="phone-contact">
                                 <Icon name="phone" />
-                                {contact?.PhoneNumber}
+                                {contact.PhoneNumber}
                               </p>
                             )}
-
-                          {contact?.address && (
+                          {contact.address && (
                             <div className="address">
                               <small>
-                                {(contact?.address !== '' &&
-                                  contact?.address) ||
+                                {(contact.address !== '' &&
+                                  contact.address) ||
                                   ''}
                               </small>
                             </div>
@@ -638,7 +651,6 @@ const ContactDetailsModal = ({
                           }}
                           text={global.translate('Send cash', 1948)}
                         />
-
                         <ActionOption
                           image={ContactVoucherIcon}
                           onClick={() => {
@@ -653,7 +665,6 @@ const ContactDetailsModal = ({
                           }}
                           text={global.translate('Send voucher', 863)}
                         />
-
                         <ActionOption
                           image={TransactionsImage}
                           text={global.translate('Transactions', 62)}
@@ -703,21 +714,20 @@ const ContactDetailsModal = ({
                             });
                           }}
                         />
-
                         <ActionOption
                           iconProps={{
                             style: { margin: 'auto' },
                             name:
                               contact &&
-                              contact?.Favorite &&
-                              contact?.Favorite !== 'NO'
+                              contact.Favorite &&
+                              contact.Favorite !== 'NO'
                                 ? 'heart'
                                 : 'heart outline',
                             size: 'large',
                             color:
                               contact &&
-                              contact?.Favorite &&
-                              contact?.Favorite !== 'NO'
+                              contact.Favorite &&
+                              contact.Favorite !== 'NO'
                                 ? 'red'
                                 : 'white',
                           }}
@@ -756,7 +766,6 @@ const ContactDetailsModal = ({
                           }}
                           text={global.translate('Send voucher', 863)}
                         />
-
                         <ActionOption
                           image={sendMoneyIcon}
                           onClick={() => {
@@ -777,7 +786,6 @@ const ContactDetailsModal = ({
                           }}
                           text={global.translate('Send cash', 1948)}
                         />
-
                         <ActionOption
                           image={TransactionsImage}
                           onClick={() => {
@@ -812,7 +820,10 @@ const ContactDetailsModal = ({
                         />
                         <ActionOption
                           image={toOthersactionsImage}
-                          text={global.translate('Other networks')}
+                          text={global.translate(
+                            'Other networks',
+                            2157,
+                          )}
                           onClick={() => {
                             setIsSendingOhters(dispatch);
                             setDestinationContact(contact);
@@ -832,8 +843,8 @@ const ContactDetailsModal = ({
                           onClick={() => {
                             history.push(
                               `/contact/${
-                                contact?.ContactPID
-                              }/share-wallets?type=${contact?.ContactType ||
+                                contact.ContactPID
+                              }/share-wallets?type=${contact.ContactType ||
                                 ''}`,
                             );
                           }}
@@ -842,17 +853,16 @@ const ContactDetailsModal = ({
                             1956,
                           )}
                         />
-
                         <ActionOption
                           iconProps={{
                             style: { margin: 'auto' },
                             name:
-                              contact && contact?.Favorite !== 'NO'
+                              contact && contact.Favorite !== 'NO'
                                 ? 'heart'
                                 : 'heart outline',
                             size: 'large',
                             color:
-                              contact && contact?.Favorite !== 'NO'
+                              contact && contact.Favorite !== 'NO'
                                 ? 'gray'
                                 : 'white',
                           }}
@@ -872,7 +882,7 @@ const ContactDetailsModal = ({
                 <div className="contact-inner">
                   {contact && (
                     <div className="shared-wallets">
-                      {contact?.MySharedWallets?.filter(
+                      {contact.MySharedWallets?.filter(
                         item => item.WalletNumber !== '',
                       )?.length > 0 && (
                         <WalletCarousel
@@ -882,8 +892,8 @@ const ContactDetailsModal = ({
                           onAddClick={() => {
                             history.push(
                               `/contact/${
-                                contact?.ContactPID
-                              }/share-wallets?type=${contact?.ContactType ||
+                                contact.ContactPID
+                              }/share-wallets?type=${contact.ContactType ||
                                 ''}`,
                             );
                           }}
@@ -896,7 +906,7 @@ const ContactDetailsModal = ({
                           )}
                           myWallets={{
                             loading: false,
-                            walletList: contact?.MySharedWallets?.filter(
+                            walletList: contact.MySharedWallets?.filter(
                               item => item.WalletNumber !== '',
                             ).map((item, ...rest) => {
                               return {
@@ -939,13 +949,19 @@ const ContactDetailsModal = ({
               >
                 {global.translate('Close')}
               </Button>
-              <Button onClick={() => setOpen(!open)} positive>
+              <Button
+                onClick={() => {
+                  setOpen(!open);
+                  setHasError(false);
+                }}
+                positive
+              >
                 {global.translate('Done', 55)}
               </Button>
             </Modal.Actions>
             {!hasError && (
               <PreviewProfileImg
-                pictureURL={contact && contact?.PictureURL}
+                pictureURL={contact && contact.PictureURL}
                 openPreviewImgModal={openPreviewImgModal}
                 setOpenPreviewImgModal={setOpenPreviewImgModal}
               />
@@ -956,7 +972,6 @@ const ContactDetailsModal = ({
     </>
   );
 };
-
 ContactDetailsModal.propTypes = {
   open: PropTypes.bool,
   setOpen: PropTypes.func,
@@ -975,7 +990,6 @@ ContactDetailsModal.propTypes = {
   isSharingNewWallet: PropTypes.bool,
   userData: PropTypes.objectOf(PropTypes.any),
 };
-
 ContactDetailsModal.defaultProps = {
   setEditErrors: () => {},
   setIsSharingNewWallet: () => {},
