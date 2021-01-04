@@ -188,7 +188,6 @@ const AddNewContactModal = ({
                         multiple
                         selection
                         name="wallets"
-                        // search
                         fluid
                         options={options}
                         value={form.wallets || []}
@@ -262,8 +261,14 @@ const AddNewContactModal = ({
       }}
       onClose={() => setOpen(false)}
       open={open}
+      dimmerSettings={{ closable: false }}
     >
-      <Modal size="small" open={open} onClose={() => setOpen(false)}>
+      <Modal
+        size="small"
+        open={open}
+        onClose={() => setOpen(false)}
+        closeOnDimmerClick={false}
+      >
         {contactType === 'INTERNAL' && (
           <Modal.Header className="modal-title">
             {global.translate('Add Contact')}
@@ -353,6 +358,7 @@ AddNewContactModal.propTypes = {
   setForm: PropTypes.func,
   setLocalError: PropTypes.func,
   contactType: PropTypes.string,
+  clearSuccess: PropTypes.func,
 };
 
 AddNewContactModal.defaultProps = {
@@ -363,5 +369,6 @@ AddNewContactModal.defaultProps = {
   setForm: () => {},
   contactType: 'INTERNAL',
   setLocalError: () => {},
+  clearSuccess: () => {},
 };
 export default AddNewContactModal;
