@@ -1,18 +1,23 @@
+/* eslint-disable react/button-has-type */
 // eslint-disable-line
 import React, { useState } from 'react';
 import { Icon } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import Message from 'components/common/Message';
+import formatNumber from 'utils/formatNumber';
 import WalletPlaceholder from 'assets/images/wallet-placeholder.svg';
 
 const DefaultWallet = ({
   data: { data, error },
   refreshWallet,
-  newDefaultWalletLoading,
   loading,
   wallet,
 }) => {
   const [showAmount, setShowAmount] = useState(true);
+  const { language: { preferred } = {} } = useSelector(
+    ({ user }) => user,
+  );
   return (
     <>
       <div>
@@ -28,8 +33,9 @@ const DefaultWallet = ({
               <div className="wallet-amount">
                 {showAmount && (
                   <div>
-                    {wallet?.Balance}
-
+                    {formatNumber(wallet?.Balance, {
+                      locales: preferred,
+                    })}
                     <span> {wallet?.CurrencyCode}</span>
                   </div>
                 )}
@@ -78,12 +84,10 @@ DefaultWallet.propTypes = {
   refreshWallet: PropTypes.func,
   data: PropTypes.objectOf(PropTypes.any).isRequired,
   loading: PropTypes.bool,
-  newDefaultWalletLoading: PropTypes.bool,
   wallet: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 DefaultWallet.defaultProps = {
   refreshWallet: () => {},
   loading: false,
-  newDefaultWalletLoading: false,
 };
 export default DefaultWallet;

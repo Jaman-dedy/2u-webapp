@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
 import PropTypes from 'prop-types';
 import getUserNetworth from 'redux/actions/users/getUserNetworth';
@@ -15,7 +16,7 @@ const UserCurrencies = ({ currencies, userData, dispatch }) => {
           <div className="animate-placeholder currencies-placeholder">
             <img src={CurrencyPlaceholder} />
             <img src={CurrencyPlaceholder} />
-            <div className="clear"></div>
+            <div className="clear" />
           </div>
         </div>
       ) : null}
