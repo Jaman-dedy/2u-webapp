@@ -3,14 +3,14 @@
   display: flex;
   flex-wrap: wrap;
   align-content: space-between;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.04);
   background: #ffffff;
   height: 60px;
   z-index: 1;
   position: fixed !important;
   top: 0;
-  left: 270px;
-  width: calc(100vw - 270px);
+  left: 240px;
+  width: calc(100vw - 240px);
   .menu-icon {
     background: rgba(255, 255, 255, 0.6);
     border-radius: 50%;
@@ -26,8 +26,8 @@
     }
   }
   .btns-shortcut {
-    margin-left: auto;
-    align-items: stretch;
+    flex: 0 0 220px;
+    padding: 0px 1%;
   }
   .btns-shortcut button {
     margin: 8px 15px !important;
@@ -40,9 +40,8 @@
   }
   .btns-header-actions {
     margin: 12px 0;
-    flex-grow: 1;
-    padding: 0;
     width: calc(100% - 230px);
+    padding: 0;
   }
   .btns-header-actions ul {
     list-style-type: none;

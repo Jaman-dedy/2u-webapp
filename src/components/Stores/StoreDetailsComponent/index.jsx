@@ -1,21 +1,20 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Tab, Grid, Menu, Label, Button } from 'semantic-ui-react';
+import { Tab, Grid, Menu, Label } from 'semantic-ui-react';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import queryString from 'query-string';
-import NewAgentModal from 'components/Stores/StoreDetailsComponent/AgentsView/New/AddNewAgentModal';
 import useWindowSize from 'utils/useWindowSize';
 import DashboardLayout from 'components/common/DashboardLayout';
 import WelcomeBar from 'components/Dashboard/WelcomeSection';
 import './style.scss';
+import NewAgentModal from 'components/Stores/StoreDetailsComponent/AgentsView/New/AddNewAgentModal';
+import AgentsView from 'components/Stores/StoreDetailsComponent/AgentsView';
+import locateUser from 'redux/actions/contacts/locateUser'; // clearFoundUser,
+import addStoreAgentAction from 'redux/actions/stores/addStoreAgents';
+
 import AddStoreContainer from 'containers/Stores/AddStore';
 import GoBack from 'components/common/GoBack';
-import AgentsView from 'components/Stores/StoreDetailsComponent/AgentsView';
-import addStoreAgentAction from 'redux/actions/stores/addStoreAgents';
-import locateUser from 'redux/actions/contacts/locateUser'; // clearFoundUser,
 import StoreInfoTab from './StoreInfoTab';
 import StorePendingVoucherTab from './StorePendingVoucherTab';
 import NotificationSettingsTab from './NotificationSettingsTab';
@@ -96,6 +95,8 @@ const SettingView = props => {
             break;
         }
 
+        // history.push(`/store-details?tab=settings#${tabHash}`);
+
         history.push({
           pathname: '/store-details',
           search: '?tab=settings',
@@ -133,7 +134,6 @@ const StoreDetailsComponent = ({
   const [localError, setLocalError] = useState(null);
 
   const {
-    // error: addAgentError,
     data: addNewUserData,
     loading: addAgentsLoading,
   } = useSelector(state => state.stores.addStoreAgents);
@@ -246,11 +246,9 @@ const StoreDetailsComponent = ({
   const { userData } = useSelector(state => state.user);
   const searchData = useSelector(state => state.contacts.locateUser);
   const dispatch = useDispatch();
-  const {
-    // error: agentsError,
-    data: agentsData,
-    loading: agentsLoading,
-  } = useSelector(state => state.stores.listStoreAgents);
+  const { data: agentsData, loading: agentsLoading } = useSelector(
+    state => state.stores.listStoreAgents,
+  );
 
   const onChange = (e, { name, value }) => {
     setForm({ ...form, [name]: value });
@@ -317,12 +315,12 @@ const StoreDetailsComponent = ({
       default:
         break;
     }
-
     history.push({
       pathname: '/store-details',
       search: `?tab=${tab}`,
       state: { store: currentStore.StoreID },
     });
+
     setActiveTab(activeIndex);
   };
 
@@ -391,7 +389,6 @@ const StoreDetailsComponent = ({
               setIsOpenAddAgent={setIsOpenAddAgent}
             />
           </div>
-
           <NewAgentModal
             open={isOpenAddAgent}
             setOpen={setIsOpenAddAgent}
@@ -445,7 +442,7 @@ StoreDetailsComponent.defaultProps = {
   onEditChange: () => null,
   getPendingStoreVouchers: () => null,
   setStoreStatus: () => {},
-  activeTab: 0,
+  activeTab: 1,
   setActiveTab: () => {},
   isOpenAddAgent: false,
   setIsOpenAddAgent: () => {},

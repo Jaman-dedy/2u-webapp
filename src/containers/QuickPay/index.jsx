@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import QuickPayComponent from 'components/QuickPay';
 import findUser, {
   clearFoundUser,
 } from 'redux/actions/contacts/locateWallet';
-import { CELINE_MONEY } from 'constants/general';
-import confirmTransaction from 'redux/actions/moneyTransfer/confirmTransaction';
 import { updateMoneyTransferStep } from 'redux/actions/dashboard/dashboard';
+import confirmTransaction from 'redux/actions/moneyTransfer/confirmTransaction';
+import { CELINE_MONEY } from 'constants/general';
+
 import sendMoneyModal from './sendMoneyModal';
 
 const QuickPay = () => {
@@ -48,10 +49,10 @@ const QuickPay = () => {
   }, [userData]);
 
   const onOptionChange = ({ target: { value, name } }) => {
-    if (locateWallet.data && name === 'AccountNumber') {
+    if (locateWallet?.data && name === 'AccountNumber') {
       clearFoundUser()(dispatch);
     }
-    if (locateWallet.error) {
+    if (locateWallet?.error) {
       clearFoundUser()(dispatch);
       setErrors(null);
     }
@@ -64,17 +65,18 @@ const QuickPay = () => {
 
     setForm({ ...form, [name]: value });
   };
+
   const handleScan = data => {
     if (data) {
       setResult(data);
     }
   };
   const handleError = err => {
-    throw new Error('fail to scan', err);
+    throw new Error(global.translate('Failed to scan', 2211), err);
   };
   useEffect(() => {
-    if (locateWallet.error) {
-      setErrors(locateWallet.error?.Description);
+    if (locateWallet?.error) {
+      setErrors(locateWallet?.error?.Description);
     }
   }, [locateWallet]);
 
@@ -145,7 +147,7 @@ const QuickPay = () => {
       onOptionChange={onOptionChange}
       searchUser={searchUser}
       locateUser={locateWallet && locateWallet}
-      loading={locateWallet.loading}
+      loading={locateWallet?.loading}
       form={form}
       handleError={handleError}
       handleScan={handleScan}

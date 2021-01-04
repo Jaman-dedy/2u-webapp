@@ -3,8 +3,8 @@
   display: flex;
   flex-direction: column;
   height: 10000px;
-  min-width: 270px;
-  max-width: 270px;
+  min-width: 240px;
+  max-width: 240px;
   padding: 0 0 32px 0;
   position: fixed;
   overflow-y: auto;
@@ -18,9 +18,9 @@
     display: none;
     position: absolute;
     top: 8px;
-    right: 18px;
+    right: 12px;
     cursor: pointer;
-    color: #1e2120;
+    color: #1E2120;
     background: none;
     border: none;
   }
@@ -34,11 +34,11 @@
   .dash_logo {
     width: 100%;
     margin: 0;
-    padding: 10px 20px;
+    padding: 22px 5px;
   }
   .dash_logo img {
-    width: 160px;
-    margin: 0 0 0 6px;
+    width: 200px;
+    margin: 0 5px;
     &:hover {
       cursor: pointer;
     }
@@ -49,18 +49,21 @@
     margin: 0;
   }
   .sidebar ul > li {
-    padding: 0;
+    padding: 5px 0;
     position: relative;
+  }
+  .sidebar ul li a:hover {
+    background: #dcdcdc;
   }
   .sidebar ul li img {
     position: absolute;
-    left: 28px;
+    left: 16px;
     height: 22px;
-    top: 18px;
+    top: 16px;
   }
   .sidebar > ul > li > a {
     display: block;
-    padding: 21px 12px 21px 70px;
+    padding: 10px 12px 10px 55px;
   }
   .sidebar_caret {
     width: 11px;
@@ -69,7 +72,7 @@
   }
   .sidebar ul > li button {
     display: block;
-    padding: 20px 12px 20px 70px;
+    padding: 15px 12px 15px 55px;
     border: none;
     background: none;
   }
@@ -78,13 +81,17 @@
   }
   .sidebar .sidebar-submenu li {
     display: block;
-    padding: 10px 12px 10px 70px;
+    padding: 10px 12px 10px 55px;
   }
   .sidebar li .sidebar-submenu {
     display: none;
   }
+  .sidebar li.active {
+    border:none ;
+ }
   .sidebar li.active .sidebar-submenu {
     display: block;
+    border: none;
   }
   .sidebar .sidebar-dropdown.active .sidebar_caret {
     transform: rotate(90deg);
@@ -106,21 +113,11 @@
   font-weight: 400;
 }
 
-.sidebar ul li a:hover,
-.sub-nav-visited,
-.nav-visited {
-  background: #dcdcdc;
-  color: #333566 !important;
-}
-.sidebar-submenu li:hover a {
-  background: none !important;
-}
-
 .sidebar ul {
   .mobile-apps {
-    height: 200px;
-    margin:10px 30px 0 30px;
-    padding:15px;
+    height: 180px;
+    margin:10px 30px 0 20px;
+    padding:5px 15px;
     border-radius: 7px;
     background: #dcdcdc;
     h4{
@@ -132,14 +129,14 @@
       display: block;
       margin: 0px 0;
       padding: 0 0;
-      height: 70px;
+      height: 55px;
       position: relative;
       left: 0px;
       top: 0px;
       img {
         padding: 0 0;
         left: 0px;
-        height: 70px;
+        height: 65px;
         top: 0px;
       }
     }
