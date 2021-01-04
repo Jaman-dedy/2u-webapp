@@ -1,10 +1,15 @@
 /* eslint-disable */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import NetworthPlaceholder from 'assets/images/networth-placeholder.svg';
+import formatNumber from 'utils/formatNumber';
 import './style.scss';
 
 const MyNetworth = ({ userData, scope, subTitle, networth }) => {
+  const { language: { preferred } = {} } = useSelector(
+    ({ user }) => user,
+  );
   return (
     <div>
       <>
@@ -32,7 +37,9 @@ const MyNetworth = ({ userData, scope, subTitle, networth }) => {
               <div className="wallet-info">
                 <img src={networth?.flag} />
                 <div>
-                  {networth?.data?.NetWorthWallets}{' '}
+                  {formatNumber(networth?.data?.NetWorthWallets, {
+                    locales: preferred,
+                  })}{' '}
                   <span>{networth?.data?.Currency}</span>
                 </div>
               </div>
@@ -51,7 +58,9 @@ const MyNetworth = ({ userData, scope, subTitle, networth }) => {
               <div className="wallet-info">
                 <img src={networth?.flag} />
                 <div>
-                  {networth?.data?.NetWorth}{' '}
+                  {formatNumber(networth?.data?.NetWorth, {
+                    locales: preferred,
+                  })}{' '}
                   <span>{networth?.data?.Currency}</span>
                 </div>
               </div>
