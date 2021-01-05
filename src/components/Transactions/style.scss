@@ -38,35 +38,30 @@
 .table-header {
   .fetch-transactions-action {
     display: flex;
-    margin-bottom: 5px;
-    .view-all-button {
-      height: 40px;
-      button {
-        height: 100% !important;
-      }
-    }
-    .select-wallets-dropdown {
-      margin-right: 5px;
-      height: 40px;
-    }
+    width: 100%;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0 !important;
+    margin-right: 4px;
+    flex: 1;
   }
 
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  padding: 16px 0 8px 0;
   .from-to {
+    display: flex;
+    margin-top: 10px;
+    align-items: flex-end;
     .field {
-      float: left;
       width: 150px;
       margin-right: 5px;
       .ui.input {
         width: 150px;
       }
     }
+  }
     .from {
-      float: left;
-      margin-bottom: 5px;
+      margin: 0 !important;
+      display: flex;
+
       h4 {
         padding: 8px 0;
         width: 50px;
@@ -76,8 +71,8 @@
       }
     }
     .to {
-      float: left;
-      margin-bottom: 5px;
+      margin: 0 !important;
+      display: flex;
       h4 {
         padding: 8px 0;
         width: 40px;
@@ -87,111 +82,21 @@
         padding-left: 0.5rem;
       }
     }
-  }
-  .refresh-transactions-btn,
-  .export-csv-button button {
-    height: 38px;
-  }
-}
-@media (max-width: 1440px) {
-  .table-header {
-    display: block;
-  }
-}
-@media (min-width: 1440px) {
-  .table-header {
-    .refresh-csv {
-      // margin-top: -5px !important;
-    }
-  }
-}
-@media (max-width: 1200px) {
-  .right-table-items {
-    display: block;
-  }
-}
-@media (max-width: 915px) {
-  .table-header {
-    flex-direction: column;
-  }
-}
-@media (max-width: 420px) {
-  .table-header {
-    .from-to {
-      flex-direction: column !important;
-    }
-  }
-}
-@media (max-width: 760px) {
-  .all-user-transactions {
-    margin-top: 0;
-    .pusher {
-      overflow-x: scroll !important;
-      .main-table {
-        padding: 0 !important;
-        width: 200vw !important;
-        .Description {
-          display: block;
-        }
-      }
-    }
-  }
-  .right-table-items {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 0;
-    margin-left: 0;
-  }
-  .table-header,
-  .right-wrapper {
-    width: 100% !important;
-  }
-  .table-header {
-    display: flex;
-    flex-direction: column !important;
-    justify-content: flex-start !important;
-    padding-top: 0;
-  }
-  .right-wrapper {
-    display: flex;
-    flex-direction: row !important;
-    justify-content: flex-start !important;
-    padding-bottom: 10px !important;
-    .filterButton {
-      height: 38px;
-    }
-  }
-  .from-to {
-    display: flex;
-    flex-direction: row !important;
-    justify-content: flex-start !important;
-  }
-  .ui.secondary.pointing.menu .item {
-    padding: 2px;
-  }
-  .ui.menu .item > .label {
-    display: none;
-  }
-  .export-csv-button {
-    .ExportCSV {
-      .ui[class*='right labeled'].icon.button {
-        padding-left: 0.5em !important;
-        padding-right: 3.07142857em !important;
-      }
-    }
-  }
 
-  .searchInput {
-    input {
-      transition: all 500ms ease-in;
-      width: 80px;
+    .filter-export-actions {
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
     }
-    input:focus {
-      width: 240px;
-      transition: all 500ms ease-out;
+    .refresh-csv {
+      display: flex;
     }
-  }
+    .export-csv-button {
+      align-self: flex-end;
+    }
+    .refresh-transactions-btn {
+      align-self: flex-end;
+    }
 }
 
 .main-content {
@@ -208,4 +113,54 @@
       }
     }
   }
+}
+
+@media screen and (max-width:370px ){
+  .from-to {
+    display: flex;
+    margin-top: 10px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    .field {
+      width: 150px;
+      margin-right: 5px;
+      .ui.input {
+        width: 150px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 540px){
+  .refresh-csv {
+    margin-top: 10px;
+  }
+}
+
+@media screen and (max-width: 420px){
+   .from-to {
+    display: flex;
+    margin-top: 10px;
+   flex-direction: column;
+
+   .to {
+     flex-direction: column;
+     h4 {
+       width: 100%;
+     }
+   }
+   .from {
+    flex-direction: column;
+    h4 {
+      width: 100%;
+    }
+  }
+  }
+  .refresh-csv {
+    margin-top: 10px;
+    align-self: flex-end;
+    width: 100%;
+
+  }
+
 }

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-nested-ternary */
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './style.scss';
 import {
@@ -312,8 +312,8 @@ const Transactions = ({
           <Button
             color="orange"
             onClick={() => fetchAllTransaction()}
+            style={{ height: 40, margin: 0, marginRight: 5 }}
           >
-            {' '}
             <Icon name="eye" /> View all
           </Button>
         </div>
@@ -322,7 +322,7 @@ const Transactions = ({
             <CustomDropdown
               style={{
                 backgroundColor: '#eee',
-                height: '40px',
+                height: 38,
               }}
               setCurrentOption={() =>
                 walletList.find(
@@ -337,58 +337,62 @@ const Transactions = ({
           )}
         </div>
       </div>
-      <div className="from-to">
-        <div className="from">
-          <h4>{global.translate('From', 114)}</h4>
-          <DateInput
-            name="fromDate"
-            onChange={onChange}
-            icon="dropdown"
-            popupPosition="top left"
-            animation="fade"
-            placeholder={global.translate('To', 115)}
-            iconPosition="right"
-            dateFormat="YYYY-MM-DD"
-            value={form.fromDate}
-          />
+      <div className="filter-export-actions">
+        <div className="from-to">
+          <div className="from">
+            <h4>{global.translate('From', 114)}</h4>
+            <DateInput
+              name="fromDate"
+              onChange={onChange}
+              icon="dropdown"
+              popupPosition="top left"
+              animation="fade"
+              placeholder={global.translate('To', 115)}
+              iconPosition="right"
+              dateFormat="YYYY-MM-DD"
+              value={form.fromDate}
+            />
+          </div>
+          <div className="to">
+            <h4>{global.translate('To', 115)}</h4>
+            <DateInput
+              name="toDate"
+              onChange={onChange}
+              icon="dropdown"
+              popupPosition="top left"
+              animation="fade"
+              placeholder={global.translate('To', 115)}
+              iconPosition="right"
+              dateFormat="YYYY-MM-DD"
+              value={form.toDate}
+            />
+          </div>
         </div>
-        <div className="to">
-          <h4>{global.translate('To', 115)}</h4>
-          <DateInput
-            name="toDate"
-            onChange={onChange}
-            icon="dropdown"
-            popupPosition="top left"
-            animation="fade"
-            placeholder={global.translate('To', 115)}
-            iconPosition="right"
-            dateFormat="YYYY-MM-DD"
-            value={form.toDate}
+        <span className="clear-fix" />
+        <div className="refresh-csv">
+          <Button
+            icon="refresh"
+            color="orange"
+            style={{ margin: 0, height: 38 }}
+            onClick={() => {
+              getTransactions();
+            }}
+            className="refresh-transactions-btn"
           />
-        </div>
-      </div>
-      <div className="flex flex-row align-items-center refresh-csv">
-        <Button
-          icon="refresh"
-          color="orange"
-          onClick={() => {
-            getTransactions();
-          }}
-          className="refresh-transactions-btn"
-        />
-        <div className="export-csv-button">
-          <ExportCSV
-            fileName={getFileName()}
-            data={data}
-            disabled={!Array.isArray(data)}
-            excludeHeaders={[
-              'OpsType',
-              'ContactPictureURL',
-              'CountryFlag',
-              'SourceCurrencyFlag',
-              'TargetCurrencyFlag',
-            ]}
-          />
+          <div className="export-csv-button">
+            <ExportCSV
+              fileName={getFileName()}
+              data={data}
+              disabled={!Array.isArray(data)}
+              excludeHeaders={[
+                'OpsType',
+                'ContactPictureURL',
+                'CountryFlag',
+                'SourceCurrencyFlag',
+                'TargetCurrencyFlag',
+              ]}
+            />
+          </div>
         </div>
       </div>
     </div>
