@@ -38,6 +38,7 @@ const StoreCard = ({ store, onClick }) => {
       onClick: () => {
         history.push({
           pathname: '/store-details',
+          search: 'tab=details',
           state: { store: StoreID, detailTab: 0 },
         });
       },
@@ -48,6 +49,7 @@ const StoreCard = ({ store, onClick }) => {
       onClick: () => {
         history.push({
           pathname: '/store-details',
+          search: 'tab=pending-voucher',
           state: { store: StoreID, detailTab: 1 },
         });
       },
@@ -61,6 +63,7 @@ const StoreCard = ({ store, onClick }) => {
       onClick: () => {
         history.push({
           pathname: '/store-details',
+          search: 'tab=settings',
           state: { store: StoreID, detailTab: 2 },
         });
       },
@@ -157,4 +160,4 @@ StoreCard.defaultProps = {
   onClick: () => null,
 };
 
-export default StoreCard;
+export default React.memo(StoreCard);

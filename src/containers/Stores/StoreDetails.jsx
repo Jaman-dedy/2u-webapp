@@ -27,6 +27,7 @@ const StoreDetails = () => {
     myStores,
     deleteStore: deleteStoreData,
   } = useSelector(({ user }) => user);
+
   const setStoreStatusStore = useSelector(
     state => state.user.setStoreStatus,
   );

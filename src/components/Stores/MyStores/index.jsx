@@ -28,9 +28,11 @@ const MyStores = ({ userData, myStores }) => {
     isOpenRedeemVoucherModal,
     setIsOpenRedeemVoucherModal,
   ] = useState(false);
+
   const onPageChange = itemsToShow => {
     setStoresToShow(itemsToShow);
   };
+
   const onClickHandler = () => history.goBack();
 
   useEffect(() => {
