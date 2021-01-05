@@ -231,7 +231,7 @@ const AppTable = ({
             {showFilter && (
               <>
                 <Button
-                  style={{ marginLeft: 7 }}
+                  style={{ marginLeft: 7, marginTop: 0 }}
                   className="filterButton"
                   toggle
                   size={width < 700 && 'mini'}
@@ -241,7 +241,6 @@ const AppTable = ({
                     setVisible(!visible);
                   }}
                 >
-                  {' '}
                   <Icon name="filter" />
                 </Button>
 
