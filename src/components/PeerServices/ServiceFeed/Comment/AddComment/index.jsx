@@ -5,7 +5,6 @@ import { useHistory, useLocation } from 'react-router-dom';
 import './style.scss';
 import { useSelector } from 'react-redux';
 import { LOGIN_RETURN_URL } from 'constants/general';
-import Img from 'components/PeerServices/Image';
 import Thumbnail from 'components/common/Thumbnail';
 
 const AddCommentForm = ({

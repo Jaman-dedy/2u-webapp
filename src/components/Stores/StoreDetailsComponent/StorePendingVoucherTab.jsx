@@ -5,7 +5,6 @@ import AppTable from 'components/common/Table';
 import CancelTransactionImage from 'assets/images/cancel.png';
 import Message from 'components/common/Message';
 import LoaderComponent from 'components/common/Loader';
-import ViewVochersImage from 'assets/images/gift.png';
 import ConfirmRejectVoucherModal from './ConfirmRejectVoucherModal';
 import RedeemVoucherModal from './RedeemVoucherModal';
 
@@ -14,8 +13,6 @@ const StorePendingVoucherTab = ({
   getPendingStoreVouchers,
   selectedItem,
   setSelectedItem,
-  cancelOpen,
-  setCancelOpen,
   onRejectVoucher,
 }) => {
   const [openRedeemVoucher, setOpenRedeemVoucher] = useState(false);
@@ -192,8 +189,6 @@ StorePendingVoucherTab.propTypes = {
   getPendingStoreVouchers: PropTypes.objectOf(PropTypes.any),
   selectedItem: PropTypes.objectOf(PropTypes.any),
   setSelectedItem: PropTypes.func,
-  cancelOpen: PropTypes.func,
-  setCancelOpen: PropTypes.func,
   onRejectVoucher: PropTypes.func,
 };
 
@@ -202,8 +197,6 @@ StorePendingVoucherTab.defaultProps = {
   getPendingStoreVouchers: {},
   selectedItem: {},
   setSelectedItem: () => {},
-  cancelOpen: () => {},
-  setCancelOpen: () => {},
   onRejectVoucher: () => {},
 };
 

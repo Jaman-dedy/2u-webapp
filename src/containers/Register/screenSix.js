@@ -7,9 +7,7 @@ export default ({ registrationData, setScreenNumber }) => {
   const { pin, confirmPin, ReferralPID } = registrationData;
   const dispatch = useDispatch();
 
-  const { registerUser, countryCurrencies } = useSelector(
-    ({ user }) => user,
-  );
+  const { registerUser } = useSelector(({ user }) => user);
   const clearError = ({ target: { name } }) => {
     setErrors({
       ...errors,
