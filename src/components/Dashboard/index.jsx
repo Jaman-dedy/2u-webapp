@@ -25,6 +25,7 @@ import WalletTopUp from 'assets/images/wallet-top-up.svg';
 import StatusBar from './StatusBar';
 import Contacts from './Contacts';
 import TransactionHistory from './TransactionHistory';
+import Thumbnail from 'components/common/Thumbnail';
 import { Link } from 'react-router-dom';
 
 const Dashboard = ({
@@ -36,6 +37,7 @@ const Dashboard = ({
   getTransactions,
   loadingTransaction,
 }) => {
+  const [hasError, setHasError] = useState(false);
   const [isShowing, setShowing] = useState(true);
   const [
     isOpenRedeemVoucherModal,
@@ -109,13 +111,21 @@ const Dashboard = ({
             <div className="dash-card">
               {userData?.data && (
                 <div className="wrap-welcome">
-                  <Image
-                    src={
+                  <Thumbnail
+                    style={{
+                      width: '50px',
+                      height: '50px',
+                    }}
+                    avatar={
                       userData?.data?.PictureSet === 'YES'
                         ? userData?.data?.PictureURL
                         : UserProfilePlaceholder
                     }
-                    width={15}
+                    name={userData?.data?.FirstName}
+                    secondName={userData?.data?.LastName}
+                    alt={userData?.data?.LastName}
+                    hasError={hasError}
+                    setHasError={setHasError}
                   />
 
                   <div className="wrap-welcome-message">
