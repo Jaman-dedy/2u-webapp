@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Item, Tab, Label, Segment, Button } from 'semantic-ui-react';
-
 import DashboardLayout from 'components/common/DashboardLayout';
 import WelcomeBar from 'components/Dashboard/WelcomeSection';
 import GoBack from 'components/common/GoBack';
@@ -102,6 +101,22 @@ const VirtualCardDetails = ({
       CardNumber: location?.state?.item.CardNumber,
     });
   }, []);
+
+  const cardExpired = () => {
+    if (!currentCard) {
+      return false;
+    }
+    const expiryDate = new Date(
+      Number(currentCard.YYYY),
+      Number(currentCard.MM),
+      1,
+      0,
+      0,
+      0,
+      0,
+    );
+    return new Date() > expiryDate;
+  };
 
   const panes = [
     {
@@ -229,7 +244,7 @@ const VirtualCardDetails = ({
           </span>{' '}
           <br />
           <Button
-            disabled={!(dateYear.getFullYear() >= currentCard?.YYYY)}
+            disabled={!cardExpired()}
             loading={renewCardLoad}
             onClick={onRenewVirtualCard}
             style={{ marginTop: '.7rem', marginLeft: '.4rem' }}
