@@ -37,7 +37,7 @@ const StoreDetails = () => {
   const [currentStore, setCurrentStore] = useState({});
   const [activeTab, setActiveTab] = useState(0);
 
-  const storeId = location.state && location.state.store;
+  const storeId = location?.state?.store;
 
   useEffect(() => {
     if (deleteStoreData.data) {
@@ -48,10 +48,10 @@ const StoreDetails = () => {
   }, [deleteStoreData]);
 
   useEffect(() => {
-    if (!storeId) {
-      return history.replace('/my-stores');
-    }
-    if (myStores.storeList.length) {
+    // if (!storeId) {
+    //   return history.replace('/my-stores');
+    // }
+    if (storeId && myStores.storeList.length) {
       const store = myStores.storeList.find(
         item => item.StoreID === storeId,
       );
