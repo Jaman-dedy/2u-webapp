@@ -154,7 +154,7 @@ const ManageContacts = ({
     },
     {
       image: SendOthersImage,
-      name: global.translate('Other networks', 2157),
+      name: global.translate('Other networks', 581),
 
       onClick: item => {
         setIsSendingOhters(dispatch);
@@ -289,7 +289,7 @@ const ManageContacts = ({
               )}
 
             {isSendingVoucher &&
-              global.translate('Select the voucher recipient', 2161)}
+              global.translate('Select the voucher recipient', 2157)}
 
             {isSendingMoney &&
               !isManagingContacts &&

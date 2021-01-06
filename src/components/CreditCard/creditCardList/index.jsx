@@ -49,7 +49,7 @@ const CreditCardList = ({ creditCardList, loading }) => {
           )}
 
           <h2 className="head-title">
-            {global.translate('My M-Cards', 2173)}
+            {global.translate('My M-Cards', 2159)}
           </h2>
           <div className="head-buttons">
             <button type="button" onClick={handleCreateCard}>
@@ -77,10 +77,12 @@ const CreditCardList = ({ creditCardList, loading }) => {
           <EmptyCard
             header={global.translate(
               "Looks like you don't have any M-Card yet",
+              2161,
             )}
             createText={global.translate('add an M-Card', 1961)}
             body={global.translate(
               'You can create your M-card and use them for your transactions',
+              2162,
             )}
             onAddClick={handleCreateCard}
             imgSrc={EmptyCardList}

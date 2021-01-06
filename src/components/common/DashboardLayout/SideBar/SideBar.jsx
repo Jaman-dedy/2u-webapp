@@ -212,7 +212,7 @@ const SideBar = () => {
                         toggleSidebar(dispatch);
                       }}
                     >
-                      {global.translate('Other networks', 2148)}
+                      {global.translate('Other networks', 581)}
                     </Link>
                   </li>
                   <li
@@ -320,7 +320,7 @@ const SideBar = () => {
                 <i>
                   <Image src={CreditCardIcon} />
                 </i>
-                {global.translate('Manage cards')}
+                {global.translate('Manage cards', 2158)}
                 <Icon name="caret right" className="sidebar_caret" />
               </button>
               <div>
@@ -405,7 +405,7 @@ const SideBar = () => {
                 <i>
                   <Image src={NavReportBugIcon} />
                 </i>
-                {global.translate('Report a bug', 2137)}
+                {global.translate('Report a bug', 1263)}
               </Link>
             </li>
             <li>

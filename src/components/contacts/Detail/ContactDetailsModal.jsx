@@ -822,7 +822,7 @@ const ContactDetailsModal = ({
                           image={toOthersactionsImage}
                           text={global.translate(
                             'Other networks',
-                            2157,
+                            581,
                           )}
                           onClick={() => {
                             setIsSendingOhters(dispatch);
