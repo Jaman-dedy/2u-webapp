@@ -59,7 +59,7 @@ const DefaultWallet = ({
         )}
         {!error && loading && (
           <div className="animate-placeholder wallet-placeholder">
-            <img src={WalletPlaceholder} />
+            <img src={WalletPlaceholder} alt="" />
           </div>
         )}
         {error && !loading && (

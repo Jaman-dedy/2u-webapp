@@ -82,6 +82,8 @@ const SendCashContainer = ({
     state => state.user.userData,
   );
 
+  const defWallet = walletList?.find(item => item.Default === 'YES');
+
   const {
     language: { preferred },
   } = useSelector(state => state.user);
@@ -90,16 +92,15 @@ const SendCashContainer = ({
 
   useEffect(() => {
     if (usersData) {
-      const { Balance, Currency } = usersData;
       setBalance(
-        `${formatNumber(Balance, {
+        `${formatNumber(defWallet?.Balance, {
           locales:
             usersData.Language !== '' ? usersData.Language : 'en',
-        })} ${Currency}`,
+        })} ${defWallet?.CurrencyCode}`,
       );
-      setCurrency(Currency);
+      setCurrency(defWallet?.CurrencyCode);
     }
-  }, [usersData, open]);
+  }, [usersData, open, defWallet]);
 
   useEffect(() => {
     if (!isEditing) {
