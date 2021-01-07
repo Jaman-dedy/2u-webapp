@@ -27,6 +27,7 @@ const NavBar = ({
   openStorePublicity,
   publicityOpen,
   publicityData,
+  setTourStep,
 }) => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -150,7 +151,7 @@ const NavBar = ({
             </li>
             <li>
               <span className="notification navbar_item_icon">
-                <Help />
+                <Help setTourStep={setTourStep} />
               </span>
             </li>
             <li>
@@ -197,12 +198,14 @@ NavBar.propTypes = {
   openStorePublicity: PropTypes.func,
   publicityOpen: PropTypes.bool,
   publicityData: PropTypes.instanceOf(Object),
+  setTourStep: PropTypes.func,
 };
 
 NavBar.defaultProps = {
   openStorePublicity: () => null,
   publicityOpen: false,
   publicityData: {},
+  setTourStep: () => {},
 };
 
 export default NavBar;

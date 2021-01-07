@@ -25,6 +25,7 @@ const AddCardContainer = () => {
     { Img: masterCardLogo, Title: 'Master card', Value: '2' },
   ];
   const [selectedProvider, setSelectedProvider] = useState(null);
+
   const [pinDigit, setPinDigit] = useState({
     digit0: '',
     digit1: '',
@@ -44,7 +45,6 @@ const AddCardContainer = () => {
     digit2: '',
     digit3: '',
   });
-
   const [openPinModal, setOpenPinModal] = useState(false);
   const { creditCardOptions, createCreditCard } = useSelector(
     ({ creditCard }) => creditCard,

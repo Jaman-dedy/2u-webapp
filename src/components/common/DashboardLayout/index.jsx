@@ -7,17 +7,18 @@ import PropTypes from 'prop-types';
 import { useHistory } from 'react-router';
 import toggleSidebar from 'redux/actions/dashboard/dashboard';
 import isAppDisplayedInWebView from 'helpers/isAppDisplayedInWebView';
+import useWindowSize from 'utils/useWindowSize';
 
 import SideBar from './SideBar/SideBar';
 import NavBar from './NavBar/NavBar';
 import Fab from './Fab';
-import useWindowSize from 'utils/useWindowSize';
 
 const DashboardLayout = ({
   children,
   openStorePublicity,
   publicityOpen,
   publicityData,
+  setTourStep,
 }) => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -68,6 +69,7 @@ const DashboardLayout = ({
               openStorePublicity={openStorePublicity}
               publicityOpen={publicityOpen}
               publicityData={publicityData}
+              setTourStep={setTourStep}
             />
             <SideBar />
           </>
@@ -93,12 +95,14 @@ DashboardLayout.propTypes = {
   children: PropTypes.oneOfType([PropTypes.element, PropTypes.array])
     .isRequired,
   openStorePublicity: PropTypes.func,
+  setTourStep: PropTypes.func,
   publicityOpen: PropTypes.bool,
   publicityData: PropTypes.instanceOf(Object),
 };
 
 DashboardLayout.defaultProps = {
   openStorePublicity: () => null,
+  setTourStep: () => null,
   publicityOpen: false,
   publicityData: {},
 };
