@@ -20,6 +20,7 @@ const LoginForm = ({
   passwordError,
   pinError,
   clearLoginUser,
+  onKeyDown,
 }) => {
   const [showOption, setShowOptions] = useState(false);
   useEffect(() => {
@@ -51,6 +52,7 @@ const LoginForm = ({
           onSubmit={onSubmit}
           autoComplete="off"
           className="login-form-ui"
+          onKeyDown={onKeyDown}
         >
           <Form.Field>
             <Form.Input
@@ -160,8 +162,8 @@ LoginForm.propTypes = {
   pidError: PropTypes.string,
   passwordError: PropTypes.string,
   pinError: PropTypes.string,
-  isFormValid: PropTypes.bool,
   clearLoginUser: PropTypes.func,
+  onKeyDown: PropTypes.func,
 };
 
 LoginForm.defaultProps = {
@@ -170,8 +172,8 @@ LoginForm.defaultProps = {
   pidError: null,
   passwordError: null,
   pinError: null,
-  isFormValid: false,
   clearLoginUser: () => {},
+  onKeyDown: () => {},
 };
 
 export default LoginForm;

@@ -130,7 +130,25 @@ const LoginContainer = () => {
     setPinError(null);
     loginUser(body)(dispatch);
   };
-
+  const onKeyDown = e => {
+    if (e.keyCode === 13) {
+      if (!body.PID.length > 0) {
+        setPidError(
+          global.translate('Please provide a valid Username', 2071),
+        );
+        return;
+      }
+      setPasswordError(null);
+      if (body.PIN.length !== 4) {
+        setPinError(
+          global.translate('Please provide your PIN number.', 543),
+        );
+        return;
+      }
+      setPinError(null);
+      loginUser(body)(dispatch);
+    }
+  };
   return (
     <Login
       credentials={form}
@@ -145,6 +163,7 @@ const LoginContainer = () => {
       pinError={pinError}
       isFormValid={isFormValid}
       clearLoginUser={clearLoginUser}
+      onKeyDown={onKeyDown}
     />
   );
 };
