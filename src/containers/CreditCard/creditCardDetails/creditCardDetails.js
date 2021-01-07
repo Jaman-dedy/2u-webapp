@@ -163,8 +163,9 @@ export default wallet => {
   };
   const validate = () => {
     if (cardPin !== confirmPin) {
-      setPinError(global.translate('The PIN number does not match.'));
-      setError(global.translate('The PIN number does not match.'));
+      setPinError(
+        global.translate('The PIN number does not match.', 2134),
+      );
       return true;
     }
     if (
@@ -172,13 +173,13 @@ export default wallet => {
       cardPin.search(/[a-z]/) === 0 ||
       cardPin.search(/[@!#$%^&*]/) === 0
     ) {
-      setError(
+      setPinError(
         global.translate('PIN should only contain numbers', 1723),
       );
       return true;
     }
     if (checkSequence(cardPin)) {
-      setError(
+      setPinError(
         global.translate(
           'Consecutive numbers are not allowed.',
           1707,
@@ -187,7 +188,7 @@ export default wallet => {
       return true;
     }
     if (!pinIsValid()) {
-      setError(
+      setPinError(
         global.translate('Please provide your PIN number.', 944),
       );
       return true;
@@ -202,7 +203,7 @@ export default wallet => {
       PIN: form?.PIN,
     };
     if (!validate()) {
-      setError(null);
+      setPinError(null);
       editCreditCard(data, '/ChangeCardPIN')(dispatch);
     }
   };

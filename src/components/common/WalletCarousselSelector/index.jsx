@@ -74,7 +74,7 @@ const WalletCarousel = ({
     if (defaultSelectedWallet) {
       setSelectedWallet(defaultSelectedWallet);
     }
-  }, [myWallets, selectedWalletNumber]);
+  }, [myWallets, selectWallet, selectedWalletNumber]);
 
   useEffect(() => {
     const selectedWallet = myWallets.walletList.find(
