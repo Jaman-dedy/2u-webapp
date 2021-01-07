@@ -4,7 +4,6 @@ import CreditCardList from 'components/CreditCard/creditCardList';
 import getCreditCards from 'redux/actions/credit-card/getCreditCards';
 import getCreditCardOptions from 'redux/actions/credit-card/getOptions';
 import getMyWallets from 'redux/actions/users/getMyWallets';
-import getCardOptions from '../getCardOptions';
 
 const CreditCardListContainer = () => {
   const dispatch = useDispatch();
@@ -13,6 +12,7 @@ const CreditCardListContainer = () => {
   const [errors, setErrors] = useState(null);
   const [selectedWallet, setSlectedWallet] = useState(null);
   const [openOptionModal, setOpenOptionModal] = useState(false);
+  const [canCreate, setCanCreate] = useState(false);
 
   const { creditCardList } = useSelector(
     ({ creditCard }) => creditCard,
@@ -24,6 +24,7 @@ const CreditCardListContainer = () => {
       getMyWallets()(dispatch);
     }
   }, []);
+
   useEffect(() => {
     if (userData) {
       const { data } = userData;
@@ -87,7 +88,8 @@ const CreditCardListContainer = () => {
       setOpenOptionModal={setOpenOptionModal}
       setForm={setForm}
       creditCardNextStep={creditCardNextStep}
-      getCardOptions={getCardOptions(setOpenOptionModal, form)}
+      canCreate={canCreate}
+      setCanCreate={setCanCreate}
     />
   );
 };

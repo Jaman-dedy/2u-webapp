@@ -3,7 +3,7 @@ import './style.scss';
 import 'assets/styles/spinner.scss';
 
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Message } from 'semantic-ui-react';
 import PinCodeForm from 'components/common/PinCodeForm';
@@ -21,6 +21,12 @@ const LoginForm = ({
   pinError,
   clearLoginUser,
 }) => {
+  const [showOption, setShowOptions] = useState(false);
+  useEffect(() => {
+    if (error) {
+      setShowOptions(true);
+    }
+  }, [error]);
   return (
     <>
       {error && (
@@ -111,15 +117,26 @@ const LoginForm = ({
             {isLoading && <div className="loading-button" />}
           </button>
           <div className="clear" />
-          <div className="from_login_link">
-            {global.translate(
-              'Forgot your Password or your PIN ?',
-              182,
-            )}{' '}
-            <Link to="/reset-password">
-              {global.translate('Click here', 1705)}
-            </Link>
-          </div>
+          {showOption && (
+            <>
+              <div className="from_login_link">
+                {global.translate(
+                  'Forgot your Password or your PIN ?',
+                  182,
+                )}{' '}
+                <Link to="/reset-password">
+                  {global.translate('Click here', 1705)}
+                </Link>
+              </div>
+              <div className="from_login_link">
+                {global.translate('Forgot your Username ?', 2178)}{' '}
+                <Link to="/remind-username">
+                  {global.translate('Click here', 1705)}
+                </Link>
+              </div>
+            </>
+          )}
+
           <div className="btn-signup">
             <div>
               {global.translate('Not yet registered?', 1201)}{' '}

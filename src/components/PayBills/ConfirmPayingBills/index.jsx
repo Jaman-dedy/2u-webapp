@@ -91,7 +91,8 @@ const ConfirmPayingBills = ({
                 return setErrors({
                   ...errors,
                   Amount: global.translate(
-                    'The amount should not be less than zero.', 2007
+                    'The amount should not be less than zero.',
+                    2007,
                   ),
                 });
               }
