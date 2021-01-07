@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Container, Form, Icon, Label } from 'semantic-ui-react';
+import { Container, Form, Label } from 'semantic-ui-react';
 import './style.scss';
 
 import PinCodeForm from 'components/common/PinCodeForm';

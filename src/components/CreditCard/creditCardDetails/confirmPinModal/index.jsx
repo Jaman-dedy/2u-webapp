@@ -11,7 +11,6 @@ const ConfirmPin = ({
   error,
   setUserPinDigit,
   userPinDigit,
-  shouldClear,
   setShouldClear,
   isChangingPwd,
   isActivatingCard,
@@ -23,7 +22,6 @@ const ConfirmPin = ({
   loadOnChangePwd,
   loadOnEnable,
   loadOnActivate,
-  disabled,
   setForm,
   handleEnableCard,
 }) => {
@@ -63,7 +61,11 @@ const ConfirmPin = ({
       </Modal.Content>
       <Modal.Actions>
         <Button
-          disabled={disabled}
+          disabled={
+            (isChangingPwd && loadOnChangePwd) ||
+            (isActivatingCard && loadOnActivate) ||
+            (isEnablingCard && loadOnEnable)
+          }
           basic
           color="red"
           onClick={() => {
@@ -87,8 +89,7 @@ const ConfirmPin = ({
             (isActivatingCard && loadOnActivate) ||
             (isEnablingCard && loadOnEnable)
           }
-          basic
-          color="green"
+          positive
           onClick={() => {
             if (isChangingPwd) {
               handleChangeCreditCardPin();
@@ -101,7 +102,7 @@ const ConfirmPin = ({
             }
           }}
         >
-          Proceed
+          {global.translate('Proceed')}
         </Button>
       </Modal.Actions>
     </Modal>
@@ -115,7 +116,6 @@ ConfirmPin.propTypes = {
   setUserPinDigit: propTypes.func.isRequired,
   userPinDigit: propTypes.instanceOf(Object).isRequired,
   setShouldClear: propTypes.func.isRequired,
-  shouldClear: propTypes.bool.isRequired,
   isEnablingCard: propTypes.bool.isRequired,
   isActivatingCard: propTypes.bool.isRequired,
   isChangingPwd: propTypes.bool.isRequired,
@@ -123,11 +123,13 @@ ConfirmPin.propTypes = {
   setIsChangingPwd: propTypes.func.isRequired,
   setIsActivatingCard: propTypes.func.isRequired,
   setIsEnablingCard: propTypes.func.isRequired,
-  loading: propTypes.bool.isRequired,
   disabled: propTypes.bool.isRequired,
   setForm: propTypes.func.isRequired,
   error: propTypes.string.isRequired,
   handleEnableCard: propTypes.func.isRequired,
+  loadOnChangePwd: propTypes.bool.isRequired,
+  loadOnEnable: propTypes.bool.isRequired,
+  loadOnActivate: propTypes.bool.isRequired,
 };
 
 export default ConfirmPin;

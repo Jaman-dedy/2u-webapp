@@ -4,8 +4,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import errorImage from 'assets/images/error.png';
-import successImage from 'assets/images/confirm.png';
 import './feedback.scss';
 
 const Feedback = ({
@@ -50,8 +48,26 @@ const Feedback = ({
             }
           }}
         >
-          <div className="feedbackWrapper-content">
-            <div className="titleText">
+          <div
+            className="feedbackWrapper-content"
+            style={
+              success
+                ? {
+                    border: '1px solid #277946',
+                    backgroundColor: '#edfaea',
+                  }
+                : {
+                    border: '1px solid #df5c4e',
+                    backgroundColor: '#f5f2f2',
+                  }
+            }
+          >
+            <div
+              className="titleText"
+              style={
+                success ? { color: '#277946' } : { color: '#df5c4e' }
+              }
+            >
               <h4>{global.translate(title).toUpperCase()}</h4>
               <p className="messageText">
                 {global.translate(message)}

@@ -10,7 +10,7 @@ import GoBack from 'components/common/GoBack';
 import WelcomeBar from 'components/Dashboard/WelcomeSection';
 import MyWallets from 'components/common/WalletCarousselSelector';
 import 'react-datepicker/dist/react-datepicker.css';
-import DisplayProviders from './DisplayProviders';
+import DisplayProviders from 'components/common/DisplayProviders';
 import TopUpCreditCardImg from 'assets/images/topup-credit.svg';
 import PaypalImg from 'assets/images/paypal-provider.svg';
 import BankImg from 'assets/images/bankImg.svg';
@@ -191,6 +191,10 @@ const AddMoney = ({
     }
   }, [step]);
 
+  const handleNavigateSteps = step => {
+    setStep(step);
+  };
+
   return (
     <>
       <Prompt
@@ -227,6 +231,8 @@ const AddMoney = ({
               )}
               levelNumber={levelOne ? levelOneVisited : Step1Img}
               visited={levelOne}
+              onClick={handleNavigateSteps}
+              number={1}
             />
             <ShowStep
               title={global.translate('Top Up', 542)}
@@ -236,12 +242,16 @@ const AddMoney = ({
               )}
               levelNumber={levelTwo ? levelTwoVisited : Step2Img}
               visited={levelTwo}
+              onClick={handleNavigateSteps}
+              number={2}
             />
             <ShowStep
               title={global.translate('Confirm', 1750)}
               subTitle={global.translate('Review and confirm', 2138)}
               levelNumber={levelThree ? levelThreeVisited : Step3Img}
               visited={levelThree}
+              onClick={handleNavigateSteps}
+              number={3}
             />
           </div>
 
@@ -292,10 +302,7 @@ const AddMoney = ({
                     !topUpPaypalCard &&
                     !topUpFromCreditCard
                   }
-                  style={{
-                    backgroundColor: '#d0342f',
-                    color: '#fff',
-                  }}
+                  positive
                   onClick={() => setStep(step + 1)}
                 >
                   {global.translate('Next', 10)}

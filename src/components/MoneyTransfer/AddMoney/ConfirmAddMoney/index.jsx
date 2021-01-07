@@ -44,7 +44,9 @@ const ConfirmAddMoney = ({
         </Item>
 
         <Item style={{ display: 'block' }}>
-          <span>Credit card company fees</span>
+          <span>
+            {global.translate('Credit card company fees', 2172)}
+          </span>
           <span className="moneyAmount">
             {Fees ? `${Fees} ${Currency}` : <Placeholder />}
           </span>
@@ -88,10 +90,7 @@ const ConfirmAddMoney = ({
       <Button
         loading={loading}
         disabled={loading}
-        style={{
-          backgroundColor: '#d0342f',
-          color: '#fff',
-        }}
+        positive
         onClick={() =>
           !loading &&
           addMoneyFromCreditCardAction(addMoneyData)(dispatch)
@@ -109,7 +108,7 @@ const ConfirmAddMoney = ({
           setLevelThree(false);
         }}
       >
-        {global.translate('Back', 174)}
+        {global.translate('Back', 2158)}
       </Button>
     </div>
   );
@@ -122,11 +121,13 @@ ConfirmAddMoney.propTypes = {
   cardOperationFees: PropTypes.instanceOf(Object),
   addMoneyFromCreditCard: PropTypes.instanceOf(Object),
   clearAddMoneyData: PropTypes.func,
+  setLevelThree: PropTypes.func,
 };
 ConfirmAddMoney.defaultProps = {
   addMoneyData: {},
   cardOperationFees: {},
   addMoneyFromCreditCard: {},
   clearAddMoneyData: () => {},
+  setLevelThree: () => {},
 };
 export default ConfirmAddMoney;

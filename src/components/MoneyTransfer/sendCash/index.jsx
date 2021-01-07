@@ -331,7 +331,6 @@ const SendCashModal = ({
                         setCountry={setCountry}
                         iconClass="inline-block small-h-margin dropdown-flag"
                       >
-                        {console.log('country', country)}
                         <span className="country-code">
                           {country && country.value}
                         </span>

@@ -313,23 +313,30 @@ const SideBar = () => {
               </Link>
             </li>
             <li>
-              <Link
-                to="/credit-cards"
-                className={
-                  (location.pathname + location.search).substr(1) ===
-                  'credit-cards'
-                    ? 'nav-visited'
-                    : null
-                }
-                onClick={() => {
-                  toggleSidebar(dispatch);
-                }}
+              <button
+                type="button"
+                onClick={() => toggleMenu('ManageCards')}
               >
                 <i>
                   <Image src={CreditCardIcon} />
                 </i>
-                {global.translate('Credit card', 726)}
-              </Link>
+                {global.translate('Manage cards')}
+                <Icon name="caret right" className="sidebar_caret" />
+              </button>
+              <div>
+                {expand && routeName === 'ManageCards' && (
+                  <ul className="sub-menu">
+                    <li
+                      onClick={() => {
+                        toggleSidebar(dispatch);
+                        history.push('/credit-cards');
+                      }}
+                    >
+                      {global.translate('M-Card')}
+                    </li>
+                  </ul>
+                )}
+              </div>
             </li>
             <li>
               <Link

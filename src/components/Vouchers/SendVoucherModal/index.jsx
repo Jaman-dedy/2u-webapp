@@ -15,7 +15,6 @@ import Img from 'components/Vouchers/Img';
 import Thumbnail from 'components/common/Thumbnail';
 import formatNumber from 'utils/formatNumber';
 import { clearMoveFundsErrors } from 'redux/actions/moneyTransfer/moveFunds';
-import isAppDisplayedInWebView from 'helpers/isAppDisplayedInWebView';
 import TransactionEntity from './TransactionEntity';
 
 const SendMoneyModal = ({ SendVoucherModal }) => {

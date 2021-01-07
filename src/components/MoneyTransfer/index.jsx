@@ -1,4 +1,8 @@
 /* eslint-disable import/no-named-as-default */
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import TopUpIcon from 'assets/images/TransAirtime.svg';
 import bankTransferIcon from 'assets/images/TransBank.svg';
 import CreditCard from 'assets/images/TransCreditCard.svg';
@@ -16,11 +20,12 @@ import WelcomeBar from 'components/Dashboard/WelcomeSection';
 import PayBills from 'components/PayBills';
 import ExchangeContainer from 'containers/MoneyTransfer/Exchange/Exchange';
 import isAppDisplayedInWebView from 'helpers/isAppDisplayedInWebView';
-import PropTypes from 'prop-types';
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { setIsendingCash, setIsSendingMoney, setIsSendingOhters, setIsTopingUp } from 'redux/actions/dashboard/dashboard';
+import {
+  setIsendingCash,
+  setIsSendingMoney,
+  setIsSendingOhters,
+  setIsTopingUp,
+} from 'redux/actions/dashboard/dashboard';
 
 const MoneyTransfer = ({ payBills }) => {
   const [sendMoneyOpen, setSendMoneyOpen] = useState(false);

@@ -12,7 +12,6 @@ import DashboardLayout from 'components/common/DashboardLayout';
 import DefaultWalletContainer from 'containers/Dashboard/defaultWallet';
 import GraphDataContainer from 'containers/Dashboard/cumulativeGraph';
 import UserCurrenciesContainer from 'containers/Dashboard/userCurrencies';
-import NetworthContainer from 'containers/Dashboard/networth';
 import AddWalletModal from 'components/Wallets/AddWalletModal';
 import getCreditCardOptions from 'redux/actions/credit-card/getOptions';
 import CurrencyExchangeIcon from 'assets/images/CurrencyExchangeIcon.png';
@@ -27,7 +26,6 @@ import TrashIcon from 'assets/images/trashOptIcon.png';
 import EditIcon from 'assets/images/edit.png';
 import AddMoneyIcon from 'assets/images/add_money_dash.png';
 import GoBack from 'components/common/GoBack';
-import CreditCardContainer from 'containers/CreditCard';
 import EditWalletModal from './EditWalletModal';
 import FailedModal from './FailedModal';
 import WalletOptionsModal from './WalletOptionsModal';
@@ -136,12 +134,15 @@ const WalletComponents = ({
       },
     },
     {
-      name: global.translate('Add a credit card', 90),
+      name: global.translate('Order an M-Card', 2175),
       image: CreditCardIcon,
       onClick: item => {
-        setAddCreditCardModalOpen(true);
-        hadleLoadCardOptions(item);
-        setStep(1);
+        history.push({
+          pathname: '/add-card',
+          state: {
+            wallet: item,
+          },
+        });
       },
     },
     {
@@ -243,7 +244,8 @@ const WalletComponents = ({
               isOpened={isModalOpened}
               onClickYes={deleteWalletFX}
               message={`${global.translate('Delete Wallet', 557)} : ${
-                form.AccountNumber } ${form.AccountName ? `(${form.AccountName})`:''} ?`}
+                form.AccountNumber
+              } ${form.AccountName ? `(${form.AccountName})` : ''} ?`}
             />
             <div className="wallets">
               <div className="all-wallets">
@@ -408,15 +410,6 @@ const WalletComponents = ({
                   open={deleteWallet.error}
                   errors={deleteWallet.error}
                   clearForm={clearForm}
-                />
-                <CreditCardContainer
-                  setAddCreditCardModalOpen={
-                    setAddCreditCardModalOpen
-                  }
-                  addCreditCardModalOpen={addCreditCardModalOpen}
-                  selectedWallet={selectedWallet}
-                  step={step}
-                  setStep={setStep}
                 />
               </div>
             </div>
