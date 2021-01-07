@@ -234,7 +234,7 @@ const ReusableDrowdown = ({
                   WalletQRCode,
                   CurrencyCode,
                   Balance,
-                  value,
+                  Value,
                 }) => (
                   <Dropdown.Item
                     key={Title}
@@ -258,7 +258,7 @@ const ReusableDrowdown = ({
                         WalletQRCode,
                         CurrencyCode,
                         Balance,
-                        value,
+                        Value,
                       });
                     }}
                   >
