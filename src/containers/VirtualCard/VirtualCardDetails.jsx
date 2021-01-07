@@ -83,14 +83,14 @@ const VirtualCardDetailsContainer = () => {
   }, [location?.state?.item]);
 
   useEffect(() => {
-    if (userData.data) {
-      userData.data.Wallets.map(wallet => {
+    if (Array.isArray(walletList)) {
+      walletList.map(wallet => {
         if (wallet.Default === 'YES') {
           setSelectedWallet(wallet);
         }
       });
     }
-  }, [userData.data]);
+  }, [walletList]);
 
   useEffect(() => {
     if (walletList.length === 0) {
