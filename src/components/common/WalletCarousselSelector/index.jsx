@@ -73,10 +73,6 @@ const WalletCarousel = ({
 
     if (defaultSelectedWallet) {
       setSelectedWallet(defaultSelectedWallet);
-      selectWallet({
-        AccountNumber: defaultSelectedWallet.AccountNumber,
-        CurrencyCode: defaultSelectedWallet.CurrencyCode,
-      });
     }
   }, [myWallets, selectedWalletNumber]);
 
