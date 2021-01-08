@@ -17,6 +17,7 @@ const MyRewards = ({ userData }) => {
   const printUCard = () => {};
 
   const { data, loading } = userData;
+  console.log('data', data);
 
   return (
     <div className="myrewards-container">
@@ -27,7 +28,7 @@ const MyRewards = ({ userData }) => {
         />
       )}
 
-      {data && (
+      {data?.Rewards && (
         <>
           <Grid>
             <Grid.Row columns={2}>
