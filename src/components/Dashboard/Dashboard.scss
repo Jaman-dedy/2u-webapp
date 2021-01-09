@@ -423,8 +423,7 @@
       width: 440px;
     }
   }
-  .wrap-wallet-container {
-  }
+
   .wrap-wallet {
     width: 280px;
   }
@@ -443,5 +442,11 @@
     .wrap-wallet-btn {
       width: 100% !important;
     }
+  }
+}
+@media (min-width: 1681px) {
+  .wrap-wallet {
+    margin-bottom: 10px;
+    margin-left: 10px;
   }
 }
