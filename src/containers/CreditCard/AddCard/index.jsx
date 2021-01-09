@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import masterCardLogo from 'assets/images/mastercard-logo.svg';
@@ -55,14 +55,17 @@ const AddCardContainer = () => {
   const onOptionsChange = (e, { name, value }) => {
     setForm({ ...form, [name]: value });
   };
-  const handleWalletSelected = ({ AccountNumber }) => {
-    setForm({
-      ...form,
-      Wallet: AccountNumber,
-    });
-    const data = { Wallet: AccountNumber };
-    getCreditCardOptions(data, '/GetCreditCardOptions')(dispatch);
-  };
+  const handleWalletSelected = useCallback(
+    ({ AccountNumber }) => {
+      setForm({
+        ...form,
+        Wallet: AccountNumber,
+      });
+      const data = { Wallet: AccountNumber };
+      getCreditCardOptions(data, '/GetCreditCardOptions')(dispatch);
+    },
+    [dispatch, form],
+  );
 
   useEffect(() => {
     setSelectedProvider({

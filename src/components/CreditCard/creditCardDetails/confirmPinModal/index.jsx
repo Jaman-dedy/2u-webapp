@@ -19,11 +19,15 @@ const ConfirmPin = ({
   setIsActivatingCard,
   setIsEnablingCard,
   setIsChangingPwd,
-  loadOnChangePwd,
-  loadOnEnable,
-  loadOnActivate,
   setForm,
   handleEnableCard,
+  loading,
+  modalTitle,
+  children,
+  isDeletingCard,
+  handleDeleteCard,
+  canProceed,
+  setIsDeletingCard,
 }) => {
   return (
     <Modal
@@ -34,9 +38,11 @@ const ConfirmPin = ({
       closeOnEscape={false}
     >
       <Modal.Header style={{ textAlign: 'center' }}>
-        {global.translate('Confirm with your PIN')}
+        {modalTitle ??
+          global.translate('Confirm with your PIN', 2125)}
       </Modal.Header>
       <Modal.Content>
+        {children}
         <div className={classes.PinFormNumber}>
           <PinCodeForm
             label={global.translate('Provide your PIN Number', 543)}
@@ -61,34 +67,23 @@ const ConfirmPin = ({
       </Modal.Content>
       <Modal.Actions>
         <Button
-          disabled={
-            (isChangingPwd && loadOnChangePwd) ||
-            (isActivatingCard && loadOnActivate) ||
-            (isEnablingCard && loadOnEnable)
-          }
+          disabled={loading}
           basic
           color="red"
           onClick={() => {
             setIsActivatingCard(false);
             setIsEnablingCard(false);
             setIsChangingPwd(false);
+            setIsDeletingCard(false);
             setForm({});
             setShouldClear(true);
           }}
         >
-          Cancel
+          {global.translate('Cancel', 86)}
         </Button>
         <Button
-          loading={
-            (isChangingPwd && loadOnChangePwd) ||
-            (isActivatingCard && loadOnActivate) ||
-            (isEnablingCard && loadOnEnable)
-          }
-          disabled={
-            (isChangingPwd && loadOnChangePwd) ||
-            (isActivatingCard && loadOnActivate) ||
-            (isEnablingCard && loadOnEnable)
-          }
+          loading={loading}
+          disabled={loading || (!canProceed && isDeletingCard)}
           positive
           onClick={() => {
             if (isChangingPwd) {
@@ -100,9 +95,12 @@ const ConfirmPin = ({
             if (isEnablingCard) {
               handleEnableCard();
             }
+            if (isDeletingCard) {
+              handleDeleteCard();
+            }
           }}
         >
-          {global.translate('Proceed')}
+          {global.translate('Proceed', 1752)}
         </Button>
       </Modal.Actions>
     </Modal>
@@ -123,13 +121,22 @@ ConfirmPin.propTypes = {
   setIsChangingPwd: propTypes.func.isRequired,
   setIsActivatingCard: propTypes.func.isRequired,
   setIsEnablingCard: propTypes.func.isRequired,
-  disabled: propTypes.bool.isRequired,
   setForm: propTypes.func.isRequired,
   error: propTypes.string.isRequired,
   handleEnableCard: propTypes.func.isRequired,
-  loadOnChangePwd: propTypes.bool.isRequired,
-  loadOnEnable: propTypes.bool.isRequired,
-  loadOnActivate: propTypes.bool.isRequired,
+  isDeletingCard: propTypes.bool.isRequired,
+  children: propTypes.instanceOf(React.Children),
+  canProceed: propTypes.bool,
+  handleDeleteCard: propTypes.func,
+  modalTitle: propTypes.string,
+  loading: propTypes.string,
+  setIsDeletingCard: propTypes.func.isRequired,
 };
-
+ConfirmPin.defaultProps = {
+  children: null,
+  canProceed: true,
+  handleDeleteCard: () => {},
+  modalTitle: '',
+  loading: false,
+};
 export default ConfirmPin;

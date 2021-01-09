@@ -48,7 +48,6 @@ const CreditCardDetails = ({ creditCardDetails }) => {
     setPinDigit,
     setConfirmPinDigit,
     confirmPinDigit,
-    error,
   } = creditCardDetails;
   const dispatch = useDispatch();
 
@@ -60,6 +59,7 @@ const CreditCardDetails = ({ creditCardDetails }) => {
   );
   const [isDeletingCard, setIsDeletingCard] = useState(false);
   const [confirmationText, setConfirmationText] = useState('');
+
   const history = useHistory();
   const onClickHandler = () => history.goBack();
 
@@ -163,7 +163,6 @@ const CreditCardDetails = ({ creditCardDetails }) => {
         loadOnChangePwd={changeCreditCardPin.loading}
         loadOnEnable={loadOnEnable}
         loadOnActivate={loadOnActivate}
-        disabled={changeCreditCardPin.loading}
         setForm={setForm}
         handleEnableCard={handleEnableCard}
         loadOnDeleteCard={loadOnDelete}
@@ -171,7 +170,7 @@ const CreditCardDetails = ({ creditCardDetails }) => {
           loadOnActivate ||
           loadOnDelete ||
           loadOnEnable ||
-          changeCreditCardPin.loading
+          changeCreditCardPin?.loading
         }
         modalTitle={
           isDeletingCard
@@ -232,7 +231,6 @@ CreditCardDetails.propTypes = {
   pinError: propTypes.string.isRequired,
   setPinError: propTypes.func.isRequired,
   handleEnableCard: propTypes.func.isRequired,
-  error: propTypes.instanceOf(Object).isRequired,
 };
 CreditCardDetails.defaultProps = {
   pinDigit: {},
