@@ -349,10 +349,11 @@
   .wrap-wallet-container {
     flex-flow: row;
     flex-direction: column;
-  }
-  .wrap-wallet {
-    width: 100% !important;
-    padding: 10px !important;
+    .wrap-wallet {
+      width: 100% !important;
+      padding: 10px !important;
+      margin-bottom: 10px;
+    }
   }
   .wrap-wallet-actions {
     width: 100% !important;
