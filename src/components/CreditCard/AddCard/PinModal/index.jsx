@@ -89,7 +89,7 @@ const PinModal = ({
           />
           {errors && (
             <Message negative>
-              <p>{errors.Description}</p>
+              <p>{errors?.Description ?? errors?.message}</p>
             </Message>
           )}
         </div>
