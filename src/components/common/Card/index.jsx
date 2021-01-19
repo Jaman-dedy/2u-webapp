@@ -1,13 +1,13 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState } from 'react';
-import { Image, Icon, Button, Popup, List } from 'semantic-ui-react';
+import { Image, Button, Popup, List } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import CopyIcon from 'assets/images/Copy-icon.svg';
 import CardImage from '../CardImage';
 import './style.scss';
 
-const Card = ({ card, onClick, detail, children, userData }) => {
+const Card = ({ card, onClick, detail, userData }) => {
   const [copySuccess, setCopySuccess] = useState('');
 
   const copyToClipBoard = async (e, CardNumber, message) => {
@@ -23,7 +23,11 @@ const Card = ({ card, onClick, detail, children, userData }) => {
   return (
     <List.Item className="card-list-item">
       <List.Content>
-        <div className="display-card-box">
+        <div
+          className={
+            detail ? 'display-card-box detail' : 'display-card-box'
+          }
+        >
           <div className="left-side">
             <div>
               <CardImage
@@ -107,14 +111,9 @@ Card.propTypes = {
   card: PropTypes.objectOf(PropTypes.any).isRequired,
   onClick: PropTypes.func.isRequired,
   detail: PropTypes.bool,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.none),
-    PropTypes.node,
-  ]),
   userData: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 Card.defaultProps = {
   detail: false,
-  children: null,
 };
 export default Card;

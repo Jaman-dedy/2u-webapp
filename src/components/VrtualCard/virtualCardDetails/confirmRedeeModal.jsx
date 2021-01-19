@@ -43,7 +43,6 @@ const NestedModal = ({
             2049,
           )}
           <strong style={{ color: '#333556' }}>
-            {' '}
             {virtualCard?.Balance} &nbsp; {virtualCard?.Currency}{' '}
           </strong>
           <br />
@@ -60,10 +59,8 @@ const NestedModal = ({
           className="loader-section"
           style={{ alignSelf: 'center' }}
         >
-          {' '}
           {errors && <Message message={errors} />}
           <>
-            {' '}
             {error && <Message message={global.translate(error)} />}
             {error && !error[0] && (
               <Message message={global.translate(error.error)} />

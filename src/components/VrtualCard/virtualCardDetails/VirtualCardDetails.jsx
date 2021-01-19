@@ -49,6 +49,8 @@ const VirtualCardDetails = ({
   openConfirmModal,
   setOpenConfirmModal,
   shouldClear,
+  canProceed,
+  setCanProceed,
 }) => {
   const [canViewDetail, setCanViewDetail] = useState(true);
   const [currentCard, setCurrentCard] = useState(null);
@@ -170,11 +172,13 @@ const VirtualCardDetails = ({
             for any online transaction, until you enable it again`,
                 2142,
               )}
+              className="virtual-card-info"
             />
           )}
           <TableDetails
             card={currentCard}
-            onUpdateCardStatus={onUpdateCardStatus}
+            setCanProceed={setCanProceed}
+            onUpdateConfirmed={onUpdateCardStatus}
             onRenewVirtualCard={onRenewVirtualCard}
             loadOnChangeStatus={loadingStatus}
             loadOnRenew={renewCardLoad}
@@ -183,6 +187,10 @@ const VirtualCardDetails = ({
             setIsRedeeming={setisRedeeming}
             loadRedeeming={loadRedeeMoney}
             loadAddMoney={loading}
+            canProceed={canProceed}
+            onOptionsChange={onOptionsChange}
+            setForm={setForm}
+            form={form}
           />
         </div>
       </div>
@@ -227,6 +235,8 @@ VirtualCardDetails.propTypes = {
   openConfirmModal: PropTypes.bool,
   setOpenConfirmModal: PropTypes.func,
   shouldClear: PropTypes.bool,
+  canProceed: PropTypes.bool,
+  setCanProceed: PropTypes.func.isRequired,
 };
 VirtualCardDetails.defaultProps = {
   selectedWallet: {},
@@ -266,6 +276,7 @@ VirtualCardDetails.defaultProps = {
   openConfirmModal: false,
   setOpenConfirmModal: () => {},
   shouldClear: false,
+  canProceed: false,
 };
 
 export default VirtualCardDetails;

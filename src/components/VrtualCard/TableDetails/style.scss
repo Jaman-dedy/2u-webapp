@@ -21,3 +21,9 @@
     color: #ffff;
   }
 }
+
+@media screen and (min-width: 1024px) {
+  .all-details {
+    margin-top: 0 !important;
+  }
+}

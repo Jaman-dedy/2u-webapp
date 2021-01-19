@@ -1,12 +1,13 @@
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Table } from 'semantic-ui-react';
+import ConfirmWithPINModal from 'components/common/ConfirmWithPINModal';
 import './style.scss';
 
 const TableDetails = ({
   card,
-  onUpdateCardStatus,
+  onUpdateConfirmed,
   onRenewVirtualCard,
   loadOnChangeStatus,
   loadOnRenew,
@@ -15,7 +16,19 @@ const TableDetails = ({
   setIsRedeeming,
   loadOnRedeem,
   loadOnAddMoney,
+  onOptionsChange,
+  canProceed,
+  setForm,
+  form,
 }) => {
+  const [isChangingStatus, setIsChangingStatus] = useState(false);
+
+  useEffect(() => {
+    if (!loadOnChangeStatus) {
+      setIsChangingStatus(false);
+    }
+  }, [loadOnChangeStatus]);
+
   const handleAddMoneyModal = () => {
     setAddMoneyOpen(true);
   };
@@ -24,9 +37,35 @@ const TableDetails = ({
     setAddMoneyOpen(true);
   };
 
+  const handleChangeCardStatus = () => {
+    setIsChangingStatus(value => !value);
+    setForm({
+      ...form,
+      amount: '',
+      digit0: '',
+      digit1: '',
+      digit2: '',
+      digit3: '',
+    });
+  };
+
   const creationDate = moment(card?.CreationDate).format('ll');
   return (
-    <div className="all-details">
+    <div
+      className="table-details"
+      style={{ marginTop: card?.Enabled === 'YES' ? '-2rem' : 0 }}
+    >
+      <ConfirmWithPINModal
+        isOpened={isChangingStatus || loadOnChangeStatus}
+        onClickYes={onUpdateConfirmed}
+        onClickNo={setIsChangingStatus}
+        close={setIsChangingStatus}
+        loading={loadOnChangeStatus}
+        message={global.translate('Confirm with your PIN')}
+        onPinChange={onOptionsChange}
+        disabled={!canProceed}
+      />
+
       <Table unstackable>
         <Table.Body>
           <Table.Row>
@@ -36,7 +75,7 @@ const TableDetails = ({
               </span>
               <Button
                 loading={loadOnChangeStatus}
-                onClick={onUpdateCardStatus}
+                onClick={handleChangeCardStatus}
                 style={{
                   backgroundColor: '#343657',
                   color: '#ffff',
@@ -176,7 +215,6 @@ const TableDetails = ({
 TableDetails.propTypes = {
   card: PropTypes.objectOf(PropTypes.any).isRequired,
   onRenewVirtualCard: PropTypes.func.isRequired,
-  onUpdateCardStatus: PropTypes.func.isRequired,
   loadOnChangeStatus: PropTypes.bool.isRequired,
   loadOnRenew: PropTypes.bool.isRequired,
   isExpired: PropTypes.bool.isRequired,
@@ -184,7 +222,14 @@ TableDetails.propTypes = {
   setIsRedeeming: PropTypes.func.isRequired,
   loadOnAddMoney: PropTypes.bool.isRequired,
   loadOnRedeem: PropTypes.bool.isRequired,
+  onUpdateConfirmed: PropTypes.func.isRequired,
+  onOptionsChange: PropTypes.func.isRequired,
+  canProceed: PropTypes.bool,
+  form: PropTypes.objectOf(PropTypes.any).isRequired,
+  setForm: PropTypes.func.isRequired,
 };
-TableDetails.defaultProps = {};
+TableDetails.defaultProps = {
+  canProceed: false,
+};
 
 export default React.memo(TableDetails);
