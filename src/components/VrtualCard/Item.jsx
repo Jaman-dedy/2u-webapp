@@ -1,22 +1,17 @@
+/* eslint-disable import/order */
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState, useRef } from 'react';
+import CardInfo from 'components/common/Card';
 import PropTypes from 'prop-types';
-import { Item, Button, Image, Popup } from 'semantic-ui-react';
+import React from 'react';
+import { Item } from 'semantic-ui-react';
+import AddMoneyModal from './AddMoneyModal';
 
 import './item.scss';
-import Wrapper from 'hoc/Wrapper';
-import visaCardImg from 'assets/images/visa-card.png';
-import masterCardImg from 'assets/images/mastercard.png';
-import formatNumber from 'utils/formatNumber';
-import Card from './Card';
-import AddMoneyModal from './AddMoneyModal';
 
 const VirtualCard = ({
   virtualCard,
   userData,
-  handleOnClick,
-  canViewDetail,
   form,
   setForm,
   selectedWallet,
@@ -36,176 +31,25 @@ const VirtualCard = ({
   loading,
   addMoneyOpen,
   setAddMoneyOpen,
-  onRedeeMoney,
+  onRedeemMoney,
   isRedeeming,
-  setisRedeeming,
+  setIsRedeeming,
   loadRedeeMoney,
   error,
   openConfirmModal,
   setOpenConfirmModal,
   shouldClear,
 }) => {
-  const [copySuccess, setCopySuccess] = useState('');
-
-  const textAreaRef = useRef(null);
-  const copyToClipBoard = async (e, CardNumber) => {
-    e.stopPropagation();
-    try {
-      await navigator.clipboard.writeText(CardNumber);
-      setCopySuccess('Card number copied!');
-    } catch (err) {
-      setCopySuccess('Failed to copy!');
-    }
-  };
-
-  const handleAddMoneyModal = () => {
-    setAddMoneyOpen(true);
-  };
-  const handleReddeemMoneyModal = () => {
-    setAddMoneyOpen(true);
-    setisRedeeming(true);
-  };
-  const formatBalance = balance => {
-    if (!balance) return '';
-    if (localStorage.language === 'fr') {
-      return formatNumber(balance, {
-        locales: localStorage.language
-          ? userData?.Language
-          : undefined,
-      });
-    }
-    return formatNumber(balance, {
-      locales: localStorage.language
-        ? localStorage.language
-        : undefined,
-    });
-  };
   return (
     <Item className="virtual-card-item ">
-      <textarea
-        style={{ display: 'none' }}
-        ref={textAreaRef}
-        value={virtualCard && virtualCard.CardNumber}
+      <CardInfo
+        card={virtualCard}
+        detail
+        onClick={() => {}}
+        userData={userData}
       />
-      <Card virtualCard={virtualCard} userData={userData} />
       <br />
-      <Item.Content verticalAlign="middle">
-        <Item.Header className="vc-currency">
-          {virtualCard && `${virtualCard.Currency} `}{' '}
-        </Item.Header>
-        <div
-          role="button"
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            marginTop: '-.5rem',
-          }}
-        >
-          <Item.Meta style={{ width: '100%' }}>
-            <span className="vc-balance">
-              {virtualCard &&
-                `${formatBalance(virtualCard.Balance)} ${
-                  virtualCard.Currency
-                }`}{' '}
-            </span>
-
-            <br />
-            {virtualCard && virtualCard.CardType === '1' ? (
-              <Wrapper>
-                <Image
-                  src={visaCardImg}
-                  size="mini"
-                  verticalAlign="middle"
-                />
-              </Wrapper>
-            ) : (
-              <Wrapper>
-                <Image
-                  src={masterCardImg}
-                  size="mini"
-                  verticalAlign="middle"
-                />
-              </Wrapper>
-            )}
-            <br />
-            <br />
-            <span
-              className="vc-info"
-              style={{ marginBottom: '.5rem' }}
-            >
-              {global.translate(`Created at :`, 1748)}{' '}
-              <strong>{virtualCard?.CreationDate}</strong>{' '}
-            </span>
-            <br />
-            <br />
-            <hr style={{ border: 'none' }} />
-            <span className="vc-info">
-              {global.translate('CVV')}:{' '}
-              <strong>{virtualCard?.CVV}</strong>{' '}
-            </span>
-            <br />
-            <hr style={{ border: 'none' }} />
-            <span className="vc-info">
-              {global.translate(`Expiration date`, 492)} :{' '}
-              <strong>{`${virtualCard?.MM}/${virtualCard?.YYYY}`}</strong>
-            </span>
-            <br />
-            {!canViewDetail && (
-              <Button
-                type="button"
-                basic
-                onClick={() => handleOnClick(virtualCard, userData)}
-                className="view-button"
-                color="orange"
-              >
-                {global.translate('View Details', 1445)}
-              </Button>
-            )}
-            {!canViewDetail && (
-              <Popup
-                content={copySuccess}
-                on="click"
-                pinned
-                trigger={
-                  <Button
-                    className="vc-btn-copy"
-                    onClick={e =>
-                      copyToClipBoard(e, virtualCard?.CardNumber)
-                    }
-                    style={{ float: 'right' }}
-                    basic
-                    color="orange"
-                    content="Copy card number"
-                  />
-                }
-              />
-            )}
-            {canViewDetail ? (
-              <Button.Group style={{ float: 'right' }}>
-                <Button
-                  onClick={handleAddMoneyModal}
-                  basic
-                  color="orange"
-                >
-                  {global.translate(`Add money`, 89)}
-                </Button>
-                <Button.Or />
-                <Button
-                  disabled={virtualCard?.Balance === '0.00'}
-                  onClick={handleReddeemMoneyModal}
-                  basic
-                  color="orange"
-                >
-                  {global.translate(`Redeem money`, 1689)}
-                </Button>
-              </Button.Group>
-            ) : (
-              ''
-            )}
-          </Item.Meta>
-          {canViewDetail ? '' : ''}
-        </div>
-      </Item.Content>
+      <Item.Content verticalAlign="middle" />
       <AddMoneyModal
         addMoneyOpen={addMoneyOpen}
         setAddMoneyOpen={setAddMoneyOpen}
@@ -228,10 +72,10 @@ const VirtualCard = ({
         confirmationError={confirmationError}
         checking={checking}
         loading={loading}
-        onRedeeMoney={onRedeeMoney}
+        onRedeemMoney={onRedeemMoney}
         isRedeeming={isRedeeming}
-        setIsRedeeming={setisRedeeming}
-        loadRedeeMoney={loadRedeeMoney}
+        setIsRedeeming={setIsRedeeming}
+        loadRedeemMoney={loadRedeeMoney}
         error={error}
         openConfirmModal={openConfirmModal}
         setOpenConfirmModal={setOpenConfirmModal}
@@ -243,13 +87,10 @@ const VirtualCard = ({
 
 VirtualCard.propTypes = {
   virtualCard: PropTypes.objectOf(PropTypes.any).isRequired,
-  Balance: PropTypes.string.isRequired,
   userData: PropTypes.objectOf(PropTypes.any).isRequired,
-  handleOnClick: PropTypes.func,
   setAddMoneyOpen: PropTypes.func,
   addMoneyOpen: PropTypes.bool.isRequired,
   setSelectedWallet: PropTypes.func,
-  canViewDetail: PropTypes.bool,
   form: PropTypes.objectOf(PropTypes.any).isRequired,
   setForm: PropTypes.func,
   selectedWallet: PropTypes.func,
@@ -266,9 +107,9 @@ VirtualCard.propTypes = {
   checking: PropTypes.bool,
   confirmationError: PropTypes.objectOf(PropTypes.any),
   loading: PropTypes.bool,
-  onRedeeMoney: PropTypes.func,
+  onRedeemMoney: PropTypes.func,
   isRedeeming: PropTypes.bool,
-  setisRedeeming: PropTypes.func,
+  setIsRedeeming: PropTypes.func,
   loadRedeeMoney: PropTypes.bool,
   error: PropTypes.string,
   openConfirmModal: PropTypes.bool,
@@ -276,10 +117,7 @@ VirtualCard.propTypes = {
   shouldClear: PropTypes.bool,
 };
 VirtualCard.defaultProps = {
-  handleOnClick: () => {},
   setAddMoneyOpen: () => {},
-  setSelectedWallet: () => {},
-  canViewDetail: false,
   setForm: () => {},
   selectedWallet: () => {},
   onOptionsChange: () => {},
@@ -295,9 +133,9 @@ VirtualCard.defaultProps = {
   checking: false,
   confirmationError: {},
   loading: false,
-  onRedeeMoney: () => {},
+  onRedeemMoney: () => {},
   isRedeeming: false,
-  setisRedeeming: () => {},
+  setIsRedeeming: () => {},
   loadRedeeMoney: false,
   error: null,
   openConfirmModal: false,

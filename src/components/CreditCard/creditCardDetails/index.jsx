@@ -232,6 +232,7 @@ CreditCardDetails.propTypes = {
   setPinError: propTypes.func.isRequired,
   handleEnableCard: propTypes.func.isRequired,
 };
+
 CreditCardDetails.defaultProps = {
   pinDigit: {},
   confirmPinDigit: {},

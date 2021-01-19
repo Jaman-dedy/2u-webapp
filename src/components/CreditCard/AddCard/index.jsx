@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-
 import { Checkbox, Button, Input } from 'semantic-ui-react';
 import './style.scss';
 import PropTypes from 'prop-types';
@@ -23,7 +22,7 @@ import addWallets from 'redux/actions/users/addWallet';
 import getMyWalletsAction from 'redux/actions/users/getMyWallets';
 import endWalletAction from 'redux/actions/wallets/endWalletAction';
 import AddWalletModal from 'components/Wallets/AddWalletModal';
-import WalletImage from 'assets/images/AddWalletIcon.png';
+import WalletImage from 'assets/images/empty_wallet.svg';
 import LoadCardLevel from './LoadCardLevel';
 import PinModal from './PinModal';
 
@@ -148,8 +147,8 @@ const AddCard = ({
           <div className="clear" />
         </div>
       </WelcomeBar>
-      <div className="add-card-container">
-        {!myWallets?.loading && myWallets?.walletList?.length > 0 && (
+      {!myWallets?.loading && myWallets?.walletList?.length > 0 && (
+        <div className="add-card-container">
           <div className="card-types-box">
             <div>
               <MyWallets
@@ -256,36 +255,8 @@ const AddCard = ({
               </div>
             )}
           </div>
-        )}
-        {myWallets?.walletList?.length > 0 &&
-          !newWallets?.walletList?.length && (
-            <>
-              <EmptyCard
-                header="Looks like all your wallets have cards!"
-                body="To continue ordering a card, add a new wallet"
-                onAddClick={() => {
-                  setOpenAddWalletModal(true);
-                }}
-                imgSrc={WalletImage}
-                createText="Add Wallet"
-              />
-              <AddWalletModal
-                open={openAddWalletModal}
-                setOpenAddWalletModel={setOpenAddWalletModal}
-                onChange={onChange}
-                form={form}
-                userData={userData}
-                onSubmit={addWalletFX}
-                currencies={currenciesList.data}
-                addWallet={createWallet}
-                getMyWalletsFX={getMyWalletsFX}
-                clearForm={clearForm}
-                myWallets={myWallets}
-                getMyCurrencies={getMyCurrencies}
-              />
-            </>
-          )}
-      </div>
+        </div>
+      )}
       <PinModal
         openPinModal={openPinModal}
         setOpenPinModal={setOpenPinModal}
@@ -302,6 +273,41 @@ const AddCard = ({
         errors={errors}
         pinData={pinData}
       />
+
+      {myWallets?.walletList?.length > 0 &&
+        !newWallets?.walletList?.length && (
+          <>
+            <EmptyCard
+              header={global.translate(
+                'Looks like all your wallets have cards!',
+                2148,
+              )}
+              body={global.translate(
+                'To continue ordering a card, add a new wallet',
+                2149,
+              )}
+              onAddClick={() => {
+                setOpenAddWalletModal(true);
+              }}
+              imgSrc={WalletImage}
+              createText={global.translate('Add Wallet', 111)}
+            />
+            <AddWalletModal
+              open={openAddWalletModal}
+              setOpenAddWalletModel={setOpenAddWalletModal}
+              onChange={onChange}
+              form={form}
+              userData={userData}
+              onSubmit={addWalletFX}
+              currencies={currenciesList.data}
+              addWallet={createWallet}
+              getMyWalletsFX={getMyWalletsFX}
+              clearForm={clearForm}
+              myWallets={myWallets}
+              getMyCurrencies={getMyCurrencies}
+            />
+          </>
+        )}
     </DashboardLayout>
   );
 };

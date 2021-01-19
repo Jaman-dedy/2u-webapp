@@ -1,10 +1,10 @@
+import { toast } from 'react-toastify';
 import {
+  ADD_MONEY_TO_VIRTUAL_CARD_ERROR,
   ADD_MONEY_TO_VIRTUAL_CARD_START,
   ADD_MONEY_TO_VIRTUAL_CARD_SUCCESS,
-  ADD_MONEY_TO_VIRTUAL_CARD_ERROR,
   CLEAR_ADD_MONEY_TO_VIRTUAL_CARD_STORE,
 } from 'constants/action-types/virtual-card/addMoneyToVirtualCard';
-
 import apiAction from 'helpers/apiAction';
 
 export default data => dispatch =>
@@ -35,6 +35,7 @@ export default data => dispatch =>
         });
       },
       onFailure: error => dispatch => {
+        toast.error(error[0]?.Description);
         return dispatch({
           type: ADD_MONEY_TO_VIRTUAL_CARD_ERROR,
           payload: {

@@ -1,21 +1,21 @@
 /* eslint-disable consistent-return */
 /* eslint-disable react-hooks/exhaustive-deps */
+import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
-  Modal,
   Button,
   Icon,
   Input,
+  Modal,
   TransitionablePortal,
 } from 'semantic-ui-react';
-import PropTypes from 'prop-types';
-import { clearConfirmation } from 'redux/actions/moneyTransfer/confirmTransaction';
-import PinCodeForm from 'components/common/PinCodeForm';
 import LoaderComponent from 'components/common/Loader';
 import Message from 'components/common/Message';
+import PinCodeForm from 'components/common/PinCodeForm';
 import TransactionEntity from 'components/MoneyTransfer/SendMoney/TransactionEntity';
 import Wrapper from 'hoc/Wrapper';
+import { clearConfirmation } from 'redux/actions/moneyTransfer/confirmTransaction';
 import formatNumber from 'utils/formatNumber';
 import NestedModal from './virtualCardDetails/confirmRedeeModal';
 
@@ -45,10 +45,10 @@ const AddMoneyModal = ({
   setSelectedWallet,
   onAddMoneyToVirtualCard,
   isViewingDetail,
-  onRedeeMoney,
+  onRedeemMoney,
   isRedeeming,
   setIsRedeeming,
-  loadRedeeMoney,
+  loadRedeemMoney,
   openConfirmModal,
   setOpenConfirmModal,
   virtualCard,
@@ -60,6 +60,7 @@ const AddMoneyModal = ({
       setStep(step + 1);
     }
   }, [data]);
+
   const currency =
     selectedWallet?.CurrencyCode || selectedWallet?.Currency;
   useEffect(() => {
@@ -114,14 +115,8 @@ const AddMoneyModal = ({
         >
           <Modal.Header centered className="modal-title">
             {isRedeeming
-              ? global.translate(
-                  `Redeem money from my virtual card`,
-                  2043,
-                )
-              : global.translate(
-                  `Add money to my virtual card`,
-                  2044,
-                )}
+              ? global.translate(`Redeem money from my O-Card`, 2043)
+              : global.translate(`Add money to my O-Card`, 2044)}
           </Modal.Header>
           {step === 1 && (
             <Modal.Content className="entities">
@@ -449,13 +444,13 @@ const AddMoneyModal = ({
       <NestedModal
         setAddMoneyOpen={setAddMoneyOpen}
         setIsRedeeming={setIsRedeeming}
-        onRedeeMoney={onRedeeMoney}
+        onRedeeMoney={onRedeemMoney}
         isRedeeming={isRedeeming}
         onOptionsChange={onOptionsChange}
         addMoneyOpen={addMoneyOpen}
         setOpenConfirmModal={setOpenConfirmModal}
         openConfirmModal={openConfirmModal}
-        loadRedeeMoney={loadRedeeMoney}
+        loadRedeeMoney={loadRedeemMoney}
         errors={errors}
         error={error}
         virtualCard={virtualCard}
@@ -491,9 +486,9 @@ AddMoneyModal.propTypes = {
   setSelectedWallet: PropTypes.func,
   onAddMoneyToVirtualCard: PropTypes.func,
   isViewingDetail: PropTypes.bool,
-  onRedeeMoney: PropTypes.func,
+  onRedeemMoney: PropTypes.func,
   isRedeeming: PropTypes.bool,
-  loadRedeeMoney: PropTypes.bool,
+  loadRedeemMoney: PropTypes.bool,
   setIsRedeeming: PropTypes.func,
   openConfirmModal: PropTypes.bool,
   setOpenConfirmModal: PropTypes.func,
@@ -518,9 +513,9 @@ AddMoneyModal.defaultProps = {
   setSelectedWallet: () => {},
   onAddMoneyToVirtualCard: () => {},
   isViewingDetail: false,
-  onRedeeMoney: () => {},
+  onRedeemMoney: () => {},
   isRedeeming: false,
-  loadRedeeMoney: false,
+  loadRedeemMoney: false,
   setIsRedeeming: () => {},
   openConfirmModal: false,
   setOpenConfirmModal: () => {},

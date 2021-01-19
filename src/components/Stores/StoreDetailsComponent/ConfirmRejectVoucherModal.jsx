@@ -96,7 +96,7 @@ const ConfirmRejectVoucherModal = ({
               color="red"
               onClick={() => setStep(step - 1)}
             >
-              {global.translate('Back')}
+              {global.translate('Back', 174)}
             </Button>
           )}
           <Button
