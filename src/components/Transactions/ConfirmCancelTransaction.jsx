@@ -172,11 +172,6 @@ const ConfirmCancelTransaction = ({
           )}
 
           {error && <Message message={error} />}
-          {err && (
-            <Message
-              message={err.error ? err.error : err[0].Description}
-            />
-          )}
 
           {voucherError && (
             <Message
@@ -200,7 +195,6 @@ const ConfirmCancelTransaction = ({
               {global.translate('Close', 186)}
             </Button>
           )}
-
           {step === 2 && (
             <Button
               disabled={loading || voucherLoading || loadOther}

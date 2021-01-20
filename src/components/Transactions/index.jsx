@@ -642,6 +642,7 @@ const Transactions = ({
                     {global.translate('My pending Vouchers', 2030)}
                     <Label as={Link} color="orange">
                       {(pendingVouchersOnWallet &&
+                        !pendingVouchersOnWallet[0]?.Error &&
                         pendingVouchersOnWallet.length) ||
                         0}
                     </Label>
