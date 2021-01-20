@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect, useRef } from 'react';
 import Slider from 'react-slick';
@@ -47,7 +48,6 @@ const WalletCarousel = ({
     Default: '',
   });
 
-  const [form, setForm] = useState({});
   const [openAddWalletModal, setOpenAddWalletModal] = useState(false);
   const [
     hasOpenedAddWalletModal,
@@ -138,9 +138,6 @@ const WalletCarousel = ({
     ],
   };
 
-  const onChange = (e, { name, value }) => {
-    setForm({ ...form, [name]: value });
-  };
   const getMyCurrencies = () => {
     if (userData.data) {
       getUserCurrencies({
@@ -148,10 +145,7 @@ const WalletCarousel = ({
       })(dispatch);
     }
   };
-  const clearForm = () => {
-    setForm({ Name: '', Currency: '' });
-    clearWalletForm()(dispatch);
-  };
+
   const addWalletFX = Wallets => {
     addWallets({ Wallets })(dispatch);
   };
@@ -198,14 +192,11 @@ const WalletCarousel = ({
       <AddWalletModal
         open={openAddWalletModal}
         setOpenAddWalletModel={setOpenAddWalletModal}
-        onChange={onChange}
-        form={form}
         userData={userData}
         onSubmit={addWalletFX}
         currencies={currenciesList.data}
         addWallet={createWallet}
         getMyWalletsFX={getMyWalletsFX}
-        clearForm={clearForm}
         myWallets={myWallets}
         getMyCurrencies={getMyCurrencies}
       />
@@ -214,7 +205,11 @@ const WalletCarousel = ({
           {!myWallets.loading && (
             <h3>
               {!walletTitle
-                ? global.translate('Select wallet')
+                ? !myWallets?.walletList?.length
+                  ? global.translate(
+                      'All wallets are associated with cards',
+                    )
+                  : global.translate('Select wallet')
                 : walletTitle}
             </h3>
           )}
@@ -242,92 +237,94 @@ const WalletCarousel = ({
           )}
         </div>
 
-        <div className="wallet-list">
-          <div className="wrap__slider" ref={myWalletsRef}>
-            {myWallets.loading && !hasOpenedAddWalletModal ? (
-              <div>
-                <LoadWallets />
-              </div>
-            ) : (
-              <>
-                <Slider {...carouselConfig}>
-                  {myWallets.loading && hasOpenedAddWalletModal && (
-                    <div className="wallet-box">
-                      <Loader
-                        active
-                        inline="centered"
-                        // style={{ marginTop: '25%' }}
-                      />
-                    </div>
-                  )}
-
-                  {reorderList(myWallets.walletList)
-                    .filter(item => item.AccountNumber !== '')
-                    .map(
-                      ({
-                        AccountNumber,
-                        CurrencyCode,
-                        AccountName,
-                        Balance,
-                        Flag,
-                        Default,
-                      }) => (
-                        <div
-                          className={`${
-                            defaultSelectAll ? 'wallet' : 'wallet'
-                          }`}
-                          key={AccountNumber}
-                          role="button"
-                          tabIndex={0}
-                          onKeyDown={() => null}
-                          onClick={() =>
-                            setSelectedWallet({
-                              AccountNumber,
-                              CurrencyCode,
-                              AccountName,
-                              Balance,
-                              Flag,
-                              Default,
-                            })
-                          }
-                        >
-                          <div
-                            className={`wallet-box ${
-                              AccountNumber ===
-                                selectedWallet.AccountNumber ||
-                              defaultSelectAll
-                                ? 'selected'
-                                : ''
-                            }`}
-                          >
-                            <div className="account-number">
-                              <div
-                                style={{
-                                  fontSize: '15px',
-                                  fontWeight: '500',
-                                }}
-                              >
-                                {AccountName}
-                              </div>
-                              <div style={{ fontSize: '13px' }}>
-                                {AccountNumber}
-                              </div>
-                            </div>
-                            <span className="balance">
-                              <Image src={Flag} />
-                              {formatNumber(Balance, {
-                                locales: preferred,
-                              })}
-                            </span>
-                          </div>
-                        </div>
-                      ),
+        {myWallets?.walletList?.length > 0 && (
+          <div className="wallet-list">
+            <div className="wrap__slider" ref={myWalletsRef}>
+              {myWallets.loading && !hasOpenedAddWalletModal ? (
+                <div>
+                  <LoadWallets />
+                </div>
+              ) : (
+                <>
+                  <Slider {...carouselConfig}>
+                    {myWallets.loading && hasOpenedAddWalletModal && (
+                      <div className="wallet-box">
+                        <Loader
+                          active
+                          inline="centered"
+                          // style={{ marginTop: '25%' }}
+                        />
+                      </div>
                     )}
-                </Slider>
-              </>
-            )}
+
+                    {reorderList(myWallets.walletList)
+                      .filter(item => item.AccountNumber !== '')
+                      .map(
+                        ({
+                          AccountNumber,
+                          CurrencyCode,
+                          AccountName,
+                          Balance,
+                          Flag,
+                          Default,
+                        }) => (
+                          <div
+                            className={`${
+                              defaultSelectAll ? 'wallet' : 'wallet'
+                            }`}
+                            key={AccountNumber}
+                            role="button"
+                            tabIndex={0}
+                            onKeyDown={() => null}
+                            onClick={() =>
+                              setSelectedWallet({
+                                AccountNumber,
+                                CurrencyCode,
+                                AccountName,
+                                Balance,
+                                Flag,
+                                Default,
+                              })
+                            }
+                          >
+                            <div
+                              className={`wallet-box ${
+                                AccountNumber ===
+                                  selectedWallet.AccountNumber ||
+                                defaultSelectAll
+                                  ? 'selected'
+                                  : ''
+                              }`}
+                            >
+                              <div className="account-number">
+                                <div
+                                  style={{
+                                    fontSize: '15px',
+                                    fontWeight: '500',
+                                  }}
+                                >
+                                  {AccountName}
+                                </div>
+                                <div style={{ fontSize: '13px' }}>
+                                  {AccountNumber}
+                                </div>
+                              </div>
+                              <span className="balance">
+                                <Image src={Flag} />
+                                {formatNumber(Balance, {
+                                  locales: preferred,
+                                })}
+                              </span>
+                            </div>
+                          </div>
+                        ),
+                      )}
+                  </Slider>
+                </>
+              )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </>
   );

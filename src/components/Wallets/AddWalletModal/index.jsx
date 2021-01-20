@@ -47,7 +47,7 @@ const AddWalletModal = ({
         },
       ]);
     }
-  }, []);
+  }, [userData?.data]);
 
   const options =
     currencies &&
@@ -60,11 +60,11 @@ const AddWalletModal = ({
       };
     });
 
-  const onSuccess = () => {
+  const onSuccess = React.useCallback(() => {
     getMyWalletsFX();
     getMyCurrencies();
     setOpenAddWalletModel();
-  };
+  }, [getMyCurrencies, getMyWalletsFX, setOpenAddWalletModel]);
 
   const toggleShowModal = () => {
     setForm([
@@ -75,12 +75,13 @@ const AddWalletModal = ({
     ]);
     setOpenAddWalletModel();
   };
+
   React.useEffect(() => {
     if (addWallet.success) {
       toast.success(addWallet.message);
       onSuccess();
     }
-  }, [addWallet]);
+  }, [addWallet, onSuccess]);
 
   const handleAddFields = () => {
     const values = [...form];
