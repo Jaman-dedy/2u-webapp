@@ -71,14 +71,11 @@ const AddVirtualCard = ({
         onClose={() => setOpen(false)}
       >
         <Modal.Header style={{ textAlign: 'center' }}>
-          {global.translate(`Add a new virtual card`, 2041)}
+          {global.translate(`Add a new O-Card`, 2041)}
         </Modal.Header>
         <Modal.Content>
           <div style={{ width: '60%', margin: 'auto' }}>
-            <span>
-              {' '}
-              {global.translate(`Select a currency`, 1307)}
-            </span>
+            <span>{global.translate(`Select a currency`, 1307)}</span>
             <ReusableDropdown
               customstyle
               search
@@ -101,7 +98,7 @@ const AddVirtualCard = ({
           <br />
           <div style={{ width: '60%', margin: 'auto' }}>
             <span>
-              {global.translate(`Select the virtual card type`, 2042)}
+              {global.translate(`Select the O-Card type`, 2042)}
             </span>
             <ReusableDropdown
               customstyle
@@ -111,7 +108,7 @@ const AddVirtualCard = ({
               selection
               wrapSelection={false}
               options={virtualCardTypes && virtualCardTypes}
-              placeholder="Virtual card type"
+              placeholder="O-Card type"
               onChange={e => {
                 onOptionsChange(e, {
                   name: 'VirtualCard',

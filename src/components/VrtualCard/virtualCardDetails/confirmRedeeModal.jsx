@@ -1,9 +1,9 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import React from 'react';
 import { Button, Icon, Modal } from 'semantic-ui-react';
-import PinCodeForm from 'components/common/PinCodeForm';
-import Message from 'components/common/Message';
 import LoaderComponent from 'components/common/Loader';
+import Message from 'components/common/Message';
+import PinCodeForm from 'components/common/PinCodeForm';
 
 const NestedModal = ({
   setIsRedeeming,
@@ -39,7 +39,7 @@ const NestedModal = ({
         <p style={{ color: 'orange', textAlign: 'center' }}>
           <Icon name="warning sign" />
           {global.translate(
-            `Are you sure you want to redeem the balance of your virtual card?`,
+            `Are you sure you want to redeem the balance of your O-Card?`,
             2049,
           )}
           <strong style={{ color: '#333556' }}>
@@ -47,7 +47,7 @@ const NestedModal = ({
             {virtualCard?.Balance} &nbsp; {virtualCard?.Currency}{' '}
           </strong>
           <br />
-          {global.translate(`from your virtual card?`, 2050)}
+          {global.translate(`from your O-Card?`, 2050)}
         </p>
         <div className="pin-number">
           <PinCodeForm

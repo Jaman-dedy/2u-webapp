@@ -1,15 +1,12 @@
 @import 'src/assets/styles/mixins';
 .VirtualCardDetails {
-  margin: auto;
+  margin: 0 auto;
   width: 100%;
   max-width: 860px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
-  height: fit-content;
   padding: 2rem;
   border-radius: 0.5rem;
-  margin-bottom: 2rem;
-
   .ui.segment {
     margin-top: -5rem !important;
     margin-bottom: 6rem;
@@ -19,8 +16,10 @@
   width: 100%;
   max-width: 860px;
   transition: background-color 2s;
-  position: relative;
-  cursor: default !important;
+  .display-card-box {
+    display: flex !important;
+    flex-wrap: wrap;
+  }
 }
 .view-button {
   position: absolute;

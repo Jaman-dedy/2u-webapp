@@ -88,7 +88,7 @@ const CreditCardList = ({ creditCardList, loading }) => {
         ) : (
           !loading && (
             <div className="CardList">
-              <Segment>
+              <Segment style={{ padding: 0 }}>
                 <List divided relaxed>
                   {creditCardList?.map(card => (
                     <DisplayCard

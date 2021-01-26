@@ -36,9 +36,9 @@
     width: 20rem;
   }
   .all-details {
-    max-width: 579px;
-    width: 100%;
-    margin-left: 156px;
+    width: 73%;
+    margin-left: auto;
+    margin-top: 2rem;
   }
 }
 .PinForm {
@@ -84,5 +84,12 @@
 @media (max-width: 1045px) {
   .CreditCard .all-details {
     margin: auto;
+  }
+}
+@media screen and(max-width:425px) {
+  .all-details {
+    .ui .button {
+      font-size: 0.6rem !important;
+    }
   }
 }

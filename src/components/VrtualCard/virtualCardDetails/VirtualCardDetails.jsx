@@ -1,15 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
-import { Item, Tab, Label, Segment, Button } from 'semantic-ui-react';
 import DashboardLayout from 'components/common/DashboardLayout';
-import WelcomeBar from 'components/Dashboard/WelcomeSection';
 import GoBack from 'components/common/GoBack';
+import InfoMessage from 'components/common/InfoMessage';
+import WelcomeBar from 'components/Dashboard/WelcomeSection';
 import getVirtualCard from 'redux/actions/virtualCard/getVirtualCard';
 import VirtualCard from '../Item';
-import classes from '../VirtualCards.module.scss';
+import TableDetails from '../TableDetails';
+import './styles.scss';
 
 const VirtualCardDetails = ({
   selectedWallet,
@@ -32,7 +33,6 @@ const VirtualCardDetails = ({
   loading,
   addMoneyOpen,
   setAddMoneyOpen,
-  cardStatus,
   setCardStatus,
   onUpdateCardStatus,
   loadingStatus,
@@ -52,16 +52,15 @@ const VirtualCardDetails = ({
 }) => {
   const [canViewDetail, setCanViewDetail] = useState(true);
   const [currentCard, setCurrentCard] = useState(null);
-  const [activeIndex, setActiveIndex] = useState(0);
 
   const dispatch = useDispatch();
+
   const {
     virtualCardList: { data },
   } = useSelector(state => state.virtualCard);
 
   const location = useLocation();
   const history = useHistory();
-  const dateYear = new Date();
 
   useEffect(() => {
     setCurrentCard(
@@ -88,12 +87,6 @@ const VirtualCardDetails = ({
     }
   }, [currentCard]);
   const onClickHandler = () => history.goBack();
-  const goToSetting = () => {
-    setActiveIndex(1);
-  };
-  const handleTableChange = (e, { activeIndex }) => {
-    setActiveIndex(activeIndex);
-  };
 
   useEffect(() => {
     setForm({
@@ -118,65 +111,6 @@ const VirtualCardDetails = ({
     return new Date() > expiryDate;
   };
 
-  const panes = [
-    {
-      render: () => (
-        <Tab.Pane attached={false}>
-          <Item.Group>
-            {cardStatus === 'YES' ? (
-              <Label as="a" color="green" ribbon>
-                {global.translate(`Active`, 1749)}
-              </Label>
-            ) : (
-              <Label as="a" color="red" ribbon>
-                {global.translate(`Disabled`, 1762)}
-              </Label>
-            )}
-            {}
-            <VirtualCard
-              virtualCard={currentCard}
-              userData={userData?.data}
-              canViewDetail={canViewDetail}
-              setCanViewDetail={setCanViewDetail}
-              goToSetting={goToSetting}
-              selectedWallet={selectedWallet && selectedWallet}
-              setSelectedWallet={setSelectedWallet}
-              onOptionsChange={onOptionsChange}
-              form={form}
-              setForm={setForm}
-              onAddMoneyToVirtualCard={onAddMoneyToVirtualCard}
-              isViewingDetail={isViewingDetail}
-              userLocationData={userLocationData}
-              step={step}
-              setStep={setStep}
-              errors={errors}
-              setErrors={setErrors}
-              checking={checking}
-              confirmationData={confirmationData}
-              confirmationError={confirmationError}
-              loading={loading}
-              addMoneyOpen={addMoneyOpen}
-              setAddMoneyOpen={setAddMoneyOpen}
-              onRedeeMoney={onRedeeMoney}
-              isRedeeming={isRedeeming}
-              setisRedeeming={setisRedeeming}
-              loadRedeeMoney={loadRedeeMoney}
-              error={error}
-              confirmRedeem={confirmRedeem}
-              setConfirmRedeem={setConfirmRedeem}
-              checkTransactionConfirmation={
-                checkTransactionConfirmation
-              }
-              setOpenConfirmModal={setOpenConfirmModal}
-              openConfirmModal={openConfirmModal}
-              shouldClear={shouldClear}
-            />
-          </Item.Group>
-        </Tab.Pane>
-      ),
-    },
-  ];
-
   return (
     <DashboardLayout>
       <WelcomeBar>
@@ -185,75 +119,72 @@ const VirtualCardDetails = ({
             <GoBack style onClickHandler={onClickHandler} />
           </div>
           <h2 className="head-title">
-            {global.translate('Virtual card', 1999)}
+            {global.translate('O-Card', 1999)}
           </h2>
           <div className="clear" />
         </div>
       </WelcomeBar>
+
       <div className="VirtualCardDetails">
-        <Tab
-          menu={{ text: true }}
-          panes={panes}
-          activeIndex={activeIndex}
-          onTabChange={handleTableChange}
+        <VirtualCard
+          virtualCard={currentCard}
+          userData={userData?.data}
+          canViewDetail={canViewDetail}
+          setCanViewDetail={setCanViewDetail}
+          selectedWallet={selectedWallet && selectedWallet}
+          setSelectedWallet={setSelectedWallet}
+          onOptionsChange={onOptionsChange}
+          form={form}
+          setForm={setForm}
+          onAddMoneyToVirtualCard={onAddMoneyToVirtualCard}
+          isViewingDetail={isViewingDetail}
+          userLocationData={userLocationData}
+          step={step}
+          setStep={setStep}
+          errors={errors}
+          setErrors={setErrors}
+          checking={checking}
+          confirmationData={confirmationData}
+          confirmationError={confirmationError}
+          loading={loading}
+          addMoneyOpen={addMoneyOpen}
+          setAddMoneyOpen={setAddMoneyOpen}
+          onRedeemMoney={onRedeeMoney}
+          isRedeeming={isRedeeming}
+          setIsRedeeming={setisRedeeming}
+          loadRedeemMoney={loadRedeeMoney}
+          error={error}
+          confirmRedeem={confirmRedeem}
+          setConfirmRedeem={setConfirmRedeem}
+          checkTransactionConfirmation={checkTransactionConfirmation}
+          setOpenConfirmModal={setOpenConfirmModal}
+          openConfirmModal={openConfirmModal}
+          shouldClear={shouldClear}
         />
-        <Segment piled style={{ marginTop: '10px' }}>
-          <span className={classes.Titles}>
-            {global.translate(`Disable this virtual card`, 1694)}
-          </span>
-          <br />
-          <span style={{ color: '#9799AA', marginTop: '.6rem' }}>
-            {global.translate(
-              `When your virtual card is disabled, it will not be used
+        <br />
+        <div className="card-details">
+          {currentCard && currentCard?.Enabled === 'NO' && (
+            <InfoMessage
+              description={global.translate(
+                `This card is currently disabled. When your O-Card is disabled, it will not be used
             for any online transaction, until you enable it again`,
-              2045,
-            )}
-          </span>{' '}
-          <br />
-          {cardStatus === 'YES' ? (
-            <Button
-              loading={loadingStatus}
-              onClick={onUpdateCardStatus}
-              style={{ marginTop: '.7rem', marginLeft: '.4rem' }}
-              basic
-              color="orange"
-            >
-              {global.translate(`Disable`, 2046)}
-            </Button>
-          ) : (
-            <Button
-              loading={loadingStatus}
-              onClick={onUpdateCardStatus}
-              style={{ marginTop: '.7rem', marginLeft: '.4rem' }}
-              basic
-              color="green"
-            >
-              {global.translate(`Enable`, 2047)}
-            </Button>
+                2142,
+              )}
+            />
           )}
-          <hr style={{ margin: '1rem .4rem' }} />
-          <span className={classes.Titles}>
-            {global.translate(`Renew a virtual card`, 1691)}
-          </span>
-          <br />
-          <span style={{ color: '#9799AA' }}>
-            {global.translate(
-              `You can renew your virtual card`,
-              2048,
-            )}
-          </span>{' '}
-          <br />
-          <Button
-            disabled={!cardExpired()}
-            loading={renewCardLoad}
-            onClick={onRenewVirtualCard}
-            style={{ marginTop: '.7rem', marginLeft: '.4rem' }}
-            basic
-            color="orange"
-          >
-            {global.translate(`Renew a virtual card`, 1691)}
-          </Button>
-        </Segment>
+          <TableDetails
+            card={currentCard}
+            onUpdateCardStatus={onUpdateCardStatus}
+            onRenewVirtualCard={onRenewVirtualCard}
+            loadOnChangeStatus={loadingStatus}
+            loadOnRenew={renewCardLoad}
+            isExpired={cardExpired()}
+            setAddMoneyOpen={setAddMoneyOpen}
+            setIsRedeeming={setisRedeeming}
+            loadRedeeming={loadRedeeMoney}
+            loadAddMoney={loading}
+          />
+        </div>
       </div>
     </DashboardLayout>
   );

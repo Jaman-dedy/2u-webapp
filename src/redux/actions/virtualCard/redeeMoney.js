@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import {
   REDEEM_MONEY_START,
   REDEEM_MONEY_SUCCESS,
@@ -35,6 +36,7 @@ export default data => dispatch =>
         });
       },
       onFailure: error => dispatch => {
+        toast.error(error[0]?.Description);
         return dispatch({
           type: REDEEM_MONEY_ERROR,
           payload: {

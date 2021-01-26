@@ -2,18 +2,17 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
-import { Item, Input } from 'semantic-ui-react';
-
+import { List, Segment, Input } from 'semantic-ui-react';
 import DashboardLayout from 'components/common/DashboardLayout';
 import WelcomeBar from 'components/Dashboard/WelcomeSection';
 import GoBack from 'components/common/GoBack';
 import EmptyCard from 'components/common/EmptyCard';
 import EmptyCardList from 'assets/images/empty_card.svg';
-import classes from './VirtualCards.module.scss';
-import VirtualCard from './Item';
-import PlaceHolder from './PlaceHolder';
-import AddVirtualCardModal from './AddVirtualCardModal';
 import isAppDisplayedInWebView from 'helpers/isAppDisplayedInWebView';
+import VirtualCard from 'components/common/Card';
+import classes from './VirtualCards.module.scss';
+import Placeholder from './PlaceHolder';
+import AddVirtualCardModal from './AddVirtualCardModal';
 
 const MyVirtualCards = ({
   virtualCardList,
@@ -34,8 +33,6 @@ const MyVirtualCards = ({
   setOpen,
   size,
   setSize,
-  addMoneyOpen,
-  setAddMoneyOpen,
   form,
   setForm,
 }) => {
@@ -43,6 +40,7 @@ const MyVirtualCards = ({
   const [myVirtualCardList, setMyVirtualCardList] = useState([]);
   const [isEmpty, setIsEmpty] = useState(false);
 
+  const { loading: loadingUserData } = userData;
   const onClickHandler = () => history.goBack();
 
   const handleOnClick = (item, userData) => {
@@ -85,40 +83,105 @@ const MyVirtualCards = ({
       const found = data.filter(
         item =>
           (item.CardNumber &&
-            item.CardNumber.toLowerCase().startsWith(
+            item.CardNumber.toLowerCase().includes(
               search.toLowerCase(),
             )) ||
           (item.CardType &&
-            item.CardType.toLowerCase().startsWith(
+            item.CardType.toLowerCase().includes(
               search.toLowerCase(),
             )) ||
           (item.CardNumberSpaced &&
-            item.CardNumberSpaced.toLowerCase().startsWith(
+            item.CardNumberSpaced.toLowerCase().includes(
               search.toLowerCase(),
             )) ||
           (item.CVV &&
-            item.CVV.toLowerCase().startsWith(
-              search.toLowerCase(),
-            )) ||
+            item.CVV.toLowerCase().includes(search.toLowerCase())) ||
           (item.YYYY &&
-            item.YYYY.toLowerCase().startsWith(
-              search.toLowerCase(),
-            )) ||
+            item.YYYY.toLowerCase().includes(search.toLowerCase())) ||
           (item.Currency &&
-            item.Currency.toLowerCase().startsWith(
+            item.Currency.toLowerCase().includes(
               search.toLowerCase(),
             )) ||
           (item.Balance &&
-            item.Balance.toLowerCase().startsWith(
+            item.Balance.toLowerCase().includes(
               search.toLowerCase(),
             )) ||
           (item.CreationDate &&
-            item.CreationDate.toLowerCase().startsWith(
+            item.CreationDate.toLowerCase().includes(
               search.toLowerCase(),
             )),
       );
       setMyVirtualCardList(found);
     } else if (virtualCardList) setMyVirtualCardList(virtualCardList);
+  };
+
+  const renderPlaceholders = () => {
+    return (
+      <div className={classes.Placeholders}>
+        <Placeholder />
+        <Placeholder />
+        <Placeholder />
+        <Placeholder />
+        <Placeholder />
+        <Placeholder />
+      </div>
+    );
+  };
+
+  const renderNoCardsFound = () => {
+    return (
+      <EmptyCard
+        header={global.translate('No O-Card found', 1582)}
+        createText={global.translate('Create an O-Card', 2152)}
+        body={global.translate(
+          'You can create your credit card and use them for your online payment',
+          2153,
+        )}
+        onAddClick={handleModalOpen}
+        imgSrc={EmptyCardList}
+      />
+    );
+  };
+
+  const renderEmptyCard = () => {
+    return (
+      <EmptyCard
+        header={global.translate(
+          "It looks like you don't have any O-Card yet",
+          2151,
+        )}
+        createText={global.translate('Create an O-Card', 2152)}
+        body={global.translate(
+          'You can create your O-Card and use them for your online payment',
+          2153,
+        )}
+        onAddClick={handleModalOpen}
+        imgSrc={EmptyCardList}
+      />
+    );
+  };
+
+  const renderCardList = () => {
+    if (!myVirtualCardList?.length) {
+      return null;
+    }
+    return (
+      <div className={classes.VirtualCardList}>
+        <Segment style={{ padding: 0 }}>
+          <List divided relaxed>
+            {myVirtualCardList &&
+              myVirtualCardList.length !== 0 &&
+              myVirtualCardList.map(item => (
+                <VirtualCard
+                  card={item}
+                  onClick={() => handleOnClick(item, userData?.data)}
+                  userData={userData?.data}
+                />
+              ))}
+          </List>
+        </Segment>
+      </div>
+    );
   };
 
   return (
@@ -132,94 +195,37 @@ const MyVirtualCards = ({
               </div>
             )}
             <h2 className="head-title">
-              {global.translate('Virtual cards', 2038)}
+              {global.translate('My O-Cards', 2038)}
             </h2>
             <div className="head-buttons">
               <button type="button" onClick={handleModalOpen}>
-                {global.translate(`Add a virtual card`, 2039)}
+                {global.translate(`Add an O-Card`, 2039)}
               </button>
             </div>
             <div className="clear" />
           </div>
         </WelcomeBar>
-        <div className="search-area">
-          {!isEmpty && (
-            <Input
-              placeholder={global.translate('Search', 278)}
-              icon="search"
-              iconPosition="left"
-              disabled={!virtualCardList}
-              onKeyUp={e => handleKeyUp(e)}
-            />
-          )}
-        </div>
-        <>
-          {isLoading ? (
-            <div className={classes.VirtualCardList}>
-              <PlaceHolder />
-              <PlaceHolder />
-              <PlaceHolder />
+        {!isLoading && !loadingUserData && !isEmpty && (
+          <>
+            <div className="search-area">
+              <Input
+                placeholder={global.translate('Search', 278)}
+                icon="search"
+                iconPosition="left"
+                disabled={!virtualCardList}
+                onKeyUp={e => handleKeyUp(e)}
+              />
             </div>
-          ) : (
-            <>
-              {isEmpty ||
-              (myVirtualCardList && !myVirtualCardList.length) ? (
-                <>
-                  {(virtualCardList && (
-                    <EmptyCard
-                      header={global.translate(
-                        "It looks like you don't have any virtual card yet",
-                      )}
-                      createText={global.translate(
-                        'Create virtual card',
-                      )}
-                      body={global.translate(
-                        'You can create your virtual card and use them for your online payment',
-                      )}
-                      onAddClick={handleModalOpen}
-                      imgSrc={EmptyCardList}
-                    />
-                  )) || (
-                    <EmptyCard
-                      header={global.translate(
-                        'No virtual card found',
-                        1582,
-                      )}
-                      createText={global.translate(
-                        'Create virtual card',
-                      )}
-                      body={global.translate(
-                        'You can create your credit card and use them for your online payment',
-                      )}
-                      onAddClick={handleModalOpen}
-                      imgSrc={EmptyCardList}
-                    />
-                  )}
-                </>
-              ) : (
-                <div className={classes.VirtualCardList}>
-                  <Item.Group divided link>
-                    {myVirtualCardList &&
-                      myVirtualCardList.length !== 0 &&
-                      myVirtualCardList.map(item => (
-                        <VirtualCard
-                          key={item.CardNumber}
-                          virtualCard={item}
-                          isLoading={isLoading}
-                          userData={userData?.data}
-                          addMoneyOpen={addMoneyOpen}
-                          setAddMoneyOpen={setAddMoneyOpen}
-                          handleOnClick={() => {
-                            handleOnClick(item, userData?.data);
-                          }}
-                        />
-                      ))}
-                  </Item.Group>
-                </div>
-              )}
-            </>
-          )}
-        </>
+            {renderCardList()}
+          </>
+        )}
+
+        {(isLoading || loadingUserData) && renderPlaceholders()}
+        {!myVirtualCardList?.length &&
+          !isLoading &&
+          renderNoCardsFound()}
+        {!isLoading && isEmpty && renderEmptyCard()}
+
         <AddVirtualCardModal
           open={open}
           setOpen={setOpen}
@@ -262,8 +268,6 @@ MyVirtualCards.propTypes = {
   setOpen: PropTypes.func,
   size: PropTypes.string.isRequired,
   setSize: PropTypes.func,
-  setAddMoneyOpen: PropTypes.func,
-  addMoneyOpen: PropTypes.bool,
   form: PropTypes.instanceOf(Object).isRequired,
   setForm: PropTypes.func.isRequired,
 };
@@ -278,8 +282,6 @@ MyVirtualCards.defaultProps = {
   errors: {},
   setOpen: () => {},
   setSize: () => {},
-  setAddMoneyOpen: () => {},
-  addMoneyOpen: false,
 };
 
 export default MyVirtualCards;

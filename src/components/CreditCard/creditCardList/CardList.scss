@@ -6,6 +6,10 @@
   &:hover {
     cursor: pointer;
   }
+
+  .ui-segment {
+    padding: 0 !important;
+  }
 }
 .CardLayout {
   border-bottom: 1px solid #ebebeb;

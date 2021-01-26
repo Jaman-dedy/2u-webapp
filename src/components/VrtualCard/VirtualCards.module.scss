@@ -1,15 +1,23 @@
 @import 'src/assets/styles/mixins';
-
+.Placeholders {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .VirtualCardList {
   margin: auto;
   width: 100%;
   max-width: 860px;
   background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.08);
   height: fit-content;
-  padding: 2rem;
+  // padding: 2rem;
   border-radius: 0.5rem;
   margin-bottom: 2rem;
+  border: 1px solid #ebebeb;
 }
 .Container {
   width: 100%;

@@ -448,7 +448,7 @@ const SendCashModal = ({
                 resetState();
               }}
             >
-              {global.translate('Back')}
+              {global.translate('Back', 174)}
             </Button>
           )}
 

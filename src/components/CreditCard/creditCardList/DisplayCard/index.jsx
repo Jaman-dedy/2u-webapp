@@ -1,7 +1,6 @@
 import React from 'react';
 import { List } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-
 import SingleCardView from '../SingleCardView';
 
 const DisplayCard = ({ card, onClick }) => {

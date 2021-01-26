@@ -249,7 +249,7 @@ const SideBar = () => {
                         toggleSidebar(dispatch);
                       }}
                     >
-                      {global.translate('Virtual card', 1999)}
+                      {global.translate('O-Card', 1999)}
                     </Link>
                   </li>
                 </ul>
@@ -333,6 +333,15 @@ const SideBar = () => {
                       }}
                     >
                       {global.translate('M-Card')}
+                    </li>
+                    <br />
+                    <li
+                      onClick={() => {
+                        toggleSidebar(dispatch);
+                        history.push('/virtual-card');
+                      }}
+                    >
+                      {global.translate('O-Card')}
                     </li>
                   </ul>
                 )}

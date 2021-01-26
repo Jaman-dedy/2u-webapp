@@ -2,7 +2,7 @@ import VisuaCardDetails from 'containers/VirtualCard/VirtualCardDetails';
 
 export default {
   exact: false,
-  name: 'Virtual card Details',
+  name: 'O-Card Details',
   protected: true,
   path: '/virtual-card-details',
   component: VisuaCardDetails,

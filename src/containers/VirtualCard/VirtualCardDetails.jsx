@@ -50,7 +50,6 @@ const VirtualCardDetailsContainer = () => {
   const [addMoneyOpen, setAddMoneyOpen] = useState(false);
   const { walletList } = useSelector(state => state.user.myWallets);
   const location = useLocation();
-
   const {
     addMoneyToVirtualCard,
     cardStatus,
@@ -203,7 +202,7 @@ const VirtualCardDetailsContainer = () => {
       setError(null);
       setOpenConfirmModal(false);
     }
-  }, [redeemMoneyToast, redeeMoney.data]);
+  }, [redeemMoneyToast, redeeMoney.data, dispatch]);
 
   useEffect(() => {
     if (redeeMoney?.error) {
@@ -213,7 +212,7 @@ const VirtualCardDetailsContainer = () => {
       setAddMoneyOpen(false);
       setOpenConfirmModal(false);
     }
-  }, [redeemMoneyToast]);
+  }, [redeemMoneyToast, redeeMoney.error]);
 
   useEffect(() => {
     setIsLoadingStatus(cardStatus.loading);
@@ -271,7 +270,7 @@ const VirtualCardDetailsContainer = () => {
   const checkTransactionConfirmation = () => {
     const data = {
       Amount: form.amount && form.amount.toString(),
-      TargetCurrency: destCurrency && destCurrency,
+      TargetCurrency: destCurrency,
       TargetType: VIRTUAL_CARD,
       SourceWallet:
         form.sourceWallet || selectedWallet?.AccountNumber,
@@ -290,13 +289,15 @@ const VirtualCardDetailsContainer = () => {
   const onAddMoneyToVirtualCard = () => {
     const data = {
       PIN,
-      Amount: form?.amount.toString(),
-      Currency: form?.CurrencyCode,
+      Amount: form?.amount?.toString(),
+      Currency: form?.CurrencyCode ?? location?.state?.item?.Currency,
       SourceWallet:
         form?.sourceWallet || selectedWallet?.AccountNumber,
-      CardNumber: form?.CardNumber,
+      CardNumber:
+        form?.CardNumber ?? location?.state?.item?.CardNumber,
       TargetType: VIRTUAL_CARD,
     };
+
     if (!pinIsValid()) {
       setErrors(
         global.translate('Please provide your PIN number.', 944),
@@ -323,7 +324,8 @@ const VirtualCardDetailsContainer = () => {
   const onUpdateCardStatus = () => {
     const status = cardsStatus === 'YES' ? 'NO' : 'YES';
     const data = {
-      CardNumber: form.CardNumber,
+      CardNumber:
+        form?.CardNumber ?? location?.state?.item?.CardNumber,
       Enable: status,
     };
     updateVirtualCardStatus(
@@ -334,7 +336,8 @@ const VirtualCardDetailsContainer = () => {
 
   const onRenewVirtualCard = () => {
     const data = {
-      CardNumber: form?.CardNumber,
+      CardNumber:
+        form?.CardNumber ?? location?.state?.item?.CardNumber,
     };
     renewCard(data, '/RenewVirtualCard')(dispatch);
   };
@@ -345,7 +348,8 @@ const VirtualCardDetailsContainer = () => {
     const pinIsValid = () => PIN.length === 4;
     const data = {
       PIN,
-      CardNumber: form?.CardNumber,
+      CardNumber:
+        form?.CardNumber ?? location?.state?.item?.CardNumber,
       TargetWallet: selectedWallet.AccountNumber,
     };
     if (!pinIsValid()) {
@@ -359,7 +363,7 @@ const VirtualCardDetailsContainer = () => {
 
   useEffect(() => {
     if (confirmationData && confirmationData[0]) {
-      setStep(step + 1);
+      setStep(step => step + 1);
     }
   }, [confirmationData]);
 
