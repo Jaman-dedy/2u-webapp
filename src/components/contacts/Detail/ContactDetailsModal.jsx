@@ -1,5 +1,19 @@
 import './details.scss';
 
+import moment from 'moment';
+import PropTypes from 'prop-types';
+import queryString from 'query-string';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import {
+  Button,
+  Grid,
+  Icon,
+  Modal,
+  TransitionablePortal,
+} from 'semantic-ui-react';
 import AirtimeactionsImage from 'assets/images/ContactAirtimeIcon.svg';
 import ChatImage from 'assets/images/ContactChatIcon.svg';
 import toOthersactionsImage from 'assets/images/ContactOthersIcon.svg';
@@ -14,13 +28,6 @@ import LoaderComponent from 'components/common/Loader';
 import Thumbnail from 'components/common/Thumbnail';
 import WalletCarousel from 'components/common/WalletCarousselSelector';
 import { ONE_TO_ONE } from 'constants/general';
-import moment from 'moment';
-import PropTypes from 'prop-types';
-import queryString from 'query-string';
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import {
   openChatList,
   setGlobalChat,
@@ -33,13 +40,6 @@ import {
   setIsTopingUp,
 } from 'redux/actions/dashboard/dashboard';
 import getAllTransactionHistory from 'redux/actions/transactions/getHistory';
-import {
-  Button,
-  Grid,
-  Icon,
-  Modal,
-  TransitionablePortal,
-} from 'semantic-ui-react';
 import allCountries from 'utils/countries';
 import countries from 'utils/countryCodes';
 import useWindowSize from 'utils/useWindowSize';
@@ -87,9 +87,7 @@ const ContactDetailsModal = ({
   const { allContacts } = useSelector(({ contacts }) => contacts);
 
   const parsedQueries = queryString.parse(history.location?.search);
-  const [imagePreviewClass, setImagePreviewClass] = useState(
-    'no-preview',
-  );
+
   const pathContact = params.id;
 
   useEffect(() => {
@@ -339,16 +337,6 @@ const ContactDetailsModal = ({
       setSelected(contact.MySharedWallets);
     }
   }, [contact]);
-
-  useEffect(() => {
-    if (hasError) {
-      setImagePreviewClass('no-preview');
-    } else if (contact?.PictureURL) {
-      setImagePreviewClass('image-preview');
-    } else {
-      setImagePreviewClass('image-preview');
-    }
-  }, [hasError, contact]);
 
   useEffect(() => {
     if (currentPath?.endsWith('/share-wallets')) {

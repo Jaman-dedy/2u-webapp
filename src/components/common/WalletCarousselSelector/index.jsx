@@ -12,7 +12,6 @@ import AddWalletModal from 'components/Wallets/AddWalletModal';
 
 import getCurrenciesList from 'redux/actions/users/getCurrenciesList';
 import getUserCurrencies from 'redux/actions/users/getUserCurrencies';
-import clearWalletForm from 'redux/actions/users/clearWalletForm';
 import addWallets from 'redux/actions/users/addWallet';
 import getMyWalletsAction from 'redux/actions/users/getMyWallets';
 import endWalletAction from 'redux/actions/wallets/endWalletAction';
@@ -216,10 +215,6 @@ const WalletCarousel = ({
           {!myWallets.loading && (
             <Button
               className="add-wallet"
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-              }}
               onClick={
                 onAddClick ||
                 (() => {
@@ -228,10 +223,7 @@ const WalletCarousel = ({
                 })
               }
             >
-              <Image
-                src={plusWalletImg}
-                style={{ marginRight: '7px', marginTop: '2px' }}
-              />
+              <Image src={plusWalletImg} />
               {global.translate('Add a wallet')}
             </Button>
           )}
