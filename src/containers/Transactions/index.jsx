@@ -25,6 +25,7 @@ const Transactions = () => {
   const [activeTab, setActiveTab] = useState(0);
 
   const { userData } = useSelector(state => state.user);
+
   const {
     walletTransactions,
     cancelTransaction: { data },
@@ -165,6 +166,10 @@ const Transactions = () => {
         PageNumber: '1',
         RecordPerPage: '7',
       })(dispatch);
+      setForm({
+        ...form,
+        WalletNumber: '',
+      });
     }
   };
   const fetchAllTransaction = () => {
@@ -181,14 +186,23 @@ const Transactions = () => {
   };
 
   const getMoreResults = page => {
-    getWalletTransactions({
-      WalletNumber: form.WalletNumber,
-      DateFrom: form.fromDate,
-      DateTo: form.toDate,
-      Proxy: 'Yes',
-      PageNumber: String(page),
-      RecordPerPage: '7',
-    })(dispatch);
+    if (activeTab === 3) {
+      const data = {
+        Proxy: 'Yes',
+        PageNumber: String(page),
+        RecordPerPage: '7',
+      };
+      getPendingOtherTransfer(data)(dispatch);
+    } else {
+      getWalletTransactions({
+        WalletNumber: form.WalletNumber,
+        DateFrom: form.fromDate,
+        DateTo: form.toDate,
+        Proxy: 'Yes',
+        PageNumber: String(page),
+        RecordPerPage: '7',
+      })(dispatch);
+    }
   };
 
   useEffect(() => {
@@ -214,9 +228,14 @@ const Transactions = () => {
     }
   }, []);
   useEffect(() => {
-    getTransactions();
-    getUnPaidCashList();
-    getVoucherTransactions();
+    if (!walletTransactions.data) {
+      getTransactions();
+    }
+  }, []);
+  useEffect(() => {
+    if (!unPaidCashList.data) {
+      getUnPaidCashList();
+    }
   }, []);
 
   useEffect(() => {
@@ -237,6 +256,14 @@ const Transactions = () => {
       setTableVisible(false);
     }
   }, [form]);
+
+  useEffect(() => {
+    if (wallet) {
+      setForm({ ...form, WalletNumber: wallet.AccountNumber });
+      setCurrentOption(wallet);
+    }
+  }, [wallet]);
+
   const getChartData = (data = [{}]) => {
     let creditCount = 0;
     let debitCount = 0;
@@ -359,6 +386,9 @@ const Transactions = () => {
       pendingOtherLoading={pendingOtherLoading}
       pendingOtherError={pendingOtherError}
       fetchAllTransaction={fetchAllTransaction}
+      setCurrentOption={setCurrentOption}
+      setForm={setForm}
+      getUnPaidCashList={getUnPaidCashList}
     />
   );
 };
