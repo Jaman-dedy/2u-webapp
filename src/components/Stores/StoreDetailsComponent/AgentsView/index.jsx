@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Input } from 'semantic-ui-react';
 import Message from 'components/common/Message';
-import addStoreAgentAction from 'redux/actions/stores/addStoreAgents';
 import removeStoreAgentAction from 'redux/actions/stores/removeStoreAgent';
 import LoaderComponent from 'components/common/Loader';
 
@@ -12,7 +11,6 @@ import ListItem from './List/ListItem';
 const AgentsView = (currentStore, onEditChange, isOpenAddAgent) => {
   const [isSearching, setIsSearching] = useState(false);
   const [initialInternalUsers, setIUsers] = useState([]);
-  const [form, setForm] = useState({});
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [thisItem, setThisItem] = useState({});
 

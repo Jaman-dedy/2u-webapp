@@ -1,11 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { CASH_OUT } from 'constants/general';
-import SendCashModal from 'components/MoneyTransfer/sendCash';
+/* eslint-disable react-hooks/exhaustive-deps */
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
+// import cancelOrEditOther from 'redux/actions/transactions/cancelOrEditOther';
+import SendCashModal from 'components/MoneyTransfer/sendCash';
+import { CASH_OUT } from 'constants/general';
 import { clearFoundUser } from 'redux/actions/contacts/locateUser';
 import getSupportedCountries from 'redux/actions/countries/getSupportedCountries';
 import { updateMoneyTransferStep } from 'redux/actions/dashboard/dashboard';
@@ -21,7 +23,6 @@ import getMyWallets from 'redux/actions/users/getMyWallets';
 import getUserLocationData from 'redux/actions/users/userLocationData';
 import countryCodes from 'utils/countryCodes';
 import formatNumber from 'utils/formatNumber';
-import cancelOther from 'redux/actions/transactions/cancelOther';
 
 /* eslint-disable react-hooks/exhaustive-deps */
 const SendCashContainer = ({
@@ -100,7 +101,7 @@ const SendCashContainer = ({
       );
       setCurrency(defWallet?.CurrencyCode);
     }
-  }, [usersData, open, defWallet]);
+  }, [usersData, open]);
 
   useEffect(() => {
     if (!isEditing) {
@@ -208,12 +209,6 @@ const SendCashContainer = ({
 
   const onOptionsChange = (e, { name, value }) => {
     setForm({ ...form, [name]: value });
-    if (errors) {
-      setErrors(null);
-    }
-    if (step === 1 && confirmationError) {
-      clearMoveFundsErrors()(dispatch);
-    }
   };
 
   const validate = () => {
@@ -281,18 +276,6 @@ const SendCashContainer = ({
     return hasError;
   };
 
-  useEffect(() => {
-    if (updatingData && updatingData.data) {
-      if (updatingData.data[0]) {
-        clearModifyCash()(dispatch);
-        setForm({});
-        updateMoneyTransferStep(1)(dispatch);
-        setOptionsOpen(false);
-        setOpen(false);
-        setIsEditing(false);
-      }
-    }
-  }, [updatingData]);
   useEffect(() => {
     if (otherData && otherData.length) {
       clearModifyCash()(dispatch);
@@ -410,7 +393,7 @@ const SendCashContainer = ({
       DateTo: (form.isRecurring && form.endDate) || '',
       Day: form.isRecurring ? form.day && form.day.toString() : '0',
       Reccurent: form.isRecurring ? 'YES' : 'NO',
-      SendNow: form.isRecurring && form.sendNow ? 'No' : 'YES',
+      SendNow: form.isRecurring && form.sendNow ? 'NO' : 'YES',
       Reference: form.reference || '',
       Description: form.description || '',
       TargetType: CASH_OUT,
@@ -469,24 +452,6 @@ const SendCashContainer = ({
     }
     setErrors(null);
 
-    if (isEditing && !EditSendToOther) {
-      const regex = / | + /gi;
-      modifyCash({
-        PIN,
-        SecurityCode:
-          form.securityCode || destinationContact.SecurityCode,
-        VoucherNumber:
-          form.voucherNumber || destinationContact.TransferNumber,
-        TargetPhoneNumber: (
-          phonePrefix + form.phoneNumber.replace(regex, '')
-        ).replace('+', ''),
-        FirstName: form.firstName,
-        LastName: form.lastName,
-        CountryCode:
-          form.countryCode || destinationContact.CountryCode,
-      })(dispatch);
-    }
-
     if (EditSendToOther) {
       const {
         TransferNumber,
@@ -504,7 +469,7 @@ const SendCashContainer = ({
         Cancel: 'No',
         Modify: 'Yes',
       };
-      cancelOther(data)(dispatch);
+      // cancelOrEditOther(data)(dispatch);
     }
     if (!isEditing) {
       moveFunds(data, '/SendCash', 'send-cash')(dispatch)(data => {
@@ -551,7 +516,6 @@ const SendCashContainer = ({
       isEditing={isEditing}
       updating={updating}
       updatingError={updatingError}
-      updatingData={updatingData}
       currencyOptions={currencyOptions}
       defaultDestinationCurrency={defaultDestinationCurrency}
       transactionType={transactionType}
@@ -574,6 +538,7 @@ SendCashContainer.propTypes = {
   setOptionsOpen: PropTypes.func,
   setIsEditing: PropTypes.func,
   transactionType: PropTypes.string,
+  EditSendToOther: PropTypes.bool,
 };
 
 SendCashContainer.defaultProps = {
@@ -583,5 +548,6 @@ SendCashContainer.defaultProps = {
   setOptionsOpen: () => {},
   setIsEditing: () => {},
   transactionType: 'CASH_TRANSACTION',
+  EditSendToOther: false,
 };
 export default SendCashContainer;

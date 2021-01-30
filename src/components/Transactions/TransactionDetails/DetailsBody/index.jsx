@@ -92,7 +92,10 @@ const DetailsBody = ({ item, selectedCard, updatingData }) => {
       );
     }
     if (selectedCard === 3) {
-      return `${item?.Recipient.Prefix} ${item?.Recipient.Phone}`;
+      if (item?.Recipient.Prefix) {
+        return `${item?.Recipient.Prefix} ${item?.Recipient.Phone}`;
+      }
+      return '';
     }
     if (selectedCard === 4) {
       return (
