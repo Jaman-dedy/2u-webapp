@@ -17,7 +17,6 @@ const MyRewards = ({ userData }) => {
   const printUCard = () => {};
 
   const { data, loading } = userData;
-  console.log('data', data);
 
   return (
     <div className="myrewards-container">
