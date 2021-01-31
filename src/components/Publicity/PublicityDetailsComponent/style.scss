@@ -19,7 +19,7 @@
   background-color: #ffffff;
 
   .customised-audience-form {
-    width: 40%;
+    width: 65%;
     margin: 0 auto;
     padding: 2rem 0;
 
@@ -35,6 +35,9 @@
     }
 
     .input-percentage {
+      input[type='number'] {
+        padding-left: 0px !important;
+      }
       input {
         color: #ea5726;
         font-size: 1.4rem;
