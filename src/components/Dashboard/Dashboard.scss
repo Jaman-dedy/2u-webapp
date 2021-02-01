@@ -20,6 +20,7 @@
   background: #ffffff;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
   border-radius: 4px;
+
   h2 {
     font-size: 16px;
     line-height: 28px;
@@ -28,7 +29,7 @@
     a {
       float: right;
       font-size: 12px;
-      color: #da6138;
+      color: #a81f23;
       padding-right: 20px;
       background-repeat: no-repeat;
       background-size: 16px 16px;
@@ -51,18 +52,14 @@
   .wrap-welcome-message {
     width: calc(100% - 80px);
     padding: 0 15px;
-    // font-weight: 300;
+    // font-weight: 100;
     font-size: 16px;
     line-height: 22px;
     h3 {
-      // font-weight: 300;
+      font-weight: 100;
       font-size: 22px;
       color: #4b4b4b;
       margin: 3px 0;
-    }
-    div {
-      font-size: 15px !important;
-      // font-weight: 300;
     }
   }
 }
@@ -182,7 +179,7 @@
     margin: 0 1%;
     display: flex;
     flex-wrap: wrap;
-    flex: 1;
+    flex-direction: row;
     .wrap-wallet-btn {
       width: 48%;
       margin-bottom: 10px;
@@ -201,7 +198,7 @@
       }
       .btn-info {
         width: calc(100% - 70px);
-        color: #2f2e41;
+        color: #0f0f13;
         h4 {
           margin: 0;
         }
@@ -259,6 +256,7 @@
     margin: 4px 0;
   }
 }
+
 .dash-card.card-graph,
 .dash-card.card-transactions {
   padding: 0 !important;
@@ -289,6 +287,7 @@
   }
   .wrap-wallet-actions {
     width: calc(100% - 280px);
+    flex: 1;
   }
   .wrap-wallet-btn a {
     height: 90px;
@@ -321,8 +320,6 @@
   }
   .wrap-wallet-actions {
     width: 100%;
-    .wrap-wallet-btn {
-    }
     .wrap-wallet-btn a {
       padding: 15px 0px;
       height: 120px;
@@ -355,6 +352,7 @@
       margin-bottom: 10px;
     }
   }
+
   .wrap-wallet-actions {
     width: 100% !important;
     .wrap-wallet-btn {
@@ -380,6 +378,7 @@
   .dash-wallet {
     padding: 15px 10px;
   }
+
   .dashboard {
     flex-flow: row wrap;
     flex-direction: row;
@@ -391,8 +390,6 @@
     .wrap-right-dash {
       width: 100%;
     }
-  }
-  .wrap-wallet-container {
   }
   .wrap-wallet {
     width: 100% !important;
@@ -423,7 +420,6 @@
       width: 440px;
     }
   }
-
   .wrap-wallet {
     width: 280px;
   }
@@ -434,6 +430,9 @@
 @media screen and (max-width: 490px) {
   .wrap-wallet {
     width: 440px;
+  }
+  .card-graph {
+    margin-bottom: 87px !important;
   }
   .wrap-wallet-actions {
     width: 100%;

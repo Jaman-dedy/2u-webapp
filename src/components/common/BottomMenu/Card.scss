@@ -1,6 +1,6 @@
 .cards {
   height: 220px;
-  padding: 25px 2%;
+  padding: 25px 4%;
   background-color: #ffffff;
   cursor: pointer;
   border-radius: 5px;
@@ -21,11 +21,14 @@
     outline: none;
   }
   .ui.ribbon.label {
-    padding:6px 8px;
+    padding: 6px 8px;
     position: absolute;
     top: 12px;
     left: -14px;
     font-weight: 400;
+  }
+  .card-description {
+    font-weight: 300;
   }
 }
 
@@ -63,7 +66,7 @@
     flex-direction: row;
     .cards {
       flex: 0 0 31.3%;
-      margin: 0.7%;
+      margin: 1%;
     }
   }
 }
@@ -87,6 +90,7 @@
     display: flex;
     flex-wrap: wrap;
     row-gap: 15px;
+    padding-bottom: 70px;
     .cards {
       flex-basis: 96%;
       margin: 2%;

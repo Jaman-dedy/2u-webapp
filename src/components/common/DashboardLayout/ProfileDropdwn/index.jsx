@@ -15,6 +15,7 @@ import Img from 'components/common/Img';
 import ImageLevel from './ImageLevel';
 import LoaderComponent from 'components/common/Loader';
 import { closeProfileDropDown } from 'redux/actions/dashboard/dashboard';
+import convertNumber from 'utils/convertNumber';
 
 const ProfileDropdown = ({
   openProfile,
@@ -168,10 +169,10 @@ const ProfileDropdown = ({
                         {profileData?.Rewards?.StatusText}
                         {',  '}
                         <strong>
-                          {
+                        {convertNumber(
                             profileData?.Rewards?.TotalPoints
-                              ?.PointsValue
-                          }
+                              ?.PointsValue,
+                          )}
                         </strong>{' '}
                         {global.translate('points', 1917)}
                       </span>

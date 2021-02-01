@@ -35,7 +35,6 @@ import { setSelectedStore } from 'redux/actions/vouchers/selectedStore';
 
 import DeleteContactModal from './Delete/DeleteContactModal';
 import ContactDetailsModal from './Detail/ContactDetailsModal';
-import ItemsPlaceholder from './Favorite/ItemsLoading';
 import ListItem from './List/ListItem';
 import AddNewContactModal from './New/AddNewContactModal';
 
