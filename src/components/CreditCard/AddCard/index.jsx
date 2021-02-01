@@ -142,7 +142,7 @@ const AddCard = ({
           </div>
 
           <h2 className="head-title">
-            {global.translate('My M-Cards', 2173)}
+            {global.translate('My M-Cards', 2159)}
           </h2>
           <div className="clear" />
         </div>

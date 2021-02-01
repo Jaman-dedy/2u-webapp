@@ -163,7 +163,7 @@ export default wallet => {
   };
   const validate = () => {
     if (cardPin !== confirmPin) {
-      setPinError(
+      setError(
         global.translate('The PIN number does not match.', 2134),
       );
       return true;

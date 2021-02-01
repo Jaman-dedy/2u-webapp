@@ -97,7 +97,7 @@ const CreditCardDetails = ({ creditCardDetails }) => {
             <GoBack style onClickHandler={onClickHandler} />
           </div>
           <h2 className="head-title">
-            {global.translate('My M-Card', 2150)}
+            {global.translate('My M-Card', 2159)}
           </h2>
           <div className="clear" />
         </div>
@@ -193,7 +193,7 @@ const CreditCardDetails = ({ creditCardDetails }) => {
             <Header as="h4" color="red">
               {global.translate(
                 'Deleting this card will permanently remove it from your wallet, Would you like to proceed?',
-                2147,
+                2128,
               )}
             </Header>
             <p className="verification-message">
@@ -205,7 +205,7 @@ const CreditCardDetails = ({ creditCardDetails }) => {
             <p>
               {global.translate(
                 'Please type the following text to proceed.',
-                2148,
+                2129,
               )}{' '}
               <span className="ui label">{`${wallet.Last4Digits}`}</span>
             </p>

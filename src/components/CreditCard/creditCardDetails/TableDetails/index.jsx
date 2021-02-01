@@ -49,7 +49,10 @@ const TableDetails = ({
                   }}
                   className="table-button"
                 >
-                  {global.translate('I have received my M-Card')}
+                  {global.translate(
+                    'I have received my M-Card',
+                    2160,
+                  )}
                 </Button>
               )}
               {card?.Enabled === 'YES' && card?.Activated === 'YES' && (

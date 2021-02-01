@@ -178,7 +178,7 @@ const Dashboard = ({
               <h2>
                 {global.translate(`MY WALLETS`, 68)}
                 <Link to="/wallets">
-                  {global.translate('SEE ALL', 2139).toUpperCase()}
+                  {global.translate('SEE ALL', 2124).toUpperCase()}
                 </Link>
               </h2>
               <div className="wrap-wallet-container">
@@ -196,7 +196,7 @@ const Dashboard = ({
                         <div>
                           {global.translate(
                             'Create wallets and manage your money on the go',
-                            2140,
+                            2154,
                           )}
                         </div>
                       </div>
@@ -249,7 +249,7 @@ const Dashboard = ({
                     <div>
                       {global.translate(
                         `Order and manage your prepaid cards`,
-                        2142,
+                        2155,
                       )}
                     </div>
                   </div>
@@ -281,6 +281,7 @@ const Dashboard = ({
                     <div>
                       {global.translate(
                         `Browse varieties of our services`,
+                        2156,
                       )}
                     </div>
                   </div>
@@ -323,7 +324,7 @@ const Dashboard = ({
               <h2>
                 {global.translate(`TRANSFER MONEY TO`, 1950)}
                 <Link to="/contacts">
-                  {global.translate('SEE ALL', 2139).toUpperCase()}
+                  {global.translate('SEE ALL', 2124).toUpperCase()}
                 </Link>
               </h2>
               <Contacts
@@ -340,7 +341,7 @@ const Dashboard = ({
               <h2>
                 {global.translate(`TRANSACTIONS`, 62)}
                 <Link to="/transactions">
-                  {global.translate('SEE ALL', 2139).toUpperCase()}
+                  {global.translate('SEE ALL', 2124).toUpperCase()}
                 </Link>
                 <TransactionHistory
                   getTransactions={getTransactions}
