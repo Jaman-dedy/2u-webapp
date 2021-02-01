@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Image, Button, Grid, Modal, Icon } from 'semantic-ui-react';
 import ReactToPrint from 'react-to-print';
@@ -7,12 +8,17 @@ import NotifImage from 'assets/images/notif-type-transaction.png';
 import Referals from 'assets/images/referalsIcon.png';
 import MembershipCard from 'components/Fidelity/MembershipCard';
 import LoaderComponent from 'components/common/Loader';
+import formatNumber from 'utils/formatNumber';
 import LevelImage from './LevelsImage';
 import './MyRewards.scss';
+import LoadRewards from 'assets/images/fidelity/loadFidelity.svg';
 
 const MyRewards = ({ userData }) => {
   const [openModal, setOpenModal] = useState(false);
   const ucardRef = useRef(null);
+  const { language: { preferred } = {} } = useSelector(
+    ({ user }) => user,
+  );
 
   const printUCard = () => {};
 
@@ -21,10 +27,7 @@ const MyRewards = ({ userData }) => {
   return (
     <div className="myrewards-container">
       {loading && (
-        <LoaderComponent
-          style={{ paddingLeft: '10px' }}
-          loaderContent={global.translate('Working…', 412)}
-        />
+        <Image src={LoadRewards} className="animate-placeholder" />
       )}
 
       {data?.Rewards && (
@@ -126,7 +129,7 @@ const MyRewards = ({ userData }) => {
                     )}
                   </div>
                   <div className="congratsPoints">
-                    {data.Rewards && data.Rewards.YearPoints && (
+                    {data?.Rewards && data.Rewards.YearPoints && (
                       <span className="congratsPointsItem">
                         <span>
                           {global.translate(
@@ -135,7 +138,13 @@ const MyRewards = ({ userData }) => {
                           )}
                         </span>
                         <span className="yearpoints">
-                          {data.Rewards.YearPoints.PointsValue}
+                          {formatNumber(
+                            data.Rewards.YearPoints.PointsValue,
+                            {
+                              locales: preferred,
+                              minimumFractionDigits: 0,
+                            },
+                          )}
                         </span>
                       </span>
                     )}
@@ -149,7 +158,13 @@ const MyRewards = ({ userData }) => {
                           )}
                         </span>
                         <span className="inbound">
-                          {data.Rewards.InCount.CountValue}
+                          {formatNumber(
+                            data.Rewards.InCount.CountValue,
+                            {
+                              locales: preferred,
+                              minimumFractionDigits: 0,
+                            },
+                          )}
                         </span>
                       </span>
                     )}
@@ -163,7 +178,13 @@ const MyRewards = ({ userData }) => {
                           )}
                         </span>
                         <span className="outbound">
-                          {data.Rewards.OutCount.CountValue}
+                          {formatNumber(
+                            data.Rewards.OutCount.CountValue,
+                            {
+                              locales: preferred,
+                              minimumFractionDigits: 0,
+                            },
+                          )}
                         </span>
                       </span>
                     )}
