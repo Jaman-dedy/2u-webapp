@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import {
   UPDATE_CARD_STATUS_START,
   UPDATE_CARD_STATUS_SUCCESS,
@@ -35,6 +36,7 @@ export default data => dispatch =>
         });
       },
       onFailure: error => dispatch => {
+        toast.error(Array.isArray(error) && error[0].Description);
         return dispatch({
           type: UPDATE_CARD_STATUS_ERROR,
           payload: {

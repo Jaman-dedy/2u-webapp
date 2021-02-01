@@ -8,7 +8,6 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    margin-bottom: -1rem;
 
     margin: 0 1rem;
 
@@ -41,8 +40,8 @@
       .card-detail-info {
         display: flex;
         width: fit-content;
-        &:not(:first-child) {
-          margin-left: 1rem;
+        &:not(:last-child) {
+          margin-right: 1rem;
         }
         img {
           display: inline-block;
@@ -52,6 +51,7 @@
     }
   }
   .right-side {
+    padding: 2.2rem;
     padding-top: 20px;
     height: fit-content;
     font-size: 1.4rem;
@@ -72,12 +72,20 @@
   .item.virtual-card-item {
     height: 9rem;
   }
+  .detail.display-card-box {
+    margin-bottom: -1rem;
+  }
+  .info-message {
+    margin-top: -1rem !important;
+  }
 }
 @media (max-width: 540px) {
   .display-card-box {
     flex-direction: column;
     .right-side {
-      text-align: center;
+      padding-bottom: 0.5rem;
+      padding-top: 0.5rem;
+      text-align: left;
       button {
         float: unset !important;
       }

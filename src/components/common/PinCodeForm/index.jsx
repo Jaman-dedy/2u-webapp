@@ -27,7 +27,7 @@ const PinCodeForm = ({
     } else {
       setClear(false);
     }
-  }, [shouldClear]);
+  }, [shouldClear, setShouldClear]);
 
   useEffect(() => {
     if (clear) {
@@ -36,13 +36,13 @@ const PinCodeForm = ({
       });
       setDigitWithFocus(0);
     }
-  }, [clear]);
+  }, [clear, digitRefs]);
 
   useEffect(() => {
     if (digitRefs[digitWithFocus]) {
       digitRefs[digitWithFocus].current.focus();
     }
-  }, [digitWithFocus]);
+  }, [digitWithFocus, digitRefs]);
 
   const [valueAt, setValueAt] = useState({
     digit0: '',
@@ -50,13 +50,14 @@ const PinCodeForm = ({
 
   return (
     <div className="pin-input-form">
-      <span>{global.translate(label, 1431)}</span>
+      <span>{label}</span>
       <Form.Field className="pin-input-group">
         {Array(4)
           .fill()
           .map((_, index) => {
             return (
               <Input
+                isRequired
                 key={index.toString()}
                 type="number"
                 name={`digit${index}`}

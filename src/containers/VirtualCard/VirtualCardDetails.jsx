@@ -1,5 +1,5 @@
 /* eslint-disable array-callback-return */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -46,9 +46,10 @@ const VirtualCardDetailsContainer = () => {
   const [openConfirmModal, setOpenConfirmModal] = useState(false);
   const [shouldClear, setShouldClear] = useState(false);
   const [destCurrency, setDestCurrency] = useState(null);
-
   const [addMoneyOpen, setAddMoneyOpen] = useState(false);
+  const [canProceed, setCanProceed] = useState(false);
   const { walletList } = useSelector(state => state.user.myWallets);
+  const [PIN, setPIN] = useState('');
   const location = useLocation();
   const {
     addMoneyToVirtualCard,
@@ -282,9 +283,33 @@ const VirtualCardDetailsContainer = () => {
     }
   };
 
-  const { digit0, digit1, digit2, digit3 } = form;
-  const PIN = `${digit0}${digit1}${digit2}${digit3}`;
-  const pinIsValid = () => PIN.length === 4;
+  useEffect(() => {
+    const { digit0, digit1, digit2, digit3 } = form;
+    const pinNumber = [];
+    if (digit0) {
+      pinNumber[0] = digit0;
+    }
+
+    if (digit1) {
+      pinNumber[1] = digit1;
+    }
+
+    if (digit2) {
+      pinNumber[2] = digit2;
+    }
+
+    if (digit3) {
+      pinNumber[3] = digit3;
+    }
+    setPIN(pinNumber.join(''));
+    if (pinNumber.join('').length === 4) {
+      setCanProceed(true);
+    }
+  }, [form]);
+
+  const pinIsValid = useCallback(() => {
+    return PIN.length === 4;
+  }, [PIN]);
 
   const onAddMoneyToVirtualCard = () => {
     const data = {
@@ -320,6 +345,13 @@ const VirtualCardDetailsContainer = () => {
     setErrors(null);
     addMoneyToVCard(data, '/AddMoneyToVirtualCard')(dispatch);
   };
+  useEffect(() => {
+    if (pinIsValid()) {
+      setCanProceed(true);
+    } else {
+      setCanProceed(false);
+    }
+  }, [PIN, pinIsValid]);
 
   const onUpdateCardStatus = () => {
     const status = cardsStatus === 'YES' ? 'NO' : 'YES';
@@ -327,11 +359,26 @@ const VirtualCardDetailsContainer = () => {
       CardNumber:
         form?.CardNumber ?? location?.state?.item?.CardNumber,
       Enable: status,
+      PIN,
     };
-    updateVirtualCardStatus(
-      data,
-      '/UpdateVirtualCardStatus',
-    )(dispatch);
+    if (pinIsValid()) {
+      updateVirtualCardStatus(
+        data,
+        '/UpdateVirtualCardStatus',
+      )(dispatch);
+    } else {
+      toast.error('Please provide the PIN');
+    }
+    setForm({
+      ...form,
+      amount: '',
+      digit0: '',
+      digit1: '',
+      digit2: '',
+      digit3: '',
+    });
+    setPIN('');
+    setCanProceed(false);
   };
 
   const onRenewVirtualCard = () => {
@@ -405,6 +452,8 @@ const VirtualCardDetailsContainer = () => {
       setOpenConfirmModal={setOpenConfirmModal}
       openConfirmModal={openConfirmModal}
       shouldClear={shouldClear}
+      canProceed={canProceed}
+      setCanProceed={setCanProceed}
     />
   );
 };
