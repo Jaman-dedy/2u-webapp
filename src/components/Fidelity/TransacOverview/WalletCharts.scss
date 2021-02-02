@@ -23,40 +23,9 @@
   }
 
   tspan {
-    font-size: 10px;
+    font-size: 0.8rem;
   }
 }
-
-@media (max-width: 330px) {
-  .WalletChartsContainer {
-    width: 250px;
-    margin-left: 40px;
-
-    tspan {
-      font-size: 10px;
-    }
-  }
-}
-
-@media (max-width: 414px) {
-  .WalletChartsContainer {
-    width: 300px;
-    margin-left: 40px;
-
-    .caret-left {
-      left: -13px;
-    }
-
-    .caret-right {
-      right: 45px;
-    }
-
-    tspan {
-      font-size: 10px;
-    }
-  }
-}
-
 @media (max-width: 920px) {
   .WalletChartsContainer {
     .caret-left {
@@ -64,6 +33,36 @@
     }
     .caret-right {
       right: 45px;
+    }
+  }
+}
+@media (max-width: 414px) {
+  .WalletChartsContainer {
+    max-width: 300px;
+    margin: 0 auto;
+
+    .caret-left {
+      left: -13px;
+    }
+
+    .caret-right {
+      right: 45px;
+    }
+
+    tspan {
+      font-size: 0.5rem;
+    }
+  }
+}
+
+@media (max-width: 330px) {
+  .WalletChartsContainer {
+    max-width: 250px;
+
+    tspan {
+      font-size: 0.5rem;
+      display: inline-block;
+      overflow: auto;
     }
   }
 }
