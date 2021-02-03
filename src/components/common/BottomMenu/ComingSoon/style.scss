@@ -28,30 +28,17 @@
   &:hover {
     cursor: not-allowed;
   }
-  .coming-soon-box {
-    font-size: 11px;
-    border-radius: 2px;
-    background-color: #e95927;
-    color: #ffff;
-    padding: 3px;
-    width: 98px;
-    height: 27px;
-    margin-top: -10px;
-    font-weight: 500;
-    margin-right: -16px;
-  }
 }
 
 @media (max-width: 425px) {
   .soon-container {
     flex-direction: column;
-    .coming-soon-box {
-      margin-top: 10px !important;
-    }
   }
 }
 @media (max-width: 320px) {
   .soon-container {
+    flex-direction: row;
+    width: 100%;
     .soon-details {
       .card-title {
         font-size: 14px;
