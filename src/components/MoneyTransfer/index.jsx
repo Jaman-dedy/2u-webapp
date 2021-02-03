@@ -3,16 +3,14 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import TopUpIcon from 'assets/images/TransAirtime.svg';
-import bankTransferIcon from 'assets/images/TransBank.svg';
-import CreditCard from 'assets/images/TransCreditCard.svg';
-import CurrencyExchangeIcon from 'assets/images/TransExchange.svg';
-import payBillsIcon from 'assets/images/TransPay.svg';
-import AddMoneyIcon from 'assets/images/TransPaypal.svg';
-import SendCashIcon from 'assets/images/TransSendCash.svg';
-import MoneyTransferIcon from 'assets/images/TransSendMoney.svg';
-import ToOtherIcon from 'assets/images/TransToothers.svg';
-import sendVoucherIcon from 'assets/images/TransVoucher.svg';
+import AddMoneyIcon from 'assets/images/services/paypal-csn.svg';
+import TopUpIcon from 'assets/images/services/top-u-service.svg';
+import bankTransferIcon from 'assets/images/services/bank-t-csn.svg';
+import CurrencyExchangeIcon from 'assets/images/services/currency-e-service.svg';
+import SendCashIcon from 'assets/images/services/send-c-service.svg';
+import MoneyTransferIcon from 'assets/images/services/money-t-service.svg';
+import ToOtherIcon from 'assets/images/services/other-n-service.svg';
+import sendVoucherIcon from 'assets/images/services/send-v-service.svg';
 import CardComponent from 'components/common/BottomMenu/Card';
 import DashboardLayout from 'components/common/DashboardLayout';
 import GoBack from 'components/common/GoBack';
@@ -20,12 +18,14 @@ import WelcomeBar from 'components/Dashboard/WelcomeSection';
 import PayBills from 'components/PayBills';
 import ExchangeContainer from 'containers/MoneyTransfer/Exchange/Exchange';
 import isAppDisplayedInWebView from 'helpers/isAppDisplayedInWebView';
+import ComingSoon from 'components/common/BottomMenu/ComingSoon';
 import {
   setIsendingCash,
   setIsSendingMoney,
   setIsSendingOhters,
   setIsTopingUp,
 } from 'redux/actions/dashboard/dashboard';
+import './style.scss';
 
 const MoneyTransfer = ({ payBills }) => {
   const [sendMoneyOpen, setSendMoneyOpen] = useState(false);
@@ -56,11 +56,31 @@ const MoneyTransfer = ({ payBills }) => {
             setOpen={setOpenPayBills}
             payBills={payBills}
           />
-          <div className="services">
+          {/* <div className="services">
             <h2 style={{ marginLeft: '4px' }}>
               {global.translate('What would you like to do?', 1706)}
             </h2>
             <div className="to-u-services">
+             
+              <CardComponent
+                image={payBillsIcon}
+                title={global.translate('Pay bills', 2005)}
+                onClick={() => setOpenPayBills(true)}
+                subtitle={global.translate(
+                  'Pay your bills to registered providers',
+                  668,
+                )}
+              />
+            </div>
+          </div> */}
+          <div className="services-container">
+            <h3>{global.translate('Money transfer')}</h3>
+            <div className="container-subtitle">
+              {global.translate(
+                'From your digital wallet to any destination of your choice',
+              )}
+            </div>
+            <div className="services-cards">
               <CardComponent
                 image={MoneyTransferIcon}
                 onClick={() => {
@@ -71,26 +91,6 @@ const MoneyTransfer = ({ payBills }) => {
                 subtitle={global.translate(
                   'Transfer funds to your 2UMoney contacts',
                   585,
-                )}
-              />
-              <CardComponent
-                image={payBillsIcon}
-                title={global.translate('Pay bills', 2005)}
-                onClick={() => setOpenPayBills(true)}
-                subtitle={global.translate(
-                  'Pay your bills to registered providers',
-                  668,
-                )}
-              />
-              <CardComponent
-                image={sendVoucherIcon}
-                title={global.translate('Send a voucher', 863)}
-                onClick={() =>
-                  history.push('/contacts?ref=send-voucher')
-                }
-                subtitle={global.translate(
-                  'Create a voucher or a gift card',
-                  764,
                 )}
               />
               <CardComponent
@@ -106,7 +106,26 @@ const MoneyTransfer = ({ payBills }) => {
                   915,
                 )}
               />
-
+              <CardComponent
+                image={sendVoucherIcon}
+                title={global.translate('Send a voucher', 863)}
+                onClick={() =>
+                  history.push('/contacts?ref=send-voucher')
+                }
+                subtitle={global.translate(
+                  'Create a voucher or a gift card',
+                  764,
+                )}
+              />
+              <CardComponent
+                image={TopUpIcon}
+                onClick={() => {
+                  setIsTopingUp(dispatch);
+                  history.push('/contacts?ref=to-up');
+                }}
+                title={global.translate('Buy Airtime', 539)}
+                subtitle={global.translate('Buy Airtime', 539)}
+              />
               {sendMoneyOpen && (
                 <ExchangeContainer
                   setSendMoneyOpen={setSendMoneyOpen}
@@ -125,7 +144,6 @@ const MoneyTransfer = ({ payBills }) => {
                   569,
                 )}
               />
-
               <CardComponent
                 image={ToOtherIcon}
                 title={global.translate('Other networks', 581)}
@@ -138,28 +156,12 @@ const MoneyTransfer = ({ payBills }) => {
                   581,
                 )}
               />
-              <CardComponent
-                image={TopUpIcon}
-                onClick={() => {
-                  setIsTopingUp(dispatch);
-                  history.push('/contacts?ref=to-up');
-                }}
-                title={global.translate('Buy Airtime', 539)}
-                subtitle={global.translate('Buy Airtime', 539)}
-              />
-              <CardComponent
-                image={CreditCard}
-                onClick={() => {
-                  history.push('/virtual-card');
-                }}
-                title={global.translate('O-Card', 1999)}
-                subtitle={global.translate(
-                  'Get an O-Card number for online payment',
-                  2000,
-                )}
-              />
-              <CardComponent
-                isComingSoon
+            </div>
+            <h3 className="coming-soon-title">
+              {global.translate('Coming soon')}
+            </h3>
+            <div className="soon-cards">
+              <ComingSoon
                 image={bankTransferIcon}
                 to="/"
                 title={global.translate('Bank transfer', 169)}
@@ -168,8 +170,7 @@ const MoneyTransfer = ({ payBills }) => {
                   670,
                 )}
               />
-              <CardComponent
-                isComingSoon
+              <ComingSoon
                 image={AddMoneyIcon}
                 title={global.translate('Paypal', 170)}
                 to="/"

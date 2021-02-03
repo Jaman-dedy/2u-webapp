@@ -228,7 +228,7 @@ const Dashboard = ({
                   </div>
                   <div className="service-text">
                     <h4>
-                      {global.translate(`Transfer money`, 1950)}
+                      {global.translate(`Money transfer`, 1950)}
                     </h4>
                     <div>
                       {global.translate(
@@ -250,6 +250,22 @@ const Dashboard = ({
                       {global.translate(
                         `Order and manage your prepaid cards`,
                         2155,
+                      )}
+                    </div>
+                  </div>
+                </Link>
+              </div>
+              <div className="one-service" data-tut="third-step">
+                <Link to="/virtual-card">
+                  <div className="service-icon">
+                    <img src={ServiceMCard} />
+                  </div>
+                  <div className="service-text">
+                    <h4>{global.translate(`O Card`)}</h4>
+                    <div>
+                      {global.translate(
+                        `Get an O-Card number for online payment`,
+                        2000,
                       )}
                     </div>
                   </div>

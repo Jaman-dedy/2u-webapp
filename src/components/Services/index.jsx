@@ -5,17 +5,17 @@ import { useHistory } from 'react-router-dom';
 
 import DashboardLayout from 'components/common/DashboardLayout';
 import WelcomeBar from 'components/Dashboard/WelcomeSection';
-import findServicesIcon from 'assets/images/ServFindIcon.svg';
-import microloanIcon from 'assets/images/ServLoanIcon.svg';
-import offerServicesIcon from 'assets/images/ServOfferIcon.svg';
-import agricultureIcon from 'assets/images/ServFarmIcon.svg';
-import crowdFundingIcon from 'assets/images/ServFundingIcon.svg';
-import storeIcon from 'assets/images/ServShopIcon.svg';
-import savingWalletIcon from 'assets/images/DashWalletIcon.svg';
+import findServicesIcon from 'assets/images/services/send-c-service.svg';
+import microloanIcon from 'assets/images/services/microloan-service.svg';
+import agricultureIcon from 'assets/images/services/farmers-c-service.svg';
+import crowdFundingIcon from 'assets/images/services/crowd-f-service.svg';
+import storeIcon from 'assets/images/services/money-t-service.svg';
+import savingWalletIcon from 'assets/images/services/saving-w-service.svg';
 import CardComponent from 'components/common/BottomMenu/Card';
 import GoBack from 'components/common/GoBack';
 import { Global } from 'recharts';
 import isAppDisplayedInWebView from 'helpers/isAppDisplayedInWebView';
+import ComingSoon from 'components/common/BottomMenu/ComingSoon';
 
 const MoneyTransfer = ({ userData }) => {
   const history = useHistory();
@@ -41,8 +41,12 @@ const MoneyTransfer = ({ userData }) => {
           </WelcomeBar>
         )}
         <div className="wrap__container">
-          <div className="services">
-            <div className="to-u-services">
+          <div className="services-container">
+            <h3>{global.translate('Services')}</h3>
+            <div className="container-subtitle">
+              {global.translate('Explore our services')}
+            </div>
+            <div className="services-cards">
               <CardComponent
                 image={storeIcon}
                 title={global.translate('My stores', 848)}
@@ -60,8 +64,12 @@ const MoneyTransfer = ({ userData }) => {
                   `Find products and services near you`,
                 )}
               />
-              <CardComponent
-                isComingSoon
+            </div>
+            <h3 className="coming-soon-title">
+              {global.translate('Coming soon')}
+            </h3>
+            <div className="soon-cards">
+              <ComingSoon
                 image={agricultureIcon}
                 title={global.translate('Farmers Corner', 2022)}
                 subtitle={global.translate(
@@ -69,20 +77,17 @@ const MoneyTransfer = ({ userData }) => {
                   1920,
                 )}
               />
-              <CardComponent
-                isComingSoon
+              <ComingSoon
                 image={crowdFundingIcon}
                 title={global.translate('Crowdfunding', 1012)}
                 subtitle={global.translate('Crowdfunding', 1012)}
               />
-              <CardComponent
-                isComingSoon
+              <ComingSoon
                 image={microloanIcon}
                 title={global.translate('Microloan', 1918)}
                 subtitle={global.translate('Microloan', 1918)}
               />
-              <CardComponent
-                isComingSoon
+              <ComingSoon
                 image={savingWalletIcon}
                 title={global.translate('Saving wallet', 2023)}
                 subtitle={global.translate('Saving wallet', 2023)}
