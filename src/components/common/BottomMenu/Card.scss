@@ -49,7 +49,9 @@
 }
 @media (max-width: 320px) {
   .service-card {
-    padding: 15px 5px;
+    padding: 15px 20px;
+    width: 100%;
+    flex-direction: row;
     .card-details {
       .card-title {
         font-size: 14px;

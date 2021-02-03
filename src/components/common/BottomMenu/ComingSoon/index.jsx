@@ -13,9 +13,6 @@ const ComingSoon = ({ title, subtitle, image }) => {
         <div className="card-title">{title}</div>
         <div className="card-subtitle">{subtitle}</div>
       </div>
-      <div className="coming-soon-box">
-        {global.translate('Coming soon')}
-      </div>
     </div>
   );
 };
