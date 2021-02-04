@@ -52,6 +52,10 @@ const CountryFilter = ({
 
   const [open, setOpen] = useState(false);
 
+  const openDropDownHandler = () => {
+    setOpen(!open);
+  };
+
   useEffect(() => {
     options.map(item => {
       if (item.selected) {
@@ -62,19 +66,16 @@ const CountryFilter = ({
 
   return (
     <div className="dropdown-holder">
-      <div className="filter-trigger" onClick={() => setOpen(true)}>
+      <div className="filter-trigger" onClick={openDropDownHandler}>
         <span>
-          <Icon name={icon} /> {text}
+          <Icon name={icon} />
+          {text}
         </span>
       </div>
-      <OutsideClickHandler
-        onOutsideClick={() => {
-          setOpen(false);
-        }}
-      >
+      <OutsideClickHandler onOutsideClick={() => setOpen(false)}>
         <Dropdown
           closeOnChange={false}
-          closeOnBlur={false}
+          closeOnBlur
           floating
           pointing
           open={open}
