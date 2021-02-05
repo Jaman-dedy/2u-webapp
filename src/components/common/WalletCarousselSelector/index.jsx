@@ -69,12 +69,14 @@ const WalletCarousel = ({
         ({ AccountNumber }) => AccountNumber === selectedWalletNumber,
       );
     }
-
     if (defaultSelectedWallet) {
       setSelectedWallet(defaultSelectedWallet);
+      selectWallet({
+        AccountNumber: defaultSelectedWallet.AccountNumber,
+        CurrencyCode: defaultSelectedWallet.CurrencyCode,
+      });
     }
-  }, [myWallets, selectWallet, selectedWalletNumber]);
-
+  }, []);
   useEffect(() => {
     const selectedWallet = myWallets.walletList.find(
       ({ AccountNumber }) =>
@@ -223,7 +225,10 @@ const WalletCarousel = ({
                 })
               }
             >
-              <Image src={plusWalletImg} />
+              <Image
+                src={plusWalletImg}
+                style={{ marginRight: '7px', marginTop: '2px' }}
+              />
               {global.translate('Add a wallet')}
             </Button>
           )}

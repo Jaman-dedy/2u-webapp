@@ -5,15 +5,14 @@ import { useHistory } from 'react-router-dom';
 
 import DashboardLayout from 'components/common/DashboardLayout';
 import WelcomeBar from 'components/Dashboard/WelcomeSection';
-import findServicesIcon from 'assets/images/services/send-c-service.svg';
+import findServicesIcon from 'assets/images/services/market-p-service.svg';
 import microloanIcon from 'assets/images/services/microloan-service.svg';
 import agricultureIcon from 'assets/images/services/farmers-c-service.svg';
 import crowdFundingIcon from 'assets/images/services/crowd-f-service.svg';
-import storeIcon from 'assets/images/services/money-t-service.svg';
+import storeIcon from 'assets/images/services/store-service.svg';
 import savingWalletIcon from 'assets/images/services/saving-w-service.svg';
 import CardComponent from 'components/common/BottomMenu/Card';
 import GoBack from 'components/common/GoBack';
-import { Global } from 'recharts';
 import isAppDisplayedInWebView from 'helpers/isAppDisplayedInWebView';
 import ComingSoon from 'components/common/BottomMenu/ComingSoon';
 

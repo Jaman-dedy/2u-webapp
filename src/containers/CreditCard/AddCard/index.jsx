@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
-import masterCardLogo from 'assets/images/mastercard-logo.svg';
-import visaCardLogo from 'assets/images/visa-logo.svg';
 import AddCardComponent from 'components/CreditCard/AddCard';
 import getCreditCardOptions from 'redux/actions/credit-card/getOptions';
 import addCreditCard, {
   clearAddCreditCard,
 } from 'redux/actions/credit-card/createCreditCard';
+import masterCardLogo from 'assets/images/mastercard-logo.svg';
+import visaCardLogo from 'assets/images/visa-logo.svg';
 
 const AddCardContainer = () => {
   const history = useHistory();
@@ -25,7 +25,6 @@ const AddCardContainer = () => {
     { Img: masterCardLogo, Title: 'Master card', Value: '2' },
   ];
   const [selectedProvider, setSelectedProvider] = useState(null);
-
   const [pinDigit, setPinDigit] = useState({
     digit0: '',
     digit1: '',
@@ -45,6 +44,7 @@ const AddCardContainer = () => {
     digit2: '',
     digit3: '',
   });
+
   const [openPinModal, setOpenPinModal] = useState(false);
   const { creditCardOptions, createCreditCard } = useSelector(
     ({ creditCard }) => creditCard,
@@ -55,17 +55,14 @@ const AddCardContainer = () => {
   const onOptionsChange = (e, { name, value }) => {
     setForm({ ...form, [name]: value });
   };
-  const handleWalletSelected = useCallback(
-    ({ AccountNumber }) => {
-      setForm({
-        ...form,
-        Wallet: AccountNumber,
-      });
-      const data = { Wallet: AccountNumber };
-      getCreditCardOptions(data, '/GetCreditCardOptions')(dispatch);
-    },
-    [dispatch, form],
-  );
+  const handleWalletSelected = ({ AccountNumber }) => {
+    setForm({
+      ...form,
+      Wallet: AccountNumber,
+    });
+    const data = { Wallet: AccountNumber };
+    getCreditCardOptions(data, '/GetCreditCardOptions')(dispatch);
+  };
 
   useEffect(() => {
     setSelectedProvider({

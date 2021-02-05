@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import AddMoneyIcon from 'assets/images/services/paypal-csn.svg';
+import payBillsIcon from 'assets/images/services/pay-b-service.svg';
 import TopUpIcon from 'assets/images/services/top-u-service.svg';
 import bankTransferIcon from 'assets/images/services/bank-t-csn.svg';
 import CurrencyExchangeIcon from 'assets/images/services/currency-e-service.svg';
@@ -154,6 +155,15 @@ const MoneyTransfer = ({ payBills }) => {
                 subtitle={global.translate(
                   'Transfer money from your wallet to other providers',
                   581,
+                )}
+              />
+              <CardComponent
+                image={payBillsIcon}
+                title={global.translate('Pay bills', 2005)}
+                onClick={() => setOpenPayBills(true)}
+                subtitle={global.translate(
+                  'Pay your bills to registered providers',
+                  668,
                 )}
               />
             </div>
