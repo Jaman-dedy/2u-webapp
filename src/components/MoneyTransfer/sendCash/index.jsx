@@ -1,14 +1,15 @@
-/* eslint-disable import/no-duplicates */
-import '../SendMoney/modal.scss';
-import './style.scss';
-import 'moment/locale/fr';
-
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Button, Form, Icon, Input, Modal } from 'semantic-ui-react';
+import {
+  Button,
+  Form,
+  Input,
+  Modal,
+  Message as displayMessage,
+} from 'semantic-ui-react';
+import 'moment/locale/fr';
 import CustomDropdown from 'components/common/Dropdown/CountryDropdown';
-import LoaderComponent from 'components/common/Loader';
 import Message from 'components/common/Message';
 import SelectCountryCode from 'components/common/SelectCountryCode';
 import countryCodes from 'utils/countryCodes';
@@ -18,7 +19,11 @@ import { getPossibleDates } from 'utils/monthdates';
 import ConfirmationForm from '../../ConfirmationForm';
 import TransactionEntity from '../SendMoney/TransactionEntity';
 
+import '../SendMoney/modal.scss';
+import './style.scss';
+
 const countries = countryCodes;
+
 const SendCashModal = ({
   open,
   userData,
@@ -51,7 +56,6 @@ const SendCashModal = ({
   userLocationData,
   isEditing,
   updating,
-  updatingError,
   defaultDestinationCurrency,
   transactionType,
   loadingOther,
@@ -61,7 +65,7 @@ const SendCashModal = ({
   );
   const [country, setCountry] = useState({});
 
-  const [checked, setChecked] = useState(false);
+  const checked = false;
   const [options, setOptions] = useState([]);
   const { isTopingUp } = useSelector(
     state => state.dashboard.contactActions,
@@ -90,11 +94,11 @@ const SendCashModal = ({
       currentOption &&
       currentOption.Currencies &&
       currentOption.Currencies.map(i => {
-        const [keys, v] = [Object.keys(i), Object.values(i)];
+        const values = Object.values(i);
         return {
-          key: v[0],
-          text: v[0],
-          value: v[0],
+          key: values[0],
+          text: values[0],
+          value: values[0],
         };
       });
 
@@ -107,7 +111,7 @@ const SendCashModal = ({
     } else if (destinationContact) {
       const phoneCountry =
         destinationContact.PhonePrefix !== ''
-          ? countryCodes.find(
+          ? countries.find(
               item =>
                 item.value === `+${destinationContact.PhonePrefix}`,
             )
@@ -226,7 +230,6 @@ const SendCashModal = ({
           {global.translate(`Send cash`, 1948)}
         </Modal.Header>
       )}
-
       {step === 1 && (
         <Modal.Content className="entities">
           {!isEditing && (
@@ -280,7 +283,6 @@ const SendCashModal = ({
                   setCurrentOption={setCurrentOption}
                 />
               </div>
-
               <div className="currency">
                 <p className="choose-dest-country">
                   {global.translate('Destination Currency')}
@@ -295,7 +297,6 @@ const SendCashModal = ({
               </div>
             </div>
           )}
-
           {isEditing && (
             <div className="confirm-form">
               <Input
@@ -344,12 +345,35 @@ const SendCashModal = ({
           )}
 
           {!isEditing && (
-            <div className="money-section">
-              <div className="amount">
-                <span>{global.translate('Amount', 116)}</span>
-              </div>
-              <div className="amount-value">
-                <div className="form-information">
+            <div className="wrap-money-form">
+              {(destinationContact?.MainPhoneNumber ||
+                destinationContact?.Phone) && (
+                <div
+                  style={{
+                    textAlign: 'center',
+                    backgroundColor: '#F1F1F1',
+                    padding: '15px',
+                    marginBottom: '10px',
+                  }}
+                >
+                  {global.translate(`Default phone number`, 2165)} :{' '}
+                  <strong>
+                    {`+${
+                      destinationContact?.PhonePrefix
+                        ? destinationContact?.PhonePrefix
+                        : destinationContact?.MainPhonePrefix
+                    } ${
+                      destinationContact?.Phone
+                        ? destinationContact?.Phone
+                        : destinationContact?.MainPhoneNumber
+                    }`}
+                  </strong>
+                </div>
+              )}
+
+              <div className="wrap-money-input">
+                <div>{global.translate('Amount', 116)}</div>
+                <div className="money-input">
                   <Input
                     type="number"
                     disabled={isEditing}
@@ -358,38 +382,7 @@ const SendCashModal = ({
                     onChange={onOptionsChange}
                     value={form.amount || null}
                   />
-                  <strong>{currency}</strong>
-                </div>
-              </div>
-
-              <div className="plus-minus-icons">
-                <div
-                  role="button"
-                  tabIndex="0"
-                  onKeyPress={() => {}}
-                  className="icon"
-                  onClick={() => {
-                    setForm({
-                      ...form,
-                      amount: parseInt(form.amount, 10) - 1,
-                    });
-                  }}
-                >
-                  <Icon name="minus" className="inner-icon" />
-                </div>
-                <div
-                  className="icon"
-                  role="button"
-                  tabIndex="0"
-                  onClick={() => {
-                    setForm({
-                      ...form,
-                      amount: parseInt(form.amount, 10) + 1,
-                    });
-                  }}
-                  onKeyPress={() => {}}
-                >
-                  <Icon name="add" className="inner-icon" />
+                  <span>{currency}</span>
                 </div>
               </div>
             </div>
@@ -413,11 +406,6 @@ const SendCashModal = ({
                 message={global.translate(confirmationError.error)}
               />
             )}
-            {checking && (
-              <LoaderComponent
-                loaderContent={global.translate('Working…', 412)}
-              />
-            )}
           </div>
         </Modal.Content>
       )}
@@ -430,31 +418,31 @@ const SendCashModal = ({
           setShouldClear={setShouldClear}
           isEditing={isEditing}
           errors={errors}
+          updating={updating}
           error={error}
           loading={loading}
-          updatingError={updatingError}
-          updating={updating}
           days={days}
         />
       )}
+
       <Modal.Actions>
         <>
           {step !== 1 && (
             <Button
-              disabled={checking || loading || updating}
+              disabled={checking || loading}
               basic
               color="red"
               onClick={() => {
                 resetState();
               }}
             >
-              {global.translate('Back', 174)}
+              {global.translate('Back', 2158)}
             </Button>
           )}
 
           {step !== 3 && (
             <Button
-              disabled={checking || loading || updating}
+              disabled={checking || loading}
               basic
               color="red"
               onClick={() => {
@@ -525,6 +513,11 @@ SendCashModal.propTypes = {
   currentOption: PropTypes.objectOf(PropTypes.any).isRequired,
   setCurrentOption: PropTypes.func.isRequired,
   userLocationData: PropTypes.objectOf(PropTypes.any).isRequired,
+  isEditing: PropTypes.bool,
+  updating: PropTypes.bool,
+  defaultDestinationCurrency: PropTypes.string,
+  transactionType: PropTypes.string,
+  loadingOther: PropTypes.bool.isRequired,
 };
 
 SendCashModal.defaultProps = {
@@ -541,6 +534,10 @@ SendCashModal.defaultProps = {
   setOpen: () => {},
   walletList: [],
   open: false,
-  isSendingCash: PropTypes.bool,
+  isSendingCash: true,
+  isEditing: false,
+  updating: false,
+  defaultDestinationCurrency: null,
+  transactionType: null,
 };
 export default SendCashModal;

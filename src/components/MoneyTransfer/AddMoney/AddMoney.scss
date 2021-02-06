@@ -185,6 +185,11 @@ thead tr th[colspan='7'] {
   width: fit-content !important;
   min-width: fit-content !important;
 }
+
+.top-up__coming-soon {
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
 @media (max-width: 600px) {
   .add-money-container {
     padding-bottom: 130px;

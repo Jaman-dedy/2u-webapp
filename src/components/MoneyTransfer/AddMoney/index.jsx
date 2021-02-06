@@ -2,6 +2,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Button } from 'semantic-ui-react';
+import AddMoneyIcon from 'assets/images/services/paypal-csn.svg';
+import bankTransferIcon from 'assets/images/services/bank-t-csn.svg';
 import { useHistory, Prompt, useLocation } from 'react-router-dom';
 import './AddMoney.scss';
 import DashboardLayout from 'components/common/DashboardLayout';
@@ -23,6 +25,7 @@ import Step3Img from 'assets/images/step3.svg';
 import levelOneVisited from 'assets/images/level-one-visited.svg';
 import levelTwoVisited from 'assets/images/level-two-visited.svg';
 import levelThreeVisited from 'assets/images/level-three-visited.svg';
+import ComingSoon from 'components/common/BottomMenu/ComingSoon';
 
 const defaultOptions = [
   { key: 'usd', text: 'USD', value: 'USD' },
@@ -275,27 +278,28 @@ const AddMoney = ({
                   onClick={checkTopUpCreditCard}
                   ticked={topUpFromCreditCard}
                 />
-                <DisplayProviders
-                  providerLogo={PaypalImg}
-                  title="Paypal"
-                  subTitle={global.translate(
-                    'Top Up money from your paypal account',
-                    2134,
-                  )}
-                  onClick={checkTopUpPayPal}
-                  ticked={topUpPaypalCard}
-                />
+                <h3>{global.translate('Coming soon')}</h3>
 
-                <DisplayProviders
-                  providerLogo={BankImg}
-                  title="Bank account"
-                  subTitle={global.translate(
-                    'Top Up money from your bank account',
-                    2135,
-                  )}
-                  onClick={checkTopUpBank}
-                  ticked={topUpFromBank}
-                />
+                <div className="flex top-up__coming-soon">
+                  <ComingSoon
+                    image={AddMoneyIcon}
+                    title={global.translate('Paypal', 170)}
+                    to="/"
+                    subtitle={global.translate(
+                      'Top Up money from your Paypal account',
+                      2134,
+                    )}
+                  />
+
+                  <ComingSoon
+                    image={bankTransferIcon}
+                    title="Bank account"
+                    subtitle={global.translate(
+                      'Top Up money from your bank account',
+                      2135,
+                    )}
+                  />
+                </div>
                 <Button
                   disabled={
                     !topUpFromBank &&

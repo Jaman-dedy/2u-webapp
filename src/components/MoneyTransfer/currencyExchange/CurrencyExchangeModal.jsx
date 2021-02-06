@@ -139,50 +139,18 @@ const ExchangeCurrencyModal = ({
             </div>
 
             <div className="money-section">
-              <div className="amount">
-                <span>{global.translate('Amount', 116)}</span> &nbsp;
-              </div>
-              <div className="amount-value">
-                <div className="form-information">
+              <div className="wrap-money-input">
+                <div>{global.translate('Amount', 116)}</div>
+                <div className="money-input">
                   <Input
                     type="number"
                     name="amount"
                     placeholder={global.translate('Amount', 116)}
                     onChange={onOptionsChange}
                     value={form.amount || null}
+                    min="0"
                   />
-                  <strong>{currency}</strong>
-                </div>
-              </div>
-
-              <div className="plus-minus-icons">
-                <div
-                  role="button"
-                  tabIndex="0"
-                  onKeyPress={() => {}}
-                  className="icon"
-                  onClick={() => {
-                    setForm({
-                      ...form,
-                      amount: parseInt(form.amount, 10) - 1,
-                    });
-                  }}
-                >
-                  <Icon name="minus" className="inner-icon" />
-                </div>
-                <div
-                  className="icon"
-                  role="button"
-                  tabIndex="0"
-                  onClick={() => {
-                    setForm({
-                      ...form,
-                      amount: parseInt(form.amount, 10) + 1,
-                    });
-                  }}
-                  onKeyPress={() => {}}
-                >
-                  <Icon name="add" className="inner-icon" />
+                  <span>{currency}</span>
                 </div>
               </div>
             </div>
