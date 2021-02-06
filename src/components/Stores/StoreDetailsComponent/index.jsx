@@ -15,6 +15,7 @@ import addStoreAgentAction from 'redux/actions/stores/addStoreAgents';
 
 import AddStoreContainer from 'containers/Stores/AddStore';
 import GoBack from 'components/common/GoBack';
+import PendingVoucherTable from 'components/common/PendingVoucherTable';
 import StoreInfoTab from './StoreInfoTab';
 // import StorePendingVoucherTab from './StorePendingVoucherTab';
 import NotificationSettingsTab from './NotificationSettingsTab';
@@ -159,9 +160,15 @@ const StoreDetailsComponent = ({
           </Label>
         </Menu.Item>
       ),
-      // render: props => {
-      //   return <StorePendingVoucherTab {...props} />;
-      // },
+      render: ({ pendingVouchers, ...props }) => {
+        console.log(props);
+        return (
+          <PendingVoucherTable
+            onClick={() => {}}
+            pendingVoucherData={pendingVouchers?.data}
+          />
+        );
+      },
     },
     {
       menuItem: global.translate('Settings'),

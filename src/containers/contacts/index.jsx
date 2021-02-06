@@ -543,6 +543,15 @@ const Index = () => {
           );
           break;
         }
+        if (editForm.wallets.length > 10) {
+          toast.error(
+            global.translate(
+              'You can not share more than 10 wallets with a user.',
+              2164,
+            ),
+          );
+          break;
+        }
         const walletsArr =
           editForm &&
           editForm.wallets &&
