@@ -64,18 +64,21 @@ const LevelImage = ({
               : 'levelImage'
           }
         />
-        {isCurrent === 'currentStatus' && (
-          <span
-            style={{
-              fontSize: '12px',
-              fontWeight: 600,
-              color: '#000000',
-            }}
-          >{`${formatNumber(currentPoints, {
-            locales: preferred,
-            minimumFractionDigits: 0,
-          })} pts`}</span>
-        )}
+
+        <span
+          style={{
+            fontSize: '12px',
+            color: '#000000',
+          }}
+          className={
+            isCurrent === 'currentStatus'
+              ? 'levelPoints levelPoints--active'
+              : 'levelPoints'
+          }
+        >{`${formatNumber(currentPoints, {
+          locales: preferred,
+          minimumFractionDigits: 0,
+        })} pts`}</span>
       </div>
     </>
   );

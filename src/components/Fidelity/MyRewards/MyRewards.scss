@@ -1,8 +1,16 @@
 .myrewards-container {
+  max-width: 100vw !important;
   .levelsContaner {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     justify-content: space-between;
+
+    & > * {
+      @media (max-width: 600px) {
+        margin-top: 1rem;
+      }
+    }
   }
 
   .pointsTxt {
@@ -218,6 +226,17 @@
   .inbound,
   .yearpoints {
     background: rgba(10, 146, 32, 0.6);
+  }
+
+  .point-container {
+    display: flex;
+    align-items: center;
+
+    .points {
+      &:last-child {
+        margin-left: 1rem;
+      }
+    }
   }
 
   @media (max-width: 500px) {

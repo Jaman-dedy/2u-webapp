@@ -98,6 +98,25 @@
   }
 }
 
+.fidelity__tab-menu {
+  display: flex !important;
+  flex-wrap: wrap !important;
+
+  @media (max-width: 600px) {
+    width: 100vw !important;
+  }
+
+  .item {
+    @media (max-width: 600px) {
+      padding: 1rem 1rem !important;
+      margin: 0 0.5rem !important;
+      &:not([class*='active']) {
+        border-bottom: 1px solid #eee !important;
+      }
+    }
+  }
+}
+
 @media (max-width: 950px) {
   .fidelity-container {
     .referral-contacts {
