@@ -8,7 +8,7 @@ const DisplayWallet = ({ title, walletNumber, walletFlag }) => {
     <div className="display-wallet">
       <div className="display-wallet-title">{title}</div>
       <div className="wallets-infos">
-        <Image src={walletFlag} />
+        {walletFlag && <Image src={walletFlag} />}
         <div>{walletNumber}</div>
       </div>
     </div>

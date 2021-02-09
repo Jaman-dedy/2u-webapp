@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import TransactionDetailComponent from 'components/Transactions/TransactionDetails';
 import modifyCash from 'redux/actions/moneyTransfer/modifyCash';
+import cancelTransaction from 'redux/actions/transactions/cancelTransaction';
+import cancelVoucher from 'redux/actions/transactions/cancelVoucher';
 
 const Transactions = () => {
   const dispatch = useDispatch();
@@ -11,6 +13,8 @@ const Transactions = () => {
   const [cardNumber, setCardNumber] = useState(null);
   const [phoneValue, setPhoneValue] = useState();
   const [form, setForm] = useState({});
+  const [openConfirmModal, setOpenConfirmModal] = useState(false);
+
   const [openEditTransaction, setOpenEditTransaction] = useState(
     false,
   );
@@ -41,11 +45,11 @@ const Transactions = () => {
     if (item && selectedCard !== 1) {
       setForm({
         ...form,
-        SecurityCode: item.SecurityCode,
-        VoucherNumber: item.TransferNumber,
-        CountryCode: item.CountryCode,
-        FirstName: item.FirstName || item.Recipient.FirstName,
-        LastName: item.LastName || item.Recipient.LastName,
+        SecurityCode: item?.SecurityCode,
+        VoucherNumber: item?.TransferNumber,
+        CountryCode: item?.CountryCode,
+        FirstName: item?.FirstName || item?.Recipient?.FirstName,
+        LastName: item?.LastName || item?.Recipient?.LastName,
       });
     }
   }, []);
@@ -65,6 +69,7 @@ const Transactions = () => {
       setCardNumber(newData.selectedCard);
     }
   }
+
   const { digit0, digit1, digit2, digit3 } = form;
   const PIN = `${digit0}${digit1}${digit2}${digit3}`;
   const modifyOneTransaction = () => {

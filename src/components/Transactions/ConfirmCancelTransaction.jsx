@@ -9,13 +9,10 @@ import Message from 'components/common/Message';
 import cancelVoucher, {
   clearTransactionSucess,
 } from 'redux/actions/transactions/cancelVoucher';
-import voucher from 'routes/voucher';
 import cancelTransaction from 'redux/actions/transactions/cancelTransaction';
 import cancelOther, {
   clearOtherTransactionSuccess,
 } from 'redux/actions/transactions/cancelOther';
-import CashListTransactionDetails from './TransactionDetails';
-import PendingVoucherDetails from './pendingVoucherDetail';
 
 const ConfirmCancelTransaction = ({
   open,
@@ -28,6 +25,7 @@ const ConfirmCancelTransaction = ({
   const [step, setStep] = useState(1);
   const [form, setForm] = useState({});
   const [error, setError] = useState(null);
+
   const {
     cancelTransaction: { loading, data, error: err },
     editOrCancelOther: {
@@ -43,7 +41,16 @@ const ConfirmCancelTransaction = ({
   } = useSelector(state => state.transactions);
   const onChange = (e, { name, value }) => {
     setForm({ ...form, [name]: value });
+    if (error) {
+      setError(null);
+    }
   };
+
+  useEffect(() => {
+    if (error) {
+      setError(null);
+    }
+  }, [step]);
 
   useEffect(() => {
     if (voucherData) {
@@ -54,7 +61,7 @@ const ConfirmCancelTransaction = ({
   }, [voucherData]);
 
   useEffect(() => {
-    if (data) {
+    if (data || voucherData) {
       toast.success(
         global.translate(
           'Your Cash transaction has been cancelled.',
@@ -64,7 +71,6 @@ const ConfirmCancelTransaction = ({
     }
     setStep(1);
     setOpen(false);
-    clearTransactionSucess()(dispatch);
   }, [data]);
 
   useEffect(() => {
@@ -138,30 +144,31 @@ const ConfirmCancelTransaction = ({
   return (
     <div>
       <Modal size="mini" open={open} onClose={() => setOpen(false)}>
-        <Modal.Header className="modal-title">
-          {fromVouchers &&
-            global.translate(
-              'Are you sure, you want to cancel this Voucher?',
-              2031,
-            )}
-          {!fromVouchers &&
-            global.translate(
-              'Are you sure, you want to cancel this transaction?',
-              23,
-            )}
-        </Modal.Header>
         <Modal.Content centered className="main-content">
-          {step === 1 && voucher && (
-            <PendingVoucherDetails item={item} />
-          )}
-          {step === 1 && !voucher && (
-            <CashListTransactionDetails item={item} />
+          {step === 1 && (
+            <>
+              <h3 className="cancel-transaction__header">
+                {global.translate('Cancel transaction', 1103)}
+              </h3>
+              <span className="cancel-transaction__content">
+                {fromVouchers &&
+                  global.translate(
+                    'Are you sure, you want to cancel this Voucher?',
+                    2031,
+                  )}
+                {!fromVouchers &&
+                  global.translate(
+                    'Are you sure, you want to cancel this transaction?',
+                    23,
+                  )}
+              </span>
+            </>
           )}
           {step === 2 && (
             <div className="pin-number-inputs">
               <PinCodeForm
                 label={global.translate(
-                  'Confirm  your PIN number',
+                  'Confirm with your PIN number',
                   941,
                 )}
                 onChange={onChange}
@@ -170,9 +177,7 @@ const ConfirmCancelTransaction = ({
               />
             </div>
           )}
-
           {error && <Message message={error} />}
-
           {voucherError && (
             <Message
               message={
@@ -230,10 +235,12 @@ ConfirmCancelTransaction.propTypes = {
   item: PropTypes.objectOf(PropTypes.any).isRequired,
   setOpen: PropTypes.func.isRequired,
   fromVouchers: PropTypes.bool,
+  sendToOther: PropTypes.bool,
 };
 
 ConfirmCancelTransaction.defaultProps = {
   open: false,
   fromVouchers: false,
+  sendToOther: false,
 };
 export default ConfirmCancelTransaction;
