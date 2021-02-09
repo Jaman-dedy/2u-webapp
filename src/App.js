@@ -2,18 +2,7 @@ import 'assets/styles/style.scss';
 import 'react-bnb-gallery/dist/style.css';
 import 'react-toastify/dist/ReactToastify.css';
 
-import ChatModal from 'components/Chat/ChatModal';
-import UserLeaveConfirmation from 'components/common/UserConfirmation';
-import InstallApp from 'components/InstallApp';
-import NotFoundPage from 'components/NotFoundPage';
-import ReloadApp from 'components/ReloadApp';
-import { LOGIN_RETURN_URL } from 'constants/general';
-import useNotifyOnlineStatus from 'containers/Dashboard/useNotifyOnlineStatus';
-import isAppDisplayedInWebView from 'helpers/isAppDisplayedInWebView';
-import scroll from 'helpers/scroll';
 import { createBrowserHistory } from 'history';
-import useInstallApp from 'hooks/useInstallApp';
-import useTranslate from 'hooks/useTranslate';
 import PropTypes from 'prop-types';
 import queryString from 'query-string';
 import React, { useEffect, useRef, useState } from 'react';
@@ -23,11 +12,22 @@ import IdleTimer from 'react-idle-timer';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   BrowserRouter as Router,
-  Redirect,
   Route,
   Switch,
 } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
+import { Button, Modal } from 'semantic-ui-react';
+import ChatModal from 'components/Chat/ChatModal';
+import UserLeaveConfirmation from 'components/common/UserConfirmation';
+import InstallApp from 'components/InstallApp';
+import NotFoundPage from 'components/NotFoundPage';
+import ReloadApp from 'components/ReloadApp';
+import { LOGIN_RETURN_URL } from 'constants/general';
+import useNotifyOnlineStatus from 'containers/Dashboard/useNotifyOnlineStatus';
+import isAppDisplayedInWebView from 'helpers/isAppDisplayedInWebView';
+import scroll from 'helpers/scroll';
+import useInstallApp from 'hooks/useInstallApp';
+import useTranslate from 'hooks/useTranslate';
 import getContactList from 'redux/actions/contacts/getContactList';
 import getLanguage from 'redux/actions/users/getLanguage';
 import getSupportedLanguages from 'redux/actions/users/getSupportedLanguages';
@@ -36,7 +36,6 @@ import logout from 'redux/actions/users/logout';
 import notifAction from 'redux/actions/users/notifications';
 import getUserLocationData from 'redux/actions/users/userLocationData';
 import routes from 'routes';
-import { Button, Modal } from 'semantic-ui-react';
 import chatThreads from 'services/socketIO/chat/chatThreads';
 import deleteMessages from 'services/socketIO/chat/deleteMessages';
 import directMessage from 'services/socketIO/chat/directMessage';
@@ -236,9 +235,6 @@ const App = () => {
                     [LOGIN_RETURN_URL]: route.path,
                   },
                 });
-              }
-              if (route.path === '/login' && isAuth()) {
-                return <Redirect to="/" />;
               }
               if (!route.indexPage) {
                 document.title = global.translate(route.name);

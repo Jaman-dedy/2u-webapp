@@ -35,9 +35,12 @@ const Login = ({
   useEffect(() => {
     if (updatePassword.success) {
       setIsSettingNewPassword(false);
-      setCredentials({ ...credentials, Password: '' });
+      setCredentials(credentials => ({
+        ...credentials,
+        Password: '',
+      }));
     }
-  }, [updatePassword]);
+  }, [updatePassword, setCredentials]);
 
   useEffect(() => {
     if (credentials && !updatePassword.success) {

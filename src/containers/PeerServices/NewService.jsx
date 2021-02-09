@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useHistory } from 'react-router-dom';
@@ -24,9 +24,7 @@ import openCreateModal from 'redux/actions/peerServices/openCreateModal';
 
 const NewServiceContainer = () => {
   const [form, setForm] = useState({});
-
   const [tags, setTags] = useState([]);
-
   const [pricingForm, setPricingForm] = useState([
     {
       Currency: '',
@@ -377,7 +375,7 @@ const NewServiceContainer = () => {
       })(dispatch);
       clearDeletePeerService()(dispatch);
     }
-  }, [updateServiceData]);
+  }, [updateServiceData, dispatch]);
 
   useEffect(() => {
     updateFileList(files);

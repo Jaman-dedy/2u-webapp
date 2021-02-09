@@ -272,7 +272,6 @@ const HomepageHeading = ({ disableSearch, title }) => {
       <SearchView hideSearch={disableSearch} title={title} />
       {!disableSearch && (
         <>
-          {' '}
           <SearchInput />
           <div className="filters">
             <CountryFilter

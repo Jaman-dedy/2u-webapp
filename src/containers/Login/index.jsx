@@ -82,6 +82,7 @@ const LoginContainer = () => {
     ({ user: { login } }) => login,
   );
   const { authData } = useSelector(state => state.user.currentUser);
+
   useEffect(() => {
     if (error) {
       setForm({ ...form, digit0: '' });

@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import getServiceList from 'redux/actions/peerServices/getServiceList';
 import getMyServices from 'redux/actions/peerServices/getMyServices';
@@ -60,24 +60,27 @@ export default () => {
     }
   }, [user, Data]);
 
-  const requestObj = {
-    ServiceID: '',
-    PID: '',
-    UserReview: user?.PID,
-    Categories: [],
-    CountryCodes: localStorage.countryCode
-      ? [localStorage.countryCode]
-      : [],
-    Tags: [],
-    DistanceKms: '',
-    Longitude: '',
-    Latitude: '',
-    PageNumber: currentPage.toString(),
-    RecordPerPage: PAGINATION_ITEMS_PER_PAGE.toString(),
-    FreeText: [],
-    CommentCount: '10',
-    GettingRelated: 'NO',
-  };
+  const requestObj = useMemo(
+    () => ({
+      ServiceID: '',
+      PID: '',
+      UserReview: user?.PID,
+      Categories: [],
+      CountryCodes: localStorage.countryCode
+        ? [localStorage.countryCode]
+        : [],
+      Tags: [],
+      DistanceKms: '',
+      Longitude: '',
+      Latitude: '',
+      PageNumber: currentPage.toString(),
+      RecordPerPage: PAGINATION_ITEMS_PER_PAGE.toString(),
+      FreeText: [],
+      CommentCount: '10',
+      GettingRelated: 'NO',
+    }),
+    [user?.PID, currentPage],
+  );
 
   useEffect(() => {
     if (data.Meta) {
@@ -104,7 +107,7 @@ export default () => {
         PageNumber: (currentPage + 1).toString(),
       })(dispatch);
     }
-  }, []);
+  }, [currentPage, error, dispatch, requestObj]);
 
   return { data, loading, error, loadMoreItems, hasMore };
 };

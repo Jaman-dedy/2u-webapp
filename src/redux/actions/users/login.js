@@ -27,6 +27,7 @@ export default data => dispatch =>
                 true,
               )(dispatch);
             }
+
             return dispatch({
               type: LOGIN_SUCCESS,
               payload: {
