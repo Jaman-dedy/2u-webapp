@@ -661,7 +661,8 @@ const ContactDetailsModal = ({
                             });
                           }}
                         />
-                        <ActionOption
+                        {/* PLEASE DON'T DELETE THE CODES, IT WILL BE COMMENTED OUT WHEN THE BACKEND IMPLEMENTATION FOR SENDING AIRTIME IS READY */}
+                        {/* <ActionOption
                           image={AirtimeactionsImage}
                           text={global.translate('Buy Airtime', 1552)}
                           onClick={() => {
@@ -677,7 +678,7 @@ const ContactDetailsModal = ({
                               },
                             });
                           }}
-                        />
+                        /> */}
                         <ActionOption
                           image={toOthersactionsImage}
                           text={global.translate('Other network')}
@@ -782,7 +783,8 @@ const ContactDetailsModal = ({
                           }}
                           text={global.translate('Transactions', 62)}
                         />
-                        <ActionOption
+                        {/* PLEASE DON'T DELETE THE CODES, IT WILL BE COMMENTED OUT WHEN THE BACKEND IMPLEMENTATION FOR SENDING AIRTIME IS READY */}
+                        {/* <ActionOption
                           image={AirtimeactionsImage}
                           text={global.translate('Buy Airtime', 1552)}
                           onClick={() => {
@@ -798,7 +800,7 @@ const ContactDetailsModal = ({
                               },
                             });
                           }}
-                        />
+                        /> */}
                         <ActionOption
                           image={toOthersactionsImage}
                           text={global.translate(

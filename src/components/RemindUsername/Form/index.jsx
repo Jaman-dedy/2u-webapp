@@ -7,6 +7,7 @@ import React from 'react';
 import PhoneInput from 'react-phone-input-2';
 import { Link } from 'react-router-dom';
 import { Form } from 'semantic-ui-react';
+import { useSelector } from 'react-redux';
 import Feedback from 'components/common/Feedback/Feedback';
 
 const LoginForm = ({
@@ -19,6 +20,7 @@ const LoginForm = ({
   clearRemindUsername,
   data,
 }) => {
+  const { userLocationData } = useSelector(({ user }) => user);
   return (
     <>
       {error && (
@@ -48,7 +50,7 @@ const LoginForm = ({
               <PhoneInput
                 enableSearch
                 name="phoneNumber"
-                country="cm"
+                country={userLocationData?.CountryCode ?? 'cm'}
                 placeholder="e.g.: 788 000 000"
                 value={phoneValue}
                 onChange={phone => setPhoneValue(phone)}

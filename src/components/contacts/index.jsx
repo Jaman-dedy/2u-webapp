@@ -141,17 +141,17 @@ const ManageContacts = ({
         });
       },
     },
+    // PLEASE DON'T REMOVE THE CODE. BUY AIRTIME NEEDS TO BE REDONE ON THE BACKEND
+    // {
+    //   image: TopuUpImage,
+    //   name: global.translate('Buy Airtime', 1552),
 
-    {
-      image: TopuUpImage,
-      name: global.translate('Buy Airtime', 1552),
-
-      onClick: item => {
-        setIsTopingUp(dispatch);
-        setDestinationContact(item);
-        setTopUpOpen(true);
-      },
-    },
+    //   onClick: item => {
+    //     setIsTopingUp(dispatch);
+    //     setDestinationContact(item);
+    //     setTopUpOpen(true);
+    //   },
+    // },
     {
       image: SendOthersImage,
       name: global.translate('Other networks', 581),

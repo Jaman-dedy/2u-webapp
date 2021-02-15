@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import remindUsernameAction, {
   clearRemindUsername,
@@ -11,6 +11,10 @@ const RemindUserNameContainer = () => {
   const {
     remindUsername: { loading, data, error },
   } = useSelector(({ remindUsername }) => remindUsername);
+
+  useEffect(() => {
+    console.log('DATA===', data, '===DATA');
+  }, [data]);
 
   const handleSubmit = () => {
     const data = {

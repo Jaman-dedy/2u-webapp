@@ -6,7 +6,7 @@ import NetworthPlaceholder from 'assets/images/networth-placeholder.svg';
 import formatNumber from 'utils/formatNumber';
 import './style.scss';
 
-const MyNetworth = ({ userData, scope, subTitle, networth }) => {
+const MyNetworth = ({ scope, networth }) => {
   const { language: { preferred } = {} } = useSelector(
     ({ user }) => user,
   );
@@ -28,9 +28,8 @@ const MyNetworth = ({ userData, scope, subTitle, networth }) => {
                 <h3>
                   {`${global.translate('My total amount in', 2144)} `}
                   <span className="bold">
-                    {' '}
                     {networth.data && networth.data.Currency}
-                  </span>{' '}
+                  </span>
                 </h3>
               )}
 
@@ -39,7 +38,7 @@ const MyNetworth = ({ userData, scope, subTitle, networth }) => {
                 <div>
                   {formatNumber(networth?.data?.NetWorthWallets, {
                     locales: preferred,
-                  })}{' '}
+                  })}
                   <span>{networth?.data?.Currency}</span>
                 </div>
               </div>
@@ -49,9 +48,8 @@ const MyNetworth = ({ userData, scope, subTitle, networth }) => {
                 <h3>
                   {`${global.translate('My networth in', 2143)} `}
                   <span className="bold">
-                    {' '}
                     {networth.data && networth.data.Currency}
-                  </span>{' '}
+                  </span>
                 </h3>
               )}
 
@@ -60,7 +58,7 @@ const MyNetworth = ({ userData, scope, subTitle, networth }) => {
                 <div>
                   {formatNumber(networth?.data?.NetWorth, {
                     locales: preferred,
-                  })}{' '}
+                  })}
                   <span>{networth?.data?.Currency}</span>
                 </div>
               </div>

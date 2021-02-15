@@ -211,7 +211,7 @@ const TopUpModal = ({
 
       setCurrentOpt(defaultOption);
     }
-  }, [step]);
+  }, [step, isTopingUp]);
   useEffect(() => {
     if (
       destinationContact &&

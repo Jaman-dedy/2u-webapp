@@ -57,23 +57,6 @@ const MoneyTransfer = ({ payBills }) => {
             setOpen={setOpenPayBills}
             payBills={payBills}
           />
-          {/* <div className="services">
-            <h2 style={{ marginLeft: '4px' }}>
-              {global.translate('What would you like to do?', 1706)}
-            </h2>
-            <div className="to-u-services">
-             
-              <CardComponent
-                image={payBillsIcon}
-                title={global.translate('Pay bills', 2005)}
-                onClick={() => setOpenPayBills(true)}
-                subtitle={global.translate(
-                  'Pay your bills to registered providers',
-                  668,
-                )}
-              />
-            </div>
-          </div> */}
           <div className="services-container">
             <h3>{global.translate('Money transfer')}</h3>
             <div className="container-subtitle">
@@ -100,7 +83,7 @@ const MoneyTransfer = ({ payBills }) => {
                 onClick={() => {
                   setIsendingCash(dispatch);
 
-                  history.push('/contacts');
+                  history.push('/contacts?ref=send-cash');
                 }}
                 subtitle={global.translate(
                   'Send cash to external contact',

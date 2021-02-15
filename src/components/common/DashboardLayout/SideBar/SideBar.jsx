@@ -215,7 +215,8 @@ const SideBar = () => {
                       {global.translate('Other networks', 581)}
                     </Link>
                   </li>
-                  <li
+                  {/* BUY AIRTIME INTEGRATION WILL NEED TO BE REDONE PLEASE DON'T REMOVE THE COMMENTED CODES */}
+                  {/* <li
                     className={
                       (location.pathname + location.search).substr(
                         1,
@@ -233,7 +234,7 @@ const SideBar = () => {
                     >
                       {global.translate('Buy Airtime', 1552)}
                     </Link>
-                  </li>
+                  </li> */}
                   <li
                     className={
                       (location.pathname + location.search).substr(
