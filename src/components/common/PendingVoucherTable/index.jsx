@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Table } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import '../style.scss';
+import './style.scss';
 import useWindowSize from 'utils/useWindowSize';
 
 const AllTransactions = ({
@@ -10,6 +10,9 @@ const AllTransactions = ({
   pendingVoucherData,
   selectedCard,
 }) => {
+  useEffect(() => {
+    console.log(pendingVoucherData);
+  }, [pendingVoucherData]);
   const size = useWindowSize();
   return (
     <Table basic className="display-transactions" unstackable>

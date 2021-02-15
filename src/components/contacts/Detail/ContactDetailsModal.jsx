@@ -365,7 +365,6 @@ const ContactDetailsModal = ({
             animation: 'fade',
           }}
           onClose={() => {
-            setOpen(false);
             setHasError(false);
             history.push(
               `/contact/${
@@ -377,12 +376,7 @@ const ContactDetailsModal = ({
           }}
           open={open}
         >
-          <Modal
-            open={isSharingNewWallet}
-            onClose={() => {
-              setOpen(false);
-            }}
-          >
+          <Modal open={isSharingNewWallet}>
             <Modal.Header className="modal-title">
               {getShareWalletTitle()}
               <Icon
@@ -517,7 +511,6 @@ const ContactDetailsModal = ({
             open={open}
             onClose={() => {
               setHasError(false);
-              setOpen(false);
             }}
           >
             <Modal.Header className="modal-title">
