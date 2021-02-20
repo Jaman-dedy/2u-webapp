@@ -20,8 +20,6 @@ const Transactions = () => {
   const wallet = location && location.state && location.state.wallet;
   const contact = location.state && location.state.contact;
 
-  const queryParams = queryString.parse(location.search);
-
   const [activeTab, setActiveTab] = useState(0);
 
   const { userData } = useSelector(state => state.user);
@@ -185,8 +183,8 @@ const Transactions = () => {
     })(dispatch);
   };
 
-  const getMoreResults = page => {
-    if (activeTab === 3) {
+  const getMoreResults = (selectedCard = 3, page) => {
+    if (selectedCard === 3) {
       const data = {
         Proxy: 'Yes',
         PageNumber: String(page),
@@ -227,6 +225,7 @@ const Transactions = () => {
       getPendingOtherTransfer(data)(dispatch);
     }
   }, []);
+
   useEffect(() => {
     if (!walletTransactions.data) {
       getTransactions();
@@ -324,30 +323,6 @@ const Transactions = () => {
       getChartData(historyData.data);
     }
   }, [walletTransactions.data, contact, historyData.data]);
-
-  useEffect(() => {
-    let activeTabIndex = 0;
-
-    switch (queryParams.tab) {
-      case 'transactions':
-        activeTabIndex = 0;
-        break;
-      case 'pending-cash-sent':
-        activeTabIndex = 1;
-        break;
-      case 'pending-voucher':
-        activeTabIndex = 2;
-        break;
-      case 'recent-stores':
-        activeTabIndex = 3;
-        break;
-
-      default:
-        break;
-    }
-
-    setActiveTab(activeTabIndex);
-  }, []);
 
   return (
     <TransactionComponent

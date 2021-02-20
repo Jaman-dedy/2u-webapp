@@ -22,7 +22,7 @@ const FilterDropDown = ({
       className="custom-dropdown-box"
     >
       <Dropdown.Menu className="wallet-select">
-        <div>Source account</div>
+        <div>{global.translate('Source account')}</div>
         <WalletDropDown
           source
           setSourceWallet={setSourceWallet}
@@ -30,7 +30,7 @@ const FilterDropDown = ({
           wallet={sourceWallet}
           allTransactionData={allTransactionData}
         />
-        <div>Target account</div>
+        <div>{global.translate('Target account', 1611)}</div>
         <WalletDropDown
           target
           setTargetWallet={setTargetWallet}

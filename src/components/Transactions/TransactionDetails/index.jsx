@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Segment, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
@@ -11,6 +11,7 @@ import DetailTypeAction from './DetailTypAction';
 import './style.scss';
 import DisplayWallet from './DisplayWallet';
 import DetailsBody from './DetailsBody';
+import ConfirmCancelTransaction from '../ConfirmCancelTransaction';
 
 const TransactionDetails = ({
   item,
@@ -28,6 +29,8 @@ const TransactionDetails = ({
 }) => {
   const history = useHistory();
   const onClickHandler = () => history.goBack();
+  const [cancelOpen, setCancelOpen] = useState(false);
+
   const walletInfos = () => {
     if (selectedCard === 1) {
       return {
@@ -49,10 +52,7 @@ const TransactionDetails = ({
       return {
         sourceWallet: item.SourceAccountNumber,
         sourceCurrency: item.CurrencyFlag,
-        targetWallet: `${
-          item.Recipient.Prefix ? item.Recipient.Prefix : ''
-        } ${item.Recipient.Phone ? item.Recipient.Phone : ''}`,
-        targetCurrency: item.Recipient.CountryFlag,
+        targetWallet: item?.Store?.Name,
       };
     }
     if (selectedCard === 4) {
@@ -68,63 +68,79 @@ const TransactionDetails = ({
   };
   return (
     <DashboardLayout>
-      <WelcomeBar>
-        <div className="head-content">
-          <div className="go-back">
-            <GoBack style onClickHandler={onClickHandler} />
+      <>
+        <WelcomeBar>
+          <div className="head-content">
+            <div className="go-back">
+              <GoBack style onClickHandler={onClickHandler} />
+            </div>
+            <h2 className="head-title">
+              {global.translate('Transaction details', 2193)}
+            </h2>
+            <div className="clear" />
           </div>
-          <h2 className="head-title">
-            {global.translate('Transaction details')}
-          </h2>
-          <div className="clear" />
-        </div>
-      </WelcomeBar>
-      <div className="transaction-detail-container">
-        <Segment>
-          <DetailHeading item={item} selectedCard={selectedCard} />
-          <DetailTypeAction
-            item={item}
-            selectedCard={selectedCard}
-            phoneValue={phoneValue}
-            setPhoneValue={setPhoneValue}
-            onOptionChange={onOptionChange}
-            form={form}
-            modifyOneTransaction={modifyOneTransaction}
-            updating={updating}
-            updatingData={updatingData}
-            updatingError={updatingError}
-            openEditTransaction={openEditTransaction}
-            setOpenEditTransaction={setOpenEditTransaction}
-          />
-          <div className="display-wallets">
-            <DisplayWallet
-              title={global.translate('Source account')}
-              walletNumber={walletInfos().sourceWallet}
-              walletFlag={walletInfos().sourceCurrency}
+        </WelcomeBar>
+        <div className="transaction-detail-container">
+          <Segment>
+            <DetailHeading item={item} selectedCard={selectedCard} />
+            <DetailTypeAction
+              item={item}
+              selectedCard={selectedCard}
+              phoneValue={phoneValue}
+              setPhoneValue={setPhoneValue}
+              onOptionChange={onOptionChange}
+              form={form}
+              modifyOneTransaction={modifyOneTransaction}
+              updating={updating}
+              updatingData={updatingData}
+              updatingError={updatingError}
+              openEditTransaction={openEditTransaction}
+              setOpenEditTransaction={setOpenEditTransaction}
             />
-            <DisplayWallet
-              title={global.translate('Target account')}
-              walletNumber={walletInfos().targetWallet}
-              walletFlag={walletInfos().targetCurrency}
+            <div className="display-wallets">
+              <DisplayWallet
+                title={global.translate('Source account', 2191)}
+                walletNumber={walletInfos().sourceWallet}
+                walletFlag={walletInfos().sourceCurrency}
+              />
+              <DisplayWallet
+                title={
+                  selectedCard !== 3
+                    ? global.translate('Target account', 1611)
+                    : global.translate('Store', 803)
+                }
+                walletNumber={walletInfos().targetWallet}
+                walletFlag={walletInfos().targetCurrency}
+              />
+            </div>
+            <DetailsBody
+              item={item}
+              selectedCard={selectedCard}
+              updatingData={updatingData}
             />
-          </div>
-          <DetailsBody
-            item={item}
-            selectedCard={selectedCard}
-            updatingData={updatingData}
-          />
-        </Segment>
-        <div className="goto-transactions">
-          <Button onClick={() => history.push('/transactions')}>
-            {global.translate('Go to all transactions')}
-          </Button>
-          {selectedCard !== 1 && (
+          </Segment>
+          <div className="goto-transactions">
             <Button onClick={() => history.push('/transactions')}>
-              {global.translate('Cancel transaction')}
+              {global.translate('Go to all transactions', 2192)}
             </Button>
-          )}
+            {selectedCard !== 1 && (
+              <Button
+                onClick={() => {
+                  setCancelOpen(true);
+                }}
+              >
+                {global.translate('Cancel transaction', 1103)}
+              </Button>
+            )}
+          </div>
         </div>
-      </div>
+        <ConfirmCancelTransaction
+          open={cancelOpen}
+          setOpen={setCancelOpen}
+          fromVouchers={selectedCard === 3}
+          item={item}
+        />
+      </>
     </DashboardLayout>
   );
 };
