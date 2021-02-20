@@ -161,7 +161,6 @@ const StoreDetailsComponent = ({
         </Menu.Item>
       ),
       render: ({ pendingVouchers, ...props }) => {
-        console.log(props);
         return (
           <PendingVoucherTable
             onClick={() => {}}

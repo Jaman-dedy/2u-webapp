@@ -51,7 +51,7 @@ const DocPlaceholder = ({ name, onChooseFile, other, loading }) => {
         </FileDrop>
         <input
           type="file"
-          accept="image/jpeg, image/png"
+          accept="image/jpeg, image/png, application/pdf"
           name={name}
           ref={imageInputRef}
           onChange={event => {

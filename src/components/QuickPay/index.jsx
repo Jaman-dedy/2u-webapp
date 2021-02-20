@@ -119,7 +119,7 @@ const QuickPay = ({
 
               {locateUser.data && !result && (
                 <>
-                  <span>Change my wallet</span>
+                  <span>{global.translate('Change my wallet')}</span>
                   <div className="change-wallet">
                     <ReusableDrowdown
                       options={walletList && walletList}
@@ -191,7 +191,9 @@ const QuickPay = ({
 
           <Grid.Column mobile={16} only="mobile">
             <div className="scan-QR">
-              <span>Scan QR code and pay instantly</span>
+              <span>
+                {global.translate('Scan QR code and pay instantly')}
+              </span>
               <br />
               <br />
               {!canScanQR && (
@@ -223,7 +225,7 @@ const QuickPay = ({
               </div>
               {locateUser.data && result && (
                 <>
-                  <span>Change my wallet</span>
+                  <span>{global.translate('Change my wallet')}</span>
                   <div className="change-wallet">
                     <ReusableDrowdown
                       options={walletList && walletList}

@@ -12,7 +12,10 @@ const getNewFavList = (payload, state) => {
           item =>
             item.PhoneNumber !== payload.requestData.ContactsPhone[0],
         )
-      : [payload.contact, ...state.favoriteContacts.data];
+      : [
+          { ...payload.contact, Favorite: 'YES' },
+          ...state.favoriteContacts.data,
+        ];
   }
 
   return payload.contact.Favorite === 'YES'
@@ -20,7 +23,10 @@ const getNewFavList = (payload, state) => {
         item =>
           item.ContactPID !== payload.requestData.ContactsPID[0],
       )
-    : [payload.contact, ...state.favoriteContacts.data];
+    : [
+        { ...payload.contact, Favorite: 'YES' },
+        ...state.favoriteContacts.data,
+      ];
 };
 
 export default (state, { type, payload }) => {

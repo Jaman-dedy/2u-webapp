@@ -13,7 +13,6 @@ import LoadFavorite from 'assets/images/contacts/loadFavorite.svg';
 const RecentlyContactedItems = React.memo(
   ({ items: { data, loading, error }, retryFn, onItemClick }) => {
     const { width } = useWindowSize();
-
     const { isSendingMoney } = useSelector(
       state => state.dashboard.contactActions,
     );

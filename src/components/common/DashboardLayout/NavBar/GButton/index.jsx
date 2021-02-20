@@ -22,7 +22,11 @@ const GButton = ({
         closeOnTriggerClick
         openOnTriggerClick
         trigger={
-          <Button content={global.translate('Transfer Money', 674)} />
+          <Button
+            content={global.translate('Transfer Money', 674)}
+            icon="angle right"
+            labelPosition="right"
+          />
         }
       >
         <Segment
@@ -38,7 +42,9 @@ const GButton = ({
             <List.Item>
               <Icon name="sync" />
               <List.Content onClick={goToSendMoney}>
-                <List.Header>Transfer Money</List.Header>
+                <List.Header>
+                  {global.translate('Transfer Money')}
+                </List.Header>
               </List.Content>
             </List.Item>
             <List.Item>

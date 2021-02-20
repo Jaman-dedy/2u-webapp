@@ -18,13 +18,13 @@ export default data => dispatch =>
         dispatch({
           type: CREATE_CREDIT_CARD_START,
         }),
-      onSuccess: data => dispatch => {
-        toast.success(data[0].Description);
+      onSuccess: ([data]) => dispatch => {
+        toast.success(data.Description);
         return dispatch({
           type: CREATE_CREDIT_CARD_SUCCESS,
           payload: {
-            ...data[0],
-            success: data[0].Result === 'Success',
+            ...data,
+            success: data.Result === 'Success',
           },
         });
       },

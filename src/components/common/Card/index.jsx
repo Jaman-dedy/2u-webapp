@@ -32,7 +32,7 @@ const Card = ({ card, onClick, detail, userData }) => {
             <div>
               <CardImage
                 cardType={card?.CardType}
-                cardLevel={card?.cardLevel}
+                cardLevel={card?.CardLevel}
               />
             </div>
             <div className="left-details">

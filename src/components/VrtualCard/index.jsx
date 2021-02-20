@@ -143,24 +143,6 @@ const MyVirtualCards = ({
     );
   };
 
-  const renderEmptyCard = () => {
-    return (
-      <EmptyCard
-        header={global.translate(
-          "It looks like you don't have any O-Card yet",
-          2151,
-        )}
-        createText={global.translate('Create an O-Card', 2152)}
-        body={global.translate(
-          'You can create your O-Card and use them for your online payment',
-          2153,
-        )}
-        onAddClick={handleModalOpen}
-        imgSrc={EmptyCardList}
-      />
-    );
-  };
-
   const renderCardList = () => {
     if (!myVirtualCardList?.length) {
       return null;
@@ -220,11 +202,10 @@ const MyVirtualCards = ({
           </>
         )}
 
-        {(isLoading || loadingUserData) && renderPlaceholders()}
+        {isLoading && renderPlaceholders()}
         {!myVirtualCardList?.length &&
           !isLoading &&
           renderNoCardsFound()}
-        {!isLoading && isEmpty && renderEmptyCard()}
 
         <AddVirtualCardModal
           open={open}

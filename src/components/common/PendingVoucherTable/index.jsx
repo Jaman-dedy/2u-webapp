@@ -11,7 +11,6 @@ const AllTransactions = ({
   selectedCard,
 }) => {
   useEffect(() => {
-    console.log(pendingVoucherData);
   }, [pendingVoucherData]);
   const size = useWindowSize();
   return (
