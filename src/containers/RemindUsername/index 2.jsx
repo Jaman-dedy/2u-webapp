@@ -13,7 +13,6 @@ const RemindUserNameContainer = () => {
   } = useSelector(({ remindUsername }) => remindUsername);
 
   useEffect(() => {
-    console.log('DATA===', data, '===DATA');
   }, [data]);
 
   const handleSubmit = () => {

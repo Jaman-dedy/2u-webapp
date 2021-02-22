@@ -50,8 +50,6 @@ const AddCardContainer = () => {
     ({ creditCard }) => creditCard,
   );
   const { loading, error: errors, data } = createCreditCard;
-  console.log('data', data);
-  console.log('errors', errors);
 
   const { userData } = useSelector(({ user }) => user);
   const onOptionsChange = (e, { name, value }) => {

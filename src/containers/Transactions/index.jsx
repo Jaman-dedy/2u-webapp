@@ -166,7 +166,7 @@ const Transactions = () => {
       })(dispatch);
       setForm({
         ...form,
-        WalletNumber: '',
+        // WalletNumber: '',
       });
     }
   };
@@ -182,7 +182,6 @@ const Transactions = () => {
       RecordPerPage: '7',
     })(dispatch);
   };
-
   const getMoreResults = (selectedCard = 3, page) => {
     if (selectedCard === 3) {
       const data = {

@@ -76,7 +76,7 @@ const Transactions = ({
   const [cachedMetaData, setCachedMetaData] = useState({});
   // const [cachedOtherTransfer, setCachedOtherTransfer] = useState({});
   const { data, loading, error } = walletTransactions;
-
+  // console.log('data', data);
   const handleSelectedCard = cardNumber => {
     setSelectedCard(cardNumber);
     if (cardNumber === 2 && !unPaidCashList.data) {
@@ -131,11 +131,11 @@ const Transactions = ({
   };
   useEffect(() => {
     if (data) {
+      console.log('data', data[0].Data);
       // cache the data from redux store
       setCachedTransactions(prevData => {
         // check if we have not cached data for the current page
         if (
-          !prevData[currentPage] &&
           +data[0]?.Meta?.CurrentPage === +currentPage // makes sure the data we have in redux are for the current page
         ) {
           return {
@@ -148,7 +148,7 @@ const Transactions = ({
       });
       setCachedMetaData(prevData => {
         if (
-          !prevData[currentPage] && // check if we have not cached meta data for the current page
+          // check if we have not cached meta data for the current page
           +data[0]?.Meta?.CurrentPage === +currentPage // makes sure the meta data we have in redux are for the current page
         ) {
           return { ...prevData, [currentPage]: data[0]?.Meta };
@@ -302,6 +302,13 @@ const Transactions = ({
                 transactionCount={pendingOtherData?.Data?.length ?? 0}
               />
             </div>
+            {loading && (
+              <Image
+                style={{ width: '100%' }}
+                className="animate-placeholder"
+                src={loadTransactions}
+              />
+            )}
             {!loading && (
               <Segment>
                 {selectedCard === 1 && (
@@ -432,14 +439,6 @@ const Transactions = ({
               />
             )}
           </>
-        )}
-
-        {loading && (
-          <Image
-            style={{ width: '100%' }}
-            className="animate-placeholder"
-            src={loadTransactions}
-          />
         )}
       </div>
     </DashboardLayout>
