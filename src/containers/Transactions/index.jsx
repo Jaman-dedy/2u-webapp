@@ -166,7 +166,6 @@ const Transactions = () => {
       })(dispatch);
       setForm({
         ...form,
-        // WalletNumber: '',
       });
     }
   };
@@ -226,9 +225,9 @@ const Transactions = () => {
   }, []);
 
   useEffect(() => {
-    if (!walletTransactions.data) {
-      getTransactions();
-    }
+    // if (!walletTransactions.data) {
+    getTransactions();
+    // }
   }, []);
   useEffect(() => {
     if (!unPaidCashList.data) {

@@ -40,7 +40,7 @@ const DashboardContainer = () => {
       getWalletTransactions({
         WalletNumber: '',
         PageNumber: '1',
-        RecordPerPage: '4',
+        RecordPerPage: '7',
         DateFrom: moment()
           .subtract(12, 'months')
           .format('YYYY-MM-DD'),

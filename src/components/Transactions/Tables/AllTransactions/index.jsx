@@ -29,14 +29,18 @@ const AllTransactions = ({
                 {global.translate('Source wallet')}
               </Table.HeaderCell>
               <Table.HeaderCell>
-                {global.translate('Recipient wallet')}t
+                {global.translate('Recipient wallet')}
+              </Table.HeaderCell>
+
+              <Table.HeaderCell>
+                {global.translate('Debit')}
+              </Table.HeaderCell>
+
+              <Table.HeaderCell>
+                {global.translate('Credit')}
               </Table.HeaderCell>
             </>
           )}
-
-          <Table.HeaderCell textAlign="right">
-            {global.translate('Amount')}
-          </Table.HeaderCell>
         </Table.Row>
       </Table.Header>
 
@@ -53,30 +57,29 @@ const AllTransactions = ({
               <Table.Cell>{item.Description}</Table.Cell>
               {size.width > 600 && (
                 <>
-                  {' '}
                   <Table.Cell>{item.WalletNumber}</Table.Cell>
                   <Table.Cell>{item.TargetAccount}</Table.Cell>
                 </>
               )}
 
-              <Table.Cell
-                style={{ width: '220px' }}
-                textAlign="right"
-              >
-                <div className="amount-box">
-                  <Image
-                    src={item.OpsType === '+' ? creditImg : debitImg}
-                  />
-                  <span
-                    style={
-                      item.OpsType === '+'
-                        ? { color: '#3B9C62' }
-                        : { color: '#E01B22' }
-                    }
-                  >
+              <Table.Cell>
+                {item.OpsType === '-' ? (
+                  <span style={{ color: '#E01B22' }}>
                     {`${item.Amount} ${item.Currency}`}
                   </span>
-                </div>
+                ) : (
+                  ''
+                )}
+              </Table.Cell>
+
+              <Table.Cell>
+                {item.OpsType === '+' ? (
+                  <span style={{ color: '#3B9C62' }}>
+                    {`${item.Amount} ${item.Currency}`}
+                  </span>
+                ) : (
+                  ''
+                )}
               </Table.Cell>
             </Table.Row>
           ))}
