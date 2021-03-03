@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Form } from 'semantic-ui-react';
 
+import 'text-security/text-security.css';
+import './PasswordInput.scss';
+
 const PasswordInput = ({
   name,
   label,
@@ -16,7 +19,11 @@ const PasswordInput = ({
 
   return (
     <Form.Input
+    className={
+      !value.length || isPasswordVisible ? '' : 'password_input'
+    }
       placeholder={global.translate(placeholder)}
+      type="text"
       icon={{
         name: isPasswordVisible ? 'eye slash' : 'eye',
         link: true,
@@ -24,7 +31,6 @@ const PasswordInput = ({
         onClick: () => setPasswordVisible(!isPasswordVisible),
       }}
       label={label}
-      type={isPasswordVisible ? 'text' : 'password'}
       name={name}
       value={value}
       error={error}

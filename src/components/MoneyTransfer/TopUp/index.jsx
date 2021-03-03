@@ -270,7 +270,7 @@ const TopUpModal = ({
     } else {
       setButtonAction(global.translate('Transfer money', 1950));
     }
-  }, [currentProviderOption, confirmationData, nextStep]);
+  }, [currentProviderOption, confirmationData, nextStep,step]);
 
   const days = getPossibleDates().map(item => ({
     key: item.day,
@@ -496,7 +496,7 @@ const TopUpModal = ({
                     {' '}
                     {confirmationData &&
                       confirmationData[0].AccountName && (
-                        <span>Account name :</span>
+                        <span>{global.translate('Account name', 935)} :</span>
                       )}
                     <strong>
                       &nbsp;
@@ -541,7 +541,7 @@ const TopUpModal = ({
                   >
                     {confirmationData &&
                       confirmationData[0].AccountName && (
-                        <span> Account name :</span>
+                        <span> {global.translate('Account name', 935)} :</span>
                       )}
                     <strong>
                       &nbsp;
@@ -615,11 +615,6 @@ const TopUpModal = ({
                 message={global.translate(confirmationError.error)}
               />
             )}
-            {checking && (
-              <LoaderComponent
-                loaderContent={global.translate('Working…', 412)}
-              />
-            )}
           </div>
         </Modal.Content>
       )}
@@ -635,6 +630,7 @@ const TopUpModal = ({
           error={error}
           loading={loading}
           days={days}
+          checking={checking}
         />
       )}
       <Modal.Actions>
@@ -688,6 +684,7 @@ const TopUpModal = ({
           <Button
             positive
             disabled={checking || loading}
+            loading={checking || loading}
             onClick={() => {
               if (step === 1) {
                 checkTransactionConfirmation();
@@ -699,7 +696,6 @@ const TopUpModal = ({
                 moveToNextStep();
               }
               if (step === 2) {
-                setCurrentProviderOption(null);
                 moveFundsToToUWallet();
                 setIsSelfBuying(false);
               }

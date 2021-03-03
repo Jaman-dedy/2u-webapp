@@ -20,6 +20,7 @@ const ConfirmationForm = ({
   isEditing,
   updating,
   updatingError,
+  checking
 }) => {
   return (
     <Modal.Content className="ss-content">
@@ -227,6 +228,7 @@ const ConfirmationForm = ({
           setShouldClear={setShouldClear}
         />
       </div>
+    
       <div className="loader-section" style={{ alignSelf: 'center' }}>
         {errors && <Message message={errors} />}
         {error && error[0] && (
@@ -240,11 +242,6 @@ const ConfirmationForm = ({
         )}
         {error && !error[0] && (
           <Message message={global.translate(error.error)} />
-        )}
-        {loading && (
-          <LoaderComponent
-            loaderContent={global.translate('Working…', 412)}
-          />
         )}
 
         {isEditing && (
@@ -261,13 +258,6 @@ const ConfirmationForm = ({
             {updatingError && !updatingError[0] && (
               <Message
                 message={global.translate(updatingError.error)}
-              />
-            )}
-
-            {(loading || (updating && isEditing)) && (
-              <LoaderComponent
-                style={{ paddingLeft: '50px' }}
-                loaderContent={global.translate('Working…', 412)}
               />
             )}
           </>

@@ -109,7 +109,6 @@ const SendMoneyModal = ({
 
   const clearForm = () => {
     setForm({});
-    setCurrentDestOption({});
     setCurrentOption(defaultOption);
     setOpen(false);
     resetState();
