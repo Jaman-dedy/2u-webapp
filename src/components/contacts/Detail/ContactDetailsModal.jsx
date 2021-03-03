@@ -14,7 +14,7 @@ import {
   Modal,
   TransitionablePortal,
 } from 'semantic-ui-react';
-import AirtimeactionsImage from 'assets/images/ContactAirtimeIcon.svg';
+// import AirtimeactionsImage from 'assets/images/ContactAirtimeIcon.svg'; // This commented line should not be removed
 import ChatImage from 'assets/images/ContactChatIcon.svg';
 import toOthersactionsImage from 'assets/images/ContactOthersIcon.svg';
 import SendCashImage from 'assets/images/ContactSendcashIcon.svg';
@@ -68,6 +68,7 @@ const ContactDetailsModal = ({
   userData,
   handleFavouriteStatusChange,
   addRemoveFavorite,
+  resetContactAction,
 }) => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -366,6 +367,7 @@ const ContactDetailsModal = ({
           }}
           onClose={() => {
             setHasError(false);
+            setDestinationContact(null);
             history.push(
               `/contact/${
                 contact.ContactPID
@@ -686,12 +688,14 @@ const ContactDetailsModal = ({
                             setIsSendingOhters(dispatch);
                             setDestinationContact(contact);
                             setTopUpOpen(true);
+
                             history.push({
                               pathname: '/contacts',
                               search: '?ref=to-others',
                               state: {
                                 contact,
                                 chartData,
+                                isFromContactInfo: true,
                               },
                             });
                           }}
@@ -817,6 +821,7 @@ const ContactDetailsModal = ({
                               state: {
                                 contact,
                                 chartData,
+                                isFromContactInfo: true,
                               },
                             });
                           }}
@@ -925,6 +930,7 @@ const ContactDetailsModal = ({
                 basic
                 color="red"
                 onClick={() => {
+                  setDestinationContact(null);
                   clearDeleteContact();
                   setOpen(!open);
                   setHasError(false);
@@ -934,6 +940,8 @@ const ContactDetailsModal = ({
               </Button>
               <Button
                 onClick={() => {
+                  setDestinationContact(null);
+                  clearDeleteContact();
                   setOpen(!open);
                   setHasError(false);
                 }}

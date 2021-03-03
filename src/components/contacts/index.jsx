@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import './style.scss';
 import PropTypes from 'prop-types';
@@ -30,6 +30,7 @@ import {
 import {
   setIsSendingOhters,
   setIsTopingUp,
+  clearContactAction,
 } from 'redux/actions/dashboard/dashboard';
 import { setSelectedStore } from 'redux/actions/vouchers/selectedStore';
 
@@ -105,6 +106,38 @@ const ManageContacts = ({
     setAllContacts(allContacts.data?.filter(item => !item.Error));
   }, [allContacts]);
 
+  const resetContactAction = useCallback(() => {
+    clearContactAction(dispatch);
+  }, [dispatch]);
+
+  useEffect(() => {
+    resetContactAction();
+  }, [resetContactAction]);
+
+  useEffect(() => {
+    if (!sendMoneyOpen) {
+      resetContactAction();
+    }
+  }, [sendMoneyOpen, resetContactAction]);
+
+  useEffect(() => {
+    if (!open) {
+      resetContactAction();
+    }
+  }, [open, resetContactAction]);
+
+  useEffect(() => {
+    if (!sendCashOpen) {
+      resetContactAction();
+    }
+  }, [sendCashOpen, resetContactAction]);
+
+  useEffect(() => {
+    if (!topUpOpen) {
+      resetContactAction();
+    }
+  }, [topUpOpen, resetContactAction]);
+
   const [isDeletingContact, setIsDeletingContact] = useState(false);
   const onClickHandler = () => history.goBack();
 
@@ -137,6 +170,12 @@ const ManageContacts = ({
           state: {
             contact: item,
             targetStore,
+            isFromContactInfo: true,
+            contactInfoURL: `/contact/${
+              item.ContactType === 'INTERNAL'
+                ? item.ContactPID
+                : item.PhoneNumber
+            }?type=${item.ContactType}`,
           },
         });
       },
@@ -173,6 +212,12 @@ const ManageContacts = ({
           search: '?ref=contact',
           state: {
             contact: item,
+            isFromContactInfo: true,
+            contactInfoURL: `/contact/${
+              item.ContactType === 'INTERNAL'
+                ? item.ContactPID
+                : item.PhoneNumber
+            }?type=${item.ContactType}`,
           },
         });
       },
@@ -702,6 +747,7 @@ const ManageContacts = ({
         setIsSharingNewWallet={setIsSharingNewWallet}
         isSharingNewWallet={isSharingNewWallet}
         addRemoveFavorite={addRemoveFavorite}
+
       />
       <AddNewContactModal
         open={open}

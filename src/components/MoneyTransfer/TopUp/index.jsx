@@ -14,6 +14,7 @@ import {
   Label,
   Modal,
 } from 'semantic-ui-react';
+import { useHistory } from 'react-router-dom';
 import ReusableDrowdown from 'components/common/Dropdown/ReusableDropdown';
 import LoaderComponent from 'components/common/Loader';
 import Message from 'components/common/Message';
@@ -26,7 +27,6 @@ import { getPossibleDates } from 'utils/monthdates';
 
 import ConfirmationForm from '../../ConfirmationForm';
 import TransactionEntity from '../SendMoney/TransactionEntity';
-
 /* eslint-disable no-unused-vars */
 
 const countries = countryCodes;
@@ -96,6 +96,8 @@ const TopUpModal = ({
   const defaultCountry = countries.find(
     country => country.flag === userLocationData.CountryCode,
   );
+  const history = useHistory();
+
   const { language: { preferred } = {} } = useSelector(
     ({ user }) => user,
   );
@@ -675,6 +677,9 @@ const TopUpModal = ({
                 setCurrentOpt(defaultOption || {});
                 setAccountValue(null);
                 setNextStep(false);
+                if (history?.location?.state?.isFromContactInfo) {
+                  history.goBack();
+                }
               }}
             >
               {global.translate('Cancel', 86)}

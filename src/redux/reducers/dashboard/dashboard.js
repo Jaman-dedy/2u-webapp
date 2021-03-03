@@ -11,6 +11,7 @@ import {
   CLOSE_PROFILE_DROP_DOWN,
   OPEN_PROFILE_DROP_DOWN,
   UPDATE_CREDIT_CARD_STEP,
+  CLEAR_CONTACT_ACTION,
 } from 'constants/action-types/dashboard';
 
 export default (state, { type, payload }) => {
@@ -96,6 +97,19 @@ export default (state, { type, payload }) => {
           isSendingOthers: false,
           isTopingUp: false,
           isSendingVoucher: true,
+        },
+      };
+
+    case CLEAR_CONTACT_ACTION:
+      return {
+        ...state,
+        contactActions: {
+          isSendingCash: false,
+          isSendingMoney: false,
+          isManagingContacts: true,
+          isSendingOthers: false,
+          isTopingUp: false,
+          isSendingVoucher: false,
         },
       };
 
