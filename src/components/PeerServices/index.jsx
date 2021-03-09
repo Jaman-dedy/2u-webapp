@@ -79,7 +79,7 @@ const ServiceFeedList = () => {
     {
       menuItem: {
         key: 'My Posts',
-        content: global.translate('My Posts'),
+        content: global.translate('My Posts', 2109),
       },
       render: () => (
         <Tab.Pane as="div">
@@ -137,8 +137,8 @@ const ServiceFeedList = () => {
       <Helmet>
         <meta charSet="utf-8" />
         <title>
-          {global.translate('Peer Services')} |{' '}
-          {global.translate('Find services near you')}
+          {global.translate('Peer Services', 610)} |{' '}
+          {global.translate('Find services near you', 1240)}
         </title>
         <meta
           name="description"

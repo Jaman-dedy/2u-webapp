@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 export default (form = {}) => {
   const arraySize = Object.keys(form).length / 3;
 

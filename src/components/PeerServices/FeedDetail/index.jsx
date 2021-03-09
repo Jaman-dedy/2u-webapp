@@ -80,7 +80,7 @@ const FeedDetailComponent = React.memo(
                   <div>
                     {!service.loading && (
                       <h3 className="you-may-like">
-                        {global.translate('You may also like')}
+                        {global.translate('You may also like', 2269)}
                       </h3>
                     )}
 
@@ -89,9 +89,11 @@ const FeedDetailComponent = React.memo(
                         emptyMessage={{
                           title: global.translate(
                             'No related Services found',
+                            2270,
                           ),
                           body: global.translate(
                             'There are no related services at the moment',
+                            1790,
                           ),
                         }}
                         posts={relatedServices}

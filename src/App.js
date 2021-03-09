@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable import/no-extraneous-dependencies */
 import 'assets/styles/style.scss';
 import 'react-bnb-gallery/dist/style.css';
 import 'react-toastify/dist/ReactToastify.css';

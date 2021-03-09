@@ -495,7 +495,7 @@ const ManageContacts = ({
       <div className="search-area">
         {(allMyContacts?.length !== 0 || !allContacts.loading) && (
           <Input
-            placeholder={global.translate('Search')}
+            placeholder={global.translate('Search', 278)}
             icon="search"
             iconPosition="left"
             disabled={!allContacts.data}
@@ -511,9 +511,11 @@ const ManageContacts = ({
           <EmptyCard
             header={global.translate(
               "Looks like you don't have any contact yet",
+              2245,
             )}
             body={global.translate(
               'You can add new contacts to your list',
+              2246,
             )}
             imgSrc={EmptyContactList}
             createText={global.translate('Add contact', 574)}
@@ -556,7 +558,7 @@ const ManageContacts = ({
         )}
         {error && !Array.isArray(allMyContacts) && (
           <Message
-            message={global.translate('Something went wrong')}
+            message={global.translate('Something went wrong', 1933)}
             action={{
               onClick: () => {
                 getContacts();

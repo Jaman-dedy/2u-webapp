@@ -34,7 +34,7 @@ const TableDetails = ({
           <Table.Row>
             <Table.Cell>
               <span className="table-heading">
-                {global.translate('Status')}
+                {global.translate('Status', 339)}
               </span>
               {card?.Activated === 'NO' && (
                 <Button
@@ -68,7 +68,7 @@ const TableDetails = ({
                   }}
                   className="table-button"
                 >
-                  {global.translate('Disable this card')}
+                  {global.translate('Disable this card', 1981)}
                 </Button>
               )}
               {card?.Enabled === 'NO' && card?.Activated === 'YES' && (
@@ -84,25 +84,25 @@ const TableDetails = ({
                   }}
                   className="table-button"
                 >
-                  {global.translate('Enable this card')}
+                  {global.translate('Enable this card', 1982)}
                 </Button>
               )}
             </Table.Cell>
             <Table.Cell textAlign="right">
               {card?.Activated === 'NO' &&
-                global.translate('Card is inactive')}
+                global.translate('Card is inactive', 2233)}
               {card?.Activated === 'YES' &&
                 card?.Enabled === 'YES' &&
-                global.translate('Card is enabled')}
+                global.translate('Card is enabled', 2136)}
               {card?.Activated === 'YES' &&
                 card?.Enabled === 'NO' &&
-                global.translate('Card is disabled')}
+                global.translate('Card is disabled', 2232)}
             </Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.Cell>
               <span className="table-wallet-section">
-                {global.translate('Wallet')}
+                {global.translate('Wallet', 1931)}
               </span>
               <span className="table-wallet-number">
                 {card?.WalletNumber}
@@ -111,18 +111,18 @@ const TableDetails = ({
             <Table.Cell textAlign="right" />
           </Table.Row>
           <Table.Row>
-            <Table.Cell>{global.translate('CVV')}</Table.Cell>
+            <Table.Cell>{global.translate('CVV', 494)}</Table.Cell>
             <Table.Cell textAlign="right">{card?.CVV}</Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.Cell>
-              {global.translate('Expiration date')}
+              {global.translate('Expiration date', 492)}
             </Table.Cell>
             <Table.Cell textAlign="right">{`${card?.MM}-${card?.YYYY}`}</Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.Cell>
-              {global.translate('Creation date')}
+              {global.translate('Creation date', 738)}
             </Table.Cell>
             <Table.Cell textAlign="right">{creationDate}</Table.Cell>
           </Table.Row>
@@ -139,7 +139,9 @@ const TableDetails = ({
             </Table.Cell>
           </Table.Row>
           <Table.Row>
-            <Table.Cell>{global.translate('Card type')}</Table.Cell>
+            <Table.Cell>
+              {global.translate('Card type', 2139)}
+            </Table.Cell>
             <Table.Cell textAlign="right">
               {card?.CardType === 1 ? 'Visa' : 'Master card'}
             </Table.Cell>
@@ -149,24 +151,27 @@ const TableDetails = ({
               <span className="action-heading">
                 {global.translate('PIN')}
               </span>
-              <span>{global.translate('Change card PIN')}</span>
+              <span>{global.translate('Change card PIN', 2227)}</span>
             </Table.Cell>
             <Table.Cell textAlign="right">
               <Button
                 style={{ backgroundColor: '#343657', color: '#ffff' }}
                 onClick={() => setOpenPinModal(true)}
               >
-                {global.translate('Change')}
+                {global.translate('Change', 739)}
               </Button>
             </Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.Cell>
               <span className="action-heading">
-                {global.translate('Lost this card?')}
+                {global.translate('Lost this card?', 2230)}
               </span>
               <span>
-                {global.translate('Disable and delete the card')}
+                {global.translate(
+                  'Disable and delete the card',
+                  2231,
+                )}
               </span>
             </Table.Cell>
             <Table.Cell textAlign="right">
@@ -174,7 +179,7 @@ const TableDetails = ({
                 style={{ backgroundColor: '#343657', color: '#ffff' }}
                 onClick={setIsDeletingCard}
               >
-                {global.translate('Delete')}
+                {global.translate('Delete', 415)}
               </Button>
             </Table.Cell>
           </Table.Row>

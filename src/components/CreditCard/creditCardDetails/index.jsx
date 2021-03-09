@@ -109,6 +109,7 @@ const CreditCardDetails = ({ creditCardDetails }) => {
             <InfoMessage
               description={global.translate(
                 'This card is currently inactive. You will be able to activate it once your confirm that you have received it',
+                2253,
               )}
             />
           )}

@@ -1,6 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import sendVoucher, {
   clearVoucherErrors,
 } from 'redux/actions/vouchers/sendVoucher';
@@ -10,7 +12,6 @@ import confirmTransaction from 'redux/actions/moneyTransfer/confirmTransaction';
 import getSupportedCountries from 'redux/actions/countries/getSupportedCountries';
 import { updateMoneyTransferStep } from 'redux/actions/dashboard/dashboard';
 import { CELINE_MONEY } from 'constants/general';
-import { toast } from 'react-toastify';
 
 export default ({
   userData,

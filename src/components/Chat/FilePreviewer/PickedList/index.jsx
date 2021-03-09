@@ -57,7 +57,7 @@ const FilePickerList = ({
                   >
                     <Icon
                       name="close"
-                      title={global.translate('Remove file')}
+                      title={global.translate('Remove file', 2237)}
                       className="center cursor-pointer"
                       style={{
                         cursor: 'pointer',
@@ -84,7 +84,7 @@ const FilePickerList = ({
                       }}
                     />
                     <Icon
-                      title={global.translate('Add a file')}
+                      title={global.translate('Add a file', 2238)}
                       name={getFileTypeIcon(file.file)}
                       size="huge"
                     />
@@ -101,7 +101,7 @@ const FilePickerList = ({
                   >
                     <Icon
                       name="close"
-                      title={global.translate('Remove file')}
+                      title={global.translate('Remove file', 2237)}
                       className="center cursor-pointer"
                       style={{
                         cursor: 'pointer',
@@ -150,7 +150,7 @@ const FilePickerList = ({
                   >
                     <Icon
                       name="close"
-                      title={global.translate('Remove file')}
+                      title={global.translate('Remove file', 2237)}
                       style={{
                         cursor: 'pointer',
 
@@ -198,7 +198,7 @@ const FilePickerList = ({
                   >
                     <Icon
                       name="close"
-                      title={global.translate('Remove file')}
+                      title={global.translate('Remove file', 2237)}
                       className="center cursor-pointer"
                       style={{
                         cursor: 'pointer',

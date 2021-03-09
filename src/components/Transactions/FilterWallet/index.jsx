@@ -17,12 +17,12 @@ const FilterDropDown = ({
   <div>
     <Dropdown
       closeOnBlur={false}
-      text="Filter wallets"
+      text={global.translate('Filter wallets', 2175)}
       pointing
       className="custom-dropdown-box"
     >
       <Dropdown.Menu className="wallet-select">
-        <div>{global.translate('Source account')}</div>
+        <div>{global.translate('Source account', 2176)}</div>
         <WalletDropDown
           source
           setSourceWallet={setSourceWallet}

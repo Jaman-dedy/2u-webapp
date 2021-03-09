@@ -235,6 +235,7 @@ const EditGeneralInfo = ({ emailAndPhone }) => {
             >
               {global.translate(
                 'Please, provide valid emails for all the fields',
+                2234,
               )}
             </Label>
           </Form.Field>

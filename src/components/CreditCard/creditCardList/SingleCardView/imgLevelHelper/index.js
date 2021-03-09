@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import VisaYouthImg from 'assets/images/cards/cardLevel/visa-youth.svg';
 import VisaSilverImg from 'assets/images/cards/cardLevel/visa-silver.svg';
 import VisaGoldImg from 'assets/images/cards/cardLevel/visa-gold.svg';

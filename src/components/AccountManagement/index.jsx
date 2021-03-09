@@ -123,7 +123,7 @@ const AccountManagement = ({
       ),
     },
     {
-      menuItem: global.translate('Identity'),
+      menuItem: global.translate('Identity', 2199),
       render: () => (
         <Tab.Pane
           className="bottom-tab-pane documents"
@@ -134,7 +134,7 @@ const AccountManagement = ({
       ),
     },
     {
-      menuItem: global.translate('Other supporting documents'),
+      menuItem: global.translate('Other supporting documents', 2206),
       render: () => (
         <Tab.Pane
           className="bottom-tab-pane documents"

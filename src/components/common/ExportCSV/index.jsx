@@ -118,7 +118,7 @@ const ExportCSV = ({
       }}
     >
       <Image src={ExportCsv} />
-      {global.translate('Export transactions to CSV')}
+      {global.translate('Export transactions to CSV', 2177)}
     </Button>
   );
 
@@ -131,7 +131,7 @@ const ExportCSV = ({
         onClose={() => setOpenModal(false)}
       >
         <Modal.Header>
-          {global.translate('Export transactions to CSV')}
+          {global.translate('Export transactions to CSV', 2177)}
         </Modal.Header>
         <Modal.Content scrolling>
           <div className="data-to-export">
@@ -168,7 +168,7 @@ const ExportCSV = ({
             color="red"
             onClick={() => setOpenModal(false)}
           >
-            {global.translate('Close')}
+            {global.translate('Close', 186)}
           </Button>
           <CSVLink
             data={dataToExport}
@@ -183,7 +183,7 @@ const ExportCSV = ({
               onClick={() => setOpenModal(false)}
               icon
             >
-              {global.translate('Export')}{' '}
+              {global.translate('Export', 2240)}{' '}
               <Icon name="external alternate" />
             </Button>
           </CSVLink>

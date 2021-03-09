@@ -400,6 +400,7 @@ const TopUpModal = ({
                           <span>
                             {global.translate(
                               `Select a bank account number`,
+                              2260,
                             )}
                           </span>
 
@@ -439,6 +440,7 @@ const TopUpModal = ({
                       <span>
                         {global.translate(
                           `Provide a new bank account number`,
+                          2261,
                         )}
                       </span>
 
@@ -477,6 +479,7 @@ const TopUpModal = ({
                           style={{ marginTop: '10px' }}
                           label={global.translate(
                             `Save bank account number`,
+                            2262,
                           )}
                           checked={saveAccount}
                           onChange={() =>
@@ -518,6 +521,7 @@ const TopUpModal = ({
                       <span>
                         {global.translate(
                           `Provide a new phone number`,
+                          2263,
                         )}
                       </span>
 
@@ -553,6 +557,7 @@ const TopUpModal = ({
                         style={{ marginTop: '-17px', width: '68%' }}
                         message={global.translate(
                           'Account not found',
+                          2264,
                         )}
                       />
                     )}

@@ -197,7 +197,7 @@ const AddMoneyModal = ({ open, setOpen, payBills }) => {
       <Modal.Header>
         {payBillsData.SupplierName ? (
           <span>
-            {global.translate('Pay Bills to')}{' '}
+            {global.translate('Pay Bills to', 2225)}{' '}
             <span className="supplier-name">
               {payBillsData.SupplierName}
             </span>

@@ -187,7 +187,10 @@ const ChooseChatUserModal = ({ open, setOpen }) => {
                   secondaryContent={
                     item.AccountVerified === 'YES' && (
                       <span
-                        title={global.translate('Account verified')}
+                        title={global.translate(
+                          'Account verified',
+                          1458,
+                        )}
                       >
                         <Image
                           src={VerifiedIcon}

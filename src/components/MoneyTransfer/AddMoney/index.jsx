@@ -144,7 +144,7 @@ const AddMoney = ({
         value={date}
         onClick={onClick}
         error={errors.date || false}
-        placeholder={global.translate('Date')}
+        placeholder={global.translate('Date', 1258)}
       />
     );
   };
@@ -218,7 +218,7 @@ const AddMoney = ({
               <GoBack style onClickHandler={onClickHandler} />
             </div>
             <h2 className="head-title">
-              {global.translate('Top Up your wallet', 1209)}
+              {global.translate('Top Up your wallet', 2220)}
             </h2>
             <div className="clear" />
           </div>
@@ -227,10 +227,10 @@ const AddMoney = ({
         <div className="wrap__container">
           <div className="display-steps">
             <ShowStep
-              title={global.translate('Select', 2129)}
+              title={global.translate('Select', 2217)}
               subTitle={global.translate(
                 'Choose a provider and wallet',
-                2130,
+                2218,
               )}
               levelNumber={levelOne ? levelOneVisited : Step1Img}
               visited={levelOne}
@@ -241,7 +241,7 @@ const AddMoney = ({
               title={global.translate('Top Up', 542)}
               subTitle={global.translate(
                 'Add money to your wallet',
-                2131,
+                173,
               )}
               levelNumber={levelTwo ? levelTwoVisited : Step2Img}
               visited={levelTwo}
@@ -250,7 +250,7 @@ const AddMoney = ({
             />
             <ShowStep
               title={global.translate('Confirm', 1750)}
-              subTitle={global.translate('Review and confirm', 2138)}
+              subTitle={global.translate('Review and confirm', 2219)}
               levelNumber={levelThree ? levelThreeVisited : Step3Img}
               visited={levelThree}
               onClick={handleNavigateSteps}
@@ -267,7 +267,7 @@ const AddMoney = ({
                   selectedWalletNumber={selectedWalletNumber}
                 />
 
-                <h3>{global.translate('Choose a provider')}</h3>
+                <h3>{global.translate('Choose a provider', 2168)}</h3>
                 <DisplayProviders
                   providerLogo={TopUpCreditCardImg}
                   title="Credit/Prepaid card"
@@ -278,7 +278,7 @@ const AddMoney = ({
                   onClick={checkTopUpCreditCard}
                   ticked={topUpFromCreditCard}
                 />
-                <h3>{global.translate('Coming soon')}</h3>
+                <h3>{global.translate('Coming soon', 1747)}</h3>
 
                 <div className="flex top-up__coming-soon">
                   <ComingSoon

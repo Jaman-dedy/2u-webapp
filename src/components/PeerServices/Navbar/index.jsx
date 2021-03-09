@@ -99,7 +99,7 @@ const PostsNavbar = ({ fixed, mobile, handleToggle }) => {
             />
           )}
           <Menu.Item position="right">
-            <Link to="/">{global.translate('Dashboard')}</Link>
+            <Link to="/">{global.translate('Dashboard', 1239)}</Link>
           </Menu.Item>
 
           {user && (
@@ -127,7 +127,7 @@ const PostsNavbar = ({ fixed, mobile, handleToggle }) => {
                   },
                 }}
               >
-                {global.translate('Log in')}
+                {global.translate('Log in', 2208)}
               </Button>
               <Button
                 style={{
@@ -138,7 +138,7 @@ const PostsNavbar = ({ fixed, mobile, handleToggle }) => {
                 as={Link}
                 className="bg-orange"
               >
-                {global.translate('Register')}
+                {global.translate('Register', 6)}
               </Button>
             </Menu.Item>
           )}

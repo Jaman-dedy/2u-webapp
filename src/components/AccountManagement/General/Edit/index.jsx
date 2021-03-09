@@ -219,7 +219,7 @@ const EditGeneralInfo = ({ general }) => {
         <br />
         <Form.Field>
           <span>
-            {global.translate('Upload your proof of residence')}
+            {global.translate('Upload your proof of residence', 2186)}
           </span>
           <input
             name="UserProofOfAddressURL"
@@ -259,7 +259,10 @@ const EditGeneralInfo = ({ general }) => {
                     onClick={() => logoImageInput.current.click()}
                   />
                   <span>
-                    {global.translate('No proof of residence yet')}
+                    {global.translate(
+                      'No proof of residence yet',
+                      2187,
+                    )}
                   </span>
                 </div>
               }

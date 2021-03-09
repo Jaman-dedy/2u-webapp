@@ -34,10 +34,10 @@ const ConfirmAddMoney = ({
 
   return (
     <div className="transfer-summary">
-      <h3>{global.translate('Top Up summary', 2124)}</h3>
+      <h3>{global.translate('Top Up summary', 2222)}</h3>
       <Item.Group divided>
         <Item style={{ display: 'block' }}>
-          <span>{global.translate('Top up amount', 2125)}</span>
+          <span>{global.translate('Top up amount', 2221)}</span>
           <span className="moneyAmount">
             {Fees ? `${Amount} ${Currency}` : <Placeholder />}
           </span>
@@ -45,7 +45,7 @@ const ConfirmAddMoney = ({
 
         <Item style={{ display: 'block' }}>
           <span>
-            {global.translate('Credit card company fees', 2172)}
+            {global.translate('Credit card company fees', 2170)}
           </span>
           <span className="moneyAmount">
             {Fees ? `${Fees} ${Currency}` : <Placeholder />}
@@ -53,7 +53,7 @@ const ConfirmAddMoney = ({
         </Item>
 
         <Item style={{ display: 'block' }}>
-          <span>{global.translate(`Total amount`, 2126)}</span>
+          <span>{global.translate(`Total amount`, 2223)}</span>
           <span className="moneyAmount">
             {TotalAmount ? (
               `${TotalAmount} ${Currency}`
@@ -98,7 +98,7 @@ const ConfirmAddMoney = ({
       >
         {error
           ? global.translate('Try again', 1996)
-          : global.translate('Confirm & Top Up', 2127)}
+          : global.translate('Confirm & Top Up', 2224)}
       </Button>
       <Button
         disabled={loading}

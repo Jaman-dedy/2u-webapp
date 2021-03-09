@@ -108,7 +108,7 @@ const ProfileDropdown = ({
             {profileData && (
               <div
                 className="dropdown-header__content"
-                title={global.translate('My Profile')}
+                title={global.translate('My Profile', 83)}
               >
                 <Thumbnail
                   avatar={profileData.PictureURL}
@@ -129,7 +129,10 @@ const ProfileDropdown = ({
                   profileData.AccountVerified === 'YES' && (
                     <div
                       className="verified-icon"
-                      title={global.translate('Account verified')}
+                      title={global.translate(
+                        'Account verified',
+                        1458,
+                      )}
                     >
                       <Image src={VerifiedIcon} />
                     </div>
@@ -169,7 +172,7 @@ const ProfileDropdown = ({
                         {profileData?.Rewards?.StatusText}
                         {',  '}
                         <strong>
-                        {convertNumber(
+                          {convertNumber(
                             profileData?.Rewards?.TotalPoints
                               ?.PointsValue,
                           )}
@@ -184,7 +187,7 @@ const ProfileDropdown = ({
           </Dropdown.Header>
           {[
             {
-              label: global.translate('Dashboard'),
+              label: global.translate('Dashboard', 1239),
               to: '/',
               icon: 'home',
             },
@@ -194,7 +197,7 @@ const ProfileDropdown = ({
               icon: 'user',
             },
             {
-              label: global.translate('Marketplace'),
+              label: global.translate('Marketplace', 2190),
               to: `/marketplace`,
               icon: 'buysellads',
             },
@@ -251,14 +254,14 @@ const ProfileDropdown = ({
                 {!loading && (
                   <div>
                     <Icon name="sign-out" />
-                    {global.translate('Log out')}
+                    {global.translate('Log out', 2207)}
                   </div>
                 )}
               </>
             ) : (
               <div>
                 <Icon name="sign-out" />
-                {global.translate('Log in')}
+                {global.translate('Log in', 2208)}
               </div>
             )}
           </Dropdown.Item>

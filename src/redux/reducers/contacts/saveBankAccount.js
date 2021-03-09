@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {
   SAVE_BANK_ACCOUNT_START,
   SAVE_BANK_ACCOUNT_SUCCESS,

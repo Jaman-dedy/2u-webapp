@@ -53,7 +53,7 @@ const CreditCardList = ({ creditCardList, loading }) => {
           </h2>
           <div className="head-buttons">
             <button type="button" onClick={handleCreateCard}>
-              {global.translate(`Order an M-Card`, 2175)}
+              {global.translate(`Order an M-Card`, 2171)}
             </button>
           </div>
           <div className="clear" />

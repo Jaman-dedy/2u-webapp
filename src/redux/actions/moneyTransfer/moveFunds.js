@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import {
   CLEAR_MOVE_FUNDS_ERRORS,
   MOVE_FUNDS_ERROR,
@@ -5,7 +6,6 @@ import {
   MOVE_FUNDS_SUCCESS,
 } from 'constants/action-types/moneyTransfer';
 import apiAction from 'helpers/apiAction';
-import { toast } from 'react-toastify';
 
 export default (
   data,

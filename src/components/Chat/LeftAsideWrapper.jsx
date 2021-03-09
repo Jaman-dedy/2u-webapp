@@ -260,11 +260,11 @@ const ChartListComponent = ({
     }
 
     if (item.fileType?.startsWith('application')) {
-      return global.translate('Document');
+      return global.translate('Document', 2235);
     }
 
     if (item.fileType?.startsWith('image')) {
-      return global.translate('Image');
+      return global.translate('Image', 2236);
     }
   };
   return (

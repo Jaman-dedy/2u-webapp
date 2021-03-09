@@ -27,7 +27,7 @@ const ConfirmModal = ({
                 close(false);
               }}
             >
-              <Icon name="remove" /> {global.translate('No')}
+              <Icon name="remove" /> {global.translate('No', 733)}
             </Button>
             <Button
               color="green"
@@ -37,7 +37,7 @@ const ConfirmModal = ({
                 close(false);
               }}
             >
-              <Icon name="checkmark" /> {global.translate('Yes')}
+              <Icon name="checkmark" /> {global.translate('Yes', 732)}
             </Button>
           </div>
         </Modal.Actions>

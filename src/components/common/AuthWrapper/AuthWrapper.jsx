@@ -1,3 +1,7 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable no-unused-vars */
+/* eslint-disable react-hooks/exhaustive-deps */
 import moment from 'moment';
 import './auth-landing-page.scss';
 import './spiner.scss';
@@ -93,12 +97,12 @@ const AuthWrapper = ({ children, rightHeadlineText, authHeader }) => {
                     </li>
                     <li className="hide-on-small">
                       <Link to="/marketplace">
-                        {global.translate('Marketplace')}{' '}
+                        {global.translate('Marketplace', 2190)}{' '}
                       </Link>
                     </li>
                     <li className="hide-on-small">
                       <a href={HOW_IT_WORKS}>
-                        {global.translate('How it works')}
+                        {global.translate('How it works', 2191)}
                       </a>
                     </li>
                     <li>

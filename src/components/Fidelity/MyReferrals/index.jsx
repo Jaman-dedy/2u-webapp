@@ -72,7 +72,7 @@ const MyReferrals = ({ referrals }) => {
           </div>
           <div className="fidelity-card card-point">
             <span className="title">
-              {global.translate('Points')}
+              {global.translate('Points', 1917)}
             </span>
             <span className="count">{totalPoints}</span>
           </div>

@@ -137,7 +137,7 @@ const Notifications = ({ userData, notifications }) => {
       },
       more: {
         image: notifLink,
-        name: global.translate('More info'),
+        name: global.translate('More info', 2003),
         onClick: () => linkData && openStorePublicity(true, linkData),
       },
     };

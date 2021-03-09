@@ -218,8 +218,8 @@ const SendCashModal = ({
     >
       {transactionType === 'CASH_TRANSACTION' && destinationContact && (
         <Modal.Header centered className="modal-title">
-          {isEditing && global.translate(`Edit Transaction `)}
-          {!isEditing && global.translate(`Send cash to `)}
+          {isEditing && global.translate(`Edit Transaction`, 2035)}
+          {!isEditing && global.translate(`Send cash to`, 2259)}
           {!isEditing && (
             <strong>{destinationContact.FirstName}</strong>
           )}
@@ -254,6 +254,7 @@ const SendCashModal = ({
               <h4 className="available">
                 {global.translate(
                   'Available Balance in the Selected Wallet',
+                  1223,
                 )}
                 <p className="available-value">
                   {formatNumber(balanceOnWallet, {
@@ -285,7 +286,7 @@ const SendCashModal = ({
               </div>
               <div className="currency">
                 <p className="choose-dest-country">
-                  {global.translate('Destination Currency')}
+                  {global.translate('Destination Currency', 1629)}
                 </p>
                 <Form.Select
                   className="currency-chooser"
@@ -356,7 +357,7 @@ const SendCashModal = ({
                     marginBottom: '10px',
                   }}
                 >
-                  {global.translate(`Default phone number`, 2165)} :{' '}
+                  {global.translate(`Default phone number`, 2274)} :{' '}
                   <strong>
                     {`+${
                       destinationContact?.PhonePrefix
@@ -378,7 +379,7 @@ const SendCashModal = ({
                     type="number"
                     disabled={isEditing}
                     name="amount"
-                    placeholder={global.translate('Amount')}
+                    placeholder={global.translate('Amount', 116)}
                     onChange={onOptionsChange}
                     value={form.amount || null}
                   />
@@ -475,7 +476,7 @@ const SendCashModal = ({
           >
             {!isEditing
               ? global.translate('Send cash', 1948)
-              : global.translate('Submit')}
+              : global.translate('Submit', 1695)}
           </Button>
         </>
       </Modal.Actions>

@@ -85,7 +85,7 @@ const Card = ({ card, onClick, detail, userData }) => {
                       className="card-detail-info"
                     >
                       <Image src={CopyIcon} />
-                      {global.translate('Copy card CVV')}
+                      {global.translate('Copy card CVV', 2147)}
                     </span>
                   }
                 />

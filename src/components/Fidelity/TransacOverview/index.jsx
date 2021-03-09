@@ -116,7 +116,7 @@ const TransacOverview = ({ transactionOverview }) => {
           />
         </div>
         <div className="to">
-          <span>{global.translate('To')}</span>
+          <span>{global.translate('To', 115)}</span>
           <DateInput
             name="DateTo"
             onChange={(_, { name, value }) =>
@@ -198,7 +198,7 @@ const TransacOverview = ({ transactionOverview }) => {
         <div className="wallet-balance">
           <span>
             {global.translate('Wallet', 1931)} /{' '}
-            {global.translate('Transactions amount')}
+            {global.translate('Transactions amount', 2254)}
           </span>
           {(walletsAmountOfTransactions.length === 0 ||
             transactionsOverview.loading) && (

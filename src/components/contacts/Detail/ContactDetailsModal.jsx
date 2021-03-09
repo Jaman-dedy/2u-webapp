@@ -355,7 +355,7 @@ const ContactDetailsModal = ({
           61,
         )} ${global.translate('with', 1954)} ${contact.FirstName}`;
       }
-      return global.translate('Please wait a moment.');
+      return global.translate('Please wait a moment.', 413);
     };
 
     return (
@@ -683,7 +683,10 @@ const ContactDetailsModal = ({
                         /> */}
                         <ActionOption
                           image={toOthersactionsImage}
-                          text={global.translate('Other network')}
+                          text={global.translate(
+                            'Other network',
+                            2247,
+                          )}
                           onClick={() => {
                             setIsSendingOhters(dispatch);
                             setDestinationContact(contact);
@@ -809,7 +812,7 @@ const ContactDetailsModal = ({
                           image={toOthersactionsImage}
                           text={global.translate(
                             'Other networks',
-                            581,
+                            2247,
                           )}
                           onClick={() => {
                             setIsSendingOhters(dispatch);
@@ -887,6 +890,7 @@ const ContactDetailsModal = ({
                           }}
                           addTitle={global.translate(
                             'Visible Wallet numbers',
+                            1957,
                           )}
                           walletTitle={global.translate(
                             'Visible Wallet numbers',
@@ -936,7 +940,7 @@ const ContactDetailsModal = ({
                   setHasError(false);
                 }}
               >
-                {global.translate('Close')}
+                {global.translate('Close', 186)}
               </Button>
               <Button
                 onClick={() => {

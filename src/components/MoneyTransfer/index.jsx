@@ -58,10 +58,11 @@ const MoneyTransfer = ({ payBills }) => {
             payBills={payBills}
           />
           <div className="services-container">
-            <h3>{global.translate('Money transfer')}</h3>
+            <h3>{global.translate('Money transfer', 1249)}</h3>
             <div className="container-subtitle">
               {global.translate(
                 'From your digital wallet to any destination of your choice',
+                2258,
               )}
             </div>
             <div className="services-cards">
@@ -151,7 +152,7 @@ const MoneyTransfer = ({ payBills }) => {
               />
             </div>
             <h3 className="coming-soon-title">
-              {global.translate('Coming soon')}
+              {global.translate('Coming soon', 1747)}
             </h3>
             <div className="soon-cards">
               <ComingSoon

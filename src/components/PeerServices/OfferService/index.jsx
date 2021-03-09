@@ -63,7 +63,7 @@ const ProfileComponent = ({ userPID }) => {
     {
       menuItem: {
         key: 'Posts',
-        content: global.translate('My Posts'),
+        content: global.translate('My Posts', 2109),
       },
       render: () => (
         <Tab.Pane as="div">
@@ -80,7 +80,7 @@ const ProfileComponent = ({ userPID }) => {
     {
       menuItem: {
         key: 'bookmark',
-        content: global.translate('Saved'),
+        content: global.translate('Saved', 2111),
       },
       render: () => (
         <Tab.Pane as="div">
@@ -108,8 +108,8 @@ const ProfileComponent = ({ userPID }) => {
       <Helmet>
         <meta charSet="utf-8" />
         <title>
-          {global.translate('Peer Services')} |
-          {global.translate('Offers Services')}
+          {global.translate('Peer Services', 610)} |
+          {global.translate('Offers Services', 2271)}
         </title>
         <meta
           name="description"
@@ -131,7 +131,7 @@ const ProfileComponent = ({ userPID }) => {
         title={
           userPID === user?.PID?.toLowerCase() || userPID === 'me'
             ? global.translate('My Posts', 2109)
-            : global.translate('User Posts')
+            : global.translate('User Posts', 2272)
         }
       >
         <EditPricingModal

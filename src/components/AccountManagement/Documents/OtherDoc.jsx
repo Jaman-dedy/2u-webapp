@@ -66,7 +66,7 @@ const Documents = ({ userData, documents }) => {
         src={imagePreviewSrc}
       />
       <h4 className="doc-title">
-          {global.translate('Provide other supporting documents')}
+        {global.translate('Provide other supporting documents', 2205)}
       </h4>
       <div className="doc-sub-title">
         {global.translate(

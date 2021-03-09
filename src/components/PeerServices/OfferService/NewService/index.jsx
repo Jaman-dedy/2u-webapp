@@ -183,7 +183,7 @@ const NewService = ({
               />
             )}
             {service && !editMedia && (
-              <span>{global.translate('Update Service')}</span>
+              <span>{global.translate('Update Service', 1869)}</span>
             )}
 
             {!service && (
@@ -191,7 +191,7 @@ const NewService = ({
             )}
 
             {editMedia && (
-              <span>{global.translate('Edit Media')}</span>
+              <span>{global.translate('Edit Media', 1870)}</span>
             )}
           </Modal.Header>
           <Modal.Content>
@@ -213,7 +213,7 @@ const NewService = ({
             {!editMedia && (
               <div className="create-service-wrapper">
                 <Header size="medium">
-                  {global.translate('Details')}
+                  {global.translate('Details', 1843)}
                 </Header>
                 <Form loading={loading || updateLoading} id="form">
                   <Form.Group widths="equal">
@@ -221,13 +221,13 @@ const NewService = ({
                       name="Title"
                       onChange={onChange}
                       value={form.Title || ''}
-                      placeholder={global.translate('Name')}
+                      placeholder={global.translate('Name', 2242)}
                     />
                     <Form.Input
                       name="SubTitle"
                       onChange={onChange}
                       value={form.SubTitle || ''}
-                      placeholder={global.translate('Subtitle')}
+                      placeholder={global.translate('Subtitle', 1569)}
                     />
                   </Form.Group>
                   <TextArea
@@ -247,13 +247,15 @@ const NewService = ({
                     }}
                     value={form.Body || ''}
                     rows={1}
-                    placeholder={global.translate('Description')}
+                    placeholder={global.translate('Description', 119)}
                     fluid
                   />
                   {!service && (
                     <>
                       <hr />
-                      <Header>{global.translate('Media')}</Header>
+                      <Header>
+                        {global.translate('Media', 1844)}
+                      </Header>
                       <Item.Description>
                         {global.translate(
                           'Upload Media that describe your product or service',
@@ -269,7 +271,10 @@ const NewService = ({
                         >
                           <Image src={MEDIA_ADD_BTN} width={55} />
                           <p className="manage-all-text">
-                            {global.translate('Manage all media')}
+                            {global.translate(
+                              'Manage all media',
+                              2273,
+                            )}
                           </p>
                         </Segment>
 
@@ -302,6 +307,7 @@ const NewService = ({
                       search
                       noResultsMessage={global.translate(
                         'The search returns no result',
+                        1253,
                       )}
                       onChange={onChange}
                       value={form.Category || ''}
@@ -312,7 +318,10 @@ const NewService = ({
                         value={tags}
                         name="Tags"
                         inputProps={{
-                          placeholder: global.translate('Add Tags'),
+                          placeholder: global.translate(
+                            'Add Tags',
+                            1874,
+                          ),
                         }}
                         onChange={handleTagsChange}
                       />
@@ -347,12 +356,17 @@ const NewService = ({
                       name="LinkURL"
                       onChange={onChange}
                       value={form.LinkURL || ''}
-                      placeholder={global.translate('External Link')}
+                      placeholder={global.translate(
+                        'External Link',
+                        1875,
+                      )}
                     />
                   </Form.Group>
                   {!service && (
                     <>
-                      <Header>{global.translate('Add Price')}</Header>
+                      <Header>
+                        {global.translate('Add Price', 1876)}
+                      </Header>
                       <Pricing
                         onChange={onPricingFormChange}
                         form={pricingForm}
@@ -382,8 +396,8 @@ const NewService = ({
                   >
                     {global.translate(
                       !service
-                        ? global.translate('Publish Now')
-                        : global.translate('Save'),
+                        ? global.translate('Publish Now', 1877)
+                        : global.translate('Save', 614),
                     )}
                   </Button>
                 </Form>

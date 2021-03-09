@@ -293,7 +293,7 @@ const MyRewards = ({ userData }) => {
                   <div className="btnsContainer">
                     <Button
                       className="levelBtns smallBtn moreGuideBtn"
-                      content="Learn more"
+                      content={global.translate('Learn more', 1620)}
                       rel="noopener noreferrer"
                       target="_blank"
                       href={

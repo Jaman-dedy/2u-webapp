@@ -52,7 +52,7 @@ const SelectLanguage = ({ pointing, hasLabel, open, setOpen }) => {
                 }}
                 className="h-language"
                 src={languageIcon}
-                title={global.translate('Select a language')}
+                title={global.translate('Select a language', 1585)}
               />
               {hasLabel &&
                 (countries.length === 0 ? (

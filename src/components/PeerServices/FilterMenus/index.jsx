@@ -110,7 +110,7 @@ const CountryFilter = ({
             <div className="filter-actions">
               <Button
                 className=""
-                content={global.translate('Cancel')}
+                content={global.translate('Cancel', 86)}
                 onClick={() => setOpen(false)}
               />
 

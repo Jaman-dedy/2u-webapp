@@ -27,12 +27,12 @@ const PinModal = ({
       size="mini"
     >
       <Modal.Header>
-        {global.translate('Change your card PIN Number')}
+        {global.translate('Change your card PIN Number', 1983)}
       </Modal.Header>
       <Modal.Content>
         <div className="card-pin">
           <div>
-            <h4>{global.translate('Change card PIN')}</h4>
+            <h4>{global.translate('Change card PIN', 2227)}</h4>
             <PinCodeForm
               onChange={({ target: { value, name } }) => {
                 setError(null);
@@ -43,7 +43,7 @@ const PinModal = ({
           </div>
           <br />
           <PinCodeForm
-            label={global.translate('Retype the new PIN')}
+            label={global.translate('Retype the new PIN', 2228)}
             onChange={({ target: { value, name } }) => {
               setError(null);
               setConfirmPinDigit({
@@ -60,7 +60,7 @@ const PinModal = ({
           )}
         </div>
         <div className="user-pin">
-          <h4>{global.translate('Your PIN Number')}</h4>
+          <h4>{global.translate('Your PIN Number', 2229)}</h4>
           <PinCodeForm
             label={global.translate('Provide your PIN Number', 543)}
             onChange={({ target: { value, name } }) => {
@@ -84,7 +84,7 @@ const PinModal = ({
           basic
           onClick={() => setOpenPinModal(false)}
         >
-          {global.translate('Cancel')}
+          {global.translate('Cancel', 86)}
         </Button>
         <Button
           loading={loadOnChangePwd}
@@ -92,7 +92,7 @@ const PinModal = ({
           onClick={handleChangeCreditCardPin}
           positive
         >
-          {global.translate('Change PIN')}
+          {global.translate('Change PIN', 2226)}
         </Button>
       </Modal.Actions>
     </Modal>

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { toast } from 'react-toastify';
 import {
   REGISTER_USER_START,

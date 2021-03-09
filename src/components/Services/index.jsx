@@ -61,6 +61,7 @@ const MoneyTransfer = ({ userData }) => {
                 title={global.translate(`Marketplace`)}
                 subtitle={global.translate(
                   `Find products and services near you`,
+                  2183,
                 )}
               />
             </div>

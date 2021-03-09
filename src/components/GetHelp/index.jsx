@@ -99,7 +99,7 @@ const GetHelp = ({
                     }}
                     color="orange"
                   >
-                    Send Email
+                    {global.translate('Send Email', 2184)}
                   </Button>
                 </Segment>
               </Segment>

@@ -50,7 +50,7 @@ const GetPaid = ({
               icon="download"
             >
               <Icon name="download" />
-              {global.translate('Download the QR code')}
+              {global.translate('Download the QR code', 2255)}
             </Button>
           </div>
         </Segment>

@@ -23,9 +23,7 @@ const GButton = ({
         openOnTriggerClick
         trigger={
           <Button
-            content={global.translate('Transfer Money', 674)}
-            icon="angle right"
-            labelPosition="right"
+            content={global.translate('Transfer Money', 1950)}
           />
         }
       >
@@ -43,7 +41,7 @@ const GButton = ({
               <Icon name="sync" />
               <List.Content onClick={goToSendMoney}>
                 <List.Header>
-                  {global.translate('Transfer Money')}
+                  {global.translate('Transfer Money', 1950)}
                 </List.Header>
               </List.Content>
             </List.Item>
@@ -51,7 +49,7 @@ const GButton = ({
               <Icon name="dollar sign" />
               <List.Content onClick={goToQuickPay}>
                 <List.Header>
-                  {global.translate('Quick pay')}
+                  {global.translate('Quick pay', 431)}
                 </List.Header>
               </List.Content>
             </List.Item>
@@ -75,7 +73,7 @@ const GButton = ({
               <Icon name="gift" />
               <List.Content onClick={goToSendVoucher}>
                 <List.Header>
-                  {global.translate('Send Voucher')}
+                  {global.translate('Send Voucher', 863)}
                 </List.Header>
               </List.Content>
             </List.Item>

@@ -96,7 +96,7 @@ const CreditCardForm = ({
       </Form.Field>
       <Form.Group widths="equal">
         <Form.Field>
-          <span>{global.translate('Address')}</span>
+          <span>{global.translate('Address', 1210)}</span>
           <Form.Input
             name="Address"
             value={addMoneyData.Address}
@@ -116,7 +116,7 @@ const CreditCardForm = ({
           />
         </Form.Field>
         <Form.Field>
-          <span>{global.translate('Country')}</span>
+          <span>{global.translate('Country', 275)}</span>
           <Form.Input
             name="Country"
             value={addMoneyData.Country}

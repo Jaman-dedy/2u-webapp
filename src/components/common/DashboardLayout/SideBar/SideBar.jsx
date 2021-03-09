@@ -406,12 +406,14 @@ const SideBar = () => {
                 <i>
                   <Image src={NavReportBugIcon} />
                 </i>
-                {global.translate('Report a bug', 1263)}
+                {global.translate('Report a bug', 2163)}
               </Link>
             </li>
             <li>
               <div className="mobile-apps">
-                <h4>Download our mobile app.</h4>
+                <h4>
+                  {global.translate('Download our mobile app', 2185)}
+                </h4>
                 <a
                   href="https://play.google.com/store/apps/details?id=technology.ossix.toumoney"
                   target="_blank"

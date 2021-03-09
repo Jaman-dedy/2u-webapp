@@ -25,7 +25,7 @@ const SearchInput = () => {
 
   const history = useHistory();
   const [form, setForm] = useState(
-    global.translate('All Categories'),
+    global.translate('All Categories', 199),
   );
   const location = useLocation();
 
@@ -45,7 +45,7 @@ const SearchInput = () => {
     {
       key: 'all',
       value: 'all',
-      text: `-${global.translate('All Categories')}-`,
+      text: `-${global.translate('All Categories', 199)}-`,
     },
     ...categories.map(item => ({
       key: item.Category,
@@ -84,7 +84,7 @@ const SearchInput = () => {
   return (
     <div id="search-input-wrapper">
       <Input
-        placeholder={global.translate('Search here...')}
+        placeholder={global.translate('Search here...', 1859)}
         name="keyword"
         value={form.keyword}
         onChange={onChange}
@@ -99,7 +99,7 @@ const SearchInput = () => {
           control={Select}
           value={form.category}
           search
-          placeholder={global.translate('All Categories')}
+          placeholder={global.translate('All Categories', 199)}
           className="category-drop-down"
           id="category-drop-down"
           options={options}
@@ -132,7 +132,7 @@ const HomepageHeading = ({ disableSearch, title }) => {
   const params = queryString.parse(history.location.search);
 
   const [currentFilter, setCurrentFilter] = useState(
-    global.translate('Filter by proximity'),
+    global.translate('Filter by proximity', 1860),
   );
 
   const [isFilterActive, setIsFilterActive] = useState(false);
@@ -141,7 +141,8 @@ const HomepageHeading = ({ disableSearch, title }) => {
     countriesCurrentFilter,
     setCountriesCurrentFilter,
   ] = useState(
-    localStorage.countryName || global.translate('Select Country'),
+    localStorage.countryName ||
+      global.translate('Select Country', 2165),
   );
   const filterOptions = [
     {
@@ -161,7 +162,7 @@ const HomepageHeading = ({ disableSearch, title }) => {
     },
     {
       key: '500',
-      text: global.translate('Above 50 kilometers'),
+      text: global.translate('Above 50 kilometers', 2119),
       value: '500',
     },
   ];

@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+/* eslint-disable no-unused-vars */
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import registerUserAction from 'redux/actions/users/registerUser';

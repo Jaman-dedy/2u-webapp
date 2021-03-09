@@ -20,7 +20,8 @@ const OTPForm = ({ form, onInputChange }) => {
       <Form className="otp-form-container">
         <div style={{ weight: 'normal !important' }}>
           {global.translate(
-            'Please enter the 10 digits of voucher token',
+            'Please enter the 10 digits of the voucher token',
+            2243,
           )}
         </div>
         <Form.Field className="otp-input-group">

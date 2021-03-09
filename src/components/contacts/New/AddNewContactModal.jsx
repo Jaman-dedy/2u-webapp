@@ -95,7 +95,7 @@ const AddNewContactModal = ({
                     onChange={onChange}
                     icon={
                       <Button
-                        content={global.translate('Search')}
+                        content={global.translate('Search', 278)}
                         positive
                         disabled={addNewUserData.loading}
                         name="search"
@@ -271,13 +271,13 @@ const AddNewContactModal = ({
       >
         {contactType === 'INTERNAL' && (
           <Modal.Header className="modal-title">
-            {global.translate('Add Contact')}
+            {global.translate('Add Contact', 1732)}
           </Modal.Header>
         )}
 
         {contactType !== 'INTERNAL' && (
           <Modal.Header className="modal-title">
-            {global.translate('Add External Contact')}
+            {global.translate('Add External Contact', 1714)}
           </Modal.Header>
         )}
 

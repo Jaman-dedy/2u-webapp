@@ -134,7 +134,7 @@ const WalletComponents = ({
       },
     },
     {
-      name: global.translate('Order an M-Card', 2175),
+      name: global.translate('Order an M-Card', 2171),
       image: CreditCardIcon,
       onClick: item => {
         history.push({
@@ -153,7 +153,7 @@ const WalletComponents = ({
       },
     },
     {
-      name: global.translate('Rename wallet'),
+      name: global.translate('Rename wallet', 2172),
       image: EditIcon,
       onClick: () => {
         openEdit();

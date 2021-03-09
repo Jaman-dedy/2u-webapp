@@ -35,11 +35,20 @@ const PasswordForm = ({
 
   const passwordStrengthLabel = pswdStrength => {
     if (pswdStrength <= 50)
-      return { label: 'Very Weak', color: '#F42C10' };
+      return {
+        label: global.translate('Very Weak', 2196),
+        color: '#F42C10',
+      };
     if (pswdStrength === 75)
-      return { label: 'Weak', color: '#EA5726' };
+      return {
+        label: global.translate('Weak', 2197),
+        color: '#EA5726',
+      };
     if (pswdStrength === 100)
-      return { label: 'Strong', color: '#0A9220' };
+      return {
+        label: global.translate('Strong', 2198),
+        color: '#0A9220',
+      };
     return true;
   };
 

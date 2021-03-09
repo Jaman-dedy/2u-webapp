@@ -38,8 +38,8 @@ function AppPagination({
     <>
       {showLabel && (
         <span className="current">
-          {global.translate('Page')} {currentPage}
-          {global.translate('of')} {totalPages}
+          {global.translate('Page', 1229)} {currentPage}
+          {global.translate('of', 2241)} {totalPages}
         </span>
       )}
       {data.length > itemsPerPage && (

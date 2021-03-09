@@ -161,7 +161,9 @@ const AddCard = ({
             </div>
 
             <div className="select-provider">
-              <h3>{global.translate('Select the card provider')}</h3>
+              <h3>
+                {global.translate('Select the card provider', 2180)}
+              </h3>
 
               <ReusableDrowdown
                 customstyle
@@ -172,7 +174,7 @@ const AddCard = ({
             </div>
             {userData?.data && (
               <div className="name-on-card">
-                <h3>{global.translate('Name on the card')}</h3>
+                <h3>{global.translate('Name on the card', 2178)}</h3>
                 <Input
                   fluid
                   placeholder="Name on the card"
@@ -192,18 +194,24 @@ const AddCard = ({
                 <InfoMessage
                   description={global.translate(
                     'To proceed with your M-Card creation, you need to select a wallet among the wallet list above.',
+                    2248,
                   )}
                 />
               )}
               {loading && <LoadCardLevel />}
               {!loading && cardOptions && (
                 <h3 className="provider-title">
-                  {global.translate('Select card type')}
+                  {global.translate('Select card type', 2179)}
                 </h3>
               )}
               {countLevel === cardOptions?.CardLevels.length &&
                 !loading && (
-                  <InfoMessage description="To proceed with your M-Card creation, you need to first to add money to the current selected wallet" />
+                  <InfoMessage
+                    description={global.translate(
+                      'To proceed with your M-Card creation, you need to first to add money to the current selected wallet',
+                      2249,
+                    )}
+                  />
                 )}
               <div className="display-levels">
                 {!loading &&
@@ -228,6 +236,7 @@ const AddCard = ({
                     <label>
                       {global.translate(
                         'By ordering this card, you agree to our ',
+                        2181,
                       )}
                       <span
                         role="link"
@@ -236,20 +245,25 @@ const AddCard = ({
                           openInNewTab('https//:www.m2u.com')
                         }
                       >
-                        {global.translate('terms and conditions')}
+                        {global.translate(
+                          'terms and conditions',
+                          1238,
+                        )}
                       </span>
                     </label>
                   }
                   onChange={() => setHasNotAgreed(!hasNotAgreed)}
                 />
                 <div>
-                  <Button basic>{global.translate('Cancel')}</Button>
+                  <Button basic>
+                    {global.translate('Cancel', 86)}
+                  </Button>
                   <Button
                     disabled={isDisabled}
                     positive
                     onClick={() => setOpenPinModal(true)}
                   >
-                    {global.translate('Order a card')}
+                    {global.translate('Order a card', 2182)}
                   </Button>
                 </div>
               </div>

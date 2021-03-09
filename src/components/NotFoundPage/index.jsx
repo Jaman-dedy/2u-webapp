@@ -27,12 +27,16 @@ const NotFoundPage = () => {
         <h2>
           {global.translate(
             `Oops, looks like the page you are looking for is not found`,
+            2265,
           )}
         </h2>
         <div>
           {' '}
-          {global.translate(`You can navigate to other pages or you can click on this
-          button below to navigate to the home page`)}
+          {global.translate(
+            `You can navigate to other pages or you can click on this
+          button below to navigate to the home page`,
+            2266,
+          )}
         </div>
         <button
           type="button"
@@ -49,7 +53,7 @@ const NotFoundPage = () => {
           }}
           c
         >
-          {global.translate('Home')}
+          {global.translate('Home', 134)}
         </button>
       </div>
     </DashboardLayout>
@@ -59,12 +63,16 @@ const NotFoundPage = () => {
       <h2>
         {global.translate(
           `Oops, looks like the page you are looking for is not found`,
+          2265,
         )}
       </h2>
       <div>
         {' '}
-        {global.translate(`You can navigate to other pages or you can click on this
-          button below to navigate to the home page`)}
+        {global.translate(
+          `You can navigate to other pages or you can click on this
+          button below to navigate to the home page`,
+          2266,
+        )}
       </div>
     </div>
   );

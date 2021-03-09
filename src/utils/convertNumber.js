@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 export default number => {
   if (number > 999 && number < 1000000) {
     return `${(number / 1000).toFixed(0)}K`;

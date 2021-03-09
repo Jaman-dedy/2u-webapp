@@ -104,7 +104,7 @@ const DeleteServiceModal = () => {
         >
           {loading
             ? global.translate('Please wait a moment.', 413)
-            : global.translate('Confirm')}
+            : global.translate('Confirm', 1750)}
         </Button>
       </Modal.Actions>
     </Modal>
