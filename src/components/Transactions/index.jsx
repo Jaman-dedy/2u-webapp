@@ -76,7 +76,6 @@ const Transactions = ({
   const [cachedMetaData, setCachedMetaData] = useState({});
   // const [cachedOtherTransfer, setCachedOtherTransfer] = useState({});
   const { data, loading, error } = walletTransactions;
-  // console.log('data', data);
   const handleSelectedCard = cardNumber => {
     setSelectedCard(cardNumber);
     if (cardNumber === 2 && !unPaidCashList.data) {
@@ -131,7 +130,6 @@ const Transactions = ({
   };
   useEffect(() => {
     if (data) {
-      console.log('data', data[0].Data);
       // cache the data from redux store
       setCachedTransactions(prevData => {
         // check if we have not cached data for the current page
