@@ -30,13 +30,11 @@ const LoginContainer = () => {
   const [pidError, setPidError] = useState(null);
   const [passwordError, setPasswordError] = useState(null);
   const [isFormValid, setIsFormValid] = useState(false);
-  const [pinError, setPinError] = useState(null);
-  const { digit0, digit1, digit2, digit3 } = form;
 
   const handleChange = (e, { name, value }) => {
     setForm({ ...form, [name]: value });
+    clearLoginUser()(dispatch);
   };
-  const PIN = `${digit0}${digit1}${digit2}${digit3}`;
 
   const geoData = useGeoLocation();
   const {
@@ -50,7 +48,6 @@ const LoginContainer = () => {
   const body = {
     PID: form.PID || '',
     Password: form.Password || '',
-    PIN: PIN || '',
     CountryCode:
       (userLocationData && userLocationData.CountryCode) || '',
     PhoneNumber: '',
@@ -69,9 +66,8 @@ const LoginContainer = () => {
     ClientVersion: clientVersion,
   };
 
-  const pinIsValid = () => body.PIN.length === 4;
   useEffect(() => {
-    if (body.PID !== '' && body.Password !== '' && pinIsValid()) {
+    if (body.PID !== '' && body.Password !== '') {
       setIsFormValid(true);
     } else {
       setIsFormValid(false);
@@ -122,13 +118,6 @@ const LoginContainer = () => {
       return;
     }
     setPasswordError(null);
-    if (body.PIN.length !== 4) {
-      setPinError(
-        global.translate('Please provide your PIN number.', 543),
-      );
-      return;
-    }
-    setPinError(null);
     loginUser(body)(dispatch);
   };
   const onKeyDown = e => {
@@ -140,13 +129,6 @@ const LoginContainer = () => {
         return;
       }
       setPasswordError(null);
-      if (body.PIN.length !== 4) {
-        setPinError(
-          global.translate('Please provide your PIN number.', 543),
-        );
-        return;
-      }
-      setPinError(null);
       loginUser(body)(dispatch);
     }
   };
@@ -161,7 +143,6 @@ const LoginContainer = () => {
       form={form}
       pidError={pidError}
       passwordError={passwordError}
-      pinError={pinError}
       isFormValid={isFormValid}
       clearLoginUser={clearLoginUser}
       onKeyDown={onKeyDown}

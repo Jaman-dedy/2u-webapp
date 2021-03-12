@@ -12,9 +12,8 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Grid, Image } from 'semantic-ui-react';
-import LogoColored from 'assets/images/logo-colored.svg';
+import LogoColored from 'assets/images/2u-money-logo.svg';
 import getUserDailyEvent from 'redux/actions/authWrapper';
-import AdPlaceholderDefault from 'assets/images/AD_V1.jpg';
 import SelectLanguage from 'components/common/SelectLanguage';
 import validateImg from 'helpers/image/validateImg';
 import isAppDisplayedInWebView from 'helpers/isAppDisplayedInWebView';
@@ -123,13 +122,6 @@ const AuthWrapper = ({ children, rightHeadlineText, authHeader }) => {
       <div className="wrap-auth-section">
         <div className="os-container">
           <div className="auth-section">
-            <div className="wrap-event">
-              {eventUrl ? (
-                <Image src={eventUrl} />
-              ) : (
-                <Image src={AdPlaceholderDefault} />
-              )}
-            </div>
             <div className="wrap-auth">
               <h2 className="right-sub-header">
                 {rightHeadlineText}
