@@ -11,6 +11,7 @@ import NavServicesIcon from 'assets/images/NavServicesIcon.svg';
 import NavTransaction from 'assets/images/NavTransactionIcon.svg';
 import NavTransferIcon from 'assets/images/NavTransferIcon.svg';
 import NavWalletIcon from 'assets/images/NavWalletIcon.svg';
+import NavMicroloan from 'assets/images/microloan/microloan-icon.svg';
 import AppStore from 'assets/images/app-store.svg';
 import GooglePlay from 'assets/images/google-play.svg';
 import CurrencyExchangeContainer from 'containers/MoneyTransfer/Exchange/Exchange';
@@ -22,7 +23,6 @@ import toggleSidebar, {
   setIsSendingMoney,
   setIsSendingOhters,
   setIsSendingVoucher,
-  setIsTopingUp,
   setManageContacts,
 } from 'redux/actions/dashboard/dashboard';
 import { clearSelectedStore } from 'redux/actions/vouchers/selectedStore';
@@ -255,6 +255,25 @@ const SideBar = () => {
                   </li>
                 </ul>
               </div>
+            </li>
+            <li>
+              <Link
+                to="microloan"
+                className={
+                  (location.pathname + location.search).substr(1) ===
+                  'microloan'
+                    ? 'nav-visited'
+                    : null
+                }
+                onClick={() => {
+                  toggleSidebar(dispatch);
+                }}
+              >
+                <i>
+                  <Image src={NavMicroloan} />
+                </i>
+                {global.translate('Microloan')}
+              </Link>
             </li>
             <li>
               <Link

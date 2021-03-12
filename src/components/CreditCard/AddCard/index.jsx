@@ -14,7 +14,7 @@ import DisplayProviders from 'components/common/DisplayProviders';
 import openInNewTab from 'helpers/openInNewTab';
 import clearWalletForm from 'redux/actions/users/clearWalletForm';
 import ReusableDrowdown from 'components/common/Dropdown/ReusableDropdown';
-import InfoMessage from 'components/common/InfoMessage';
+import InfoMessage from 'components/common/Alert/InfoMessage';
 import getUserCurrencies from 'redux/actions/users/getUserCurrencies';
 
 import EmptyCard from 'components/common/EmptyCard';

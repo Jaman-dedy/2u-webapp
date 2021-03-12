@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import DashboardLayout from 'components/common/DashboardLayout';
 import GoBack from 'components/common/GoBack';
-import InfoMessage from 'components/common/InfoMessage';
+import InfoMessage from 'components/common/Alert/InfoMessage';
 import WelcomeBar from 'components/Dashboard/WelcomeSection';
 import getVirtualCard from 'redux/actions/virtualCard/getVirtualCard';
 import VirtualCard from '../Item';

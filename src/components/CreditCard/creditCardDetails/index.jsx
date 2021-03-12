@@ -13,7 +13,7 @@ import TextInput from 'components/common/TextField/FlatInput';
 import GoBack from 'components/common/GoBack';
 import './style.scss';
 import './custmised-sematinc-style.scss';
-import InfoMessage from 'components/common/InfoMessage';
+import InfoMessage from 'components/common/Alert/InfoMessage';
 import SingleCardView from '../creditCardList/SingleCardView';
 import TableDetails from './TableDetails';
 import ConfirmPinModal from './confirmPinModal';

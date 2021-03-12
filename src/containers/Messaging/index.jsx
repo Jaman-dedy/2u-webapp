@@ -1,3 +1,10 @@
+import React, {
+  useEffect,
+  useState,
+  useRef,
+  useCallback,
+} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   ONLINE,
   DELETE_FOR_ALL,
@@ -10,13 +17,6 @@ import {
 } from 'constants/events/chat/chatThreads';
 import { DELETE_CHAT_DIRECT_MESSAGES } from 'constants/events/chat/deleteMessages';
 import { GET_CHAT_DIRECT_MESSAGES } from 'constants/events/chat/directMessages';
-import React, {
-  useEffect,
-  useState,
-  useRef,
-  useCallback,
-} from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import MessagingComponent from 'components/Chat';
 import { chatSocketIOClient } from 'services/socketIO';
 import {

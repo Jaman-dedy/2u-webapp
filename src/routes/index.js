@@ -23,6 +23,7 @@ import peerservices from './peerServices';
 import getPaid from './getPaid';
 import quickPay from './quickPay';
 import remindUsername from './remind-username';
+import microloan from './microloan';
 
 export default [
   login,
@@ -53,4 +54,5 @@ export default [
   getPaid,
   quickPay,
   remindUsername,
+  ...microloan,
 ];
