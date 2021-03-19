@@ -19,6 +19,7 @@ import {
 } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import { Button, Modal } from 'semantic-ui-react';
+import moment from 'moment';
 import ChatModal from 'components/Chat/ChatModal';
 import UserLeaveConfirmation from 'components/common/UserConfirmation';
 import InstallApp from 'components/InstallApp';
@@ -53,7 +54,6 @@ import voucherEvent from 'services/socketIO/events/voucher';
 import walletEvent from 'services/socketIO/events/wallet';
 import * as welcomeEvent from 'services/socketIO/events/welcome';
 import isAuth from 'utils/isAuth';
-
 import ErrorFallback from './Error';
 import * as serviceWorker from './serviceWorker';
 
@@ -75,6 +75,14 @@ history.listen(location => {
   );
 });
 const App = () => {
+  const { language: { preferred } = {} } = useSelector(
+    ({ user }) => user,
+  );
+
+  useEffect(() => {
+    moment.locale(preferred || 'en');
+  }, [preferred]);
+
   const dispatch = useDispatch();
   global.translate = useTranslate();
   handleSocketIOClientEvents();
