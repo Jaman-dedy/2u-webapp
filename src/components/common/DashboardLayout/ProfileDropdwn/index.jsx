@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import Thumbnail from 'components/common/Thumbnail';
 import logout from 'redux/actions/users/logout';
 import VerifiedIcon from 'assets/images/verified.png';
-import './ProfileDropdown.scss';
 import { CONTACT_PRESENCE_CHANGED } from 'constants/events/userPresence';
 import { OFFLINE, ONLINE, LOGIN_RETURN_URL } from 'constants/general';
 import createNotification from 'redux/actions/users/createNotification';
@@ -16,6 +15,7 @@ import ImageLevel from './ImageLevel';
 import LoaderComponent from 'components/common/Loader';
 import { closeProfileDropDown } from 'redux/actions/dashboard/dashboard';
 import convertNumber from 'utils/convertNumber';
+import './ProfileDropdown.scss';
 
 const ProfileDropdown = ({
   openProfile,
