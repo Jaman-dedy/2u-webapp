@@ -24,6 +24,7 @@ import getPaid from './getPaid';
 import quickPay from './quickPay';
 import remindUsername from './remind-username';
 import microloan from './microloan';
+import withdrawMoney from './withdrawMoney';
 
 export default [
   login,
@@ -55,4 +56,5 @@ export default [
   quickPay,
   remindUsername,
   ...microloan,
+  withdrawMoney,
 ];

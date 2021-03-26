@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { Segment, Image, Button, Icon } from 'semantic-ui-react';
 import DashboardLayout from 'components/common/DashboardLayout';
 import WelcomeBar from 'components/Dashboard/WelcomeSection';
@@ -57,6 +58,19 @@ const GetPaid = ({
       </div>
     </DashboardLayout>
   );
+};
+
+GetPaid.propTypes = {
+  walletList: PropTypes.func,
+  selectWallet: PropTypes.objectOf(PropTypes.any),
+  setSelectedWallet: PropTypes.func,
+  onDownLoadImageHandler: PropTypes.func,
+};
+GetPaid.defaultProps = {
+  walletList: () => {},
+  selectWallet: {},
+  setSelectedWallet: () => {},
+  onDownLoadImageHandler: () => {},
 };
 
 export default GetPaid;

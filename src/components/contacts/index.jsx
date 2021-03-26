@@ -401,10 +401,9 @@ const ManageContacts = ({
                 isSendingOthers) && (
                 <button
                   type="button"
-                  // onClick={() => {
-                  //   setOpen(true);
-                  //   setNewContactType('INTERNAL');
-                  // }}
+                  onClick={() => {
+                    history.push('/withdraw-money');
+                  }}
                 >
                   {global.translate('Withdraw money')}
                 </button>
@@ -749,7 +748,6 @@ const ManageContacts = ({
         setIsSharingNewWallet={setIsSharingNewWallet}
         isSharingNewWallet={isSharingNewWallet}
         addRemoveFavorite={addRemoveFavorite}
-
       />
       <AddNewContactModal
         open={open}

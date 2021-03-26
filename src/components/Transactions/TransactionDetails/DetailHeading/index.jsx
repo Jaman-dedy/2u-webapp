@@ -4,7 +4,7 @@ import moment from 'moment';
 import './style.scss';
 
 const DetailHeading = ({ item, selectedCard }) => {
-  const newDate = item?.Date.substring(0, 11);
+  const newDate = item?.Date?.substring(0, 11);
   const displayAmounts = () => {
     if (selectedCard === 1 || selectedCard === 3) {
       return {
@@ -14,8 +14,8 @@ const DetailHeading = ({ item, selectedCard }) => {
     }
     if (selectedCard === 2) {
       return {
-        Amount: item.DestAmount,
-        Currency: item.DestCurrency,
+        Amount: item.DestAmount || item.AmountSent,
+        Currency: item.DestCurrency || '',
       };
     }
     if (selectedCard === 4) {
@@ -30,13 +30,13 @@ const DetailHeading = ({ item, selectedCard }) => {
       return item.Description;
     }
     if (selectedCard === 2) {
-      return 'Pending cash sent details';
+      return global.translate('Pending cash sent details', 2240);
     }
     if (selectedCard === 3) {
-      return 'Pending voucher details';
+      return global.translate('Pending voucher details', 2241);
     }
     if (selectedCard === 4) {
-      return 'External transaction details';
+      return global.translate('External transaction details', 2242);
     }
   };
   return (

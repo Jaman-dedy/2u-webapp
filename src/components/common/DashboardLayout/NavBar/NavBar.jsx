@@ -76,6 +76,9 @@ const NavBar = ({
       search: '?ref=send-voucher',
     });
   };
+  const goToWithdraw = () => {
+    history.push('/withdraw-money');
+  };
   return (
     <>
       <header
@@ -93,6 +96,7 @@ const NavBar = ({
             goToGetPaid={goToGetPaid}
             goToSendCash={goToSendCash}
             goToSendVoucher={goToSendVoucher}
+            goToWithdraw={goToWithdraw}
           />
         </div>
         <div className="btns-header-actions">

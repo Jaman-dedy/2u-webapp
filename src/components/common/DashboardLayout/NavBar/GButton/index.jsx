@@ -15,6 +15,7 @@ const GButton = ({
   goToGetPaid,
   goToSendCash,
   goToSendVoucher,
+  goToWithdraw,
 }) => {
   return (
     <div>
@@ -42,6 +43,14 @@ const GButton = ({
               <List.Content onClick={goToSendMoney}>
                 <List.Header>
                   {global.translate('Transfer Money', 1950)}
+                </List.Header>
+              </List.Content>
+            </List.Item>
+            <List.Item>
+              <Icon name="dollar sign" />
+              <List.Content onClick={goToWithdraw}>
+                <List.Header>
+                  {global.translate('Withdraw money')}
                 </List.Header>
               </List.Content>
             </List.Item>
@@ -89,5 +98,6 @@ GButton.propTypes = {
   goToGetPaid: PropTypes.func.isRequired,
   goToSendCash: PropTypes.func.isRequired,
   goToSendVoucher: PropTypes.func.isRequired,
+  goToWithdraw: PropTypes.func.isRequired,
 };
 export default GButton;

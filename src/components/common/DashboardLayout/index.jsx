@@ -52,6 +52,9 @@ const DashboardLayout = ({
       search: '?ref=send-money',
     });
   };
+  const goToWithdraw = () => {
+    history.push('/withdraw-money');
+  };
 
   return (
     <div className="dashboard_layout">
@@ -84,6 +87,7 @@ const DashboardLayout = ({
               goToGetPaid={goToGetPaid}
               goToQuickPay={goToQuickPay}
               goToSendMoney={goToSendMoney}
+              goToWithdraw={goToWithdraw}
             />
           )}
         </main>

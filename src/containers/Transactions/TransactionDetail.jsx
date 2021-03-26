@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import TransactionDetailComponent from 'components/Transactions/TransactionDetails';
 import modifyCash from 'redux/actions/moneyTransfer/modifyCash';
-import cancelTransaction from 'redux/actions/transactions/cancelTransaction';
-import cancelVoucher from 'redux/actions/transactions/cancelVoucher';
 
 const Transactions = () => {
   const dispatch = useDispatch();
@@ -13,13 +11,12 @@ const Transactions = () => {
   const [cardNumber, setCardNumber] = useState(null);
   const [phoneValue, setPhoneValue] = useState();
   const [form, setForm] = useState({});
-  const [openConfirmModal, setOpenConfirmModal] = useState(false);
-
   const [openEditTransaction, setOpenEditTransaction] = useState(
     false,
   );
   const item = location?.state?.item;
   const selectedCard = location?.state?.selectedCard;
+  const withdraw = location?.state?.withdraw;
   const onOptionChange = ({ target: { value, name } }) => {
     setForm({ ...form, [name]: value });
   };
@@ -34,12 +31,18 @@ const Transactions = () => {
       setOpenEditTransaction(false);
       setForm({
         ...form,
-        FirstName: updatingData.requestData.FirstName,
-        LastName: updatingData.requestData.LastName,
+        FirstName: updatingData?.requestData?.FirstName,
+        LastName: updatingData?.requestData?.LastName,
       });
-      setPhoneValue(updatingData.requestData.TargetPhoneNumber);
+      setPhoneValue(updatingData?.requestData?.TargetPhoneNumber);
     }
   }, [updatingData]);
+
+  useEffect(() => {
+    return () => {
+      localStorage.removeItem('detailTransaction');
+    };
+  }, []);
 
   useEffect(() => {
     if (item && selectedCard !== 1) {
@@ -69,7 +72,6 @@ const Transactions = () => {
       setCardNumber(newData.selectedCard);
     }
   }
-
   const { digit0, digit1, digit2, digit3 } = form;
   const PIN = `${digit0}${digit1}${digit2}${digit3}`;
   const modifyOneTransaction = () => {
@@ -98,6 +100,7 @@ const Transactions = () => {
       updatingError={updatingError && updatingError?.[0]}
       openEditTransaction={openEditTransaction}
       setOpenEditTransaction={setOpenEditTransaction}
+      withdraw={withdraw}
     />
   );
 };
