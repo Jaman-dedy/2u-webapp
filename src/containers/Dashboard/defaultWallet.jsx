@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import DefaultWallet from 'components/Dashboard/DefaultWallet/DefaultWallet';
+import DefaultWallet from 'components/Dashboard/DefaultWallet/defaultWallet';
 import getUserInfo from 'redux/actions/users/getUserInfo';
 
 const DefaultWalletContainer = () => {
