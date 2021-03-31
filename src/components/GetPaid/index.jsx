@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Segment, Image, Button, Icon } from 'semantic-ui-react';
+
 import DashboardLayout from 'components/common/DashboardLayout';
 import WelcomeBar from 'components/Dashboard/WelcomeSection';
 import GoBack from 'components/common/GoBack';
@@ -61,16 +62,16 @@ const GetPaid = ({
 };
 
 GetPaid.propTypes = {
-  walletList: PropTypes.func,
+  walletList: PropTypes.arrayOf(PropTypes.any),
   selectWallet: PropTypes.objectOf(PropTypes.any),
   setSelectedWallet: PropTypes.func,
   onDownLoadImageHandler: PropTypes.func,
 };
 GetPaid.defaultProps = {
-  walletList: () => {},
-  selectWallet: {},
-  setSelectedWallet: () => {},
-  onDownLoadImageHandler: () => {},
+  walletList: PropTypes.arrayOf(PropTypes.any),
+  selectWallet: PropTypes.objectOf(PropTypes.any),
+  setSelectedWallet: PropTypes.func,
+  onDownLoadImageHandler: PropTypes.func,
 };
 
 export default GetPaid;

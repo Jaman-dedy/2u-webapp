@@ -5,14 +5,13 @@ import queryString from 'query-string';
 import { useLocation } from 'react-router-dom';
 import AccountManagement from 'components/AccountManagement';
 import profileImage from './profileImage';
-import general from './general';
-import emailAndPhone from './emailAndPhone';
+import personalInfo from './personaInfo';
 import securityQuestions from './securityQuestions';
 import changePIN from './changePIN';
-import changeDOB from './changeDOB';
-import changeGender from './changeGender';
 import documents from './documents';
 import changeUserPresence from './changeUserPresence';
+import identityConfirmation from './identityConfirmation';
+import residenceData from './residenceData';
 
 const AccountManagementContainer = () => {
   const { userData } = useSelector(({ user }) => user);
@@ -44,7 +43,7 @@ const AccountManagementContainer = () => {
     let activeTabIndex = 0;
 
     switch (queryParams.tab) {
-      case 'general':
+      case 'personalInfo':
         activeTabIndex = 0;
         break;
       case 'emails-phones':
@@ -71,14 +70,13 @@ const AccountManagementContainer = () => {
       setActiveTabIndex={setActiveTabIndex}
       target={queryParams.target || null}
       profileImageData={profileImage()}
-      general={general()}
-      emailAndPhone={emailAndPhone()}
+      personalInfo={personalInfo()}
       securityQuestions={securityQuestions()}
       changePIN={changePIN()}
-      changeDOB={changeDOB()}
-      changeGender={changeGender()}
       documents={documents()}
       changeUserPresence={changeUserPresence()}
+      identityConfirmation={identityConfirmation()}
+      residenceData={residenceData()}
     />
   );
 };
