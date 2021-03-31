@@ -15,7 +15,7 @@ const ConfirmWithPINModal = ({
 }) => {
   return (
     <Modal
-      size="mini"
+      size="tiny"
       open={isOpened}
       onClose={close}
       style={{ minWidth: '40%', margin: 'auto' }}
@@ -73,7 +73,7 @@ ConfirmWithPINModal.propTypes = {
 };
 ConfirmWithPINModal.defaultProps = {
   isOpened: false,
-  message: 'Do you want to perform this action?',
+  message: '',
   onClickYes: () => true,
   onClickNo: () => true,
   close: () => true,

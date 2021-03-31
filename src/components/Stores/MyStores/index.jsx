@@ -5,14 +5,15 @@ import { useHistory, useLocation } from 'react-router-dom';
 import queryString from 'query-string';
 
 import './MyStores.scss';
+import { Image } from 'semantic-ui-react';
 import DashboardLayout from 'components/common/DashboardLayout';
 import WelcomeBar from 'components/Dashboard/WelcomeSection';
-import Loader from 'components/common/Loader';
 import Pagination from 'components/common/Pagination';
 import Message from 'components/common/Message';
 import GoBack from 'components/common/GoBack';
 import RedeemVoucherModal from 'components/Stores/StoreDetailsComponent/RedeemVoucherModal';
 import isAppDisplayedInWebView from 'helpers/isAppDisplayedInWebView';
+import LoadStores from 'assets/images/placeholders/store-placeholder.svg';
 import StoreCard from './StoreCard';
 import EmptyCard from './EmptyCard';
 
@@ -52,7 +53,7 @@ const MyStores = ({ userData, myStores }) => {
               </div>
             )}
             <h2 className="head-title">
-              {global.translate('My stores')}
+              {global.translate('My stores', 848)}
             </h2>
             <div className="head-buttons">
               <button
@@ -77,11 +78,11 @@ const MyStores = ({ userData, myStores }) => {
         <div className="wrap__container">
           <div className="my-stores">
             {myStores.loading && (
-              <p>
-                <Loader
-                  loaderContent={global.translate('Working...', 412)}
-                />
-              </p>
+              <Image
+                style={{ width: '100%' }}
+                className="animate-placeholder"
+                src={LoadStores}
+              />
             )}
             {error && error[0] && !loading && (
               <Message
@@ -102,13 +103,18 @@ const MyStores = ({ userData, myStores }) => {
                 myStores.storeList[0].Error === '2016' &&
                 !myStores.loading ? (
                   <EmptyCard
-                    createText={global.translate('Create store')}
+                    createText={global.translate(
+                      'Create store',
+                      2358,
+                    )}
                     onAddClick={() => history.push('/add-store')}
                     header={global.translate(
                       'Looks like you do not have a store yet',
+                      1777,
                     )}
                     body={global.translate(
                       'You can create your own store and offer any service your want across our platforms',
+                      1778,
                     )}
                   />
                 ) : (
@@ -120,7 +126,10 @@ const MyStores = ({ userData, myStores }) => {
                           history.push({
                             pathname: '/store-details',
                             search: '?tab=details',
-                            state: { store: store.StoreID },
+                            state: {
+                              store: store.StoreID,
+                              storeInfo: store,
+                            },
                           })
                         }
                         store={store}

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Modal, Button } from 'semantic-ui-react';
 
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory, useLocation } from 'react-router-dom';
 import redeemStoreVoucher from 'redux/actions/vouchers/redeemStoreVoucher';
 import VoucherTokenVerification from 'components/common/VoucherTokenVerification';
 import VoucherSecurityCode from 'components/common/VoucherSecurityCode';
@@ -73,7 +74,7 @@ const RedeemVoucherModal = ({ open, setOpen, item }) => {
         className="redeem-voucher-modal"
       >
         <Modal.Header className="modal-title">
-          {global.translate('Redeem voucher')}
+          {global.translate('Redeem voucher', 2215)}
         </Modal.Header>
         <Modal.Content centered className="main-content">
           {step === 2 && (
@@ -133,7 +134,7 @@ const RedeemVoucherModal = ({ open, setOpen, item }) => {
                 color="red"
                 onClick={() => setOpen(false)}
               >
-                {global.translate('Close')}
+                {global.translate('Close', 186)}
               </Button>
               <Button
                 className="verify-voucher-btn"
@@ -150,7 +151,7 @@ const RedeemVoucherModal = ({ open, setOpen, item }) => {
                   verifyVoucherFn(postData)(dispatch);
                 }}
               >
-                {global.translate('verify')}
+                {global.translate('verify', 1296)}
               </Button>
             </div>
           )}
@@ -163,7 +164,7 @@ const RedeemVoucherModal = ({ open, setOpen, item }) => {
                 color="red"
                 onClick={() => setStep(step - 1)}
               >
-                {global.translate('Back')}
+                {global.translate('Back', 174)}
               </Button>
               <Button
                 disabled={redeemLoading}
@@ -179,7 +180,7 @@ const RedeemVoucherModal = ({ open, setOpen, item }) => {
                   redeemStoreVoucher(postData)(dispatch);
                 }}
               >
-                {global.translate('Redeem')}
+                {global.translate('Redeem', 809)}
               </Button>
             </>
           )}

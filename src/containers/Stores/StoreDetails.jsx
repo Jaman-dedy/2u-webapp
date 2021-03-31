@@ -21,6 +21,7 @@ const StoreDetails = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const history = useHistory();
+
   const queryParams = queryString.parse(location.search);
   const {
     userData,
@@ -49,9 +50,6 @@ const StoreDetails = () => {
   }, [deleteStoreData]);
 
   useEffect(() => {
-    // if (!storeId) {
-    //   return history.replace('/my-stores');
-    // }
     if (storeId && myStores.storeList.length) {
       const store = myStores.storeList.find(
         item => item.StoreID === storeId,

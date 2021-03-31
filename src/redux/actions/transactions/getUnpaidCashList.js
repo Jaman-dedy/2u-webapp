@@ -19,7 +19,10 @@ export default data => dispatch => {
       onSuccess: data => dispatch => {
         return dispatch({
           type: GET_UNPAID_CASH_LIST_SUCCESS,
-          payload: data,
+          payload:
+            Array.isArray(data) && data[0]?.VoucherFound === 'NO'
+              ? []
+              : data,
         });
       },
       onFailure: error => dispatch => {

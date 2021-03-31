@@ -4,9 +4,10 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
-import queryString from 'query-string';
 import TransactionComponent from 'components/Transactions';
-import getWalletTransactions from 'redux/actions/transactions/getWalletTransactions';
+import getWalletTransactions, {
+  clearAccountNumber,
+} from 'redux/actions/transactions/getWalletTransactions';
 import getUnpaidCashList from 'redux/actions/transactions/getUnpaidCashList';
 import getMyWallets from 'redux/actions/users/getMyWallets';
 import getAllTransactionHistory from 'redux/actions/transactions/getHistory';
@@ -55,7 +56,7 @@ const Transactions = () => {
   const [tableVisible, setTableVisible] = useState(true);
   const [chartData, setChartData] = useState([
     {
-      name: global.translate('Credit'),
+      name: global.translate('Credit', 1231),
       name2: global.translate('Total Credit', 1245),
       value: 0,
       total: 0,
@@ -68,7 +69,7 @@ const Transactions = () => {
     },
   ]);
   const [amountChartData, setAmountChartData] = useState([
-    { name: global.translate('Credit'), value: 0 },
+    { name: global.translate('Credit', 1231), value: 0 },
     { name: global.translate('Total Debit', 1255), value: 0 },
   ]);
   const [form, setForm] = useState({
@@ -78,6 +79,10 @@ const Transactions = () => {
     toDate: moment().format('YYYY-MM-DD'),
   });
   const [currentOption, setCurrentOption] = useState({});
+  const [
+    shouldUpdateTransaction,
+    setShouldUpdateTransaction,
+  ] = useState(false);
 
   useEffect(() => {
     setForm({
@@ -125,6 +130,7 @@ const Transactions = () => {
           item => item.AccountNumber === form.WalletNumber,
         ),
       );
+      clearAccountNumber()(dispatch);
     }
   }, [form.WalletNumber, walletList]);
 
@@ -225,9 +231,7 @@ const Transactions = () => {
   }, []);
 
   useEffect(() => {
-    // if (!walletTransactions.data) {
     getTransactions();
-    // }
   }, []);
   useEffect(() => {
     if (!unPaidCashList.data) {
@@ -236,7 +240,7 @@ const Transactions = () => {
   }, []);
 
   useEffect(() => {
-    if (form.WalletNumber || data) {
+    if ((form.WalletNumber || data) && shouldUpdateTransaction) {
       getTransactions();
       getUnPaidCashList();
     }
@@ -322,6 +326,16 @@ const Transactions = () => {
     }
   }, [walletTransactions.data, contact, historyData.data]);
 
+  useEffect(() => {
+    if (walletTransactions.AccountNumber) {
+      setForm({
+        ...form,
+        WalletNumber: walletTransactions.AccountNumber,
+      });
+    }
+    setShouldUpdateTransaction(false);
+  }, [walletTransactions]);
+
   return (
     <TransactionComponent
       history={history}
@@ -362,6 +376,7 @@ const Transactions = () => {
       setCurrentOption={setCurrentOption}
       setForm={setForm}
       getUnPaidCashList={getUnPaidCashList}
+      setShouldUpdateTransaction={setShouldUpdateTransaction}
     />
   );
 };

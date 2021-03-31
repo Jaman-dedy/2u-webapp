@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import '../style.scss';
 import useWindowSize from 'utils/useWindowSize';
+import EmptyTransaction from 'components/common/EmptyTransaction';
 
 const AllTransactions = ({
   onClick,
@@ -11,7 +12,7 @@ const AllTransactions = ({
   selectedCard,
 }) => {
   const size = useWindowSize();
-  return (
+  return externalTransactionData?.length ? (
     <Table basic className="display-transactions" unstackable>
       <Table.Header className="table-headings">
         <Table.Row>
@@ -62,6 +63,13 @@ const AllTransactions = ({
           ))}
       </Table.Body>
     </Table>
+  ) : (
+    <EmptyTransaction
+      message={global.translate(
+        'No External Transactions found',
+        2208,
+      )}
+    />
   );
 };
 

@@ -1,12 +1,12 @@
+import { toast } from 'react-toastify';
 import {
   CANCEL_TRANSACTION_ERROR,
   CANCEL_TRANSACTION_START,
   CANCEL_TRANSACTION_SUCCESS,
 } from 'constants/action-types/transactions/cancelTransaction';
-
 import apiAction from 'helpers/apiAction';
 
-export default requestData => dispatch => {
+export default (requestData, history) => dispatch => {
   return dispatch(
     apiAction({
       method: 'post',
@@ -17,6 +17,14 @@ export default requestData => dispatch => {
           type: CANCEL_TRANSACTION_START,
         }),
       onSuccess: data => dispatch => {
+        toast.success(
+          global.translate(
+            'Your Cash transaction has been cancelled.',
+            1117,
+          ),
+        );
+
+        history.push('/transactions');
         return dispatch({
           type: CANCEL_TRANSACTION_SUCCESS,
           payload: { data, securityCode: requestData.SecurityCode },

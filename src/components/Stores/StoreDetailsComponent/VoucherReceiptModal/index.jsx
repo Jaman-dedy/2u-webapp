@@ -5,23 +5,20 @@ import { Transition, Modal, Button } from 'semantic-ui-react';
 import ReactToPrint from 'react-to-print';
 import './ReceiptModal.scss';
 
+import { useLocation, useHistory } from 'react-router-dom';
 import VoucherReceipt from './VoucherReceipt';
 
 const VoucherReceiptModal = ({ data, isOpened, onClose }) => {
   const receiptRef = useRef(null);
-
+  const location = useLocation();
+  const history = useHistory();
   return (
     <Transition
       visible={isOpened}
       animation="fade in"
       duration={1000}
     >
-      <Modal
-        className="receipt-modal"
-        // basic
-        open={isOpened}
-        size="small"
-      >
+      <Modal className="receipt-modal" open={isOpened} size="small">
         <Modal.Header className="text-light-black">
           {global.translate('Voucher receipt')}
         </Modal.Header>
@@ -47,9 +44,14 @@ const VoucherReceiptModal = ({ data, isOpened, onClose }) => {
           <Button
             className="cancel-btn-redeem-v"
             basic
-            onClick={() => onClose(false)}
+            onClick={() => {
+              if (location.pathname.includes('pending-vouchers')) {
+                history.goBack();
+              }
+              onClose(false);
+            }}
           >
-            Cancel
+            {global.translate('Close')}
           </Button>
 
           <ReactToPrint

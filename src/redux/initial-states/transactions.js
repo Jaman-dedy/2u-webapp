@@ -8,6 +8,7 @@ export default {
   },
   walletTransactions: {
     data: null,
+    AccountNumber: null,
     loading: false,
     error: null,
   },

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import DefaultWallet from 'components/Dashboard/DefaultWallet/defaultWallet';
+import DefaultWallet from 'components/Dashboard/DefaultWallet/DefaultWallet';
 import getUserInfo from 'redux/actions/users/getUserInfo';
 
 const DefaultWalletContainer = () => {
@@ -14,6 +14,7 @@ const DefaultWalletContainer = () => {
   const { loading: newDefaultWalletLoading } = useSelector(
     state => state.user.setAsDefault,
   );
+
   const wallet = walletList.find(item => item.Default === 'YES');
 
   const loadWalletInformation = () => {

@@ -39,7 +39,11 @@ const StoreCard = ({ store, onClick }) => {
         history.push({
           pathname: '/store-details',
           search: 'tab=details',
-          state: { store: StoreID, detailTab: 0 },
+          state: {
+            store: StoreID,
+            detailTab: 0,
+            storeName: StoreName,
+          },
         });
       },
     },
@@ -50,7 +54,11 @@ const StoreCard = ({ store, onClick }) => {
         history.push({
           pathname: '/store-details',
           search: 'tab=pending-voucher',
-          state: { store: StoreID, detailTab: 1 },
+          state: {
+            store: StoreID,
+            detailTab: 1,
+            storeName: StoreName,
+          },
         });
       },
     },
@@ -64,7 +72,11 @@ const StoreCard = ({ store, onClick }) => {
         history.push({
           pathname: '/store-details',
           search: 'tab=settings',
-          state: { store: StoreID, detailTab: 2 },
+          state: {
+            store: StoreID,
+            detailTab: 2,
+            storeName: StoreName,
+          },
         });
       },
     },

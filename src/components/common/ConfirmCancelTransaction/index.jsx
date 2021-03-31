@@ -4,15 +4,15 @@ import PropTypes from 'prop-types';
 import { Modal, Button } from 'semantic-ui-react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import cancelOther, {
-  clearOtherTransactionSuccess,
-} from 'redux/actions/transactions/cancelOrEditOther';
 import PinCodeForm from 'components/common/PinCodeForm';
 import Message from 'components/common/Message';
 import cancelVoucher, {
   clearTransactionSucess,
 } from 'redux/actions/transactions/cancelVoucher';
 import cancelTransaction from 'redux/actions/transactions/cancelTransaction';
+import cancelOther, {
+  clearOtherTransactionSuccess,
+} from 'redux/actions/transactions/cancelOther';
 
 const ConfirmCancelTransaction = ({
   open,
@@ -62,10 +62,8 @@ const ConfirmCancelTransaction = ({
   }, [voucherData]);
 
   useEffect(() => {
-    if (data) {
-      setStep(1);
-      setOpen(false);
-    }
+    setStep(1);
+    setOpen(false);
   }, [data]);
 
   useEffect(() => {
@@ -189,7 +187,7 @@ const ConfirmCancelTransaction = ({
               active
               onClick={() => setOpen(false)}
             >
-              {global.translate('Cancel', 2237)}
+              {global.translate('Close', 186)}
             </Button>
           )}
           {step === 2 && (

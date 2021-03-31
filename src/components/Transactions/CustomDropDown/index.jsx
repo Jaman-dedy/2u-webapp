@@ -9,6 +9,7 @@ const CustomDropDown = ({
   fetchAllTransaction,
   setCurrentOption,
   currentOption,
+  setShouldUpdateTransaction,
 }) => {
   return (
     <div>
@@ -36,6 +37,7 @@ const CustomDropDown = ({
               <>
                 <Dropdown.Item
                   onClick={() => {
+                    setShouldUpdateTransaction(true);
                     setCurrentOption({
                       AccountNumber: wallet.AccountNumber,
                     });

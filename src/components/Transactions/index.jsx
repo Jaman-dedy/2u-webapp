@@ -49,6 +49,7 @@ const Transactions = ({
     data: pendingVouchersData,
   },
   pendingOtherData,
+  setShouldUpdateTransaction,
 }) => {
   const history = useHistory();
   const size = useWindowSize();
@@ -74,7 +75,6 @@ const Transactions = ({
 
   const [cachedTransactions, setCachedTransactions] = useState({});
   const [cachedMetaData, setCachedMetaData] = useState({});
-  // const [cachedOtherTransfer, setCachedOtherTransfer] = useState({});
   const { data, loading, error } = walletTransactions;
   const handleSelectedCard = cardNumber => {
     setSelectedCard(cardNumber);
@@ -141,7 +141,6 @@ const Transactions = ({
             [currentPage]: data[0].Data,
           };
         }
-        // no need to change the state since the data were cached
         return { ...prevData };
       });
       setCachedMetaData(prevData => {
@@ -244,6 +243,7 @@ const Transactions = ({
             <Message.Header>
               {global.translate(
                 "We're sorry we can not display your transactions for now",
+                2561,
               )}
             </Message.Header>
             <p>{error.message}</p>
@@ -256,7 +256,7 @@ const Transactions = ({
                 transactionTypeImage={
                   size.width > 600 && AllTransactionImg
                 }
-                title={global.translate('Transactions')}
+                title={global.translate('Transactions', 62)}
                 onClick={handleSelectedCard}
                 selected={selectedCard === 1}
                 card={1}
@@ -271,7 +271,7 @@ const Transactions = ({
                 transactionTypeImage={
                   size.width > 600 && PendingCashSentImg
                 }
-                title={global.translate('Pending cash sent')}
+                title={global.translate('Pending cash sent', 916)}
                 onClick={handleSelectedCard}
                 card={2}
                 selected={selectedCard === 2}
@@ -282,7 +282,7 @@ const Transactions = ({
                 transactionTypeImage={
                   size.width > 600 && PendingVoucherImg
                 }
-                title={global.translate('Pending vouchers')}
+                title={global.translate('Pending vouchers', 858)}
                 onClick={handleSelectedCard}
                 card={3}
                 selected={selectedCard === 3}
@@ -293,7 +293,7 @@ const Transactions = ({
                 transactionTypeImage={
                   size.width > 600 && ExternalTransferImg
                 }
-                title={global.translate('External transfers')}
+                title={global.translate('External transfers', 2212)}
                 onClick={handleSelectedCard}
                 card={4}
                 selected={selectedCard === 4}
@@ -326,6 +326,9 @@ const Transactions = ({
                     allTransactionData={allTransactionData}
                     allTransactions={allTransactions}
                     setAllTransactionData={setAllTransactionData}
+                    setShouldUpdateTransaction={
+                      setShouldUpdateTransaction
+                    }
                   />
                 )}
 

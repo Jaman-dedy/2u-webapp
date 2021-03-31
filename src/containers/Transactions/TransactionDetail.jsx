@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import TransactionDetailComponent from 'components/Transactions/TransactionDetails';
+import TransactionDetailComponent from 'components/common/TransactionDetails';
 import modifyCash from 'redux/actions/moneyTransfer/modifyCash';
 
 const Transactions = () => {
@@ -20,6 +20,7 @@ const Transactions = () => {
   const onOptionChange = ({ target: { value, name } }) => {
     setForm({ ...form, [name]: value });
   };
+
   const {
     loading: updating,
     data: updatingData,
@@ -56,6 +57,13 @@ const Transactions = () => {
       });
     }
   }, []);
+
+  useEffect(() => {
+    return () => {
+      localStorage.removeItem('detailTransaction');
+    };
+  }, []);
+
   if (item) {
     const data = {
       item,
@@ -89,7 +97,7 @@ const Transactions = () => {
   return (
     <TransactionDetailComponent
       item={item || transactionData}
-      selectedCard={selectedCard || cardNumber}
+      selectedCard={selectedCard ?? cardNumber}
       phoneValue={phoneValue}
       setPhoneValue={setPhoneValue}
       modifyOneTransaction={modifyOneTransaction}

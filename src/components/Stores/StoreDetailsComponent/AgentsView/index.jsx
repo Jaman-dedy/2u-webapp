@@ -1,7 +1,7 @@
 import './style.scss';
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Input } from 'semantic-ui-react';
+import { Input, Segment } from 'semantic-ui-react';
 import Message from 'components/common/Message';
 import removeStoreAgentAction from 'redux/actions/stores/removeStoreAgent';
 import LoaderComponent from 'components/common/Loader';
@@ -105,45 +105,53 @@ const AgentsView = (currentStore, onEditChange, isOpenAddAgent) => {
             style={{ margin: '0px 25px' }}
           />
         )}
-
-      <div className="contact-list">
-        {deleteAgentLoading ? (
-          <LoaderComponent
-            loaderContent={global.translate('Working…', 412)}
-          />
-        ) : (
-          <>
-            {initialInternalUsers &&
-              initialInternalUsers
-                .filter(item => !item.Error)
-                .sort((a, b) =>
-                  a.FirstName.localeCompare(b.FirstName),
-                )
-                .map(item => (
-                  <ListItem
-                    item={{
-                      ...item,
-                      StoreID: currentStore.currentStore.StoreID,
-                    }}
-                    onItemClick={item => {
-                      setThisItem(item);
-                    }}
-                    thisItem={thisItem}
-                    onDelete={() => {
-                      const postData = {
-                        StoreID: thisItem.StoreID,
-                        AgentPID: thisItem.ContactPID,
-                        Delete: 'Yes',
-                      };
-                      removeStoreAgentAction(postData)(dispatch);
-                    }}
-                    isModalOpened={isModalOpened}
-                    setIsModalOpened={setIsModalOpened}
-                  />
-                ))}
-          </>
-        )}
-      </div>
+      {deleteAgentLoading ? (
+        <LoaderComponent
+          loaderContent={global.translate('Working…', 412)}
+        />
+      ) : (
+        <>
+          {initialInternalUsers &&
+            initialInternalUsers.filter(item => !item.Error).length >
+              0 && (
+              <Segment>
+                <div className="contact-list">
+                  {initialInternalUsers &&
+                    initialInternalUsers
+                      .filter(item => !item.Error)
+                      .sort((a, b) =>
+                        a.FirstName.localeCompare(b.FirstName),
+                      )
+                      .map(item => (
+                        <ListItem
+                          item={{
+                            ...item,
+                            StoreID:
+                              currentStore.currentStore.StoreID,
+                          }}
+                          onItemClick={item => {
+                            setThisItem(item);
+                          }}
+                          thisItem={thisItem}
+                          onDelete={() => {
+                            const postData = {
+                              StoreID: thisItem.StoreID,
+                              AgentPID: thisItem.ContactPID,
+                              Delete: 'Yes',
+                            };
+                            removeStoreAgentAction(postData)(
+                              dispatch,
+                            );
+                          }}
+                          isModalOpened={isModalOpened}
+                          setIsModalOpened={setIsModalOpened}
+                        />
+                      ))}
+                </div>
+              </Segment>
+            )}
+        </>
+      )}
     </>
   );
 };
