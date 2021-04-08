@@ -213,11 +213,6 @@ const App = () => {
       window.location.pathname + window.location.search,
     );
   }, []);
-
-  useEffect(() => {
-    getContactList()(dispatch);
-  }, []);
-
   const AppRoutes = (
     <Router
       ref={routeRef}
