@@ -1,9 +1,7 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable import/no-extraneous-dependencies */
 import 'assets/styles/style.scss';
 import 'react-bnb-gallery/dist/style.css';
 import 'react-toastify/dist/ReactToastify.css';
-
 import { createBrowserHistory } from 'history';
 import PropTypes from 'prop-types';
 import queryString from 'query-string';
@@ -20,6 +18,7 @@ import {
 import { toast, ToastContainer } from 'react-toastify';
 import { Button, Modal } from 'semantic-ui-react';
 import moment from 'moment';
+
 import ChatModal from 'components/Chat/ChatModal';
 import UserLeaveConfirmation from 'components/common/UserConfirmation';
 import InstallApp from 'components/InstallApp';
@@ -54,6 +53,7 @@ import voucherEvent from 'services/socketIO/events/voucher';
 import walletEvent from 'services/socketIO/events/wallet';
 import * as welcomeEvent from 'services/socketIO/events/welcome';
 import isAuth from 'utils/isAuth';
+import LoadingPage from 'components/LoadingPage';
 import ErrorFallback from './Error';
 import * as serviceWorker from './serviceWorker';
 
@@ -214,6 +214,10 @@ const App = () => {
     );
   }, []);
 
+  useEffect(() => {
+    getContactList()(dispatch);
+  }, []);
+
   const AppRoutes = (
     <Router
       ref={routeRef}
@@ -227,37 +231,39 @@ const App = () => {
         );
       }}
     >
-      <Switch>
-        {routes.map(route => (
-          <Route
-            key={route.name}
-            exact={route.exact || true}
-            path={route.path}
-            render={props => {
-              if (route.protected && !isAuth()) {
-                props.history.push({
-                  pathname: '/login',
-                  search: `${LOGIN_RETURN_URL}=${route.path}`,
-                  state: {
-                    [LOGIN_RETURN_URL]: route.path,
-                  },
-                });
-              }
-              if (!route.indexPage) {
-                document.title = global.translate(route.name);
-              }
-              return (
-                <route.component
-                  location={props.location}
-                  history={props.history}
-                  match={props.match}
-                />
-              );
-            }}
-          />
-        ))}
-        <Route path="*" exact component={NotFoundPage} />
-      </Switch>
+      <React.Suspense fallback={<LoadingPage />}>
+        <Switch>
+          {routes.map(route => (
+            <Route
+              key={route.name}
+              exact={route.exact || true}
+              path={route.path}
+              render={props => {
+                if (route.protected && !isAuth()) {
+                  props.history.push({
+                    pathname: '/login',
+                    search: `${LOGIN_RETURN_URL}=${route.path}`,
+                    state: {
+                      [LOGIN_RETURN_URL]: route.path,
+                    },
+                  });
+                }
+                if (!route.indexPage) {
+                  document.title = global.translate(route.name);
+                }
+                return (
+                  <route.component
+                    location={props.location}
+                    history={props.history}
+                    match={props.match}
+                  />
+                );
+              }}
+            />
+          ))}
+          <Route path="*" exact component={NotFoundPage} />
+        </Switch>
+      </React.Suspense>
     </Router>
   );
   return (

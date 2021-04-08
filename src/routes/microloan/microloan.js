@@ -1,9 +1,9 @@
-import MicroLoanContainer from 'containers/Microloans';
+import { lazy } from 'react';
 
 export default {
   exact: true,
   name: 'Microloan',
   protected: true,
   path: '/microloan',
-  component: MicroLoanContainer,
+  component: lazy(() => import('containers/Microloans')),
 };

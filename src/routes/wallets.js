@@ -1,9 +1,9 @@
-import Wallets from 'containers/Wallets';
+import { lazy } from 'react';
 
 export default {
   exact: true,
   name: 'Wallets',
   protected: true,
   path: '/wallets',
-  component: Wallets,
+  component: lazy(() => import('containers/Wallets')),
 };

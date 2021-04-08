@@ -26,7 +26,6 @@ import {
   setIsSendingOhters,
   setIsTopingUp,
 } from 'redux/actions/dashboard/dashboard';
-import './style.scss';
 
 const MoneyTransfer = ({ payBills }) => {
   const [sendMoneyOpen, setSendMoneyOpen] = useState(false);
