@@ -27,13 +27,15 @@ const TransactionEntity = ({
 
   // set default selected wallet.
   useEffect(() => {
-    const defaultWallet = walletList.filter(
-      wallet => wallet.Default === 'YES',
-    );
-    if (!currentOption || Object.keys(currentOption).length === 0) {
-      setCurrentOption(defaultWallet[0]);
+    if (Array.isArray(walletList)) {
+      const defaultWallet = walletList?.filter(
+        wallet => wallet.Default === 'YES',
+      );
+      if (!currentOption) {
+        setCurrentOption(defaultWallet[0]);
+      }
     }
-  }, []);
+  }, [currentOption, setCurrentOption, walletList]);
 
   const walletOptions =
     walletList &&

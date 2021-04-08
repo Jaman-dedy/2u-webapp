@@ -8,7 +8,7 @@ import GoBack from 'components/common/GoBack';
 import WelcomeBar from 'components/Dashboard/WelcomeSection';
 import './style.scss';
 import LoadItemImg from 'assets/images/microloan/load.svg';
-import PinModal from 'components/common/PinModal';
+import PINConfirmationModal from 'components/common/PINConfirmationModal';
 import SingleLoanView from '../SingleLoanView';
 import LoanTableDetails from './LoanTableDetails';
 import PaymentHistory from './History';
@@ -27,8 +27,8 @@ const LoanDetails = ({
   confirmLoanData,
   openPinModal,
   setOpenPinModal,
-  setUserPinDigit,
-  userPinDigit,
+  setPIN,
+  PIN,
   pinErrors,
   pinData,
   clearConfirmLoan,
@@ -102,16 +102,16 @@ const LoanDetails = ({
           </div>
         )}
       </div>
-      <PinModal
+
+      <PINConfirmationModal
         open={openPinModal}
         setOpen={setOpenPinModal}
-        setUserPinDigit={setUserPinDigit}
-        userPinDigit={userPinDigit}
-        errors={pinErrors}
+        setPIN={setPIN}
+        PIN={PIN}
         pinData={pinData}
         loading={payLoanLoading}
-        handleSubmit={handlePayLoan}
-        handleClearData={clearConfirmLoan}
+        onPinConfirm={handlePayLoan}
+        onClose={clearConfirmLoan}
       />
     </DashboardLayout>
   );

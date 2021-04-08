@@ -120,27 +120,29 @@ const DetailsBody = ({
         <Table.Body>
           {!withdraw && (
             <Table.Row>
-              <div className="table-headings">
-                <div className="recipient">
-                  {global.translate('Recipient', 189)}
-                </div>
-                <div className="user-details">
-                  <Img
-                    src={displayUserPicture().PictureUrl}
-                    compress
-                    format="png"
-                    height={50}
-                    width={50}
-                    hasError
-                  />
-                  <div className="names-phones">
-                    <div>{`${displayUserNames().FirstName} ${
-                      displayUserNames().LastName
-                    }`}</div>
-                    <span>{displayPhoneNumber()}</span>
+              <Table.Cell>
+                <div className="table-headings">
+                  <div className="recipient">
+                    {global.translate('Recipient', 189)}
+                  </div>
+                  <div className="user-details">
+                    <Img
+                      src={displayUserPicture().PictureUrl}
+                      compress
+                      format="png"
+                      height={50}
+                      width={50}
+                      hasError
+                    />
+                    <div className="names-phones">
+                      <div>{`${displayUserNames().FirstName} ${
+                        displayUserNames().LastName
+                      }`}</div>
+                      <span>{displayPhoneNumber()}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Table.Cell>
             </Table.Row>
           )}
 

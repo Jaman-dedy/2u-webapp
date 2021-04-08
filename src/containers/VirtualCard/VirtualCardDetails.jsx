@@ -390,9 +390,6 @@ const VirtualCardDetailsContainer = () => {
   };
 
   const onRedeeMoney = () => {
-    const { digit0, digit1, digit2, digit3 } = form;
-    const PIN = `${digit0}${digit1}${digit2}${digit3}`;
-    const pinIsValid = () => PIN.length === 4;
     const data = {
       PIN,
       CardNumber:
@@ -454,6 +451,8 @@ const VirtualCardDetailsContainer = () => {
       shouldClear={shouldClear}
       canProceed={canProceed}
       setCanProceed={setCanProceed}
+      PIN={PIN}
+      setPIN={setPIN}
     />
   );
 };

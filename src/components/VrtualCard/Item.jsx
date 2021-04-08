@@ -39,6 +39,8 @@ const VirtualCard = ({
   openConfirmModal,
   setOpenConfirmModal,
   shouldClear,
+  PIN,
+  setPIN,
 }) => {
   return (
     <Item className="virtual-card-item ">
@@ -80,6 +82,8 @@ const VirtualCard = ({
         openConfirmModal={openConfirmModal}
         setOpenConfirmModal={setOpenConfirmModal}
         shouldClear={shouldClear}
+        PIN={PIN}
+        setPIN={setPIN}
       />
     </Item>
   );
@@ -90,7 +94,7 @@ VirtualCard.propTypes = {
   userData: PropTypes.objectOf(PropTypes.any).isRequired,
   setAddMoneyOpen: PropTypes.func,
   addMoneyOpen: PropTypes.bool.isRequired,
-  setSelectedWallet: PropTypes.func,
+  setSelectedWallet: PropTypes.func.isRequired,
   form: PropTypes.objectOf(PropTypes.any).isRequired,
   setForm: PropTypes.func,
   selectedWallet: PropTypes.func,
@@ -115,6 +119,8 @@ VirtualCard.propTypes = {
   openConfirmModal: PropTypes.bool,
   setOpenConfirmModal: PropTypes.func,
   shouldClear: PropTypes.bool,
+  PIN: PropTypes.string.isRequired,
+  setPIN: PropTypes.func.isRequired,
 };
 VirtualCard.defaultProps = {
   setAddMoneyOpen: () => {},

@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import TransactionDetail from 'components/common/TransactionDetails';
 import RedeemVoucherModal from 'components/Stores/StoreDetailsComponent/RedeemVoucherModal';
 import cancelStoreVoucher from 'redux/actions/vouchers/cancelStoreVoucher';
-import ConfirmWithPinModal from 'components/common/ConfirmWithPINModal';
-
+import PINConfirmationModal from 'components/common/PINConfirmationModal';
 import './style.scss';
 
 const VoucherDetails = () => {
@@ -18,27 +17,7 @@ const VoucherDetails = () => {
   const rejectVoucher = useSelector(
     ({ voucher: { rejectVoucher } }) => rejectVoucher,
   );
-
-  const [pinForm, setPinForm] = useState({
-    digit0: '',
-    digit1: '',
-    digit2: '',
-    digit3: '',
-  });
-
   const dispatch = useDispatch();
-
-  const onPinInputChange = ({ target: { name, value } }) => {
-    setPinForm(prev => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  useEffect(() => {
-    const pin = Object.values(pinForm).join('');
-    setPIN(pin);
-  }, [pinForm]);
 
   const { location } = history;
   const item = location?.state?.item;
@@ -107,17 +86,15 @@ const VoucherDetails = () => {
         />
       )}
 
-      <ConfirmWithPinModal
-        isOpened={openRejectVoucher}
-        onClickYes={() =>
+      <PINConfirmationModal
+        open={openRejectVoucher}
+        setOpen={setOpenRejectVoucher}
+        onPinConfirm={() =>
           onRejectVoucher({ item: voucherData?.item, PIN })
         }
-        onClickNo={() => setOpenRejectVoucher(false)}
-        onPinChange={onPinInputChange}
-        disabled={PIN.length !== 4 || rejectVoucher?.loading}
         loading={rejectVoucher?.loading}
-        close={() => setOpenRejectVoucher(false)}
-        message={global.translate('Confirm with your PIN', 2125)}
+        PIN={PIN}
+        setPIN={setPIN}
       />
     </>
   );

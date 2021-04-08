@@ -9,7 +9,7 @@ import WelcomeBar from 'components/Dashboard/WelcomeSection';
 import Message from 'components/common/Message';
 import formatNumber from 'utils/formatNumber';
 import DashboardLayout from 'components/common/DashboardLayout';
-import DefaultWalletContainer from 'containers/Dashboard/defaultWallet';
+import DefaultWalletContainer from 'containers/Dashboard/DefaultWallet';
 import GraphDataContainer from 'containers/Dashboard/cumulativeGraph';
 import UserCurrenciesContainer from 'containers/Dashboard/userCurrencies';
 import AddWalletModal from 'components/Wallets/AddWalletModal';

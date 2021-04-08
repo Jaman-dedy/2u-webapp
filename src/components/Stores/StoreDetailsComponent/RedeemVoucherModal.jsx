@@ -130,17 +130,15 @@ const RedeemVoucherModal = ({ open, setOpen, item }) => {
             <div className="main-content">
               <Button
                 disabled={redeemLoading}
-                basic
-                color="red"
+                className="btn-cancel"
                 onClick={() => setOpen(false)}
               >
                 {global.translate('Close', 186)}
               </Button>
               <Button
-                className="verify-voucher-btn"
+                className="verify-voucher-btn btn--confirm"
                 disabled={verifyLoading}
                 loading={verifyLoading}
-                positive
                 onClick={() => {
                   const SecurityCode = `${form?.digit0}${form?.digit1}${form?.digit2}${form?.digit3}`;
                   const postData = {

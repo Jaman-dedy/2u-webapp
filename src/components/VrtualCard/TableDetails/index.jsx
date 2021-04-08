@@ -2,7 +2,8 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import { Button, Table } from 'semantic-ui-react';
-import ConfirmWithPINModal from 'components/common/ConfirmWithPINModal';
+
+import PINConfirmationModal from 'components/common/PINConfirmationModal';
 import './style.scss';
 
 const TableDetails = ({
@@ -16,10 +17,10 @@ const TableDetails = ({
   setIsRedeeming,
   loadOnRedeem,
   loadOnAddMoney,
-  onOptionsChange,
-  canProceed,
   setForm,
   form,
+  PIN,
+  setPIN,
 }) => {
   const [isChangingStatus, setIsChangingStatus] = useState(false);
 
@@ -42,10 +43,6 @@ const TableDetails = ({
     setForm({
       ...form,
       amount: '',
-      digit0: '',
-      digit1: '',
-      digit2: '',
-      digit3: '',
     });
   };
 
@@ -55,15 +52,14 @@ const TableDetails = ({
       className="table-details"
       style={{ marginTop: card?.Enabled === 'YES' ? '-2rem' : 0 }}
     >
-      <ConfirmWithPINModal
-        isOpened={isChangingStatus || loadOnChangeStatus}
-        onClickYes={onUpdateConfirmed}
-        onClickNo={setIsChangingStatus}
-        close={setIsChangingStatus}
+      <PINConfirmationModal
+        open={isChangingStatus}
+        onPinConfirm={onUpdateConfirmed}
+        setOpen={setIsChangingStatus}
+        onClose={() => setIsChangingStatus(false)}
         loading={loadOnChangeStatus}
-        message={global.translate('Confirm with your PIN')}
-        onPinChange={onOptionsChange}
-        disabled={!canProceed}
+        setPIN={setPIN}
+        PIN={PIN}
       />
 
       <Table unstackable>
@@ -227,6 +223,8 @@ TableDetails.propTypes = {
   canProceed: PropTypes.bool,
   form: PropTypes.objectOf(PropTypes.any).isRequired,
   setForm: PropTypes.func.isRequired,
+  PIN: PropTypes.string.isRequired,
+  setPIN: PropTypes.func.isRequired,
 };
 TableDetails.defaultProps = {
   canProceed: false,

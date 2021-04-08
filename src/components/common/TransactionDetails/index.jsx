@@ -26,7 +26,10 @@ const TransactionDetails = ({
   openEditTransaction,
   storeName,
   setOpenEditTransaction,
+  withdraw,
   onRejectVoucher,
+  PIN,
+  setPIN,
 }) => {
   const history = useHistory();
   const onClickHandler = () => history.goBack();
@@ -43,10 +46,13 @@ const TransactionDetails = ({
     }
     if (selectedCard === 2) {
       return {
-        sourceWallet: item?.SourceAccountNumber,
-        sourceCurrency: item?.SourceCurrencyFlag,
-        targetWallet: `${item?.PhonePrefix} ${item?.Phone}`,
-        targetCurrency: item?.DestCurrencyFlag,
+        sourceWallet:
+          item?.SourceAccountNumber ||
+          item?.SourceWallet.WalletNumber,
+        sourceCurrency:
+          item?.SourceCurrencyFlag || item?.SourceWallet.Flag,
+        targetWallet: `${item?.PhonePrefix} ${item?.Phone}` || '',
+        targetCurrency: item?.DestCurrencyFlag || '',
       };
     }
     if (selectedCard === 3) {
@@ -99,6 +105,8 @@ const TransactionDetails = ({
             phoneValue={phoneValue}
             setPhoneValue={setPhoneValue}
             onOptionChange={onOptionChange}
+            PIN={PIN}
+            setPIN={setPIN}
             form={form}
             modifyOneTransaction={modifyOneTransaction}
             updating={updating}
@@ -114,45 +122,48 @@ const TransactionDetails = ({
                   ? global.translate('Sender', 1145)
                   : global.translate('Source account', 2176)
               }
-              walletNumber={walletInfos()?.sourceWallet}
-              walletFlag={walletInfos()?.sourceCurrency}
+              walletNumber={walletInfos().sourceWallet}
+              walletFlag={walletInfos().sourceCurrency}
             />
 
-            <DisplayWallet
-              title={
-                selectedCard === 3 || item?.isOnStore
-                  ? global.translate('Store', 803)
-                  : global.translate('Target account', 1611)
-              }
-              walletNumber={walletInfos()?.targetWallet}
-              walletFlag={walletInfos()?.targetCurrency}
-              selectedCard={selectedCard}
-              isOnStore={item?.isOnStore}
-              storeName={storeName}
-            />
+            {!withdraw && (
+              <DisplayWallet
+                title={
+                  selectedCard === 3 || item?.isOnStore
+                    ? global.translate('Store', 803)
+                    : global.translate('Target account', 1611)
+                }
+                walletNumber={walletInfos().targetWallet}
+                walletFlag={walletInfos().targetCurrency}
+                selectedCard={selectedCard}
+                isOnStore={item?.isOnStore}
+                storeName={storeName}
+              />
+            )}
           </div>
           <DetailsBody
             item={item}
             selectedCard={selectedCard}
             updatingData={updatingData}
+            withdraw={withdraw}
           />
         </Segment>
         <div className="goto-transactions">
           {!item?.isOnStore && (
             <Button onClick={() => history.push('/transactions')}>
-              {global.translate('Go to all transactions', 2114)}
+              {global.translate('Go to all transactions', 2214)}
             </Button>
           )}
           {item?.isOnStore && (
-            <Button onClick={modifyOneTransaction}>
-              {global.translate('Redeem Voucher', 2215)}
-            </Button>
-          )}
+            <>
+              <Button onClick={modifyOneTransaction}>
+                {global.translate('Redeem Voucher', 2215)}
+              </Button>
 
-          {item?.isOnStore && (
-            <Button onClick={onRejectVoucher}>
-              {global.translate('Reject voucher', 1338)}
-            </Button>
+              <Button onClick={onRejectVoucher}>
+                {global.translate('Reject voucher', 1338)}
+              </Button>
+            </>
           )}
           {selectedCard !== 1 && !item?.isOnStore && (
             <Button
@@ -189,7 +200,10 @@ TransactionDetails.propTypes = {
   openEditTransaction: PropTypes.bool,
   setOpenEditTransaction: PropTypes.func,
   storeName: PropTypes.string,
+  withdraw: PropTypes.bool,
   onRejectVoucher: PropTypes.func,
+  PIN: PropTypes.string,
+  setPIN: PropTypes.func,
 };
 TransactionDetails.defaultProps = {
   item: {},
@@ -205,7 +219,10 @@ TransactionDetails.defaultProps = {
   openEditTransaction: false,
   setOpenEditTransaction: () => {},
   storeName: '',
+  withdraw: false,
   onRejectVoucher: () => {},
+  setPIN: () => {},
+  PIN: '',
 };
 
 export default TransactionDetails;

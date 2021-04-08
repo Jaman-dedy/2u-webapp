@@ -53,6 +53,8 @@ const AddMoneyModal = ({
   setOpenConfirmModal,
   virtualCard,
   shouldClear,
+  PIN,
+  setPIN,
 }) => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -446,7 +448,8 @@ const AddMoneyModal = ({
         setIsRedeeming={setIsRedeeming}
         onRedeeMoney={onRedeemMoney}
         isRedeeming={isRedeeming}
-        onOptionsChange={onOptionsChange}
+        setPIN={setPIN}
+        PIN={PIN}
         addMoneyOpen={addMoneyOpen}
         setOpenConfirmModal={setOpenConfirmModal}
         openConfirmModal={openConfirmModal}
@@ -467,7 +470,6 @@ AddMoneyModal.propTypes = {
   onOptionsChange: PropTypes.func,
   form: PropTypes.objectOf(PropTypes.any).isRequired,
   setForm: PropTypes.func,
-  currency: PropTypes.string,
   checkTransactionConfirmation: PropTypes.func,
   checking: PropTypes.bool,
   confirmationError: PropTypes.objectOf(PropTypes.any).isRequired,
@@ -494,12 +496,13 @@ AddMoneyModal.propTypes = {
   setOpenConfirmModal: PropTypes.func,
   virtualCard: PropTypes.objectOf(PropTypes.any).isRequired,
   shouldClear: PropTypes.bool.isRequired,
+  PIN: PropTypes.string.isRequired,
+  setPIN: PropTypes.func.isRequired,
 };
 
 AddMoneyModal.defaultProps = {
   loading: false,
   errors: null,
-  currency: null,
   checkTransactionConfirmation: () => {},
   checking: false,
   setForm: () => {},

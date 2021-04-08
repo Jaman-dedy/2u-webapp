@@ -37,14 +37,8 @@ const ApplyLoan = () => {
   });
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [openPinModal, setOpenPinModal] = useState(false);
-  const [pin, setPin] = useState(null);
+  const [PIN, setPIN] = useState('');
   const [pinData, setPinData] = useState(null);
-  const [userPinDigit, setUserPinDigit] = useState({
-    digit0: '',
-    digit1: '',
-    digit2: '',
-    digit3: '',
-  });
 
   const [pinErrors, setPinErrors] = useState(null);
 
@@ -63,19 +57,14 @@ const ApplyLoan = () => {
   }, []);
 
   useEffect(() => {
-    const { digit0, digit1, digit2, digit3 } = userPinDigit;
-    setPin(`${digit0}${digit1}${digit2}${digit3}`);
-  }, [userPinDigit]);
-
-  useEffect(() => {
-    setPinData({
+    setPinData(pinData => ({
       ...pinData,
-      PIN: pin,
-    });
+      PIN,
+    }));
     setPinErrors(null);
-  }, [pin]);
+  }, [PIN]);
 
-  const pinIsValid = () => pin && pin.length === 4;
+  const pinIsValid = () => PIN.length === 4;
   const validate = () => {
     if (!pinIsValid()) {
       setPinErrors({
@@ -96,7 +85,7 @@ const ApplyLoan = () => {
       setButtonDisabled(false);
     }
     clearCheckEligibility()(dispatch);
-  }, [form?.amount, payDay, currentOption, duration]);
+  }, [form?.amount, payDay, currentOption, duration, dispatch]);
 
   useEffect(() => {
     if (myWallets?.walletList.length) {
@@ -162,8 +151,8 @@ const ApplyLoan = () => {
       applyLoanLoading={applyLoanLoading}
       setOpenPinModal={setOpenPinModal}
       openPinModal={openPinModal}
-      setUserPinDigit={setUserPinDigit}
-      userPinDigit={userPinDigit}
+      setPIN={setPIN}
+      PIN={PIN}
       pinErrors={pinErrors}
       pinData={pinData}
       clearCheckEligibility={clearCheckEligibility}

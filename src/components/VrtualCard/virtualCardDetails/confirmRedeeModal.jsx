@@ -1,18 +1,16 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Button, Icon, Modal } from 'semantic-ui-react';
-import LoaderComponent from 'components/common/Loader';
-import Message from 'components/common/Message';
-import PinCodeForm from 'components/common/PinCodeForm';
+import { useSelector } from 'react-redux';
+import PINConfirmationModal from 'components/common/PINConfirmationModal';
 
 const NestedModal = ({
   setIsRedeeming,
   setAddMoneyOpen,
-  onOptionsChange,
+  setPIN,
+  PIN,
   openConfirmModal,
   setOpenConfirmModal,
   onRedeeMoney,
-  loadRedeeMoney,
   errors,
   error,
   virtualCard,
@@ -22,91 +20,40 @@ const NestedModal = ({
     setAddMoneyOpen(false);
     setOpenConfirmModal(false);
   };
+  const { redeeMoney } = useSelector(
+    ({ virtualCard }) => virtualCard,
+  );
 
   return (
-    <Modal
-      closeOnDocumentClick={false}
-      closeOnDimmerClick={false}
-      closeOnTriggerClick={false}
-      size="tiny"
+    <PINConfirmationModal
+      setOpen={setOpenConfirmModal}
       open={openConfirmModal}
       onClose={closeModal}
-    >
-      <Modal.Header style={{ textAlign: 'center' }}>
-        {global.translate(`Redeem money`, 1689)}
-      </Modal.Header>
-      <Modal.Content>
-        <p style={{ color: 'orange', textAlign: 'center' }}>
-          <Icon name="warning sign" />
-          {global.translate(
-            `Are you sure you want to redeem the balance of your O-Card?`,
-            2049,
-          )}
-          <strong style={{ color: '#333556' }}>
-            {virtualCard?.Balance} &nbsp; {virtualCard?.Currency}{' '}
-          </strong>
-          <br />
-          {global.translate(`from your O-Card?`, 2050)}
-        </p>
-        <div className="pin-number">
-          <PinCodeForm
-            label={global.translate('Confirm  your PIN number', 941)}
-            onChange={onOptionsChange}
-            name="pin"
-          />
-        </div>
-        <div
-          className="loader-section"
-          style={{ alignSelf: 'center' }}
-        >
-          {errors && <Message message={errors} />}
-          <>
-            {error && <Message message={global.translate(error)} />}
-            {error && !error[0] && (
-              <Message message={global.translate(error.error)} />
-            )}
-          </>
-          {loadRedeeMoney && (
-            <LoaderComponent
-              style={{ paddingLeft: '50px' }}
-              loaderContent={global.translate('Working…', 412)}
-            />
-          )}
-        </div>
-      </Modal.Content>
-      <Modal.Actions>
-        <Button onClick={closeModal} basic color="red">
-          {global.translate(`Cancel`, 86)}
-        </Button>
-        <Button
-          loading={loadRedeeMoney}
-          onClick={() => {
-            onRedeeMoney();
-          }}
-          positive
-          content={global.translate(`Redeem Money`, 1689)}
-        />
-      </Modal.Actions>
-    </Modal>
+      PIN={PIN}
+      setPIN={setPIN}
+      loading={redeeMoney?.loading}
+      onPinConfirm={onRedeeMoney}
+    />
   );
 };
 
 NestedModal.propTypes = {
   setIsRedeeming: PropTypes.func,
   setAddMoneyOpen: PropTypes.func,
-  onOptionsChange: PropTypes.func,
+  setPIN: PropTypes.func.isRequired,
+  PIN: PropTypes.string.isRequired,
   openConfirmModal: PropTypes.bool,
   setOpenConfirmModal: PropTypes.func,
   onRedeeMoney: PropTypes.bool,
-  loadRedeeMoney: PropTypes.bool,
   errors: PropTypes.objectOf(PropTypes.any),
   error: PropTypes.objectOf(PropTypes.any),
   virtualCard: PropTypes.objectOf(PropTypes.any),
 };
+
 NestedModal.defaultProps = {
   setIsRedeeming: () => {},
   setAddMoneyOpen: () => {},
-  onOptionsChange: () => {},
+
   openConfirmModal: false,
   setOpenConfirmModal: () => {},
   onRedeeMoney: false,

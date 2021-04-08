@@ -24,14 +24,9 @@ const LoanDetails = () => {
   const [paymentOption, setPaymentOption] = useState('Total');
   const [openPinModal, setOpenPinModal] = useState(false);
   const [openPayLoanModal, setOpenPayLoanModal] = useState(false);
-  const [pin, setPin] = useState(null);
+  const [PIN, setPIN] = useState('');
   const [pinData, setPinData] = useState(null);
-  const [userPinDigit, setUserPinDigit] = useState({
-    digit0: '',
-    digit1: '',
-    digit2: '',
-    digit3: '',
-  });
+
   const [pinErrors, setPinErrors] = useState(null);
   const [loanItem, setLoanItem] = useState(null);
 
@@ -70,19 +65,14 @@ const LoanDetails = () => {
   }, [payLoanData, item]);
 
   useEffect(() => {
-    const { digit0, digit1, digit2, digit3 } = userPinDigit;
-    setPin(`${digit0}${digit1}${digit2}${digit3}`);
-  }, [userPinDigit]);
-
-  useEffect(() => {
-    setPinData({
+    setPinData(pinData => ({
       ...pinData,
-      PIN: pin,
-    });
+      PIN,
+    }));
     setPinErrors(null);
-  }, [pin]);
+  }, [PIN]);
 
-  const pinIsValid = () => pin && pin.length === 4;
+  const pinIsValid = () => PIN.length === 4;
   const validate = () => {
     if (!pinIsValid()) {
       setPinErrors({
@@ -119,8 +109,8 @@ const LoanDetails = () => {
       confirmLoanData={confirmLoanData}
       setOpenPinModal={setOpenPinModal}
       openPinModal={openPinModal}
-      setUserPinDigit={setUserPinDigit}
-      userPinDigit={userPinDigit}
+      setPIN={setPIN}
+      PIN={PIN}
       pinErrors={pinErrors}
       pinData={pinData}
       clearConfirmLoan={clearConfirmLoan}

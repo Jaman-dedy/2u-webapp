@@ -51,6 +51,8 @@ const VirtualCardDetails = ({
   shouldClear,
   canProceed,
   setCanProceed,
+  PIN,
+  setPIN,
 }) => {
   const [canViewDetail, setCanViewDetail] = useState(true);
   const [currentCard, setCurrentCard] = useState(null);
@@ -162,6 +164,8 @@ const VirtualCardDetails = ({
           setOpenConfirmModal={setOpenConfirmModal}
           openConfirmModal={openConfirmModal}
           shouldClear={shouldClear}
+          PIN={PIN}
+          setPIN={setPIN}
         />
         <br />
         <div className="card-details">
@@ -188,7 +192,8 @@ const VirtualCardDetails = ({
             loadRedeeming={loadRedeeMoney}
             loadAddMoney={loading}
             canProceed={canProceed}
-            onOptionsChange={onOptionsChange}
+            setPIN={setPIN}
+            PIN={PIN}
             setForm={setForm}
             form={form}
           />
@@ -218,7 +223,6 @@ VirtualCardDetails.propTypes = {
   loading: PropTypes.bool,
   addMoneyOpen: PropTypes.bool,
   setAddMoneyOpen: PropTypes.func,
-  cardStatus: PropTypes.string,
   setCardStatus: PropTypes.func,
   onUpdateCardStatus: PropTypes.func,
   loadingStatus: PropTypes.bool,
@@ -237,6 +241,8 @@ VirtualCardDetails.propTypes = {
   shouldClear: PropTypes.bool,
   canProceed: PropTypes.bool,
   setCanProceed: PropTypes.func.isRequired,
+  PIN: PropTypes.string.isRequired,
+  setPIN: PropTypes.func.isRequired,
 };
 VirtualCardDetails.defaultProps = {
   selectedWallet: {},
@@ -259,7 +265,6 @@ VirtualCardDetails.defaultProps = {
   loading: false,
   addMoneyOpen: false,
   setAddMoneyOpen: () => {},
-  cardStatus: 'YES',
   setCardStatus: () => {},
   onUpdateCardStatus: () => {},
   loadingStatus: false,

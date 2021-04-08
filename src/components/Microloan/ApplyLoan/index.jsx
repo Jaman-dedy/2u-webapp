@@ -20,8 +20,8 @@ import './style.scss';
 import InfoMessage from 'components/common/Alert/InfoMessage';
 import DangerMessage from 'components/common/Alert/DangerMessage';
 import { getPossibleDates } from 'utils/monthLoansdates';
-import PinModal from 'components/common/PinModal';
 import useWindowSize from 'utils/useWindowSize';
+import PINConfirmationModal from 'components/common/PINConfirmationModal';
 import DayMonth from '../DayMonth';
 
 const ApplyLoan = ({
@@ -42,8 +42,8 @@ const ApplyLoan = ({
   applyLoanLoading,
   openPinModal,
   setOpenPinModal,
-  setUserPinDigit,
-  userPinDigit,
+  setPIN,
+  PIN,
   pinErrors,
   pinData,
   clearCheckEligibility,
@@ -296,16 +296,15 @@ const ApplyLoan = ({
           )}
         </div>
       </div>
-      <PinModal
+      <PINConfirmationModal
         open={openPinModal}
         setOpen={setOpenPinModal}
-        setUserPinDigit={setUserPinDigit}
-        userPinDigit={userPinDigit}
-        errors={pinErrors}
+        setPIN={setPIN}
+        PIN={PIN}
         pinData={pinData}
         loading={applyLoanLoading}
-        handleSubmit={applyForALoan}
-        handleClearData={clearCheckEligibility}
+        onPinConfirm={applyForALoan}
+        onClose={clearCheckEligibility}
       />
     </DashboardLayout>
   );
@@ -334,6 +333,8 @@ ApplyLoan.propTypes = {
   pinErrors: PropTypes.objectOf(PropTypes.any),
   pinData: PropTypes.objectOf(PropTypes.any),
   clearCheckEligibility: PropTypes.func,
+  setPIN: PropTypes.func.isRequired,
+  PIN: PropTypes.string.isRequired,
 };
 ApplyLoan.defaultProps = {
   walletList: () => {},

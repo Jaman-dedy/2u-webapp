@@ -1,4 +1,3 @@
-/* eslint-disable consistent-return */
 const displayTransactionType = type => {
   if (type === 'CP')
     return {

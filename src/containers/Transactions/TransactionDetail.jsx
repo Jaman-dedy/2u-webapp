@@ -11,6 +11,7 @@ const Transactions = () => {
   const [cardNumber, setCardNumber] = useState(null);
   const [phoneValue, setPhoneValue] = useState();
   const [form, setForm] = useState({});
+  const [PIN, setPIN] = useState('');
   const [openEditTransaction, setOpenEditTransaction] = useState(
     false,
   );
@@ -80,8 +81,7 @@ const Transactions = () => {
       setCardNumber(newData.selectedCard);
     }
   }
-  const { digit0, digit1, digit2, digit3 } = form;
-  const PIN = `${digit0}${digit1}${digit2}${digit3}`;
+
   const modifyOneTransaction = () => {
     modifyCash({
       PIN,
@@ -109,6 +109,8 @@ const Transactions = () => {
       openEditTransaction={openEditTransaction}
       setOpenEditTransaction={setOpenEditTransaction}
       withdraw={withdraw}
+      setPIN={setPIN}
+      PIN={PIN}
     />
   );
 };
