@@ -31,7 +31,7 @@ import isAppDisplayedInWebView from 'helpers/isAppDisplayedInWebView';
 import scroll from 'helpers/scroll';
 import useInstallApp from 'hooks/useInstallApp';
 import useTranslate from 'hooks/useTranslate';
-import getContactList from 'redux/actions/contacts/getContactList';
+
 import getLanguage from 'redux/actions/users/getLanguage';
 import getSupportedLanguages from 'redux/actions/users/getSupportedLanguages';
 import getUserInfo from 'redux/actions/users/getUserInfo';
@@ -214,9 +214,6 @@ const App = () => {
     );
   }, []);
 
-  useEffect(() => {
-    getContactList()(dispatch);
-  }, []);
   const AppRoutes = (
     <Router
       ref={routeRef}
