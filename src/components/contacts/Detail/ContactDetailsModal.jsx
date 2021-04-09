@@ -505,7 +505,6 @@ const ContactDetailsModal = ({
           transition="fade"
           onClose={() => {
             setOpen(false);
-            history.push('/contacts');
           }}
           open={open}
         >
@@ -761,6 +760,7 @@ const ContactDetailsModal = ({
                             setDestinationContact(contact);
                             setSendMoneyOpen(true);
                             setIsSendingMoney(dispatch);
+                            
                           }}
                           text={global.translate(
                             'Transfer Money',
