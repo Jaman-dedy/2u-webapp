@@ -1,6 +1,6 @@
 import uploadFileService from 'helpers/uploadImages/uploadFileService';
 
-export default async (name, file, data) => {
+export default async (name, file, data, url) => {
   let type = '';
 
   switch (name) {
@@ -34,7 +34,7 @@ export default async (name, file, data) => {
     {
       [name]: file,
     },
-    '/UploadKYCDocs',
+    url,
     type,
     data?.PID,
     true,

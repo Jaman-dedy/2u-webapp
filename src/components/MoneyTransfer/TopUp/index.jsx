@@ -1,7 +1,3 @@
-import '../SendMoney/modal.scss';
-import './TopUp.scss';
-import 'react-phone-input-2/lib/style.css';
-
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import NumberFormat from 'react-number-format';
@@ -15,6 +11,7 @@ import {
   Modal,
 } from 'semantic-ui-react';
 import { useHistory } from 'react-router-dom';
+
 import ReusableDrowdown from 'components/common/Dropdown/ReusableDropdown';
 import LoaderComponent from 'components/common/Loader';
 import Message from 'components/common/Message';
@@ -25,6 +22,8 @@ import countryCodes from 'utils/countryCodes';
 import formatNumber from 'utils/formatNumber';
 import { getPossibleDates } from 'utils/monthdates';
 
+import '../SendMoney/modal.scss';
+import './TopUp.scss';
 import ConfirmationForm from '../../ConfirmationForm';
 import TransactionEntity from '../SendMoney/TransactionEntity';
 /* eslint-disable no-unused-vars */
@@ -270,7 +269,7 @@ const TopUpModal = ({
     } else {
       setButtonAction(global.translate('Transfer money', 1950));
     }
-  }, [currentProviderOption, confirmationData, nextStep,step]);
+  }, [currentProviderOption, confirmationData, nextStep, step]);
 
   const days = getPossibleDates().map(item => ({
     key: item.day,
@@ -499,7 +498,9 @@ const TopUpModal = ({
                     {' '}
                     {confirmationData &&
                       confirmationData[0].AccountName && (
-                        <span>{global.translate('Account name', 935)} :</span>
+                        <span>
+                          {global.translate('Account name', 935)} :
+                        </span>
                       )}
                     <strong>
                       &nbsp;
@@ -545,7 +546,10 @@ const TopUpModal = ({
                   >
                     {confirmationData &&
                       confirmationData[0].AccountName && (
-                        <span> {global.translate('Account name', 935)} :</span>
+                        <span>
+                          {' '}
+                          {global.translate('Account name', 935)} :
+                        </span>
                       )}
                     <strong>
                       &nbsp;

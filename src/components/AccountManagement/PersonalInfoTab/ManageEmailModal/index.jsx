@@ -6,6 +6,7 @@ import {
   Image,
   Table,
   Input,
+  Loader,
 } from 'semantic-ui-react';
 
 import AddPhoneIcon from 'assets/images/profile/add-phone.svg';
@@ -22,6 +23,10 @@ const ManageEmailModal = ({
     handleEmailInputChange,
     handleSubmitEmail,
     formEmail,
+    handleSetEmailPrimary,
+    settingPrimaryEmail,
+    sendEmail
+    
   } = personalInfo;
 
   const [addingPhone, setIAddingPhone] = useState(false);
@@ -61,12 +66,19 @@ const ManageEmailModal = ({
                     <Table.Cell
                       textAlign="right"
                       className="set-primary"
+                      onClick={() => handleSetEmailPrimary(email?.Email)}
                     >
                       {email?.Primary !== 'YES'
                         ? global.translate('Set as primary')
                         : null}
-                      &nbsp;|&nbsp;
-                      {global.translate('Remove')}
+                       {email?.Primary !== 'YES' && settingPrimaryEmail 
+                       ? (
+                         <Loader 
+                          size="small"
+                          active
+                          inline
+                          className="otp-loader"/>
+                       ): null}
                     </Table.Cell>
                   </Table.Row>
                 ))}
@@ -112,28 +124,15 @@ const ManageEmailModal = ({
                 {global.translate('Back')}
               </Button>
               <Button
+              loading={sendEmail.loading}
                 disabled={!formEmail?.email}
                 className="add-button"
                 onClick={() => {
-                  setSendOtp(true);
                   handleSubmitEmail();
                 }}
               >
                 {global.translate('Add')}
               </Button>
-            </div>
-          </>
-        )}
-        {sendOtp && (
-          <>
-            <h3>{global.translate('Add a phone number')}</h3>
-            <div>
-              <InfoMessage description="Enter OTP code sent to +(250) 788 - 909 - 423 " />
-              <div className="otp-text">OTP</div>
-              <div className="otp-description">
-                It may take a moment to receive your code. Haven’t
-                receive it yet? <span> Resend a new code</span>
-              </div>
             </div>
           </>
         )}

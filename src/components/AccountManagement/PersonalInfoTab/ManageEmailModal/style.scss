@@ -27,6 +27,7 @@
     font-weight: 400;
   }
   .add-phone-actions {
+    margin-top: 20px;
     display: flex;
     justify-content: flex-end;
     .back-button {
@@ -44,6 +45,7 @@
     .ui.input {
       height: 46px !important;
       width: 100%;
+      border: 1px solid #cfcfcf !important;
     }
   }
   .phone-sub-title {

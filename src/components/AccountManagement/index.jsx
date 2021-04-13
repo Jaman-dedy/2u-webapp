@@ -39,6 +39,8 @@ const Profile = ({
   onOptionChange,
   identityConfirmation,
   residenceData,
+  onImageChange,
+  userDetails,
 }) => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -125,7 +127,7 @@ const Profile = ({
       menuItem: global.translate('Transaction limits'),
       render: () => (
         <Tab.Pane attached={false}>
-          <TransactionLimit />
+          <TransactionLimit userData={userData.data} />
         </Tab.Pane>
       ),
     },
@@ -162,7 +164,10 @@ const Profile = ({
             />
           </div>
         ) : (
-          <UserDetails userData={userData?.data} />
+          <UserDetails
+            userData={userData?.data}
+            userDetails={userDetails}
+          />
         )}
 
         <div className="user-info-details">

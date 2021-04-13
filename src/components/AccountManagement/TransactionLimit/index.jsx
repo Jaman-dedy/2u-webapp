@@ -1,8 +1,10 @@
 import React from 'react';
 import { Table, Button } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 import './style.scss';
 
-const TransactionLimit = () => {
+const TransactionLimit = ({ userData }) => {
+  const { TransactionLimits } = userData;
   return (
     <div className="transaction-limit-container">
       <Table basic="very">
@@ -25,44 +27,64 @@ const TransactionLimit = () => {
           <Table.Row>
             <Table.Cell>
               {' '}
-              {global.translate('Maximum money transfer per day')}
+              {global.translate(
+                'Maximum amount per transaction in the main currency',
+              )}
             </Table.Cell>
             <Table.Cell />
-            <Table.Cell textAlign="right">1,000,000 RWF</Table.Cell>
+            <Table.Cell textAlign="right">
+              {TransactionLimits?.SafeLimite}
+            </Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.Cell>
               {' '}
-              {global.translate('Transaction limits')}
+              {global.translate('Maximum amount per month')}
             </Table.Cell>
             <Table.Cell />
-            <Table.Cell textAlign="right">1,000,000 RWF</Table.Cell>
+            <Table.Cell textAlign="right">
+              {TransactionLimits?.SafeLimiteMonth}
+            </Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.Cell>
               {global.translate('Number of transactions per day')}
             </Table.Cell>
             <Table.Cell />
-            <Table.Cell textAlign="right">5 transactions</Table.Cell>
+            <Table.Cell textAlign="right">
+              {TransactionLimits?.MaxTransPerDay}{' '}
+              {global.translate('transactions')}
+            </Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.Cell>
               {global.translate('Maximum amount per day')}
             </Table.Cell>
             <Table.Cell />
-            <Table.Cell textAlign="right">1,000,000 RWF</Table.Cell>
+            <Table.Cell textAlign="right">
+              {TransactionLimits?.MaxTransPerDay}
+            </Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.Cell>
-              {global.translate('Maximum amount per transaction')}
+              {global.translate('Minimum safe amount')}
             </Table.Cell>
             <Table.Cell />
-            <Table.Cell textAlign="right">1,000,000 RWF</Table.Cell>
+            <Table.Cell textAlign="right">
+              {TransactionLimits?.SafeLimiteSMS}
+            </Table.Cell>
           </Table.Row>
         </Table.Body>
       </Table>
     </div>
   );
+};
+
+TransactionLimit.propTypes = {
+  userData: PropTypes.objectOf(PropTypes.any),
+};
+TransactionLimit.defaultProps = {
+  userData: {},
 };
 
 export default TransactionLimit;

@@ -47,8 +47,6 @@ const WithdrawMoney = ({
       setPhoneValue(userData?.MainPhone);
     }
   }, [userData]);
-
-  console.log(`supportedCountries`, supportedCountries);
   return (
     <DashboardLayout>
       <WelcomeBar>

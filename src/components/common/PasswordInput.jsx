@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Form } from 'semantic-ui-react';
 
@@ -16,14 +16,22 @@ const PasswordInput = ({
   iconClassName,
 }) => {
   const [isPasswordVisible, setPasswordVisible] = useState(false);
+  const [type, setType] = useState('password');
 
+  useEffect(() => {
+    if (isPasswordVisible) {
+      setType('text');
+    } else {
+      setType('password');
+    }
+  }, [isPasswordVisible]);
   return (
     <Form.Input
-    className={
-      !value.length || isPasswordVisible ? '' : 'password_input'
-    }
+      className={
+        !value.length || isPasswordVisible ? '' : 'password_input'
+      }
       placeholder={global.translate(placeholder)}
-      type="text"
+      type={type}
       icon={{
         name: isPasswordVisible ? 'eye slash' : 'eye',
         link: true,

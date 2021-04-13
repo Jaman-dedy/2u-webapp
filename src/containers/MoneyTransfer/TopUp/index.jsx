@@ -231,7 +231,8 @@ const TopUpContainer = ({
       providersCountries.data.find(({ CountryCode }) => {
         if (userLocationData.CountryCode) {
           return (
-            CountryCode.toLowerCase() === userLocationData.CountryCode
+            String(CountryCode).toLowerCase() ===
+            userLocationData.CountryCode
           );
         }
       });

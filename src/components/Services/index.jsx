@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 import DashboardLayout from 'components/common/DashboardLayout';
 import WelcomeBar from 'components/Dashboard/WelcomeSection';
 import findServicesIcon from 'assets/images/services/market-p-service.svg';
+import microloanServicesIcon from 'assets/images/services/microloan-p-service.svg';
 import microloanIcon from 'assets/images/services/microloan-service.svg';
 import agricultureIcon from 'assets/images/services/farmers-c-service.svg';
 import crowdFundingIcon from 'assets/images/services/crowd-f-service.svg';
@@ -64,6 +65,14 @@ const MoneyTransfer = ({ userData }) => {
                   2183,
                 )}
               />
+              <CardComponent
+                image={microloanServicesIcon}
+                to="/microloan"
+                title={global.translate(`Microloan`)}
+                subtitle={global.translate(
+                  `Get an instant loan for your transactions`,
+                )}
+              />
             </div>
             <h3 className="coming-soon-title">
               {global.translate('Coming soon')}
@@ -81,11 +90,6 @@ const MoneyTransfer = ({ userData }) => {
                 image={crowdFundingIcon}
                 title={global.translate('Crowdfunding', 1012)}
                 subtitle={global.translate('Crowdfunding', 1012)}
-              />
-              <ComingSoon
-                image={microloanIcon}
-                title={global.translate('Microloan', 1918)}
-                subtitle={global.translate('Microloan', 1918)}
               />
               <ComingSoon
                 image={savingWalletIcon}

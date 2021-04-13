@@ -45,6 +45,15 @@ export default (state, { type, payload }) => {
           error: null,
           success: true,
         },
+        // userData: {
+        //   ...state.userData,
+        //   data: {
+        //     ...state.userData.data,
+        //     Phones: Array.isArray(payload.Phones)
+        //       ? [payload.Phones]
+        //       : [payload.phoneNumber, ...state.userData.data.Phones],
+        //   },
+        // },
       };
     default:
       return null;

@@ -45,20 +45,6 @@ export default (state, { type, payload }) => {
             ) || []),
           ],
         },
-        // user: {
-        //   ...state.user,
-        //   myWallets: {
-        //     ...state.user.myWallets,
-        //     walletList: state.user.myWallets.walletList.map(
-        //       wallet => {
-        //         if (wallet.AccountNumber === payload.WalletNumber) {
-        //           return { ...wallet, HasACreditCard: 'YES' };
-        //         }
-        //         return wallet;
-        //       },
-        //     ),
-        //   },
-        // },
       };
 
     case CLEAR_CREATE_CREDIT_CARD_STORE:

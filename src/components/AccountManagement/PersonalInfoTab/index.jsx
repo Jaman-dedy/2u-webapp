@@ -25,7 +25,7 @@ const PersonalInfoTab = ({
     setOpenResidenceModal,
     selectedCountry: residentialCountry,
   } = residenceData;
-  const [openEmailModal, setOpenEmailModal] = useState(false);
+ 
 
   const {
     openInfoModal,
@@ -34,6 +34,8 @@ const PersonalInfoTab = ({
     selectedCountry,
     setOpenPhoneModal,
     openPhoneModal,
+    setOpenEmailModal,
+    openEmailModal
   } = personalInfo;
 
   return (
@@ -104,7 +106,7 @@ const PersonalInfoTab = ({
               {global.translate('City of birth')}
             </Table.Cell>
             <Table.Cell>
-              {userData.UserExtraKYC.CityOfBirth}
+              {userData?.UserExtraKYC?.CityOfBirth}
             </Table.Cell>
           </Table.Row>
           <Table.Row className="user-family-details">

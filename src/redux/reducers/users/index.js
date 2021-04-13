@@ -35,6 +35,9 @@ import setPresenceStatus from './setPresenceStatus';
 import logout from './logout';
 import userIdData from './saveUserIdData';
 import verifyEmail from './verifyEmail';
+import professionList from './getProfession';
+import setPhonePrimary from './setPhonePrimary';
+import setEmailPrimary from './setEmailPrimary';
 
 export default (state = initialState, action = {}) => ({
   ...state,
@@ -74,4 +77,7 @@ export default (state = initialState, action = {}) => ({
   ...setPresenceStatus(state, action),
   ...userIdData(state, action),
   ...verifyEmail(state, action),
+  ...professionList(state, action),
+  ...setPhonePrimary(state, action),
+  ...setEmailPrimary(state, action),
 });

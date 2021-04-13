@@ -31,6 +31,7 @@ export default [
   login,
   dashboard,
   resetPassword,
+  ...microloan,
   register,
   ...contacts,
   addMoney,
@@ -56,7 +57,6 @@ export default [
   getPaid,
   quickPay,
   remindUsername,
-  ...microloan,
   withdrawMoney,
   verifyEmail,
 ];

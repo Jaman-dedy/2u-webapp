@@ -1,4 +1,7 @@
 .add-store-container {
+  .ui.input {
+    border: 1px solid #cfcfcf;
+  }
   width: 100%;
   display: block;
   max-width: 595px;
@@ -174,6 +177,7 @@
 
     .country-input {
       margin-bottom: 14px;
+      margin-top: 10px;
     }
   }
 }

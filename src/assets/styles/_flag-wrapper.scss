@@ -1,0 +1,17 @@
+.flag-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  .account {
+    flex: 1;
+    margin: auto;
+    padding-left: 5px;
+
+    color: #000000;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 12px;
+  }
+}

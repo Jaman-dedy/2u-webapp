@@ -34,10 +34,13 @@
 .wrap-wallets {
   border: 1px solid #cdcdcd !important;
   border-radius: 6px;
+  a {
+    display: flex !important;
+  }
 }
 .wrap-wallets input {
   background: red !important;
-  border: 1px solid #cdcdcd !important;
+  // border: 1px solid #cdcdcd !important;
 }
 .ui.label {
   position: relative;

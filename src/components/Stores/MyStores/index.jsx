@@ -62,7 +62,7 @@ const MyStores = ({ userData, myStores }) => {
                   setIsOpenRedeemVoucherModal(true);
                 }}
               >
-                {global.translate('Redeem a voucher', 1243)}
+                {global.translate('Redeem a voucher', 810)}
               </button>
               <button
                 type="button"

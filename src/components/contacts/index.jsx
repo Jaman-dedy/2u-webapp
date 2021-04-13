@@ -8,7 +8,6 @@ import ContactInfoImage from 'assets/images/contactInfo2.png';
 import DeleteContactImage from 'assets/images/deletecontact2.png';
 import EmptyContactList from 'assets/images/empty_contact.svg';
 import SendOthersImage from 'assets/images/to_other_provider.png';
-import TopuUpImage from 'assets/images/top-up.png';
 import TransactionsImage from 'assets/images/transactionsimage.png';
 import ViewHistoryImage from 'assets/images/viewhistory2.png';
 import SendVoucherIcon from 'assets/images/voucher.png';

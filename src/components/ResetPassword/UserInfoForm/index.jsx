@@ -171,7 +171,7 @@ const UserInfoForm = ({
                 <PhoneInput
                   enableSearch
                   name="phoneNumber"
-                  country="rw"
+                  country={country ? country.key : 'rw'}
                   placeholder="e.g.: 788 000 000"
                   value={phoneValue}
                   onChange={phone => setPhoneValue(phone)}

@@ -1,14 +1,14 @@
-import './modal.scss';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Button, Input, Modal } from 'semantic-ui-react';
+
 import Message from 'components/common/Message';
 import formatNumber from 'utils/formatNumber';
 import { getPossibleDates } from 'utils/monthdates';
-
 import ConfirmationForm from '../../ConfirmationForm';
 import TransactionEntity from './TransactionEntity';
+import './modal.scss';
 
 const SendMoneyModal = ({
   open,

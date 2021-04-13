@@ -26,6 +26,7 @@ const WalletCarousel = ({
   walletTitle,
   onAddClick,
   preSelectedWallet,
+  setNextButton,
 }) => {
   const dispatch = useDispatch();
   const myWalletsRef = useRef(null);
@@ -38,6 +39,8 @@ const WalletCarousel = ({
     state => state.user,
   );
 
+  console.log(`myWallets`, myWallets);
+
   const [selectedWallet, setSelectedWallet] = useState({
     AccountNumber: '',
     CurrencyCode: '',
@@ -46,6 +49,15 @@ const WalletCarousel = ({
     Flag: '',
     Default: '',
   });
+
+  console.log(`selectedWallet`, selectedWallet);
+  useEffect(() => {
+    if (Object.keys(selectedWallet).length !== 0) {
+      setNextButton(true);
+    } else {
+      setNextButton(false);
+    }
+  }, [selectedWallet]);
 
   const [openAddWalletModal, setOpenAddWalletModal] = useState(false);
   const [
@@ -247,11 +259,7 @@ const WalletCarousel = ({
                   <Slider {...carouselConfig}>
                     {myWallets.loading && hasOpenedAddWalletModal && (
                       <div className="wallet-box">
-                        <Loader
-                          active
-                          inline="centered"
-                          // style={{ marginTop: '25%' }}
-                        />
+                        <Loader active inline="centered" />
                       </div>
                     )}
 
@@ -339,6 +347,7 @@ WalletCarousel.propTypes = {
   showOptions: PropTypes.bool,
   showControls: PropTypes.bool,
   preSelectedWallet: PropTypes.objectOf(PropTypes.any),
+  setNextButton: PropTypes.func,
 };
 WalletCarousel.defaultProps = {
   selectedWalletNumber: '',
@@ -351,5 +360,6 @@ WalletCarousel.defaultProps = {
   showOptions: true,
   showControls: true,
   preSelectedWallet: {},
+  setNextButton: () => {},
 };
 export default WalletCarousel;

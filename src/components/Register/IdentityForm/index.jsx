@@ -1,6 +1,5 @@
 import './style.scss';
 import 'assets/styles/spinner.scss';
-import 'react-phone-input-2/lib/style.css';
 
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -20,7 +19,10 @@ const IdentityForm = ({
     verifyPhoneNumber,
     phonevalue,
     setPhonevalue,
+    userLocationData,
   } = screenOne;
+
+  console.log(`userLocationData`, userLocationData);
 
   return (
     <Container>
@@ -70,7 +72,7 @@ const IdentityForm = ({
           <div className="user-phone-number">
             <PhoneInput
               enableSearch
-              country="rw"
+              country={userLocationData?.CountryCode}
               value={phonevalue}
               onChange={phone => setPhonevalue(phone)}
             />

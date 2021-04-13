@@ -26,10 +26,13 @@
   }
   .apply-left-side {
     .amount-input {
+      input {
+        border: 1px solid #c0c0c0;
+      }
       .ui.right.labeled.input {
         width: 100%;
         .ui.basic.label.label {
-          border: none;
+          border: 1px solid #c0c0c0;
         }
       }
     }

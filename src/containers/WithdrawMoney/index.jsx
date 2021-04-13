@@ -148,7 +148,7 @@ const WithdrawMoney = () => {
       setButtonDisabled(false);
     }
   }, [phoneValue, selectedCountry, currentOption, form?.amount]);
-  console.log(`selectedCountry`, selectedCountry);
+
   const handleConfirmTransaction = () => {
     const data = {
       Amount: form?.amount,

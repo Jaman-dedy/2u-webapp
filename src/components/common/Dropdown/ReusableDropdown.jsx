@@ -22,9 +22,11 @@ const ReusableDrowdown = ({
 }) => {
   let name;
 
+  console.log(`options`, options);
+
   const newOptions =
     options &&
-    options.map(option => {
+    options?.map(option => {
       // select country
       if (option.Flag && option.CountryName && option.Currency) {
         name = 'CountryCode';
@@ -123,12 +125,16 @@ const ReusableDrowdown = ({
     newCurrentOption = currentOption;
   }
 
+  console.log(`newOptions`, newOptions);
+
   const wrapperId = `input-${Math.ceil(Math.random() * 10000)}`;
-  const [filteredOptions, setFilteredOptions] = useState([]);
+  const [filteredOptions, setFilteredOptions] = useState(null);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    setFilteredOptions(newOptions);
+    if (newOptions) {
+      setFilteredOptions(newOptions);
+    }
   }, [options]);
   const checkClickInput = event => {
     const { target = {} } = event || {};
@@ -144,6 +150,7 @@ const ReusableDrowdown = ({
       document.removeEventListener('mousedown', checkClickInput);
     };
   });
+  console.log(`filteredOptions`, filteredOptions);
   return (
     <>
       <div
@@ -212,7 +219,7 @@ const ReusableDrowdown = ({
               iconPosition="left"
               onChange={({ target: { value } }) => {
                 setFilteredOptions(
-                  newOptions.filter(({ Title }) =>
+                  newOptions?.filter(({ Title }) =>
                     Title.toLowerCase().includes(value.toLowerCase()),
                   ),
                 );
@@ -220,59 +227,58 @@ const ReusableDrowdown = ({
             />
           )}
           <Dropdown.Menu scrolling search={search}>
-            {filteredOptions &&
-              filteredOptions.map(
-                ({
-                  Title,
-                  Img,
-                  OperatorID,
-                  Category,
-                  CountryCode,
-                  Currency,
-                  AccountNumber,
-                  OperatorName,
-                  WalletQRCode,
-                  CurrencyCode,
-                  Balance,
-                  Value,
-                }) => (
-                  <Dropdown.Item
-                    key={Title}
-                    onClick={() => {
-                      setOpen(false);
-                      onChange({
-                        target: {
-                          name,
-                          value: Title,
-                        },
-                      });
-                      setCurrentOption({
-                        Title,
-                        Img,
-                        OperatorID,
-                        Category,
-                        CountryCode,
-                        Currency,
-                        AccountNumber,
-                        OperatorName,
-                        WalletQRCode,
-                        CurrencyCode,
-                        Balance,
-                        Value,
-                      });
-                    }}
-                  >
-                    <span className="dropdown-trigger">
-                      <div className="dropdown-wallet">
-                        <Image src={Img} className="inline" />
-                        <div>
-                          <div>{Title}</div>
-                        </div>
+            {filteredOptions?.map(
+              ({
+                Title,
+                Img,
+                OperatorID,
+                Category,
+                CountryCode,
+                Currency,
+                AccountNumber,
+                OperatorName,
+                WalletQRCode,
+                CurrencyCode,
+                Balance,
+                Value,
+              }) => (
+                <Dropdown.Item
+                  key={Title}
+                  onClick={() => {
+                    setOpen(false);
+                    onChange({
+                      target: {
+                        name,
+                        value: Title,
+                      },
+                    });
+                    setCurrentOption({
+                      Title,
+                      Img,
+                      OperatorID,
+                      Category,
+                      CountryCode,
+                      Currency,
+                      AccountNumber,
+                      OperatorName,
+                      WalletQRCode,
+                      CurrencyCode,
+                      Balance,
+                      Value,
+                    });
+                  }}
+                >
+                  <span className="dropdown-trigger">
+                    <div className="dropdown-wallet">
+                      <Image src={Img} className="inline" />
+                      <div>
+                        <div>{Title}</div>
                       </div>
-                    </span>
-                  </Dropdown.Item>
-                ),
-              )}
+                    </div>
+                  </span>
+                </Dropdown.Item>
+              ),
+            )}
           </Dropdown.Menu>
         </Dropdown.Menu>
       </Dropdown>

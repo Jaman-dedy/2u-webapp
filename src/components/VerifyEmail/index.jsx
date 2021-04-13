@@ -35,12 +35,27 @@ const VerifyEmail = ({ verifyEmailState }) => {
         ) : null}
         <Image src={logo} className="logo" />
         {verifyEmailState?.loading ? null : (
+          <> 
           <h2 className="center-align">
             {global.translate(
               verifyEmailState?.error?.Description ||
                 verifyEmailState?.data?.Description,
             )}
           </h2>
+          <div>
+            <button
+              type="button"
+              onClick={() => history.push({ pathname: '/account-management' })}
+              className="btn-auth btn-primary"
+            >
+              &nbsp; &nbsp;
+              <Icon name="mail" className="text-white" />
+              {global.translate('Manage emails')}
+              &nbsp; &nbsp;
+            </button>
+          </div>
+          </>
+         
         )}
       </div>
     </DashboardLayout>

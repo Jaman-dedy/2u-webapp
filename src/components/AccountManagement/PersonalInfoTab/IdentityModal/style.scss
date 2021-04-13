@@ -46,11 +46,6 @@
       color: #fff;
     }
   }
-  .react-tel-input {
-    .form-control {
-      height: 46px !important;
-    }
-  }
   .phone-sub-title {
     margin-bottom: 5px;
   }
@@ -139,5 +134,15 @@
   .copy-title {
     margin-left: 10px;
     margin-bottom: 10px;
+  }
+  .update-info-actions {
+    margin-top: 20px;
+    margin-right: 8px;
+  }
+  .edit-info-form {
+    .ui.input {
+      border: none;
+      height: 46px;
+    }
   }
 }

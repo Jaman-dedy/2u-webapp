@@ -14,10 +14,11 @@ import MyWallets from 'components/common/WalletCarousselSelector';
 import 'react-datepicker/dist/react-datepicker.css';
 import DisplayProviders from 'components/common/DisplayProviders';
 import TopUpCreditCardImg from 'assets/images/topup-credit.svg';
-import PaypalImg from 'assets/images/paypal-provider.svg';
+import TopUpPayPalImg from 'assets/images/paypal-provider.svg';
 import BankImg from 'assets/images/bankImg.svg';
 import ConfirmAddMoney from './ConfirmAddMoney';
 import CreditCardForm from './CreditCardForm';
+import PayPalForm from './PayPalForm';
 import ShowStep from './ShowStep';
 import Step1Img from 'assets/images/step1.svg';
 import Step2Img from 'assets/images/step2.svg';
@@ -26,6 +27,7 @@ import levelOneVisited from 'assets/images/level-one-visited.svg';
 import levelTwoVisited from 'assets/images/level-two-visited.svg';
 import levelThreeVisited from 'assets/images/level-three-visited.svg';
 import ComingSoon from 'components/common/BottomMenu/ComingSoon';
+import ConfirmPayPal from './ConfirmPayPal';
 
 const defaultOptions = [
   { key: 'usd', text: 'USD', value: 'USD' },
@@ -46,6 +48,11 @@ const AddMoney = ({
   errors,
   handleSubmit,
   clearAddMoneyData,
+  setAddMoneyData,
+  handlePullPayPal,
+  addMoneyFromPayPal,
+  handleSubmitPayPal,
+  payPalOperationFees,
 }) => {
   const [date, setDate] = useState('');
   const [oneSuccess, setOneSuccess] = useState(false);
@@ -65,6 +72,9 @@ const AddMoney = ({
   const [topUpFromBank, setTopUpFromBank] = useState(false);
   const cvvRef = useRef(null);
   const { loading, success, error } = addMoneyFromCreditCard;
+  const [nextButton, setNextButton] = useState(false);
+  const [disableButton, setDisableButton] = useState(true);
+  const [tickStep, setTickStep] = useState(false);
 
   const history = useHistory();
   const location = useLocation();
@@ -197,6 +207,26 @@ const AddMoney = ({
   const handleNavigateSteps = step => {
     setStep(step);
   };
+  useEffect(() => {
+    if (
+      !topUpFromBank &&
+      !topUpPaypalCard &&
+      !topUpFromCreditCard &&
+      !nextButton
+    ) {
+      setTickStep(false);
+    } else {
+      setTickStep(true);
+    }
+  }, [topUpFromBank, topUpPaypalCard, topUpFromCreditCard]);
+
+  useEffect(() => {
+    if (tickStep && nextButton) {
+      setDisableButton(false);
+    } else {
+      setDisableButton(true);
+    }
+  }, [tickStep, nextButton]);
 
   return (
     <>
@@ -265,6 +295,7 @@ const AddMoney = ({
                   myWallets={myWallets}
                   selectWallet={selectWallet}
                   selectedWalletNumber={selectedWalletNumber}
+                  setNextButton={setNextButton}
                 />
 
                 <h3>{global.translate('Choose a provider', 2168)}</h3>
@@ -278,19 +309,19 @@ const AddMoney = ({
                   onClick={checkTopUpCreditCard}
                   ticked={topUpFromCreditCard}
                 />
+                <DisplayProviders
+                  providerLogo={TopUpPayPalImg}
+                  title={global.translate('Paypal', 170)}
+                  subtitle={global.translate(
+                    'Top Up money from your Paypal account',
+                    2134,
+                  )}
+                  onClick={checkTopUpPayPal}
+                  ticked={topUpPaypalCard}
+                />
                 <h3>{global.translate('Coming soon', 1747)}</h3>
 
                 <div className="flex top-up__coming-soon">
-                  <ComingSoon
-                    image={AddMoneyIcon}
-                    title={global.translate('Paypal', 170)}
-                    to="/"
-                    subtitle={global.translate(
-                      'Top Up money from your Paypal account',
-                      2134,
-                    )}
-                  />
-
                   <ComingSoon
                     image={bankTransferIcon}
                     title="Bank account"
@@ -301,11 +332,7 @@ const AddMoney = ({
                   />
                 </div>
                 <Button
-                  disabled={
-                    !topUpFromBank &&
-                    !topUpPaypalCard &&
-                    !topUpFromCreditCard
-                  }
+                  disabled={disableButton}
                   positive
                   onClick={() => setStep(step + 1)}
                 >
@@ -313,7 +340,7 @@ const AddMoney = ({
                 </Button>
               </div>
             )}
-            {step === 2 && (
+            {step === 2 && topUpFromCreditCard && (
               <CreditCardForm
                 errors={errors}
                 addMoneyData={addMoneyData}
@@ -331,14 +358,41 @@ const AddMoney = ({
                 CustomInput={CustomInput}
               />
             )}
+            {step === 2 && topUpPaypalCard && (
+              <PayPalForm
+                errors={errors}
+                addMoneyData={addMoneyData}
+                handleInputChange={handleInputChange}
+                options={options}
+                step={step}
+                setStep={setStep}
+                handleBackEvent={handleBackEvent}
+                setAddMoneyData={setAddMoneyData}
+                addMoneyFromPayPal={addMoneyFromPayPal}
+                handleSubmitPayPal={handleSubmitPayPal}
+                payPalOperationFees={payPalOperationFees}
+              />
+            )}
 
-            {step === 3 && (
+            {step === 3 && cardOperationFees?.success && (
               <ConfirmAddMoney
                 step={step}
                 setStep={setStep}
                 addMoneyData={addMoneyData}
                 cardOperationFees={cardOperationFees}
                 addMoneyFromCreditCard={addMoneyFromCreditCard}
+                clearAddMoneyData={clearAddMoneyData}
+                setLevelThree={setLevelThree}
+              />
+            )}
+            {step === 3 && payPalOperationFees?.success && (
+              <ConfirmPayPal
+                step={step}
+                setStep={setStep}
+                addMoneyData={addMoneyData}
+                payPalOperationFees={payPalOperationFees}
+                addMoneyFromPayPal={addMoneyFromPayPal}
+                handlePullPayPal={handlePullPayPal}
                 clearAddMoneyData={clearAddMoneyData}
                 setLevelThree={setLevelThree}
               />

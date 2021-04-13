@@ -6,12 +6,7 @@ import DatePicker from 'react-datepicker';
 import CountryDropdown from 'components/common/Dropdown/CountryDropdown';
 import './style.scss';
 
-const UpdateInfoModal = ({
-  open,
-  setOpen,
-  onCountryChange,
-  personalInfo,
-}) => {
+const UpdateInfoModal = ({ open, setOpen, personalInfo }) => {
   const {
     personalInfoData,
     setPersonalInfoData,
@@ -30,6 +25,7 @@ const UpdateInfoModal = ({
     nationality,
     nationalities,
     disableButton,
+    professionOptions,
   } = personalInfo;
 
   return (
@@ -144,13 +140,21 @@ const UpdateInfoModal = ({
                 name="CityOfBirth"
                 onChange={handleInputChange}
               />
-              <Form.Input
+              <Form.Select
+                className="gender-input"
                 fluid
                 label="Profession"
-                placeholder="Profession"
-                value={personalInfoData?.Profession}
+                placeholder="Select your profession"
+                options={professionOptions}
+                onChange={(target, { name, value }) => {
+                  setCurrentOption(value);
+                  setPersonalInfoData({
+                    ...personalInfoData,
+                    [name]: value,
+                  });
+                }}
+                defaultValue={currentOption}
                 name="Profession"
-                onChange={handleInputChange}
               />
             </Form.Group>
             <Form.Group>

@@ -8,6 +8,8 @@
 
 - [ ] New feature (non-breaking changes which add the new functionalities)
 - [ ] Bug fix (non-breaking changes which fix an issue)
+- [ ] Chore (non-breaking changes)
+- [ ] Refactoring (non-breaking changes)
 - [ ] Documentation (added or improved the documentation)
 - [ ] Breaking change (fix or a feature that would cause existing feature not to work as expected)
 - [ ] This change requires a documentation update

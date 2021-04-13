@@ -3,7 +3,7 @@ import { Placeholder } from 'semantic-ui-react';
 
 const ImagePlaceHolder = ({ style }) => {
   return (
-    <Placeholder style={style}>
+    <Placeholder style={style} fluid>
       <Placeholder.Image />
     </Placeholder>
   );

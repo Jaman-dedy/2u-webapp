@@ -11,9 +11,6 @@ import {
 } from 'semantic-ui-react';
 
 import CountryDropdown from 'components/common/Dropdown/CountryDropdown';
-import CityIcon from 'assets/images/city-image.png';
-import CategoryIcon from 'assets/images/category-list.png';
-import StoresIcon from 'assets/images/cartIcon.png';
 import ToggleSwitch from 'components/common/ToggleButton';
 import rawCountries from 'utils/countries';
 import './SearchStoresForm.scss';

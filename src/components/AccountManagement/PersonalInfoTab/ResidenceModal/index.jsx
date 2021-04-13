@@ -141,6 +141,8 @@ const ResidenceModal = ({
                   }
                   compress
                   format="png"
+                  not_rounded
+                  style={{ width: '100%', height: '217px' }}
                 />
               </div>
             </>

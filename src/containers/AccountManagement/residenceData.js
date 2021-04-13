@@ -72,7 +72,7 @@ export default () => {
 
     if (file) {
       if (isFileImage(file)) {
-        uploadDocs(name, file, data).then(res => {
+        uploadDocs(name, file, data, '/UploadKYCDocs').then(res => {
           setUserIdUrlData(res);
         });
       } else

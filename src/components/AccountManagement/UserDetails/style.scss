@@ -9,13 +9,16 @@
     width: 100px;
     margin: 0 auto;
     display: flex;
-    .upload-action {
-      margin-top: 46px;
+    .doc-placeholder {
+      width: 26px;
       margin-left: -18px;
-      width: 32%;
+      margin-top: 57px;
+      &:hover {
+        cursor: pointer;
+      }
     }
     .user-avatar {
-      width: 100%;
+      width: 95%;
     }
   }
   .verified-user {

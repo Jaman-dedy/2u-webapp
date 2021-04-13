@@ -16,6 +16,13 @@
 .ui.checkbox input:checked ~ label:after {
   color: #0a9220;
 }
+.user-phone-number {
+  .react-tel-input {
+    .flag-dropdown {
+      border: none !important;
+    }
+  }
+}
 
 .dropdown-flag {
   padding-top: 2px;
@@ -36,7 +43,6 @@
     margin: 0;
     /* Firefox */
   }
-
 
   input::-webkit-input-placeholder {
     /* Chrome/Opera/Safari */

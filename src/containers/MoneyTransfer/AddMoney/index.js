@@ -1,11 +1,15 @@
 /* eslint-disable */
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import clearCardOperationFees from 'redux/actions/addMoney/clearCardOperationFees';
 import getCardOperationFeesAction from 'redux/actions/addMoney/getCardOperationFees';
+import getPayPalAddMoneyFeesAction from 'redux/actions/addMoney/getPayPalAddMoneyFees';
 import AddMoney from 'components/MoneyTransfer/AddMoney';
 import getMyWalletsAction from 'redux/actions/users/getMyWallets';
 import getUserInfo from 'redux/actions/users/getUserInfo';
+import addMoneyFromPayPalAction from 'redux/actions/addMoney/addMoneyFromPayPal';
+import openInNewTab from 'helpers/openInNewTab';
 
 const defaultOptions = [
   { key: 'usd', text: 'USD', value: 'USD' },
@@ -16,10 +20,14 @@ const defaultOptions = [
 ];
 
 const AddMoneyContainer = () => {
+  const history = useHistory();
   const { userData, myWallets } = useSelector(({ user }) => user);
-  const { cardOperationFees, addMoneyFromCreditCard } = useSelector(
-    ({ addMoney }) => addMoney,
-  );
+  const {
+    cardOperationFees,
+    addMoneyFromCreditCard,
+    addMoneyFromPayPal,
+    payPalOperationFees,
+  } = useSelector(({ addMoney }) => addMoney);
   const dispatch = useDispatch();
 
   const [addMoneyData, setAddMoneyData] = useState({
@@ -150,6 +158,10 @@ const AddMoneyContainer = () => {
     getCardOperationFeesAction(addMoneyData)(dispatch);
     return true;
   };
+  const handleSubmitPayPal = () => {
+    getPayPalAddMoneyFeesAction(addMoneyData)(dispatch);
+    return true;
+  };
 
   const clearAddMoneyData = () => {
     setAddMoneyData({
@@ -182,6 +194,22 @@ const AddMoneyContainer = () => {
     };
   }, [addMoneyFromCreditCard]);
 
+  const handlePullPayPal = () => {
+    const data = {
+      amount: addMoneyData.Amount,
+      redirectUrl: 'http://localhost:3000/wallets',
+      currency: addMoneyData.Currency,
+      accountNumber: addMoneyData.WalletNumber,
+      authToken: localStorage.getItem('token'),
+    };
+    addMoneyFromPayPalAction(data)(dispatch);
+  };
+  useEffect(() => {
+    if (addMoneyFromPayPal.data) {
+      openInNewTab(addMoneyFromPayPal.data.checkout_url);
+    }
+  }, [addMoneyFromPayPal]);
+
   return (
     <AddMoney
       handleInputChange={handleInputChange}
@@ -195,6 +223,11 @@ const AddMoneyContainer = () => {
       handleSubmit={handleSubmit}
       clearError={clearError}
       clearAddMoneyData={clearAddMoneyData}
+      setAddMoneyData={setAddMoneyData}
+      handlePullPayPal={handlePullPayPal}
+      addMoneyFromPayPal={addMoneyFromPayPal}
+      handleSubmitPayPal={handleSubmitPayPal}
+      payPalOperationFees={payPalOperationFees}
     />
   );
 };

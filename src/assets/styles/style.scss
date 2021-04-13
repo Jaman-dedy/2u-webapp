@@ -11,6 +11,9 @@
 @import 'services-container';
 @import 'user-phone-number';
 @import 'empty-store';
+@import 'flag-wrapper';
+@import 'react-tel-input';
+@import 'innerOptions';
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -265,7 +268,7 @@ h5 {
   min-width: 0;
 }
 .ui.input {
-  border: 1px solid #cfcfcf;
+  // border: 1px solid #cfcfcf;
   background: #ffffff;
   border-radius: 4px;
   input {

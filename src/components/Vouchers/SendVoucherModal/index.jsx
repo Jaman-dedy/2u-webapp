@@ -231,7 +231,10 @@ const SendMoneyModal = ({ SendVoucherModal }) => {
                       placeholder={global.translate('Amount', 116)}
                       onChange={onOptionsChange}
                       value={form.amount || null}
-                      style={{ width: '198px' }}
+                      style={{
+                        width: '198px',
+                        border: '1px solid #cfcfcf',
+                      }}
                     />
                   </div>
                 </div>

@@ -13,6 +13,9 @@
   margin: auto;
 }
 .add-money-container {
+  .ui.fluid.input {
+    border: 1px solid #cfcfcf !important;
+  }
   margin: 0 auto;
   display: block;
   width: 100%;
@@ -93,14 +96,23 @@
       width: 100%;
       display: flex;
       justify-content: space-between;
+      input {
+        border: 1px solid #cfcfcf !important;
+      }
 
       .amount-credit-card-input {
         width: 70%;
+      }
+      .amount-pay-pal-input {
+        width: 55%;
+      }
+      .amount-currency-input {
+        height: 44px;
+        width: 43%;
         input {
-          border: none;
+          border: 1px solid #cfcfcf !important;
         }
       }
-
       .currency {
         width: 25%;
         height: 44px;
@@ -120,6 +132,7 @@
         width: 18% !important;
         input {
           text-align: center;
+          border: 1px solid #cfcfcf !important;
         }
       }
       .credit-card-type {
@@ -135,6 +148,9 @@
     }
 
     .expiry-date {
+      input {
+        border: 1px solid #cfcfcf !important;
+      }
       display: flex;
       margin-bottom: 10px;
 

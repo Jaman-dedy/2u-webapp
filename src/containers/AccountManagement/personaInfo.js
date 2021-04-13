@@ -1,20 +1,33 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import moment from 'moment';
 
+import setPhonePrimary from 'redux/actions/users/setPrimaryPhone';
 import saveUserDataAction from 'redux/actions/userAccountManagement/saveUserData';
 import rawCountries from 'utils/countries';
 import rawNationalities from 'utils/nationalities';
 import sendOTPAction from 'redux/actions/users/sendOTP';
+import getUserProfessionAction from 'redux/actions/users/getProfession';
+import isFileImage from 'utils/isFileImage';
+import uploadDocs from 'helpers/uploadDocs';
+import updateUserPhoneListAction from 'redux/actions/userAccountManagement/updateUserPhoneList';
+import setPrimaryEmail from 'redux/actions/users/setPrimaryEmail';
+import sendEmailAction from 'redux/actions/sendEmail';
 
 export default () => {
-  const { userData } = useSelector(({ user }) => user);
-  const { saveUserData } = useSelector(
+  const { userData, primaryPhone, primaryEmail } = useSelector(
+    ({ user }) => user,
+  );
+  const { saveUserData, updateUserPhoneList } = useSelector(
     ({ userAccountManagement }) => userAccountManagement,
   );
 
   const { loading, success } = saveUserData;
+  const { data } = userData;
+  const { loading: settingPrimaryPhone } = primaryPhone;
+  const { loading: settingPrimaryEmail } = primaryEmail;
 
   const dispatch = useDispatch();
   const [currentOption, setCurrentOption] = useState(null);
@@ -30,6 +43,10 @@ export default () => {
   const [phoneValue, setPhoneValue] = useState(null);
   const [openPhoneModal, setOpenPhoneModal] = useState(false);
   const [formEmail, setFormEmail] = useState(null);
+  const [OTP, setOTP] = useState('');
+  const [professionOptions, setProfessionOptions] = useState(null);
+  const [openEmailModal, setOpenEmailModal] = useState(false);
+  const [userIdUrlData, setUserIdUrlData] = useState(null);
   const [personalInfoData, setPersonalInfoData] = useState({
     FirstName: '',
     LastName: '',
@@ -44,7 +61,12 @@ export default () => {
     SpouseName: '',
   });
 
-  const { sendOTP } = useSelector(({ user }) => user);
+  const {
+    sendOTP,
+    professionList,
+    language: { preferred },
+  } = useSelector(({ user }) => user);
+  const { sendEmail } = useSelector(({ email }) => email);
 
   const countries = rawCountries.map(({ text, flag, key }) => ({
     CountryName: text,
@@ -71,26 +93,26 @@ export default () => {
     }
   }, [success]);
   useEffect(() => {
-    if (userData.data) {
+    if (data) {
       setSelectedCountry(
         countries.find(
           ({ CountryCode }) =>
             CountryCode ===
-            userData.data?.UserExtraKYC.CountryOfBirth.toLowerCase(),
+            data?.UserExtraKYC.CountryOfBirth.toLowerCase(),
         ),
       );
     }
-  }, [userData]);
+  }, [data]);
   useEffect(() => {
-    if (userData.data) {
+    if (data) {
       setNationality(
         nationalities.find(
           ({ CountryCode }) =>
-            CountryCode === userData.data?.UserExtraKYC.Nationality,
+            CountryCode === data?.UserExtraKYC.Nationality,
         ),
       );
     }
-  }, [userData]);
+  }, [data]);
 
   useEffect(() => {
     setPersonalInfoData({
@@ -106,6 +128,26 @@ export default () => {
       });
     }
   }, [selectedCountry]);
+
+  useEffect(() => {
+    if (!professionList.data) {
+      getUserProfessionAction({ Language: preferred })(dispatch);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (professionList.data) {
+      setProfessionOptions(
+        professionList.data.map(profession => {
+          return {
+            key: profession.ProfessionNumber,
+            text: profession.ProfessionName,
+            value: profession.ProfessionNumber,
+          };
+        }),
+      );
+    }
+  }, [professionList]);
 
   const clearError = name => {
     setErrors({
@@ -149,7 +191,7 @@ export default () => {
       MotherFName: personalInfoData?.MotherFName,
       Nationality: personalInfoData?.Nationality,
       CountryOfBirth: personalInfoData?.CountryOfBirth,
-      Profession: '01',
+      Profession: currentOption.toString(),
       SpouseName: personalInfoData?.SpouseName,
       CityOfBirth: personalInfoData?.CityOfBirth,
       DateOfBirth: personalInfoData.DateOfBirth,
@@ -160,7 +202,6 @@ export default () => {
   };
 
   useEffect(() => {
-    const { data } = userData;
     if (data) {
       setPersonalInfoData({
         FirstName: data.FirstName,
@@ -176,7 +217,7 @@ export default () => {
         Nationality: nationality?.CountryCode,
       });
     }
-  }, [userData]);
+  }, [data]);
   useEffect(() => {
     if (nationality) {
       setPersonalInfoData({
@@ -207,8 +248,68 @@ export default () => {
   const handleSendOTP = () => {
     sendOTPAction(phoneValue)(dispatch);
   };
+  useEffect(() => {
+    if (sendEmail.data) {
+      setOpenEmailModal(false);
+    }
+  }, [sendEmail]);
   const handleSubmitEmail = () => {
-    // sendEmailAction(formEmail.email)(dispatch);
+    const EmailData = {
+      PID: data?.PID,
+      Email: formEmail.email,
+      Category: '1',
+    };
+    sendEmailAction(EmailData)(dispatch);
+  };
+
+  const handleSetPrimary = phone => {
+    setPhonePrimary({ PhoneNumber: phone })(dispatch);
+  };
+  const handleSetEmailPrimary = email => {
+    setPrimaryEmail({ Email: email })(dispatch);
+  };
+
+  const onImageChange = ({ target }) => {
+    const { name, files, value } = target;
+
+    const file = (files && files[0]) || (value && value[0]);
+
+    if (file) {
+      if (isFileImage(file)) {
+        uploadDocs(name, file, data, '/UploadUserPicture').then(
+          res => {
+            setUserIdUrlData(res);
+          },
+        );
+      } else
+        toast.error(
+          global.translate('Please, choose an image format', 2056),
+        );
+    }
+  };
+
+  useEffect(() => {
+    if (OTP.length === 6) {
+      const data = {
+        OTP: OTP,
+        PhoneNumber: phoneValue,
+        Category: '1',
+        CountryCode: 'rw',
+        Phones: [],
+      };
+      updateUserPhoneListAction(data)(dispatch);
+    }
+  }, [OTP]);
+
+  const handleDelete = (e, phone) => {
+    e.stopPropagation();
+    const newPhoneList = data?.Phones?.filter(
+      phoneObject =>
+        phoneObject.Phone.toString() !== phone.toString(),
+    );
+    updateUserPhoneListAction({ Phones: [...newPhoneList] })(
+      dispatch,
+    );
   };
 
   return {
@@ -217,7 +318,6 @@ export default () => {
     errors,
     handleSubmit,
     handleInputChange,
-    userData,
     cropImgState,
     setCropImgState,
     currentOption,
@@ -245,5 +345,19 @@ export default () => {
     handleEmailInputChange,
     handleSubmitEmail,
     formEmail,
+    professionOptions,
+    handleSetPrimary,
+    onImageChange,
+    settingPrimaryPhone,
+    // handlePhoneInputChange,
+    OTP,
+    handleSetEmailPrimary,
+    settingPrimaryEmail,
+    sendEmail,
+    setOpenEmailModal,
+    openEmailModal,
+    updateUserPhoneList,
+    setOTP,
+    handleDelete,
   };
 };

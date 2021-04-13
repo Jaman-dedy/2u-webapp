@@ -1,14 +1,14 @@
 /* eslint-disable react/no-unescaped-entities */
-import './style.scss';
-import 'assets/styles/spinner.scss';
-
 import PropTypes from 'prop-types';
 import React from 'react';
 import PhoneInput from 'react-phone-input-2';
 import { Link } from 'react-router-dom';
 import { Form } from 'semantic-ui-react';
 import { useSelector } from 'react-redux';
+
 import Feedback from 'components/common/Feedback/Feedback';
+import 'assets/styles/spinner.scss';
+import './style.scss';
 
 const LoginForm = ({
   onSubmit,
@@ -50,7 +50,7 @@ const LoginForm = ({
               <PhoneInput
                 enableSearch
                 name="phoneNumber"
-                country={userLocationData?.CountryCode ?? 'cm'}
+                country={userLocationData?.CountryCode ?? 'rw'}
                 placeholder="e.g.: 788 000 000"
                 value={phoneValue}
                 onChange={phone => setPhoneValue(phone)}

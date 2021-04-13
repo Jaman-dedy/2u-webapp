@@ -2,6 +2,11 @@
   margin: 10px 0;
   min-width: 20px !important;
   position: relative;
+  .wrap-languages {
+    input {
+      border: 1px solid #cfcfcf !important;
+    }
+  }
   img.h-language {
     position: absolute;
     top: -4px;

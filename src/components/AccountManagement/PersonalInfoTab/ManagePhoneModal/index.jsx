@@ -8,12 +8,14 @@ import {
   Image,
   Table,
   Loader,
+  Input,
 } from 'semantic-ui-react';
 import PhoneInput from 'react-phone-input-2';
 
 import AddPhoneIcon from 'assets/images/profile/add-phone.svg';
 import './style.scss';
 import InfoMessage from 'components/common/Alert/InfoMessage';
+import PINInput from 'components/common/PINInput';
 
 const ManagePhoneModal = ({
   open,
@@ -26,15 +28,33 @@ const ManagePhoneModal = ({
     setPhoneValue,
     sendOTP,
     handleSendOTP,
+    handleSetPrimary,
+    settingPrimaryPhone,
+    OTP,
+    updateUserPhoneList,
+    setOTP,
+    handleDelete,
   } = personalInfo;
 
   const [addingPhone, setIAddingPhone] = useState(false);
   const [sendOtp, setSendOtp] = useState(false);
+  const [currentPhone, setCurrentPhone] = useState(null);
+  const { loading, success, error } = updateUserPhoneList;
+
   useEffect(() => {
     if (sendOTP.success) {
       setSendOtp(true);
     }
   }, [sendOTP]);
+  useEffect(() => {
+    if (success) {
+      setSendOtp(false);
+      setIAddingPhone(false);
+    }
+  }, [success]);
+  const handleClick = phone => {
+    setCurrentPhone(phone);
+  };
   return (
     <Modal
       onOpen={() => setOpen(true)}
@@ -74,10 +94,41 @@ const ManagePhoneModal = ({
                     <Table.Cell
                       textAlign="right"
                       className="set-primary"
+                      onClick={() => {
+                        handleSetPrimary(phone.Phone);
+                        handleClick(phone.Phone);
+                      }}
                     >
                       {phone.Primary !== 'YES'
                         ? global.translate('Set as primary')
                         : null}
+                      &nbsp;|&nbsp;{' '}
+                      <span
+                        onClick={e => {
+                          handleDelete(e, phone.Phone);
+                          handleClick(phone.Phone);
+                        }}
+                      >
+                        {global.translate('Remove')}
+                      </span>
+                      {loading && currentPhone === phone.Phone && (
+                        <Loader
+                          size="small"
+                          active
+                          inline
+                          className="otp-loader"
+                        />
+                      )}
+                      {phone.Primary !== 'YES' &&
+                      settingPrimaryPhone &&
+                      currentPhone === phone.Phone ? (
+                        <Loader
+                          size="small"
+                          active
+                          inline
+                          className="otp-loader"
+                        />
+                      ) : null}
                     </Table.Cell>
                   </Table.Row>
                 ))}
@@ -88,7 +139,6 @@ const ManagePhoneModal = ({
                 className="btn-add-phone"
                 onClick={() => setIAddingPhone(true)}
               >
-                {' '}
                 <Image src={AddPhoneIcon} />{' '}
                 {global.translate('Add phone number')}
               </Button>
@@ -148,6 +198,12 @@ const ManagePhoneModal = ({
               <div className="otp-text">
                 {global.translate('OTP')}
               </div>
+              <PINInput
+                type="text"
+                numberOfInputs={6}
+                onChange={setOTP}
+                value={OTP}
+              />
               <div className="otp-description">
                 {global.translate(
                   'It may take a moment to receive your code. Haven’t receive it yet?',
@@ -157,7 +213,7 @@ const ManagePhoneModal = ({
                     {' '}
                     {global.translate('Resend a new code')}
                   </span>
-                  {sendOTP.loading && (
+                  {loading && (
                     <Loader
                       size="small"
                       active

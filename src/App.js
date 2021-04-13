@@ -18,6 +18,7 @@ import {
 import { toast, ToastContainer } from 'react-toastify';
 import { Button, Modal } from 'semantic-ui-react';
 import moment from 'moment';
+import 'react-phone-input-2/lib/style.css'
 
 import ChatModal from 'components/Chat/ChatModal';
 import UserLeaveConfirmation from 'components/common/UserConfirmation';

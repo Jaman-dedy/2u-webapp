@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Image } from 'semantic-ui-react';
@@ -8,8 +8,15 @@ import ShareImg from 'assets/images/profile/share-img.svg';
 import './style.scss';
 import formatNumber from 'utils/formatNumber';
 import Img from 'components/common/Img';
+import UploadImgButton from 'components/common/uploadImgButton';
+import validateImg from 'helpers/image/validateImg';
+import UserImg from 'assets/images/profile/user.svg';
+import Thumbnail from 'components/common/Thumbnail';
 
-const UserDetails = ({ userData }) => {
+const UserDetails = ({ userData, userDetails }) => {
+  const [isImgCorrect, setIsImgCorrect] = useState(false);
+  const { onImageChange, userIdUrlData, uploadingImg } = userDetails;
+  const [hasError, setHasError] = useState(false);
   const { language: { preferred } = {} } = useSelector(
     ({ user }) => user,
   );
@@ -18,33 +25,66 @@ const UserDetails = ({ userData }) => {
     wallet => wallet.Default === 'YES',
   );
 
+  useEffect(() => {
+    if (userData?.PictureURL) {
+      validateImg(userData?.PictureURL).then(
+        function fulfilled(img) {
+          setIsImgCorrect(true);
+        },
+
+        function rejected() {
+          setIsImgCorrect(false);
+        },
+      );
+    }
+  }, [userData]);
+
   return (
     <div className="user-details">
       <div>
         <div>
-          <div className="upload-images">
-            <Img
-              src={userData?.PictureURL}
-              compress
-              format="png"
-              hasError
-              circular
-            />
-            <Image
-              className="upload-action"
-              src={UploadImg}
-              circular
-            />
-          </div>
-
+            <div className="upload-images">
+              <Thumbnail
+                avatar={
+                  userIdUrlData?.MediaSourceURL ||
+                  userData?.PictureURL
+                }
+                size="medium"
+                height="100px"
+                width="100px"
+                name={userData && userData.FirstName}
+                secondName={userData && userData.LastName}
+                circular
+                hasError={hasError}
+                setHasError={setHasError}
+                circular
+                className="header_2u_avatar"
+                style={{
+                  height: '91px',
+                  width: '100px',
+                  marginRight: 0,
+                  objectFit: 'cover',
+                  color: 'white',
+                }}
+              />
+              <UploadImgButton
+                name="UserProofOfAddressURL"
+                onChooseFile={onImageChange}
+                img
+                src={UploadImg}
+                circular
+                loading={uploadingImg}
+              />
+            </div>
+           
           <h3>
             {userData?.FirstName}&nbsp;{userData?.LastName}
           </h3>
-          <div className="verified-user">
-            {userData?.AccountVerified === 'YES'
-              ? global.translate('Verified')
-              : null}
-          </div>
+          {userData?.AccountVerified === 'YES'? (
+            <div className="verified-user">
+            {global.translate('Verified')}
+          </div> 
+          ): null}
           <div className="list-items">
             <div className="user-contact">
               {userData?.MainPhone && `+${userData?.MainPhone}`}
@@ -80,9 +120,11 @@ const UserDetails = ({ userData }) => {
 
 UserDetails.propTypes = {
   userData: PropTypes.objectOf(PropTypes.any),
+  userDetails: PropTypes.objectOf(PropTypes.any),
 };
 UserDetails.defaultProps = {
   userData: {},
+  userDetails: {},
 };
 
 export default UserDetails;

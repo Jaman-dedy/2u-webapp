@@ -21,6 +21,7 @@ import './style.scss';
 import Img from 'components/common/Img';
 import DangerMessage from 'components/common/Alert/DangerMessage';
 import UploadImgButton from 'components/common/uploadImgButton';
+import PreviewImgModal from 'components/common/PreviewImgModal';
 
 const IdentityModal = ({
   open,
@@ -173,9 +174,11 @@ const IdentityModal = ({
                 src={
                   userIdUrlData?.MediaSourceURL || userData?.UserIDURL
                 }
+                not_rounded
                 compress
                 format="png"
                 className="user-doc-img"
+                style={{ width: '100%', height: '217px' }}
               />
             </div>
           ) : (
@@ -204,6 +207,13 @@ const IdentityModal = ({
           </Button>
         </div>
       </Modal.Content>
+      <PreviewImgModal
+        setOpen={setOpenPreview}
+        open={openPreview}
+        imgToPreview={
+          userIdUrlData?.MediaSourceURL || userData?.UserIDURL
+        }
+      />
     </Modal>
   );
 };

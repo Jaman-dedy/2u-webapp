@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Form } from 'semantic-ui-react';
 import countries from 'utils/countryCodes';
 import SelectCountryCode from 'components/common/SelectCountryCode';
+import './style.scss';
 
 const PhoneNUmberForm = ({
   onChange,

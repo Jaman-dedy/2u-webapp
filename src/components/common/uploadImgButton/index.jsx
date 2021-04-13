@@ -35,10 +35,10 @@ const UploadImgButton = ({
       <ImageCroper
         open={open}
         setOpen={setOpen}
-        loading={loading}
         file={file}
         uploadImage={upload}
         chooseImage={handleImageSelect}
+        loading={loading}
       />
       <div
         className="doc-placeholder"

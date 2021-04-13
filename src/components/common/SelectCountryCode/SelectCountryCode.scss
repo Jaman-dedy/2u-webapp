@@ -4,6 +4,12 @@
   .trigger {
     width: 40px;
   }
+  .dropdown-flag {
+    display: flex;
+    .caret.down.icon.inline {
+      margin-top: 7px;
+    }
+  }
   .flag-placeholder {
     margin-top: 8px;
     font-size: 16px;
