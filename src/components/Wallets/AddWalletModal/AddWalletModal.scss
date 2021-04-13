@@ -98,6 +98,9 @@
   }
   .wallet_input_row {
     position: relative;
+    .ui.input {
+      border: 1px solid #fcfcfc !important;
+    }
   }
   .wallet-row-actions {
     position: absolute;
@@ -109,11 +112,9 @@
     color: #fff;
   }
   input {
-    border-style: none;
     padding: 17px;
     height: 44px;
     font-size: 15px;
-    border: none !important;
 
     &::placeholder {
       font-style: normal;
@@ -124,7 +125,6 @@
     }
 
     &:focus {
-      border: 0.1px solid #ea5726 !important;
       border-radius: 0 !important;
     }
   }

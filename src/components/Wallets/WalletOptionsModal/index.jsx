@@ -53,7 +53,6 @@ const WalletOptionsModal = ({
               {global.translate('Set as default', 93)}
             </span>
           </button>
-
           <Button
             as={Link}
             to={{
@@ -71,7 +70,6 @@ const WalletOptionsModal = ({
               {global.translate('View transactions', 143)}
             </span>
           </Button>
-
           <button className="option" type="button">
             <span>
               <Image src={VisaIcon} />
@@ -101,11 +99,11 @@ const WalletOptionsModal = ({
             <span>
               <Image src={AddWalletIcon} />
             </span>
+
             <span className="desc">
               {global.translate('Add wallets', 111)}
             </span>
           </button>
-
           <button
             className="option"
             type="button"
@@ -118,7 +116,6 @@ const WalletOptionsModal = ({
               {global.translate('Rename a wallet', 2051)}
             </span>
           </button>
-
           <button className="option" type="button">
             <span>
               <Image src={AddMoneyIcon} />
@@ -128,7 +125,6 @@ const WalletOptionsModal = ({
               {global.translate('Add money to your wallet', 173)}{' '}
             </span>
           </button>
-
           <button className="option" type="button">
             <span>
               <Image src={CurrencyExchangeIcon} />
