@@ -312,7 +312,7 @@ const ManageContacts = ({
   }, [allContacts, isSendingMoney]);
 
   useEffect(() => {
-    if (history.location.pathname.startsWith('/contact/')) {
+    if (history.location.search === '?type=INTERNAL') {
       setIsDetail(true);
     }
   }, []);
