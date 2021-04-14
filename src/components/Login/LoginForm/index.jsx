@@ -20,6 +20,16 @@ const LoginForm = ({
   onKeyDown,
 }) => {
   const [showOption, setShowOptions] = useState(false);
+  const [errors, setErrors] = useState(null);
+  useEffect(() => {
+    if (error) {
+      setErrors(
+        Array.isArray(error?.error)
+          ? error?.error[0] || {}
+          : error?.error || {},
+      );
+    }
+  }, [error]);
   useEffect(() => {
     if (error) {
       setShowOptions(true);
@@ -27,11 +37,7 @@ const LoginForm = ({
   }, [error]);
   return (
     <>
-      {error && (
-        <AlertDanger
-          message={global.translate('Wrong username or password')}
-        />
-      )}
+      {error && <AlertDanger message={errors?.Description} />}
 
       <Form
         onSubmit={onSubmit}

@@ -13,6 +13,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Grid, Image } from 'semantic-ui-react';
 import LogoColored from 'assets/images/2u-money-logo.svg';
+import AdPlaceholderDefault from 'assets/images/AD_V1.jpg';
 import getUserDailyEvent from 'redux/actions/authWrapper';
 import SelectLanguage from 'components/common/SelectLanguage';
 import validateImg from 'helpers/image/validateImg';
@@ -79,8 +80,19 @@ const AuthWrapper = ({ children, rightHeadlineText, authHeader }) => {
       }}
       className="wrapper"
     >
-      <div className="os-header">
-        {!isAppDisplayedInWebView() && (
+      <div className="wrap-event">
+        {eventUrl ? (
+          <Image src={eventUrl} />
+        ) : (
+          <Image src={AdPlaceholderDefault} />
+        )}
+        <div className="overlay-text">
+          <h1>Welcome to 2U money</h1>
+          <p>{rightHeadlineText}</p>
+        </div>
+      </div>
+      <div className="form-wrapper">
+        <div className="os-header">
           <div className="os-container">
             <Grid columns="two">
               <Grid.Row>
@@ -122,21 +134,21 @@ const AuthWrapper = ({ children, rightHeadlineText, authHeader }) => {
               </Grid.Row>
             </Grid>
           </div>
-        )}
-      </div>
-      <div className="wrap-auth-section">
-        <div className="os-container">
-          <div className="auth-section">
-            <div className="wrap-auth">
-              <h2 className="right-sub-header">
-                {rightHeadlineText}
-              </h2>
-              {authHeader && (
-                <div className="auth-sub-text">
-                  {global.translate(authHeader)}
-                </div>
-              )}
-              {children}
+        </div>
+        <div className="wrap-auth-section">
+          <div className="os-container">
+            <div className="auth-section">
+              <div className="wrap-auth">
+                <h2 className="right-sub-header">
+                  {rightHeadlineText}
+                </h2>
+                {authHeader && (
+                  <div className="auth-sub-text">
+                    {global.translate(authHeader)}
+                  </div>
+                )}
+                {children}
+              </div>
             </div>
           </div>
         </div>

@@ -1,3 +1,7 @@
+.wrapper {
+  display: flex;
+  flex-direction: row !important;
+}
 .os-header {
   z-index: 2;
   height: 80px;
@@ -10,11 +14,14 @@
     rgba(237, 241, 251, 0.9122023809523809) 100%
   );
   padding: 5px 0;
-  left: 0;
-  width: 100%;
+  right: 0;
+  width: 42%;
   .logo {
     width: 180px;
   }
+}
+.form-wrapper {
+  width: 45%;
 }
 .os-container {
   width: 100%;
@@ -28,8 +35,6 @@
   align-items: center;
 }
 .wrap-auth {
-  background: #ffffff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.075);
   padding: 30px;
   border-radius: 4px;
   flex-grow: 0;
@@ -53,10 +58,33 @@
   }
 }
 .wrap-event {
-  padding: 0 45px 0 0;
+  width: 60% !important;
+  position: relative;
   img {
     width: 100%;
-    height: auto;
+    height: 100vh;
+    object-fit: cover;
+    box-shadow: none !important;
+  }
+}
+
+.overlay-text {
+  position: absolute;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  padding-left: 7%;
+  padding-right: 20px;
+  width: 100%;
+  height: 100%;
+  padding-top: 48%;
+
+  h1 {
+    font-size: 45px;
+  }
+
+  p {
+    font-size: 18px;
   }
 }
 .btn-auth {
@@ -127,5 +155,16 @@
   }
   .hide-on-small {
     display: none !important;
+  }
+  .wrap-event {
+    display: none;
+  }
+
+  .form-wrapper {
+    width: 100%;
+  }
+
+  .os-header {
+    width: 100%;
   }
 }

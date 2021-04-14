@@ -1,6 +1,9 @@
 .form-information {
   .user-phone-number {
     .react-tel-input {
+      .form-control {
+        margin-left: 28px;
+      }
       .flag-dropdown {
         border: none !important;
       }
