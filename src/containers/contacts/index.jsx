@@ -163,7 +163,7 @@ const Index = () => {
       Currency: currency,
       FirstName: form.firstName,
       LastName: form.lastName,
-      PhonePrefix: phonePrefix,
+      PhonePrefix: phonePrefix.replace('+', ''),
       PhoneNumber: phoneNumber,
 
       Phone: form.phoneNumber,

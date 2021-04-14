@@ -14,6 +14,7 @@ import LoaderComponent from 'components/common/Loader';
 import Message from 'components/common/Message';
 import formatNumber from 'utils/formatNumber';
 import TransactionEntity from '../SendMoney/TransactionEntity';
+import './style.scss';
 
 const ExchangeCurrencyModal = ({
   open,
@@ -85,6 +86,7 @@ const ExchangeCurrencyModal = ({
         setOpen(false);
         resetState();
       }}
+      className="currency-exchange-container"
       open={open}
     >
       <Modal size="small" open={open} onOpen={() => setOpen(!open)}>

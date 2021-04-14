@@ -39,8 +39,6 @@ const WalletCarousel = ({
     state => state.user,
   );
 
-  console.log(`myWallets`, myWallets);
-
   const [selectedWallet, setSelectedWallet] = useState({
     AccountNumber: '',
     CurrencyCode: '',
@@ -50,7 +48,6 @@ const WalletCarousel = ({
     Default: '',
   });
 
-  console.log(`selectedWallet`, selectedWallet);
   useEffect(() => {
     if (Object.keys(selectedWallet).length !== 0) {
       setNextButton(true);

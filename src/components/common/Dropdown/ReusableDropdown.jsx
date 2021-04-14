@@ -22,8 +22,6 @@ const ReusableDrowdown = ({
 }) => {
   let name;
 
-  console.log(`options`, options);
-
   const newOptions =
     options &&
     options?.map(option => {
@@ -125,8 +123,6 @@ const ReusableDrowdown = ({
     newCurrentOption = currentOption;
   }
 
-  console.log(`newOptions`, newOptions);
-
   const wrapperId = `input-${Math.ceil(Math.random() * 10000)}`;
   const [filteredOptions, setFilteredOptions] = useState(null);
   const [open, setOpen] = useState(false);
@@ -150,7 +146,6 @@ const ReusableDrowdown = ({
       document.removeEventListener('mousedown', checkClickInput);
     };
   });
-  console.log(`filteredOptions`, filteredOptions);
   return (
     <>
       <div

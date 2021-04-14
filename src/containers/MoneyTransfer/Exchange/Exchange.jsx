@@ -48,6 +48,7 @@ const CurrencyExchangeContainer = ({
       setForm({
         ...form,
         sourceWallet: DefaultWallet?.AccountNumber,
+        user2wallets: DefaultWallet?.AccountNumber,
       });
     }
   }, [DefaultWallet]);

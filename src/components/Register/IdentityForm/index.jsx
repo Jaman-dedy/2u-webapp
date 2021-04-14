@@ -22,8 +22,6 @@ const IdentityForm = ({
     userLocationData,
   } = screenOne;
 
-  console.log(`userLocationData`, userLocationData);
-
   return (
     <Container>
       <Form className="form-information" autoComplete="off">

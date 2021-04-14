@@ -11,11 +11,11 @@ import {
 } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import LoaderComponent from 'components/common/Loader';
-import './modal.scss';
 import Thumbnail from 'components/common/Thumbnail';
 
 import VerifiedIcon from 'assets/images/verified.png';
 import SelectCountryCode from 'components/common/SelectCountryCode';
+import './modal.scss';
 
 const AddNewContactModal = ({
   open,
@@ -280,7 +280,6 @@ const AddNewContactModal = ({
             {global.translate('Add External Contact', 1714)}
           </Modal.Header>
         )}
-
         {renderContent()}
         <Modal.Actions>
           <>

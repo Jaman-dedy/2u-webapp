@@ -219,7 +219,7 @@ const SendCashModal = ({
       {transactionType === 'CASH_TRANSACTION' && destinationContact && (
         <Modal.Header centered className="modal-title">
           {isEditing && global.translate(`Edit Transaction`, 2035)}
-          {!isEditing && global.translate(`Send cash to`, 2259)}
+          {!isEditing && global.translate(`Send cash to`, 2259)}&nbsp;
           {!isEditing && (
             <strong>{destinationContact.FirstName}</strong>
           )}
