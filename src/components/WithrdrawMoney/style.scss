@@ -10,9 +10,18 @@
     justify-content: space-between;
     .left-side {
       width: 48%;
+      .load-data {
+        img {
+          width: 100%;
+        }
+      }
       .amount-input {
         margin-bottom: 15px;
+        .ui.input {
+          border: 1px solid#cfcfcf;
+        }
         .ui.right.labeled.input {
+          height: 45px;
           width: 100%;
           .ui.basic.label.label {
             border: none;
@@ -24,6 +33,9 @@
         input {
           width: 100%;
           height: 46px;
+        }
+        .form-control {
+          padding-left: 20px;
         }
       }
       .select-day {

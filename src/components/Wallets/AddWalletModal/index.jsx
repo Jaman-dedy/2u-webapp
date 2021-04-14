@@ -98,6 +98,8 @@ const AddWalletModal = ({
     setForm(values);
   };
 
+  console.log(`options`, options);
+
   return (
     <Modal
       size="small"
@@ -141,7 +143,7 @@ const AddWalletModal = ({
                         fluid
                         search
                         selection
-                        options={options}
+                        options={options && options}
                         name="Currency"
                         value={inputField.Currency}
                         onChange={(event, data) => {
@@ -190,6 +192,7 @@ const AddWalletModal = ({
             {global.translate('Cancel', 86)}
           </Button>
           <Button
+            positive
             className="add"
             onClick={() => {
               form.forEach((item, index) => {

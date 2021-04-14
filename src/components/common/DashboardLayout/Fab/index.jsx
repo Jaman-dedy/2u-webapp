@@ -11,6 +11,7 @@ const Fab = ({
   goToGetPaid,
   goToQuickPay,
   goToSendMoney,
+  goToWithdraw,
 }) => {
   const [showOption, setShowOption] = useState(false);
 
@@ -37,9 +38,17 @@ const Fab = ({
             </li>
             <li>
               <span className="fab-label">
-                {global.translate('Send cash', 1948)}
+                {global.translate('Send cash', 915)}
               </span>
               <div onClick={goToSendCash} className="fab-icon-holder">
+                <Icon name="money bill alternate" />
+              </div>
+            </li>
+            <li>
+              <span className="fab-label">
+                {global.translate('Withdraw money')}
+              </span>
+              <div onClick={goToWithdraw} className="fab-icon-holder">
                 <Icon name="money bill alternate" />
               </div>
             </li>

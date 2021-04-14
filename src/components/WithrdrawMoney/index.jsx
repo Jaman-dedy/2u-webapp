@@ -11,6 +11,8 @@ import WalletDropDown from 'components/common/WalletDropDown';
 import PeopleWithdrawImg from 'assets/images/people-withdraw.svg';
 import loadConfirmationImg from 'assets/images/withdraw/load-confirmation.svg';
 import CustomDropdown from 'components/common/Dropdown/CountryDropdown';
+import LoadWalletImg from 'assets/images/withdraw/load-wallet.svg';
+import LoadCountryImg from 'assets/images/withdraw/load-country.svg';
 import './style.scss';
 import PinModal from './PinModal';
 
@@ -47,6 +49,7 @@ const WithdrawMoney = ({
       setPhoneValue(userData?.MainPhone);
     }
   }, [userData]);
+  console.log(`walletList`, walletList);
   return (
     <DashboardLayout>
       <WelcomeBar>
@@ -55,7 +58,7 @@ const WithdrawMoney = ({
             <GoBack style onClickHandler={onClickHandler} />
           </div>
           <h2 className="head-title">
-            {global.translate('Withdraw your money', 142)}
+            {global.translate('Withdraw your money')}
           </h2>
           <div className="clear" />
         </div>
@@ -68,33 +71,59 @@ const WithdrawMoney = ({
                 'Withdraw money from a nearby cashpoint',
               )}
             </h3>
-            <div className="withdraw-title">
-              {global.translate('Select wallet')}
-            </div>
-            <div className="wallet-select">
-              <WalletDropDown
-                walletList={walletList}
-                setCurrentOption={setCurrentOption}
-                currentOption={currentOption}
-              />
-            </div>
-            <div className="select-day">
-              <div className="withdraw-title">
-                {global.translate('Pickup country')}
+            {walletList?.length !== 0 ? (
+              <>
+                <div className="withdraw-title">
+                  {global.translate('Select wallet')}
+                </div>
+
+                <div className="wallet-select">
+                  <WalletDropDown
+                    walletList={walletList}
+                    setCurrentOption={setCurrentOption}
+                    currentOption={currentOption}
+                  />
+                </div>
+              </>
+            ) : (
+              <div className="load-data">
+                <Image
+                  src={LoadWalletImg}
+                  className="animate-placeholder"
+                />
               </div>
-              <CustomDropdown
-                options={supportedCountries}
-                currentOption={selectedCountry}
-                onChange={e => {
-                  onCountryChange(e, {
-                    name: 'CountryCode',
-                    value: e.target.value,
-                  });
-                }}
-                search
-                setCurrentOption={setSelectedCountry}
-              />
-            </div>
+            )}
+
+            {supportedCountries ? (
+              <div className="select-day">
+                <div className="withdraw-title">
+                  {global.translate('Pickup country')}
+                </div>
+
+                <CustomDropdown
+                  options={supportedCountries}
+                  currentOption={selectedCountry}
+                  onChange={e => {
+                    onCountryChange(e, {
+                      name: 'CountryCode',
+                      value: e.target.value,
+                    });
+                  }}
+                  search
+                  setCurrentOption={setSelectedCountry}
+                />
+              </div>
+            ) : (
+              <div
+                className="load-data"
+                style={{ marginTop: '10px' }}
+              >
+                <Image
+                  src={LoadCountryImg}
+                  className="animate-placeholder"
+                />
+              </div>
+            )}
             <div>
               <div className="withdraw-title">
                 {global.translate('Amount')}

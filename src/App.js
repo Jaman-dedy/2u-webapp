@@ -1,7 +1,4 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import 'assets/styles/style.scss';
-import 'react-bnb-gallery/dist/style.css';
-import 'react-toastify/dist/ReactToastify.css';
 import { createBrowserHistory } from 'history';
 import PropTypes from 'prop-types';
 import queryString from 'query-string';
@@ -10,6 +7,7 @@ import { ErrorBoundary } from 'react-error-boundary';
 import ReactGA from 'react-ga';
 import IdleTimer from 'react-idle-timer';
 import { useDispatch, useSelector } from 'react-redux';
+import 'react-datepicker/dist/react-datepicker.css';
 import {
   BrowserRouter as Router,
   Route,
@@ -18,8 +16,8 @@ import {
 import { toast, ToastContainer } from 'react-toastify';
 import { Button, Modal } from 'semantic-ui-react';
 import moment from 'moment';
-import 'react-phone-input-2/lib/style.css'
 
+import 'react-phone-input-2/lib/style.css';
 import ChatModal from 'components/Chat/ChatModal';
 import UserLeaveConfirmation from 'components/common/UserConfirmation';
 import InstallApp from 'components/InstallApp';
@@ -57,6 +55,9 @@ import isAuth from 'utils/isAuth';
 import LoadingPage from 'components/LoadingPage';
 import ErrorFallback from './Error';
 import * as serviceWorker from './serviceWorker';
+import 'assets/styles/style.scss';
+import 'react-bnb-gallery/dist/style.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 const { REACT_APP_GOOGLE_ANALYTICS_NUMBER } = process.env;
 const history = createBrowserHistory();

@@ -321,6 +321,18 @@ h5 {
   animation: animate-profile 1.5s infinite;
 }
 
+@keyframes animate-profile {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+
 @media (max-width: 767px) {
   .hide-xs {
     display: none !important;

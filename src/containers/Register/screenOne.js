@@ -41,11 +41,11 @@ export default ({
   }, [phonevalue]);
 
   const handleVerifyPhoneNumber = () => {
-    verifyPhoneNumberAction(`${countryCode}${phoneNumber}`)(dispatch);
+    verifyPhoneNumberAction(phoneNumber)(dispatch);
   };
 
   const handleSendOTP = () => {
-    sendOTPAction(`${countryCode}${phoneNumber}`)(dispatch);
+    sendOTPAction(phoneNumber)(dispatch);
   };
 
   const clearError = ({ target: { name } }) => {
