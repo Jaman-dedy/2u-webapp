@@ -21,7 +21,6 @@ const IdentityForm = ({
     setPhonevalue,
     userLocationData,
   } = screenOne;
-  console.log(`phonevalue`, phonevalue);
 
   return (
     <Container>

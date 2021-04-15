@@ -49,7 +49,6 @@ const WithdrawMoney = ({
       setPhoneValue(userData?.MainPhone);
     }
   }, [userData]);
-  console.log(`walletList`, walletList);
   return (
     <DashboardLayout>
       <WelcomeBar>

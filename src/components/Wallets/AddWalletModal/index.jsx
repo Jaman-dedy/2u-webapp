@@ -98,8 +98,6 @@ const AddWalletModal = ({
     setForm(values);
   };
 
-  console.log(`options`, options);
-
   return (
     <Modal
       size="small"

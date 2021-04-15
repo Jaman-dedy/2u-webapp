@@ -214,66 +214,42 @@ const ReusableDrowdown = ({
               iconPosition="left"
               onChange={({ target: { value } }) => {
                 setFilteredOptions(
-                  newOptions?.filter(({ Title }) =>
-                    Title.toLowerCase().includes(value.toLowerCase()),
+                  newOptions?.filter(option =>
+                    option?.Title.toLowerCase().includes(
+                      value.toLowerCase(),
+                    ),
                   ),
                 );
               }}
             />
           )}
           <Dropdown.Menu scrolling search={search}>
-            {filteredOptions?.map(
-              ({
-                Title,
-                Img,
-                OperatorID,
-                Category,
-                CountryCode,
-                Currency,
-                AccountNumber,
-                OperatorName,
-                WalletQRCode,
-                CurrencyCode,
-                Balance,
-                Value,
-              }) => (
-                <Dropdown.Item
-                  key={Title}
-                  onClick={() => {
-                    setOpen(false);
-                    onChange({
-                      target: {
-                        name,
-                        value: Title,
-                      },
-                    });
-                    setCurrentOption({
-                      Title,
-                      Img,
-                      OperatorID,
-                      Category,
-                      CountryCode,
-                      Currency,
-                      AccountNumber,
-                      OperatorName,
-                      WalletQRCode,
-                      CurrencyCode,
-                      Balance,
-                      Value,
-                    });
-                  }}
-                >
-                  <span className="dropdown-trigger">
-                    <div className="dropdown-wallet">
-                      <Image src={Img} className="inline" />
-                      <div>
-                        <div>{Title}</div>
-                      </div>
+            {filteredOptions?.map(option => (
+              <Dropdown.Item
+                key={option?.Title}
+                onClick={() => {
+                  setOpen(false);
+                  onChange({
+                    target: {
+                      name,
+                      value: option.Title,
+                    },
+                  });
+                  setCurrentOption({
+                    ...option,
+                  });
+                }}
+              >
+                <span className="dropdown-trigger">
+                  <div className="dropdown-wallet">
+                    <Image src={option?.Img} className="inline" />
+                    <div>
+                      <div>{option?.Title}</div>
                     </div>
-                  </span>
-                </Dropdown.Item>
-              ),
-            )}
+                  </div>
+                </span>
+              </Dropdown.Item>
+            ))}
           </Dropdown.Menu>
         </Dropdown.Menu>
       </Dropdown>

@@ -58,11 +58,11 @@ const TransactionLimit = ({ userData }) => {
           </Table.Row>
           <Table.Row>
             <Table.Cell>
-              {global.translate('Maximum amount per day')}
+              {global.translate('Safe special limit')}
             </Table.Cell>
             <Table.Cell />
             <Table.Cell textAlign="right">
-              {TransactionLimits?.MaxTransPerDay}
+              {TransactionLimits?.SafeLimiteSpecial}
             </Table.Cell>
           </Table.Row>
           <Table.Row>
