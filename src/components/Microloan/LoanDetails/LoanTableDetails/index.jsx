@@ -10,7 +10,7 @@ const LoanTableDetails = ({ loan }) => {
           <Table.Cell>
             {global.translate('Loan amount')}
             <div className="amount">
-              {loan?.Currency} <strong>{loan?.CapitalBalance}</strong>{' '}
+              {loan?.Currency} <strong>{loan?.Capital}</strong>{' '}
             </div>
           </Table.Cell>
           <Table.Cell>
@@ -24,7 +24,7 @@ const LoanTableDetails = ({ loan }) => {
           <Table.Cell>
             {global.translate('Monthly payment')}
             <div className="amount">
-              {loan?.Currency} <strong>{loan?.MonthPaid}</strong>{' '}
+              {loan?.Currency} <strong>{loan?.MonthlyPay}</strong>{' '}
             </div>
           </Table.Cell>
           <Table.Cell>

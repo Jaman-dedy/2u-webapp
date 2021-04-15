@@ -15,10 +15,10 @@ const TransactionLimit = ({ userData }) => {
             </Table.HeaderCell>
             <Table.HeaderCell />
             <Table.HeaderCell textAlign="right">
-              <Button className="transaction-button">
+              {/* <Button className="transaction-button"> // don't remove the commented line
                 {' '}
                 {global.translate('Request change limit')}
-              </Button>
+              </Button> */}
             </Table.HeaderCell>
           </Table.Row>
         </Table.Header>
