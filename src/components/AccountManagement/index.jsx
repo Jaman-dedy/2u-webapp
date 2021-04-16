@@ -40,7 +40,8 @@ const Profile = ({
   residenceData,
   onImageChange,
   userDetails,
-  changeUserPresence
+  changeUserPresence,
+  switchAccount,
 }) => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -135,7 +136,7 @@ const Profile = ({
       menuItem: global.translate('Settings'),
       render: () => (
         <Tab.Pane attached={false}>
-          <SettingsTab />
+          <SettingsTab switchAccount={switchAccount} />
         </Tab.Pane>
       ),
     },
@@ -199,6 +200,7 @@ Profile.propTypes = {
   changeDOB: PropTypes.func,
   changeGender: PropTypes.func,
   documents: PropTypes.objectOf(PropTypes.any),
+  switchAccount: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 Profile.defaultProps = {
   userData: {},

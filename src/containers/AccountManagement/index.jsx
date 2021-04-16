@@ -13,6 +13,7 @@ import changeUserPresence from './changeUserPresence';
 import identityConfirmation from './identityConfirmation';
 import residenceData from './residenceData';
 import userDetails from './userDetails';
+import switchAccount from './switchAccount';
 
 const AccountManagementContainer = () => {
   const { userData } = useSelector(({ user }) => user);
@@ -79,6 +80,7 @@ const AccountManagementContainer = () => {
       identityConfirmation={identityConfirmation()}
       residenceData={residenceData()}
       userDetails={userDetails()}
+      switchAccount={switchAccount()}
     />
   );
 };

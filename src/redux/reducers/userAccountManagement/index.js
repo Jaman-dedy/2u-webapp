@@ -1,4 +1,4 @@
-import initialState from 'redux/initial-states/user';
+import initialState from 'redux/initial-states/userAccountManagement';
 import saveUserDataReducer from './saveUserData';
 import updateUserPhoneListReducer from './updateUserPhoneList';
 import updateUserEmailListReducer from './updateUserEmailList';
@@ -7,6 +7,8 @@ import updatePasswordReducer from './updatePassword';
 import updatePINReducer from './updatePIN';
 import updateDOBReducer from './updateDOB';
 import updateGenderReducer from './updateGender';
+import switchUserAccount from './switchUserAccount';
+import getBusinessType from './getBusinessType';
 
 export default (state = initialState, action = {}) => ({
   ...state,
@@ -18,4 +20,6 @@ export default (state = initialState, action = {}) => ({
   ...updatePasswordReducer(state, action),
   ...updateDOBReducer(state, action),
   ...updateGenderReducer(state, action),
+  ...switchUserAccount(state, action),
+  ...getBusinessType(state, action),
 });
