@@ -1,9 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Table } from 'semantic-ui-react';
+import React, { useState, useCallback } from 'react';
+import { Table, Button } from 'semantic-ui-react';
+import ResetPINModal from 'components/common/ResetPINModal';
+
 import './style.scss';
 
 const SecurityTab = () => {
+  const [openResetModal, setOpenResetModal] = useState(false);
+  const [shouldResetPassword, setShouldResetPassword] = useState(
+    false,
+  );
+
+  const closeResetModalHandler = useCallback(() => {
+    setOpenResetModal(false);
+  }, []);
+
   return (
     <div className="security-container">
       <Table basic="very">
@@ -21,29 +31,49 @@ const SecurityTab = () => {
           <Table.Row>
             <Table.Cell> {global.translate('Password')}</Table.Cell>
             <Table.Cell>
-              {' '}
               {global.translate(
                 "It's a good idea to use a strong password that you don't use elsewhere",
               )}
             </Table.Cell>
             <Table.Cell textAlign="right" className="security-action">
-              {global.translate('Change')}
+              <Button
+                onClick={() => {
+                  setOpenResetModal(true);
+                  setShouldResetPassword(true);
+                }}
+                className="security-action"
+              >
+                {global.translate('Change')}
+              </Button>
             </Table.Cell>
           </Table.Row>
           <Table.Row>
             <Table.Cell> {global.translate('PIN Number')}</Table.Cell>
             <Table.Cell>
-              {' '}
               {global.translate(
-                '4 digit security code for verifying your identity when performing substantial operations such as transactions',
+                'Provide a set 4 digits security code for verifying your identity when performing substantial operations such as transactions',
               )}
             </Table.Cell>
             <Table.Cell textAlign="right" className="security-action">
-              {global.translate('Change')}
+              <Button
+                onClick={() => {
+                  setShouldResetPassword(false);
+                  setOpenResetModal(true);
+                }}
+                className="security-action"
+              >
+                {global.translate('Change')}
+              </Button>
             </Table.Cell>
           </Table.Row>
         </Table.Body>
       </Table>
+      <ResetPINModal
+        open={openResetModal}
+        setOpen={() => setOpenResetModal(true)}
+        close={closeResetModalHandler}
+        isOnResetPassword={shouldResetPassword}
+      />
     </div>
   );
 };

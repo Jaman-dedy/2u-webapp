@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import {
   RESET_PREQUALIFICATION_START,
   RESET_PREQUALIFICATION_SUCCESS,
@@ -25,6 +26,9 @@ export const postResetPasswordPrequalification = data => dispatch => {
           type: RESET_PREQUALIFICATION_START,
         }),
       onSuccess: data => dispatch => {
+        if (Array.isArray(data)) {
+          toast.success(data[0]?.Description);
+        }
         return dispatch({
           type: RESET_PREQUALIFICATION_SUCCESS,
           payload: {
@@ -34,6 +38,9 @@ export const postResetPasswordPrequalification = data => dispatch => {
         });
       },
       onFailure: error => dispatch => {
+        if (Array.isArray(error)) {
+          toast.error(error[0]?.Description);
+        }
         return dispatch({
           type: RESET_PREQUALIFICATION_ERROR,
           payload: {

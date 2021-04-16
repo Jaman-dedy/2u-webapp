@@ -20,7 +20,9 @@ export default data => dispatch =>
         }),
       onSuccess: data => dispatch => {
         if (data[0].Result === 'Success') {
-          toast.success(data[0].Description);
+          if (Array.isArray(data)) {
+            toast.success(data[0].Description);
+          }
           return dispatch({
             type: ENABLE_CREDIT_CARD_SUCCESS,
             payload: {
@@ -37,7 +39,9 @@ export default data => dispatch =>
         });
       },
       onFailure: error => dispatch => {
-        toast.error(error[0].Description);
+        if (Array.isArray(error)) {
+          toast.error(error[0]?.Description);
+        }
         return dispatch({
           type: ENABLE_CREDIT_CARD_ERROR,
           payload: {
