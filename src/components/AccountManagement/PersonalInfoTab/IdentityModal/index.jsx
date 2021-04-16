@@ -96,6 +96,7 @@ const IdentityModal = ({
                 label="Select type"
                 placeholder="Select type"
                 options={options}
+                value={formData.selectedCurrentType}
                 defaultValue={selectedCurrentType}
                 onChange={(target, { name, value }) => {
                   setSelectedCurrentType(value);
@@ -126,8 +127,8 @@ const IdentityModal = ({
                 />
               </div>
             </Form.Group>
-            <Form.Group widths="equal">
-              <div className="info-nationality">
+            <Form.Group style={{maxWidth:'51%'}} >
+              <div className="info-nationality" >
                 <div className="nationality-label">
                   {global.translate('Country of issue')}
                 </div>
@@ -139,13 +140,6 @@ const IdentityModal = ({
                   fluid
                 />
               </div>
-              <Form.Input
-                fluid
-                label="Place of issue"
-                placeholder="Place of issue"
-                name="PlaceOfIssue"
-                onChange={onInputChange}
-              />
             </Form.Group>
           </Form>
         </div>
@@ -198,7 +192,8 @@ const IdentityModal = ({
           >
             {global.translate('Cancel')}
           </Button>
-          <Button
+          <Button 
+            disabled={formData?.IDNumber && selectedCurrentType && selectedDateOfIssue && selectedExpiryDate  ? false : true}
             className="change-button"
             onClick={handleSubmit}
             loading={loading}

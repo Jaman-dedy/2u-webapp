@@ -48,4 +48,30 @@
   .user-status {
     padding-top: 13px;
   }
+  .presence-status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top:15px;
+  }
+  .ui.inline.dropdown>.text{
+    
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 5px;
+       
+  }
+
+ 
+  
+  
+
+  .ui.loading.dropdown>i.icon:after, .ui.loading.dropdown>i.icon:before{
+    margin-left: 5px !important;
+  }
+
+  .ui.dropdown .menu .item{
+    display: flex;
+    flex-direction: row;
+  }
 }

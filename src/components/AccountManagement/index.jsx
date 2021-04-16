@@ -35,12 +35,12 @@ const Profile = ({
   changeDOB,
   changeGender,
   documents,
-  changeUserPresence: { changeUserPresence, loading },
   onOptionChange,
   identityConfirmation,
   residenceData,
   onImageChange,
   userDetails,
+  changeUserPresence
 }) => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -167,6 +167,7 @@ const Profile = ({
           <UserDetails
             userData={userData?.data}
             userDetails={userDetails}
+            changeUserPresence={changeUserPresence}
           />
         )}
 

@@ -145,4 +145,12 @@
       height: 46px;
     }
   }
+
+   
+  .ui.dropdown>.text{
+    line-height: 1.8;
+  }
+  .ui.dropdown>.dropdown.icon:before{
+    line-height: 2;
+  }
 }
