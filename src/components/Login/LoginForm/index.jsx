@@ -95,16 +95,13 @@ const LoginForm = ({
         {showOption && (
           <>
             <div className="from_login_link">
-              {global.translate(
-                'Forgot your Password or your PIN ?',
-                182,
-              )}{' '}
+              {global.translate('Forgot your Password?')}
               <Link to="/reset-password">
                 {global.translate('Click here', 1705)}
               </Link>
             </div>
             <div className="from_login_link">
-              {global.translate('Forgot your Username ?', 2178)}{' '}
+              {global.translate('Forgot your Username ?')}{' '}
               <Link to="/remind-username">
                 {global.translate('Click here', 1705)}
               </Link>

@@ -16,37 +16,33 @@ export default ({
   const [errors, setErrors] = useState({});
   const dispatch = useDispatch();
   const [phoneValue, setPhoneValue] = useState();
-  const { personalId, lastName, phoneNumber } = resetPasswordData;
+  const { personalId, phoneNumber } = resetPasswordData;
   const {
     userLocationData,
     resetPasswordPrequalification,
-    resetPassword,
   } = useSelector(({ user }) => user);
 
+  const formatDate = value => {
+    return `0${value}`.substr(-2);
+  };
+
   const resetPasswordPrequalificationFx = () => {
+    const date = resetPasswordData.DOB;
+
+    const fullDate = `${date?.getFullYear()}-${formatDate(
+      date?.getMonth() + 1,
+    )}-${formatDate(date?.getDate())}`;
+
     const payload = {
       ...resetPasswordData,
-      DOB:
-        resetPassword.DOBSet === 'Yes' ? resetPasswordData.DOB : '',
-      DOBSet: resetPassword.DOBSet,
+      DOB: fullDate,
       phoneNumber,
     };
-
     postResetPasswordPrequalification(payload)(dispatch);
   };
-  useEffect(() => {
-    if (phoneValue) {
-      setResetPasswordData({
-        ...resetPasswordData,
-        phoneNumber: phoneValue,
-      });
-    }
-  }, [phoneValue]);
-  const clearError = ({ target: { name } }) => {
-    setErrors({
-      ...errors,
-      [name]: '',
-    });
+
+  const clearError = () => {
+    setErrors({});
   };
   /**
    * @returns {bool} true if no error
@@ -55,26 +51,17 @@ export default ({
     const personalIdError = personalId
       ? ''
       : global.translate('Please Enter your user name', 2090);
-    const lastNameError = lastName
-      ? ''
-      : global.translate('Please Enter your Last Name', 2091);
-
-    const phoneNumberError = phoneNumber
-      ? ''
-      : global.translate('Please Enter Phone number', 2145);
 
     setErrors({
       ...errors,
       personalId: personalIdError,
-      lastName: lastNameError,
-      phoneNumber: phoneNumberError,
     });
 
-    return !(personalIdError || lastNameError || phoneNumberError);
+    return !personalIdError;
   };
   const handleNext = () => {
     if (validate()) {
-      clearResetPasswordData({ success: false })(dispatch);
+      // clearResetPasswordData({ success: false })(dispatch);
       resetPasswordPrequalificationFx();
     }
   };
@@ -90,7 +77,23 @@ export default ({
     if (!userLocationData?.CountryCode) {
       getUserLocationDataAction()(dispatch);
     }
+    clearError();
   }, []);
+
+  useEffect(() => {
+    if (resetPasswordPrequalification.error)
+      setErrors(resetPasswordPrequalification.error);
+  }, [resetPasswordPrequalification.error]);
+
+  useEffect(() => {
+    if (phoneValue) {
+      setResetPasswordData({
+        ...resetPasswordData,
+        phoneNumber: phoneValue,
+      });
+      clearError();
+    }
+  }, [phoneValue]);
   return {
     handleNext,
     validate,
@@ -101,5 +104,6 @@ export default ({
     clearResetUserPrequalificationFx,
     phoneValue,
     setPhoneValue,
+    resetPasswordData,
   };
 };

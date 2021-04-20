@@ -26,8 +26,11 @@ export const postResetPasswordPrequalification = data => dispatch => {
           type: RESET_PREQUALIFICATION_START,
         }),
       onSuccess: data => dispatch => {
+        const message = global.translate(
+          'We have sent the OTP to the provided phone number',
+        );
         if (Array.isArray(data)) {
-          toast.success(data[0]?.Description);
+          toast.success(message);
         }
         return dispatch({
           type: RESET_PREQUALIFICATION_SUCCESS,
