@@ -44,7 +44,6 @@ const ApplyLoan = ({
   setOpenPinModal,
   setPIN,
   PIN,
-  pinErrors,
   pinData,
   clearCheckEligibility,
 }) => {
@@ -54,6 +53,7 @@ const ApplyLoan = ({
   const [checkLoanErrorMessage, setCheckLoanErrorMessage] = useState(
     null,
   );
+  const [displayLimit, setDisplayLimit] = useState(null);
   const onClickHandler = () => history.goBack();
   const days = getPossibleDates().map(item => ({
     key: item.day,
@@ -63,8 +63,19 @@ const ApplyLoan = ({
 
   useEffect(() => {
     if (checkLoanError?.error) {
+      if (checkLoanError?.error[0]?.MaxLoanAmount) {
+        setDisplayLimit(checkLoanError?.error[0]?.MaxLoanAmount);
+      }
       if (checkLoanError?.error[0]?.Text1) {
-        const errorMessage = `${checkLoanError?.error[0]?.Text1} ${checkLoanError?.error[0]?.Text2} ${checkLoanError?.error[0]?.Text3}`;
+        const errorMessage = `${checkLoanError?.error[0]?.Text1} ${
+          checkLoanError?.error?.[0]?.Text2
+            ? checkLoanError?.error?.[0]?.Text2
+            : ''
+        } ${
+          checkLoanError?.error?.[0]?.Text3
+            ? checkLoanError?.error?.[0]?.Text3
+            : ''
+        }`;
         setCheckLoanErrorMessage(errorMessage);
       } else {
         const errorMessage = checkLoanError?.error[0]?.Description;

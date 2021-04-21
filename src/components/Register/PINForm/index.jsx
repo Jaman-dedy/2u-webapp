@@ -8,7 +8,7 @@ import './style.scss';
 import PinCodeForm from 'components/common/PinCodeForm';
 import GoBack from 'components/common/GoBack';
 
-const PINForm = ({ onInputChange, screenSix, onClickHandler }) => {
+const PINForm = ({ onInputChange, pinData, onClickHandler }) => {
   const [pinDigit, setPinDigit] = useState({
     digit0: '',
     digit1: '',
@@ -29,7 +29,7 @@ const PINForm = ({ onInputChange, screenSix, onClickHandler }) => {
     clearError,
     registerUser,
     registerNow,
-  } = screenSix;
+  } = pinData;
   const backButtonHandler = () => {
     onClickHandler();
   };
@@ -107,7 +107,7 @@ const PINForm = ({ onInputChange, screenSix, onClickHandler }) => {
 
 PINForm.propTypes = {
   onInputChange: PropTypes.func,
-  screenSix: PropTypes.instanceOf(Object).isRequired,
+  pinData: PropTypes.instanceOf(Object).isRequired,
   onClickHandler: PropTypes.func.isRequired,
 };
 

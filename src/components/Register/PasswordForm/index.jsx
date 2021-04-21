@@ -11,14 +11,14 @@ import GoBack from 'components/common/GoBack';
 const PasswordForm = ({
   registrationData,
   onInputChange,
-  screenFive,
+  passwordData,
   onClickHandler,
 }) => {
   const backButtonHandler = () => {
     onClickHandler();
   };
   const { password, confirmPassword } = registrationData;
-  const { clearError, handleNext, errors } = screenFive;
+  const { clearError, handleNext, errors } = passwordData;
 
   return (
     <Container>
@@ -138,7 +138,7 @@ const PasswordForm = ({
 PasswordForm.propTypes = {
   registrationData: PropTypes.instanceOf(Object).isRequired,
   onInputChange: PropTypes.func,
-  screenFive: PropTypes.instanceOf(Object).isRequired,
+  passwordData: PropTypes.instanceOf(Object).isRequired,
   onClickHandler: PropTypes.func.isRequired,
 };
 

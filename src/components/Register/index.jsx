@@ -20,11 +20,11 @@ const Register = ({
   screenNumber,
   setScreenNumber,
   screenOne,
-  screenThree,
-  screenFour,
-  screenFive,
-  screenSix,
-  screenSeven,
+  verifyOtp,
+  userNameData,
+  passwordData,
+  pinData,
+  congratulationPage,
   referralScreen,
 }) => {
   const renderForm = () => {
@@ -51,7 +51,7 @@ const Register = ({
             onInputChange={handleInputChange}
             screenNumber={screenNumber}
             setScreenNumber={setScreenNumber}
-            screenThree={screenThree}
+            verifyOtp={verifyOtp}
             onClickHandler={onClickHandler}
           />
         );
@@ -63,7 +63,7 @@ const Register = ({
             onInputChange={handleInputChange}
             screenNumber={screenNumber}
             setScreenNumber={setScreenNumber}
-            screenFour={screenFour}
+            userNameData={userNameData}
           />
         );
       case 4:
@@ -74,7 +74,7 @@ const Register = ({
             onInputChange={handleInputChange}
             screenNumber={screenNumber}
             setScreenNumber={setScreenNumber}
-            screenFive={screenFive}
+            passwordData={passwordData}
             onClickHandler={onClickHandler}
           />
         );
@@ -86,7 +86,7 @@ const Register = ({
             onInputChange={handleInputChange}
             screenNumber={screenNumber}
             setScreenNumber={setScreenNumber}
-            screenSix={screenSix}
+            pinData={pinData}
             onClickHandler={onClickHandler}
           />
         );
@@ -105,7 +105,7 @@ const Register = ({
             registrationData={registrationData}
             screenNumber={screenNumber}
             setScreenNumber={setScreenNumber}
-            screenSeven={screenSeven}
+            congratulationPage={congratulationPage}
           />
         );
       default:
@@ -165,11 +165,11 @@ Register.propTypes = {
   setScreenNumber: PropTypes.func.isRequired,
   screenOne: PropTypes.instanceOf(Object).isRequired,
   screenTwo: PropTypes.instanceOf(Object).isRequired,
-  screenThree: PropTypes.instanceOf(Object).isRequired,
-  screenFour: PropTypes.instanceOf(Object).isRequired,
-  screenFive: PropTypes.instanceOf(Object).isRequired,
-  screenSix: PropTypes.instanceOf(Object).isRequired,
-  screenSeven: PropTypes.instanceOf(Object).isRequired,
+  verifyOtp: PropTypes.instanceOf(Object).isRequired,
+  userNameData: PropTypes.instanceOf(Object).isRequired,
+  passwordData: PropTypes.instanceOf(Object).isRequired,
+  pinData: PropTypes.instanceOf(Object).isRequired,
+  congratulationPage: PropTypes.instanceOf(Object).isRequired,
   referralScreen: PropTypes.instanceOf(Object).isRequired,
 };
 

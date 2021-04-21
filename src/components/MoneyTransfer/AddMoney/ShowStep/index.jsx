@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import clearCardOperationFeesAction from 'redux/actions/addMoney/clearCardOperationFees';
+import clearPayPalOperationFees from 'redux/actions/addMoney/clearPayPalOperationFees';
 import './style.scss';
 
 const ShowStep = ({
@@ -22,6 +23,7 @@ const ShowStep = ({
         if (visited) {
           onClick(number);
           clearCardOperationFeesAction()(dispatch);
+          clearPayPalOperationFees()(dispatch);
         }
       }}
       className="step-container"

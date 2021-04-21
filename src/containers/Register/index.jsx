@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Register from 'components/Register';
 import getUserLocationDataAction from 'redux/actions/users/userLocationData';
-import screenOne from './screenOne';
-import screenThree from './screenThree';
-import screenFour from './screenFour';
-import screenFive from './screenFive';
-import screenSix from './screenSix';
-import screenSeven from './screenSeven';
-import referralScreen from './referralScreen';
+import screenOne from './identityData';
+import verifyOtp from './verifyOtp';
+import userNameData from './userNameData';
+import passwordData from './passwordData';
+import pinData from './pinData';
+import congratulationPage from './congratulationPage';
+import referralScreen from './referralData';
 
 const RegisterContainer = () => {
   const dispatch = useDispatch();
@@ -75,21 +75,21 @@ const RegisterContainer = () => {
         screenNumber,
         setRegistrationData,
       })}
-      screenThree={screenThree({
+      verifyOtp={verifyOtp({
         registrationData,
         setScreenNumber,
         screenNumber,
       })}
-      screenFour={screenFour({
+      userNameData={userNameData({
         registrationData,
         setScreenNumber,
       })}
-      screenFive={screenFive({
+      passwordData={passwordData({
         registrationData,
         setScreenNumber,
         screenNumber,
       })}
-      screenSix={screenSix({
+      pinData={pinData({
         registrationData,
         setScreenNumber,
       })}
@@ -98,7 +98,7 @@ const RegisterContainer = () => {
         setScreenNumber,
         setRegistrationData,
       })}
-      screenSeven={screenSeven()}
+      congratulationPage={congratulationPage()}
     />
   );
 };

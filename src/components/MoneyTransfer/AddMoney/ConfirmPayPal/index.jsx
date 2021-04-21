@@ -2,8 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Item, Button, Message } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import addMoneyFromPayPalAction from 'redux/actions/addMoney/addMoneyFromPayPal';
-import clearCardOperationFeesAction from 'redux/actions/addMoney/clearCardOperationFees';
+import clearPayPalOperationFees from 'redux/actions/addMoney/clearPayPalOperationFees';
 import Placeholder from './PlaceHolder';
 import Info from 'components/common/Alert/Info';
 
@@ -25,7 +24,7 @@ const ConfirmPayPal = ({
     if (success) {
       setStep(1);
       clearAddMoneyData();
-      clearCardOperationFeesAction()(dispatch);
+      clearPayPalOperationFees()(dispatch);
     }
   }, [success]);
 
@@ -88,7 +87,7 @@ const ConfirmPayPal = ({
         disabled={loading}
         onClick={() => {
           setStep(step - 1);
-          clearCardOperationFeesAction()(dispatch);
+          clearPayPalOperationFees()(dispatch);
           setLevelThree(false);
         }}
       >

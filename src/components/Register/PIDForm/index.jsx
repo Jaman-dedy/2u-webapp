@@ -6,8 +6,8 @@ import { Container, Form, Label } from 'semantic-ui-react';
 import './style.scss';
 import 'assets/styles/spinner.scss';
 
-const PIDForm = ({ registrationData, onInputChange, screenFour }) => {
-  const { handleNext, errors, clearError, verifyPID } = screenFour;
+const PIDForm = ({ registrationData, onInputChange, userNameData }) => {
+  const { handleNext, errors, clearError, verifyPID } = userNameData;
 
   return (
     <Container>
@@ -60,7 +60,7 @@ const PIDForm = ({ registrationData, onInputChange, screenFour }) => {
 PIDForm.propTypes = {
   registrationData: PropTypes.instanceOf(Object).isRequired,
   onInputChange: PropTypes.func,
-  screenFour: PropTypes.instanceOf(Object).isRequired,
+  userNameData: PropTypes.instanceOf(Object).isRequired,
 };
 
 PIDForm.defaultProps = {

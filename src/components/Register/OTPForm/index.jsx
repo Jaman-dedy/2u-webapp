@@ -14,7 +14,7 @@ const OTPForm = ({
   registrationData,
   setRegistrationData,
   onInputChange,
-  screenThree,
+  verifyOtp,
   onClickHandler,
 }) => {
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ const OTPForm = ({
     onClickHandler();
   };
 
-  const { handleNext, verifyOTP } = screenThree;
+  const { handleNext, verifyOTP } = verifyOtp;
   const otpCharacters = 6;
 
   useEffect(() => {
@@ -98,7 +98,7 @@ OTPForm.propTypes = {
   registrationData: PropTypes.instanceOf(Object).isRequired,
   setRegistrationData: PropTypes.func.isRequired,
   onInputChange: PropTypes.func,
-  screenThree: PropTypes.instanceOf(Object).isRequired,
+  verifyOtp: PropTypes.instanceOf(Object).isRequired,
   onClickHandler: PropTypes.func.isRequired,
 };
 

@@ -16,7 +16,7 @@ export default ({
   const { countryCode, phoneNumber, OTP } = registrationData;
 
   const handleVerifyOTP = () => {
-    verifyOTPAction(`${countryCode}${phoneNumber}`, OTP)(dispatch);
+    verifyOTPAction(phoneNumber, OTP)(dispatch);
   };
 
   const clearError = ({ target: { name } }) => {

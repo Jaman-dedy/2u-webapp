@@ -4,24 +4,21 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Image } from 'semantic-ui-react';
-import blackMan from 'assets/images/output.png';
 import success from 'assets/images/success.svg';
 import { restoreRegisterUser } from 'redux/actions/users/registerUser';
 
 import './../../ResetPassword/Congratulation/Congratulation.scss';
 
-const Congratulation = ({ screenSeven }) => {
+const Congratulation = ({ congratulationPage }) => {
   const {
     registerUser: { username, Wallets },
-  } = screenSeven;
+  } = congratulationPage;
 
   const dispatch = useDispatch();
   return (
     <div className="congratulation-reset">
       <div className="content">
-        <Image
-          src={success}
-        />
+        <Image src={success} />
         <h1 className="headline">
           <span>{global.translate('Congratulations', 950)}</span>.
         </h1>
@@ -67,7 +64,7 @@ const Congratulation = ({ screenSeven }) => {
 };
 
 Congratulation.propTypes = {
-  screenSeven: PropTypes.instanceOf(Object).isRequired,
+  congratulationPage: PropTypes.instanceOf(Object).isRequired,
 };
 
 export default Congratulation;
