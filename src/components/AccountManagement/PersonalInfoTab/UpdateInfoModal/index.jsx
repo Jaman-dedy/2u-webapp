@@ -27,6 +27,7 @@ const UpdateInfoModal = ({ open, setOpen, personalInfo }) => {
     disableButton,
     professionOptions,
   } = personalInfo;
+  const [startDate, setStartDate] = useState(new Date('2014/02/08'));
 
   return (
     <Modal
@@ -81,6 +82,7 @@ const UpdateInfoModal = ({ open, setOpen, personalInfo }) => {
                 <DatePicker
                   selected={selectedDate}
                   onChange={date => setSelectedDate(date)}
+                  maxDate={startDate}
                 />
               </div>
             </Form.Group>

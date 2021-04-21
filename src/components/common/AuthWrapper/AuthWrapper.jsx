@@ -17,8 +17,8 @@ import AdPlaceholderDefault from 'assets/images/AD_V1.jpg';
 import getUserDailyEvent from 'redux/actions/authWrapper';
 import SelectLanguage from 'components/common/SelectLanguage';
 import validateImg from 'helpers/image/validateImg';
-import isAppDisplayedInWebView from 'helpers/isAppDisplayedInWebView';
 import { HOME_WEBSITE, HOW_IT_WORKS } from 'constants/general';
+import openInNewTab from 'helpers/openInNewTab';
 
 const AuthWrapper = ({ children, rightHeadlineText, authHeader }) => {
   const dispatch = useDispatch();
@@ -87,7 +87,7 @@ const AuthWrapper = ({ children, rightHeadlineText, authHeader }) => {
           <Image src={AdPlaceholderDefault} />
         )}
         <div className="overlay-text">
-          <h1>Welcome to 2U money</h1>
+          <h1>{global.translate('Welcome to 2U money')}</h1>
           <p>{rightHeadlineText}</p>
         </div>
       </div>
@@ -102,7 +102,13 @@ const AuthWrapper = ({ children, rightHeadlineText, authHeader }) => {
                   computer={4}
                   style={{ marginTop: '10px' }}
                 >
-                  <Image className="logo" src={LogoColored} />
+                  <Image
+                    className="logo"
+                    src={LogoColored}
+                    onClick={() => {
+                      openInNewTab('2u.money');
+                    }}
+                  />
                 </Grid.Column>
                 <Grid.Column mobile={10} tablet={10} computer={12}>
                   <ul className="nav-menu">

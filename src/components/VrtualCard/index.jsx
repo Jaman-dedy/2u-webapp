@@ -11,8 +11,8 @@ import EmptyCardList from 'assets/images/empty_card.svg';
 import isAppDisplayedInWebView from 'helpers/isAppDisplayedInWebView';
 import VirtualCard from 'components/common/Card';
 import classes from './VirtualCards.module.scss';
-import Placeholder from './PlaceHolder';
-import AddVirtualCardModal from './AddVirtualCardModal';
+import Placeholder from './PlaceHolder/PlaceHolder';
+import AddVirtualCardModal from './AddVirtualCardModal/AddVirtualCardModal';
 
 const MyVirtualCards = ({
   virtualCardList,

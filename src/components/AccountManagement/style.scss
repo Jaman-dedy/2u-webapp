@@ -32,3 +32,8 @@
     }
   }
 }
+@media(max-width: 600px){
+  .profile-container{
+    flex-direction: column;
+  }
+}

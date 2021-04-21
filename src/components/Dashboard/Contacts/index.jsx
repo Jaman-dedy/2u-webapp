@@ -26,7 +26,7 @@ const Contacts = ({ favoriteContacts, loadingFavoriteContacts }) => {
                 <div>{global.translate(`Add`, 112)}</div>
               </Link>
             </div>
-            {favoriteContacts &&
+            {favoriteContacts?.length !== 0 &&
               favoriteContacts?.[0]?.ContactsFound !== 'NO' &&
               favoriteContacts.map(
                 ({ FirstName, LastName, PictureURL, ContactPID }) => (

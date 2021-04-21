@@ -111,7 +111,7 @@ const ResidenceModal = ({
             </Form.Group>
           </Form>
         </div>
-        <div>
+        <div className="display-doc-img">
           <div className="copy-title">
             {global.translate('Proof of residence')}
           </div>

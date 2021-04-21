@@ -25,7 +25,6 @@ const PersonalInfoTab = ({
     setOpenResidenceModal,
     selectedCountry: residentialCountry,
   } = residenceData;
- 
 
   const {
     openInfoModal,
@@ -35,7 +34,7 @@ const PersonalInfoTab = ({
     setOpenPhoneModal,
     openPhoneModal,
     setOpenEmailModal,
-    openEmailModal
+    openEmailModal,
   } = personalInfo;
 
   return (
@@ -75,14 +74,15 @@ const PersonalInfoTab = ({
             </Table.Cell>
             <Table.Cell>
               {' '}
-              {moment(userData?.DateOfBirth).format('L')}
+              {userData?.DateOfBirth &&
+                moment(userData?.DateOfBirth).format('L')}
             </Table.Cell>
           </Table.Row>
           <Table.Row className="user-family-details">
             <Table.Cell> {global.translate('Parents')}</Table.Cell>
             <Table.Cell>
               {' '}
-              {userData?.UserExtraKYC.FatherFName}&nbsp;,
+              {userData?.UserExtraKYC.FatherFName}&nbsp;
               {userData?.UserExtraKYC.MotherFName}
             </Table.Cell>
           </Table.Row>

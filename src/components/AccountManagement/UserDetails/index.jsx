@@ -18,7 +18,6 @@ import dndIcon from 'assets/images/presence/dnd.svg';
 import awayIcon from 'assets/images/presence/away.svg';
 import setUserPresenceText from 'utils/setUserPresenceText';
 
-
 import {
   ONLINE,
   INVISIBLE,
@@ -26,10 +25,10 @@ import {
   DO_NOT_DISTURB,
 } from 'constants/general';
 
-const UserDetails = ({ 
-  userData, 
-  userDetails, 
-  changeUserPresence: { changeUserPresence, loading } 
+const UserDetails = ({
+  userData,
+  userDetails,
+  changeUserPresence: { changeUserPresence, loading },
 }) => {
   const [isImgCorrect, setIsImgCorrect] = useState(false);
   const { onImageChange, userIdUrlData, uploadingImg } = userDetails;
@@ -38,8 +37,7 @@ const UserDetails = ({
     ({ user }) => user,
   );
 
-  const { data } = userData;
-
+  const data = userData?.data;
 
   const defaultWallet = userData?.Wallets.find(
     wallet => wallet.Default === 'YES',
@@ -57,9 +55,7 @@ const UserDetails = ({
         },
       );
     }
-    console.log("test", userData)
   }, [userData]);
-  
 
   const isCurrentStatus = item => item === data?.PresenceStatus;
   const getStatusIcon = status => {
@@ -69,53 +65,51 @@ const UserDetails = ({
     return offlineIcon;
   };
 
-
   return (
     <div className="user-details">
       <div>
         <div>
-            <div className="upload-images">
-              <Thumbnail
-                avatar={
-                  userIdUrlData?.MediaSourceURL ||
-                  userData?.PictureURL
-                }
-                size="medium"
-                height="100px"
-                width="100px"
-                name={userData && userData.FirstName}
-                secondName={userData && userData.LastName}
-                circular
-                hasError={hasError}
-                setHasError={setHasError}
-                circular
-                className="header_2u_avatar"
-                style={{
-                  height: '91px',
-                  width: '100px',
-                  marginRight: 0,
-                  objectFit: 'cover',
-                  color: 'white',
-                }}
-              />
-              <UploadImgButton
-                name="UserProofOfAddressURL"
-                onChooseFile={onImageChange}
-                img
-                src={UploadImg}
-                circular
-                loading={uploadingImg}
-              />
-            </div>
-           
+          <div className="upload-images">
+            <Thumbnail
+              avatar={
+                userIdUrlData?.MediaSourceURL || userData?.PictureURL
+              }
+              size="medium"
+              height="100px"
+              width="100px"
+              name={userData && userData.FirstName}
+              secondName={userData && userData.LastName}
+              circular
+              hasError={hasError}
+              setHasError={setHasError}
+              circular
+              className="header_2u_avatar"
+              style={{
+                height: '91px',
+                width: '100px',
+                marginRight: 0,
+                objectFit: 'cover',
+                color: 'white',
+              }}
+            />
+            <UploadImgButton
+              name="UserProofOfAddressURL"
+              onChooseFile={onImageChange}
+              img
+              src={UploadImg}
+              circular
+              loading={uploadingImg}
+            />
+          </div>
+
           <h3>
             {userData?.FirstName}&nbsp;{userData?.LastName}
           </h3>
-          {userData?.AccountVerified === 'YES'? (
+          {userData?.AccountVerified === 'YES' ? (
             <div className="verified-user">
-            {global.translate('Verified')}
-          </div> 
-          ): null}
+              {global.translate('Verified')}
+            </div>
+          ) : null}
           <div className="list-items">
             <div className="user-contact">
               {userData?.MainPhone && `+${userData?.MainPhone}`}
@@ -141,80 +135,66 @@ const UserDetails = ({
         <div>{global.translate('Unique ID')}</div>
         <div className="title-display">{userData?.BankUnikID}</div>
       </div>
-     
-           <div className="presence-status">
-                      <span>
-                        {global.translate(
-                          'Your presence status is set to',
-                          1668,
-                        )}
-                      </span>
-                      <div className="flex flex-row align-items-center">
-                        <div style={{ marginRight: '5px' }}>
-                          <Image
-                            height={15}
-                            width={15}
-                            src={getStatusIcon(userData?.PresenceStatus)}
-                          />
-                        </div>
-                        <Dropdown
-                          loading={loading}
-                          disabled={loading}
-                          text={setUserPresenceText(
-                            userData?.PresenceStatus,
-                            true,
-                          )}
-                          inline
-                        >
-                          <Dropdown.Menu className="presence-status_menu">
-                            <Dropdown.Item
-                              inline
-                              image={onlineIcon}
-                              className="presence-status_menu_item"
-                              selected={isCurrentStatus(ONLINE)}
-                              text={global.translate('Online', 590)}
-                              onClick={() => {
-                                changeUserPresence(ONLINE);
-                              }}
-                            />
 
-                            <Dropdown.Item
-                              image={offlineIcon}
-                              selected={isCurrentStatus(INVISIBLE)}
-                              text={global.translate(
-                                'Invisible',
-                                593,
-                              )}
-                              onClick={() => {
-                                changeUserPresence(INVISIBLE);
-                              }}
-                            />
-                            <Dropdown.Item
-                              image={awayIcon}
-                              selected={isCurrentStatus(AWAY)}
-                              text={global.translate('Away', 591)}
-                              onClick={() => {
-                                changeUserPresence(AWAY);
-                              }}
-                            />
+      <div className="presence-status">
+        <span>
+          {global.translate('Your presence status is set to', 1668)}
+        </span>
+        <div className="flex flex-row align-items-center">
+          <div style={{ marginRight: '5px' }}>
+            <Image
+              height={15}
+              width={15}
+              src={getStatusIcon(userData?.PresenceStatus)}
+            />
+          </div>
+          <Dropdown
+            loading={loading}
+            disabled={loading}
+            text={setUserPresenceText(userData?.PresenceStatus, true)}
+            inline
+          >
+            <Dropdown.Menu className="presence-status_menu">
+              <Dropdown.Item
+                inline
+                image={onlineIcon}
+                className="presence-status_menu_item"
+                selected={isCurrentStatus(ONLINE)}
+                text={global.translate('Online', 590)}
+                onClick={() => {
+                  changeUserPresence(ONLINE);
+                }}
+              />
 
-                            <Dropdown.Item
-                              image={dndIcon}
-                              selected={isCurrentStatus(
-                                DO_NOT_DISTURB,
-                              )}
-                              text={global.translate(
-                                'Do not disturb',
-                                592,
-                              )}
-                              onClick={() => {
-                                changeUserPresence(DO_NOT_DISTURB);
-                              }}
-                            />
-                          </Dropdown.Menu>
-                        </Dropdown>
-                      </div>
-                    </div>
+              <Dropdown.Item
+                image={offlineIcon}
+                selected={isCurrentStatus(INVISIBLE)}
+                text={global.translate('Invisible', 593)}
+                onClick={() => {
+                  changeUserPresence(INVISIBLE);
+                }}
+              />
+              <Dropdown.Item
+                image={awayIcon}
+                selected={isCurrentStatus(AWAY)}
+                text={global.translate('Away', 591)}
+                onClick={() => {
+                  changeUserPresence(AWAY);
+                }}
+              />
+
+              <Dropdown.Item
+                image={dndIcon}
+                selected={isCurrentStatus(DO_NOT_DISTURB)}
+                text={global.translate('Do not disturb', 592)}
+                onClick={() => {
+                  changeUserPresence(DO_NOT_DISTURB);
+                }}
+              />
+            </Dropdown.Menu>
+          </Dropdown>
+        </div>
+      </div>
     </div>
   );
 };

@@ -4,7 +4,9 @@ import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import WithdrawMoneyComponent from 'components/WithrdrawMoney';
-import confirmTransactionAction from 'redux/actions/moneyTransfer/confirmTransaction';
+import confirmTransactionAction, {
+  clearConfirmation,
+} from 'redux/actions/moneyTransfer/confirmTransaction';
 import getSupportedCountries from 'redux/actions/countries/getSupportedCountries';
 import moveFundsAction, {
   clearMoveFundsErrors,
@@ -29,6 +31,7 @@ const WithdrawMoney = () => {
       confirmationData,
     },
   } = useSelector(({ moneyTransfer }) => moneyTransfer);
+
   const {
     loading: loadMoveFund,
     error: errorMoveFund,
@@ -186,6 +189,11 @@ const WithdrawMoney = () => {
       );
     }
   };
+  useEffect(() => {
+    if (currentOption) {
+      clearConfirmation()(dispatch);
+    }
+  }, [currentOption]);
 
   return (
     <WithdrawMoneyComponent
@@ -213,6 +221,7 @@ const WithdrawMoney = () => {
       allErrors={allErrors}
       pinData={pinData}
       form={form}
+      confirmationError={confirmationError?.[0]}
     />
   );
 };

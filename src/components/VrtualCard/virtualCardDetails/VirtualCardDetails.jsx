@@ -8,7 +8,7 @@ import GoBack from 'components/common/GoBack';
 import InfoMessage from 'components/common/Alert/InfoMessage';
 import WelcomeBar from 'components/Dashboard/WelcomeSection';
 import getVirtualCard from 'redux/actions/virtualCard/getVirtualCard';
-import VirtualCard from '../Item';
+import VirtualCard from '../Item/Item';
 import TableDetails from '../TableDetails';
 import './styles.scss';
 

@@ -17,6 +17,12 @@ export default data => dispatch =>
           type: GET_FAVORITES_LIST_START,
         }),
       onSuccess: data => dispatch => {
+        if (data?.[0].Description) {
+          return dispatch({
+            type: GET_FAVORITES_LIST_SUCCESS,
+            payload: [],
+          });
+        }
         return dispatch({
           type: GET_FAVORITES_LIST_SUCCESS,
           payload: data,

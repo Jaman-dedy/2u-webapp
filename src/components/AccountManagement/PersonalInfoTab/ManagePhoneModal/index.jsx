@@ -181,7 +181,7 @@ const ManagePhoneModal = ({
                   handleSendOTP();
                 }}
                 loading={sendOTP.loading}
-                disabled={!phoneValue}
+                disabled={!phoneValue || phoneValue?.length < 11}
               >
                 {global.translate('Add')}
               </Button>

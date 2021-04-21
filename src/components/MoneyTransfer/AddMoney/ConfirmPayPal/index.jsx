@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import addMoneyFromPayPalAction from 'redux/actions/addMoney/addMoneyFromPayPal';
 import clearCardOperationFeesAction from 'redux/actions/addMoney/clearCardOperationFees';
 import Placeholder from './PlaceHolder';
+import Info from 'components/common/Alert/Info';
 
 const ConfirmPayPal = ({
   step,
@@ -62,6 +63,11 @@ const ConfirmPayPal = ({
           </span>
         </Item>
       </Item.Group>
+      <Info
+        message={global.translate(
+          'You are going to be redirected to PayPal website',
+        )}
+      />
       {error && (
         <Message negative>
           <Message.Header>{error.Description}</Message.Header>

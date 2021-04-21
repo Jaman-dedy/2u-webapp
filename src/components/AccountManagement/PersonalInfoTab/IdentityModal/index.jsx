@@ -110,9 +110,11 @@ const IdentityModal = ({
                 </div>
                 <DatePicker
                   selected={selectedDateOfIssue}
-                  minDate={new Date()}
+                  maxDate={new Date()}
                   onChange={date => setSelectedDateOfIssue(date)}
-                  placeholderText="Provide date of issue"
+                  placeholderText={global.translate(
+                    'Provide date of issue',
+                  )}
                 />
               </div>
               <div className="date-of-birth">
@@ -123,12 +125,14 @@ const IdentityModal = ({
                   selected={selectedExpiryDate}
                   minDate={new Date()}
                   onChange={date => setSelectedExpiryDate(date)}
-                  placeholderText="Provide the expiry date"
+                  placeholderText={global.translate(
+                    'Provide the expiry date',
+                  )}
                 />
               </div>
             </Form.Group>
-            <Form.Group style={{maxWidth:'51%'}} >
-              <div className="info-nationality" >
+            <Form.Group style={{ maxWidth: '51%' }}>
+              <div className="info-nationality">
                 <div className="nationality-label">
                   {global.translate('Country of issue')}
                 </div>
@@ -143,7 +147,7 @@ const IdentityModal = ({
             </Form.Group>
           </Form>
         </div>
-        <div>
+        <div className="display-doc-img">
           <div className="copy-title">
             {global.translate('Copy of identification')}
           </div>
@@ -192,8 +196,15 @@ const IdentityModal = ({
           >
             {global.translate('Cancel')}
           </Button>
-          <Button 
-            disabled={formData?.IDNumber && selectedCurrentType && selectedDateOfIssue && selectedExpiryDate  ? false : true}
+          <Button
+            disabled={
+              formData?.IDNumber &&
+              selectedCurrentType &&
+              selectedDateOfIssue &&
+              selectedExpiryDate
+                ? false
+                : true
+            }
             className="change-button"
             onClick={handleSubmit}
             loading={loading}

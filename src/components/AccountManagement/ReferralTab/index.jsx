@@ -44,56 +44,63 @@ const ReferralTab = ({ userData, referreesList }) => {
         />
       </div>
       <div className="referral-tab">
-        <Table basic="very">
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell className="transaction-header">
-                <h3> {global.translate('Referrals')}</h3>
-              </Table.HeaderCell>
-              <Table.HeaderCell />
-              <Table.HeaderCell />
-            </Table.Row>
-          </Table.Header>
-
-          <Table.Body>
-            {referreesList?.data?.map(contact => (
+        {referreesList?.data?.length !== 0 ? (
+          <Table basic="very">
+            <Table.Header>
               <Table.Row>
-                <Table.Cell>
-                  <div className="user-profile">
-                    <div className="user-avatar">
-                      <Thumbnail
-                        avatar={contact.PictureURL}
-                        circular
-                        name={contact?.FirstName}
-                        secondName={contact?.LastName}
-                        hasError={hasError}
-                        setHasError={setHasError}
-                        style={{ height: 50, width: 50 }}
-                      />
-                    </div>
-                    <div className="user-text">
-                      <div>
-                        {contact.FirstName}&nbsp;{contact.LastName}
-                      </div>
-                      <div className="user-last-name">
-                        {contact.ContactPID}
-                      </div>
-                    </div>
-                  </div>
-                </Table.Cell>
-                <Table.Cell />
-                <Table.Cell textAlign="right">
-                  <div className="quick-actions">
-                    <Image src={SendMoneyIcon} />
-                    <Image src={SendCashIcon} />
-                    <Image src={SendVoucherIcon} />
-                    <Image src={ChatIcon} />
-                  </div>
-                </Table.Cell>
+                <Table.HeaderCell className="transaction-header">
+                  <h3> {global.translate('Referrals')}</h3>
+                </Table.HeaderCell>
+                <Table.HeaderCell />
+                <Table.HeaderCell />
               </Table.Row>
-            ))}
-          </Table.Body>
-        </Table>
+            </Table.Header>
+
+            <Table.Body>
+              {referreesList?.data?.map(contact => (
+                <Table.Row>
+                  <Table.Cell>
+                    <div className="user-profile">
+                      <div className="user-avatar">
+                        <Thumbnail
+                          avatar={contact.PictureURL}
+                          circular
+                          name={contact?.FirstName}
+                          secondName={contact?.LastName}
+                          hasError={hasError}
+                          setHasError={setHasError}
+                          style={{ height: 50, width: 50 }}
+                        />
+                      </div>
+                      <div className="user-text">
+                        <div>
+                          {contact.FirstName}&nbsp;{contact.LastName}
+                        </div>
+                        <div className="user-last-name">
+                          {contact.ContactPID}
+                        </div>
+                      </div>
+                    </div>
+                  </Table.Cell>
+                  <Table.Cell />
+                  <Table.Cell textAlign="right">
+                    <div className="quick-actions">
+                      <Image src={SendMoneyIcon} />
+                      <Image src={SendCashIcon} />
+                      <Image src={SendVoucherIcon} />
+                      <Image src={ChatIcon} />
+                    </div>
+                  </Table.Cell>
+                </Table.Row>
+              ))}
+            </Table.Body>
+          </Table>
+        ) : (
+          <div>
+            {' '}
+            {global.translate("So far, you don't have any referral")}
+          </div>
+        )}
       </div>
     </div>
   );

@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Button, Input, Modal } from 'semantic-ui-react';
 
+import { setIsSendingMoney } from 'redux/actions/dashboard/dashboard';
 import Message from 'components/common/Message';
 import formatNumber from 'utils/formatNumber';
 import { getPossibleDates } from 'utils/monthdates';
@@ -39,6 +40,7 @@ const SendMoneyModal = ({
   setShouldClear,
   isSendingMoney,
 }) => {
+  const dispatch = useDispatch();
   const defaultOption =
     walletList && walletList.find(item => item.Default === 'YES');
   const [currentOption, setCurrentOption] = useState({});
@@ -108,11 +110,10 @@ const SendMoneyModal = ({
   }));
 
   const clearForm = () => {
-    setForm({});
+    // setForm({});
     setCurrentOption(defaultOption);
     setOpen(false);
     resetState();
-    setForm({});
     setErrors(null);
   };
   return (
@@ -263,6 +264,7 @@ const SendMoneyModal = ({
             disabled={checking || loading}
             onClick={() => {
               clearForm();
+              setIsSendingMoney(dispatch);
             }}
           >
             {global.translate('Cancel', 86)}

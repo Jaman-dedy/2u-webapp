@@ -14,7 +14,7 @@ const DefaultWallet = ({
   loading,
   wallet,
 }) => {
-  const [showAmount, setShowAmount] = useState(true);
+  const [showAmount, setShowAmount] = useState(false);
   const { language: { preferred } = {} } = useSelector(
     ({ user }) => user,
   );
@@ -31,7 +31,7 @@ const DefaultWallet = ({
             <div className="wallet-info">
               <img src={wallet?.Flag} alt="" />
               <div className="wallet-amount">
-                {showAmount && (
+                {!showAmount && (
                   <div>
                     {formatNumber(wallet?.Balance, {
                       locales: preferred,
@@ -39,7 +39,7 @@ const DefaultWallet = ({
                     <span> {wallet?.CurrencyCode}</span>
                   </div>
                 )}
-                {!showAmount && (
+                {showAmount && (
                   <span className="amount-hidden">
                     <Icon name="circle" />
                     <Icon name="circle" />

@@ -113,6 +113,7 @@
         margin-right: 7px;
         width: 20px;
       }
+      z-index: 1;
     }
     &:hover .overlay {
       display: block;
@@ -121,6 +122,7 @@
       cursor: pointer;
     }
   }
+
   .id-copy:hover .overlay {
     display: block;
     background: rgba(0, 0, 0, 0.7);
@@ -132,7 +134,6 @@
     opacity: 1;
   }
   .copy-title {
-    margin-left: 10px;
     margin-bottom: 10px;
   }
   .update-info-actions {
@@ -144,13 +145,18 @@
       border: none;
       height: 46px;
     }
+    .date-of-birth{
+      z-index: 3;
+    }
+  }
+  .display-doc-img {
+    margin-left: 12px;
   }
 
-   
-  .ui.dropdown>.text{
+  .ui.dropdown > .text {
     line-height: 1.8;
   }
-  .ui.dropdown>.dropdown.icon:before{
+  .ui.dropdown > .dropdown.icon:before {
     line-height: 2;
   }
 }

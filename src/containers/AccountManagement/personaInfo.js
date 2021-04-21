@@ -37,7 +37,9 @@ export default () => {
 
   const [errors, setErrors] = useState({});
   const [cropImgState, setCropImgState] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(
+    new Date('2003/01/01'),
+  );
   const [nationality, setNationality] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [phoneValue, setPhoneValue] = useState(null);

@@ -11,6 +11,7 @@
     text-transform: none !important;
     margin: 0 !important;
     .dropdown-header__content {
+      text-align: center;
       width: 250px;
       position: relative;
       z-index: 9999;
@@ -33,7 +34,7 @@
         margin: 10px 0;
         position: relative;
         text-overflow: ellipsis;
-        display:block;
+        display: block;
         overflow: hidden;
         max-width: 250px;
         span {
@@ -45,7 +46,7 @@
           width: 20px;
           height: auto;
           margin: 0;
-          top:5px;
+          top: 5px;
           left: 0;
           position: relative;
         }

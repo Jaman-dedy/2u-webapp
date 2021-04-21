@@ -18,6 +18,9 @@
   width: 42%;
   .logo {
     width: 180px;
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 .form-wrapper {

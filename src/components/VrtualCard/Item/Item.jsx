@@ -5,7 +5,7 @@ import CardInfo from 'components/common/Card';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Item } from 'semantic-ui-react';
-import AddMoneyModal from './AddMoneyModal';
+import AddMoneyModal from '../AddMoneyModal/AddMoneyModal';
 
 import './item.scss';
 

@@ -104,6 +104,7 @@ const Index = () => {
   const [contact, setContact] = useState(null);
 
   const { ref } = queryParams;
+  console.log(`ref`, ref);
   useEffect(() => {
     switch (ref) {
       case 'send-cash':
@@ -121,7 +122,7 @@ const Index = () => {
       default:
         setManageContacts(dispatch);
     }
-  }, []);
+  }, [sendMoneyOpen, sendCashOpen, topUpOpen, sendToOthersOpen]);
   useEffect(() => {
     if (targetContact) {
       setIsDetail(true);

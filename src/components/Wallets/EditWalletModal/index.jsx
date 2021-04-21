@@ -58,6 +58,8 @@ const EditWalletModal = ({
             {global.translate('Cancel', 86)}
           </Button>
           <Button
+            disabled={!form?.Name || form?.Name?.length < 4}
+            positive
             className="add"
             onClick={onSubmit}
             loading={addWallet.loading}

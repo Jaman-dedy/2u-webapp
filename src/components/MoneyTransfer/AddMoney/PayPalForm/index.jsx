@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
-import { Form } from 'semantic-ui-react';
+import { Form, Label } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-
-import Info from 'components/common/Alert/Info';
 
 const PayPalForm = ({
   errors,
@@ -40,19 +38,11 @@ const PayPalForm = ({
           type="number"
           required
         />
-        <Form.Input
-          placeholder={global.translate('Currency')}
-          className="amount-currency-input"
-          name="currency"
-          value={addMoneyData.Currency}
-          required
-        />
+        <Label className="amount-currency-input" basic>
+          {addMoneyData.Currency}
+        </Label>
       </div>
-      <Info
-        message={global.translate(
-          'You are going to be redirected to PayPal website',
-        )}
-      />
+
       <div className="topup-actions">
         <Form.Button onClick={handleBackEvent}>
           {global.translate('Back', 174)}

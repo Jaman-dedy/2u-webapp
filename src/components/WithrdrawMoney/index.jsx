@@ -15,6 +15,7 @@ import LoadWalletImg from 'assets/images/withdraw/load-wallet.svg';
 import LoadCountryImg from 'assets/images/withdraw/load-country.svg';
 import './style.scss';
 import PinModal from './PinModal';
+import AlertDanger from 'components/common/Alert/Danger';
 
 const WithdrawMoney = ({
   walletList,
@@ -41,6 +42,7 @@ const WithdrawMoney = ({
   allErrors,
   pinData,
   form,
+  confirmationError,
 }) => {
   const history = useHistory();
   const onClickHandler = () => history.goBack();
@@ -140,6 +142,9 @@ const WithdrawMoney = ({
                 />
               </div>
             </div>
+            {confirmationError && (
+              <AlertDanger message={confirmationError?.Description} />
+            )}
 
             <div>
               <div className="withdraw-title">

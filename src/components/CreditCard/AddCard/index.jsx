@@ -254,7 +254,7 @@ const AddCard = ({
                   }
                   onChange={() => setHasNotAgreed(!hasNotAgreed)}
                 />
-                <div>
+                <div className="card-actions">
                   <Button basic>
                     {global.translate('Cancel', 86)}
                   </Button>

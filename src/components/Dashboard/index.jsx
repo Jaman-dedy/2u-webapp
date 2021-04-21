@@ -49,27 +49,6 @@ const Dashboard = ({
 
   const history = useHistory();
   const getStatusMessage = () => {
-    if (authData && authData.DOBSet === 'NO') {
-      return {
-        message: global.translate(
-          'Your date of birth is not set yet.',
-          465,
-        ),
-        type: 'DOB',
-        tab: 'security',
-      };
-    }
-    if (authData && authData.QuestionsSet === 'NO') {
-      return {
-        message: global.translate(
-          'You have not set your security questions.',
-          466,
-        ),
-        type: 'SecurityQuestion',
-        tab: 'security',
-      };
-    }
-
     if (authData && authData.KYCDocReceived === 'NO') {
       return {
         message: global.translate(
@@ -98,7 +77,7 @@ const Dashboard = ({
         setIsTourOpen(true);
       }
     }
-  });
+  }, [userData]);
   const accentColor = '#5cb7b7';
   const closeTour = () => {
     setIsTourOpen(false);
