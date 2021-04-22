@@ -26,6 +26,7 @@ import remindUsername from './remind-username';
 import microloan from './microloan';
 import withdrawMoney from './withdrawMoney';
 import verifyEmail from './verifyEmail';
+import sendToPayPal from './sendToPayPal';
 
 export default [
   login,
@@ -59,4 +60,5 @@ export default [
   remindUsername,
   withdrawMoney,
   verifyEmail,
+  sendToPayPal,
 ];

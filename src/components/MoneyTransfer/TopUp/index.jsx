@@ -250,7 +250,8 @@ const TopUpModal = ({
     if (step === 1) {
       if (
         currentProviderOption?.Category === '0' ||
-        currentProviderOption?.Category === '19'
+        currentProviderOption?.Category === '19' ||
+        currentProviderOption?.Category === '7'
       ) {
         setButtonAction(global.translate('Transfer money', 1950));
         setVerifyAccount(false);
@@ -517,24 +518,41 @@ const TopUpModal = ({
                 </>
               ) : (
                 <>
-                  {!currentPhone && (
+                  {!currentPhone &&
+                    currentProviderOption?.Category !== '7' && (
+                      <div className="add-new-phone">
+                        <span>
+                          {global.translate(
+                            `Provide a new phone number`,
+                            2263,
+                          )}
+                        </span>
+
+                        <PhoneInput
+                          enableSearch
+                          className="new-phone-number"
+                          value={phoneValue}
+                          onChange={phone => {
+                            setPhoneValue(phone);
+                            setNextStep(false);
+                          }}
+                        />
+                      </div>
+                    )}
+                  {currentProviderOption?.Category === '7' && (
                     <div className="add-new-phone">
                       <span>
                         {global.translate(
-                          `Provide a new phone number`,
-                          2263,
+                          `Provide you email address`,
                         )}
                       </span>
-
-                      <PhoneInput
-                        enableSearch
-                        className="new-phone-number"
-                        value={phoneValue}
-                        onChange={phone => {
-                          setPhoneValue(phone);
-                          setNextStep(false);
-                        }}
-                      />
+                      <div className="form-information">
+                        <Input
+                          name="email"
+                          onChange={onOptionsChange}
+                          placeholder={global.translate('Email')}
+                        />
+                      </div>
                     </div>
                   )}
 

@@ -149,6 +149,15 @@ const MoneyTransfer = ({ payBills }) => {
                   668,
                 )}
               />
+              <CardComponent
+                image={payBillsIcon}
+                title={global.translate('PayPal', 170)}
+                onClick={() => history.push('push-paypal')}
+                subtitle={global.translate(
+                  'Transfer funds to your PayPal account',
+                  669,
+                )}
+              />
             </div>
             <h3 className="coming-soon-title">
               {global.translate('Coming soon', 1747)}
@@ -161,15 +170,6 @@ const MoneyTransfer = ({ payBills }) => {
                 subtitle={global.translate(
                   'Transfer fund to a bank account',
                   670,
-                )}
-              />
-              <ComingSoon
-                image={AddMoneyIcon}
-                title={global.translate('Paypal', 170)}
-                to="/"
-                subtitle={global.translate(
-                  'Transfer funds to a PayPal account',
-                  669,
                 )}
               />
             </div>

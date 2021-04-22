@@ -88,6 +88,7 @@ const TopUpContainer = ({
   ] = useState(false);
   const [verifyAccout, setVerifyAccount] = useState(false);
   const [nextStep, setNextStep] = useState(false);
+  const [destCountryCode, setDestCountryCode] = useState(null);
   const { allContacts, accountNumber } = useSelector(
     ({ contacts }) => contacts,
   );
@@ -387,16 +388,16 @@ const TopUpContainer = ({
     updateMoneyTransferStep(1)(dispatch);
     clearConfirmation()(dispatch);
   };
-
   const checkTransactionConfirmation = () => {
     const data = {
-      CountryCode: form.CountryCode,
+      CountryCode: form.Category ? 'WW' : form.CountryCode,
       Amount: form.amount && form.amount.toString(),
       TargetCurrency: form.destCurrency,
       TargetType: form.Category,
       OperatorID: form.OperatorID,
       SourceWallet: form.sourceWallet || sourceWallet,
       AccountNumber:
+        form?.email ||
         accountValue?.number ||
         currentBankAccount?.Title ||
         form?.phoneNumber,
@@ -421,6 +422,18 @@ const TopUpContainer = ({
       getCountryCode(phonePrefix);
     }
   }, [phonePrefix]);
+  useEffect(() => {
+    if (form.Category === '7') {
+      setDestCountryCode('WW');
+    } else {
+      setDestCountryCode(
+        form?.CountryCode ||
+          (destinationContact && destinationContact.CountryCode) ||
+          destinationContact?.Country ||
+          (selectedCountry && selectedCountry.CountryCode),
+      );
+    }
+  }, [form, destinationContact, selectedCountry]);
   let newPhoneNumber =
     (phoneValue && phoneValue) || form?.PhoneNumber?.replace('+', '');
   newPhoneNumber =
@@ -467,11 +480,7 @@ const TopUpContainer = ({
       DestLastName: form?.lastName || destinationContact.LastName,
       PhonePrefix: phonePrefix || destinationContact.PhonePrefix,
       SourceWallet: form?.sourceWallet,
-      DestCountryCode:
-        form?.CountryCode ||
-        (destinationContact && destinationContact.CountryCode) ||
-        destinationContact.Country ||
-        (selectedCountry && selectedCountry.CountryCode),
+      DestCountryCode: destCountryCode,
       OperatorID: form.OperatorID,
       DestCurrency:
         confirmationData?.[0]?.AccountCurrency || form?.destCurrency,
@@ -537,6 +546,7 @@ const TopUpContainer = ({
       getProviders(requestData)(dispatch);
     }
   }, [selectedCountry]);
+  console.log(`providersList`, providersList);
   useEffect(() => {
     const newProvidersList = [];
     if (providersList.data) {

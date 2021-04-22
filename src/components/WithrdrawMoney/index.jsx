@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Input, Image, Table, Button } from 'semantic-ui-react';
+import { Input, Image, Button } from 'semantic-ui-react';
 import PhoneInput from 'react-phone-input-2';
 import PropTypes from 'prop-types';
 
@@ -13,9 +13,9 @@ import loadConfirmationImg from 'assets/images/withdraw/load-confirmation.svg';
 import CustomDropdown from 'components/common/Dropdown/CountryDropdown';
 import LoadWalletImg from 'assets/images/withdraw/load-wallet.svg';
 import LoadCountryImg from 'assets/images/withdraw/load-country.svg';
-import './style.scss';
 import AlertDanger from 'components/common/Alert/Danger';
 import PINConfirmationModal from 'components/common/PINConfirmationModal';
+import TransactionDetails from 'components/common/CashoutDetails';
 
 const WithdrawMoney = ({
   walletList,
@@ -63,8 +63,8 @@ const WithdrawMoney = ({
           <div className="clear" />
         </div>
       </WelcomeBar>
-      <div className="withdraw-container">
-        <div className="withdraw-forms">
+      <div className="cash-out-container">
+        <div className="cash-out-forms">
           <div className="left-side">
             <h3>
               {global.translate(
@@ -73,7 +73,7 @@ const WithdrawMoney = ({
             </h3>
             {walletList?.length !== 0 ? (
               <>
-                <div className="withdraw-title">
+                <div className="cash-out-title">
                   {global.translate('Select wallet')}
                 </div>
 
@@ -96,7 +96,7 @@ const WithdrawMoney = ({
 
             {supportedCountries ? (
               <div className="select-day">
-                <div className="withdraw-title">
+                <div className="cash-out-title">
                   {global.translate('Pickup country')}
                 </div>
 
@@ -125,7 +125,7 @@ const WithdrawMoney = ({
               </div>
             )}
             <div>
-              <div className="withdraw-title">
+              <div className="cash-out-title">
                 {global.translate('Amount')}
               </div>
               <div className="amount-input">
@@ -146,7 +146,7 @@ const WithdrawMoney = ({
             )}
 
             <div>
-              <div className="withdraw-title">
+              <div className="cash-out-title">
                 {global.translate('Phone number')}
               </div>
               <div className="phone-input">
@@ -178,71 +178,7 @@ const WithdrawMoney = ({
             </div>
           )}
           {confirmationData && !checking && (
-            <div className="right-side">
-              <h3>{global.translate('Summary')}</h3>
-              <Table basic="very">
-                <Table.Body>
-                  <Table.Row>
-                    <Table.Cell>
-                      {global.translate('Total amount')}
-                      <div className="amount">
-                        <strong>
-                          {confirmationData[0].TotalAmount}
-                        </strong>{' '}
-                      </div>
-                    </Table.Cell>
-                    <Table.Cell />
-                    <Table.Cell />
-                  </Table.Row>
-                  <Table.Row>
-                    <Table.Cell>
-                      {global.translate('Amount to withdraw')}
-                      <div className="amount">
-                        <strong>
-                          {confirmationData[0].AmountToBeSent}
-                        </strong>{' '}
-                      </div>
-                    </Table.Cell>
-                    <Table.Cell />
-                    <Table.Cell />
-                  </Table.Row>
-                  <Table.Row>
-                    <Table.Cell>
-                      {global.translate('Fees')}
-                      <div className="amount">
-                        <strong>{confirmationData[0].Fees}</strong>{' '}
-                      </div>
-                    </Table.Cell>
-                    <Table.Cell />
-                    <Table.Cell />
-                  </Table.Row>
-                  <Table.Row>
-                    <Table.Cell>
-                      {global.translate('Exchange fees')}
-                      <div className="amount">
-                        <strong>
-                          {confirmationData[0].ExchangeFees}
-                        </strong>{' '}
-                      </div>
-                    </Table.Cell>
-                    <Table.Cell />
-                    <Table.Cell />
-                  </Table.Row>
-                  <Table.Row>
-                    <Table.Cell>
-                      {global.translate('Exchange rate')}
-                      <div className="amount">
-                        <strong>
-                          {confirmationData[0].ExchangeRate}
-                        </strong>{' '}
-                      </div>
-                    </Table.Cell>
-                    <Table.Cell />
-                    <Table.Cell />
-                  </Table.Row>
-                </Table.Body>
-              </Table>
-            </div>
+            <TransactionDetails confirmationData={confirmationData} />
           )}
 
           {checking && (
