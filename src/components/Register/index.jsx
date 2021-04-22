@@ -19,7 +19,7 @@ const Register = ({
   formErrors,
   screenNumber,
   setScreenNumber,
-  screenOne,
+  identityData,
   verifyOtp,
   userNameData,
   passwordData,
@@ -39,7 +39,7 @@ const Register = ({
             onInputChange={handleInputChange}
             screenNumber={screenNumber}
             setScreenNumber={setScreenNumber}
-            screenOne={screenOne}
+            identityData={identityData}
           />
         );
       case 2:
@@ -163,7 +163,7 @@ Register.propTypes = {
   formErrors: PropTypes.instanceOf(Object),
   screenNumber: PropTypes.number,
   setScreenNumber: PropTypes.func.isRequired,
-  screenOne: PropTypes.instanceOf(Object).isRequired,
+  identityData: PropTypes.instanceOf(Object).isRequired,
   screenTwo: PropTypes.instanceOf(Object).isRequired,
   verifyOtp: PropTypes.instanceOf(Object).isRequired,
   userNameData: PropTypes.instanceOf(Object).isRequired,

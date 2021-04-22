@@ -31,6 +31,9 @@
 
 //Flat input
 .flat-input {
+  .ui.input {
+    border: 1px solid #ccc !important;
+  }
   .input {
     margin: 5px 0px;
     border-bottom: 1px solid #ccc;

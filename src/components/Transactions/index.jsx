@@ -223,6 +223,7 @@ const Transactions = ({
     }
     setCurrentPage(activePage);
   };
+
   return (
     <DashboardLayout>
       <WelcomeBar>
@@ -266,7 +267,6 @@ const Transactions = ({
                     : 0
                 }
               />
-
               <CardSummary
                 transactionTypeImage={
                   size.width > 600 && PendingCashSentImg

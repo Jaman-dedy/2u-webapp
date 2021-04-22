@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Register from 'components/Register';
 import getUserLocationDataAction from 'redux/actions/users/userLocationData';
-import screenOne from './identityData';
+import identityData from './identityData';
 import verifyOtp from './verifyOtp';
 import userNameData from './userNameData';
 import passwordData from './passwordData';
@@ -69,7 +69,7 @@ const RegisterContainer = () => {
       handleInputChange={handleInputChange}
       screenNumber={screenNumber}
       setScreenNumber={setScreenNumber}
-      screenOne={screenOne({
+      identityData={identityData({
         registrationData,
         setScreenNumber,
         screenNumber,

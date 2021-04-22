@@ -151,6 +151,7 @@ const CreditCardForm = ({
         <Form.Button
           type="button"
           loading={loading}
+          disabled={!addMoneyData.Currency}
           onClick={() => {
             if (!loading) {
               handleSubmit();

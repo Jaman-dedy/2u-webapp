@@ -1,16 +1,16 @@
-import './style.scss';
-import 'assets/styles/spinner.scss';
-
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PhoneInput from 'react-phone-input-2';
 import { Link } from 'react-router-dom';
 import { Checkbox, Container, Form, Label } from 'semantic-ui-react';
 
+import './style.scss';
+import 'assets/styles/spinner.scss';
+
 const IdentityForm = ({
   registrationData,
   onInputChange,
-  screenOne,
+  identityData,
 }) => {
   const {
     errors,
@@ -20,7 +20,20 @@ const IdentityForm = ({
     phonevalue,
     setPhonevalue,
     userLocationData,
-  } = screenOne;
+  } = identityData;
+  const [disableButton, setDisableButton] = useState(false);
+  useEffect(() => {
+    if (
+      !registrationData.firstName ||
+      !registrationData.lastName ||
+      !registrationData.userAgrees ||
+      !phonevalue
+    ) {
+      setDisableButton(true);
+    } else {
+      setDisableButton(false);
+    }
+  }, [registrationData, phonevalue]);
 
   return (
     <Container>
@@ -118,7 +131,7 @@ const IdentityForm = ({
         <button
           type="submit"
           className="btn-auth btn-secondary"
-          disabled={!registrationData.userAgrees || !phonevalue}
+          disabled={disableButton}
           onClick={() =>
             verifyPhoneNumber.loading === false && handleNext()
           }
@@ -142,7 +155,7 @@ const IdentityForm = ({
 IdentityForm.propTypes = {
   registrationData: PropTypes.instanceOf(Object).isRequired,
   onInputChange: PropTypes.func,
-  screenOne: PropTypes.instanceOf(Object).isRequired,
+  identityData: PropTypes.instanceOf(Object).isRequired,
 };
 
 IdentityForm.defaultProps = {

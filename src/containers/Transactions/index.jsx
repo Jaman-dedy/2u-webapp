@@ -231,8 +231,11 @@ const Transactions = () => {
   }, []);
 
   useEffect(() => {
-    getTransactions();
+    if (!walletTransactions.data) {
+      getTransactions();
+    }
   }, []);
+
   useEffect(() => {
     if (!unPaidCashList.data) {
       getUnPaidCashList();

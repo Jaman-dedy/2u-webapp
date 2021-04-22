@@ -22,17 +22,21 @@ const PinModal = ({
 }) => {
   const [isDisabled, setIsDisabled] = useState(false);
   useEffect(() => {
-    if (!pinData?.PIN) {
+    if (pinData?.PIN?.length < 4) {
       setIsDisabled(true);
     }
-    if (!pinData?.CardPIN) {
+    if (pinData?.CardPIN?.length < 4) {
       setIsDisabled(true);
     }
 
     if (loading) {
       setIsDisabled(true);
     }
-    if (pinData?.PIN && pinData?.CardPIN && !loading) {
+    if (
+      pinData?.PIN?.length === 4 &&
+      pinData?.CardPIN?.length === 4 &&
+      !loading
+    ) {
       setIsDisabled(false);
     }
   }, [pinData, loading]);

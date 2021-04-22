@@ -13,6 +13,8 @@ import getUserProfessionAction from 'redux/actions/users/getProfession';
 import isFileImage from 'utils/isFileImage';
 import uploadDocs from 'helpers/uploadDocs';
 import updateUserPhoneListAction from 'redux/actions/userAccountManagement/updateUserPhoneList';
+import updateUserEmailListAction from 'redux/actions/userAccountManagement/updateUserEmailList';
+
 import setPrimaryEmail from 'redux/actions/users/setPrimaryEmail';
 import sendEmailAction from 'redux/actions/sendEmail';
 
@@ -20,7 +22,11 @@ export default () => {
   const { userData, primaryPhone, primaryEmail } = useSelector(
     ({ user }) => user,
   );
-  const { saveUserData, updateUserPhoneList } = useSelector(
+  const {
+    saveUserData,
+    updateUserPhoneList,
+    updateUserEmailList,
+  } = useSelector(
     ({ userAccountManagement }) => userAccountManagement,
   );
 
@@ -37,9 +43,7 @@ export default () => {
 
   const [errors, setErrors] = useState({});
   const [cropImgState, setCropImgState] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(
-    new Date('2003/01/01'),
-  );
+  const [selectedDate, setSelectedDate] = useState(new Date());
   const [nationality, setNationality] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [phoneValue, setPhoneValue] = useState(null);
@@ -303,6 +307,18 @@ export default () => {
     }
   }, [OTP]);
 
+  useEffect(() => {
+    if (OTP.length === 6) {
+      const data = {
+        OTP: OTP,
+        Category: '1',
+        CountryCode: 'rw',
+        Emails: [],
+      };
+      updateUserEmailListAction(data)(dispatch);
+    }
+  }, [OTP]);
+
   const handleDelete = (e, phone) => {
     e.stopPropagation();
     const newPhoneList = data?.Phones?.filter(
@@ -313,6 +329,23 @@ export default () => {
       dispatch,
     );
   };
+
+  const handleDeleteEmail = (e, email) => {
+    e.stopPropagation();
+    const newEmailList = data?.Emails?.filter(
+      phoneObject =>
+        phoneObject.Email.toString() !== email.toString(),
+    );
+    updateUserEmailListAction({ Emails: [...newEmailList] })(
+      dispatch,
+    );
+  };
+
+  useEffect(() => {
+    if (userData?.Emails) {
+      updateUserEmailListAction({ Emails: [] })(dispatch);
+    }
+  }, [userData?.Emails]);
 
   return {
     personalInfoData,
@@ -359,7 +392,9 @@ export default () => {
     setOpenEmailModal,
     openEmailModal,
     updateUserPhoneList,
+    updateUserEmailList,
     setOTP,
     handleDelete,
+    handleDeleteEmail,
   };
 };

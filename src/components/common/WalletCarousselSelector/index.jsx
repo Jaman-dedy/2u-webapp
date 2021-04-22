@@ -25,7 +25,6 @@ const WalletCarousel = ({
   defaultSelectAll,
   walletTitle,
   onAddClick,
-  preSelectedWallet,
   setNextButton,
 }) => {
   const dispatch = useDispatch();
@@ -91,8 +90,7 @@ const WalletCarousel = ({
       ({ AccountNumber }) =>
         AccountNumber === createWallet?.NewWallet?.number,
     );
-
-    if (selectedWallet && !preSelectedWallet) {
+    if (selectedWallet) {
       setSelectedWallet(selectedWallet);
       selectWallet({
         AccountNumber: selectedWallet.AccountNumber,
@@ -101,14 +99,16 @@ const WalletCarousel = ({
     }
   }, [myWallets, createWallet]);
   useEffect(() => {
-    if (preSelectedWallet) {
-      setSelectedWallet(preSelectedWallet);
-      selectWallet({
-        AccountNumber: preSelectedWallet.AccountNumber,
-        CurrencyCode: preSelectedWallet.CurrencyCode,
-      });
+    if (myWallets.walletList.length !== 0) {
+      if (selectedWalletNumber) {
+        const selectedWallet = myWallets.walletList.find(
+          ({ AccountNumber }) =>
+            AccountNumber === selectedWalletNumber,
+        );
+        setSelectedWallet(selectedWallet);
+      }
     }
-  }, [preSelectedWallet]);
+  }, [selectedWalletNumber]);
 
   useEffect(() => {
     if (selectedWallet.AccountNumber) {
