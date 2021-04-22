@@ -35,6 +35,9 @@ export default (
         if (callback) callback(data[0]);
       },
       onFailure: error => dispatch => {
+        if (Array.isArray(error)) {
+          toast.error(error[0]?.Description);
+        }
         return dispatch({
           type: MOVE_FUNDS_ERROR,
           payload: {

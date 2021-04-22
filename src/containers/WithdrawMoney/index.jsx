@@ -44,18 +44,10 @@ const WithdrawMoney = () => {
   const [form, setForm] = useState({});
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [openPinModal, setOpenPinModal] = useState(false);
-  const [pin, setPin] = useState(null);
+  const [PIN, setPIN] = useState('');
   const [allErrors, setAllErrors] = useState(null);
-  const [pinData, setPinData] = useState(null);
 
-  const [userPinDigit, setUserPinDigit] = useState({
-    digit0: '',
-    digit1: '',
-    digit2: '',
-    digit3: '',
-  });
-
-  const pinIsValid = () => pin && pin.length === 4;
+  const pinIsValid = () => PIN.length === 4;
   const validate = () => {
     if (!pinIsValid()) {
       setAllErrors(
@@ -84,29 +76,20 @@ const WithdrawMoney = () => {
   }, [dataMoveFund]);
 
   useEffect(() => {
-    const { digit0, digit1, digit2, digit3 } = userPinDigit;
-    setPin(`${digit0}${digit1}${digit2}${digit3}`);
-  }, [userPinDigit]);
-
-  useEffect(() => {
     if (errorMoveFund && Object.keys(errorMoveFund).length !== 0) {
       setAllErrors(errorMoveFund[0]);
     }
   }, [errorMoveFund]);
 
   useEffect(() => {
-    setPinData({
-      ...pinData,
-      PIN: pin,
-    });
     setAllErrors(null);
-  }, [pin]);
+  }, [PIN]);
 
   const onOptionChange = (e, { name, value }) => {
-    setForm({
+    setForm(form => ({
       ...form,
       [name]: value,
-    });
+    }));
   };
 
   useEffect(() => {
@@ -118,7 +101,7 @@ const WithdrawMoney = () => {
         setCurrentOption(selectedWallet);
       }
     }
-  }, [myWallets?.walletList.length]);
+  }, [myWallets?.walletList]);
 
   useEffect(() => {
     if (!supportedCountries) {
@@ -164,7 +147,7 @@ const WithdrawMoney = () => {
   };
   const handleCashout = () => {
     const data = {
-      PIN: pinData.PIN,
+      PIN,
       Amount: form.amount && form.amount.toString(),
       DateFrom: '',
       DateTo: '',
@@ -216,10 +199,9 @@ const WithdrawMoney = () => {
       userData={userData}
       setOpenPinModal={setOpenPinModal}
       openPinModal={openPinModal}
-      setUserPinDigit={setUserPinDigit}
-      userPinDigit={userPinDigit}
       allErrors={allErrors}
-      pinData={pinData}
+      PIN={PIN}
+      setPIN={setPIN}
       form={form}
       confirmationError={confirmationError?.[0]}
     />

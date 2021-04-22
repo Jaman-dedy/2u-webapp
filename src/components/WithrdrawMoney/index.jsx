@@ -14,8 +14,8 @@ import CustomDropdown from 'components/common/Dropdown/CountryDropdown';
 import LoadWalletImg from 'assets/images/withdraw/load-wallet.svg';
 import LoadCountryImg from 'assets/images/withdraw/load-country.svg';
 import './style.scss';
-import PinModal from './PinModal';
 import AlertDanger from 'components/common/Alert/Danger';
+import PINConfirmationModal from 'components/common/PINConfirmationModal';
 
 const WithdrawMoney = ({
   walletList,
@@ -37,10 +37,8 @@ const WithdrawMoney = ({
   userData,
   setOpenPinModal,
   openPinModal,
-  setUserPinDigit,
-  userPinDigit,
-  allErrors,
-  pinData,
+  setPIN,
+  PIN,
   form,
   confirmationError,
 }) => {
@@ -51,6 +49,7 @@ const WithdrawMoney = ({
       setPhoneValue(userData?.MainPhone);
     }
   }, [userData]);
+
   return (
     <DashboardLayout>
       <WelcomeBar>
@@ -269,15 +268,14 @@ const WithdrawMoney = ({
             : global.translate('Withdraw money')}
         </Button>
       </div>
-      <PinModal
-        setOpenPinModal={setOpenPinModal}
-        openPinModal={openPinModal}
-        setUserPinDigit={setUserPinDigit}
-        userPinDigit={userPinDigit}
-        errors={allErrors}
-        pinData={pinData}
-        handleCashout={handleCashout}
+
+      <PINConfirmationModal
+        open={openPinModal}
+        setOpen={setOpenPinModal}
+        onPinConfirm={handleCashout}
         loading={loadMoveFund}
+        PIN={PIN}
+        setPIN={setPIN}
       />
     </DashboardLayout>
   );
