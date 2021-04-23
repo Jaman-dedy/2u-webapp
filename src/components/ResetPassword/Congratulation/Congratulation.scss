@@ -53,6 +53,14 @@
       display: block;
       margin: 0 auto;
     }
+    .accounts {
+      .account {
+        .inline {
+          margin-right: 5px !important;
+          width: 30px !important;
+        }
+      }
+    }
   }
   .congratulate {
     font-size: 30px;

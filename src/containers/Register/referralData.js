@@ -109,7 +109,7 @@ export default ({ registrationData, setScreenNumber }) => {
 
   useEffect(() => {
     if (countryCurrencies.success) {
-      setScreenNumber(7);
+      setScreenNumber(5);
     }
   }, [countryCurrencies]);
 

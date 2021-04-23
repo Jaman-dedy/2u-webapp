@@ -546,7 +546,6 @@ const TopUpContainer = ({
       getProviders(requestData)(dispatch);
     }
   }, [selectedCountry]);
-  console.log(`providersList`, providersList);
   useEffect(() => {
     const newProvidersList = [];
     if (providersList.data) {

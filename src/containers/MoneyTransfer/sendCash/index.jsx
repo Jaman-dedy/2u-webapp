@@ -5,16 +5,13 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
-// import cancelOrEditOther from 'redux/actions/transactions/cancelOrEditOther';
 import SendCashModal from 'components/MoneyTransfer/sendCash';
 import { CASH_OUT } from 'constants/general';
 import { clearFoundUser } from 'redux/actions/contacts/locateUser';
 import getSupportedCountries from 'redux/actions/countries/getSupportedCountries';
 import { updateMoneyTransferStep } from 'redux/actions/dashboard/dashboard';
 import confirmTransaction from 'redux/actions/moneyTransfer/confirmTransaction';
-import modifyCash, {
-  clearModifyCash,
-} from 'redux/actions/moneyTransfer/modifyCash';
+import { clearModifyCash } from 'redux/actions/moneyTransfer/modifyCash';
 import moveFunds, {
   clearMoveFundsErrors,
 } from 'redux/actions/moneyTransfer/moveFunds';
@@ -452,25 +449,6 @@ const SendCashContainer = ({
     }
     setErrors(null);
 
-    if (EditSendToOther) {
-      const {
-        TransferNumber,
-        TransactionID,
-        OperatorID,
-      } = destinationContact;
-      const data = {
-        TransferNumber,
-        TransactionID,
-        TargetPhoneNumber: form?.phoneNumber,
-        DestFirstName: form?.firstName,
-        DestLastName: form?.lastName,
-        OperatorID,
-        PIN,
-        Cancel: 'No',
-        Modify: 'Yes',
-      };
-      // cancelOrEditOther(data)(dispatch);
-    }
     if (!isEditing) {
       moveFunds(data, '/SendCash', 'send-cash')(dispatch)(data => {
         toast.success(global.translate(data?.Description));

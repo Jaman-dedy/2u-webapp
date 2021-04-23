@@ -7,9 +7,7 @@ import AuthWrapper from '../common/AuthWrapper/AuthWrapper';
 import Congratulation from './Congratulation';
 import IdentityForm from './IdentityForm';
 import OTPForm from './OTPForm';
-import PasswordForm from './PasswordForm';
-import PIDForm from './PIDForm';
-import PINForm from './PINForm';
+import UsernameForm from './UsernameForm';
 import ReferralForm from './ReferralForm';
 
 const Register = ({
@@ -22,8 +20,6 @@ const Register = ({
   identityData,
   verifyOtp,
   userNameData,
-  passwordData,
-  pinData,
   congratulationPage,
   referralScreen,
 }) => {
@@ -57,7 +53,7 @@ const Register = ({
         );
       case 3:
         return (
-          <PIDForm
+          <UsernameForm
             formErrors={formErrors}
             registrationData={registrationData}
             onInputChange={handleInputChange}
@@ -66,31 +62,8 @@ const Register = ({
             userNameData={userNameData}
           />
         );
+
       case 4:
-        return (
-          <PasswordForm
-            formErrors={formErrors}
-            registrationData={registrationData}
-            onInputChange={handleInputChange}
-            screenNumber={screenNumber}
-            setScreenNumber={setScreenNumber}
-            passwordData={passwordData}
-            onClickHandler={onClickHandler}
-          />
-        );
-      case 5:
-        return (
-          <PINForm
-            formErrors={formErrors}
-            registrationData={registrationData}
-            onInputChange={handleInputChange}
-            screenNumber={screenNumber}
-            setScreenNumber={setScreenNumber}
-            pinData={pinData}
-            onClickHandler={onClickHandler}
-          />
-        );
-      case 6:
         return (
           <ReferralForm
             registrationData={registrationData}
@@ -99,7 +72,7 @@ const Register = ({
             onClickHandler={onClickHandler}
           />
         );
-      case 7:
+      case 5:
         return (
           <Congratulation
             registrationData={registrationData}
@@ -116,29 +89,28 @@ const Register = ({
   const setTitle = () => {
     switch (screenNumber) {
       case 1:
-        return global.translate('Register for a free account', 1413);
+        return global.translate('Register', 6);
       case 2:
-        return global.translate('Phone verification', 15);
+        return global.translate('Register', 6);
       case 3:
-        return global.translate('Username', 1992);
+        return global.translate('Register', 6);
       case 4:
-        return global.translate('Password', 2);
-      case 5:
-        return global.translate('PIN Number', 537);
-      case 6:
         return global.translate('Someone told you about us?', 1412);
-      case 7:
+      case 5:
         return global.translate('Congratulations', 950);
 
       default:
-        return global.translate('Register for a free account', 1413);
+        return global.translate('Register', 6);
     }
   };
 
   return screenNumber === 7 ? (
     renderForm()
   ) : (
-    <AuthWrapper rightHeadlineText={global.translate(setTitle())}>
+    <AuthWrapper
+      rightHeadlineText={global.translate(setTitle())}
+      register={screenNumber === 1}
+    >
       <div className="form-content">{renderForm()}</div>
       <div className="dots">
         {Array(7)

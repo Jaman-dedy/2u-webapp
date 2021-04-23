@@ -15,7 +15,7 @@
   );
   padding: 5px 0;
   right: 0;
-  width: 42%;
+  width: 42.5%;
   .logo {
     width: 180px;
     &:hover {
@@ -42,7 +42,6 @@
   border-radius: 4px;
   flex-grow: 0;
   flex-shrink: 0;
-  width: 371.18px;
   margin: auto;
   .auth-sub-text {
     padding: 10px 0 15px 0;
@@ -59,6 +58,14 @@
       color: #787878;
     }
   }
+}
+.wrap-auth {
+  max-width: 410px;
+  width: 100%;
+}
+.wrap-auth-register {
+  width: 75%;
+  margin: auto;
 }
 .wrap-event {
   width: 60% !important;
@@ -129,6 +136,7 @@
   padding: 10px auto;
   font-size: 16px;
 }
+
 @media only screen and (min-width: 900px) {
   .wrap-auth-section {
     padding: 0px 0;
@@ -138,7 +146,57 @@
   }
 }
 
-@media only screen and (max-width: 880px) {
+@media only screen and (max-width: 1580px) {
+  .wrap-auth-register {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 1480px) {
+  .wrap-auth-register {
+    width: 84%;
+    padding-left: 17px;
+  }
+
+  .nav-menu {
+    margin: 12px;
+  }
+
+  .navbar,
+  .logo-container {
+    padding: 0px 7px !important;
+  }
+
+  .os-header {
+    width: 42.5%;
+  }
+}
+
+@media only screen and (max-width: 1456px) {
+  .wrap-auth-register {
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 1370px) {
+  .wrap-auth-register {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 1224px) {
+  .os-header {
+    width: 100%;
+  }
+  .wrap-event {
+    display: none;
+  }
+  .form-wrapper {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
   .logo {
     margin-left: 6px !important;
   }
@@ -148,13 +206,6 @@
   }
   .wrap-event {
     display: none;
-  }
-  .wrap-auth {
-    width: 96%;
-    max-width: 500px;
-    padding: 30px 36px;
-    margin: 75px auto;
-    display: block;
   }
   .hide-on-small {
     display: none !important;
@@ -169,5 +220,23 @@
 
   .os-header {
     width: 100%;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .os-header {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .wrap-auth {
+    width: 100%;
+    max-width: 430px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .wrap-auth {
+    padding: 30px 5px;
   }
 }

@@ -19,13 +19,16 @@ export default data => dispatch =>
           type: EDIT_CREDIT_CARD_START,
         }),
       onSuccess: data => dispatch => {
-        if (data[0].Result === 'Success') {
-          toast.success(data[0].Description);
+        const result = Array.isArray(data)
+          ? data[0] || {}
+          : data || {};
+        if (result.Result === 'Success') {
+          toast.success(result.Description);
           return dispatch({
             type: EDIT_CREDIT_CARD_SUCCESS,
             payload: {
-              ...data[0],
-              success: data[0].Result === 'Success',
+              ...result,
+              success: result.Result === 'Success',
             },
           });
         }

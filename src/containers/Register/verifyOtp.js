@@ -2,7 +2,10 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import verifyOTPAction from 'redux/actions/users/verifyOTP';
+import verifyOTPAction, {
+  clearVerifyOTP,
+} from 'redux/actions/users/verifyOTP';
+import verifyPhoneNumberAction from 'redux/actions/users/verifyPhoneNumber';
 
 export default ({
   registrationData,
@@ -10,13 +13,20 @@ export default ({
   screenNumber,
 }) => {
   const dispatch = useDispatch();
-  const { verifyOTP } = useSelector(({ user }) => user);
+  const { verifyOTP, verifyPhoneNumber } = useSelector(
+    ({ user }) => user,
+  );
 
+  const [shouldVerifyOtp, setShouldVerifyOtp] = useState(false);
+  const [OTPNumber, setOTPNumber] = useState('');
   const [errors, setErrors] = useState({});
   const { countryCode, phoneNumber, OTP } = registrationData;
 
   const handleVerifyOTP = () => {
-    verifyOTPAction(phoneNumber, OTP)(dispatch);
+    verifyOTPAction(
+      `${countryCode}${phoneNumber}`,
+      OTPNumber,
+    )(dispatch);
   };
 
   const clearError = ({ target: { name } }) => {
@@ -29,7 +39,7 @@ export default ({
    * @returns {bool} true if no error
    */
   const validate = () => {
-    const otpError = OTP
+    const otpError = OTPNumber
       ? ''
       : global.translate(
           'Please enter the verification code sent via SMS',
@@ -53,6 +63,35 @@ export default ({
       setScreenNumber(3);
     }
   }, [verifyOTP]);
+  const handleKeyDown = e => {
+    if (e.key === 'Enter') {
+      if (OTPNumber.length === 6) {
+        setShouldVerifyOtp(true);
+      } else {
+        setShouldVerifyOtp(false);
+        clearVerifyOTP()(dispatch);
+        setErrors(null);
+      }
+    }
+  };
+  useEffect(() => {
+    if (shouldVerifyOtp) {
+      verifyOTPAction(phoneNumber, OTPNumber)(dispatch);
+    }
+  }, [shouldVerifyOtp]);
+  useEffect(() => {
+    if (OTPNumber?.length === 6) {
+      setShouldVerifyOtp(true);
+    } else {
+      setShouldVerifyOtp(false);
+      clearVerifyOTP()(dispatch);
+      setErrors(null);
+    }
+  }, [OTPNumber]);
+
+  const resendOtp = () => {
+    verifyPhoneNumberAction(phoneNumber)(dispatch);
+  };
 
   return {
     setScreenNumber,
@@ -62,5 +101,11 @@ export default ({
     errors,
     clearError,
     verifyOTP,
+    shouldVerifyOtp,
+    handleKeyDown,
+    resendOtp,
+    verifyPhoneNumber,
+    setOTPNumber,
+    OTPNumber,
   };
 };

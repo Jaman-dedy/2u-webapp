@@ -14,7 +14,6 @@ import referralScreen from './referralData';
 const RegisterContainer = () => {
   const dispatch = useDispatch();
   const [screenNumber, setScreenNumber] = useState(1);
-
   const [registrationData, setRegistrationData] = useState({
     firstName: '',
     lastName: '',
@@ -83,6 +82,7 @@ const RegisterContainer = () => {
       userNameData={userNameData({
         registrationData,
         setScreenNumber,
+        setRegistrationData,
       })}
       passwordData={passwordData({
         registrationData,

@@ -31,6 +31,11 @@ export default ({
     userLocationData,
   } = useSelector(({ user }) => user);
 
+  const [
+    openTermsAndConditionModal,
+    setOpenTermsAndConditionModal,
+  ] = useState(false);
+
   useEffect(() => {
     if (phonevalue) {
       setRegistrationData({
@@ -73,24 +78,6 @@ export default ({
       ? ''
       : global.translate('Please provide a valid phone number.', 20);
 
-    if (
-      !emailError &&
-      !firstNameError &&
-      !lastNameError &&
-      !phoneNumberError
-    ) {
-      if (!userAgrees) {
-        toast.error(
-          global.translate(
-            'You must agree to the User Agreement and the Privacy Policy.',
-            2087,
-          ),
-        );
-
-        return;
-      }
-    }
-
     setErrors({
       ...errors,
       firstName: firstNameError,
@@ -117,9 +104,14 @@ export default ({
 
   useEffect(() => {
     if (sendOTP.success) {
-      setScreenNumber(2);
+      setOpenTermsAndConditionModal(true);
     }
   }, [sendOTP]);
+
+  const handleTermsAndCondition = () => {
+    setScreenNumber(2);
+    setOpenTermsAndConditionModal(false);
+  };
 
   return {
     handleNext,
@@ -130,5 +122,8 @@ export default ({
     verifyPhoneNumber,
     phonevalue,
     setPhonevalue,
+    openTermsAndConditionModal,
+    setOpenTermsAndConditionModal,
+    handleTermsAndCondition,
   };
 };

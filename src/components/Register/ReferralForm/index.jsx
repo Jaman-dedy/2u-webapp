@@ -94,7 +94,7 @@ const ReferralForm = ({
                   type="button"
                   onClick={() => handleSearUser(true)}
                 >
-                  <Icon name="search" size="big" />
+                  <Icon name="search" size="large" />
                 </button>
               }
             />

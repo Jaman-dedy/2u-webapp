@@ -2,6 +2,7 @@ import {
   VERIFY_PID_START,
   VERIFY_PID_SUCCESS,
   VERIFY_PID_ERROR,
+  CLEAR_PID,
 } from 'constants/action-types/users/verifyPID';
 
 export default (state, { type, payload }) => {
@@ -30,6 +31,13 @@ export default (state, { type, payload }) => {
         verifyPID: {
           ...state.verifyPID,
           ...payload,
+          loading: false,
+        },
+      };
+    case CLEAR_PID:
+      return {
+        ...state,
+        verifyPID: {
           loading: false,
         },
       };

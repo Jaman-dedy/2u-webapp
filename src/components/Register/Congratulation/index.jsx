@@ -7,7 +7,7 @@ import { Image } from 'semantic-ui-react';
 import success from 'assets/images/success.svg';
 import { restoreRegisterUser } from 'redux/actions/users/registerUser';
 
-import './../../ResetPassword/Congratulation/Congratulation.scss';
+import '../../ResetPassword/Congratulation/Congratulation.scss';
 
 const Congratulation = ({ congratulationPage }) => {
   const {

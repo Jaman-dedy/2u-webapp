@@ -1,12 +1,238 @@
 .form-information {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 20px;
+  .field {
+    width: 250px;
+    .react-datepicker-wrapper {
+      width: 100% !important;
+      input {
+        border: 1px solid #ced4da;
+      }
+    }
+  }
+  .field-email {
+    margin-left: 11.1px !important;
+  }
   .user-phone-number {
+    margin-top: 8px;
     .react-tel-input {
-      width: 100%;
+      border: 1px solid #d8dcde;
+      border-radius: 4px;
       .form-control {
         margin-left: 28px;
+        width: 88.5% !important;
+        height: 100%;
       }
       .flag-dropdown {
         border: none !important;
+      }
+    }
+  }
+  .button-actions {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    .btn-primary {
+      width: 48%;
+      background-color: #da6138 !important;
+      color: #fff !important;
+    }
+    a {
+      width: 48%;
+      margin: 8px 0;
+      display: block;
+      padding: 14px 0;
+      text-align: center;
+      font-weight: 500;
+      color: #323556 !important;
+      border: 1px solid #323556;
+    }
+  }
+}
+
+.sub-titles {
+  margin-bottom: 5px;
+}
+
+@media only screen and (max-width: 5500px) {
+  .form-information {
+    .field {
+      width: 370px;
+    }
+    .user-phone-number {
+      .react-tel-input {
+        .form-control {
+          width: 91.5% !important;
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 3000px) {
+  .form-information {
+    .field {
+      width: 360px;
+    }
+    .user-phone-number {
+      .react-tel-input {
+        .form-control {
+          width: 91.5% !important;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 2290px) {
+  .form-information {
+    .field {
+      width: 320px;
+    }
+    .user-phone-number {
+      .react-tel-input {
+        .form-control {
+          width: 90.5% !important;
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 2000px) {
+  .form-information {
+    .field {
+      width: 300px;
+    }
+    .user-phone-number {
+      .react-tel-input {
+        .form-control {
+          width: 90.5% !important;
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 1860px) {
+  .form-information {
+    .field {
+      width: 280px;
+    }
+    .user-phone-number {
+      .react-tel-input {
+        .form-control {
+          width: 89.5% !important;
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 1224px) {
+  .form-information {
+    .field {
+      width: 260px;
+    }
+    .user-phone-number {
+      .react-tel-input {
+        .form-control {
+          width: 89.5% !important;
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 1760px) {
+  .form-information {
+    .field {
+      width: 250px;
+    }
+    .user-phone-number {
+      .react-tel-input {
+        .form-control {
+          width: 88.6% !important;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 770px) {
+  .form-information {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    .field-email {
+      margin-left: 0 !important;
+    }
+    .field {
+      width: 100%;
+    }
+    .user-phone-number {
+      .react-tel-input {
+        .form-control {
+          width: 94.6% !important;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 600px) {
+  .form-information {
+    .button-actions {
+      width: 100%;
+      flex-direction: column;
+      .btn-primary {
+        width: 100%;
+      }
+      a {
+        width: 100%;
+      }
+    }
+    .user-phone-number {
+      .react-tel-input {
+        .form-control {
+          width: 93.5% !important;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 500px) {
+  .form-information {
+    .button-actions {
+      width: 100%;
+      flex-direction: column;
+      .btn-primary {
+        width: 100%;
+      }
+      a {
+        width: 100%;
+      }
+    }
+    .user-phone-number {
+      .react-tel-input {
+        .form-control {
+          width: 91.6% !important;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 375px) {
+  .form-information {
+    .button-actions {
+      width: 100%;
+      flex-direction: column;
+      .btn-primary {
+        width: 100%;
+      }
+      a {
+        width: 100%;
+      }
+    }
+    .user-phone-number {
+      .react-tel-input {
+        .form-control {
+          width: 89% !important;
+        }
       }
     }
   }

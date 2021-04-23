@@ -51,9 +51,9 @@
     .account {
       position: relative;
       left: 40px;
-      img {
-        margin-right: 3px;
-        width: 37px;
+      .inline {
+        margin-right: 5px !important;
+        width: 30px !important;
       }
     }
   }
