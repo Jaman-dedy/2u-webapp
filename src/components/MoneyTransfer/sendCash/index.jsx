@@ -59,6 +59,7 @@ const SendCashModal = ({
   defaultDestinationCurrency,
   transactionType,
   loadingOther,
+  handleDismissModal,
 }) => {
   const defaultCountry = countries.find(
     country => country.flag === userLocationData.CountryCode,
@@ -447,6 +448,7 @@ const SendCashModal = ({
               basic
               color="red"
               onClick={() => {
+                handleDismissModal();
                 setOpen(!open);
                 resetState();
                 setForm({

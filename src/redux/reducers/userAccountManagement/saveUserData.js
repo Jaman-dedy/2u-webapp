@@ -14,6 +14,7 @@ export default (state, { type, payload }) => {
           ...state.saveUserData,
           loading: true,
           error: null,
+          success: false,
         },
       };
     case SAVE_USER_DATA_FAILURE:
@@ -23,6 +24,7 @@ export default (state, { type, payload }) => {
           ...state.saveUserData,
           error: payload,
           loading: false,
+          success: false,
         },
       };
     case CLEAR_SAVE_USER_DATA:

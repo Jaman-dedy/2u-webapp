@@ -23,10 +23,11 @@ export default (
           payload: data,
         }),
       onSuccess: data => dispatch => {
+        const res = Array.isArray(data) ? data[0] || {} : data || {};
 
         return dispatch({
           type: TRANSFER_TO_OTHERS_SUCCESS,
-          payload: [{ ...data[0], type }],
+          payload: [{ ...res, type }],
         });
       },
       onFailure: error => dispatch => {

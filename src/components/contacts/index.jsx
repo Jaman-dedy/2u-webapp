@@ -28,7 +28,6 @@ import {
 } from 'redux/actions/chat/globalchat';
 import {
   setIsSendingOhters,
-  setIsTopingUp,
   clearContactAction,
 } from 'redux/actions/dashboard/dashboard';
 import { setSelectedStore } from 'redux/actions/vouchers/selectedStore';
@@ -93,6 +92,7 @@ const ManageContacts = ({
   isSendingOthers,
   isSendingVoucher,
   targetStore,
+  handleDismissModal,
 }) => {
   const [isSearching, setIsSearching] = useState(false);
   const [allMyContacts, setAllContacts] = useState([]);
@@ -776,6 +776,7 @@ const ManageContacts = ({
         destinationContact={destinationContact}
         setDestinationContact={setDestinationContact}
         isSendingMoney={isSendingMoney}
+        handleDismissModal={handleDismissModal}
       />
       <SendCashContainer
         open={sendCashOpen}
@@ -785,6 +786,7 @@ const ManageContacts = ({
         setDestinationContact={setDestinationContact}
         userData={userData}
         DefaultWallet={DefaultWallet}
+        handleDismissModal={handleDismissModal}
       />
       <TopUpContainer
         open={topUpOpen}

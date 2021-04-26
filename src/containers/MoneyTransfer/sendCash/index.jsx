@@ -33,7 +33,7 @@ const SendCashContainer = ({
   setOptionsOpen,
   setIsEditing,
   transactionType,
-  EditSendToOther,
+  handleDismissModal,
 }) => {
   const [form, setForm] = useState({});
   const [phonePrefix, setPhonePrefix] = useState('');
@@ -501,6 +501,7 @@ const SendCashContainer = ({
       loadingOther={loadingOther}
       otherData={otherData}
       otherError={otherError}
+      handleDismissModal={handleDismissModal}
     />
   );
 };

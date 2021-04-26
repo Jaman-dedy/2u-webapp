@@ -73,6 +73,10 @@ const Index = () => {
   const queryParams = queryString.parse(location.search);
   const params = useParams();
 
+  const referralSendMoney = location.state?.moneyTransfer;
+  const referralSendVoucher = location.state?.sendVoucher;
+  const referralSendCash = location.state?.sendCash;
+
   const targetContact = location.state?.contact;
   const targetStore = location.state?.targetStore; // get store to send voucher from
 
@@ -128,6 +132,24 @@ const Index = () => {
       setContact(targetContact);
     }
   }, [targetContact]);
+
+  useEffect(() => {
+    if (referralSendMoney) {
+      setDestinationContact(referralSendMoney);
+      setSendMoneyOpen(true);
+    }
+  }, [referralSendMoney]);
+  useEffect(() => {
+    if (referralSendVoucher) {
+      setDestinationContact(referralSendVoucher);
+    }
+  }, [referralSendVoucher]);
+  useEffect(() => {
+    if (referralSendCash) {
+      setDestinationContact(referralSendCash);
+      setSendCashOpen(true);
+    }
+  }, [referralSendCash]);
 
   useEffect(() => {
     if (currentContact) {
@@ -591,6 +613,11 @@ const Index = () => {
         return null;
     }
   };
+  const handleDismissModal = () => {
+    setSendMoneyOpen(false);
+    setSendCashOpen(false);
+    history.replace({ ...location, state: '' });
+  };
 
   return (
     <ManageContacts
@@ -651,9 +678,9 @@ const Index = () => {
       handleCreateExternalContact={handleCreateExternalContact}
       isTopingUp={isTopingUp}
       isSendingOthers={isSendingOthers}
-      // isTopingUp={isTopingUp}
       isSendingVoucher={isSendingVoucher}
       targetStore={targetStore}
+      handleDismissModal={handleDismissModal}
     />
   );
 };

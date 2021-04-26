@@ -50,7 +50,7 @@ const switchToBusinessAccount = (
         },
       };
     default:
-      return state;
+      return null;
   }
 };
 

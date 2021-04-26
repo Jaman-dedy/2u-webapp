@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { Table, Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
@@ -11,12 +13,61 @@ import SendVoucherIcon from 'assets/images/profile/profile-send-voucher.svg';
 import ChatIcon from 'assets/images/profile/profile-chat-icon.svg';
 import StatCards from './StatCards';
 import './style.scss';
+import {
+  openChatList,
+  setGlobalChat,
+} from 'redux/actions/chat/globalchat';
+import { ONE_TO_ONE } from 'constants/general';
 
-const ReferralTab = ({ userData, referreesList }) => {
+import {
+  setIsendingCash,
+  setIsSendingMoney,
+  setIsSendingVoucher,
+} from 'redux/actions/dashboard/dashboard';
+
+const ReferralTab = ({ referreesList }) => {
+  const history = useHistory();
   const { data } = referreesList;
   const [hasError, setHasError] = useState(false);
   const [refereesCount, setRefereesCount] = useState(0);
   const [totalPoints, setTotalPoints] = useState(0);
+  const dispatch = useDispatch();
+
+  const goToTransferMoney = contact => {
+    setIsSendingMoney(dispatch);
+    history.push({
+      pathname: '/contacts',
+      search: '?ref=send-money',
+      state: { moneyTransfer: contact },
+    });
+  };
+
+  const goToSendCash = contact => {
+    setIsendingCash(dispatch);
+    history.push({
+      pathname: '/contacts',
+      search: '?ref=send-cash',
+      state: { sendCash: contact },
+    });
+  };
+  const goToChat = contact => {
+    setGlobalChat({
+      currentChatType: ONE_TO_ONE,
+      currentChatTarget: contact,
+      isChattingWithSingleUser: true,
+    })(dispatch);
+    openChatList()(dispatch);
+  };
+  const goToVoucher = contact => {
+    setIsSendingVoucher(dispatch);
+    history.push({
+      pathname: '/vouchers',
+      search: '?ref=send-voucher',
+      state: {
+        contact,
+      },
+    });
+  };
 
   useEffect(() => {
     if (data) {
@@ -85,10 +136,23 @@ const ReferralTab = ({ userData, referreesList }) => {
                   <Table.Cell />
                   <Table.Cell textAlign="right">
                     <div className="quick-actions">
-                      <Image src={SendMoneyIcon} />
-                      <Image src={SendCashIcon} />
-                      <Image src={SendVoucherIcon} />
-                      <Image src={ChatIcon} />
+                      <Image
+                        src={SendMoneyIcon}
+                        onClick={() => goToTransferMoney(contact)}
+                        alt=""
+                      />
+                      <Image
+                        src={SendCashIcon}
+                        onClick={() => goToSendCash(contact)}
+                      />
+                      <Image
+                        src={SendVoucherIcon}
+                        onClick={() => goToVoucher(contact)}
+                      />
+                      <Image
+                        src={ChatIcon}
+                        onClick={() => goToChat(contact)}
+                      />
                     </div>
                   </Table.Cell>
                 </Table.Row>

@@ -104,7 +104,7 @@ const Register = ({
     }
   };
 
-  return screenNumber === 7 ? (
+  return screenNumber === 5 ? (
     renderForm()
   ) : (
     <AuthWrapper
@@ -113,7 +113,7 @@ const Register = ({
     >
       <div className="form-content">{renderForm()}</div>
       <div className="dots">
-        {Array(7)
+        {Array(5)
           .fill()
           .map((value, index) => (
             <div

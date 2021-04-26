@@ -39,6 +39,7 @@ const SendMoneyModal = ({
   shouldClear,
   setShouldClear,
   isSendingMoney,
+  handleDismissModal,
 }) => {
   const dispatch = useDispatch();
   const defaultOption =
@@ -110,7 +111,6 @@ const SendMoneyModal = ({
   }));
 
   const clearForm = () => {
-    // setForm({});
     setCurrentOption(defaultOption);
     setOpen(false);
     resetState();
@@ -265,6 +265,7 @@ const SendMoneyModal = ({
             onClick={() => {
               clearForm();
               setIsSendingMoney(dispatch);
+              handleDismissModal();
             }}
           >
             {global.translate('Cancel', 86)}

@@ -37,6 +37,7 @@ const SendMoney = ({
   shouldClear,
   setShouldClear,
   isSendingMoney,
+  handleDismissModal,
 }) => {
   return (
     <SendMoneyModal
@@ -74,6 +75,7 @@ const SendMoney = ({
       setStep={setStep}
       setErrors={setErrors}
       isSendingMoney={isSendingMoney}
+      handleDismissModal={handleDismissModal}
     />
   );
 };

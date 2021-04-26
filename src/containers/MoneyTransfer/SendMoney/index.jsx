@@ -20,6 +20,7 @@ const SendMoneyContainer = ({
   destinationContact,
   setDestinationContact,
   isSendingMoney,
+  handleDismissModal,
 }) => {
   const { allContacts } = useSelector(state => state.contacts);
   const { walletList } = useSelector(state => state.user.myWallets);
@@ -346,6 +347,7 @@ const SendMoneyContainer = ({
       shouldClear={shouldClear}
       isSendingMoney={isSendingMoney}
       setShouldClear={setShouldClear}
+      handleDismissModal={handleDismissModal}
     />
   );
 };
