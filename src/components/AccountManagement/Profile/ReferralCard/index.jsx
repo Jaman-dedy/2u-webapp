@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Input, Button, Popup } from 'semantic-ui-react';
 import './style.scss';
 
-const ReferralCard = () => {
-  const referralURI = 'app.2u.money/register?referral=trump';
+const ReferralCard = ({username}) => {
+  const referralURI =`app.2u.money/register?referrer=${username.toLowerCase()}`;
   const [copySuccess, setCopySuccess] = useState('');
 
   const copyToClipBoard = async (e, CardNumber, message) => {
