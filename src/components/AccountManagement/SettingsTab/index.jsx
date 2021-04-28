@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Table, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import UpgradeAccountDisclaimer from 'components/AccountManagement/SettingsTab/SwitchAccount/Disclaimer';
 import SwitchAccountForm from 'components/AccountManagement/SettingsTab/SwitchAccount';
 import './style.scss';
+import ChangeLanguageModal from './ChangeLanguageModal';
 
 const Settings = ({ switchAccount }) => {
   const {
@@ -15,6 +16,8 @@ const Settings = ({ switchAccount }) => {
     setTermsAgreed,
     isBusinessAccount,
   } = switchAccount;
+
+  const [changeLanguageOpen, setChangeLanguageOpen] = useState(false);
 
   const renderOptions = () => {
     return (
@@ -53,7 +56,10 @@ const Settings = ({ switchAccount }) => {
             <Table.Cell> {global.translate('Language')}</Table.Cell>
             <Table.Cell>{global.translate('English(UK)')}</Table.Cell>
             <Table.Cell textAlign="right" className="settings-action">
-              <Button className="btn--link">
+              <Button
+                className="btn--link"
+                onClick={() => setChangeLanguageOpen(true)}
+              >
                 {global.translate('Change')}
               </Button>
             </Table.Cell>
@@ -80,6 +86,10 @@ const Settings = ({ switchAccount }) => {
           )}
         </>
       )}
+      <ChangeLanguageModal
+        open={changeLanguageOpen}
+        setOpen={setChangeLanguageOpen}
+      />
     </div>
   );
 };

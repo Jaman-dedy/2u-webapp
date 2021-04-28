@@ -52,12 +52,15 @@ const PersonalInfoTab = ({
             <Table.Cell
               className="info-user-details title-details"
               textAlign="top"
-              rowSpan="8"
+              rowSpan="9"
             >
               {' '}
               {global.translate('User information')}
             </Table.Cell>
-            <Table.Cell> {global.translate('Names')}</Table.Cell>
+            <Table.Cell className="content-title">
+              {' '}
+              {global.translate('Name')}
+            </Table.Cell>
             <Table.Cell>
               {' '}
               {userData?.FirstName} &nbsp; {userData?.LastName}
@@ -79,11 +82,23 @@ const PersonalInfoTab = ({
             </Table.Cell>
           </Table.Row>
           <Table.Row className="user-family-details">
-            <Table.Cell> {global.translate('Parents')}</Table.Cell>
+            <Table.Cell>
+              {' '}
+              {global.translate("Father's name")}
+            </Table.Cell>
             <Table.Cell>
               {' '}
               {userData?.UserExtraKYC.FatherFName}&nbsp;
-              {userData?.UserExtraKYC.MotherFName}
+            </Table.Cell>
+          </Table.Row>
+          <Table.Row className="user-family-details">
+            <Table.Cell>
+              {' '}
+              {global.translate("Mother's name")}
+            </Table.Cell>
+            <Table.Cell>
+              {' '}
+              {userData?.UserExtraKYC.MotherFName}&nbsp;
             </Table.Cell>
           </Table.Row>
           <Table.Row className="user-family-details">

@@ -6,8 +6,6 @@ import moment from 'moment';
 
 import setPhonePrimary from 'redux/actions/users/setPrimaryPhone';
 import saveUserDataAction from 'redux/actions/userAccountManagement/saveUserData';
-import rawCountries from 'utils/countries';
-import rawNationalities from 'utils/nationalities';
 import sendOTPAction from 'redux/actions/users/sendOTP';
 import getUserProfessionAction from 'redux/actions/users/getProfession';
 import isFileImage from 'utils/isFileImage';
@@ -37,13 +35,12 @@ export default () => {
 
   const dispatch = useDispatch();
   const [currentOption, setCurrentOption] = useState(null);
-  const [selectedCountry, setSelectedCountry] = useState(null);
   const [openInfoModal, setOpenInfoModal] = useState(false);
   const [disableButton, setDisableButton] = useState(false);
 
   const [errors, setErrors] = useState({});
   const [cropImgState, setCropImgState] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState('');
   const [nationality, setNationality] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [phoneValue, setPhoneValue] = useState(null);
@@ -74,18 +71,8 @@ export default () => {
   } = useSelector(({ user }) => user);
   const { sendEmail } = useSelector(({ email }) => email);
 
-  const countries = rawCountries.map(({ text, flag, key }) => ({
-    CountryName: text,
-    Flag: `https://www.countryflags.io/${flag}/flat/32.png`,
-    CountryCode: key,
-  }));
-  const nationalities = rawNationalities.map(
-    ({ text, flag, key }) => ({
-      CountryName: text,
-      Flag: `https://www.countryflags.io/${flag}/flat/32.png`,
-      CountryCode: key,
-    }),
-  );
+  const [nationalityCountry, setNationalityCountry] = useState('');
+  const [bornCountry, setBornCountry] = useState('');
 
   const options = [
     { key: '0', text: global.translate('Unkown', 1345), value: '0' },
@@ -98,27 +85,6 @@ export default () => {
       setOpenInfoModal(false);
     }
   }, [success]);
-  useEffect(() => {
-    if (data) {
-      setSelectedCountry(
-        countries.find(
-          ({ CountryCode }) =>
-            CountryCode ===
-            data?.UserExtraKYC.CountryOfBirth.toLowerCase(),
-        ),
-      );
-    }
-  }, [data]);
-  useEffect(() => {
-    if (data) {
-      setNationality(
-        nationalities.find(
-          ({ CountryCode }) =>
-            CountryCode === data?.UserExtraKYC.Nationality,
-        ),
-      );
-    }
-  }, [data]);
 
   useEffect(() => {
     setPersonalInfoData({
@@ -126,14 +92,6 @@ export default () => {
       DateOfBirth: moment(selectedDate).format('YYYY-MM-DD'),
     });
   }, [selectedDate]);
-  useEffect(() => {
-    if (selectedCountry) {
-      setPersonalInfoData({
-        ...personalInfoData,
-        CountryOfBirth: selectedCountry.CountryCode,
-      });
-    }
-  }, [selectedCountry]);
 
   useEffect(() => {
     if (!professionList.data) {
@@ -178,25 +136,14 @@ export default () => {
       [name]: value,
     });
   };
-
-  const handleOnCountryChange = ({ target: { name, value } }) => {
-    setSelectedCountry(
-      countries.find(({ CountryCode }) => CountryCode === value),
-    );
-  };
-  const handleOnNationalityChange = ({ target: { name, value } }) => {
-    setNationality(
-      countries.find(({ CountryCode }) => CountryCode === value),
-    );
-  };
   const handleSubmit = async () => {
     const data = {
       FirstName: personalInfoData?.FirstName,
       LastName: personalInfoData?.LastName,
       FatherFName: personalInfoData?.FatherFName,
       MotherFName: personalInfoData?.MotherFName,
-      Nationality: personalInfoData?.Nationality,
-      CountryOfBirth: personalInfoData?.CountryOfBirth,
+      Nationality: nationalityCountry?.toLowerCase(),
+      CountryOfBirth: bornCountry.toLowerCase(),
       Profession: currentOption.toString(),
       SpouseName: personalInfoData?.SpouseName,
       CityOfBirth: personalInfoData?.CityOfBirth,
@@ -214,24 +161,26 @@ export default () => {
         LastName: data.LastName,
         Gender: data.Gender.Number,
         DateOfBirth: data.DateOfBirth,
-        FatherFName: data.UserExtraKYC.FatherFName,
-        MotherFName: data.UserExtraKYC.MotherFName,
-        CountryOfBirth: data.UserExtraKYC.CountryOfBirth,
-        Profession: data.UserExtraKYC.Profession,
-        SpouseName: data.UserExtraKYC.SpouseName,
-        CityOfBirth: data.UserExtraKYC.CityOfBirth,
-        Nationality: nationality?.CountryCode,
+        FatherFName: data.UserExtraKYC?.FatherFName,
+        MotherFName: data.UserExtraKYC?.MotherFName,
+        Profession: data.UserExtraKYC?.Profession,
+        SpouseName: data.UserExtraKYC?.SpouseName,
+        CityOfBirth: data.UserExtraKYC?.CityOfBirth,
+        Nationality: nationality?.toLowerCase(),
       });
+      setBornCountry(data.UserExtraKYC?.CountryOfBirth);
+      setNationalityCountry(data.UserExtraKYC?.Nationality);
+      setSelectedDate(new Date(data.DateOfBirth));
     }
   }, [data]);
   useEffect(() => {
-    if (nationality) {
+    if (nationalityCountry) {
       setPersonalInfoData({
         ...personalInfoData,
-        Nationality: nationality.CountryCode,
+        Nationality: nationalityCountry.toLowerCase(),
       });
     }
-  }, [nationality]);
+  }, [nationalityCountry]);
 
   useEffect(() => {
     if (personalInfoData) {
@@ -293,7 +242,6 @@ export default () => {
         );
     }
   };
-
   useEffect(() => {
     if (OTP.length === 6) {
       const data = {
@@ -340,7 +288,6 @@ export default () => {
       dispatch,
     );
   };
-
   useEffect(() => {
     if (userData?.Emails) {
       updateUserEmailListAction({ Emails: [] })(dispatch);
@@ -357,18 +304,12 @@ export default () => {
     setCropImgState,
     currentOption,
     options,
-    selectedCountry,
-    countries,
-    nationalities,
     setCurrentOption,
     selectedDate,
     setSelectedDate,
     loading,
     openInfoModal,
     setOpenInfoModal,
-    handleOnCountryChange,
-    handleOnNationalityChange,
-    nationality,
     isEditing,
     disableButton,
     phoneValue,
@@ -384,7 +325,6 @@ export default () => {
     handleSetPrimary,
     onImageChange,
     settingPrimaryPhone,
-    // handlePhoneInputChange,
     OTP,
     handleSetEmailPrimary,
     settingPrimaryEmail,
@@ -396,5 +336,9 @@ export default () => {
     setOTP,
     handleDelete,
     handleDeleteEmail,
+    nationalityCountry,
+    setNationalityCountry,
+    setBornCountry,
+    bornCountry,
   };
 };

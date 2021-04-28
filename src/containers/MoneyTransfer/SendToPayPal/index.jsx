@@ -29,6 +29,7 @@ const SendToPayPalContainer = () => {
       confirmationData,
     },
   } = useSelector(({ moneyTransfer }) => moneyTransfer);
+
   const {
     transferToOthers: {
       loading: loadMoveFund,
@@ -112,6 +113,7 @@ const SendToPayPalContainer = () => {
       setPIN={setPIN}
       PIN={PIN}
       handleCashOut={handleCashOut}
+      confirmationError={confirmationError?.[0]}
     />
   );
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import { Table } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
-const TransactionDetails = ({ confirmationData }) => {
+const TransactionDetails = ({ confirmationData, payPal }) => {
   return (
     <div className="right-side">
       <h3>{global.translate('Summary')}</h3>
@@ -20,7 +20,9 @@ const TransactionDetails = ({ confirmationData }) => {
           </Table.Row>
           <Table.Row>
             <Table.Cell>
-              {global.translate('Amount to withdraw')}
+              {payPal
+                ? global.translate('Amount to be sent')
+                : global.translate('Amount to  withdraw')}
               <div className="amount">
                 <strong>
                   {confirmationData?.[0].AmountToBeSent}

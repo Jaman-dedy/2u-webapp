@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Modal, Button, Form } from 'semantic-ui-react';
 import DatePicker from 'react-datepicker';
+import ReactFlagsSelect from 'react-flags-select';
 
-import CountryDropdown from 'components/common/Dropdown/CountryDropdown';
 import './style.scss';
 
 const UpdateInfoModal = ({ open, setOpen, personalInfo }) => {
@@ -14,28 +14,21 @@ const UpdateInfoModal = ({ open, setOpen, personalInfo }) => {
     handleInputChange,
     currentOption,
     options,
-    selectedCountry,
-    countries,
     setCurrentOption,
     selectedDate,
     setSelectedDate,
     loading,
-    handleOnCountryChange,
-    handleOnNationalityChange,
-    nationality,
-    nationalities,
     disableButton,
     professionOptions,
+    nationalityCountry,
+    setNationalityCountry,
+    setBornCountry,
+    bornCountry,
   } = personalInfo;
   const [startDate, setStartDate] = useState(new Date('2014/02/08'));
 
   return (
-    <Modal
-      onClose={() => setOpen(false)}
-      onOpen={() => setOpen(true)}
-      open={open}
-      size="small"
-    >
+    <Modal onOpen={() => setOpen(true)} open={open} size="small">
       <Modal.Content>
         <div className="edit-info-form">
           <h3>{global.translate('User information')}</h3>
@@ -83,6 +76,8 @@ const UpdateInfoModal = ({ open, setOpen, personalInfo }) => {
                   selected={selectedDate}
                   onChange={date => setSelectedDate(date)}
                   maxDate={startDate}
+                  showYearDropdown
+                  showMonthDropdown
                 />
               </div>
             </Form.Group>
@@ -110,26 +105,26 @@ const UpdateInfoModal = ({ open, setOpen, personalInfo }) => {
                 <div className="nationality-label">
                   {global.translate('Nationality*')}
                 </div>
-                <CountryDropdown
-                  options={nationalities}
-                  currentOption={nationality}
-                  onChange={handleOnNationalityChange}
-                  search
-                  fluid
-                  name="CountryOfBirth"
+                <ReactFlagsSelect
+                  selected={nationalityCountry?.toUpperCase()}
+                  onSelect={code => setNationalityCountry(code)}
+                  searchable
+                  placeholder={global.translate(
+                    'Select your country',
+                  )}
                 />
               </div>
-              <div className="info-nationality">
+              <div className="info-born-country">
                 <div className="nationality-label">
                   {global.translate('Country of birth')}
                 </div>
-                <CountryDropdown
-                  options={countries}
-                  currentOption={selectedCountry}
-                  onChange={handleOnCountryChange}
-                  search
-                  fluid
-                  name="CountryOfBirth"
+                <ReactFlagsSelect
+                  selected={bornCountry?.toUpperCase()}
+                  onSelect={code => setBornCountry(code)}
+                  searchable
+                  placeholder={global.translate(
+                    'Select your country',
+                  )}
                 />
               </div>
             </Form.Group>
@@ -145,6 +140,7 @@ const UpdateInfoModal = ({ open, setOpen, personalInfo }) => {
               <Form.Select
                 className="gender-input"
                 fluid
+                search
                 label="Profession"
                 placeholder="Select your profession"
                 options={professionOptions}

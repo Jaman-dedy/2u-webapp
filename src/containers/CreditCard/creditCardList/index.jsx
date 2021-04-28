@@ -90,6 +90,7 @@ const CreditCardListContainer = () => {
       creditCardNextStep={creditCardNextStep}
       canCreate={canCreate}
       setCanCreate={setCanCreate}
+      userData={userData?.data}
     />
   );
 };

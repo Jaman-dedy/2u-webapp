@@ -37,7 +37,6 @@ import {
   setIsendingCash,
   setIsSendingMoney,
   setIsSendingOhters,
-  setIsTopingUp,
 } from 'redux/actions/dashboard/dashboard';
 import getAllTransactionHistory from 'redux/actions/transactions/getHistory';
 import allCountries from 'utils/countries';
@@ -68,7 +67,6 @@ const ContactDetailsModal = ({
   userData,
   handleFavouriteStatusChange,
   addRemoveFavorite,
-  resetContactAction,
 }) => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -90,6 +88,11 @@ const ContactDetailsModal = ({
   const parsedQueries = queryString.parse(history.location?.search);
 
   const pathContact = params.id;
+
+  const handleDismissModal = () => {
+    setOpen(false);
+    history.replace({});
+  };
 
   useEffect(() => {
     if (parsedQueries.type === 'INTERNAL') {
@@ -760,7 +763,6 @@ const ContactDetailsModal = ({
                             setDestinationContact(contact);
                             setSendMoneyOpen(true);
                             setIsSendingMoney(dispatch);
-                            
                           }}
                           text={global.translate(
                             'Transfer Money',
@@ -938,6 +940,7 @@ const ContactDetailsModal = ({
                   clearDeleteContact();
                   setOpen(!open);
                   setHasError(false);
+                  handleDismissModal();
                 }}
               >
                 {global.translate('Close', 186)}

@@ -58,7 +58,7 @@ const Profile = ({ isABusinessAccount, onClick, userData }) => {
         />
         <CardShortCut />
       </div>
-      <ReferralCard username={userData?.FirstName} />
+      <ReferralCard username={userData?.PID} />
     </div>
   );
 };

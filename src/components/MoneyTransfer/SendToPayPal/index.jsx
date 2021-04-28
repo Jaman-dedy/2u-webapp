@@ -13,6 +13,8 @@ import Info from 'components/common/Alert/Info';
 import TransactionDetails from 'components/common/CashoutDetails';
 import loadConfirmationImg from 'assets/images/withdraw/load-confirmation.svg';
 import PINConfirmationModal from 'components/common/PINConfirmationModal';
+import AlertDanger from 'components/common/Alert/Danger';
+import useWindowSize from 'utils/useWindowSize';
 
 const SendToPayPal = ({
   walletList,
@@ -30,10 +32,12 @@ const SendToPayPal = ({
   handleCashOut,
   setPIN,
   PIN,
+  confirmationError,
 }) => {
   const history = useHistory();
   const onClickHandler = () => history.goBack();
   const [buttonDisabled, setButtonDisabled] = useState(false);
+  const { width } = useWindowSize();
 
   useEffect(() => {
     if (!currentOption || !form?.amount || !form?.email) {
@@ -93,7 +97,7 @@ const SendToPayPal = ({
                 <Input
                   label={{
                     basic: true,
-                    content: 'USD',
+                    content: currentOption?.CurrencyCode,
                   }}
                   labelPosition="right"
                   name="amount"
@@ -123,8 +127,11 @@ const SendToPayPal = ({
                 'The recipient email should be associated to a PayPal account',
               )}
             />
+            {confirmationError && (
+              <AlertDanger message={confirmationError.Description} />
+            )}
           </div>
-          {!confirmationData && !checking && (
+          {!confirmationData && !checking && width > 1100 && (
             <div className="right-side">
               <div className="right-placeHolder">
                 <div>
@@ -139,7 +146,10 @@ const SendToPayPal = ({
             </div>
           )}
           {confirmationData && !checking && (
-            <TransactionDetails confirmationData={confirmationData} />
+            <TransactionDetails
+              confirmationData={confirmationData}
+              payPal
+            />
           )}
 
           {checking && (

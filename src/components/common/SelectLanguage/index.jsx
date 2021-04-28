@@ -3,9 +3,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable import/no-unresolved */
 import './SelectLanguage.scss';
-
-import languageIcon from 'assets/images/h-languages.svg';
-import replaceCountryFlag from 'helpers/replaceCountryFlag';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,6 +10,8 @@ import changeLanguage from 'redux/actions/users/changeLanguage';
 import { Dropdown, Input } from 'semantic-ui-react';
 import useWindowSize from 'utils/useWindowSize';
 import LoaderComponent from '../Loader';
+import languageIcon from 'assets/images/h-languages.svg';
+import replaceCountryFlag from 'helpers/replaceCountryFlag';
 
 const SelectLanguage = ({ pointing, hasLabel, open, setOpen }) => {
   const dispatch = useDispatch();

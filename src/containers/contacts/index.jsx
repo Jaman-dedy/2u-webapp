@@ -616,6 +616,7 @@ const Index = () => {
   const handleDismissModal = () => {
     setSendMoneyOpen(false);
     setSendCashOpen(false);
+    setIsDetail(false);
     history.replace({ ...location, state: '' });
   };
 

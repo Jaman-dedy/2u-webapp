@@ -226,6 +226,7 @@ const ManageContacts = ({
       name: global.translate('Contact Info', 1220),
       onClick: item => {
         setContact(item);
+        setIsDetail(true);
         history.push(
           `/contact/${
             item.ContactType === 'INTERNAL'
@@ -233,7 +234,6 @@ const ManageContacts = ({
               : item.PhoneNumber
           }?type=${item.ContactType}`,
         );
-        setIsDetail(true);
       },
     },
     {
@@ -315,6 +315,13 @@ const ManageContacts = ({
     if (history.location.search === '?type=INTERNAL') {
       setIsDetail(true);
     }
+    if (history.location.search === '?type=EXTERNAL') {
+      setIsDetail(true);
+    }
+  }, [history.location.search]);
+
+  useEffect(() => {
+    history.replace({});
   }, []);
 
   return (
@@ -747,6 +754,7 @@ const ManageContacts = ({
         setIsSharingNewWallet={setIsSharingNewWallet}
         isSharingNewWallet={isSharingNewWallet}
         addRemoveFavorite={addRemoveFavorite}
+        handleDismissModal={handleDismissModal}
       />
       <AddNewContactModal
         open={open}

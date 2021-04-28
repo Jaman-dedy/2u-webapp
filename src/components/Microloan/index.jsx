@@ -11,7 +11,7 @@ import microLoanImg from 'assets/images/microloan/micro-loan.svg';
 import dangerCross from 'assets/images/microloan/danger-cross.svg';
 import listPlaceHolder from 'assets/images/microloan/load-loans.svg';
 import ListLoan from './ListLoan';
-import ModalInfo from './ModalInfo';
+import ModalInfo from 'components/common/ModalInfo';
 import './style.scss';
 
 const MicroLoan = ({ listData, listLoading, userData }) => {

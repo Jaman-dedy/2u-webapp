@@ -13,6 +13,8 @@ import VirtualCard from 'components/common/Card';
 import classes from './VirtualCards.module.scss';
 import Placeholder from './PlaceHolder/PlaceHolder';
 import AddVirtualCardModal from './AddVirtualCardModal/AddVirtualCardModal';
+import modalIcon from 'assets/images/microloan/danger-cross.svg';
+import ModalInfo from 'components/common/ModalInfo';
 
 const MyVirtualCards = ({
   virtualCardList,
@@ -39,6 +41,9 @@ const MyVirtualCards = ({
   const history = useHistory();
   const [myVirtualCardList, setMyVirtualCardList] = useState([]);
   const [isEmpty, setIsEmpty] = useState(false);
+
+  const [openModal, setOpenModal] = useState(false);
+  const [isEligible, setIsEligible] = useState(false);
 
   const { loading: loadingUserData } = userData;
   const onClickHandler = () => history.goBack();
@@ -137,7 +142,13 @@ const MyVirtualCards = ({
           'You can create your credit card and use them for your online payment',
           2153,
         )}
-        onAddClick={handleModalOpen}
+        onAddClick={() => {
+          if (userData.data?.AccountVerified === 'YES') {
+            handleModalOpen();
+          } else {
+            setOpenModal(true);
+          }
+        }}
         imgSrc={EmptyCardList}
       />
     );
@@ -180,7 +191,16 @@ const MyVirtualCards = ({
               {global.translate('My O-Cards', 2038)}
             </h2>
             <div className="head-buttons">
-              <button type="button" onClick={handleModalOpen}>
+              <button
+                type="button"
+                onClick={() => {
+                  if (userData.data?.AccountVerified === 'YES') {
+                    handleModalOpen();
+                  } else {
+                    setOpenModal(true);
+                  }
+                }}
+              >
                 {global.translate(`Add an O-Card`, 2039)}
               </button>
             </div>
@@ -224,6 +244,17 @@ const MyVirtualCards = ({
           addVirtualCard={addVirtualCard}
           form={form}
           setForm={setForm}
+        />
+        <ModalInfo
+          open={openModal}
+          setOpen={setOpenModal}
+          title={global.translate('You are not eligible', 2280)}
+          body={global.translate(
+            'You are not eligible to order an M Card. Only verified accounts can order an M Card',
+          )}
+          icon={modalIcon}
+          isEligible={isEligible}
+          buttonText={global.translate('Okay', 2554)}
         />
       </DashboardLayout>
     </>

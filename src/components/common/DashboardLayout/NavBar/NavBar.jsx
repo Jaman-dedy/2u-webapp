@@ -131,21 +131,6 @@ const NavBar = ({
               </span>
             </li>
             <li>
-              <span
-                onClick={() => {
-                  setOpenLanguage(false);
-                }}
-                className="navbar_item_icon"
-              >
-                <SelectLanguage
-                  white
-                  hasLabel={false}
-                  setOpen={setOpenLanguage}
-                  open={openLanguage}
-                />
-              </span>
-            </li>
-            <li>
               <span className="notification navbar_item_icon cursor-pointer">
                 <Notifications
                   openStorePublicity={openNotifStorePublicity}
@@ -153,11 +138,11 @@ const NavBar = ({
                 />
               </span>
             </li>
-            <li>
+            {/* <li> // DO NOT REMOVE THIS CODE
               <span className="notification navbar_item_icon">
                 <Help setTourStep={setTourStep} />
               </span>
-            </li>
+            </li> */}
             <li>
               <OutsideClickHandler
                 onOutsideClick={() => {
