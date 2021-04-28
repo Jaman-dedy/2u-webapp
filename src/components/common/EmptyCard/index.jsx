@@ -2,6 +2,8 @@ import React from 'react';
 import { Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
+import './style.scss';
+
 const EmptyCard = ({
   header,
   createText,
@@ -12,7 +14,7 @@ const EmptyCard = ({
 }) => {
   return (
     <div className="empty-store">
-      <Image src={imgSrc} />
+      <Image src={imgSrc} className="empty-store__img" />
       <h2>{header}</h2>
       <div>{body}</div>
       {!disableAdd && (

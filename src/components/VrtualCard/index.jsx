@@ -250,7 +250,7 @@ const MyVirtualCards = ({
           setOpen={setOpenModal}
           title={global.translate('You are not eligible', 2280)}
           body={global.translate(
-            'You are not eligible to order an M Card. Only verified accounts can order an M Card',
+            'You are not eligible to order an O Card. Only verified accounts can order an O Card. To be verified you need to navigate to the profile page and upload your documents',
           )}
           icon={modalIcon}
           isEligible={isEligible}

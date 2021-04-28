@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Modal, Item, Flag } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 
 import changeLanguage from 'redux/actions/users/changeLanguage';
 import replaceCountryFlag from 'helpers/replaceCountryFlag';
@@ -61,6 +62,15 @@ const ChangeLanguageModal = ({ open, setOpen }) => {
       </Modal.Content>
     </Modal>
   );
+};
+
+ChangeLanguageModal.propTypes = {
+  open: PropTypes.bool,
+  setOpen: PropTypes.func,
+};
+ChangeLanguageModal.defaultProps = {
+  open: false,
+  setOpen: () => {},
 };
 
 export default ChangeLanguageModal;

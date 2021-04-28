@@ -22,6 +22,11 @@
     width: 100%;
     margin-left: 8px;
   }
+  .gender-input {
+    .text {
+      padding-top: 4px !important;
+    }
+  }
   .info-born-country,
   .info-nationality {
     max-width: 343px !important;

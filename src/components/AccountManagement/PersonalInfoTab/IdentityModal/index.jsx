@@ -96,7 +96,7 @@ const IdentityModal = ({
                 label="Select type"
                 placeholder="Select type"
                 options={options}
-                value={formData.selectedCurrentType}
+                value={formData?.selectedCurrentType}
                 defaultValue={selectedCurrentType}
                 onChange={(target, { name, value }) => {
                   setSelectedCurrentType(value);

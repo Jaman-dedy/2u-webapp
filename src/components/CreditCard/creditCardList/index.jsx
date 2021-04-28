@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Segment, List } from 'semantic-ui-react';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import GoBack from 'components/common/GoBack';
 import DashboardLayout from 'components/common/DashboardLayout';
@@ -123,7 +123,7 @@ const CreditCardList = ({ creditCardList, loading, userData }) => {
         setOpen={setOpenModal}
         title={global.translate('You are not eligible', 2280)}
         body={global.translate(
-          'You are not eligible to order an M Card. Only verified accounts can order an M Card',
+          'You are not eligible to order an M Card. Only verified accounts can order an M Card. To be verified you need navigate to the profile page and upload your documents',
         )}
         icon={modalIcon}
         isEligible={isEligible}
@@ -133,10 +133,12 @@ const CreditCardList = ({ creditCardList, loading, userData }) => {
   );
 };
 CreditCardList.propTypes = {
-  creditCardList: propTypes.instanceOf(Array),
-  loading: propTypes.bool.isRequired,
+  creditCardList: PropTypes.instanceOf(Array),
+  loading: PropTypes.bool.isRequired,
+  userData: PropTypes.objectOf(PropTypes.any),
 };
 CreditCardList.defaultProps = {
   creditCardList: [],
+  userData: {},
 };
 export default CreditCardList;
