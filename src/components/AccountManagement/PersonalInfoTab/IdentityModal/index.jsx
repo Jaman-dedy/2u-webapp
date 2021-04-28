@@ -181,7 +181,7 @@ const IdentityModal = ({
             </div>
           ) : (
             <div>
-              <DangerMessage description="You haven’t upload a photo of your identity yet." />
+              <DangerMessage description={global.translate("You have not uploaded a photo of your identity yet.", 3193)} />
               <UploadImgButton
                 name="UserIDURL"
                 onChooseFile={onImageChange}

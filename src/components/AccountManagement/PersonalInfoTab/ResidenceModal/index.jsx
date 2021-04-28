@@ -164,6 +164,7 @@ const ResidenceModal = ({
             {global.translate('Cancel')}
           </Button>
           <Button
+            disabled={formData?.Address1 && formData?.City && formData?.POBox && formData?.Address2 ? false : true }
             className="change-button"
             loading={loading}
             onClick={handleSubmit}
