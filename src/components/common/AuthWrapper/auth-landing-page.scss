@@ -17,6 +17,7 @@
   right: 0;
   width: 42.5%;
   .logo {
+    padding: 1px;
     width: 180px;
     &:hover {
       cursor: pointer;
@@ -31,6 +32,9 @@
   max-width: 1100px;
   margin: 0 auto;
   display: block;
+  .row {
+    padding-bottom: 2rem !important;
+  }
 }
 .auth-section {
   min-height: 100vh;

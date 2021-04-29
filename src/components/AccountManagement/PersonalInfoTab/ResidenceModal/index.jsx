@@ -3,8 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Modal, Button, Image, Form } from 'semantic-ui-react';
+import ReactFlagsSelect from 'react-flags-select';
 
-import CountryDropdown from 'components/common/Dropdown/CountryDropdown';
 import './style.scss';
 import validateImg from 'helpers/image/validateImg';
 import DangerMessage from 'components/common/Alert/DangerMessage';
@@ -21,15 +21,14 @@ const ResidenceModal = ({
   userData,
 }) => {
   const {
-    onCountryChange,
     formData,
-    countries,
-    selectedCountry,
     onInputChange,
     onImageChange,
     loading,
     handleSubmit,
     userIdUrlData,
+    country,
+    setCountry,
   } = residenceData;
   const [isImgCorrect, setIsImgCorrect] = useState(false);
   const [openPreview, setOpenPreview] = useState(false);
@@ -53,23 +52,24 @@ const ResidenceModal = ({
       onOpen={() => setOpen(true)}
       open={open}
       size="tiny"
-      className="manage-phone-container"
+      className="update-residence-container"
     >
       <Modal.Content>
-        <div className="edit-info-form">
+        <div className="edit-residence-form">
           <h3>{global.translate('Proof of residence')}</h3>
           <Form>
-            <Form.Group widths="equal">
-              <div className="info-nationality">
-                <div className="nationality-label">
+            <Form.Group widths="equal" className="country-state">
+              <div className="info-country">
+                <div className="country-label">
                   {global.translate('Country')}
                 </div>
-                <CountryDropdown
-                  options={countries}
-                  currentOption={selectedCountry}
-                  onChange={onCountryChange}
-                  search
-                  fluid
+                <ReactFlagsSelect
+                  selected={country?.toUpperCase()}
+                  onSelect={code => setCountry(code)}
+                  searchable
+                  placeholder={global.translate(
+                    'Select your country',
+                  )}
                 />
               </div>
               <Form.Input
@@ -164,7 +164,14 @@ const ResidenceModal = ({
             {global.translate('Cancel')}
           </Button>
           <Button
-            disabled={formData?.Address1 && formData?.City && formData?.POBox && formData?.Address2 ? false : true }
+            disabled={
+              formData?.Address1 &&
+              formData?.City &&
+              formData?.POBox &&
+              formData?.Address2
+                ? false
+                : true
+            }
             className="change-button"
             loading={loading}
             onClick={handleSubmit}
@@ -189,7 +196,6 @@ ResidenceModal.propTypes = {
   open: PropTypes.bool,
   setOpen: PropTypes.func,
   selectedCountry: PropTypes.func,
-  onCountryChange: PropTypes.func,
   residenceData: PropTypes.objectOf(PropTypes.any),
   userData: PropTypes.objectOf(PropTypes.any),
 };
@@ -197,7 +203,6 @@ ResidenceModal.defaultProps = {
   open: false,
   setOpen: () => {},
   selectedCountry: () => {},
-  onCountryChange: () => {},
   residenceData: {},
   userData: {},
 };

@@ -7,7 +7,6 @@ import DefaultWalletContainer from 'containers/Dashboard/DefaultWallet';
 import UserCurrenciesContainer from 'containers/Dashboard/userCurrencies';
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
-import { Image } from 'semantic-ui-react';
 import { useHistory } from 'react-router-dom';
 import Tour from 'reactour';
 import RedeemVoucherModal from 'components/Stores/StoreDetailsComponent/RedeemVoucherModal';
@@ -61,7 +60,6 @@ const Dashboard = ({
     }
     return null;
   };
-
   const onEdit = () => {
     if (getStatusMessage()) {
       history.push(

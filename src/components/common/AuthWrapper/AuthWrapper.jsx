@@ -2,21 +2,23 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-import './auth-landing-page.scss';
-import './spiner.scss';
-import './style.scss';
 
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Grid, Image } from 'semantic-ui-react';
+
 import LogoColored from 'assets/images/2u-money-logo.svg';
 import AdPlaceholderDefault from 'assets/images/AD_V1.jpg';
 import getUserDailyEvent from 'redux/actions/authWrapper';
 import SelectLanguage from 'components/common/SelectLanguage';
 import { HOME_WEBSITE, HOW_IT_WORKS } from 'constants/general';
 import openInNewTab from 'helpers/openInNewTab';
+
+import './auth-landing-page.scss';
+import './spiner.scss';
+import './style.scss';
 
 const AuthWrapper = ({
   children,

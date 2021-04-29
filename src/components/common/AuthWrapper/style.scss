@@ -95,11 +95,11 @@
       a img {
         width: 20px;
         position: relative;
-        right: 0
+        right: 0;
       }
       a:hover {
         background-color: #c9471b;
-        opacity: 1v
+        opacity: 1v;
       }
     }
   }
@@ -215,6 +215,6 @@
 .wrap-event {
   width: 100%;
   img {
-    box-shadow:0 0 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   }
 }

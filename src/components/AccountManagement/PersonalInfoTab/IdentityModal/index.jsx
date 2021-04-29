@@ -10,9 +10,8 @@ import {
   Image,
 } from 'semantic-ui-react';
 import DatePicker from 'react-datepicker';
+import ReactFlagsSelect from 'react-flags-select';
 
-import CountryDropdown from 'components/common/Dropdown/CountryDropdown';
-import rawCountries from 'utils/countries';
 import validateImg from 'helpers/image/validateImg';
 import ZoomDocIcon from 'assets/images/profile/zoom-doc.svg';
 import EditDoc from 'assets/images/profile/edit-doc.svg';
@@ -29,11 +28,6 @@ const IdentityModal = ({
   userData,
   identityConfirmation,
 }) => {
-  const countries = rawCountries.map(({ text, flag, key }) => ({
-    CountryName: text,
-    Flag: `https://www.countryflags.io/${flag}/flat/32.png`,
-    CountryCode: key,
-  }));
   const [isImgCorrect, setIsImgCorrect] = useState(false);
   const [openPreview, setOpenPreview] = useState(false);
 
@@ -45,14 +39,14 @@ const IdentityModal = ({
     setSelectedDateOfIssue,
     selectedExpiryDate,
     setSelectedExpiryDate,
-    onCountryChange,
-    selectedCountry,
     selectedCurrentType,
     setSelectedCurrentType,
     handleSubmit,
     loading,
     onImageChange,
     userIdUrlData,
+    countryIssue,
+    setCountryIssue,
   } = identityConfirmation;
 
   useEffect(() => {
@@ -74,7 +68,7 @@ const IdentityModal = ({
       onOpen={() => setOpen(true)}
       open={open}
       size="tiny"
-      className="manage-phone-container"
+      className="update-id-info-container"
     >
       <Modal.Content>
         <div className="edit-info-form">
@@ -103,7 +97,7 @@ const IdentityModal = ({
                 }}
               />
             </Form.Group>
-            <Form.Group widths="equal">
+            <Form.Group widths="equal display-date">
               <div className="date-of-birth">
                 <div className="date-label">
                   {global.translate('Date of issue')}
@@ -115,6 +109,7 @@ const IdentityModal = ({
                   placeholderText={global.translate(
                     'Provide date of issue',
                   )}
+                  className="date-issue"
                 />
               </div>
               <div className="date-of-birth">
@@ -128,20 +123,22 @@ const IdentityModal = ({
                   placeholderText={global.translate(
                     'Provide the expiry date',
                   )}
+                  className="expiry-date"
                 />
               </div>
             </Form.Group>
-            <Form.Group style={{ maxWidth: '51%' }}>
+            <Form.Group className="country-issue-dropdown">
               <div className="info-nationality">
                 <div className="nationality-label">
                   {global.translate('Country of issue')}
                 </div>
-                <CountryDropdown
-                  options={countries}
-                  currentOption={selectedCountry}
-                  onChange={onCountryChange}
-                  search
-                  fluid
+                <ReactFlagsSelect
+                  selected={countryIssue?.toUpperCase()}
+                  onSelect={code => setCountryIssue(code)}
+                  searchable
+                  placeholder={global.translate(
+                    'Select the country of issue',
+                  )}
                 />
               </div>
             </Form.Group>
@@ -181,7 +178,12 @@ const IdentityModal = ({
             </div>
           ) : (
             <div>
-              <DangerMessage description={global.translate("You have not uploaded a photo of your identity yet.", 3193)} />
+              <DangerMessage
+                description={global.translate(
+                  'You have not uploaded a photo of your identity yet.',
+                  3193,
+                )}
+              />
               <UploadImgButton
                 name="UserIDURL"
                 onChooseFile={onImageChange}

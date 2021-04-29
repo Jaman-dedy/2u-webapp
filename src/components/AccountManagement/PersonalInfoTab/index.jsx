@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Table } from 'semantic-ui-react';
 import moment from 'moment';
@@ -9,6 +9,7 @@ import ManageEmailModal from './ManageEmailModal';
 import IdentityModal from './IdentityModal';
 import './style.scss';
 import ResidenceModal from './ResidenceModal';
+import rawCountries from 'utils/countries';
 
 const PersonalInfoTab = ({
   userData,
@@ -19,18 +20,39 @@ const PersonalInfoTab = ({
   const {
     openIdentityModal,
     setOpenIdentityModal,
+    countryIssue,
+    setCountryIssue,
   } = identityConfirmation;
   const {
     openResidenceModal,
     setOpenResidenceModal,
-    selectedCountry: residentialCountry,
+    setCountry,
+    country,
   } = residenceData;
+
+  const [userCountry, setUserCountry] = useState(null);
+  const [userNationality, setUserNationality] = useState(null);
+
+  useEffect(() => {
+    if (userData) {
+      const userCountry = rawCountries.find(
+        ({ key }) => key === userData?.Country,
+      );
+      const userNationality = rawCountries.find(
+        ({ key }) => key === userData?.UserExtraKYC?.Nationality,
+      );
+      if (userCountry) {
+        setUserCountry(userCountry);
+      }
+      if (userNationality) {
+        setUserNationality(userNationality);
+      }
+    }
+  }, [userData]);
 
   const {
     openInfoModal,
     setOpenInfoModal,
-    nationality,
-    selectedCountry,
     setOpenPhoneModal,
     openPhoneModal,
     setOpenEmailModal,
@@ -106,14 +128,14 @@ const PersonalInfoTab = ({
               {' '}
               {global.translate('Nationality')}
             </Table.Cell>
-            <Table.Cell> {nationality?.CountryName}</Table.Cell>
+            <Table.Cell> {userNationality?.text}</Table.Cell>
           </Table.Row>
           <Table.Row className="user-family-details">
             <Table.Cell>
               {' '}
               {global.translate('Country of birth')}
             </Table.Cell>
-            <Table.Cell> {selectedCountry?.CountryName}</Table.Cell>
+            <Table.Cell> {userCountry?.text}</Table.Cell>
           </Table.Row>
           <Table.Row className="user-family-details">
             <Table.Cell>
@@ -195,7 +217,7 @@ const PersonalInfoTab = ({
             </Table.Cell>
             <Table.Cell>
               {' '}
-              {residentialCountry?.CountryName}&nbsp;
+              {userCountry?.text}&nbsp;
               {userData?.Address2}&nbsp;{userData?.City}
             </Table.Cell>
             <Table.Cell
@@ -230,12 +252,16 @@ const PersonalInfoTab = ({
         setOpen={setOpenIdentityModal}
         identityConfirmation={identityConfirmation}
         userData={userData}
+        setCountryIssue={setCountryIssue}
+        countryIssue={countryIssue}
       />
       <ResidenceModal
         open={openResidenceModal}
         setOpen={setOpenResidenceModal}
         residenceData={residenceData}
         userData={userData}
+        setCountry={setCountry}
+        country={country}
       />
     </div>
   );

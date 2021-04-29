@@ -6,7 +6,7 @@ import { Image, Icon } from 'semantic-ui-react';
 import isAuth from 'utils/isAuth';
 import DashboardLayout from 'components/common/DashboardLayout';
 import WelcomeBar from 'components/Dashboard/WelcomeSection';
-import logo from 'assets/images/2u-money-logo-filled.svg';
+import logo from 'assets/images/logo.svg';
 import './LoadingPage.scss';
 
 const LoadingPage = ({ loading }) => {

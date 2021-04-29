@@ -1,4 +1,39 @@
-.manage-phone-container {
+.update-residence-container {
+  .ui.fluid.input {
+    height: 46px;
+  }
+  .edit-residence-from {
+    .ui.dropdown.custom-dropdown {
+      height: 46px;
+      width: 98% !important;
+    }
+  }
+  .country-state {
+    margin-left: 0px !important;
+    .field {
+      width: 92% !important;
+      .ui.fluid.input {
+        width: 97%;
+        margin-left: 5px;
+      }
+      label {
+        margin-left: 4px;
+      }
+    }
+  }
+  .info-country {
+    .country-label {
+      font-weight: 600;
+    }
+    width: 88%;
+    margin-top: 3px;
+    .ui.dropdown.custom-dropdown {
+      width: 99% !important;
+    }
+    .ReactFlagsSelect-module_selectBtn__19wW7 {
+      height: 46px;
+    }
+  }
   .btn-add-phone {
     display: flex !important;
     border-radius: 2px !important;
@@ -59,7 +94,7 @@
   }
   .overlay {
     position: absolute;
-    width: 88.2%;
+    width: 91%;
     height: 217px;
     background: rgba(0, 0, 0, 0);
     transition: background 0.5s ease;
@@ -119,5 +154,36 @@
   }
   .copy-title {
     margin-bottom: 10px;
+  }
+  .display-doc-img {
+    margin-bottom: 10px;
+    margin-left: 5px;
+    .copy-title {
+      font-weight: 600;
+    }
+    .id-copy {
+      width: 100% !important;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .manage-phone-container {
+    .country-state {
+      .field {
+        margin: 10px 0 10px -8px !important;
+        width: 100% !important;
+        .ui.fluid.input {
+          width: 100%;
+          margin-left: 0px !important;
+        }
+      }
+    }
+    .info-country {
+      width: 98%;
+      .ui.dropdown.custom-dropdown {
+        width: 100% !important;
+      }
+    }
   }
 }

@@ -1,4 +1,8 @@
-.manage-phone-container {
+.update-id-info-container {
+  .display-date {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+  }
   .btn-add-doc {
     display: flex !important;
     border-radius: 2px !important;
@@ -74,7 +78,7 @@
   }
   .overlay {
     position: absolute;
-    width: 88.2%;
+    width: 87%;
     height: 217px;
     background: rgba(0, 0, 0, 0);
     transition: background 0.5s ease;
@@ -141,16 +145,46 @@
     margin-right: 8px;
   }
   .edit-info-form {
+    .field {
+      label {
+        font-size: 14px;
+      }
+    }
     .ui.input {
       border: none;
       height: 46px;
     }
-    .date-of-birth{
+    .date-of-birth {
       z-index: 3;
+      .date-issue {
+        width: 99%;
+      }
+      .expiry-date {
+        width: 100%;
+        margin-left: 4px;
+      }
+      .react-datepicker-wrapper {
+        margin-left: 0px;
+      }
+    }
+    .ui.dropdown.custom-dropdown {
+      margin-left: 0px;
+      width: 97%;
+      .ui.input {
+        width: auto !important;
+      }
+    }
+    .info-nationality {
+      min-width: 48% !important;
+      width: fit-content !important;
     }
   }
   .display-doc-img {
     margin-left: 12px;
+    margin-right: 14px;
+    .id-copy {
+      width: 100%;
+    }
   }
 
   .ui.dropdown > .text {
@@ -158,5 +192,29 @@
   }
   .ui.dropdown > .dropdown.icon:before {
     line-height: 2;
+  }
+}
+@media (max-width: 767px) {
+  .update-id-info-container {
+    .date-of-birth {
+      width: 100% !important;
+      .react-datepicker-wrapper {
+        width: 100% !important;
+      }
+      .date-issue,
+      .expiry-date {
+        width: 100% !important;
+        margin-bottom: 10px !important;
+        margin-left: 0px !important;
+      }
+    }
+    .edit-info-form {
+      .info-nationality {
+        width: 100% !important;
+        .ui.dropdown.custom-dropdown {
+          width: 100% !important;
+        }
+      }
+    }
   }
 }
