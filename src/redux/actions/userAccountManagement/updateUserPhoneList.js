@@ -20,7 +20,7 @@ export default data => dispatch =>
         const res = Array.isArray(phones)
           ? phones[0] || {}
           : phones || {};
-        const newPhones = Array.isArray(data) ? data : null;
+        const newPhones = Array.isArray(phones) ? phones : null;
         const newPhone = typeof data === 'object' ? data : null;
         toast.success(res.Description);
         dispatch({

@@ -27,7 +27,6 @@ export default () => {
   } = useSelector(
     ({ userAccountManagement }) => userAccountManagement,
   );
-
   const { loading, success } = saveUserData;
   const { data } = userData;
   const { loading: settingPrimaryPhone } = primaryPhone;
@@ -282,21 +281,33 @@ export default () => {
     );
   };
 
+  const emails = (userEmails, Email) => {
+    const unique = userEmails
+      .map(e => e[Email])
+      .map((e, Email, final) => final.indexOf(e) === Email && Email)
+      .filter(e => userEmails[e])
+      .map(e => userEmails[e]);
+
+    return unique;
+  };
   const handleDeleteEmail = (e, email) => {
     e.stopPropagation();
     const newEmailList = data?.Emails?.filter(
-      phoneObject =>
-        phoneObject.Email.toString() !== email.toString(),
+      emailObject =>
+        emailObject.Email.toString() !== email.toString(),
     );
-    updateUserEmailListAction({ Emails: [...newEmailList] })(
+    const newList = newEmailList?.map(item => {
+      return {
+        Email: item.Email,
+        Category: item.CategoryCode,
+      };
+    });
+    const filteredEmails = emails(newList, 'Email');
+    console.log('filtered emails', filteredEmails);
+    updateUserEmailListAction({ Emails: [...filteredEmails] })(
       dispatch,
     );
   };
-  useEffect(() => {
-    if (userData?.Emails) {
-      updateUserEmailListAction({ Emails: [] })(dispatch);
-    }
-  }, [userData?.Emails]);
 
   return {
     personalInfoData,

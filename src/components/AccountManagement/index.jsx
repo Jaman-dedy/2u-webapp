@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { Tab, Image } from 'semantic-ui-react';
 
 import DashboardLayout from 'components/common/DashboardLayout';
@@ -46,6 +46,9 @@ const Profile = ({
     false,
   );
   const [accountInfoTitle, setAccountInfoTitle] = useState('');
+  const location = useLocation();
+
+  const [isABusinessAccount, setIsABusinessAccount] = useState(false);
 
   useEffect(() => {
     getReferreesList()(dispatch);
@@ -88,6 +91,11 @@ const Profile = ({
       );
     }
   }, [userData]);
+  useEffect(() => {
+    if (location.state && location.state.detailTab) {
+      setActiveTabIndex(location.state.detailTab);
+    }
+  }, []);
   const panes = [
     {
       menuItem: global.translate('Profile'),
@@ -172,6 +180,7 @@ const Profile = ({
       ),
     },
   ];
+
   return (
     <DashboardLayout>
       <WelcomeBar>

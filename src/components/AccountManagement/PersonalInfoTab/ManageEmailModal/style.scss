@@ -9,6 +9,11 @@
       border: 1px solid #7e8494 !important;
       background: #fff !important;
       font-weight: 400;
+      width: 26%;
+
+      img {
+        margin-right: 5px;
+      }
     }
     .cancel-button {
       color: #7e8494 !important;
@@ -73,5 +78,16 @@
   }
   .otp-text {
     margin-top: 10px;
+  }
+}
+
+.ui.dimmer {
+  background-color: rgba(0, 0, 0, 0.5);
+
+  .actions {
+    background: #fff;
+    padding: 1rem 1rem;
+    border-top: none;
+    text-align: center;
   }
 }

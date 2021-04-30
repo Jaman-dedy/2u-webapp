@@ -55,6 +55,7 @@ const ManagePhoneModal = ({
   const handleClick = phone => {
     setCurrentPhone(phone);
   };
+
   return (
     <Modal
       onOpen={() => setOpen(true)}
@@ -94,22 +95,27 @@ const ManagePhoneModal = ({
                     <Table.Cell
                       textAlign="right"
                       className="set-primary"
-                      onClick={() => {
-                        handleSetPrimary(phone.Phone);
-                        handleClick(phone.Phone);
-                      }}
                     >
-                      {phone.Primary !== 'YES'
-                        ? global.translate('Set as primary')
-                        : null}
-                      &nbsp;|&nbsp;{' '}
+                      <span
+                        onClick={() => {
+                          handleSetPrimary(phone.Phone);
+                          handleClick(phone.Phone);
+                        }}
+                      >
+                        {phone.Primary !== 'YES'
+                          ? global.translate('Set as primary')
+                          : null}
+                      </span>
+                      &nbsp;
                       <span
                         onClick={e => {
                           handleDelete(e, phone.Phone);
                           handleClick(phone.Phone);
                         }}
                       >
-                        {global.translate('Remove')}
+                        {phone.Primary !== 'YES'
+                          ? global.translate('| Remove')
+                          : null}
                       </span>
                       {loading && currentPhone === phone.Phone && (
                         <Loader

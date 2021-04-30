@@ -21,7 +21,7 @@ export default (state, { type, payload }) => {
         ...state,
         updateUserEmailList: {
           ...state.updateUserEmailList,
-          error: payload,
+          error: null,
           loading: false,
         },
       };

@@ -3,6 +3,7 @@ import {
   GET_USER_DATA_FAILURE,
   GET_USER_DATA_SUCCESS,
 } from 'constants/action-types/users/getUserData';
+import { UPDATE_USER_EMAIL_LIST } from 'constants/action-types/userAccountManagement/updateUserEmailList';
 
 export default (state, { type, payload }) => {
   switch (type) {
@@ -33,6 +34,18 @@ export default (state, { type, payload }) => {
           data: {
             ...state.currentUser.data,
             ...payload,
+          },
+        },
+      };
+    case UPDATE_USER_EMAIL_LIST:
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          loading: false,
+          data: {
+            ...state.userData.data,
+            Emails: payload.data,
           },
         },
       };

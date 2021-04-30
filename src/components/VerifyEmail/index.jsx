@@ -78,6 +78,9 @@ const VerifyEmail = ({ verifyEmailState }) => {
                     onClick={() =>
                       history.push({
                         pathname: '/account-management',
+                        state: {
+                          detailTab: 1,
+                        },
                       })
                     }
                     className="btn-auth btn-primary"

@@ -9,6 +9,11 @@
       border: 1px solid #7e8494 !important;
       background: #fff !important;
       font-weight: 400;
+      width: 38%;
+
+      img {
+        margin-right: 5px;
+      }
     }
     .cancel-button {
       color: #7e8494 !important;
@@ -59,7 +64,7 @@
   .react-tel-input {
     .form-control {
       width: 300px !important;
-      height: 42px !important;
+      height: 46px !important;
       margin-left: 30px !important;
       padding-left: 20px !important;
     }
