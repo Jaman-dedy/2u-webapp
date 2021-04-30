@@ -102,7 +102,7 @@ export default () => {
   useEffect(() => {
     if (professionList.data) {
       setProfessionOptions(
-        professionList.data.map(profession => {
+        professionList.data?.map(profession => {
           return {
             key: profession.ProfessionNumber,
             text: profession.ProfessionName,
@@ -147,8 +147,8 @@ export default () => {
       Profession: currentOption.toString(),
       SpouseName: personalInfoData?.SpouseName,
       CityOfBirth: personalInfoData?.CityOfBirth,
-      DateOfBirth: personalInfoData.DateOfBirth,
-      Gender: personalInfoData.Gender,
+      DateOfBirth: personalInfoData?.DateOfBirth,
+      Gender: personalInfoData?.Gender,
     };
     saveUserDataAction(data)(dispatch);
     return true;
@@ -157,20 +157,24 @@ export default () => {
   useEffect(() => {
     if (data) {
       setPersonalInfoData({
-        FirstName: data.FirstName,
-        LastName: data.LastName,
-        Gender: data.Gender.Number,
-        DateOfBirth: data.DateOfBirth,
-        FatherFName: data.UserExtraKYC?.FatherFName,
-        MotherFName: data.UserExtraKYC?.MotherFName,
-        Profession: data.UserExtraKYC?.Profession,
-        SpouseName: data.UserExtraKYC?.SpouseName,
-        CityOfBirth: data.UserExtraKYC?.CityOfBirth,
+        FirstName: data?.FirstName,
+        LastName: data?.LastName,
+        Gender: data?.Gender?.Number,
+        DateOfBirth: data?.DateOfBirth,
+        FatherFName: data?.UserExtraKYC?.FatherFName,
+        MotherFName: data?.UserExtraKYC?.MotherFName,
+        Profession: data?.UserExtraKYC?.Profession,
+        SpouseName: data?.UserExtraKYC?.SpouseName,
+        CityOfBirth: data?.UserExtraKYC?.CityOfBirth,
         Nationality: nationality?.toLowerCase(),
       });
-      setBornCountry(data.UserExtraKYC?.CountryOfBirth);
-      setNationalityCountry(data.UserExtraKYC?.Nationality);
-      setSelectedDate(new Date(data.DateOfBirth));
+      setBornCountry(data?.UserExtraKYC?.CountryOfBirth);
+      setNationalityCountry(data?.UserExtraKYC?.Nationality);
+      if (data?.DateOfBirth) {
+        setSelectedDate(new Date(data?.DateOfBirth));
+      } else {
+        setSelectedDate('');
+      }
     }
   }, [data]);
   useEffect(() => {
@@ -184,15 +188,15 @@ export default () => {
 
   useEffect(() => {
     if (personalInfoData) {
-      setCurrentOption(personalInfoData.Gender);
+      setCurrentOption(personalInfoData?.Gender);
     }
   }, [personalInfoData]);
   useEffect(() => {
     if (
-      !personalInfoData.FirstName ||
-      !personalInfoData.LastName ||
-      !personalInfoData.DateOfBirth ||
-      !personalInfoData.Gender
+      !personalInfoData?.FirstName ||
+      !personalInfoData?.LastName ||
+      !personalInfoData?.DateOfBirth ||
+      !personalInfoData?.Gender
     ) {
       setDisableButton(true);
     } else {

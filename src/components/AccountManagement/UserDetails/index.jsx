@@ -37,8 +37,6 @@ const UserDetails = ({
     ({ user }) => user,
   );
 
-  const data = userData?.data;
-
   const defaultWallet = userData?.Wallets.find(
     wallet => wallet.Default === 'YES',
   );
@@ -57,13 +55,24 @@ const UserDetails = ({
     }
   }, [userData]);
 
-  const isCurrentStatus = item => item === data?.PresenceStatus;
+  const isCurrentStatus = item => item === userData?.PresenceStatus;
   const getStatusIcon = status => {
     if (status === '0') return onlineIcon;
     if (status === '1') return awayIcon;
     if (status === '2') return dndIcon;
     return offlineIcon;
   };
+
+  let name = `${userData?.FirstName} ${userData?.LastName}`;
+
+  const { BusinessExtraKYC } = userData;
+
+  if (
+    userData?.BusinessAccount?.toLowerCase() === 'yes' &&
+    BusinessExtraKYC?.CompanyName
+  ) {
+    name = BusinessExtraKYC?.CompanyName;
+  }
 
   return (
     <div className="user-details">
@@ -102,9 +111,7 @@ const UserDetails = ({
             />
           </div>
 
-          <h3>
-            {userData?.FirstName}&nbsp;{userData?.LastName}
-          </h3>
+          <h3>{name}</h3>
           {userData?.AccountVerified === 'YES' ? (
             <div className="verified-user">
               {global.translate('Verified')}

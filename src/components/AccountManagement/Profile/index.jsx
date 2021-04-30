@@ -6,8 +6,14 @@ import CardFidelity from './CardFidelity';
 import CardShortCut from './CardShortCut';
 import ReferralCard from './ReferralCard';
 
-const Profile = ({ isABusinessAccount, onClick, userData }) => {
+const Profile = ({
+  onUpdatePersonalInformation,
+  onUpdateBusinessInformation,
+  userData,
+  updateInfo,
+}) => {
   const rewards = userData?.Rewards;
+
   return (
     <div className="user-profile-container">
       <div className="user-intro">
@@ -18,33 +24,30 @@ const Profile = ({ isABusinessAccount, onClick, userData }) => {
           {global.translate("let's setup your account real quick")}
         </h3>
         <div>
-          {' '}
           {global.translate(
             'Your account is active and you can explore different features tailored for you. We only need to verify your identify so that your account is fully functional.',
           )}
         </div>
-        <div>
-          <Button
-            className={
-              !isABusinessAccount
-                ? `btn-update-info`
-                : `btn-update-switch`
-            }
-            onClick={onClick}
-          >
-            {global.translate('Update personal information')}
-          </Button>
-          <Button
-            className={
-              isABusinessAccount
-                ? `btn-update-info`
-                : `btn-update-switch`
-            }
-            onClick={onClick}
-          >
-            {global.translate('Switch to business account')}
-          </Button>
-        </div>
+        {userData?.BusinessAccount === 'YES' && (
+          <div className="user-intro__buttons">
+            <Button
+              className={
+                updateInfo ? 'btn-update-info' : 'btn-update-switch'
+              }
+              onClick={onUpdateBusinessInformation}
+            >
+              {global.translate('Update business information')}
+            </Button>
+            <Button
+              className={
+                !updateInfo ? 'btn-update-info' : 'btn-update-switch'
+              }
+              onClick={onUpdatePersonalInformation}
+            >
+              {global.translate('Update personal information')}
+            </Button>
+          </div>
+        )}
       </div>
       <div className="user-stats">
         <CardFidelity
@@ -66,6 +69,7 @@ Profile.propTypes = {
   isABusinessAccount: PropTypes.bool,
   onClick: PropTypes.func,
   userData: PropTypes.objectOf(PropTypes.any),
+  updateBusinessAccount: PropTypes.bool.isRequired,
 };
 Profile.defaultProps = {
   isABusinessAccount: false,

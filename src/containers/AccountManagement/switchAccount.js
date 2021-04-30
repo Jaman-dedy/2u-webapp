@@ -1,8 +1,7 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import getBusinessType from 'redux/actions/userAccountManagement/getBusinessType';
 import switchToBusinessAccount from 'redux/actions/userAccountManagement/switchToBusinessAccount';
-import rawCountries from 'utils/countries';
 
 const FORM_VALUES = {
   CreationDate: new Date(),
@@ -17,21 +16,27 @@ const FORM_VALUES = {
   Address: '',
   VATNumber: '',
 };
-
-const countries = rawCountries.map(({ text, flag, key }) => ({
-  CountryName: text,
-  Flag: `https://www.countryflags.io/${flag}/flat/32.png`,
-  CountryCode: key,
-}));
+const formatDate = dateToFormat => {
+  if (typeof dateToFormat !== 'string') {
+    const year = dateToFormat.getFullYear();
+    const month = `0${dateToFormat.getMonth() + 1}`.substr(-2);
+    const day = `0${dateToFormat.getDate()}`.substr(-2);
+    return `${year}-${month}-${day}`;
+  } else {
+    return new Date(dateToFormat);
+  }
+};
 
 export default () => {
   const [isUpgradingAccount, setIsUpgradingAccount] = useState(false);
   const [upgradeStep, setUpgradeStep] = useState(1);
   const [termsAgreed, setTermsAgreed] = useState(false);
-  const [form, setForm] = useState({ ...FORM_VALUES });
   const [isFormValid, setIsFormValid] = useState(false);
   const [isBusinessAccount, setIsBusinessAccount] = useState(false);
-  const [selectedCountry, setSelectedCountry] = useState({});
+  const [selectedCountry, setSelectedCountry] = useState();
+  const [form, setForm] = useState({ ...FORM_VALUES });
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [openInfoModal, setOpenInfoModal] = useState(false);
   const { userLocationData, userData } = useSelector(
     ({ user }) => user,
   );
@@ -45,8 +50,14 @@ export default () => {
     setUpgradeStep(1);
     setIsUpgradingAccount(false);
     setTermsAgreed(false);
-    setForm({ ...FORM_VALUES });
   }, []);
+  const handleOpenInfoModal = () => {
+    setOpenInfoModal(true);
+  };
+
+  const handleCloseInfoModal = () => {
+    setOpenInfoModal(false);
+  };
 
   useEffect(() => {
     if (switchAccountSuccess) {
@@ -54,12 +65,37 @@ export default () => {
       setIsUpgradingAccount(false);
       setTermsAgreed(false);
       setIsBusinessAccount(true);
+      setOpenInfoModal(false);
     }
-  }, [switchAccountSuccess, cancelOperation]);
+  }, [switchAccountSuccess]);
 
   useEffect(() => {
     if (userData?.data) {
-      setIsBusinessAccount(userData?.data?.BusinessAccount === 'YES');
+      const { data } = userData;
+      setIsBusinessAccount(data?.BusinessAccount === 'YES');
+      const { BusinessExtraKYC } = data;
+      if (
+        BusinessExtraKYC &&
+        Object.values(BusinessExtraKYC).every(value => !!value)
+      ) {
+        setForm({
+          ...BusinessExtraKYC,
+        });
+      }
+      if (
+        typeof BusinessExtraKYC?.CreationDate === 'string' &&
+        BusinessExtraKYC?.CreationDate?.length
+      ) {
+        setSelectedDate(
+          new Date(
+            BusinessExtraKYC?.CreationDate.replaceAll("'", ''),
+          ),
+        );
+      } else if (BusinessExtraKYC?.CreationDate) {
+        setSelectedDate(new Date(BusinessExtraKYC?.CreationDate));
+      } else {
+        setSelectedDate(new Date());
+      }
     }
   }, [userData]);
 
@@ -101,64 +137,64 @@ export default () => {
     getBusinessType()(dispatch);
   }, [dispatch]);
 
-  const valueChangeHandler = (e, { value, name }) => {
+  const valueChangeHandler = useCallback((e, { value, name }) => {
     setForm(prevData => ({
       ...prevData,
       [name]: value,
     }));
-  };
+  }, []);
 
   const goToNextStep = () => {
     setUpgradeStep(prevStep => prevStep + 1);
   };
 
   const goToPrevStep = () => {
-    setUpgradeStep(step => step - 1);
+    if (isBusinessAccount) {
+      cancelOperation();
+    } else {
+      setUpgradeStep(step => step - 1);
+    }
   };
 
   const createBusinessAccountHandler = () => {
-    switchToBusinessAccount(form)(dispatch);
+    const { CreationDate } = form;
+
+    switchToBusinessAccount({
+      ...form,
+      CreationDate: formatDate(CreationDate),
+    })(dispatch);
   };
 
-  const countryChangeHandler = ({ target: { value } }) => {
-    const selectedCountry = countries.find(
-      ({ CountryCode }) => CountryCode === value,
-    );
-
-    if (selectedCountry) {
+  const countryChangeHandler = countryCode => {
+    if (countryCode) {
       valueChangeHandler(null, {
-        value: selectedCountry.CountryCode,
+        value: countryCode,
         name: 'CountryCode',
       });
 
-      setSelectedCountry(selectedCountry);
+      setSelectedCountry(countryCode);
     }
   };
 
   useEffect(() => {
+    setForm(form => ({
+      ...form,
+      CreationDate: formatDate(selectedDate),
+    }));
+  }, [selectedDate]);
+  useEffect(() => {
     if (userLocationData?.CountryCode) {
-      const selectedCountry = countries.find(
-        ({ CountryCode }) =>
-          CountryCode === userLocationData?.CountryCode,
-      );
-
-      if (selectedCountry) {
-        valueChangeHandler(null, {
-          value: selectedCountry.CountryCode,
-          name: 'CountryCode',
-        });
-
-        setSelectedCountry(selectedCountry);
-      }
+      valueChangeHandler(null, {
+        value: userLocationData.CountryCode,
+        name: 'CountryCode',
+      });
+      setSelectedCountry(userLocationData?.CountryCode);
     }
   }, [userLocationData?.CountryCode]);
-
-  useEffect(() => {}, []);
 
   return {
     form,
     valueChangeHandler,
-    countries,
     countryChangeHandler,
     selectedCountry,
     upgradeStep,
@@ -172,5 +208,11 @@ export default () => {
     setTermsAgreed,
     disableSubmit: !isFormValid,
     isBusinessAccount,
+    setForm,
+    selectedDate,
+    setSelectedDate,
+    openInfoModal,
+    handleOpenInfoModal,
+    handleCloseInfoModal,
   };
 };

@@ -5,6 +5,8 @@ import UpgradeAccountDisclaimer from 'components/AccountManagement/SettingsTab/S
 import SwitchAccountForm from 'components/AccountManagement/SettingsTab/SwitchAccount';
 import './style.scss';
 import ChangeLanguageModal from './ChangeLanguageModal';
+import { useSelector } from 'react-redux';
+import languages from 'utils/languages';
 
 const Settings = ({ switchAccount }) => {
   const {
@@ -19,6 +21,10 @@ const Settings = ({ switchAccount }) => {
 
   const [changeLanguageOpen, setChangeLanguageOpen] = useState(false);
 
+  const language = useSelector(({ user: { language } }) => language);
+
+  const getLanguage = languageCode =>
+    languages.find(lang => lang.language === languageCode);
   const renderOptions = () => {
     return (
       <Table basic="very">
@@ -54,7 +60,9 @@ const Settings = ({ switchAccount }) => {
           </Table.Row>
           <Table.Row>
             <Table.Cell> {global.translate('Language')}</Table.Cell>
-            <Table.Cell>{global.translate('English(UK)')}</Table.Cell>
+            <Table.Cell>
+              {getLanguage(language?.preferred)?.text}
+            </Table.Cell>
             <Table.Cell textAlign="right" className="settings-action">
               <Button
                 className="btn--link"
@@ -78,6 +86,9 @@ const Settings = ({ switchAccount }) => {
               goToNextStep={goToNextStep}
               termsAgreed={termsAgreed}
               setTermsAgreed={setTermsAgreed}
+              onCancelSwitchAccount={() =>
+                setIsUpgradingAccount(false)
+              }
             />
           )}
 

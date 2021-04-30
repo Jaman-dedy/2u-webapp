@@ -68,20 +68,19 @@ export default () => {
     if (data) {
       setFormData({
         ...formData,
-        IDNumber: data.IDCardInfo.IDNumber,
-        IDCountryCode: data.IDCardInfo.IDCountryCode,
+        IDNumber: data?.IDCardInfo?.IDNumber,
+        IDCountryCode: data?.IDCardInfo?.IDCountryCode,
       });
       if (data.IDCardInfo?.ExpirationDate) {
         setSelectedExpiryDate(
-          new Date(data.IDCardInfo?.ExpirationDate),
+          new Date(data?.IDCardInfo?.ExpirationDate),
         );
       }
       if (data.IDCardInfo?.IssueDate) {
         setSelectedDateOfIssue(new Date(data.IDCardInfo?.IssueDate));
       }
 
-      setCountryIssue(data.IDCardInfo?.IDCountryCode);
-      setSelectedCurrentType(data.IDCardInfo.IDType);
+      setSelectedCurrentType(data?.IDCardInfo?.IDType);
     }
   }, [data]);
   useEffect(() => {

@@ -1,4 +1,17 @@
 .switch-account-form {
+  &__actions {
+    @media screen and (max-width: 410px) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  &__actions-right {
+    @media screen and (max-width: 410px) {
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: flex-start;
+    }
+  }
   input {
     height: 43px !important;
   }
@@ -7,6 +20,13 @@
       margin-left: auto !important;
       margin-right: auto !important;
       width: 95% !important;
+    }
+  }
+
+  .ReactFlagsSelect-module_flagsSelect__2pfa2 {
+    button {
+      border: 1px solid #d4d4d4 !important;
+      height: 43px !important;
     }
   }
 

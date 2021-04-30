@@ -19,7 +19,7 @@ export default data => dispatch =>
         return dispatch({
           type: GET_USER_INFO_SUCCESS,
           payload: {
-            data,
+            data: Array.isArray(data) ? data : [],
           },
         });
       },

@@ -33,46 +33,89 @@ const Profile = ({
 }) => {
   const history = useHistory();
   const dispatch = useDispatch();
-
+  const [activeTabIndex, setActiveTabIndex] = useState(0);
   const { referreesList } = useSelector(state => state.contacts);
-  const [isABusinessAccount, setIsABusinessAccount] = useState(false);
+
+  const businessInfoTitle = global.translate('Business Information');
+  const personalInfoTitle = global.translate('Personal information');
+  const [updateInfo, setUpdateInfo] = useState(true);
+  const [updateBusinessAccount, setUpdateBusinessAccount] = useState(
+    false,
+  );
+  const [updatePersonalAccount, setUpdatePersonalAccount] = useState(
+    false,
+  );
+  const [accountInfoTitle, setAccountInfoTitle] = useState('');
 
   useEffect(() => {
     getReferreesList()(dispatch);
   }, []);
 
   const onClickHandler = () => history.goBack();
-  const handleSwitchAccount = () => {
-    setIsABusinessAccount(!isABusinessAccount);
+
+  const onUpdateBusinessInformation = () => {
+    setAccountInfoTitle(businessInfoTitle);
+    setActiveTabIndex(1);
+    setUpdatePersonalAccount(false);
+    setUpdateBusinessAccount(true);
   };
 
+  const onUpdatePersonalInformation = () => {
+    setAccountInfoTitle(personalInfoTitle);
+    setActiveTabIndex(1);
+    setUpdateBusinessAccount(false);
+    setUpdatePersonalAccount(true);
+  };
+
+  const onTabChange = (_, { activeIndex }) => {
+    setActiveTabIndex(activeIndex);
+  };
+
+  useEffect(() => {
+    if (updateBusinessAccount) {
+      setUpdateInfo(true);
+    } else if (updatePersonalAccount) {
+      setUpdateInfo(false);
+    }
+  }, [updateBusinessAccount, updatePersonalAccount]);
+  useEffect(() => {
+    if (userData && userData?.data) {
+      const { BusinessAccount } = userData?.data;
+      setAccountInfoTitle(
+        BusinessAccount === 'YES'
+          ? businessInfoTitle
+          : personalInfoTitle,
+      );
+    }
+  }, [userData]);
   const panes = [
     {
       menuItem: global.translate('Profile'),
       render: () => (
         <Tab.Pane attached={false}>
           <UserProfile
-            isABusinessAccount={isABusinessAccount}
-            setIsABusinessAccount={setIsABusinessAccount}
-            onClick={handleSwitchAccount}
-            userData={userData.data}
+            setUpdateBusinessAccount={setUpdateBusinessAccount}
+            onUpdatePersonalInformation={onUpdatePersonalInformation}
+            onUpdateBusinessInformation={onUpdateBusinessInformation}
+            userData={userData?.data}
+            updateInfo={updateInfo}
           />
         </Tab.Pane>
       ),
     },
     {
-      menuItem: !isABusinessAccount
-        ? global.translate('Personal information')
-        : global.translate('Business information'),
+      menuItem: accountInfoTitle,
       render: () => (
         <Tab.Pane attached={false}>
           <PersonalInfoTab
-            isABusinessAccount={isABusinessAccount}
-            userData={userData.data}
+            showBusinessInfo={updateBusinessAccount}
+            showPersonalInfo={updatePersonalAccount}
+            userData={userData?.data}
             personalInfo={personalInfo}
             identityConfirmation={identityConfirmation}
             residenceData={residenceData}
-          />{' '}
+            switchAccount={switchAccount}
+          />
         </Tab.Pane>
       ),
     },
@@ -146,7 +189,6 @@ const Profile = ({
       <div className="profile-container">
         {userData?.loading ? (
           <div className="load-user-details">
-            {' '}
             <Image
               className="animate-placeholder"
               src={UserDetailsPlaceHolder}
@@ -169,7 +211,13 @@ const Profile = ({
               />
             </div>
           ) : (
-            <Tab menu={{ secondary: true }} panes={panes} />
+            <Tab
+              menu={{ secondary: true }}
+              panes={panes}
+              activeIndex={activeTabIndex}
+              defaultActiveIndex={0}
+              onTabChange={onTabChange}
+            />
           )}
         </div>
       </div>
