@@ -101,6 +101,13 @@ const Profile = ({
       menuItem: global.translate('Profile'),
       render: () => (
         <Tab.Pane attached={false}>
+          <div className="details top">
+           <UserDetails
+            userData={userData?.data}
+            userDetails={userDetails}
+            changeUserPresence={changeUserPresence}
+          />
+          </div>
           <UserProfile
             setUpdateBusinessAccount={setUpdateBusinessAccount}
             onUpdatePersonalInformation={onUpdatePersonalInformation}
@@ -188,30 +195,48 @@ const Profile = ({
           <div className="go-back">
             <GoBack style onClickHandler={onClickHandler} />
           </div>
-
-          <h2 className="head-title">
-            {global.translate('My Account', 1947)}
-          </h2>
+          <div className="title">
+            <h2 className="head-title">
+              {global.translate('My Account', 1947)}
+            </h2>
+          </div>
           <div className="clear" />
         </div>
       </WelcomeBar>
       <div className="profile-container">
+      <div className="user-info-details top">
+          {userData.loading ? (
+            <div className="load-info-details">
+              <Image
+                className="animate-placeholder"
+                src={ProfilePlaceHolder}
+              />
+            </div>
+          ) : (
+            <div>
+              <Tab menu={{ secondary: true }} panes={panes} />
+            </div>
+          )}
+        </div>
         {userData?.loading ? (
-          <div className="load-user-details">
+          <div className="load-user-details bottom">
+            {' '}
             <Image
               className="animate-placeholder"
               src={UserDetailsPlaceHolder}
             />
           </div>
         ) : (
-          <UserDetails
-            userData={userData?.data}
-            userDetails={userDetails}
-            changeUserPresence={changeUserPresence}
-          />
+          <div className="details bottom">
+            <UserDetails
+              userData={userData?.data}
+              userDetails={userDetails}
+              changeUserPresence={changeUserPresence}
+            />
+          </div>
         )}
 
-        <div className="user-info-details">
+        <div className="user-info-details bottom">
           {userData.loading ? (
             <div className="load-info-details">
               <Image

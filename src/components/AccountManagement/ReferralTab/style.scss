@@ -40,3 +40,24 @@
     }
   }
 }
+
+@media (max-width: 540px) {
+  .referral-tab-container {
+    width: 100%;
+    .stats-cards {
+      display: flex;
+      flex-direction: column;
+      width: 98%;
+      .stat-container {
+        margin: 1rem;
+        width: 98%;
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .referral-tab-container {
+    padding: 1rem;
+  }
+}

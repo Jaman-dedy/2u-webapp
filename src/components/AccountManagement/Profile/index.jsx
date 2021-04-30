@@ -50,6 +50,7 @@ const Profile = ({
         )}
       </div>
       <div className="user-stats">
+        <div className="fidelity-card">
         <CardFidelity
           title={global.translate('Number of wallets')}
           stats={userData?.Wallets?.length}
@@ -59,6 +60,7 @@ const Profile = ({
           stats={rewards?.TotalPoints?.PointsValue}
           fidelity
         />
+        </div>
         <CardShortCut />
       </div>
       <ReferralCard username={userData?.PID} />

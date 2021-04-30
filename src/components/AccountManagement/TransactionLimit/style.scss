@@ -16,3 +16,15 @@
     font-weight: 400;
   }
 }
+
+@media (max-width: 600px) {
+  .transaction-limit-container {
+    margin-bottom: 5rem;
+    tr {
+      height: auto;
+      .right.aligned {
+        text-align: left !important;
+      }
+    }
+  }
+}

@@ -27,7 +27,7 @@ const ReferralCard = ({ username }) => {
         </div>
       </div>
       <div className="link-input">
-        <Input value={referralURI} />
+        <div className="referral-link">{referralURI}</div>
         <Popup
           content={copySuccess}
           on="click"

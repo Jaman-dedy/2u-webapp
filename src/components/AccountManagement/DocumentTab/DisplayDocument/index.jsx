@@ -18,7 +18,7 @@ const DisplayDocument = () => {
           <Image src={EditDoc} />
           <Image src={deleteDoc} />
         </div>
-        <div>
+        <div className="doc-container">
           <div className="doc-image">
             <div className="overlay" />
             <Image src={TestImg} />
