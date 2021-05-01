@@ -147,7 +147,7 @@ const TransactionDetails = ({
         <div className="goto-transactions">
           {!item?.isOnStore && (
             <Button onClick={() => history.push('/transactions')}>
-              {global.translate('Go to all transactions', 2247)}
+              {global.translate('Go to all transactions', 2214)}
             </Button>
           )}
           {item?.isOnStore && (

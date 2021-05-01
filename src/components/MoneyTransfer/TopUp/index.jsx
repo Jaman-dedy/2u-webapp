@@ -73,7 +73,6 @@ const TopUpModal = ({
   myPhoneNumbers,
   selectedPhoneNumber,
   setSelectedPhoneNumber,
-  isTopingUp,
   isSendingOthers,
   loadProvidersCountries,
   currentPhone,
@@ -100,6 +99,10 @@ const TopUpModal = ({
   const { language: { preferred } = {} } = useSelector(
     ({ user }) => user,
   );
+
+  const {
+    contactActions: { isTopingUp },
+  } = useSelector(({ dashboard }) => dashboard);
   const [country, setCountry] = useState({});
 
   const [checked, setChecked] = useState(false);
@@ -382,7 +385,7 @@ const TopUpModal = ({
                     search
                     placeholder={global.translate(
                       'Select a provider',
-                      312,
+                      1734,
                     )}
                   />
                 )}

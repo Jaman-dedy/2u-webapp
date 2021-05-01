@@ -224,7 +224,7 @@ const ManageEmailModal = ({
                 className="back-button"
                 onClick={() => setIAddingPhone(false)}
               >
-                {global.translate('Back')}
+                {global.translate('Back', 174)}
               </Button>
               <Button
                 loading={sendEmail.loading}

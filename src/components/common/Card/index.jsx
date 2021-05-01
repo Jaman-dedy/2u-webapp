@@ -38,8 +38,10 @@ const Card = ({ card, onClick, detail, userData }) => {
             <div className="left-details">
               <span className="username">
                 <strong>
-                  {card?.NameOnCard ??
-                    `${userData?.FirstName} ${userData?.LastName}`}
+                  {Object.keys(userData).length
+                    ? card?.NameOnCard ??
+                      `${userData?.FirstName} ${userData?.LastName}`
+                    : null}
                 </strong>
               </span>
               <span>

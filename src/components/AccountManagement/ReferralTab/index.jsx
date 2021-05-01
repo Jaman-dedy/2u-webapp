@@ -114,7 +114,7 @@ const ReferralTab = ({ referreesList }) => {
                     <div className="user-profile">
                       <div className="user-avatar">
                         <Thumbnail
-                          avatar={contact.PictureURL}
+                          avatar={contact?.PictureURL}
                           circular
                           name={contact?.FirstName}
                           secondName={contact?.LastName}

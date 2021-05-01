@@ -17,7 +17,7 @@ const Charts = ({
       <div className="over-view">
         <div className="wallet-data">
           <div className="info-wallet">
-            <h4>Transactions overview</h4>
+            <h4>{global.translate('Transactions overview', 1771)}</h4>
             <div className="wallet-info">
               <div className="wallet-flag-img">
                 <Image src={currentOption.Flag} />

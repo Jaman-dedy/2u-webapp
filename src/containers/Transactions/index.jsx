@@ -57,7 +57,7 @@ const Transactions = () => {
   const [chartData, setChartData] = useState([
     {
       name: global.translate('Credit', 1231),
-      name2: global.translate('Total Credit', 1245),
+      name2: global.translate('Total Credit', 1254),
       value: 0,
       total: 0,
     },
@@ -310,7 +310,7 @@ const Transactions = () => {
     ]);
     setAmountChartData([
       {
-        name: global.translate('Total Credit', 1245),
+        name: global.translate('Total Credit', 1254),
         value: creditAmountCount,
       },
       {

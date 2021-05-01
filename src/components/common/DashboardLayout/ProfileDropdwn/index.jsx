@@ -15,6 +15,8 @@ import ImageLevel from './ImageLevel';
 import LoaderComponent from 'components/common/Loader';
 import { closeProfileDropDown } from 'redux/actions/dashboard/dashboard';
 import convertNumber from 'utils/convertNumber';
+import avatarPlaceholder from 'assets/images/avatar-placeholder.svg';
+
 import './ProfileDropdown.scss';
 
 const ProfileDropdown = ({
@@ -60,12 +62,12 @@ const ProfileDropdown = ({
   return (
     <>
       <div>
-        {!trigger ? (
+        {!trigger && Object.keys(profileData).length ? (
           <Thumbnail
-            avatar={profileData && profileData.PictureURL}
+            avatar={profileData.PictureURL}
             size="small"
-            name={profileData && profileData.FirstName}
-            secondName={profileData && profileData.LastName}
+            name={profileData.FirstName}
+            secondName={profileData.LastName}
             circular
             className="header_2u_avatar"
             style={{
@@ -105,25 +107,33 @@ const ProfileDropdown = ({
       >
         <Dropdown.Menu direction="left">
           <Dropdown.Header className="dropdown-header">
-            {profileData && (
+            {Object.keys(profileData).length && (
               <div
                 className="dropdown-header__content"
                 title={global.translate('My Profile', 83)}
               >
-                <Thumbnail
-                  avatar={profileData.PictureURL}
-                  size="small"
-                  name={profileData && profileData.FirstName}
-                  secondName={profileData && profileData.LastName}
-                  circular
-                  className="header_2u_avatar"
-                  style={{
-                    height: '55px',
-                    width: '55px',
-                    marginRight: '0px',
-                  }}
-                  setHasError={setHasError}
-                />
+                {Object.keys(profileData).length !== 0 ? (
+                  <Thumbnail
+                    avatar={profileData.PictureURL}
+                    size="small"
+                    name={profileData.FirstName}
+                    secondName={profileData.LastName}
+                    circular
+                    className="header_2u_avatar"
+                    style={{
+                      height: '55px',
+                      width: '55px',
+                      marginRight: '0px',
+                    }}
+                    setHasError={setHasError}
+                  />
+                ) : (
+                  <Image
+                    src={avatarPlaceholder}
+                    className="animate-placeholder"
+                    style={{ width: '27%' }}
+                  />
+                )}
 
                 {profileData &&
                   profileData.AccountVerified === 'YES' && (

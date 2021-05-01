@@ -127,13 +127,17 @@ const TableDetails = ({
             <Table.Cell textAlign="right">{creationDate}</Table.Cell>
           </Table.Row>
           <Table.Row>
-            <Table.Cell>{card?.MonthlyLImitText}</Table.Cell>
+            <Table.Cell>
+              {global.translate('Monthly limit', 719)}
+            </Table.Cell>
             <Table.Cell textAlign="right">
               {card?.MonthlyLimit}
             </Table.Cell>
           </Table.Row>
           <Table.Row>
-            <Table.Cell>{card?.MonthlyFeesText}</Table.Cell>
+            <Table.Cell>
+              {global.translate('Monthly fees', 718)}
+            </Table.Cell>
             <Table.Cell textAlign="right">
               {card?.MonthlyFees}
             </Table.Cell>

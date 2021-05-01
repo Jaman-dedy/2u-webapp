@@ -37,6 +37,7 @@ import {
   setIsendingCash,
   setIsSendingMoney,
   setIsSendingOhters,
+  setIsTopingUp,
 } from 'redux/actions/dashboard/dashboard';
 import getAllTransactionHistory from 'redux/actions/transactions/getHistory';
 import allCountries from 'utils/countries';
@@ -46,6 +47,7 @@ import useWindowSize from 'utils/useWindowSize';
 import DragDropWallets from '../Edit/DragDropWallets';
 import EditContactContents from '../Edit/EditContactContents';
 import PreviewProfileImg from './PreviewProfileImg';
+import AirtimeactionsImage from 'assets/images/top-up.png';
 
 const ContactDetailsModal = ({
   open,
@@ -665,8 +667,7 @@ const ContactDetailsModal = ({
                             });
                           }}
                         />
-                        {/* PLEASE DON'T DELETE THE CODES, IT WILL BE COMMENTED OUT WHEN THE BACKEND IMPLEMENTATION FOR SENDING AIRTIME IS READY */}
-                        {/* <ActionOption
+                        <ActionOption
                           image={AirtimeactionsImage}
                           text={global.translate('Buy Airtime', 1552)}
                           onClick={() => {
@@ -682,7 +683,7 @@ const ContactDetailsModal = ({
                               },
                             });
                           }}
-                        /> */}
+                        />
                         <ActionOption
                           image={toOthersactionsImage}
                           text={global.translate(
@@ -792,8 +793,7 @@ const ContactDetailsModal = ({
                           }}
                           text={global.translate('Transactions', 62)}
                         />
-                        {/* PLEASE DON'T DELETE THE CODES, IT WILL BE COMMENTED OUT WHEN THE BACKEND IMPLEMENTATION FOR SENDING AIRTIME IS READY */}
-                        {/* <ActionOption
+                        <ActionOption
                           image={AirtimeactionsImage}
                           text={global.translate('Buy Airtime', 1552)}
                           onClick={() => {
@@ -809,7 +809,7 @@ const ContactDetailsModal = ({
                               },
                             });
                           }}
-                        /> */}
+                        />
                         <ActionOption
                           image={toOthersactionsImage}
                           text={global.translate(

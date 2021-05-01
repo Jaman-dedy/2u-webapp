@@ -26,7 +26,7 @@ const MyNetworth = ({ scope, networth }) => {
             <div className="one-currency">
               {scope !== 'TOTAL' && (
                 <h3>
-                  {`${global.translate('My total amount in', 2144)} `}
+                  {`${global.translate('My total amount in')} `}
                   <span className="bold">
                     {networth.data && networth.data.Currency}
                   </span>
@@ -46,7 +46,7 @@ const MyNetworth = ({ scope, networth }) => {
             <div className="one-currency">
               {scope !== 'TOTAL' && (
                 <h3>
-                  {`${global.translate('My networth in', 2143)} `}
+                  {`${global.translate('My networth in')} `}
                   <span className="bold">
                     {networth.data && networth.data.Currency}
                   </span>

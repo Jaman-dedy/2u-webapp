@@ -107,8 +107,8 @@ const MoneyTransfer = ({ payBills }) => {
                   setIsTopingUp(dispatch);
                   history.push('/contacts?ref=to-up');
                 }}
-                title={global.translate('Buy Airtime', 539)}
-                subtitle={global.translate('Buy Airtime', 539)}
+                title={global.translate('Buy Airtime', 1552)}
+                subtitle={global.translate('Buy Airtime', 1552)}
               />
               {sendMoneyOpen && (
                 <ExchangeContainer

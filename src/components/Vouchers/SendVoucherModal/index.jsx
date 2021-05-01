@@ -489,7 +489,7 @@ const SendMoneyModal = ({ SendVoucherModal }) => {
                   resetState();
                 }}
               >
-                {global.translate('Back', 86)}
+                {global.translate('Back', 174)}
               </Button>
             )}
 

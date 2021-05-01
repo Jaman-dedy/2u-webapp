@@ -20,7 +20,7 @@ const displayTransactionType = type => {
     };
   if (type === 'CS')
     return {
-      Description: 'Cash sent from Cash CAshPoint or from the App',
+      Description: 'Cash sent from CashPoint or from the App',
       Action: 'Go to wallets',
       PathName: '/wallets',
     };

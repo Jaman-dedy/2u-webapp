@@ -160,13 +160,13 @@ const NavBar = ({
                     }
                   }}
                 >
-                  {data && (
+                  {Object.keys(data).length ? (
                     <ProfileDropdown
                       setOpenProfile={setOpenProfile}
                       openProfile={openProfile}
                       profileData={data}
                     />
-                  )}
+                  ) : null}
                 </span>
               </OutsideClickHandler>
             </li>

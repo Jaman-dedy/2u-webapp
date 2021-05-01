@@ -39,7 +39,11 @@ const CreditCardList = ({ creditCardList, loading, userData }) => {
   }, []);
 
   const handleCreateCard = () => {
-    history.push('/add-card');
+    if (userData?.AccountVerified === 'YES') {
+      handleCreateCard();
+    } else {
+      setOpenModal(true);
+    }
   };
 
   const onClickHandler = () => history.goBack();

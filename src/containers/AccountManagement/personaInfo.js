@@ -303,7 +303,6 @@ export default () => {
       };
     });
     const filteredEmails = emails(newList, 'Email');
-    console.log('filtered emails', filteredEmails);
     updateUserEmailListAction({ Emails: [...filteredEmails] })(
       dispatch,
     );

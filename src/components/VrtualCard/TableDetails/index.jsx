@@ -123,7 +123,7 @@ const TableDetails = ({
               </span>
               <span />
               {global.translate(
-                'Redeem money form this card to your wallet',
+                'Redeem money from this card to your wallet',
                 2150,
               )}
             </Table.Cell>
@@ -147,7 +147,7 @@ const TableDetails = ({
           <Table.Row>
             <Table.Cell>
               <span className="table-wallet-section">
-                {global.translate('Currency')}
+                {global.translate('Currency', 2138)}
               </span>
               <span className="table-wallet-number">
                 {card?.Currency}
@@ -163,7 +163,11 @@ const TableDetails = ({
             <Table.Cell>
               {global.translate('Expiration date', 492)}
             </Table.Cell>
-            <Table.Cell textAlign="right">{`${card?.MM}-${card?.YYYY}`}</Table.Cell>
+            {card ? (
+              <Table.Cell textAlign="right">{`${card?.MM}-${card?.YYYY}`}</Table.Cell>
+            ) : (
+              <Table.Cell textAlign="right">MM-YYYY</Table.Cell>
+            )}
           </Table.Row>
           <Table.Row>
             <Table.Cell>
@@ -184,12 +188,6 @@ const TableDetails = ({
               <span className="action-heading">
                 {global.translate('Renew your O-Card', 1691)}
               </span>
-              <span>
-                {global.translate(
-                  'You can renew an expired O-Card',
-                  2140,
-                )}
-              </span>
             </Table.Cell>
             <Table.Cell textAlign="right">
               <Button
@@ -198,7 +196,7 @@ const TableDetails = ({
                 loading={loadOnRenew}
                 disabled={!isExpired}
               >
-                {global.translate('Renew O-Card', 2141)}
+                {global.translate('Renew O-Card', 1691)}
               </Button>
             </Table.Cell>
           </Table.Row>

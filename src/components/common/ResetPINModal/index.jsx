@@ -168,7 +168,7 @@ const ResetPIN = ({ open, setOpen, close, isOnResetPassword }) => {
         >
           {step === 1
             ? global.translate('Cancel')
-            : global.translate('Back')}
+            : global.translate('Back', 174)}
         </Button>
 
         {step !== 2 && (

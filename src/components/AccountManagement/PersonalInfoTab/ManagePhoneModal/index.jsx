@@ -238,7 +238,7 @@ const ManagePhoneModal = ({
                   setSendOtp(false);
                 }}
               >
-                {global.translate('Back')}
+                {global.translate('Back', 174)}
               </Button>
             </div>
           </>

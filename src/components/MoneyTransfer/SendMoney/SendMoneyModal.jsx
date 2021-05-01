@@ -130,7 +130,7 @@ const SendMoneyModal = ({
     >
       {destinationContact && (
         <Modal.Header className="modal-title">
-          {global.translate(`Transfer Money to  `, 2154)}
+          {global.translate(`Transfer Money to  `, 1225)}
           <strong>&nbsp;{destinationContact.FirstName}</strong>
         </Modal.Header>
       )}
@@ -254,7 +254,7 @@ const SendMoneyModal = ({
                 resetState();
               }}
             >
-              {global.translate('Back', 2158)}
+              {global.translate('Back', 174)}
             </Button>
           )}
 

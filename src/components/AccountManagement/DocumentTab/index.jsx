@@ -21,6 +21,7 @@ const DocumentTab = () => {
       <div className="document-description">
         {global.translate(
           'Any official document bearing your name and your address such as utilities bill, bank statement, and landline telephone bill. In respect of close relatives or roommates living together, a certified statement of the person with the name on the document is required.',
+          893,
         )}
       </div>
       <div className="display-docs">

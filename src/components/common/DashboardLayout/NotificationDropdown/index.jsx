@@ -10,7 +10,7 @@ import notifTransac from 'assets/images/notif-type-transaction.png';
 import Thumbnail from 'components/common/Thumbnail';
 import TimeAgo from 'components/common/TimeAgo';
 import { ONE_TO_ONE } from 'constants/general';
-import PropTypes from 'prop-types';
+import PropTypes, { object } from 'prop-types';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -195,26 +195,29 @@ const NotificationDropdown = ({
             >
               <div className="flex justify-content-space-between align-items-center">
                 <div className="notification-user flex flex-row align-items-center">
-                  <Thumbnail
-                    avatar={
-                      Object.keys(data).length
-                        ? data.PictureURL
-                        : logo
-                    }
-                    size="small"
-                    name={data.FirstName || ''}
-                    secondName={data.LastName || ''}
-                    circular
-                    className="header_2u_avatar"
-                    style={{
-                      height: '45px',
-                      width: '45px',
-                      marginRight: '15px',
-                      marginLeft: '15px',
-                    }}
-                    hasError={hasError}
-                    setHasError={setHasError}
-                  />
+                  {Object.keys(data).length !== 0 ? (
+                    <Thumbnail
+                      avatar={
+                        Object.keys(data).length
+                          ? data.PictureURL
+                          : logo
+                      }
+                      size="small"
+                      name={data.FirstName || ''}
+                      secondName={data.LastName || ''}
+                      circular
+                      className="header_2u_avatar"
+                      style={{
+                        height: '45px',
+                        width: '45px',
+                        marginRight: '15px',
+                        marginLeft: '15px',
+                      }}
+                      hasError={hasError}
+                      setHasError={setHasError}
+                    />
+                  ) : null}
+
                   <div className="notif-info">
                     <div>
                       <div className="name">{`${data.FirstName ||

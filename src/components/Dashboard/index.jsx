@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Tour from 'reactour';
+import { Image } from 'semantic-ui-react';
 import RedeemVoucherModal from 'components/Stores/StoreDetailsComponent/RedeemVoucherModal';
 import UserProfilePlaceholder from 'assets/images/avatarplaceholder.png';
 import WelcomeProfilePlaceholder from 'assets/images/welcome-profile-placeholder.svg';
@@ -28,6 +29,7 @@ import TransactionHistory from './TransactionHistory';
 import Thumbnail from 'components/common/Thumbnail';
 import { Link } from 'react-router-dom';
 import tourConfig from 'utils/TourSteps';
+import avatarPlaceholder from 'assets/images/avatar-placeholder.svg';
 
 const Dashboard = ({
   userData,
@@ -109,22 +111,29 @@ const Dashboard = ({
             <div className="dash-card">
               {userData?.data && (
                 <div className="wrap-welcome">
-                  <Thumbnail
-                    style={{
-                      width: '50px',
-                      height: '50px',
-                    }}
-                    avatar={
-                      userData?.data?.PictureSet === 'YES'
-                        ? userData?.data?.PictureURL
-                        : UserProfilePlaceholder
-                    }
-                    name={userData?.data?.FirstName}
-                    secondName={userData?.data?.LastName}
-                    alt={userData?.data?.LastName}
-                    hasError={hasError}
-                    setHasError={setHasError}
-                  />
+                  {Object.keys(userData?.data).length ? (
+                    <Thumbnail
+                      style={{
+                        width: '50px',
+                        height: '50px',
+                      }}
+                      avatar={
+                        userData?.data?.PictureSet === 'YES'
+                          ? userData?.data?.PictureURL
+                          : UserProfilePlaceholder
+                      }
+                      name={userData?.data?.FirstName}
+                      secondName={userData?.data?.LastName}
+                      alt={userData?.data?.LastName}
+                      hasError={hasError}
+                      setHasError={setHasError}
+                    />
+                  ) : (
+                    <Image
+                      src={avatarPlaceholder}
+                      className="animate-placeholder"
+                    />
+                  )}
 
                   <div className="wrap-welcome-message">
                     <h3>

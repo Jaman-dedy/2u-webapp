@@ -41,6 +41,7 @@ export default (state, { type, payload }) => {
           isSendingMoney: false,
           isManagingContacts: false,
           isSendingVoucher: false,
+          isTopingUp: false,
         },
       };
     case SET_MANAGE_CONTACTS:
@@ -51,6 +52,7 @@ export default (state, { type, payload }) => {
           isSendingMoney: false,
           isSendingVoucher: false,
           isManagingContacts: true,
+          isTopingUp: false,
         },
       };
 
@@ -62,6 +64,7 @@ export default (state, { type, payload }) => {
           isSendingMoney: true,
           isManagingContacts: false,
           isSendingVoucher: false,
+          isTopingUp: false,
         },
       };
     case SET_IS_SENDING_OTHERS:
@@ -73,6 +76,7 @@ export default (state, { type, payload }) => {
           isManagingContacts: false,
           isSendingOthers: true,
           isSendingVoucher: false,
+          isTopingUp: false,
         },
       };
     case SET_IS_TOPING_UP:
