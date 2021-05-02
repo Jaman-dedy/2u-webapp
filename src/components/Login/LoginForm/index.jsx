@@ -46,7 +46,7 @@ const LoginForm = ({
         onKeyDown={onKeyDown}
       >
         <div className="sub-titles">
-          {global.translate('Your username', 1992)}
+          {global.translate('Your username or Phone number', 3365)}
         </div>
         <Form.Field>
           <Form.Input
@@ -62,7 +62,9 @@ const LoginForm = ({
             onChange={handleChange}
           />
         </Form.Field>
-        <div>{global.translate('Your password', 2)}</div>
+        <div>
+          {global.translate('Your password or PIN Number', 3362)}
+        </div>
         <Form.Field>
           <PasswordInput
             error={
@@ -86,7 +88,7 @@ const LoginForm = ({
           disabled={isLoading}
           onClick={onSubmit}
           type="submit"
-          className="btn-auth btn-primary"
+          className="btn-auth btn-login"
         >
           {global.translate('Connect', 4).toUpperCase()}
           {isLoading && <div className="loading-button" />}

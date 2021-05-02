@@ -28,7 +28,7 @@ const AllTransactions = ({
                 {global.translate('Amount sent')}
               </Table.HeaderCell>
               <Table.HeaderCell>
-                {global.translate('Amount to be received')}t
+                {global.translate('Amount to be received')}
               </Table.HeaderCell>
             </>
           )}

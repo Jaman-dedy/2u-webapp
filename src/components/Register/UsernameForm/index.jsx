@@ -88,7 +88,7 @@ const UsernameForm = ({
   return (
     <Container>
       <div className="sub-titles">
-        {global.translate('For free account')}
+        {global.translate('For a free account')}
       </div>
       {displayErrors && <AlertDanger message={displayErrors} />}
       <br />

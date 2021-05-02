@@ -14,7 +14,6 @@ import {
   Modal,
   TransitionablePortal,
 } from 'semantic-ui-react';
-// import AirtimeactionsImage from 'assets/images/ContactAirtimeIcon.svg'; // This commented line should not be removed
 import ChatImage from 'assets/images/ContactChatIcon.svg';
 import toOthersactionsImage from 'assets/images/ContactOthersIcon.svg';
 import SendCashImage from 'assets/images/ContactSendcashIcon.svg';
@@ -671,7 +670,7 @@ const ContactDetailsModal = ({
                           image={AirtimeactionsImage}
                           text={global.translate('Buy Airtime', 1552)}
                           onClick={() => {
-                            setIsTopingUp(dispatch);
+                            // setIsTopingUp(dispatch);
                             setDestinationContact(contact);
                             setTopUpOpen(true);
                             history.push({
@@ -797,7 +796,7 @@ const ContactDetailsModal = ({
                           image={AirtimeactionsImage}
                           text={global.translate('Buy Airtime', 1552)}
                           onClick={() => {
-                            setIsTopingUp(dispatch);
+                            // setIsTopingUp(dispatch);
                             setDestinationContact(contact);
                             setTopUpOpen(true);
                             history.push({

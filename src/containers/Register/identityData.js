@@ -2,7 +2,7 @@
 /* eslint-disable consistent-return */
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
+import moment from 'moment';
 import verifyPhoneNumberAction, {
   clearPhoneNumber,
 } from 'redux/actions/users/verifyPhoneNumber';
@@ -16,13 +16,13 @@ export default ({
 }) => {
   const [phonevalue, setPhonevalue] = useState();
   const [errors, setErrors] = useState({});
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(new Date('2003/01/01'));
   const dispatch = useDispatch();
   const {
     firstName,
     lastName,
     email,
-    userAgrees,
-    countryCode,
     phoneNumber,
   } = registrationData;
   const {
@@ -41,9 +41,10 @@ export default ({
       setRegistrationData({
         ...registrationData,
         phoneNumber: phonevalue,
+        DateOfBirth: moment(startDate).format('YYYY-MM-DD'),
       });
     }
-  }, [phonevalue]);
+  }, [phonevalue, startDate]);
 
   const handleVerifyPhoneNumber = () => {
     verifyPhoneNumberAction(phoneNumber)(dispatch);
@@ -125,5 +126,8 @@ export default ({
     openTermsAndConditionModal,
     setOpenTermsAndConditionModal,
     handleTermsAndCondition,
+    startDate,
+    setStartDate,
+    endDate,
   };
 };

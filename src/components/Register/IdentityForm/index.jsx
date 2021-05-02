@@ -28,27 +28,30 @@ const IdentityForm = ({
     openTermsAndConditionModal,
     setOpenTermsAndConditionModal,
     handleTermsAndCondition,
+    startDate,
+    setStartDate,
+    endDate,
   } = identityData;
   const [disableButton, setDisableButton] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (
       !registrationData.firstName ||
       !registrationData.lastName ||
-      !phonevalue
+      !phonevalue ||
+      !startDate
     ) {
       setDisableButton(true);
     } else {
       setDisableButton(false);
     }
-  }, [registrationData, phonevalue]);
-  const [startDate, setStartDate] = useState(null);
-  const dispatch = useDispatch();
+  }, [registrationData, phonevalue, startDate]);
 
   return (
     <Container>
       <div className="sub-titles">
-        {global.translate('For free account')}
+        {global.translate('For a free account')}
       </div>
       {verifyPhoneNumber.error && (
         <AlertDanger message={verifyPhoneNumber.error.message} />
@@ -126,6 +129,7 @@ const IdentityForm = ({
             onChange={date => setStartDate(date)}
             showMonthDropdown
             showYearDropdown
+            maxDate={endDate}
             placeholderText={global.translate('Select a date')}
           />
         </Form.Field>

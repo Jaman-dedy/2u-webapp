@@ -72,7 +72,7 @@ const Login = ({
     <AuthWrapper
       rightHeadlineText={
         !isSettingNewPassword
-          ? global.translate('Login to your account', 1430)
+          ? global.translate('Login', 190)
           : global.translate('Change my password', 1698)
       }
     >

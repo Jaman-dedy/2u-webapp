@@ -9,10 +9,11 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Grid, Image } from 'semantic-ui-react';
 
-import LogoColored from 'assets/images/2u-money-logo.svg';
+import LogoColored from 'assets/images/2UMoney-Logo-Full-colored-Main.jpg';
 import AdPlaceholderDefault from 'assets/images/event-place-holder.jpg';
 import getUserDailyEvent from 'redux/actions/authWrapper';
 import SelectLanguage from 'components/common/SelectLanguage';
+import LadyBackGround from 'assets/images/lady-phone.png';
 
 import './auth-landing-page.scss';
 import './spiner.scss';
@@ -40,6 +41,9 @@ const AuthWrapper = ({
       }}
       className="wrapper"
     >
+      <div className="display-logo">
+        <Image src={LogoColored} />
+      </div>
       <div className="wrap-event">
         {eventUrl ? (
           <Image src={eventUrl} />
@@ -102,8 +106,15 @@ const AuthWrapper = ({
                 </div>
               )}
             </div>
+            <div className="auth-terms">
+              Copyright © 2021 Ossix Technologies, LLC. All rights
+              reserved. | Terms and Conditions
+            </div>
           </div>
         </div>
+      </div>
+      <div className="img-phone-background">
+        <Image src={LadyBackGround} />
       </div>
     </div>
   );

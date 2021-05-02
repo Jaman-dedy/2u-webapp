@@ -57,7 +57,7 @@ const OTPForm = ({
   return (
     <Container>
       <div className="sub-titles">
-        {global.translate('For free account')}
+        {global.translate('For a free account')}
       </div>
       <Form className="otp-form-container">
         <div className="go-back">
