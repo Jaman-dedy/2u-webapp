@@ -35,6 +35,7 @@ const RegisterContainer = () => {
     ContactPID: '',
     userAgrees: false,
     OTP: '',
+    DateOfBirth: '',
   });
 
   const { userLocationData } = useSelector(({ user }) => user);

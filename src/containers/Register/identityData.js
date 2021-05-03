@@ -44,7 +44,14 @@ export default ({
         DateOfBirth: moment(startDate).format('YYYY-MM-DD'),
       });
     }
-  }, [phonevalue, startDate]);
+  }, [phonevalue]);
+
+  useEffect(() => {
+    setRegistrationData({
+      ...registrationData,
+      DateOfBirth: moment(startDate).format('YYYY-MM-DD'),
+    });
+  }, [startDate]);
 
   const handleVerifyPhoneNumber = () => {
     verifyPhoneNumberAction(phoneNumber)(dispatch);

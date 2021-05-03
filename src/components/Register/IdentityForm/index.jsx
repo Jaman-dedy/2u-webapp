@@ -130,7 +130,7 @@ const IdentityForm = ({
             showMonthDropdown
             showYearDropdown
             maxDate={endDate}
-            placeholderText={global.translate('Select a date')}
+            placeholderText={global.translate('Select a date*')}
           />
         </Form.Field>
         <br /> <br />

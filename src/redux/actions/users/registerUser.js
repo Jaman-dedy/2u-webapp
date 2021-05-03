@@ -26,6 +26,7 @@ export default data => dispatch =>
         EMail: data.email || '',
         CountryCode: data.countryCode,
         ContactPID: data.ContactPID || '',
+        DateOfBirth: data.DateOfBirth,
       },
       onStart: () => dispatch =>
         dispatch({
