@@ -162,14 +162,14 @@ const Profile = ({
         </Tab.Pane>
       ),
     },
-    {
-      menuItem: global.translate('Supporting documents'),
-      render: () => (
-        <Tab.Pane attached={false}>
-          <DocumentTab />
-        </Tab.Pane>
-      ),
-    },
+    // {
+    //   menuItem: global.translate('Supporting documents'),
+    //   render: () => (
+    //     <Tab.Pane attached={false}>
+    //       <DocumentTab />
+    //     </Tab.Pane>
+    //   ),
+    // },
     {
       menuItem: global.translate('Transaction limits'),
       render: () => (
