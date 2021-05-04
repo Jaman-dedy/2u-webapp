@@ -111,9 +111,7 @@ const UserDetails = ({
             />
           </div>
           <div>
-            <h3>
-              {userData?.FirstName}&nbsp;{userData?.LastName}
-            </h3>
+            <h3>{name}</h3>
             {userData?.AccountVerified === 'YES' ? (
               <div className="verified-user">
                 {global.translate('Verified')}

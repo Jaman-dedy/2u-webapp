@@ -106,6 +106,7 @@ const UpdateInfoModal = ({ open, setOpen, personalInfo }) => {
                   {global.translate('Nationality*')}
                 </div>
                 <ReactFlagsSelect
+                  defaultCountry={nationalityCountry?.toUpperCase()}
                   selected={nationalityCountry?.toUpperCase()}
                   onSelect={code => setNationalityCountry(code)}
                   searchable
@@ -119,6 +120,7 @@ const UpdateInfoModal = ({ open, setOpen, personalInfo }) => {
                   {global.translate('Country of birth')}
                 </div>
                 <ReactFlagsSelect
+                  defaultCountry={bornCountry?.toUpperCase()}
                   selected={bornCountry?.toUpperCase()}
                   onSelect={code => setBornCountry(code)}
                   searchable

@@ -40,6 +40,7 @@ export default () => {
   const { userLocationData, userData } = useSelector(
     ({ user }) => user,
   );
+  const [defaultCountryCode, setDefaultCountryCode] = useState('');
 
   const { success: switchAccountSuccess } = useSelector(
     ({ userAccountManagement: { switchToBusinessAccount } }) =>
@@ -78,6 +79,7 @@ export default () => {
         BusinessExtraKYC &&
         Object.values(BusinessExtraKYC).every(value => !!value)
       ) {
+        setDefaultCountryCode(BusinessExtraKYC?.CountryCode);
         setForm({
           ...BusinessExtraKYC,
         });
@@ -88,7 +90,10 @@ export default () => {
       ) {
         setSelectedDate(
           new Date(
-            BusinessExtraKYC?.CreationDate.replaceAll("'", ''),
+            BusinessExtraKYC?.CreationDate.replaceAll("'", '').substr(
+              0,
+              10,
+            ),
           ),
         );
       } else if (BusinessExtraKYC?.CreationDate) {
@@ -214,5 +219,6 @@ export default () => {
     openInfoModal,
     handleOpenInfoModal,
     handleCloseInfoModal,
+    defaultCountryCode,
   };
 };

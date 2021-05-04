@@ -6,20 +6,15 @@ import UpdateInfoModal from './UpdateInfoModal';
 import UpdatePhoneModal from './ManagePhoneModal';
 import ManageEmailModal from './ManageEmailModal';
 import IdentityModal from './IdentityModal';
-import { useSelector } from 'react-redux';
 import './style.scss';
 import ResidenceModal from './ResidenceModal';
 import rawCountries from 'utils/countries';
 
-import UpdateBusinessInfoModal from 'components/AccountManagement/PersonalInfoTab/UpdateBusinessInfoModal';
 const PersonalInfoTab = ({
   userData,
   personalInfo,
   identityConfirmation,
   residenceData,
-  showBusinessInfo,
-  showPersonalInfo,
-  switchAccount,
 }) => {
   const {
     openIdentityModal,
@@ -40,7 +35,7 @@ const PersonalInfoTab = ({
   useEffect(() => {
     if (userData) {
       const userCountry = rawCountries.find(
-        ({ key }) => key === userData?.Country,
+        ({ key }) => key === userData?.UserExtraKYC?.CountryOfBirth,
       );
       const userNationality = rawCountries.find(
         ({ key }) => key === userData?.UserExtraKYC?.Nationality,
@@ -63,136 +58,8 @@ const PersonalInfoTab = ({
     openEmailModal,
   } = personalInfo;
 
-  const companyTypes = useSelector(
-    ({
-      userAccountManagement: {
-        businessType: { data },
-      },
-    }) => data,
-  );
-
-  const renderBusinessInformation = React.useMemo(() => {
-    const { BusinessExtraKYC } = userData;
-    if (
-      userData &&
-      userData?.BusinessAccount === 'YES' &&
-      (showBusinessInfo || !showPersonalInfo) &&
-      BusinessExtraKYC
-    ) {
-      let creationDate = BusinessExtraKYC?.CreationDate;
-      let switchDate = BusinessExtraKYC?.SwitchDate;
-      const companyType =
-        companyTypes.find(
-          type =>
-            type.ProfessionTypeNumber ===
-            BusinessExtraKYC?.CompanyType,
-        ) || {};
-
-      if (typeof creationDate === 'string') {
-        creationDate = creationDate?.replaceAll("'", '');
-      }
-
-      if (typeof switchDate === 'string') {
-        switchDate = switchDate?.replaceAll("'", '');
-      }
-
-      return (
-        <>
-          <Table.Row className="user-family-details">
-            <Table.Cell
-              className="info-user-details title-details"
-              textAlign="top"
-              rowSpan="10"
-            >
-              {global.translate('Business information')}
-            </Table.Cell>
-            <Table.Cell className="content-title">
-              {global.translate('Company name')}
-            </Table.Cell>
-            <Table.Cell>
-              {BusinessExtraKYC?.CompanyName} &nbsp;
-              {BusinessExtraKYC?.ShortName
-                ? `(${BusinessExtraKYC?.ShortName})`
-                : ''}
-            </Table.Cell>
-          </Table.Row>
-
-          <Table.Row className="user-family-details">
-            <Table.Cell>
-              {global.translate('Type of business')}
-            </Table.Cell>
-            <Table.Cell>{companyType?.ProfessionTypeName}</Table.Cell>
-          </Table.Row>
-
-          <Table.Row className="user-family-details">
-            <Table.Cell>
-              {global.translate('Business Activity')}
-            </Table.Cell>
-            <Table.Cell>{BusinessExtraKYC?.Activity}</Table.Cell>
-          </Table.Row>
-
-          <Table.Row className="user-family-details">
-            <Table.Cell>{global.translate('TIN')}</Table.Cell>
-            <Table.Cell>{BusinessExtraKYC?.TIN}</Table.Cell>
-          </Table.Row>
-
-          <Table.Row className="user-family-details">
-            <Table.Cell>
-              {global.translate('Registration number')}
-            </Table.Cell>
-            <Table.Cell>
-              {BusinessExtraKYC?.RegistrationNumber}
-            </Table.Cell>
-          </Table.Row>
-
-          <Table.Row className="user-family-details">
-            <Table.Cell>{global.translate('VAT number')}</Table.Cell>
-            <Table.Cell>{BusinessExtraKYC?.VATNumber}</Table.Cell>
-          </Table.Row>
-
-          <Table.Row className="user-family-details">
-            <Table.Cell>
-              {global.translate('Creation date')}
-            </Table.Cell>
-            <Table.Cell>
-              {BusinessExtraKYC?.CreationDate &&
-                moment(creationDate).format('L')}
-            </Table.Cell>
-          </Table.Row>
-
-          <Table.Row className="user-family-details">
-            <Table.Cell>{global.translate('Switch date')}</Table.Cell>
-            <Table.Cell>
-              {BusinessExtraKYC?.SwitchDate &&
-                moment(switchDate).format('L')}
-            </Table.Cell>
-          </Table.Row>
-
-          <Table.Row className="user-family-details">
-            <Table.Cell>{global.translate('Main Office')}</Table.Cell>
-            <Table.Cell>{BusinessExtraKYC?.Address}</Table.Cell>
-          </Table.Row>
-
-          <Table.Row className="user-family-details">
-            <Table.Cell
-              className="info-action"
-              onClick={switchAccount.handleOpenInfoModal}
-            >
-              {global.translate('Update')}
-            </Table.Cell>
-            <Table.Cell />
-          </Table.Row>
-        </>
-      );
-    }
-    return null;
-  }, [userData, showBusinessInfo, companyTypes]);
-
   const renderUserInformation = React.useMemo(() => {
-    if (
-      (userData && showPersonalInfo) ||
-      userData?.BusinessAccount !== 'YES'
-    ) {
+    if (userData) {
       return (
         <>
           <Table.Row className="user-family-details">
@@ -245,10 +112,7 @@ const PersonalInfoTab = ({
           </Table.Row>
 
           <Table.Row className="user-family-details">
-            <Table.Cell>
-              {' '}
-              {global.translate('Nationality')}
-            </Table.Cell>
+            <Table.Cell>{global.translate('Nationality')}</Table.Cell>
             <Table.Cell> {userNationality?.text}</Table.Cell>
           </Table.Row>
 
@@ -281,13 +145,9 @@ const PersonalInfoTab = ({
       );
     }
     return null;
-  }, [userData, showPersonalInfo]);
-
+  }, [userData, userCountry, userNationality]);
   const renderUserIdentity = React.useMemo(() => {
-    if (
-      (userData && showPersonalInfo) ||
-      userData?.BusinessAccount !== 'YES'
-    ) {
+    if (userData) {
       return (
         <>
           <Table.Row>
@@ -322,32 +182,29 @@ const PersonalInfoTab = ({
         </>
       );
     }
-    return null;
-  }, [userData, showPersonalInfo, showBusinessInfo]);
+    return;
+  }, [userData]);
+
   return (
     <div className="info-container">
       <Table basic="very">
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell colSpan="3" className="info-header">
-              {userData?.BusinessAccount === 'YES' &&
-              !showPersonalInfo
-                ? global.translate('Business Information')
-                : global.translate('Personal information')}
+              {global.translate('Personal information')}
             </Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
           {renderUserInformation}
-          {renderBusinessInformation}
           <Table.Row>
             <Table.Cell className="info-user-details">
               {global.translate('Phone numbers')}
             </Table.Cell>
             <Table.Cell>
-              {global.translate('Primary')}&nbsp;:&nbsp;
-              {userData?.MainPhonePrefix}&nbsp;
+              +{userData?.MainPhonePrefix}&nbsp;
               {userData?.MainPhoneNumber}
+              {` (${global.translate('Primary')})`}
             </Table.Cell>
             <Table.Cell
               textAlign="right"
@@ -363,9 +220,9 @@ const PersonalInfoTab = ({
             </Table.Cell>
             <Table.Cell>
               {userData?.MainEmail
-                ? `${global.translate('Primary')} ${
-                    userData?.MainEmail
-                  }`
+                ? ` ${userData?.MainEmail}  (${global.translate(
+                    'Primary',
+                  )})`
                 : global.translate('No primary email provided')}
             </Table.Cell>
             <Table.Cell
@@ -413,7 +270,6 @@ const PersonalInfoTab = ({
         setCountry={setCountry}
         country={country}
       />
-      <UpdateBusinessInfoModal switchAccount={switchAccount} />
     </div>
   );
 };

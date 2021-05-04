@@ -20,46 +20,26 @@ const Profile = ({
         <h3>
           {global.translate('Hi')}
           &nbsp;
-          {userData?.FirstName},{' '}
-          {global.translate("let's setup your account real quick")}
+          {userData?.FirstName}
+          {global.translate("let's setup your account")}
         </h3>
         <div>
           {global.translate(
             'Your account is active and you can explore different features tailored for you. We only need to verify your identify so that your account is fully functional.',
           )}
         </div>
-        {userData?.BusinessAccount === 'YES' && (
-          <div className="user-intro__buttons">
-            <Button
-              className={
-                updateInfo ? 'btn-update-info' : 'btn-update-switch'
-              }
-              onClick={onUpdateBusinessInformation}
-            >
-              {global.translate('Update business information')}
-            </Button>
-            <Button
-              className={
-                !updateInfo ? 'btn-update-info' : 'btn-update-switch'
-              }
-              onClick={onUpdatePersonalInformation}
-            >
-              {global.translate('Update personal information')}
-            </Button>
-          </div>
-        )}
       </div>
       <div className="user-stats">
         <div className="fidelity-card">
-        <CardFidelity
-          title={global.translate('Number of wallets')}
-          stats={userData?.Wallets?.length}
-        />
-        <CardFidelity
-          title={rewards?.StatusText}
-          stats={rewards?.TotalPoints?.PointsValue}
-          fidelity
-        />
+          <CardFidelity
+            title={global.translate('Number of wallets')}
+            stats={userData?.Wallets?.length}
+          />
+          <CardFidelity
+            title={rewards?.StatusText}
+            stats={rewards?.TotalPoints?.PointsValue}
+            fidelity
+          />
         </div>
         <CardShortCut />
       </div>

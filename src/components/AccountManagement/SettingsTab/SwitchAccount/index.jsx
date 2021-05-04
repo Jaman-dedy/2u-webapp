@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Form, Button, Header, Input } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -22,6 +22,7 @@ const SwitchAccountForm = ({ switchAccount, fromUpdateMenu }) => {
     selectedDate,
     setSelectedDate,
     handleCloseInfoModal,
+    defaultCountryCode,
   } = switchAccount;
 
   const {
@@ -177,7 +178,8 @@ const SwitchAccountForm = ({ switchAccount, fromUpdateMenu }) => {
           <label>{global.translate('Country')}</label>
 
           <ReactFlagsSelect
-            selected={selectedCountry}
+            defaultCountry={defaultCountryCode?.toUpperCase()}
+            selected={selectedCountry?.toUpperCase()}
             onSelect={countryChangeHandler}
             searchable
             placeholder={global.translate('Select  country')}

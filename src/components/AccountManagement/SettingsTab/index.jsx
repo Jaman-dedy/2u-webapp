@@ -31,7 +31,7 @@ const Settings = ({ switchAccount }) => {
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell className="settings-header">
-              {global.translate('settings')}
+              {global.translate('Settings')}
             </Table.HeaderCell>
             <Table.HeaderCell />
             <Table.HeaderCell />
@@ -48,14 +48,14 @@ const Settings = ({ switchAccount }) => {
                 : global.translate('Personal Account')}
             </Table.Cell>
             <Table.Cell textAlign="right" className="settings-action">
-              <Button
-                className="btn--link"
-                onClick={() => setIsUpgradingAccount(true)}
-              >
-                {isBusinessAccount
-                  ? global.translate('Update')
-                  : global.translate('Change')}
-              </Button>
+              {!isBusinessAccount && (
+                <Button
+                  className="btn--link"
+                  onClick={() => setIsUpgradingAccount(true)}
+                >
+                  {global.translate('Change')}
+                </Button>
+              )}
             </Table.Cell>
           </Table.Row>
           <Table.Row>

@@ -21,7 +21,7 @@ import SettingsTab from './SettingsTab';
 import PersonalInfoTab from './PersonalInfoTab';
 import DocumentTab from './DocumentTab';
 import UserDetails from './UserDetails';
-
+import BusinessInfoTab from './BusinessInfoTab';
 const Profile = ({
   userData,
   personalInfo,
@@ -96,17 +96,37 @@ const Profile = ({
       setActiveTabIndex(location.state.detailTab);
     }
   }, []);
+
+  let businessInfoPane = null;
+
+  if (
+    userData &&
+    userData?.data &&
+    userData?.data?.BusinessAccount === 'YES'
+  ) {
+    businessInfoPane = {
+      menuItem: global.translate('Business info'),
+      render: () => (
+        <Tab.Pane attached={false}>
+          <BusinessInfoTab
+            userData={userData?.data}
+            switchAccount={switchAccount}
+          />
+        </Tab.Pane>
+      ),
+    };
+  }
   const panes = [
     {
       menuItem: global.translate('Profile'),
       render: () => (
         <Tab.Pane attached={false}>
           <div className="details top">
-           <UserDetails
-            userData={userData?.data}
-            userDetails={userDetails}
-            changeUserPresence={changeUserPresence}
-          />
+            <UserDetails
+              userData={userData?.data}
+              userDetails={userDetails}
+              changeUserPresence={changeUserPresence}
+            />
           </div>
           <UserProfile
             setUpdateBusinessAccount={setUpdateBusinessAccount}
@@ -119,7 +139,7 @@ const Profile = ({
       ),
     },
     {
-      menuItem: accountInfoTitle,
+      menuItem: global.translate('Personal info'),
       render: () => (
         <Tab.Pane attached={false}>
           <PersonalInfoTab
@@ -134,6 +154,7 @@ const Profile = ({
         </Tab.Pane>
       ),
     },
+    businessInfoPane,
     {
       menuItem: global.translate('Referrals'),
       render: () => (
@@ -204,7 +225,7 @@ const Profile = ({
         </div>
       </WelcomeBar>
       <div className="profile-container">
-      <div className="user-info-details top">
+        <div className="user-info-details top">
           {userData.loading ? (
             <div className="load-info-details">
               <Image
