@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import clearCardOperationFees from 'redux/actions/addMoney/clearCardOperationFees';
+import clearPayPalOperationFees from 'redux/actions/addMoney/clearPayPalOperationFees';
 import getCardOperationFeesAction from 'redux/actions/addMoney/getCardOperationFees';
 import getPayPalAddMoneyFeesAction from 'redux/actions/addMoney/getPayPalAddMoneyFees';
 import AddMoney from 'components/MoneyTransfer/AddMoney';
@@ -181,9 +182,9 @@ const AddMoneyContainer = () => {
   };
 
   useEffect(() => {
-    return () => {
-      clearCardOperationFees()(dispatch);
-    };
+    clearCardOperationFees()(dispatch);
+    clearPayPalOperationFees()(dispatch);
+    clearAddMoneyData();
   }, []);
 
   useEffect(() => {
@@ -197,7 +198,7 @@ const AddMoneyContainer = () => {
   const handlePullPayPal = () => {
     const data = {
       amount: addMoneyData.Amount,
-      redirectUrl: 'http://localhost:3000/wallets',
+      redirectUrl: 'https://app.2u.money/wallets',
       currency: addMoneyData.Currency,
       accountNumber: addMoneyData.WalletNumber,
       authToken: localStorage.getItem('token'),

@@ -18,6 +18,11 @@ export default {
     TotalAmount: '',
     Currency: '',
     justAdded: false,
+    AddMoneyCurrency: '',
+    AddMoneyFlatFee: '',
+    AddMoneyExternalRate: '',
+    Description: '',
+    Warning: '',
   },
   addMoneyFromCreditCard: {
     error: null,
