@@ -327,9 +327,8 @@ const StoreDetailsComponent = ({
     if (agentsData) {
       agentsData.forEach(element => {
         if (
-          element.ContactPID &&
-          element.ContactPID.toLowerCase() ===
-            form.PID.trim().toLowerCase()
+          element.ContactPID?.toLowerCase() ===
+          form.PID?.trim()?.toLowerCase()
         ) {
           exists = true;
         }
@@ -340,8 +339,8 @@ const StoreDetailsComponent = ({
   const onSearchUser = () => {
     if (form.PID && userData.data) {
       if (
-        form.PID.trim().toLowerCase() ===
-        userData.data.PID.toLowerCase()
+        form.PID?.trim()?.toLowerCase() ===
+        userData.data?.PID?.toLowerCase()
       ) {
         setLocalError(
           global.translate('You cannot add your self', 2559),
@@ -350,14 +349,14 @@ const StoreDetailsComponent = ({
       }
       if (checkExists()) {
         setLocalError(
-          form.PID.trim() +
+          form.PID?.trim() +
             global.translate('is already your agent', 2560),
         );
         return;
       }
       setLocalError(null);
       locateUser({
-        PID: form.PID.trim(),
+        PID: form.PID?.trim(),
         userPID: userData.data && userData.data.PID,
       })(dispatch)();
     }

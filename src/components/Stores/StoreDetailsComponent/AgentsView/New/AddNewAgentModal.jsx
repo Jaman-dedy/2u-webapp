@@ -4,7 +4,6 @@ import {
   Form,
   Button,
   Image,
-  Select,
   Message,
   Input,
 } from 'semantic-ui-react';
@@ -73,18 +72,9 @@ const AddNewContactModal = ({
               autoComplete="off"
               className="form-information top-form"
             >
-              <Form.Input
-                className="input"
-                placeholder={global.translate(
-                  'Provide the username ',
-                  1702,
-                )}
-                disabled={addNewUserData?.loading}
-                name="PID"
-                iconPosition="right"
-                value={form.PID || ''}
-                onChange={onChange}
-                icon={
+              <Input
+                fluid
+                label={
                   <Button
                     content={global.translate('Search')}
                     positive
@@ -96,6 +86,17 @@ const AddNewContactModal = ({
                     style={{ margin: '0px' }}
                   />
                 }
+                labelPosition="right"
+                className="input"
+                placeholder={global.translate(
+                  'Provide the username ',
+                  1702,
+                )}
+                disabled={addNewUserData?.loading}
+                name="PID"
+                value={form.PID || ''}
+                onChange={onChange}
+                ange={onChange}
               />
             </Form>
             {loading && (
