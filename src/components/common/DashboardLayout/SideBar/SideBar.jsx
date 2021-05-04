@@ -276,7 +276,7 @@ const SideBar = () => {
             </li>
             <li>
               <Link
-                to="microloan"
+                to="/microloan"
                 className={
                   (location.pathname + location.search).substr(1) ===
                   'microloan'
@@ -295,7 +295,7 @@ const SideBar = () => {
             </li>
             <li>
               <Link
-                to="add-money"
+                to="/add-money"
                 className={
                   (location.pathname + location.search).substr(1) ===
                   'add-money'
