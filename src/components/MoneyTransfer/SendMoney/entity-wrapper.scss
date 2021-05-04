@@ -1,0 +1,55 @@
+.entity-wrapper {
+  display: flex;
+  .rightItems {
+    align-self: center !important;
+    margin-top: 12px;
+  }
+  .choose-wallet {
+    line-height: 20px;
+    color: #000000;
+  }
+
+  .custom-dropdown {
+    background: rgb(230, 232, 236) !important;
+    border: none !important;
+    min-width: 190px;
+
+    &:focus {
+      background: rgb(230, 232, 236) !important;
+      border: none !important;
+    }
+
+    .dropdown-trigger {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+
+      .dropdown-wallet {
+        display: flex;
+        align-items: center;
+
+        img {
+          width: 40px;
+          margin-right: 7px;
+        }
+      }
+    }
+  }
+  .transacters {
+    display: flex;
+  }
+  .destination {
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    margin-left: 0.8rem;
+  }
+}
+
+
+@media(max-width:1030px){
+  .transacters {
+    align-items: center;
+    justify-content: center;
+  }
+}

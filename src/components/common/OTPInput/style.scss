@@ -1,0 +1,17 @@
+.otp-input {
+  .ui.input {
+    // width: 100%;
+    border: none;
+    input {
+      border: none;
+      border-bottom: 1px solid #e95927;
+      font-size: 20px;
+      letter-spacing: 25px;
+      border-radius: 0 !important;
+      &:focus {
+        outline: none;
+        border-color: #616161;
+      }
+    }
+  }
+}

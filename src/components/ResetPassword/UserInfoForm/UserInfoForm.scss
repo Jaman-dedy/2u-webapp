@@ -1,0 +1,123 @@
+.form_title {
+  font-size: 14pt;
+}
+.userinfo .field {
+  padding: 5px 0;
+}
+.ui .checkbox .box:before,
+.ui.checkbox label:before {
+  background: rgba(51, 53, 86, 0.11) !important;
+  color: #333556 !important;
+  border-radius: 0px !important;
+  border-style: none;
+}
+
+.ui.checkbox input:checked ~ .box:after,
+.ui.checkbox input:checked ~ label:after {
+  color: #0a9220;
+}
+.user-phone-number {
+  .react-tel-input {
+    .flag-dropdown {
+      border: none !important;
+    }
+  }
+}
+
+.dropdown-flag {
+  padding-top: 2px;
+  padding-right: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.phone-number-input {
+  position: relative;
+  border-radius: 4px;
+  background-color: #ffffff;
+  border: 1px solid #cfcfcf !important;
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    /* Firefox */
+  }
+
+  input::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: #949494 !important;
+  }
+  input::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #949494 !important;
+  }
+  input:-ms-input-placeholder {
+    /* IE 10+ */
+    color: #949494 !important;
+  }
+  input:-moz-placeholder {
+    /* Firefox 18- */
+    color: #949494 !important;
+  }
+}
+
+.phone_field {
+  position: relative;
+}
+
+.country-code {
+  position: absolute;
+  left: 55px;
+  top: 19px;
+  z-index: 1;
+  font-weight: 400;
+}
+
+//OVERRIDING THE CALENDAR PACKAGE
+.calendar_input {
+  position: relative;
+
+  background-image: url('../../../assets/images/calendar_icon.png');
+  background-repeat: no-repeat;
+  background-size: 25px 25px;
+  background-position: 5px 50%;
+}
+.ui.icon.input > i.calendar.icon:before {
+  display: none;
+}
+
+.ui[class*='left icon'].input > input {
+  padding-left: 3em !important;
+  padding-right: 1em !important;
+}
+.calendar_caret {
+  position: absolute;
+  left: 250px;
+  top: 15px;
+}
+@media only screen and (max-width: 776px) {
+  .calendar_caret {
+    position: absolute;
+    left: 220px;
+    top: 15px;
+  }
+}
+.login-link {
+  border: 1px black solid;
+  width: 100%;
+  padding: 14px 0 14px 0;
+  background: transparent;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.loader {
+  height: 20px !important;
+}
+
+.GoBack_GoBack__39LqY {
+  background: none;
+}
+.ui.input {
+  height: 50px;
+}

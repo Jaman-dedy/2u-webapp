@@ -1,0 +1,150 @@
+.sidenav {
+  grid-area: sidenav;
+  display: flex;
+  flex-direction: column;
+  height: 10000px;
+  min-width: 240px;
+  max-width: 240px;
+  padding: 0 0 32px 0;
+  position: fixed;
+  overflow-y: auto;
+  transform: translateX(-275px);
+  transition: all 0.6s ease-in-out;
+  box-shadow: 0 7px 7px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(0, 0, 0, 0.08);
+  z-index: 2;
+  background-color: #f2f2f2;
+  .sidenav__close-icon {
+    display: none;
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    cursor: pointer;
+    color: #1e2120;
+    background: none;
+    border: none;
+  }
+  &.active-sidebar {
+    transform: translateX(0);
+    .sidenav__close-icon {
+      display: inline-block;
+    }
+  }
+
+  .dash_logo {
+    width: 100%;
+    margin: 0;
+    padding: 20px 5px;
+  }
+  .dash_logo img {
+    width: 200px;
+    margin: 0 5px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  .sidebar ul > li {
+    padding: 5px 0;
+    position: relative;
+  }
+  .sidebar ul li a:hover {
+    background: #dcdcdc;
+  }
+  .sidebar ul li img {
+    position: absolute;
+    left: 16px;
+    height: 22px;
+    top: 16px;
+  }
+  .sidebar > ul > li > a {
+    display: block;
+    padding: 10px 12px 10px 55px;
+  }
+  .sidebar_caret {
+    width: 11px;
+    height: 11px;
+    padding-left: 8px;
+  }
+  .sidebar ul > li button {
+    display: block;
+    padding: 15px 12px 15px 55px;
+    border: none;
+    background: none;
+  }
+  .sidebar ul > li:focus {
+    outline: none;
+  }
+  .sidebar .sidebar-submenu li {
+    display: block;
+    padding: 10px 12px 10px 55px;
+  }
+  .sidebar li .sidebar-submenu {
+    display: none;
+  }
+  .sidebar li.active {
+    border: none;
+  }
+  .sidebar li.active .sidebar-submenu {
+    display: block;
+    border: none;
+  }
+  .sidebar .sidebar-dropdown.active .sidebar_caret {
+    transform: rotate(90deg);
+    padding: 0px;
+    opacity: 0.3;
+  }
+  .sidebar .sub-menu {
+    padding: 10px 12px 10px 55px;
+  }
+  @media only screen and (max-width: 776px) {
+    .sidenav__close-icon {
+      display: block;
+    }
+  }
+}
+.sidebar button,
+.sidebar a,
+.sidebar li {
+  cursor: pointer;
+  color: #4f5251;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
+
+.sidebar ul {
+  .mobile-apps {
+    height: 180px;
+    margin: 10px 30px 0 20px;
+    padding: 5px 15px;
+    border-radius: 7px;
+    background: #dcdcdc;
+    h4 {
+      margin: 0;
+      padding: 0;
+    }
+    a {
+      clear: both;
+      display: block;
+      margin: 0px 0;
+      padding: 0 0;
+      height: 55px;
+      position: relative;
+      left: 0px;
+      top: 0px;
+      img {
+        padding: 0 0;
+        left: 0px;
+        height: 65px;
+        top: 0px;
+      }
+    }
+    a:hover {
+      opacity: 1;
+    }
+  }
+}

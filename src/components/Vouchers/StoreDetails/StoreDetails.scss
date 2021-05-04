@@ -1,0 +1,212 @@
+.storeDetails {
+  .add-money-container {
+    padding: 10px;
+  }
+
+  .title {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .storeName {
+    display: flex;
+    font-size: 18px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .pin {
+    img {
+      height: 30px;
+      margin-left: 20px;
+      margin-top: -15px;
+    }
+  }
+  .backButton {
+    margin-left: 10px;
+  }
+
+  .storeBanner {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+  .welcomeText {
+    width: 100%;
+    height: 30px;
+    font-size: 16px;
+    text-align: left;
+    margin-top: 20px;
+  }
+  .welcomeText span:first-child {
+    margin-right: 10px;
+  }
+  .storeDescription {
+    font-size: 12px;
+    line-height: 20px;
+    text-indent: 3px;
+  }
+
+  .imageContainer {
+    height: 15em;
+  }
+
+  .like-sendvoucer-container {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .up-votes {
+    border-right: 1px solid rgba(51, 53, 86, 0.25);
+    padding-right: 5px;
+  }
+  .down-votes {
+    margin-left: 5px;
+  }
+  .likesNumber {
+    margin-top: 5px;
+    text-align: center;
+    font-size: 14px;
+    color: #000000;
+  }
+  .workingHours {
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 0.02em;
+    text-align: center;
+  }
+  .workingHours span {
+    margin-right: 10px;
+  }
+  .hours {
+    padding-bottom: 5px;
+  }
+  .comments {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: #e5e5e5;
+  }
+
+  .commentThreads {
+    padding-bottom: 20px;
+  }
+  .commentThread {
+    margin: 0px 140px;
+    display: flex;
+    border-bottom: 1px solid rgba(51, 53, 86, 0.11);
+    padding-bottom: 15px;
+    padding-top: 15px;
+  }
+
+  .commentThread:nth-child(5) {
+    border-bottom: none;
+  }
+  .commentUserImg {
+    margin-right: 10px;
+    min-width: 50px;
+    max-width: 50px;
+  }
+  .commentInfo {
+  }
+  .commentInfo div:first-child {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+  .commentInfo div:nth-child(2) {
+    font-size: 12px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.02em;
+    text-indent: 3px;
+    font-feature-settings: 'tnum' on, 'lnum' on, 'case' on;
+  }
+  .commentUser {
+    font-weight: 500;
+    margin-right: 5px;
+    font-size: 12px;
+  }
+  .commentTime {
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.02em;
+
+    color: rgba(0, 0, 0, 0.46);
+  }
+}
+
+.backBtnSendLink {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-right: 20px;
+}
+.sendInDetails {
+  position: absolute;
+  right: 20px;
+}
+
+.topActionContainer {
+  background-color: #fff;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-top: 20px;
+  display: flex;
+  flex-flow: row-reverse;
+}
+
+.sendVoucherTop {
+  background: #282b4e !important;
+  color: #fff !important;
+  border-radius: 0 !important;
+  margin-top: 35px !important;
+  position: fixed;
+  z-index: 1;
+}
+.sendBtnFloat {
+  display: flex;
+  flex-flow: row-reverse;
+  margin-right: 20px;
+}
+
+.pagination {
+  margin-right: 10px !important;
+  margin-bottom: 20px !important;
+}
+
+.thumbnail span {
+  padding: 13px;
+}
+
+@media only screen and (max-width: 600px) {
+  .commentThread {
+    margin: 0px 10px !important;
+  }
+  .likes {
+    margin-right: 5px !important;
+  }
+
+  .sendVoucherTop {
+    margin-top: 250px !important;
+  }
+  .ui.segment {
+    padding: 10px 0px;
+  }
+}
+
+@media (max-width: 375px) and (max-width: 414px) {
+  .sendVoucherTop {
+    margin-top: 220px !important;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .sendVoucherTop {
+    margin-top: 200px !important;
+  }
+}

@@ -1,0 +1,45 @@
+.categoryItem {
+  cursor: pointer;
+
+  .icon-left {
+    align-self: baseline;
+    width: 15px;
+  }
+
+  span {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 250%;
+    padding-left: 5px;
+
+    color: #14171a;
+  }
+}
+
+@media (max-width: 991px) {
+  .categoryItem {
+    .icon-left {
+      width: 5px;
+    }
+
+    span {
+      font-size: 10px !important;
+
+      padding-left: 2px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .categoryItem {
+    .icon-left {
+      width: 10px;
+    }
+
+    span {
+      font-size: 14px !important;
+    }
+  }
+}

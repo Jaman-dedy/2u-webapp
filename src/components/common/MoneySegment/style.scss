@@ -1,0 +1,42 @@
+.itemsWrapper {
+  background: white;
+  border-radius: 5px;
+  margin: 25px 0  15px 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px solid #cdcdcd;
+  padding: 8px 10px;
+  position: relative;
+  .items {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    .image {
+      margin: 0 10px 0 0;
+    }
+    .currency {
+      font-size: 15px;
+      margin: auto;
+      padding: 0 2px;
+    }
+    .money {
+      font-size: 14px;
+      font-weight: 500;
+      padding: 0 5px;
+      i {
+        font-size: 12px !important;
+        font-weight: 100;
+      }
+    }
+  }
+  .btn__eye {
+    position: absolute;
+    right: 3px;
+    top: 12px;
+  }
+  .btn__eye img {
+    width: 25px;
+  }
+}

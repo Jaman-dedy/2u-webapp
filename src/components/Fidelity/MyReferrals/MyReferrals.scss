@@ -1,0 +1,75 @@
+.fidelity-card {
+  width: 94%;
+  padding: 15px 3%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+  margin: 0 0 20px 0;
+  height: 140px;
+  position: relative;
+  color: #ffffff;
+  .count {
+    position: absolute;
+    top: 35px;
+    left: 15px;
+    font-size: 35px;
+    font-weight: bold;
+  }
+
+  .title {
+    position: absolute;
+    top: 75px;
+    left: 15px;
+    font-size: 16px;
+  }
+  &.card-count {
+    background: #282b4e
+      url('../../../assets/images/fidelity-count.svg');
+
+    background-position: center right;
+    background-repeat: no-repeat;
+    background-size: 130px 130px;
+  }
+  &.card-point {
+    background: #282b4e
+      url('../../../assets/images/fidelity-total.svg');
+
+    background-position: center right;
+    background-repeat: no-repeat;
+    background-size: 130px 130px;
+  }
+}
+
+.contacts-item {
+  cursor: pointer;
+  display: flex;
+  background-color: white;
+  padding: 15px;
+  margin: 15px 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  border: 1px solid #cdcdcd;
+  border-radius: 4px;
+  justify-content: space-between;
+  .texts {
+    flex: 1;
+    margin-left: 10px;
+    .nametext {
+      font-weight: 300;
+      font-size: 19px;
+      margin: auto;
+      line-height: 21px;
+    }
+    .sub-text {
+      font-weight: 300;
+      opacity: 0.7;
+      font-size: 12px;
+      line-height: 16px;
+    }
+  }
+  .icons {
+    display: flex;
+    flex-wrap: wrap;
+    .iconItem {
+      padding-left: 18px;
+    }
+  }
+}

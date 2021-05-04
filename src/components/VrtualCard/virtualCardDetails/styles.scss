@@ -1,0 +1,23 @@
+.card-details {
+  width: 75%;
+  margin-left: auto;
+  margin-top: 25px;
+}
+
+@media screen and(max-width:1024px) {
+  .card-details {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+@media screen and(max-width:425px) {
+  .card-details {
+    width: 100%;
+    margin: 0 auto;
+
+    .ui .button {
+      font-size: 0.6rem !important;
+    }
+  }
+}

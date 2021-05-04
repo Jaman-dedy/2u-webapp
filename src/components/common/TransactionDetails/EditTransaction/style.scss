@@ -1,0 +1,22 @@
+.form-content-data {
+  max-width: 400px;
+  width: 100%;
+  margin: 20px auto;
+
+  input {
+    border: 1px solid #c9c9c9;
+    height: 41px;
+    // padding-left: 60px !important;
+  }
+  .pin-form-input {
+    width: 70%;
+    margin: auto;
+  }
+  .react-tel-input {
+    .form-control {
+      width: 93% !important;
+      height: 42px;
+      margin-left: 30px !important;
+    }
+  }
+}

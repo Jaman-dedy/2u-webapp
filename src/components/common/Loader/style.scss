@@ -1,0 +1,19 @@
+.appLoader {
+  padding: 5px 0;
+  .loader-content {
+    display: flex;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    border:none!important;
+    background: none!important;
+    color: #000000;
+  }
+  .app-loading {
+    border:none!important;
+    background: none!important;
+    &:after {
+      border-color: #ea5726 #ea5726 transparent !important;
+    }
+  }
+}

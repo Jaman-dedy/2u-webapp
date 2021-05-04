@@ -1,0 +1,215 @@
+.upper-title {
+  margin: 0 auto;
+  max-width: 650px;
+  width: 100%;
+  margin-bottom: 20px;
+  margin-top: 30px;
+}
+.display-steps {
+  display: flex;
+  max-width: 650px;
+  width: 100%;
+  justify-content: space-between;
+  margin: auto;
+}
+.add-money-container {
+  .ui.fluid.input {
+    border: 1px solid #cfcfcf !important;
+  }
+  margin: 0 auto;
+  display: block;
+  width: 100%;
+  max-width: 650px;
+  background: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+  padding: 30px;
+  padding-bottom: 73px;
+  .providers-box {
+    width: 100%;
+    margin: auto;
+    button {
+      float: right;
+    }
+  }
+  .transfer-summary {
+    .moneyAmount {
+      font-weight: 300;
+      display: block;
+      font-size: 18px;
+      margin-top: 10px;
+    }
+    button {
+      float: right;
+    }
+  }
+  .add-money-form {
+    width: 100%;
+    // padding: 20px;
+    margin: 0 auto;
+    display: block;
+    .topup-actions {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    input {
+      border-radius: 3px !important;
+      border-style: none;
+      padding: 17px;
+      height: 44px;
+      font-size: 15px;
+      border: none !important;
+
+      &::placeholder {
+        font-style: normal;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 21px;
+      }
+
+      &:focus {
+        border: 0.1px solid #ea5726 !important;
+        border-radius: 0 !important;
+      }
+    }
+
+    .confirm-button {
+      button {
+        width: 100%;
+        background-color: #1e2120 !important;
+        border-radius: 0;
+        text-transform: uppercase;
+        margin-top: 15px;
+        padding: 17px;
+
+        &:hover {
+          background-color: #1e2120;
+        }
+        &:focus {
+          background-color: #1e2120;
+        }
+      }
+    }
+
+    .amount {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      input {
+        border: 1px solid #cfcfcf !important;
+      }
+
+      .amount-credit-card-input {
+        width: 70%;
+      }
+      .amount-pay-pal-input {
+        width: 55%;
+      }
+      .amount-currency-input {
+        height: 44px;
+        width: 43%;
+      }
+      .currency {
+        width: 25%;
+        height: 44px;
+        background-color: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    .card-number {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 6px;
+      margin-bottom: 15px;
+      .ui.input {
+        width: 18% !important;
+        input {
+          text-align: center;
+          border: 1px solid #cfcfcf !important;
+        }
+      }
+      .credit-card-type {
+        width: 15%;
+        height: 44px;
+        background-color: #e6e8ec94;
+        display: flex;
+        justify-content: center;
+        img {
+          width: 50px;
+        }
+      }
+    }
+
+    .expiry-date {
+      input {
+        border: 1px solid #cfcfcf !important;
+      }
+      display: flex;
+      margin-bottom: 10px;
+
+      .cvv {
+        margin-left: 13px;
+      }
+
+      .hasFocus {
+        width: 0;
+        height: 0;
+        position: absolute;
+        z-index: -9;
+      }
+    }
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    input[type='number'] {
+      -moz-appearance: textfield;
+    }
+  }
+  .ui.form .field > .selection.dropdown {
+    background: #e6e8ec94;
+    min-width: 20px;
+    border-radius: 0;
+    border: none;
+    height: 44px;
+    display: flex;
+    align-items: center;
+  }
+  .ui.form .field > .selection.dropdown > .dropdown.icon {
+    top: 1.1em;
+  }
+  .ui[class*='left icon'].input > i.icon {
+    left: -9px;
+  }
+}
+thead tr th[colspan='7'] {
+  display: none;
+}
+
+.ui.table[class*='center aligned'] {
+  width: fit-content !important;
+  min-width: fit-content !important;
+}
+
+.top-up__coming-soon {
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+@media (max-width: 600px) {
+  .add-money-container {
+    padding-bottom: 130px;
+  }
+}
+@media (max-width: 500px) {
+  .display-steps {
+    display: none;
+  }
+}

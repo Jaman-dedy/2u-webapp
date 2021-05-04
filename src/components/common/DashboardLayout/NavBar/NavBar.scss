@@ -1,0 +1,109 @@
+.app-header {
+  grid-area: header;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.04);
+  background: #ffffff;
+  height: 60px;
+  z-index: 1;
+  position: fixed !important;
+  top: 0;
+  left: 240px;
+  width: calc(100vw - 240px);
+  .menu-icon {
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    position: fixed;
+    width: 45px;
+    height: 45px;
+    left: 10px;
+    i {
+      position: absolute;
+      top: 8px;
+      left: 6px;
+      color: #585a6e;
+    }
+  }
+  .btns-shortcut {
+    flex: 0 0 220px;
+    // padding: 0px 1%;
+  }
+  .btns-shortcut button {
+    margin: 8px 15px !important;
+    padding: 14px 22px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #ffffff;
+    border-radius: 4px;
+    background: #ea5726;
+  }
+  .btns-header-actions {
+    margin: 12px 0;
+    width: calc(100% - 230px);
+    padding: 0;
+  }
+  .btns-header-actions ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    position: relative;
+    float: right;
+    margin-right: 5px;
+  }
+  .btns-header-actions ul li {
+    border: 1px solid transparent;
+    float: left;
+    position: relative;
+    padding: 0 0;
+    min-width: 40px;
+  }
+  .app-header__avatar {
+    width: 50px;
+  }
+  .navbar_item_icon {
+    width: 36px;
+    height: 36px;
+    img:not(.top-verified-icon) {
+      width: 34px;
+      margin-top: 4px;
+    }
+  }
+  .avatar-profile {
+    position: absolute;
+    right: 0;
+  }
+
+  .notification {
+    font-size: 18px;
+    vertical-align: middle;
+    position: relative;
+    padding: 0 7px;
+  }
+  @media only screen and (max-width: 820px) {
+    .darken-side {
+      display: block;
+      z-index: 1;
+      height: 100%;
+      width: 100%;
+      background: #000000;
+      position: fixed;
+      border: none;
+      opacity: 0.7;
+    }
+    .btns-shortcut {
+      display: none;
+    }
+    .btns-header-actions {
+      width: 100%;
+    }
+  }
+}
+
+@media only screen and (max-width: 776px) {
+  .app-header {
+    left: 0;
+    width: 100vw;
+  }
+}

@@ -1,0 +1,40 @@
+.SelectLanguage {
+  margin: 10px 0;
+  min-width: 20px !important;
+  position: relative;
+  .wrap-languages {
+    input {
+      border: 1px solid #cfcfcf !important;
+    }
+  }
+  img.h-language {
+    position: absolute;
+    top: -4px;
+    width: 34px !important;
+  }
+  .display-language-icon {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    padding: 7px 0px;
+    .language-icon {
+      width: 28px;
+      margin: 0 auto;
+    }
+    .lang-text {
+      margin-right: 42px;
+      float: left;
+      font-size: 16px;
+      color: #161616;
+      min-width: 50px;
+      font-weight: 300;
+    }
+  }
+}
+.navbar_item_icon {
+  .SelectLanguage {
+    margin: -10px 0 0 36px;
+    padding: 0;
+    z-index: 10;
+  }
+}

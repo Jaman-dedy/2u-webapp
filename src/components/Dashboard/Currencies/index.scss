@@ -1,0 +1,36 @@
+.summation-container {
+  padding: 10px;
+  width: 56px;
+  height: 49px;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.1);
+  }
+  background-color: white;
+  margin-left: 70px;
+  border: 1px solid rgba(51, 53, 86, 0.11);
+  border-radius: 5px;
+}
+.user-currencies {
+  h3 {
+    margin-top: 5px;
+    font-weight: 200;
+  }
+}
+
+.currencies-placeholder {
+  max-width: 400px;
+  img {
+    margin-right: 1%;
+    width: 45%;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .summation-container {
+    margin-left: 5px;
+  }
+
+  .user-currencies {
+    margin-left: 0px !important;
+  }
+}

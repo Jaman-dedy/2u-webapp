@@ -1,0 +1,36 @@
+.security-container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  tr {
+    height: 66px;
+  }
+  .security-header {
+    font-size: 22px;
+  }
+  .security-action {
+    color: #e95927;
+    background-color: white !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .security-container {
+    padding: 0;
+    table {
+      margin-bottom: 2rem !important;
+      tr {
+        display: flex;
+        flex-direction: column;
+        height: auto !important;
+        td {
+          margin-right: 5rem !important;
+        }
+      }
+    }
+  }
+  .right.aligned.security-action {
+    text-align: left;
+    padding: 0 !important;
+  }
+}

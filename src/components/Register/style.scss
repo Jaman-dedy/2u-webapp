@@ -1,0 +1,84 @@
+.back {
+  position: absolute;
+  top: 0px;
+  cursor: pointer;
+  margin: 13px;
+  width: 30px;
+  height: 30px;
+}
+
+.back-registration {
+  left: 43%;
+}
+
+.wrapper {
+  .right-column {
+    .form-information {
+      .checkbox {
+        padding-top: 3px;
+        margin-right: 5px;
+      }
+
+      .ui .checkbox .box:before,
+      .ui.checkbox label:before {
+        background: rgba(51, 53, 86, 0.11) !important;
+        color: #333556 !important;
+        border-radius: 0px !important;
+        border-style: none;
+      }
+
+      .ui.checkbox input:checked ~ .box:after,
+      .ui.checkbox input:checked ~ label:after {
+        color: #0a9220;
+      }
+    }
+
+    .dots {
+      display: flex;
+      justify-content: center;
+      .dot {
+        background: #ea572657;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        margin-right: 11px;
+      }
+      .active {
+        background: #ea5726;
+      }
+    }
+  }
+}
+
+input {
+  height: 46px;
+}
+
+@media (max-width: 850px) {
+  .back-registration {
+    left: 10px;
+    top: 10px;
+  }
+}
+
+@media (max-width: 690px) {
+  .wrapper {
+    .right-column {
+      .dots {
+        width: 100%;
+        position: relative;
+        bottom: 10px;
+      }
+    }
+  }
+}
+
+/* ----------- iPad Pro ----------- */
+
+/* Portrait */
+@media only screen and (min-width: 1024px) and (max-height: 1366px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1.5) {
+  .back-registration {
+    left: 20px;
+    top: 20px;
+  }
+}

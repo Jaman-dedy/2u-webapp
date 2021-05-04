@@ -1,0 +1,28 @@
+.doc-placeholder {
+  width: 160px;
+  height: 130px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+  padding: 31px 20px;
+  margin-top: 10px;
+  &:hover {
+    cursor: pointer;
+  }
+
+  .file-drop {
+    margin: auto;
+  }
+
+  .file-drop-target {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+@media (max-width: 500px) {
+  .doc-placeholder {
+    margin: auto;
+  }
+}

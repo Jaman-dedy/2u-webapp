@@ -1,0 +1,123 @@
+#search-input-wrapper {
+  border: 1px solid #cdcdcd;
+  background: #ffffff;
+  border-radius: 5px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  display: flex;
+  flex-wrap: wrap;
+
+  .category-search-btn {
+    display: flex;
+    border-left: 1px solid #cdcdcd !important;
+    align-items: center;
+  }
+  .category-drop-down {
+    border: none !important;
+  }
+  .input {
+    flex: 1;
+  }
+  .ui.input {
+    background: #ffffff !important;
+    color: white !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+  }
+  .ui.input > input {
+    background: none !important;
+    color: #232323;
+    border: none;
+    box-shadow: none;
+
+    &::placeholder {
+      color: #898989;
+      opacity: 0.7;
+    }
+  }
+
+  .ui.input > input {
+    flex: 1;
+    background: none !important;
+  }
+  .search-btn {
+    position: relative;
+    margin-right: -1px;
+    padding: 0px 25px !important;
+    background-color: #ea5726;
+    color: white;
+    font-size: 16px;
+    z-index: 1;
+    height: 100%;
+    border-radius: 0px 4px 4px 0px !important;
+    margin-top: 0;
+  }
+
+  .ui.selection.dropdown {
+    border-radius: 0px;
+  }
+  .ui.selection.dropdown::placeholder {
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #232323;
+
+    opacity: 0.7;
+  }
+
+  .ui.dropdown > .dropdown.icon:before {
+    color: #acacac;
+  }
+}
+
+@media (max-width: 768px) {
+  #search-input-wrapper {
+    flex-direction: column;
+    overflow: hidden;
+    flex-wrap: wrap;
+
+    .search-btn {
+      padding: 0px 21.5px !important;
+      height: 3.5rem;
+    }
+
+    .ui.input > input {
+      width: 100%;
+    }
+    .category-drop-down {
+      flex: 1;
+
+      .default .text {
+        color: red !important;
+      }
+    }
+
+    .field .category-drop-down {
+      flex: 1;
+      .default .text {
+        color: red !important;
+      }
+    }
+
+    .ui.selection.dropdown {
+      border-radius: 0px;
+      width: 100%;
+      flex: 1;
+    }
+  }
+
+  .category-search-btn {
+    margin-top: 1px;
+  }
+}
+
+.filters {
+  display: flex;
+  justify-content: flex-end;
+
+  .ui.dropdown > menu {
+    margin-top: 600px !important;
+  }
+}

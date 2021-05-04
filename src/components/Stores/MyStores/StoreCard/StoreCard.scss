@@ -1,0 +1,58 @@
+.store {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  cursor: pointer;
+  margin-bottom: 10px;
+  position: relative;
+  background: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  &:hover {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.21);
+  }
+  .store-image {
+    width: 95px;
+    margin-right: 7px;
+
+    img {
+      object-fit: cover;
+      border-radius: 5px;
+    }
+  }
+
+  .store-info {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    .store-name {
+      color: #000000;
+    }
+
+    .store-open-time {
+      color: #2e2e2e;
+    }
+
+    .store-address {
+      color: #2e2e2e;
+      padding: 8px 0;
+    }
+
+    .likes {
+      display: flex;
+      margin-top: 5px;
+
+      .down-votes,
+      .up-votes {
+        padding: 0 8px 0 8px;
+        color: #2e2e2e;
+      }
+    }
+  }
+
+  .icons {
+    position: absolute;
+    right: 0;
+  }
+}
+

@@ -1,0 +1,24 @@
+@for $i from 1 through 5 {
+  .border-#{$i} {
+    border: solid #{$i}px;
+  }
+  .border-radius-#{$i} {
+    border-radius: #{$i}px;
+  }
+  .border-bottom-#{$i} {
+    border-bottom: solid #{$i}px;
+  }
+}
+.no-border {
+  border: none;
+}
+.no-outline {
+  outline: none;
+}
+
+.no-border {
+  border: none;
+}
+.no-outline {
+  outline: none;
+}

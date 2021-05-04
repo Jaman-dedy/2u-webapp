@@ -1,0 +1,30 @@
+.btn-agree {
+  background-color: #e95927 !important;
+  color: #fff !important;
+}
+.btn-cancel {
+  background-color: transparent !important;
+}
+
+iframe {
+  width: 100%;
+  height: 50vh;
+}
+
+.ui.modal {
+  background: #f1f1f1;
+  .actions {
+    background: #f1f1f1;
+    padding: 1rem 1rem;
+    border-top: none;
+    text-align: right;
+  }
+
+  .content {
+    display: block;
+    width: 100%;
+    font-size: 1em;
+    line-height: 1.4;
+    background: #f1f1f1;
+  }
+}

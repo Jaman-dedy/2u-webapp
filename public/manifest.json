@@ -1,0 +1,28 @@
+{
+  "short_name": "2U Money",
+  "name": "2U Money",
+  "description": "Send money and receive from anyone",
+  "icons": [
+    {
+      "src": "logo64.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "dir": "ltr",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#333556",
+  "background_color": "#da6138",
+  "orientation": "portrait"
+}

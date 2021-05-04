@@ -1,0 +1,20 @@
+.searchStorePage {
+  &__stores-list {
+    margin: 10px auto;
+    display: block;
+    max-width: 650px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    &__item {
+      margin-bottom: 13px;
+    }
+  }
+  @media (max-width: 900px) {
+    .searchStorePage {
+      &__stores-list {
+        &__item {
+          margin: 10px;
+        }
+      }
+    }
+  }
+}

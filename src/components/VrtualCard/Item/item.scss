@@ -1,0 +1,85 @@
+@import 'src/assets/styles/mixins';
+.VirtualCardDetails {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 860px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  .ui.segment {
+    margin-top: -5rem !important;
+    margin-bottom: 6rem;
+  }
+}
+.virtual-card-item {
+  width: 100%;
+  max-width: 860px;
+  transition: background-color 2s;
+  .display-card-box {
+    display: flex !important;
+    flex-wrap: wrap;
+  }
+}
+.view-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 480px) {
+  .virtual-card-item {
+    .view-button {
+      position: relative;
+      margin: 0.3rem 0.1rem;
+    }
+  }
+}
+@include respond-to(mobile) {
+  .virtual-card-item {
+    .view-button {
+      margin: 0.3rem 0.2rem;
+    }
+  }
+}
+
+@include respond-to(mobile-landscape) {
+  .virtual-card-item {
+    .vc-currency {
+      font-size: 0.9rem !important;
+      margin-top: 0.3rem !important;
+    }
+
+    .vc-info {
+      font-size: 0.75rem !important;
+    }
+
+    .vc-btn-copy {
+      float: left !important;
+      margin-top: 0.3rem !important;
+    }
+  }
+}
+
+@include respond-to(mobile) {
+  .virtual-card-item {
+    .vc-balance {
+      font-size: 0.8rem !important;
+    }
+
+    .vc-currency {
+      font-size: 0.9rem !important;
+    }
+
+    .vc-info {
+      font-size: 0.75rem !important;
+    }
+
+    .vc-btn-copy {
+      margin-top: 15px !important;
+      font-size: 0.94rem !important;
+      float: left !important;
+    }
+  }
+}

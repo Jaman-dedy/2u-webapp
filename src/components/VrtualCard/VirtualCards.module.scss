@@ -1,0 +1,42 @@
+@import 'src/assets/styles/mixins';
+.Placeholders {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.VirtualCardList {
+  margin: auto;
+  width: 100%;
+  max-width: 780px;
+  background-color: #fff;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.08);
+  height: fit-content;
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+  border: 1px solid #ebebeb;
+}
+.Container {
+  width: 100%;
+  margin: auto;
+}
+
+.Titles {
+  font-size: 1.2rem;
+}
+
+@include respond-to(mobile-landscape) {
+  .VirtualCardList {
+    margin: auto;
+    width: 90%;
+  }
+}
+
+@include respond-to(mobile) {
+  .VirtualCardList {
+    margin: auto;
+    width: 90%;
+  }
+}

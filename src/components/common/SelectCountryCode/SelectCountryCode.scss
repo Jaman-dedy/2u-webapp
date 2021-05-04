@@ -1,0 +1,20 @@
+.SelectCountryCode {
+  display: flex;
+  align-items: center;
+  .trigger {
+    width: 40px;
+  }
+  .dropdown-flag {
+    display: flex;
+    .caret.down.icon.inline {
+      margin-top: 7px;
+    }
+  }
+  .flag-placeholder {
+    margin-top: 8px;
+    font-size: 16px;
+  }
+}
+.ui.disabled.dropdown {
+  opacity: 1 !important;
+}

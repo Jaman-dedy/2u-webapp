@@ -1,0 +1,39 @@
+.otp-form-reset {
+  .otp-input-group {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 14px !important;
+
+    .otp-input {
+      height: 42px !important;
+
+      input {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+      }
+    }
+
+    .ui.input input[name='OTP'] {
+      letter-spacing: 33px !important;
+      padding-left: 32px;
+      font-weight: bold !important;
+    }
+
+    .ui.input input[name='OTP']::placeholder {
+      letter-spacing: 34px !important;
+      color: #a5b1c2;
+    }
+  }
+  .hiddenOtpInput {
+    width: 0;
+    position: absolute;
+    background: #fff !important;
+    color: #fff !important;
+    z-index: -1 !important;
+  }
+
+  .hiddenOtpInput:focus {
+    border: none !important;
+  }
+}

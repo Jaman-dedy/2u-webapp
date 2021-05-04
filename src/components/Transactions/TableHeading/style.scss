@@ -1,0 +1,19 @@
+.table-heading {
+  display: flex !important;
+  width: 100%;
+  .refresh-button {
+    width: 40px;
+    margin-left: -3px;
+    button {
+      width: 100%;
+      margin-top: 1px;
+      background-color: #f1f2f6 !important;
+      height: 38px;
+    }
+  }
+}
+@media (max-width: 880px) {
+  .table-heading {
+    flex-wrap: wrap;
+  }
+}
