@@ -46,7 +46,9 @@ const LoginForm = ({
         onKeyDown={onKeyDown}
       >
         <div className="sub-titles">
-          {global.translate('Your username or Phone number', 3365)}
+          {`${global.translate('Username')} ${global.translate(
+            'or',
+          )} ${global.translate('Phone number')} `}
         </div>
         <Form.Field>
           <Form.Input
@@ -56,14 +58,16 @@ const LoginForm = ({
                 pointing: 'above',
               }
             }
-            placeholder={global.translate('Username', 1992)}
+            placeholder={global.translate('Username')}
             name="PID"
             value={(credentials.PID && credentials.PID) || ''}
             onChange={handleChange}
           />
         </Form.Field>
         <div>
-          {global.translate('Your password or PIN Number', 3362)}
+          {`${global.translate('Password')} ${global.translate(
+            'or',
+          )} ${global.translate('PIN Number')} `}
         </div>
         <Form.Field>
           <PasswordInput
