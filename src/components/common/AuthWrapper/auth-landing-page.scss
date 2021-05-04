@@ -161,6 +161,13 @@
     width: 572px;
   }
 }
+@media only screen and (max-width: 760px) {
+  .wrap-auth-register {
+    h2 {
+      margin-left: 13px;
+    }
+  }
+}
 
 @media only screen and (max-width: 1118px) {
   .wrap-event {
