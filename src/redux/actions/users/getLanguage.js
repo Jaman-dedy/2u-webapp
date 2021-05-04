@@ -24,6 +24,7 @@ export default lang => dispatch => {
       onStart: () => dispatch =>
         dispatch({
           type: GET_LANGUAGE_START,
+          payload: {loading: true }
         }),
       onSuccess: data => dispatch => {
         dispatch({
