@@ -94,7 +94,7 @@ const ResetPassword = ({
           <GoBack onClickHandler={onClickHandler} />
         </div>
       )}
-      <div className="form-content">{renderForm()}</div>
+      <div>{renderForm()}</div>
       <div className="dots">
         {Array(5)
           .fill()

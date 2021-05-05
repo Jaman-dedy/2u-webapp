@@ -87,16 +87,13 @@ const UsernameForm = ({
 
   return (
     <Container>
-      <div className="sub-titles">
-        {global.translate('For a free account')}
-      </div>
       {displayErrors && <AlertDanger message={displayErrors} />}
       <br />
       <Form className="user-personal-id">
         <h3>{global.translate('Secure your account')}</h3>
         <Form.Field>
           <div className="sub-titles">
-            {global.translate('username')}
+            {global.translate('Username')}
           </div>
           <Input
             type="text"

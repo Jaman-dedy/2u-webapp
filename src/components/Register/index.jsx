@@ -1,5 +1,3 @@
-import './style.scss';
-
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -111,7 +109,7 @@ const Register = ({
       rightHeadlineText={global.translate(setTitle())}
       register={screenNumber === 1}
     >
-      <div className="form-content">{renderForm()}</div>
+      <div>{renderForm()}</div>
       <div className="dots">
         {Array(5)
           .fill()

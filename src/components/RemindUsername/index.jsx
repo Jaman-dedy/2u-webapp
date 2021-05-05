@@ -29,7 +29,7 @@ const RemindUsername = ({
         1698,
       )}
     >
-      <div className="form-content">
+      <div>
         <Form
           handleChange={handleChange}
           onSubmit={handleSubmit}

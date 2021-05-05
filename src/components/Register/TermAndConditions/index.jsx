@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Button, Modal } from 'semantic-ui-react';
 import './style.scss';
@@ -9,12 +10,16 @@ const TermsAndConditions = ({
   setOpen,
   handleTermsAndCondition,
 }) => {
+  const {
+    language: { preferred },
+  } = useSelector(({ user }) => user);
   return (
     <Modal onOpen={() => setOpen(true)} open={open} size="small">
       <Modal.Content scrolling>
         <iframe
-          src="https://2u.money/terms-and-conditions?view=simple"
-          title="2u money terms and conditions"
+          src={`https://2u.money/terms-and-conditions?view=simple&lang=${
+            preferred === 'fr' ? 'fr' : 'en'
+          }`}
           frameBorder="0"
         />
       </Modal.Content>
@@ -23,7 +28,7 @@ const TermsAndConditions = ({
           {global.translate('Cancel')}
         </Button>
         <Button
-          className="btn-agree"
+          className="btn-agree btn-primary"
           onClick={handleTermsAndCondition}
         >
           {global.translate('I agree')}

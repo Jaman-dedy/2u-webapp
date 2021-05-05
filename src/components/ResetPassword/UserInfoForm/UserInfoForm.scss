@@ -1,3 +1,9 @@
+.PhoneInput {
+  width: 100%;
+  .form-control {
+    margin: 6px 0 6px 32px!important;
+  }
+}
 .form_title {
   font-size: 14pt;
 }
@@ -35,7 +41,14 @@
   position: relative;
   border-radius: 4px;
   background-color: #ffffff;
-  border: 1px solid #cfcfcf !important;
+  margin-top: 8px;
+  .react-tel-input {
+    border: 1px solid #d8dcde !important;
+    border-radius: 5px;
+    .flag-dropdown {
+      border: none !important;
+    }
+  }
   /* Chrome, Safari, Edge, Opera */
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {

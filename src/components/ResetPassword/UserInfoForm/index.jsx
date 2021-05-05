@@ -90,13 +90,15 @@ const UserInfoForm = ({
           </Form.Field>
           <span>{global.translate('Phone number')}</span>
           <Form.Field>
-            <PhoneInput
-              focused={focused}
-              setFocused={setFocused}
-              setPhoneNumber={setPhoneValue}
-              phoneValue={resetPasswordData.phoneNumber}
-              country={country}
-            />
+            <div className="user-phone-number">
+              <PhoneInput
+                focused={focused}
+                setFocused={setFocused}
+                setPhoneNumber={setPhoneValue}
+                phoneValue={resetPasswordData.phoneNumber}
+                country={country}
+              />
+            </div>
           </Form.Field>
           <span>{global.translate('Date of  birth')}</span>
           <Form.Field>

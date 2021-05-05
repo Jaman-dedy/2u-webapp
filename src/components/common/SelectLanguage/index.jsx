@@ -50,17 +50,6 @@ const SelectLanguage = ({ pointing, hasLabel, open, setOpen }) => {
                 <Loader active inline />
               ) : (
                 <div className="display-language-icon">
-                  <img
-                    onClick={() => {
-                      setOpen(!open);
-                    }}
-                    className="h-language"
-                    src={languageIcon}
-                    title={global.translate(
-                      'Select a language',
-                      1585,
-                    )}
-                  />
                   {hasLabel &&
                     (countries.length === 0 ? (
                       ''
@@ -73,6 +62,17 @@ const SelectLanguage = ({ pointing, hasLabel, open, setOpen }) => {
                         }
                       </span>
                     ))}
+                  <img
+                    onClick={() => {
+                      setOpen(!open);
+                    }}
+                    className="h-language"
+                    src={languageIcon}
+                    title={global.translate(
+                      'Select a language',
+                      1585,
+                    )}
+                  />
                 </div>
               )}
             </>
@@ -82,13 +82,13 @@ const SelectLanguage = ({ pointing, hasLabel, open, setOpen }) => {
           pointing={width > 600 ? pointing : false}
           onBlur={() => setOpen(false)}
         >
+          {/* right: !hasLabel && width < 375 ? '-20vw' : 0, */}
+          {/* className="wrap-languages" */}
+          {/* tabindex="1000000"
+          style={{
+            left: 'auto',
+          }} */}
           <Dropdown.Menu
-            tabindex="1000000"
-            style={{
-              left: 'auto',
-              right: !hasLabel && width < 375 ? '-20vw' : 0,
-            }}
-            className="wrap-languages"
           >
             <Dropdown.Menu scrolling>
               {getLanguageLoading ||

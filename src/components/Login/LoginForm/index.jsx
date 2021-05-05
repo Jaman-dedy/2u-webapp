@@ -5,7 +5,7 @@ import 'assets/styles/spinner.scss';
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Form } from 'semantic-ui-react';
+import { Form, Grid } from 'semantic-ui-react';
 import PasswordInput from 'components/common/PasswordInput';
 import AlertDanger from 'components/common/Alert/Danger';
 
@@ -45,47 +45,57 @@ const LoginForm = ({
         className="login-form-ui"
         onKeyDown={onKeyDown}
       >
-        <div className="sub-titles">
-          {`${global.translate('Username')} ${global.translate(
-            'or',
-          )} ${global.translate('Phone number')} `}
-        </div>
-        <Form.Field>
-          <Form.Input
-            error={
-              pidError && {
-                content: global.translate(pidError.toString()),
-                pointing: 'above',
-              }
-            }
-            placeholder={global.translate('Username')}
-            name="PID"
-            value={(credentials.PID && credentials.PID) || ''}
-            onChange={handleChange}
-          />
-        </Form.Field>
-        <div>
-          {`${global.translate('Password')} ${global.translate(
-            'or',
-          )} ${global.translate('PIN Number')} `}
-        </div>
-        <Form.Field>
-          <PasswordInput
-            error={
-              passwordError && {
-                content: global.translate(passwordError.toString()),
-                pointing: 'above',
-              }
-            }
-            placeholder={global.translate('Password', 2)}
-            onChange={handleChange}
-            type="password"
-            name="Password"
-            value={credentials.Password || ''}
-            icon="eye"
-          />
-        </Form.Field>
-
+        <Grid columns={1}>
+          <Grid.Row>
+            <Grid.Column>
+              <div className="sub-titles">
+                {`${global.translate('Username')} ${global.translate(
+                  'or',
+                )} ${global.translate('Phone number')} `}
+              </div>
+              <Form.Field>
+                <Form.Input
+                  error={
+                    pidError && {
+                      content: global.translate(pidError.toString()),
+                      pointing: 'above',
+                    }
+                  }
+                  placeholder={global.translate('Username')}
+                  name="PID"
+                  value={(credentials.PID && credentials.PID) || ''}
+                  onChange={handleChange}
+                />
+              </Form.Field>
+            </Grid.Column>
+            <div className="clear" />
+            <Grid.Column>
+              <div>
+                {`${global.translate('Password')} ${global.translate(
+                  'or',
+                )} ${global.translate('PIN Number')} `}
+              </div>
+              <Form.Field>
+                <PasswordInput
+                  error={
+                    passwordError && {
+                      content: global.translate(
+                        passwordError.toString(),
+                      ),
+                      pointing: 'above',
+                    }
+                  }
+                  placeholder={global.translate('Password', 2)}
+                  onChange={handleChange}
+                  type="password"
+                  name="Password"
+                  value={credentials.Password || ''}
+                  icon="eye"
+                />
+              </Form.Field>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
         <div className="clear" />
         <button
           loading={isLoading}
@@ -101,20 +111,20 @@ const LoginForm = ({
         {showOption && (
           <>
             <div className="from_login_link">
-              {global.translate('Forgot your Password?')}
+              {global.translate('Forgot your Password?')}{' '}
               <Link to="/reset-password">
                 {global.translate('Click here', 1705)}
               </Link>
             </div>
             <div className="from_login_link">
-              {global.translate('Forgot your Username ?')}{' '}
+              {global.translate('Forgot your Username?')}{' '}
               <Link to="/remind-username">
                 {global.translate('Click here', 1705)}
               </Link>
             </div>
           </>
         )}
-
+        <br />
         <div className="btn-signup-login">
           <div>{global.translate('Not yet registered?', 1201)} </div>
           <Link to="/register" className="btn-auth ">

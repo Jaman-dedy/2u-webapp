@@ -99,7 +99,7 @@ const OTPForm = ({
         )}
 
         <span onClick={resendOtp} className="feedback">
-          {global.translate('Resend a new code')}
+          {' '}{global.translate('Resend a new code')}
         </span>
       </div>
     </Container>

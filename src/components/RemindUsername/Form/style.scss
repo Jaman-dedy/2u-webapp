@@ -1,11 +1,14 @@
 .user-phone-number {
+  margin-top: 8px;
   .react-tel-input {
+    border: 1px solid #d8dcde !important;
+    border-radius: 5px;
     .form-control {
-      margin-left: 28px;
+      width: 88.5% !important;
+      height: 100%;
     }
     .flag-dropdown {
       border: none !important;
-      background-color: #ffff !important;
     }
   }
 }

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import './login.scss';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
@@ -76,7 +75,7 @@ const Login = ({
           : global.translate('Change my password', 1698)
       }
     >
-      <div className="form-content">
+      <div>
         {!isSettingNewPassword ? (
           <LoginForm
             handleChange={handleChange}
