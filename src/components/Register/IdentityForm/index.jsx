@@ -4,11 +4,12 @@ import { useDispatch } from 'react-redux';
 
 import PhoneInput from 'react-phone-input-2';
 import { Link } from 'react-router-dom';
-import { Container, Grid, Form } from 'semantic-ui-react';
+import { Grid, Form } from 'semantic-ui-react';
 import DatePicker from 'react-datepicker';
 import AlertDanger from 'components/common/Alert/Danger';
 import { clearPhoneNumber } from 'redux/actions/users/verifyPhoneNumber';
 import TermsAndConditions from '../TermAndConditions';
+import ReactFlagsSelect from 'react-flags-select';
 
 import './style.scss';
 import 'assets/styles/spinner.scss';
@@ -31,6 +32,8 @@ const IdentityForm = ({
     startDate,
     setStartDate,
     endDate,
+    setNationalityCountry,
+    nationalityCountry,
   } = identityData;
   const [disableButton, setDisableButton] = useState(false);
   const dispatch = useDispatch();
@@ -149,8 +152,20 @@ const IdentityForm = ({
                 placeholderText={global.translate('Select a date*')}
               />
             </Grid.Column>
+            <Grid.Column mobile={16} computer={8}>
+              <div className="sub-titles">
+                {global.translate('Select your country')}
+              </div>
+              <ReactFlagsSelect
+                selected={nationalityCountry?.toUpperCase()}
+                onSelect={code => setNationalityCountry(code)}
+                searchable
+                placeholder={global.translate('Select your country')}
+                className="select-my-country"
+              />
+            </Grid.Column>
             <div className="clear" />
-            <Grid.Column mobile={16} computer={10}>
+            <Grid.Column mobile={16} computer={8}>
               <div>
                 <button
                   type="submit"
@@ -168,7 +183,7 @@ const IdentityForm = ({
                 </button>
               </div>
             </Grid.Column>
-            <Grid.Column mobile={16} computer={6}>
+            <Grid.Column mobile={16} computer={8}>
               <div className="btn-signup-login">
                 <Link to="/login" className="btn-auth">
                   {global.translate('LOGIN', 190).toUpperCase()}

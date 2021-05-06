@@ -15,7 +15,7 @@
 .react-datepicker-wrapper {
   width: 100%;
   input {
-    padding: 14px!important;
+    padding: 14px !important;
   }
 }
 .wrap-date-picker {
@@ -25,5 +25,20 @@
   }
 }
 .column {
-  margin-bottom: 16px!important;
+  margin-bottom: 16px !important;
+}
+.select-my-country {
+  .ReactFlagsSelect-module_selectBtn__19wW7 {
+    height: 46px;
+    border: 1px solid #ced4da !important;
+    font-size: 14px !important;
+    font-weight: 300;
+    color: #b2b3bf;
+  }
+  .ReactFlagsSelect-module_filterBox__3m8EU {
+    input {
+      width: 95% !important;
+      margin-left: 6px !important;
+    }
+  }
 }

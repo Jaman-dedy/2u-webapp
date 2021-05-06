@@ -53,15 +53,6 @@ const RegisterContainer = () => {
     }
   }, []);
 
-  useEffect(() => {
-    if (userLocationData?.CountryCode) {
-      setRegistrationData({
-        ...registrationData,
-        countryCode: userLocationData?.CountryCode,
-      });
-    }
-  }, [userLocationData]);
-
   return (
     <Register
       registrationData={registrationData}

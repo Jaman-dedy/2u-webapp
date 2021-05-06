@@ -14,10 +14,6 @@ export default ({
   setScreenNumber,
   setRegistrationData,
 }) => {
-  const [phonevalue, setPhonevalue] = useState();
-  const [errors, setErrors] = useState({});
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(new Date('2003/01/01'));
   const dispatch = useDispatch();
   const {
     firstName,
@@ -31,10 +27,22 @@ export default ({
     userLocationData,
   } = useSelector(({ user }) => user);
 
+  const [phonevalue, setPhonevalue] = useState();
+  const [errors, setErrors] = useState({});
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(new Date('2003/01/01'));
+  const [nationalityCountry, setNationalityCountry] = useState('');
+
   const [
     openTermsAndConditionModal,
     setOpenTermsAndConditionModal,
   ] = useState(false);
+
+  useEffect(() => {
+    if (userLocationData) {
+      setNationalityCountry(userLocationData?.CountryCode);
+    }
+  }, [userLocationData]);
 
   useEffect(() => {
     if (phonevalue) {
@@ -121,6 +129,15 @@ export default ({
     setOpenTermsAndConditionModal(false);
   };
 
+  useEffect(() => {
+    if (nationalityCountry) {
+      setRegistrationData({
+        ...registrationData,
+        countryCode: nationalityCountry.toLocaleLowerCase(),
+      });
+    }
+  }, [nationalityCountry]);
+
   return {
     handleNext,
     validate,
@@ -136,5 +153,7 @@ export default ({
     startDate,
     setStartDate,
     endDate,
+    setNationalityCountry,
+    nationalityCountry,
   };
 };
