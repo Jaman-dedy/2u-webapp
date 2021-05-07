@@ -30,6 +30,7 @@ const Profile = ({
   userDetails,
   changeUserPresence,
   switchAccount,
+  supportingDocuments,
 }) => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -183,14 +184,17 @@ const Profile = ({
         </Tab.Pane>
       ),
     },
-    // {
-    //   menuItem: global.translate('Supporting documents'),
-    //   render: () => (
-    //     <Tab.Pane attached={false}>
-    //       <DocumentTab />
-    //     </Tab.Pane>
-    //   ),
-    // },
+    {
+      menuItem: global.translate('Supporting documents'),
+      render: () => (
+        <Tab.Pane attached={false}>
+          <DocumentTab
+            supportingDocuments={supportingDocuments}
+            userData={userData}
+          />
+        </Tab.Pane>
+      ),
+    },
     {
       menuItem: global.translate('Transaction limits'),
       render: () => (

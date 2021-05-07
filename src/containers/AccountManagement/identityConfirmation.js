@@ -11,7 +11,7 @@ import {
   idDriverLicence,
   idOther,
 } from 'constants/general';
-import uploadDocs from 'helpers/uploadDocs';
+import uploadDocs from 'helpers/uploadDocs/checkUpload';
 import saveToBackend from 'helpers/uploadImages/saveToBackend';
 
 export default () => {

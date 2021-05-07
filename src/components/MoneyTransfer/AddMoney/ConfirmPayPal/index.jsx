@@ -40,7 +40,7 @@ const ConfirmPayPal = ({
         </Item>
 
         <Item style={{ display: 'block' }}>
-          <span>{global.translate('PayPal fees')}</span>
+          <span>{global.translate('PayPal fees', 3366)}</span>
           <span className="moneyAmount">
             {Fees ? `${Fees} ${Currency}` : <Placeholder />}
           </span>

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
-import uploadDocs from 'helpers/uploadDocs';
+import uploadDocs from 'helpers/uploadDocs/checkUpload';
 import isFileImage from 'utils/isFileImage';
 import saveToBackend from 'helpers/uploadImages/saveToBackend';
 import saveUserDataAction from 'redux/actions/userAccountManagement/saveUserData';

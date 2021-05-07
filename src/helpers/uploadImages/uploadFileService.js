@@ -12,6 +12,7 @@ import saveToBackend from './saveToBackend';
  */
 const uploadFileService = async (files, url, type, PID) => {
   const res = await saveTemp(files);
+
   if (res.data && url) {
     const options = {
       MediaSourceURL: res.data[0]?.url,
@@ -21,6 +22,8 @@ const uploadFileService = async (files, url, type, PID) => {
       FileType: undefined,
     };
     return options;
+  } else {
+    return res;
   }
 };
 

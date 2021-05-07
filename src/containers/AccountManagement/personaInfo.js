@@ -9,7 +9,7 @@ import saveUserDataAction from 'redux/actions/userAccountManagement/saveUserData
 import sendOTPAction from 'redux/actions/users/sendOTP';
 import getUserProfessionAction from 'redux/actions/users/getProfession';
 import isFileImage from 'utils/isFileImage';
-import uploadDocs from 'helpers/uploadDocs';
+import uploadDocs from 'helpers/uploadDocs/checkUpload';
 import updateUserPhoneListAction from 'redux/actions/userAccountManagement/updateUserPhoneList';
 import updateUserEmailListAction from 'redux/actions/userAccountManagement/updateUserEmailList';
 

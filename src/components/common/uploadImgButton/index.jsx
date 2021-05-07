@@ -6,6 +6,7 @@ import { Image, Button } from 'semantic-ui-react';
 
 import ImageCroper from 'components/common/ImageCroper/CropImage';
 import uploadImgIcon from 'assets/images/profile/upload-img-icon.svg';
+import './style.scss';
 
 const UploadImgButton = ({
   name,
@@ -13,6 +14,7 @@ const UploadImgButton = ({
   loading,
   img,
   src,
+  title,
 }) => {
   const imageInputRef = useRef(null);
   const [open, setOpen] = useState(false);
@@ -60,7 +62,7 @@ const UploadImgButton = ({
         ) : (
           <Button className="btn-add-doc">
             <Image src={uploadImgIcon} />
-            {global.translate('Upload now')}
+            {title ? title : global.translate('Upload now')}
           </Button>
         )}
       </div>

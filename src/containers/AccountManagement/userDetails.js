@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
 import isFileImage from 'utils/isFileImage';
-import uploadDocs from 'helpers/uploadDocs';
+import uploadDocs from 'helpers/uploadDocs/checkUpload';
 import saveToBackend from 'helpers/uploadImages/saveToBackend';
 import updateUserProfileImageAction from 'redux/actions/userAccountManagement/updateUserProfileImage';
 
