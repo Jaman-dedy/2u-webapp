@@ -4,6 +4,7 @@ import {
   GET_USER_DATA_SUCCESS,
 } from 'constants/action-types/users/getUserData';
 import { UPDATE_USER_EMAIL_LIST } from 'constants/action-types/userAccountManagement/updateUserEmailList';
+import { UPDATE_USER_PHONE_LIST } from 'constants/action-types/userAccountManagement/updateUserPhoneList';
 
 export default (state, { type, payload }) => {
   switch (type) {
@@ -49,7 +50,18 @@ export default (state, { type, payload }) => {
           },
         },
       };
-
+    case UPDATE_USER_PHONE_LIST:
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          loading: false,
+          data: {
+            ...state.userData.data,
+            Phones: payload.Phones,
+          },
+        },
+      };
     default:
       return null;
   }

@@ -32,6 +32,10 @@ export default (state, { type, payload }) => {
           ...state.userData,
           data: {
             ...state.userData.data,
+            MainPhoneNumber: payload.defaultPhone.replace(
+              state.userData.data.MainPhonePrefix,
+              '',
+            ),
             Phones: state.userData.data.Phones.map(item => {
               if (item.Phone === payload.defaultPhone) {
                 return { ...item, Primary: 'YES' };

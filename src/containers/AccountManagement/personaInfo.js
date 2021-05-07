@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import moment from 'moment';
@@ -13,6 +13,9 @@ import uploadDocs from 'helpers/uploadDocs';
 import updateUserPhoneListAction from 'redux/actions/userAccountManagement/updateUserPhoneList';
 import updateUserEmailListAction from 'redux/actions/userAccountManagement/updateUserEmailList';
 
+import verifyOTPAction, {
+  clearVerifyOTP,
+} from 'redux/actions/users/verifyOTP';
 import setPrimaryEmail from 'redux/actions/users/setPrimaryEmail';
 import sendEmailAction from 'redux/actions/sendEmail';
 
@@ -28,6 +31,7 @@ export default () => {
     ({ userAccountManagement }) => userAccountManagement,
   );
   const { loading, success } = saveUserData;
+
   const { data } = userData;
   const { loading: settingPrimaryPhone } = primaryPhone;
   const { loading: settingPrimaryEmail } = primaryEmail;
@@ -43,6 +47,8 @@ export default () => {
   const [nationality, setNationality] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [phoneValue, setPhoneValue] = useState(null);
+  const [phoneCountryCode, setPhoneCountryCode] = useState(null);
+  const [secondOpen, setSecondOpen] = useState(false);
   const [openPhoneModal, setOpenPhoneModal] = useState(false);
   const [formEmail, setFormEmail] = useState(null);
   const [OTP, setOTP] = useState('');
@@ -67,11 +73,13 @@ export default () => {
     sendOTP,
     professionList,
     language: { preferred },
+    verifyOTP,
   } = useSelector(({ user }) => user);
   const { sendEmail } = useSelector(({ email }) => email);
 
   const [nationalityCountry, setNationalityCountry] = useState('');
   const [bornCountry, setBornCountry] = useState('');
+  const [shouldVerifyOtp, setShouldVerifyOtp] = useState(false);
 
   const options = [
     { key: '0', text: global.translate('Unkown', 1345), value: '0' },
@@ -84,7 +92,6 @@ export default () => {
       setOpenInfoModal(false);
     }
   }, [success]);
-
   useEffect(() => {
     setPersonalInfoData({
       ...personalInfoData,
@@ -206,6 +213,7 @@ export default () => {
   const handleSendOTP = () => {
     sendOTPAction(phoneValue)(dispatch);
   };
+
   useEffect(() => {
     if (sendEmail.data) {
       setOpenEmailModal(false);
@@ -246,41 +254,62 @@ export default () => {
     }
   };
   useEffect(() => {
+    if (updateUserPhoneList.success) {
+      setSecondOpen(false);
+    }
+  }, [updateUserPhoneList]);
+
+  useEffect(() => {
     if (OTP.length === 6) {
-      const data = {
-        OTP: OTP,
-        PhoneNumber: phoneValue,
-        Category: '1',
-        CountryCode: 'rw',
-        Phones: [],
-      };
-      updateUserPhoneListAction(data)(dispatch);
+      verifyOTPAction(phoneValue, OTP)(dispatch);
+    } else {
+      setShouldVerifyOtp(false);
+      clearVerifyOTP()(dispatch);
     }
   }, [OTP]);
 
   useEffect(() => {
-    if (OTP.length === 6) {
-      const data = {
+    if (verifyOTP.isValid) {
+      const newPhone = {
         OTP: OTP,
+        PhoneNumber: phoneValue,
+        Phone: phoneValue,
         Category: '1',
-        CountryCode: 'rw',
-        Emails: [],
+        CountryCode: phoneCountryCode,
+        PhoneFlag: `https://celinemoneypicfiles.blob.core.windows.net/icons/${phoneCountryCode}.png`,
       };
-      updateUserEmailListAction(data)(dispatch);
+      updateUserPhoneListAction({
+        existingPhones: data?.Phones,
+        data: { Phones: [newPhone] },
+      })(dispatch);
     }
-  }, [OTP]);
+  }, [verifyOTP]);
 
   const handleDelete = (e, phone) => {
     e.stopPropagation();
-    const newPhoneList = data?.Phones?.filter(
-      phoneObject =>
-        phoneObject.Phone.toString() !== phone.toString(),
-    );
-    updateUserPhoneListAction({ Phones: [...newPhoneList] })(
-      dispatch,
-    );
-  };
+    const newPhoneList = data?.Phones?.filter(phoneObject => {
+      return (
+        phone && phoneObject.Phone.toString() !== phone.toString()
+      );
+    });
+    const newList = newPhoneList?.map(item => {
+      return {
+        PhoneNumber: item.Phone,
+        Phone: item.Phone,
+        Category: '1',
+        CountryCode: item.CountryCode ?? item.NumberCountryCode,
+        NumberCountryCode: item.CountryCode ?? item.NumberCountryCode,
+        PhoneFlag: `https://celinemoneypicfiles.blob.core.windows.net/icons/${item.CountryCode ??
+          item.NumberCountryCode}.png`,
+        Primary: item.Primary,
+      };
+    });
 
+    updateUserPhoneListAction({
+      isDeleting: true,
+      data: { Phones: [...newList] },
+    })(dispatch);
+  };
   const emails = (userEmails, Email) => {
     const unique = userEmails
       .map(e => e[Email])
@@ -328,10 +357,14 @@ export default () => {
     disableButton,
     phoneValue,
     setPhoneValue,
+    phoneCountryCode,
+    setPhoneCountryCode,
     handleSendOTP,
     sendOTP,
     openPhoneModal,
     setOpenPhoneModal,
+    secondOpen,
+    setSecondOpen,
     handleEmailInputChange,
     handleSubmitEmail,
     formEmail,
@@ -354,5 +387,6 @@ export default () => {
     setNationalityCountry,
     setBornCountry,
     bornCountry,
+    verifyOTP,
   };
 };

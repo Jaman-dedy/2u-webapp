@@ -137,9 +137,9 @@ const ManageEmailModal = ({
                       ) : null}
                       &nbsp;
                       <span onClick={() => setSecondOpen(true)}>
-                        {email?.Primary !== 'YES'
-                          ? global.translate('| Remove')
-                          : null}
+                        {email?.Primary !== 'YES' ? (
+                          <span> | {global.translate('Remove')}</span>
+                        ) : null}
                       </span>
                       <div className="confirmation-modal">
                         <Modal

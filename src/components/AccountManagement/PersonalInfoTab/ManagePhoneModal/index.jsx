@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
   Modal,
@@ -11,11 +12,11 @@ import {
   Input,
 } from 'semantic-ui-react';
 import PhoneInput from 'react-phone-input-2';
-
 import AddPhoneIcon from 'assets/images/profile/add-phone.svg';
 import './style.scss';
 import InfoMessage from 'components/common/Alert/InfoMessage';
 import PINInput from 'components/common/PINInput';
+import ErrorMessage from 'components/common/Alert/Danger';
 
 const ManagePhoneModal = ({
   open,
@@ -26,6 +27,7 @@ const ManagePhoneModal = ({
   const {
     phoneValue,
     setPhoneValue,
+    setPhoneCountryCode,
     sendOTP,
     handleSendOTP,
     handleSetPrimary,
@@ -34,28 +36,45 @@ const ManagePhoneModal = ({
     updateUserPhoneList,
     setOTP,
     handleDelete,
+    secondOpen,
+    setSecondOpen,
+    verifyOTP,
   } = personalInfo;
-
   const [addingPhone, setIAddingPhone] = useState(false);
   const [sendOtp, setSendOtp] = useState(false);
+  const [verifyPhoneLoading, setVerifyPhoneLoading] = useState(false);
   const [currentPhone, setCurrentPhone] = useState(null);
-  const { loading, success, error } = updateUserPhoneList;
+  const { loading, success } = updateUserPhoneList;
 
   useEffect(() => {
     if (sendOTP.success) {
       setSendOtp(true);
     }
   }, [sendOTP]);
+
   useEffect(() => {
-    if (success) {
+    if (verifyOTP.isValid) {
       setSendOtp(false);
       setIAddingPhone(false);
     }
+  }, [verifyOTP]);
+
+  useEffect(() => {
+    if (success) {
+      setSecondOpen(false);
+    }
   }, [success]);
+
   const handleClick = phone => {
     setCurrentPhone(phone);
   };
-
+  useEffect(() => {
+    if (verifyOTP.loading) {
+      setVerifyPhoneLoading(true);
+    } else {
+      setVerifyPhoneLoading(false);
+    }
+  }, [verifyOTP.loading]);
   return (
     <Modal
       onOpen={() => setOpen(true)}
@@ -80,7 +99,7 @@ const ManagePhoneModal = ({
               <Table.Body>
                 {userData?.Phones?.map(phone => (
                   <Table.Row>
-                    <Table.Cell>
+                    <Table.Cell className="left-phone-number">
                       <div className="display-phone">
                         <Image src={phone.PhoneFlag} />
                         <div>
@@ -92,6 +111,7 @@ const ManagePhoneModal = ({
                         </div>
                       </div>
                     </Table.Cell>
+
                     <Table.Cell
                       textAlign="right"
                       className="set-primary"
@@ -106,25 +126,6 @@ const ManagePhoneModal = ({
                           ? global.translate('Set as primary')
                           : null}
                       </span>
-                      &nbsp;
-                      <span
-                        onClick={e => {
-                          handleDelete(e, phone.Phone);
-                          handleClick(phone.Phone);
-                        }}
-                      >
-                        {phone.Primary !== 'YES'
-                          ? global.translate('| Remove')
-                          : null}
-                      </span>
-                      {loading && currentPhone === phone.Phone && (
-                        <Loader
-                          size="small"
-                          active
-                          inline
-                          className="otp-loader"
-                        />
-                      )}
                       {phone.Primary !== 'YES' &&
                       settingPrimaryPhone &&
                       currentPhone === phone.Phone ? (
@@ -135,6 +136,54 @@ const ManagePhoneModal = ({
                           className="otp-loader"
                         />
                       ) : null}
+                      &nbsp;
+                      <span onClick={() => setSecondOpen(true)}>
+                        {phone.Primary !== 'YES' ? (
+                          <span> | {global.translate('Remove')}</span>
+                        ) : null}
+                      </span>
+                      <div className="confirmation-modal">
+                        <Modal
+                          onClose={() => setSecondOpen(false)}
+                          open={secondOpen}
+                          setOpen={setSecondOpen}
+                          size="mini"
+                        >
+                          <Modal.Content>
+                            <p>
+                              {global.translate(
+                                'Are you sure you want to remove this phone number?',
+                              )}
+                            </p>
+                          </Modal.Content>
+                          <Modal.Actions className="add-emails-actions">
+                            <Button
+                              className="btn--cancel"
+                              onClick={() => setSecondOpen(false)}
+                            >
+                              {global.translate('Cancel')}
+                            </Button>
+                            <Button
+                              className="btn--confirm"
+                              onClick={e => {
+                                handleDelete(e, phone.Phone);
+                                handleClick(phone.Phone);
+                              }}
+                            >
+                              {global.translate('Proceed')}
+                              &nbsp;
+                              {loading && (
+                                <Loader
+                                  size="mini"
+                                  active
+                                  inline
+                                  className="otp-loader"
+                                />
+                              )}
+                            </Button>
+                          </Modal.Actions>
+                        </Modal>
+                      </div>
                     </Table.Cell>
                   </Table.Row>
                 ))}
@@ -169,8 +218,9 @@ const ManagePhoneModal = ({
                 enableSearch
                 className="new-phone-number"
                 value={phoneValue}
-                onChange={phone => {
+                onChange={(phone, data) => {
                   setPhoneValue(phone);
+                  setPhoneCountryCode(data.countryCode);
                 }}
               />
             </div>
@@ -201,6 +251,15 @@ const ManagePhoneModal = ({
               <InfoMessage
                 description={`Enter OTP code sent to ${phoneValue}`}
               />
+              {verifyOTP.error && (
+                <div className="error-message">
+                  <ErrorMessage
+                    message={global.translate(
+                      'This verification code is invalid',
+                    )}
+                  />
+                </div>
+              )}
               <div className="otp-text">
                 {global.translate('OTP')}
               </div>
@@ -210,6 +269,7 @@ const ManagePhoneModal = ({
                 onChange={setOTP}
                 value={OTP}
               />
+
               <div className="otp-description">
                 {global.translate(
                   'It may take a moment to receive your code. Haven’t receive it yet?',
@@ -219,7 +279,15 @@ const ManagePhoneModal = ({
                     {' '}
                     {global.translate('Resend a new code')}
                   </span>
-                  {loading && (
+                  {verifyPhoneLoading && (
+                    <Loader
+                      size="small"
+                      active
+                      inline
+                      className="otp-loader"
+                    />
+                  )}
+                  {sendOTP.loading && (
                     <Loader
                       size="small"
                       active
