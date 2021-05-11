@@ -18,32 +18,32 @@ export default data => dispatch =>
         dispatch({
           type: LOGIN_START,
         }),
-      onSuccess: data => dispatch => {
-        if (Array.isArray(data)) {
-          if (data[0].Result !== 'FAILED') {
-            if (localStorage.languageToSave) {
-              changeLanguage(
-                localStorage.languageToSave,
-                true,
-              )(dispatch);
-            }
-
-            return dispatch({
-              type: LOGIN_SUCCESS,
-              payload: {
-                data,
-              },
-            });
+      onSuccess: result => dispatch => {
+        const res = Array.isArray(result)
+          ? result[0] || {}
+          : result || {};
+        if (res.Result !== 'FAILED') {
+          if (localStorage.languageToSave) {
+            changeLanguage(
+              localStorage.languageToSave,
+              true,
+            )(dispatch);
           }
+
           return dispatch({
-            type: LOGIN_ERROR,
+            type: LOGIN_SUCCESS,
             payload: {
-              error: data,
+              data: res,
+              OTP: data?.OTP,
             },
           });
         }
-
-        return null;
+        return dispatch({
+          type: LOGIN_ERROR,
+          payload: {
+            error: data,
+          },
+        });
       },
       onFailure: error => dispatch => {
         return dispatch({

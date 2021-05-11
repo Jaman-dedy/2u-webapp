@@ -1,3 +1,17 @@
+.user-phone-number {
+  margin-top: 8px;
+  .react-tel-input {
+    border: 1px solid #d8dcde !important;
+    border-radius: 5px;
+    .form-control {
+      width: 88.5% !important;
+      height: 100%;
+    }
+    .flag-dropdown {
+      border: none !important;
+    }
+  }
+}
 .submit-button {
   font-size: 18px;
   color: white;
@@ -21,7 +35,7 @@
 }
 
 .ui.form .field.field input {
-  padding: 14px 18px !important;
+  padding: 14px 10px;
 }
 
 .ui.search.dropdown > .text {
@@ -31,5 +45,5 @@
   box-shadow: 0 0 0 100px #ffffff inset !important;
 }
 .column {
-  margin-bottom: 16px!important;
+  margin-bottom: 16px !important;
 }

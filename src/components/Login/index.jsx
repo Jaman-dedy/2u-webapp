@@ -9,10 +9,10 @@ import LoginForm from './LoginForm';
 
 const Login = ({
   handleChange,
-  handleSubmit,
+  onCheckUserStatus,
   credentials,
   error,
-  loading,
+  loadUserStatus,
   pidError,
   passwordError,
   pinError,
@@ -20,6 +20,24 @@ const Login = ({
   isFormValid,
   setCredentials,
   onKeyDown,
+  displayUsername,
+  userLocationData,
+  setPhoneValue,
+  phoneValue,
+  onLoginHandle,
+  webUserStep,
+  setWebUserStep,
+  loadLoginUser,
+  setOTPNumber,
+  OTPNumber,
+  PIN,
+  setPIN,
+  ussdUserStep,
+  setUssdUserStep,
+  loginUssdUser,
+  resendOtp,
+  userStatusError,
+  sendOTPLoading,
 }) => {
   const [isSettingNewPassword, setIsSettingNewPassword] = useState(
     false,
@@ -79,8 +97,8 @@ const Login = ({
         {!isSettingNewPassword ? (
           <LoginForm
             handleChange={handleChange}
-            onSubmit={handleSubmit}
-            isLoading={loading}
+            onCheckUserStatus={onCheckUserStatus}
+            isLoading={loadUserStatus}
             credentials={credentials}
             error={error}
             pidError={pidError}
@@ -89,6 +107,24 @@ const Login = ({
             isFormValid={isFormValid}
             clearLoginUser={clearLoginUser}
             onKeyDown={onKeyDown}
+            displayUsername={displayUsername}
+            userLocationData={userLocationData}
+            setPhoneValue={setPhoneValue}
+            phoneValue={phoneValue}
+            onLoginHandle={onLoginHandle}
+            setWebUserStep={setWebUserStep}
+            webUserStep={webUserStep}
+            loadLoginUser={loadLoginUser}
+            setOTPNumber={setOTPNumber}
+            OTPNumber={OTPNumber}
+            PIN={PIN}
+            setPIN={setPIN}
+            ussdUserStep={ussdUserStep}
+            setUssdUserStep={setUssdUserStep}
+            loginUssdUser={loginUssdUser}
+            resendOtp={resendOtp}
+            userStatusError={userStatusError}
+            sendOTPLoading={sendOTPLoading}
           />
         ) : (
           <div>
@@ -106,9 +142,9 @@ const Login = ({
 Login.propTypes = {
   handleChange: PropTypes.func.isRequired,
   credentials: PropTypes.objectOf(PropTypes.any).isRequired,
-  handleSubmit: PropTypes.func.isRequired,
+  onCheckUserStatus: PropTypes.func.isRequired,
   clearLoginUser: PropTypes.func,
-  loading: PropTypes.bool,
+  loadUserStatus: PropTypes.bool,
   error: PropTypes.objectOf(PropTypes.any),
   pidError: PropTypes.string,
   passwordError: PropTypes.string,
@@ -119,7 +155,7 @@ Login.propTypes = {
 };
 
 Login.defaultProps = {
-  loading: false,
+  loadUserStatus: false,
   error: null,
   pidError: null,
   passwordError: null,

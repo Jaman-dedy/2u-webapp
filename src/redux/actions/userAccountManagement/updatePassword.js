@@ -12,13 +12,12 @@ export const restoreUpdatePassword = () => dispatch => {
     type: CLEAR_UPDATE_PASSWORD,
   });
 };
-export default (data, requireAppId = false) => dispatch =>
+export default data => dispatch =>
   dispatch(
     apiAction({
       method: 'post',
       url: '/ChangeUserPwd',
       data,
-      requireAppId,
       onStart: () => dispatch =>
         dispatch({
           type: UPDATE_PASSWORD_START,

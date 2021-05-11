@@ -1,26 +1,68 @@
 /* eslint-disable react/no-unescaped-entities */
-import './style.scss';
-import 'assets/styles/spinner.scss';
 
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Grid } from 'semantic-ui-react';
-import PasswordInput from 'components/common/PasswordInput';
+
 import AlertDanger from 'components/common/Alert/Danger';
+import PhoneInput from 'react-phone-input-2';
+import './style.scss';
+import 'assets/styles/spinner.scss';
+import PasswordForm from './PasswordForm';
+import UssdUserForm from './UssdUserForm';
 
 const LoginForm = ({
   handleChange,
   credentials,
-  onSubmit,
+  onCheckUserStatus,
   isLoading,
   error,
   pidError,
   passwordError,
   onKeyDown,
+  displayUsername,
+  userLocationData,
+  setPhoneValue,
+  phoneValue,
+  isFormValid,
+  onLoginHandle,
+  webUserStep,
+  setWebUserStep,
+  loadLoginUser,
+  verifyOTP,
+  handleKeyDown,
+  resendOtp,
+  setOTPNumber,
+  OTPNumber,
+  PIN,
+  setPIN,
+  ussdUserStep,
+  setUssdUserStep,
+  loginUssdUser,
+  userStatusError,
+  sendOTPLoading,
 }) => {
   const [showOption, setShowOptions] = useState(false);
   const [errors, setErrors] = useState(null);
+  const [disableButton, setDisableButton] = useState(false);
+
+  const {
+    currentUser: { authData },
+  } = useSelector(({ user }) => user);
+
+  useEffect(() => {
+    if (authData?.UserShouldSetPassword === 'NO') {
+      setWebUserStep(true);
+    } else if (authData?.UserShouldSetPassword === 'YES') {
+      setUssdUserStep(true);
+    } else {
+      setWebUserStep(false);
+      setUssdUserStep(false);
+    }
+  }, [authData]);
+
   useEffect(() => {
     if (error) {
       setErrors(
@@ -35,80 +77,145 @@ const LoginForm = ({
       setShowOptions(true);
     }
   }, [error]);
+
+  const disableButtonFunc = () => {
+    if (disableButton) {
+      return true;
+    }
+    if (isLoading || !isFormValid || !credentials?.PID) {
+      return true;
+    }
+    return false;
+  };
+
+  useEffect(() => {
+    if (!credentials?.PID) {
+      setWebUserStep(false);
+      setUssdUserStep(false);
+    }
+    if (!phoneValue) {
+      setWebUserStep(false);
+      setUssdUserStep(false);
+    }
+  }, [credentials.PID, phoneValue]);
+
   return (
     <>
-      {error && <AlertDanger message={errors?.Description} />}
-
+      {(error || userStatusError) && (
+        <AlertDanger
+          message={
+            errors?.Description || userStatusError?.Description
+          }
+        />
+      )}
       <Form
-        onSubmit={onSubmit}
         autoComplete="off"
         className="login-form-ui"
         onKeyDown={onKeyDown}
       >
         <Grid columns={1}>
           <Grid.Row>
-            <Grid.Column>
-              <div className="sub-titles">
-                {`${global.translate('Username')} ${global.translate(
-                  'or',
-                )} ${global.translate('Phone number')} `}
-              </div>
-              <Form.Field>
-                <Form.Input
-                  error={
-                    pidError && {
-                      content: global.translate(pidError.toString()),
-                      pointing: 'above',
-                    }
-                  }
-                  placeholder={global.translate('Username')}
-                  name="PID"
-                  value={(credentials.PID && credentials.PID) || ''}
-                  onChange={handleChange}
-                />
-              </Form.Field>
-            </Grid.Column>
-            <div className="clear" />
-            <Grid.Column>
-              <div>
-                {`${global.translate('Password')} ${global.translate(
-                  'or',
-                )} ${global.translate('PIN Number')} `}
-              </div>
-              <Form.Field>
-                <PasswordInput
-                  error={
-                    passwordError && {
-                      content: global.translate(
-                        passwordError.toString(),
-                      ),
-                      pointing: 'above',
-                    }
-                  }
-                  placeholder={global.translate('Password', 2)}
-                  onChange={handleChange}
-                  type="password"
-                  name="Password"
-                  value={credentials.Password || ''}
-                  icon="eye"
-                />
-              </Form.Field>
-            </Grid.Column>
+            {(webUserStep || !ussdUserStep) && (
+              <Grid.Column>
+                <div className="sub-titles">
+                  {`${global.translate(
+                    'Username',
+                  )} ${global.translate('or')} ${global.translate(
+                    'Phone number',
+                  )} `}
+                </div>
+                {displayUsername ? (
+                  <Form.Field>
+                    <Form.Input
+                      error={
+                        pidError && {
+                          content: global.translate(
+                            pidError.toString(),
+                          ),
+                          pointing: 'above',
+                        }
+                      }
+                      placeholder={global.translate('Username*')}
+                      name="PID"
+                      value={
+                        (credentials.PID && credentials.PID) || ''
+                      }
+                      onChange={handleChange}
+                      autoFocus
+                    />
+                  </Form.Field>
+                ) : (
+                  <Form.Field>
+                    <div className="user-phone-number">
+                      <PhoneInput
+                        enableSearch
+                        country={userLocationData?.CountryCode}
+                        value={phoneValue}
+                        onChange={phone => {
+                          setPhoneValue(phone);
+                        }}
+                        inputProps={{
+                          name: 'phone',
+                          required: true,
+                          autoFocus: true,
+                        }}
+                      />
+                    </div>
+                  </Form.Field>
+                )}
+              </Grid.Column>
+            )}
+
+            {webUserStep && (
+              <PasswordForm
+                passwordError={passwordError}
+                handleChange={handleChange}
+                credentials={credentials}
+              />
+            )}
+            {ussdUserStep && (
+              <UssdUserForm
+                verifyOTP={verifyOTP}
+                handleKeyDown={handleKeyDown}
+                setOTPNumber={setOTPNumber}
+                OTPNumber={OTPNumber}
+                PIN={PIN}
+                setPIN={setPIN}
+                setUssdUserStep={setUssdUserStep}
+                loadLoginUser={loadLoginUser}
+                resendOtp={resendOtp}
+                disableButton={disableButton}
+                setDisableButton={setDisableButton}
+                sendOTPLoading={sendOTPLoading}
+              />
+            )}
           </Grid.Row>
         </Grid>
-        <div className="clear" />
         <button
-          loading={isLoading}
-          disabled={isLoading}
-          onClick={onSubmit}
+          loading={isLoading || loadLoginUser}
+          disabled={disableButtonFunc()}
+          onClick={() => {
+            if (webUserStep) {
+              onLoginHandle();
+            }
+            if (ussdUserStep) {
+              loginUssdUser();
+            } else {
+              onCheckUserStatus();
+            }
+          }}
           type="submit"
           className="btn-auth btn-login"
         >
-          {global.translate('Connect', 4).toUpperCase()}
-          {isLoading && <div className="loading-button" />}
+          {!ussdUserStep && !webUserStep
+            ? global.translate('Next', 4).toUpperCase()
+            : global.translate('Connect', 4).toUpperCase()}
+          {(isLoading || loadLoginUser) && (
+            <div className="loading-button" />
+          )}
         </button>
-        <div className="clear" />
-        {showOption && (
+
+        {showOption && !ussdUserStep && (
           <>
             <div className="from_login_link">
               {global.translate('Forgot your Password?')}{' '}
@@ -124,13 +231,16 @@ const LoginForm = ({
             </div>
           </>
         )}
-        <br />
-        <div className="btn-signup-login">
-          <div>{global.translate('Not yet registered?', 1201)} </div>
-          <Link to="/register" className="btn-auth ">
-            {global.translate('Sign up', 1202).toUpperCase()}
-          </Link>
-        </div>
+        {!ussdUserStep && (
+          <div className="btn-signup-login">
+            <div>
+              {global.translate('Not yet registered?', 1201)}{' '}
+            </div>
+            <Link to="/register" className="btn-auth ">
+              {global.translate('Sign up', 1202).toUpperCase()}
+            </Link>
+          </div>
+        )}
       </Form>
     </>
   );

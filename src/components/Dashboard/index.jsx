@@ -1,15 +1,10 @@
 /* eslint-disable */
-import './Dashboard.scss';
-import ChartModal from 'components/Chat/ChatModal';
-import DashboardLayout from 'components/common/DashboardLayout';
-import GraphDataContainer from 'containers/Dashboard/cumulativeGraph';
-import DefaultWalletContainer from 'containers/Dashboard/DefaultWallet';
-import UserCurrenciesContainer from 'containers/Dashboard/userCurrencies';
 import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Tour from 'reactour';
 import { Image } from 'semantic-ui-react';
+
 import RedeemVoucherModal from 'components/Stores/StoreDetailsComponent/RedeemVoucherModal';
 import UserProfilePlaceholder from 'assets/images/avatarplaceholder.png';
 import WelcomeProfilePlaceholder from 'assets/images/welcome-profile-placeholder.svg';
@@ -30,7 +25,13 @@ import Thumbnail from 'components/common/Thumbnail';
 import { Link } from 'react-router-dom';
 import tourConfig from 'utils/TourSteps';
 import avatarPlaceholder from 'assets/images/avatar-placeholder.svg';
-
+import './Dashboard.scss';
+import ChartModal from 'components/Chat/ChatModal';
+import DashboardLayout from 'components/common/DashboardLayout';
+import GraphDataContainer from 'containers/Dashboard/cumulativeGraph';
+import DefaultWalletContainer from 'containers/Dashboard/DefaultWallet';
+import UserCurrenciesContainer from 'containers/Dashboard/userCurrencies';
+import SetPasswordModal from './SetPasswordModal';
 const Dashboard = ({
   userData,
   authData,
@@ -39,6 +40,12 @@ const Dashboard = ({
   loadingFavoriteContacts,
   getTransactions,
   loadingTransaction,
+  onInputChange,
+  form,
+  handleSetPassword,
+  openSetPasswordModal,
+  setOpenSetPasswordModal,
+  loadSetPwd,
 }) => {
   const [hasError, setHasError] = useState(false);
   const [isShowing, setShowing] = useState(true);
@@ -78,6 +85,13 @@ const Dashboard = ({
       }
     }
   }, [userData]);
+
+  useEffect(() => {
+    if (authData?.UserShouldSetPassword === 'YES') {
+      setOpenSetPasswordModal(true);
+    }
+  }, [authData]);
+
   const accentColor = '#5cb7b7';
   const closeTour = () => {
     setIsTourOpen(false);
@@ -364,6 +378,14 @@ const Dashboard = ({
         <RedeemVoucherModal
           open={isOpenRedeemVoucherModal}
           setOpen={setIsOpenRedeemVoucherModal}
+        />
+        <SetPasswordModal
+          open={openSetPasswordModal}
+          setOpen={setOpenSetPasswordModal}
+          form={form}
+          onInputChange={onInputChange}
+          handleSetPassword={handleSetPassword}
+          loading={loadSetPwd}
         />
       </DashboardLayout>
     </>

@@ -39,15 +39,15 @@ export default (state, { type, payload }) => {
     case LOGIN_SUCCESS:
       localStorage.removeItem('userWasIdle');
       localStorage.removeItem('fromUserLogout');
-      localStorage.setItem('token', payload.data[0].LiveToken);
+      localStorage.setItem('token', payload.data.LiveToken);
       localStorage.setItem(
         'refresh_token',
-        payload.data[0].RefreshToken,
+        payload.data.RefreshToken,
       );
 
       localStorage.setItem(
         'MAX_USER_IDLE_TIME',
-        Number(payload.data[0].MaxIdleTimeForLogoff) * 60000,
+        Number(payload.data.MaxIdleTimeForLogoff) * 60000,
       );
       return {
         ...state,
@@ -58,17 +58,17 @@ export default (state, { type, payload }) => {
         },
         currentUser: {
           ...state.currentUser,
-          authData: payload.data?.[0],
+          authData: { ...payload.data, OTP: payload.OTP },
         },
 
         userData: {
-          data: payload.data[0]?.UserData,
+          data: payload.data?.UserData,
           loading: false,
           error: null,
         },
         myWallets: {
           ...state.myWallets,
-          walletList: payload.data?.[0]?.UserData.Wallets,
+          walletList: payload.data?.UserData.Wallets,
           success: true,
           loading: false,
         },
@@ -77,7 +77,7 @@ export default (state, { type, payload }) => {
           ...state.currencies,
           error: null,
           loading: false,
-          data: payload.data?.[0]?.Currencies,
+          data: payload.data?.Currencies,
         },
       };
 

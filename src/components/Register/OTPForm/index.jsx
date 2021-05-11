@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 import { Container, Form, Loader } from 'semantic-ui-react';
 import { useDispatch } from 'react-redux';
 import InfoIcon from 'assets/images/info-icon.svg';
-import './style.scss';
 
 import clearPhoneNumberAndOTPStoreAction from 'redux/actions/users/clearPhoneNumberAndOTPStore';
 import GoBack from 'components/common/GoBack';
@@ -79,7 +78,7 @@ const OTPForm = ({
         />
       </Form>
       <div className="pin-title">
-        {global.translate('OTP number')}
+        {global.translate('Verification number')}
       </div>
       <div className="otp-box">
         <PINInput
@@ -99,7 +98,8 @@ const OTPForm = ({
         )}
 
         <span onClick={resendOtp} className="feedback">
-          {' '}{global.translate('Resend a new code')}
+          {' '}
+          {global.translate('Resend a new code')}
         </span>
       </div>
     </Container>
