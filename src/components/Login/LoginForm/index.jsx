@@ -85,6 +85,7 @@ const LoginForm = ({
     if (isLoading || !isFormValid || !credentials?.PID) {
       return true;
     }
+
     return false;
   };
 
@@ -96,8 +97,17 @@ const LoginForm = ({
     if (!phoneValue) {
       setWebUserStep(false);
       setUssdUserStep(false);
+    } else {
+      setWebUserStep(true);
+      setUssdUserStep(true);
     }
   }, [credentials.PID, phoneValue]);
+
+  useEffect(() => {
+    if (!ussdUserStep) {
+      setDisableButton(false);
+    }
+  }, [ussdUserStep]);
 
   return (
     <>
