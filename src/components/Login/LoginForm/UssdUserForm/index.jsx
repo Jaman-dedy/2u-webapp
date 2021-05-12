@@ -55,7 +55,7 @@ const UssdUserForm = ({
           />
         </div>
         <div className="pin-title">
-          {global.translate('Verification number')}
+          {global.translate('Confirmation code')}
         </div>
         <div className="otp-box">
           <PINInput
@@ -68,7 +68,7 @@ const UssdUserForm = ({
         </div>
         <div className="info-text">
           {global.translate(
-            'Provide the OTP sent to your phone number',
+            'Provide the confirmation code sent to your phone number',
           )}
         </div>
 

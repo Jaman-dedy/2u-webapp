@@ -135,7 +135,9 @@ const LoginForm = ({
                           pointing: 'above',
                         }
                       }
-                      placeholder={global.translate('Username*')}
+                      placeholder={global.translate(
+                        'Username or Phone number*',
+                      )}
                       name="PID"
                       value={
                         (credentials.PID && credentials.PID) || ''
