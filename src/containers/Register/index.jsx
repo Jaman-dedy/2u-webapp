@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import queryString from 'query-string';
 
 import Register from 'components/Register';
 import getUserLocationDataAction from 'redux/actions/users/userLocationData';
@@ -40,6 +42,9 @@ const RegisterContainer = () => {
 
   const { userLocationData } = useSelector(({ user }) => user);
 
+  const location = useLocation();
+  const queryParams = queryString.parse(location.search);
+
   const handleInputChange = ({ target: { name, value } }) => {
     setRegistrationData({
       ...registrationData,
@@ -52,6 +57,16 @@ const RegisterContainer = () => {
       getUserLocationDataAction()(dispatch);
     }
   }, []);
+  const { referrer } = queryParams;
+
+  useEffect(() => {
+    if (referrer?.length) {
+      setRegistrationData({
+        ...registrationData,
+        ReferralPID: referrer,
+      });
+    }
+  }, [userLocationData]);
 
   return (
     <Register

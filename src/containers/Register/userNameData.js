@@ -7,6 +7,7 @@ import verifyPIDAction, {
 } from 'redux/actions/users/verifyPID';
 import checkPassword from 'utils/checkPassword';
 import registerUserAction from 'redux/actions/users/registerUser';
+import countryCurrenciesAction from 'redux/actions/users/countryCurrencies';
 
 export default ({
   registrationData,
@@ -14,14 +15,15 @@ export default ({
   screenNumber,
   setRegistrationData,
 }) => {
-  const { registerUser } = useSelector(({ user }) => user);
+  const { verifyPID, registerUser, countryCurrencies } = useSelector(
+    ({ user }) => user,
+  );
 
   const [errors, setErrors] = useState({});
   const [PINNumber, setPINNumber] = useState('');
   const [passwordStrength, setPasswordStrength] = useState(0);
   const { personalId, password, pin, ReferralPID } = registrationData;
 
-  const { verifyPID } = useSelector(({ user }) => user);
   const dispatch = useDispatch();
 
   const handleVerifyPID = () => {
@@ -166,6 +168,27 @@ export default ({
   const handleClearUsername = () => {
     clearUsername()(dispatch);
   };
+  const handleSubmit = () => {
+    registerUserAction({
+      ...registrationData,
+      ContactPID: registrationData?.ReferralPID,
+    })(dispatch);
+  };
+  const handleGetCountryCurrencies = () => {
+    countryCurrenciesAction(registrationData.countryCode)(dispatch);
+  };
+
+  useEffect(() => {
+    if (registerUser.success) {
+      handleGetCountryCurrencies();
+    }
+  }, [registerUser]);
+
+  useEffect(() => {
+    if (countryCurrencies.success) {
+      setScreenNumber(5);
+    }
+  }, [countryCurrencies]);
 
   return {
     handleNext,
@@ -180,5 +203,6 @@ export default ({
     handleClearUsername,
     setPINNumber,
     PINNumber,
+    handleSubmit,
   };
 };

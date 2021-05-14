@@ -24,7 +24,9 @@ const UsernameForm = ({
     handleClearUsername,
     setPINNumber,
     PINNumber,
+    handleSubmit,
   } = userNameData;
+
   const { password } = registrationData;
   const [disableButton, setDisableButton] = useState(false);
   const [goToNextScreen, setGoToNextScreen] = useState(false);
@@ -187,12 +189,20 @@ const UsernameForm = ({
           disabled={disableButton}
           className="btn-auth btn-primary"
           onClick={() => {
-            if (goToNextScreen) {
+            if (!registrationData?.ReferralPID && goToNextScreen) {
               handleNext();
+            }
+            if (registrationData?.ReferralPID) {
+              handleSubmit();
             }
           }}
         >
-          {global.translate('Next', 10)}
+          {registerUser.loading && (
+            <span className="loading-button" />
+          )}
+          {registrationData?.ReferralPID
+            ? global.translate('REGISTER NOW')
+            : global.translate('Next', 10)}
         </button>
       </Form>
     </Container>

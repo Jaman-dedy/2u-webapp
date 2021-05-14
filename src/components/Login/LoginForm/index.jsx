@@ -78,16 +78,13 @@ const LoginForm = ({
     }
   }, [error]);
 
-  const disableButtonFunc = () => {
-    if (disableButton) {
-      return true;
+  useEffect(() => {
+    if (credentials?.PID || phoneValue) {
+      setDisableButton(false);
+    } else {
+      setDisableButton(true);
     }
-    if (isLoading || !isFormValid || !credentials?.PID) {
-      return true;
-    }
-
-    return false;
-  };
+  }, [isLoading, isFormValid, credentials?.PID, phoneValue]);
 
   useEffect(() => {
     if (!credentials?.PID) {
@@ -98,8 +95,6 @@ const LoginForm = ({
       setWebUserStep(false);
       setUssdUserStep(false);
     } else {
-      setWebUserStep(true);
-      setUssdUserStep(true);
     }
   }, [credentials.PID, phoneValue]);
 
@@ -205,7 +200,7 @@ const LoginForm = ({
         </Grid>
         <button
           loading={isLoading || loadLoginUser}
-          disabled={disableButtonFunc()}
+          disabled={disableButton}
           onClick={() => {
             if (webUserStep) {
               onLoginHandle();
