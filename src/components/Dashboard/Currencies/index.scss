@@ -12,9 +12,9 @@
   border-radius: 5px;
 }
 .user-currencies {
-  h3 {
-    margin-top: 5px;
-    font-weight: 200;
+  &__heading {
+    font-family: 'Montserrat', sans-serif;
+    text-transform: capitalize !important;
   }
 }
 

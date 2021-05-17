@@ -27,7 +27,7 @@ import microloan from './microloan';
 import withdrawMoney from './withdrawMoney';
 import verifyEmail from './verifyEmail';
 import sendToPayPal from './sendToPayPal';
-
+import walletsAndBanks from './walletsAndBanks';
 export default [
   login,
   dashboard,
@@ -61,4 +61,5 @@ export default [
   withdrawMoney,
   verifyEmail,
   sendToPayPal,
+  ...walletsAndBanks,
 ];

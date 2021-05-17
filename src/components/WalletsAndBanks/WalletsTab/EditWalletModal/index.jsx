@@ -34,17 +34,17 @@ const EditWalletModal = ({
     >
       <Modal.Header className="modal-title">
         {global.translate('Edit wallet name', 88)}{' '}
-        {form.AccountNumber}
+        {form?.AccountNumber}
       </Modal.Header>
       <Modal.Content>
         <Modal.Description>
-          {!addWallet.success && (
+          {!addWallet?.success && (
             <Form className="wallet-form">
               <Form.Input
                 className="input"
                 placeholder={global.translate('Wallet name', 97)}
                 name="Name"
-                value={form.Name || ''}
+                value={form?.Name || ''}
                 onChange={onChange}
               />
             </Form>

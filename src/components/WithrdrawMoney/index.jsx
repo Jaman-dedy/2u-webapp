@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 import { Input, Image, Button } from 'semantic-ui-react';
 import PhoneInput from 'react-phone-input-2';
 import PropTypes from 'prop-types';
-
 import DashboardLayout from 'components/common/DashboardLayout';
 import WelcomeBar from 'components/Dashboard/WelcomeSection';
 import GoBack from 'components/common/GoBack';
@@ -198,7 +197,6 @@ const WithdrawMoney = ({
           }}
           loading={checking}
         >
-          {' '}
           {!confirmationData
             ? global.translate('Next')
             : global.translate('Withdraw money')}

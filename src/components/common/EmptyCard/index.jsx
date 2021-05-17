@@ -13,8 +13,11 @@ const EmptyCard = ({
   imgSrc,
 }) => {
   return (
-    <div className="empty-store">
-      <Image src={imgSrc} className="empty-store__img" />
+    <div className="empty-store small-icon">
+      <Image
+        src={imgSrc}
+        className="empty-store__icon empty-store__icon--small"
+      />
       <h2>{header}</h2>
       <div>{body}</div>
       {!disableAdd && (

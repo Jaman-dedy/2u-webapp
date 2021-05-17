@@ -14,7 +14,7 @@ export default data => dispatch =>
       data: {
         PIN: data.pin,
         CountryCode: data.CountryCode,
-        TargetType: SUPPLIERS_PAY_BILLS,
+        TargetType: data?.TargetType || SUPPLIERS_PAY_BILLS,
         Amount: data.Amount,
         SourceWallet: data.WalletNumber,
         TargetCurrency: data.Currency,

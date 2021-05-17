@@ -1,7 +1,6 @@
 /* eslint-disable */
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import clearCardOperationFees from 'redux/actions/addMoney/clearCardOperationFees';
 import clearPayPalOperationFees from 'redux/actions/addMoney/clearPayPalOperationFees';
 import getCardOperationFeesAction from 'redux/actions/addMoney/getCardOperationFees';
@@ -11,6 +10,7 @@ import getMyWalletsAction from 'redux/actions/users/getMyWallets';
 import getUserInfo from 'redux/actions/users/getUserInfo';
 import addMoneyFromPayPalAction from 'redux/actions/addMoney/addMoneyFromPayPal';
 import openInNewTab from 'helpers/openInNewTab';
+import addMoneyToWallet from 'redux/actions/walletsAndBanks/addMoneyToWallet';
 
 const defaultOptions = [
   { key: 'usd', text: 'USD', value: 'USD' },
@@ -21,8 +21,10 @@ const defaultOptions = [
 ];
 
 const AddMoneyContainer = () => {
-  const history = useHistory();
   const { userData, myWallets } = useSelector(({ user }) => user);
+  const [selectedWallet, setSelectedWallet] = useState({});
+  const [hasSameCurrency, setHasSameCurrency] = useState(false);
+
   const {
     cardOperationFees,
     addMoneyFromCreditCard,
@@ -30,6 +32,7 @@ const AddMoneyContainer = () => {
     payPalOperationFees,
   } = useSelector(({ addMoney }) => addMoney);
   const dispatch = useDispatch();
+  const [PIN, setPIN] = useState('');
 
   const [addMoneyData, setAddMoneyData] = useState({
     Amount: '',
@@ -48,6 +51,7 @@ const AddMoneyContainer = () => {
   });
 
   const [errors, setErrors] = useState({});
+
   const clearError = name => {
     setErrors({
       ...errors,
@@ -134,7 +138,9 @@ const AddMoneyContainer = () => {
     });
   };
 
-  const selectWallet = ({ AccountNumber, CurrencyCode }) => {
+  const selectWallet = wallet => {
+    const { AccountNumber, CurrencyCode } = wallet;
+    setSelectedWallet(wallet);
     setAddMoneyData({
       ...addMoneyData,
       WalletNumber: AccountNumber,
@@ -206,8 +212,44 @@ const AddMoneyContainer = () => {
       accountNumber: addMoneyData.WalletNumber,
       authToken: localStorage.getItem('token'),
     };
+
     addMoneyFromPayPalAction(data)(dispatch);
   };
+
+  const [bankForm, setBankForm] = useState({
+    amount: '',
+    bankAccount: null,
+    PIN: '',
+  });
+
+  useEffect(() => {
+    setBankForm(form => ({
+      ...form,
+      WalletNumber: selectedWallet?.AccountNumber,
+      WalletCurrency: selectedWallet?.CurrencyCode,
+    }));
+  }, [selectedWallet]);
+
+  const handleBankFormChange = (_, { value, name }) => {
+    setBankForm(form => ({
+      ...form,
+      [name]: value,
+      WalletNumber: selectedWallet?.AccountNumber,
+      WalletCurrency: selectedWallet?.CurrencyCode,
+    }));
+  };
+  const handleTopUpFromBank = () => {
+    const { bankAccount } = bankForm;
+    addMoneyToWallet({
+      CountryCode: bankAccount?.CountryCode,
+      AccountNumber: bankAccount?.AccountNumber,
+      BankCode: bankAccount?.BankCode,
+      Amount: bankForm?.amount,
+      Wallet: addMoneyData?.WalletNumber,
+      PIN: PIN,
+    })(dispatch);
+  };
+
   useEffect(() => {
     if (addMoneyFromPayPal.data) {
       openInNewTab(addMoneyFromPayPal.data.checkout_url);
@@ -232,6 +274,13 @@ const AddMoneyContainer = () => {
       addMoneyFromPayPal={addMoneyFromPayPal}
       handleSubmitPayPal={handleSubmitPayPal}
       payPalOperationFees={payPalOperationFees}
+      bankForm={bankForm}
+      onBankFormChange={handleBankFormChange}
+      handleTopUpFromBank={handleTopUpFromBank}
+      setBankForm={setBankForm}
+      PIN={PIN}
+      setPIN={setPIN}
+      selectedWallet={selectedWallet}
     />
   );
 };

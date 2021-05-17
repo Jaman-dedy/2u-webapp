@@ -82,13 +82,30 @@ const ReusableDrowdown = ({
       if (option.Img && option.Title) {
         return option;
       }
-      // select bank
+
+      // select bank account
+
       if (option.BankCode && option.BankLogo) {
         return {
-          Title: option.AccountNumber,
+          Title: option.AccountNumber ?? option.BankName,
           Img: option.BankLogo,
           CurrencyCode: option.Currency,
           OperatorName: option.BankName,
+        };
+      }
+
+      // select bank name
+
+      if (
+        option.BankCode &&
+        option.Logo &&
+        option.BankName &&
+        !option.AccountNumber
+      ) {
+        return {
+          Title: option.BankName,
+          Img: option.Logo,
+          ...option,
         };
       }
     });
@@ -232,7 +249,7 @@ const ReusableDrowdown = ({
                   onChange({
                     target: {
                       name,
-                      value: option.Title,
+                      value: option?.BankCode ?? option?.Title,
                     },
                   });
                   setCurrentOption({

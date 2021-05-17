@@ -1,11 +1,22 @@
 .pin {
   display: flex;
   max-width: 100%;
+  padding: 0.4rem 1rem;
+
+  @media screen and (max-width: 320px) {
+    padding: 0 !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
 
   &__input {
     width: 40px;
     padding: 0.4rem 1rem;
-    border: none !important;
+    @media screen and (max-width: 375px) {
+      width: 30px !important;
+      padding: 0 !important;
+    }
+    border: none;
     outline: none;
     text-align: center;
     border-bottom: 1.8px solid #ccc !important;

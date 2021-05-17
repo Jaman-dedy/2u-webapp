@@ -49,8 +49,6 @@ const Profile = ({
   const [accountInfoTitle, setAccountInfoTitle] = useState('');
   const location = useLocation();
 
-  const [isABusinessAccount, setIsABusinessAccount] = useState(false);
-
   useEffect(() => {
     getReferreesList()(dispatch);
   }, []);
@@ -296,6 +294,7 @@ Profile.propTypes = {
   changeGender: PropTypes.func,
   documents: PropTypes.objectOf(PropTypes.any),
   switchAccount: PropTypes.objectOf(PropTypes.any).isRequired,
+  bankAccount: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 Profile.defaultProps = {
   userData: {},

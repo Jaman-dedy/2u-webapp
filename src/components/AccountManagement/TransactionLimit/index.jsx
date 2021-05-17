@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './style.scss';
 
 const TransactionLimit = ({ userData }) => {
-  const { TransactionLimits } = userData;
+  const { TransactionLimits } = userData || {};
   return (
     <div className="transaction-limit-container">
       <Table basic="very">

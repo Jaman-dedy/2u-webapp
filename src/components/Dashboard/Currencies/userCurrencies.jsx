@@ -23,9 +23,9 @@ const UserCurrencies = ({ currencies, userData, dispatch }) => {
       {currencies.data && (
         <div className="dash-card" data-tut="second-step">
           <div className="user-currencies">
-            <h2>
-              {global.translate('MY CURRENCIES', 1248).toUpperCase()}
-            </h2>
+            <h3 className="user-currencies__heading">
+              {global.translate('My currencies', 1248)}
+            </h3>
             <Currencies
               data={currencies.data}
               onItemClick={item => {

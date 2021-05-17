@@ -2,8 +2,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Button } from 'semantic-ui-react';
-import AddMoneyIcon from 'assets/images/services/paypal-csn.svg';
-import bankTransferIcon from 'assets/images/services/bank-t-csn.svg';
 import { useHistory, Prompt, useLocation } from 'react-router-dom';
 import './AddMoney.scss';
 import DashboardLayout from 'components/common/DashboardLayout';
@@ -19,6 +17,7 @@ import BankImg from 'assets/images/bankImg.svg';
 import ConfirmAddMoney from './ConfirmAddMoney';
 import CreditCardForm from './CreditCardForm';
 import PayPalForm from './PayPalForm';
+import BankForm from './BankForm';
 import ShowStep from './ShowStep';
 import Step1Img from 'assets/images/step1.svg';
 import Step2Img from 'assets/images/step2.svg';
@@ -26,8 +25,11 @@ import Step3Img from 'assets/images/step3.svg';
 import levelOneVisited from 'assets/images/level-one-visited.svg';
 import levelTwoVisited from 'assets/images/level-two-visited.svg';
 import levelThreeVisited from 'assets/images/level-three-visited.svg';
-import ComingSoon from 'components/common/BottomMenu/ComingSoon';
 import ConfirmPayPal from './ConfirmPayPal';
+import ConfirmTopUpFromBank from './ConfirmTopUpFromBank';
+import getLinkedBankAccounts from 'redux/actions/walletsAndBanks/getLinkedBankAccounts';
+import { useSelector, useDispatch } from 'react-redux';
+import InfoMessage from 'components/common/InfoMessage';
 
 const defaultOptions = [
   { key: 'usd', text: 'USD', value: 'USD' },
@@ -53,6 +55,13 @@ const AddMoney = ({
   addMoneyFromPayPal,
   handleSubmitPayPal,
   payPalOperationFees,
+  handleTopUpFromBank,
+  onBankFormChange,
+  bankForm,
+  setBankForm,
+  PIN,
+  setPIN,
+  selectedWallet,
 }) => {
   const [date, setDate] = useState('');
   const [oneSuccess, setOneSuccess] = useState(false);
@@ -61,6 +70,8 @@ const AddMoney = ({
   const [selectedWalletNumber, setSelectedWalletNumber] = useState(
     '',
   );
+
+  const [openPINModal, setOpenPINModal] = useState(false);
   const [topUpFromCreditCard, setTopUpFromCreditCard] = useState(
     false,
   );
@@ -76,6 +87,7 @@ const AddMoney = ({
   const [disableButton, setDisableButton] = useState(true);
   const [tickStep, setTickStep] = useState(false);
 
+  const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
 
@@ -92,12 +104,14 @@ const AddMoney = ({
   }, [myWallets]);
 
   useEffect(() => {
-    if (location.state?.wallet) {
-      const { AccountNumber } = location.state.wallet;
-      myWallets.walletList;
-      setSelectedWalletNumber(AccountNumber);
+    if (location?.state?.bankItem) {
+      setBankForm(form => ({
+        ...form,
+        bankAccount: location?.state?.bankItem,
+      }));
+      checkTopUpBank();
     }
-  }, [myWallets]);
+  }, [location?.state?.bankItem]);
 
   useEffect(() => {
     if (justAdded) {
@@ -149,6 +163,7 @@ const AddMoney = ({
         setDate(value);
       }
     }, [value]);
+
     return (
       <Form.Input
         value={date}
@@ -188,16 +203,22 @@ const AddMoney = ({
       setLevelThree(false);
     }
   }, [success]);
+
   useEffect(() => {
     if (step === 1) {
       setLevelOne(true);
+      setLevelTwo(false);
+      setLevelThree(false);
     }
   }, [step]);
+
   useEffect(() => {
     if (step === 2) {
       setLevelTwo(true);
+      setLevelThree(false);
     }
   }, [step]);
+
   useEffect(() => {
     if (step === 3) {
       setLevelThree(true);
@@ -221,12 +242,28 @@ const AddMoney = ({
   }, [topUpFromBank, topUpPaypalCard, topUpFromCreditCard]);
 
   useEffect(() => {
-    if (tickStep && nextButton) {
+    getLinkedBankAccounts()(dispatch);
+  }, []);
+
+  useEffect(() => {
+    if (
+      tickStep &&
+      nextButton &&
+      Object.values(selectedWallet)?.length
+    ) {
       setDisableButton(false);
     } else {
       setDisableButton(true);
     }
-  }, [tickStep, nextButton]);
+  }, [tickStep, nextButton, selectedWallet]);
+
+  const linkedBankAccounts = useSelector(
+    ({
+      walletsAndBanks: {
+        linkedBankAccounts: { data },
+      },
+    }) => data,
+  );
 
   return (
     <>
@@ -319,18 +356,34 @@ const AddMoney = ({
                   onClick={checkTopUpPayPal}
                   ticked={topUpPaypalCard}
                 />
-                <h3>{global.translate('Coming soon', 1747)}</h3>
-
-                <div className="flex top-up__coming-soon">
-                  <ComingSoon
-                    image={bankTransferIcon}
-                    title="Bank account"
-                    subtitle={global.translate(
-                      'Top Up money from your bank account',
-                      2135,
+                {linkedBankAccounts?.length === 0 && (
+                  <InfoMessage
+                    description={global.translate(
+                      'To to up from a bank account, you need to have at least one bank account linked to your 2U Money account',
                     )}
+                    actionLabel={global.translate('Link an account')}
+                    actionHandler={() =>
+                      history.push({
+                        pathname: '/wallets',
+                        state: {
+                          activeTab: 1,
+                        },
+                      })
+                    }
                   />
-                </div>
+                )}
+
+                <DisplayProviders
+                  providerLogo={BankImg}
+                  title={global.translate('Bank account', 170)}
+                  subtitle={global.translate(
+                    'Top Up money from your bank account',
+                  )}
+                  onClick={checkTopUpBank}
+                  ticked={topUpFromBank}
+                  disabled={linkedBankAccounts?.length === 0}
+                />
+
                 <Button
                   disabled={disableButton}
                   positive
@@ -374,6 +427,27 @@ const AddMoney = ({
               />
             )}
 
+            {step === 2 && topUpFromBank && (
+              <BankForm
+                form={bankForm}
+                onChange={onBankFormChange}
+                setStep={setStep}
+              />
+            )}
+
+            {step === 3 && topUpFromBank && (
+              <ConfirmTopUpFromBank
+                step={step}
+                setStep={setStep}
+                addMoneyData={bankForm}
+                topUpFromBank={handleTopUpFromBank}
+                PIN={PIN}
+                setPIN={setPIN}
+                openPINModal={openPINModal}
+                setOpenPINModal={setOpenPINModal}
+              />
+            )}
+
             {step === 3 && cardOperationFees?.success && (
               <ConfirmAddMoney
                 step={step}
@@ -385,6 +459,7 @@ const AddMoney = ({
                 setLevelThree={setLevelThree}
               />
             )}
+
             {step === 3 && payPalOperationFees?.success && (
               <ConfirmPayPal
                 step={step}

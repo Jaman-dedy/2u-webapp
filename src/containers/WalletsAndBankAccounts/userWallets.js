@@ -1,28 +1,24 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import clearWalletForm from 'redux/actions/users/clearWalletForm';
+import clearDeleteWallet from 'redux/actions/users/clearDeleteWallet';
+import clearEditWallet from 'redux/actions/users/clearEditWallet';
+import getCurrenciesList from 'redux/actions/users/getCurrenciesList';
+import editWalletAction from 'redux/actions/users/editWallet';
+import deleteWalletAction from 'redux/actions/users/deleteWallet';
+import endWalletAction from 'redux/actions/walletsAndBanks/endWalletAction';
+import getUserTransactionHistory from 'redux/actions/users/getUserTransactionHistory';
+import getUserCurrencies from 'redux/actions/users/getUserCurrencies';
+import getUserNetworth from 'redux/actions/users/getUserNetworth';
+import setAsDefault, {
+  clearSetDefaultWallet,
+} from 'redux/actions/users/setAsDefault';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import queryString from 'query-string';
 
 import getMyWalletsAction from 'redux/actions/users/getMyWallets';
 import addWallets from 'redux/actions/users/addWallet';
-import WalletComponents from 'components/Wallets';
-import clearWalletForm from 'redux/actions/users/clearWalletForm';
-import clearDeleteWallet from 'redux/actions/users/clearDeleteWallet';
-import clearEditWallet from 'redux/actions/users/clearEditWallet';
-import getCurrenciesList from 'redux/actions/users/getCurrenciesList';
-import editWalletAction from 'redux/actions/users/editWallet';
-import setAsDefault, {
-  clearSetDefaultWallet,
-} from 'redux/actions/users/setAsDefault';
-import deleteWalletAction from 'redux/actions/users/deleteWallet';
-import endWalletAction from 'redux/actions/wallets/endWalletAction';
-import getUserTransactionHistory from 'redux/actions/users/getUserTransactionHistory';
-import getUserCurrencies from 'redux/actions/users/getUserCurrencies';
-import getUserNetworth from 'redux/actions/users/getUserNetworth';
-
-const Wallets = () => {
+export default () => {
   const dispatch = useDispatch();
   const locationParams = useLocation();
   const params = queryString.parse(locationParams.search);
@@ -132,7 +128,7 @@ const Wallets = () => {
     setAsDefault(postData, form)(dispatch);
   };
 
-  const deleteWalletFx = () => {
+  const deleteWalletFX = () => {
     setOpenOptionModal(false);
     const postData = {};
     postData.WalletNumber = form.AccountNumber;
@@ -166,38 +162,32 @@ const Wallets = () => {
       openAddModalFX();
     }
   }, []);
-
-  return (
-    <WalletComponents
-      openAddWalletModal={openAddWalletModal}
-      setOpenAddWalletModal={setOpenAddWalletModalFx}
-      openEdtWalletModal={openEdtWalletModal}
-      openEdtWalletModalFx={openEdtWalletModalFx}
-      openOptionModal={openOptionModal}
-      openOptionModalFx={openOptionModalFx}
-      form={form}
-      setForm={setForm}
-      history={history}
-      userData={userData}
-      loading={loading}
-      error={error}
-      createWallet={createWallet}
-      editWallet={editWallet}
-      deleteWallet={deleteWallet}
-      data={walletList}
-      currencies={currenciesList.data}
-      getCurrenciesListLoading={currenciesList.loading}
-      onChange={onChange}
-      addwalletFX={addWalletFX}
-      editWalletFX={editWalletFX}
-      deleteWalletFX={deleteWalletFx}
-      setAsDefaultFx={setAsDefaultFx}
-      getMyWalletsFX={getMyWalletsFX}
-      clearForm={clearForm}
-      setFormObject={setFormObject}
-      getMyCurrencies={getMyCurrencies}
-    />
-  );
+  return {
+    openAddWalletModal,
+    setOpenAddWalletModal: setOpenAddWalletModalFx,
+    openEdtWalletModal,
+    openEdtWalletModalFx,
+    openOptionModal,
+    openOptionModalFx,
+    form,
+    setForm,
+    history,
+    userData,
+    loading,
+    error,
+    createWallet,
+    editWallet,
+    deleteWallet,
+    data: walletList,
+    currencies: currenciesList?.data,
+    onChange,
+    addWalletFX,
+    editWalletFX,
+    deleteWalletFX,
+    setAsDefaultFx,
+    getMyWalletsFX,
+    clearForm,
+    setFormObject,
+    getMyCurrencies,
+  };
 };
-
-export default Wallets;

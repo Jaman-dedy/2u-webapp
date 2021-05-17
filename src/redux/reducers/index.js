@@ -20,7 +20,7 @@ import authWrapper from 'redux/reducers/authWrapper';
 import email from 'redux/reducers/sendEmail';
 import remindUsername from 'redux/reducers/remindUsername';
 import microloan from 'redux/reducers/microloan';
-
+import walletsAndBanks from 'redux/reducers/walletsAndBanks';
 export default {
   dashboard,
   imageGallery,
@@ -44,4 +44,5 @@ export default {
   email,
   remindUsername,
   microloan,
+  walletsAndBanks,
 };

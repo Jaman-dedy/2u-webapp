@@ -398,7 +398,6 @@ const TopUpModal = ({
                   {destinationContact?.BankAccountCount !== '0' &&
                     !accountValue && (
                       <>
-                        {' '}
                         <div>
                           <span>
                             {global.translate(
@@ -568,7 +567,6 @@ const TopUpModal = ({
                     {confirmationData &&
                       confirmationData[0].AccountName && (
                         <span>
-                          {' '}
                           {global.translate('Account name', 935)} :
                         </span>
                       )}
@@ -595,7 +593,7 @@ const TopUpModal = ({
               <div className="dest-counties medium-padding-top">
                 <div className="small-padding-bottom">
                   {global.translate('Select a number', 1998)}
-                </div>{' '}
+                </div>
                 <ReusableDrowdown
                   options={myPhoneNumbers}
                   currentOption={selectedPhoneNumber}

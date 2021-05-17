@@ -8,13 +8,13 @@ import PropTypes from 'prop-types';
 import { Image, Loader, Button } from 'semantic-ui-react';
 import './WalletCarouselSelector.scss';
 import formatNumber from 'utils/formatNumber';
-import AddWalletModal from 'components/Wallets/AddWalletModal';
+import AddWalletModal from 'components/WalletsAndBanks/WalletsTab/AddWalletModal';
 
 import getCurrenciesList from 'redux/actions/users/getCurrenciesList';
 import getUserCurrencies from 'redux/actions/users/getUserCurrencies';
 import addWallets from 'redux/actions/users/addWallet';
 import getMyWalletsAction from 'redux/actions/users/getMyWallets';
-import endWalletAction from 'redux/actions/wallets/endWalletAction';
+import endWalletAction from 'redux/actions/walletsAndBanks/endWalletAction';
 import plusWalletImg from 'assets/images/plus-wallet.svg';
 import LoadWallets from './LoadWallets';
 

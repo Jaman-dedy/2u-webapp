@@ -16,6 +16,7 @@ const EllipseMenu = ({
   hadleLoadCardOptions,
   wallet,
   onClick,
+  iconColor,
   ...rest
 }) => {
   const menustyle = {
@@ -28,7 +29,14 @@ const EllipseMenu = ({
         {...rest}
         floating
         direction={direction}
-        icon={<Icon name="ellipsis vertical" size={iconSize} link />}
+        icon={
+          <Icon
+            name="ellipsis vertical"
+            size={iconSize}
+            link
+            color={iconColor}
+          />
+        }
       >
         <Dropdown.Menu
           className="options menustyle-options"
@@ -87,6 +95,8 @@ EllipseMenu.propTypes = {
   wallet: PropTypes.objectOf(PropTypes.any),
   hadleLoadCardOptions: PropTypes.func,
   onClick: PropTypes.func,
+  onSelectItem: PropTypes.func,
+  iconColor: PropTypes.string,
 };
 
 EllipseMenu.defaultProps = {
@@ -100,5 +110,6 @@ EllipseMenu.defaultProps = {
   onClick: () => {},
   hadleLoadCardOptions: () => {},
   onSelectItem: () => {},
+  iconColor: '',
 };
 export default EllipseMenu;

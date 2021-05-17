@@ -5,5 +5,5 @@ export default {
   name: 'Wallets',
   protected: true,
   path: '/wallets',
-  component: lazy(() => import('containers/Wallets')),
+  component: lazy(() => import('containers/WalletsAndBankAccounts')),
 };

@@ -24,10 +24,11 @@ export default data => dispatch => {
         });
       },
       onFailure: error => dispatch => {
+        const err = Array.isArray(error) ? error[0] : error || {};
         return dispatch({
           type: CONFIRM_TRANSACTION_ERROR,
           payload: {
-            ...error,
+            error: err,
           },
         });
       },

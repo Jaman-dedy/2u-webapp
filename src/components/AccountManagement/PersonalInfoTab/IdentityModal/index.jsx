@@ -200,12 +200,12 @@ const IdentityModal = ({
           </Button>
           <Button
             disabled={
-              formData?.IDNumber &&
-              selectedCurrentType &&
-              selectedDateOfIssue &&
-              selectedExpiryDate
-                ? false
-                : true
+              !(
+                formData?.IDNumber &&
+                selectedCurrentType &&
+                selectedDateOfIssue &&
+                selectedExpiryDate
+              )
             }
             className="change-button"
             onClick={handleSubmit}
