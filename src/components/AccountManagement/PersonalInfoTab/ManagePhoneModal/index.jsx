@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import {
   Modal,
@@ -45,7 +44,6 @@ const ManagePhoneModal = ({
   const [verifyPhoneLoading, setVerifyPhoneLoading] = useState(false);
   const [currentPhone, setCurrentPhone] = useState(null);
   const { loading, success } = updateUserPhoneList;
-
   useEffect(() => {
     if (sendOTP.success) {
       setSendOtp(true);
@@ -75,6 +73,27 @@ const ManagePhoneModal = ({
       setVerifyPhoneLoading(false);
     }
   }, [verifyOTP.loading]);
+
+  const userPhones = userData?.Phones;
+
+  const phones = (userPhones, Phone) => {
+    const unique = userPhones
+      .map(e => e[Phone])
+      .map((e, Phone, final) => final.indexOf(e) === Phone && Phone)
+      .filter(e => userPhones[e])
+      .map(e => userPhones[e]);
+    return unique;
+  };
+
+  useEffect(() => {
+    const phoneListLength = userPhones.length;
+    for (let i = 0; i < phoneListLength; i++) {
+      if (userData?.Phones[i]?.Primary === 'YES') {
+        userPhones.splice(0, 0, userData?.Phones[i]);
+      }
+    }
+  }, [userData]);
+
   return (
     <Modal
       onOpen={() => setOpen(true)}
@@ -97,13 +116,16 @@ const ManagePhoneModal = ({
               </Table.Header>
 
               <Table.Body>
-                {userData?.Phones?.map(phone => (
+                {phones(userPhones, 'Phone').map(phone => (
                   <Table.Row>
                     <Table.Cell className="left-phone-number">
                       <div className="display-phone">
                         <Image src={phone.PhoneFlag} />
                         <div>
-                          {phone.PhonePrefix}&nbsp;{phone.PhoneNumber}
+                          {phone.Phone.replace(/\D/g, '').replace(
+                            /(\d{3})(\d{3})(\d{3})/,
+                            '+$1 $2 $3 ',
+                          )}
                           &nbsp;
                           {phone.Primary === 'YES'
                             ? global.translate('(primary)')

@@ -79,6 +79,15 @@ const ManageEmailModal = ({
     return unique;
   };
 
+  useEffect(() => {
+    const emailListLength = userEmails.length;
+    for (let i = 0; i < emailListLength; i++) {
+      if (userData?.Emails[i]?.Primary === 'YES') {
+        userEmails.splice(0, 0, userData?.Emails[i]);
+      }
+    }
+  }, [userData]);
+
   return (
     <Modal
       onOpen={() => setOpen(true)}
@@ -99,7 +108,7 @@ const ManageEmailModal = ({
               </Table.Header>
 
               <Table.Body>
-                {emails(userEmails, 'Email').map(email => (
+                {emails(userEmails, 'Email')?.map(email => (
                   <Table.Row>
                     <Table.Cell>
                       <div className="display-phone">

@@ -268,11 +268,23 @@ export default () => {
     }
   }, [OTP]);
 
+  const phones = (userPhones, Phone) => {
+    const unique = userPhones
+      .map(e => e[Phone])
+      .map((e, Phone, final) => final.indexOf(e) === Phone && Phone)
+      .filter(e => userPhones[e])
+      .map(e => userPhones[e]);
+
+    return unique;
+  };
+
   useEffect(() => {
     if (verifyOTP.isValid) {
       const newPhone = {
         OTP: OTP,
-        PhoneNumber: phoneValue,
+        PhoneNumber: phoneValue
+          .replace(/\D/g, '')
+          .replace(/(\d{3})(\d{3})(\d{3})/, '+$1 $2 $3 '),
         Phone: phoneValue,
         Category: '1',
         CountryCode: phoneCountryCode,
@@ -292,6 +304,7 @@ export default () => {
         phone && phoneObject.Phone.toString() !== phone.toString()
       );
     });
+
     const newList = newPhoneList?.map(item => {
       return {
         PhoneNumber: item.Phone,
@@ -304,10 +317,10 @@ export default () => {
         Primary: item.Primary,
       };
     });
-
+    const filteredPhones = phones(newList, 'Phone');
     updateUserPhoneListAction({
       isDeleting: true,
-      data: { Phones: [...newList] },
+      data: { Phones: [...filteredPhones] },
     })(dispatch);
   };
   const emails = (userEmails, Email) => {

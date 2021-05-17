@@ -7,24 +7,26 @@
 }
 
 iframe {
-  width: 100%!important;
-  height: 50vh!important;
+  width: 100% !important;
+  height: 50vh !important;
 }
 
-.ui.modal {
-  background: #f1f1f1;
-  .actions {
+.terms-conditions {
+  .ui.modal {
     background: #f1f1f1;
-    padding: 1rem 1rem;
-    border-top: none;
-    text-align: right;
-  }
+    .actions {
+      background: #f1f1f1;
+      padding: 1rem 1rem;
+      border-top: none;
+      text-align: right;
+    }
 
-  .content {
-    display: block;
-    width: 100%;
-    font-size: 1em;
-    line-height: 1.4;
-    background: #f1f1f1;
+    .content {
+      display: block;
+      width: 100%;
+      font-size: 1em;
+      line-height: 1.4;
+      background: #f1f1f1;
+    }
   }
 }

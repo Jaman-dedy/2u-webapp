@@ -32,12 +32,20 @@ export default (state, { type, payload }) => {
           ...state.userData,
           data: {
             ...state.userData.data,
-            MainPhoneNumber: payload.defaultPhone.replace(
-              state.userData.data.MainPhonePrefix,
-              '',
-            ),
+            MainPhoneNumber: payload.defaultPhone
+              .replace(state.userData.data.MainPhonePrefix, '')
+              .replace(/\D/g, '')
+              .replace(/(\d{3})(\d{3})(\d{3})/, '+$1 $2 $3 '),
             Phones: state.userData.data.Phones.map(item => {
-              if (item.Phone === payload.defaultPhone) {
+              if (
+                item.Phone.replace(/\D/g, '').replace(
+                  /(\d{3})(\d{3})(\d{3})/,
+                  '+$1 $2 $3 ',
+                ) ===
+                payload.defaultPhone
+                  .replace(/\D/g, '')
+                  .replace(/(\d{3})(\d{3})(\d{3})/, '+$1 $2 $3 ')
+              ) {
                 return { ...item, Primary: 'YES' };
               }
               return { ...item, Primary: 'NO' };
