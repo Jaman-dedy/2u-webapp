@@ -8,17 +8,17 @@ export default (httpOptions = {}) => {
   const userToken = token || localStorage.token;
   const baseURL = url || REACT_APP_API_URL;
 
-  const headerss = {
+  const _headers = {
     ...headers,
   };
 
   if (userToken) {
-    headerss.From = userToken;
+    _headers.From = userToken;
   }
 
   const axiosInstance = axios.create({
     baseURL,
-    headers: headerss,
+    headers: _headers,
   });
   axiosInstance.interceptors.response.use(
     response => {

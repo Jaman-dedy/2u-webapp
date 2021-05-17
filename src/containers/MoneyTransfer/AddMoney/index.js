@@ -33,6 +33,7 @@ const AddMoneyContainer = () => {
 
   const [addMoneyData, setAddMoneyData] = useState({
     Amount: '',
+    TotalAmount: '',
     WalletNumber: '',
     Currency: '',
     CardNumber: '',
@@ -167,6 +168,7 @@ const AddMoneyContainer = () => {
   const clearAddMoneyData = () => {
     setAddMoneyData({
       Amount: '',
+      TotalAmount: '',
       Currency: '',
       WalletNumber: '',
       CardNumber: '',
@@ -198,7 +200,8 @@ const AddMoneyContainer = () => {
   const handlePullPayPal = () => {
     const data = {
       amount: addMoneyData.Amount,
-      redirectUrl: 'https://app.2u.money/wallets',
+      totalAmount: addMoneyData.TotalAmount,
+      redirectUrl: `${process.env.REACT_APP_URL}/wallets`,
       currency: addMoneyData.Currency,
       accountNumber: addMoneyData.WalletNumber,
       authToken: localStorage.getItem('token'),

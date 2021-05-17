@@ -18,8 +18,9 @@ const PayPalForm = ({
     setAddMoneyData({
       ...addMoneyData,
       Currency: 'USD',
+      TotalAmount: payPalOperationFees.TotalAmount,
     });
-  }, []);
+  }, [payPalOperationFees]);
   useEffect(() => {
     if (success || error) {
       setStep(step + 1);

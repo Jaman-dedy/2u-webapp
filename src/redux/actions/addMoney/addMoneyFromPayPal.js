@@ -11,8 +11,15 @@ export default data => dispatch =>
   dispatch(
     apiAction({
       method: 'post',
-      url: 'https://app.2u.money:7000/api/v1/paypal/charge',
+      url: `${process.env.REACT_APP_2U_TO_OTHERS_API_URL}/api/v1/paypal/charge`,
       data,
+      httpOptions: {
+        headers: {
+          LoginName: process.env.REACT_APP_LOGIN_NAME,
+          APIKey: process.env.REACT_APP_API_KEY,
+          AppID: process.env.REACT_APP_ID,
+        },
+      },
       requireAppId: false,
       onStart: () => dispatch =>
         dispatch({
