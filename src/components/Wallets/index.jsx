@@ -57,6 +57,7 @@ const WalletComponents = ({
   editWallet,
   deleteWallet,
   getMyCurrencies,
+  getCurrenciesListLoading,
 }) => {
   const [item, setItem] = useState(null);
   const [step, setStep] = useState(1);
@@ -379,6 +380,7 @@ const WalletComponents = ({
                   getMyWalletsFX={getMyWalletsFX}
                   clearForm={clearForm}
                   getMyCurrencies={getMyCurrencies}
+                  getCurrenciesListLoading={getCurrenciesListLoading}
                 />
 
                 <WalletOptionsModal

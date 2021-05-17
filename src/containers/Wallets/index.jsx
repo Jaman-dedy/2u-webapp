@@ -186,6 +186,7 @@ const Wallets = () => {
       deleteWallet={deleteWallet}
       data={walletList}
       currencies={currenciesList.data}
+      getCurrenciesListLoading={currenciesList.loading}
       onChange={onChange}
       addwalletFX={addWalletFX}
       editWalletFX={editWalletFX}

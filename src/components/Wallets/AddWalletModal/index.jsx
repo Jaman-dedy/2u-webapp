@@ -20,6 +20,7 @@ const AddWalletModal = ({
   userData,
   getMyWalletsFX,
   getMyCurrencies,
+  getCurrenciesListLoading,
 }) => {
   const [form, setForm] = useState([
     {
@@ -138,10 +139,15 @@ const AddWalletModal = ({
                     </Grid.Column>
                     <Grid.Column>
                       <Dropdown
+                        loading={getCurrenciesListLoading}
                         fluid
                         search
                         selection
-                        options={options && options}
+                        options={
+                          !getCurrenciesListLoading &&
+                          options &&
+                          options
+                        }
                         name="Currency"
                         value={inputField.Currency}
                         onChange={(event, data) => {
