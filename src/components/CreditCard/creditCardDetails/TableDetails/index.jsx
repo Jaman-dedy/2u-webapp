@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Button } from 'semantic-ui-react';
+import { Table, Button, Loader } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import './style.scss';
 import moment from 'moment';
@@ -24,9 +24,10 @@ const TableDetails = ({
   disabled,
   loadOnChangePwd,
   setIsDeletingCard,
+  loadOnActivate,
+  getCreditCardLoading,
 }) => {
   const creationDate = moment(card.CreationDate).format('ll');
-
   return (
     <div>
       <Table unstackable>
@@ -36,7 +37,11 @@ const TableDetails = ({
               <span className="table-heading">
                 {global.translate('Status', 339)}
               </span>
-              {card?.Activated === 'NO' && (
+              {loadOnActivate ||
+                (getCreditCardLoading && (
+                  <Loader active inline size="tiny" />
+                ))}
+              {!getCreditCardLoading && card?.Activated === 'NO' && (
                 <Button
                   onClick={() => {
                     setIsActivatingCard(true);
@@ -55,46 +60,53 @@ const TableDetails = ({
                   )}
                 </Button>
               )}
-              {card?.Enabled === 'YES' && card?.Activated === 'YES' && (
-                <Button
-                  onClick={() => {
-                    setIsActivatingCard(false);
-                    setIsEnablingCard(true);
-                    setIsChangingPwd(false);
-                  }}
-                  style={{
-                    backgroundColor: '#343657',
-                    color: '#ffff',
-                  }}
-                  className="table-button"
-                >
-                  {global.translate('Disable this card', 1981)}
-                </Button>
-              )}
-              {card?.Enabled === 'NO' && card?.Activated === 'YES' && (
-                <Button
-                  onClick={() => {
-                    setIsActivatingCard(false);
-                    setIsEnablingCard(true);
-                    setIsChangingPwd(false);
-                  }}
-                  style={{
-                    backgroundColor: '#343657',
-                    color: '#ffff',
-                  }}
-                  className="table-button"
-                >
-                  {global.translate('Enable this card', 1982)}
-                </Button>
-              )}
+              {!getCreditCardLoading &&
+                card?.Enabled === 'YES' &&
+                card?.Activated === 'YES' && (
+                  <Button
+                    onClick={() => {
+                      setIsActivatingCard(false);
+                      setIsEnablingCard(true);
+                      setIsChangingPwd(false);
+                    }}
+                    style={{
+                      backgroundColor: '#343657',
+                      color: '#ffff',
+                    }}
+                    className="table-button"
+                  >
+                    {global.translate('Disable this card', 1981)}
+                  </Button>
+                )}
+              {!getCreditCardLoading &&
+                card?.Enabled === 'NO' &&
+                card?.Activated === 'YES' && (
+                  <Button
+                    onClick={() => {
+                      setIsActivatingCard(false);
+                      setIsEnablingCard(true);
+                      setIsChangingPwd(false);
+                    }}
+                    style={{
+                      backgroundColor: '#343657',
+                      color: '#ffff',
+                    }}
+                    className="table-button"
+                  >
+                    {global.translate('Enable this card', 1982)}
+                  </Button>
+                )}
             </Table.Cell>
             <Table.Cell textAlign="right">
-              {card?.Activated === 'NO' &&
+              {!getCreditCardLoading &&
+                card?.Activated === 'NO' &&
                 global.translate('Card is inactive', 2233)}
-              {card?.Activated === 'YES' &&
+              {!getCreditCardLoading &&
+                card?.Activated === 'YES' &&
                 card?.Enabled === 'YES' &&
                 global.translate('Card is enabled', 2136)}
-              {card?.Activated === 'YES' &&
+              {!getCreditCardLoading &&
+                card?.Activated === 'YES' &&
                 card?.Enabled === 'NO' &&
                 global.translate('Card is disabled', 2232)}
             </Table.Cell>

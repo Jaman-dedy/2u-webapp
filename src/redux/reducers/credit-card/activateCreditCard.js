@@ -42,6 +42,8 @@ export default (state, { type, payload }) => {
               return {
                 ...state.creditCardList.data[index],
                 Activated: 'YES',
+                Enabled: 'NO',
+
               };
             }
             return item;
