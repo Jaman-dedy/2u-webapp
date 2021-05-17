@@ -24,6 +24,7 @@ export default data => dispatch =>
             payload: {
               ...data[0],
               success: data[0].Result === 'Success',
+              Enabled: 'YES'
             },
           });
         }
