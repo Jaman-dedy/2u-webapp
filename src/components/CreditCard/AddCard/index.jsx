@@ -94,6 +94,14 @@ const AddCard = ({
       setIsDisabled(false);
     }
   }, [form, hasNotAgreed, selectedProvider]);
+  useEffect(() => {
+    if (userData.data) {
+      setForm({
+        ...form,
+        nameOnTheCard: userData.data.NameOnCard,
+      });
+    }
+  }, [userData.data]);
 
   const onChange = (e, { name, value }) => {
     setForm({ ...form, [name]: value });
@@ -132,7 +140,7 @@ const AddCard = ({
   }
 
   const onClickHandler = () => history.goBack();
-
+  console.log(`userData`, userData);
   return (
     <DashboardLayout>
       <WelcomeBar>
@@ -179,16 +187,18 @@ const AddCard = ({
                   fluid
                   placeholder="Name on the card"
                   value={
-                    form?.nameOnTheCard
+                    !userData.loading
                       ? form?.nameOnTheCard
-                      : `${userData?.data?.FirstName} ${userData?.data?.LastName}`
+                        ? form?.nameOnTheCard
+                        : `${userData?.data?.FirstName} ${userData?.data?.LastName}`
+                      : ''
                   }
+                  loading={userData.loading}
                   onChange={onOptionsChange}
                   name="nameOnTheCard"
                 />
               </div>
             )}
-
             <div className="provider-options">
               {!cardOptions && !loading && (
                 <InfoMessage
