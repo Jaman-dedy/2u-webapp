@@ -114,7 +114,7 @@ const ManageEmailModal = ({
                       <div className="display-phone">
                         <div>{email?.Email}</div> &nbsp;
                         <div>
-                          {email?.Primary === 'YES'
+                          {email?.Primary === 'YES' && email?.Email !== ""
                             ? global.translate('(Primary)')
                             : null}
                         </div>

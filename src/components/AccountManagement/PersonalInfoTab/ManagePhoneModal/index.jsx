@@ -127,7 +127,8 @@ const ManagePhoneModal = ({
                             '+$1 $2 $3 ',
                           )}
                           &nbsp;
-                          {phone.Primary === 'YES'
+                          {phone.Primary === 'YES' &&
+                          phone.Phone !== ''
                             ? global.translate('(primary)')
                             : null}
                         </div>

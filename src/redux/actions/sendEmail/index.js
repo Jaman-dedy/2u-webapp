@@ -31,10 +31,14 @@ export default data => dispatch =>
         });
       },
       onFailure: error => dispatch => {
+        const err = Array.isArray(error)
+          ? error[0] || {}
+          : error || {};
+        toast.error(err.Description);
         return dispatch({
           type: SEND_EMAIL_ERROR,
           payload: {
-            ...error[0],
+            ...err,
           },
         });
       },
