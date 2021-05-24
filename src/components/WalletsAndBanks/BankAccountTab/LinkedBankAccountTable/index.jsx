@@ -11,6 +11,7 @@ import EmptyBankListIcon from 'assets/images/empty-bank-list.svg';
 import EmptyCard from 'components/common/EmptyCard';
 import ConfirmationModal from 'components/common/ConfirmationModal';
 import { bankAccountOptions } from 'constants/general';
+
 import './style.scss';
 
 const LinkedBankAccountTable = ({ bankAccount }) => {
@@ -27,6 +28,7 @@ const LinkedBankAccountTable = ({ bankAccount }) => {
     unlinkBankAccountData,
     handleAddMoneyToWallet,
     handleSendMoneyToBank,
+    currentItem,
   } = bankAccount;
 
   const { data, loading } = linkedBankAccounts;
@@ -90,6 +92,7 @@ const LinkedBankAccountTable = ({ bankAccount }) => {
           linkBankAccountData?.loading ||
           unlinkBankAccountData?.loading
         }
+        bankAccount={currentItem}
       />
       {loading && (
         <Image
@@ -187,19 +190,7 @@ const LinkedBankAccountTable = ({ bankAccount }) => {
 };
 
 LinkedBankAccountTable.propTypes = {
-  linkedBankAccounts: PropTypes.objectOf({
-    data: PropTypes.arrayOf(PropTypes.any).isRequired,
-    loading: PropTypes.bool.isRequired,
-    error: PropTypes.objectOf(PropTypes.any),
-  }).isRequired,
-  bankOptions: PropTypes.objectOf(PropTypes.func.isRequired)
-    .isRequired,
-  disableRow: PropTypes.objectOf({
-    disable: PropTypes.bool.isRequired,
-    accountNumber: PropTypes.string.isRequired,
-    bankCode: PropTypes.string.isRequired,
-  }).isRequired,
-  openLinkAccountModal: PropTypes.func.isRequired,
+  bankAccount: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default LinkedBankAccountTable;

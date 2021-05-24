@@ -54,20 +54,20 @@ const TopUpFromBankForm = ({ onChange, form, setStep }) => {
             name="bankAccount"
           />
         </Form.Field>
+
         <Form.Field>
-          <div className="wrap-money-input">
-            <div>{global.translate('Amount', 116)}</div>
-            <div className="money-input">
-              <Input
-                type="number"
-                name="amount"
-                placeholder={global.translate('Amount', 116)}
-                onChange={onChange}
-                value={form.amount || null}
-              />
-              <span>{form?.bankAccount?.Currency}</span>
-            </div>
-          </div>
+          <label>{global.translate('Amount')}</label>
+          <Input
+            label={{
+              basic: true,
+              content: form?.bankAccount?.Currency || 'USD',
+            }}
+            labelPosition="right"
+            size="large"
+            onChange={onChange}
+            value={form.amount}
+            name="amount"
+          />
         </Form.Field>
         {showSameCurrencyError && (
           <InfoMessage

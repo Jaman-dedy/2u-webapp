@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router';
 import rawCountries from 'utils/countries';
 import getBankList from 'redux/actions/walletsAndBanks/getBankList';
-import getUserCurrencies from 'redux/actions/users/getUserCurrencies';
 import linkBankAccountRequest from 'redux/actions/walletsAndBanks/linkBankAccountRequest';
 import selfLinkBankAccount, {
   clearSelfLinkAccount,
@@ -11,7 +11,6 @@ import getLinkedBankAccounts from 'redux/actions/walletsAndBanks/getLinkedBankAc
 import unlinkBankAccount from 'redux/actions/walletsAndBanks/unlinkBankAccount';
 import linkBankAccount from 'redux/actions/walletsAndBanks/linkBankAccount';
 import { bankAccountOptions } from 'constants/general';
-import { useHistory } from 'react-router';
 
 const countries = rawCountries.map(({ text, flag, key }) => ({
   CountryName: text,
@@ -60,7 +59,7 @@ export default () => {
   const history = useHistory();
 
   // get data from redux store
-  const { currencies, userLocationData, userData } = useSelector(
+  const { userLocationData, userData } = useSelector(
     ({ user }) => user,
   );
 
@@ -148,6 +147,7 @@ export default () => {
       pathname: '/add-money',
       state: {
         bankItem: item,
+        activeTab: 1,
       },
     });
   };
@@ -243,7 +243,7 @@ export default () => {
         setConfirmationMessage({
           title: global.translate('Unlink bank account'),
           message: global.translate(
-            'Are you sure you want to unlink this bank account? This operation is irreversible.',
+            `Are you sure you want to unlink this bank account? This operation is irreversible.`,
           ),
         });
         break;
@@ -264,6 +264,8 @@ export default () => {
           ),
         });
         break;
+      default:
+        setConfirmationMessage({});
     }
   }, [currentAction]);
   useEffect(() => {
@@ -294,9 +296,10 @@ export default () => {
         ...form,
         SwiftCode: currentBankOption?.SwiftCode,
         Testing: 'Yes',
+        Logo: currentBankOption.Logo,
       })(dispatch);
     }
-  }, [OTP, form, currentBankOption?.SwiftCode, step, dispatch]);
+  }, [OTP, form, currentBankOption, step, dispatch]);
 
   useEffect(() => {
     if (selfLinkBankAccountData?.success) {
@@ -343,15 +346,12 @@ export default () => {
   }, [step]);
 
   useEffect(() => {
-    getUserCurrencies({ CountryCode: form?.CountryCode })(dispatch);
-  }, [form?.CountryCode, dispatch]);
-
-  useEffect(() => {
     if (openLinkBankModal && Array.isArray(userData?.data?.Phones)) {
-      const primaryPhone = userData?.data?.Phones.filter(
-        phone => phone.Primary === 'YES',
-      ) || [{}];
-      setSelectedPhoneNumber(primaryPhone[0]);
+      const primaryPhone =
+        userData?.data?.Phones.filter(
+          phone => phone.Primary === 'YES',
+        ) || {};
+      setSelectedPhoneNumber(primaryPhone);
       setForm(form => ({
         ...form,
         PhoneNumber: primaryPhone?.Phone,
@@ -361,17 +361,18 @@ export default () => {
   }, [userData?.data?.Phones, openLinkBankModal]);
 
   useEffect(() => {
-    if (currencies && Array.isArray(currencies?.data)) {
-      const currenciesList = currencies?.data?.map(
-        ({ CurrencyCode, Flag }) => ({
-          Key: CurrencyCode,
-          text: CurrencyCode,
-          value: CurrencyCode,
-        }),
-      );
+    const { Currencies } = currentBankOption;
+
+    if (Currencies) {
+      const currenciesList = Currencies.map(({ Currency }) => ({
+        Key: Currency,
+        text: Currency,
+        value: Currency,
+      }));
+
       setCurrenciesList(currenciesList);
     }
-  }, [currencies]);
+  }, [currentBankOption]);
 
   useEffect(() => {
     valueChangeHandler(null, {
@@ -439,5 +440,6 @@ export default () => {
     confirmationMessage,
     handleAddMoneyToWallet,
     handleSendMoneyToBank,
+    currentItem,
   };
 };

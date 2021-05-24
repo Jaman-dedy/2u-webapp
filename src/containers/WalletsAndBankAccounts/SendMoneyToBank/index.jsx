@@ -209,14 +209,19 @@ const SendMoneyToBank = () => {
                 loading={linkedBankAccounts?.loading}
               />
             </Form.Field>
-            <div className="form__field">
+            <Form.Field>
               <label>{global.translate('Amount')}</label>
               <Input
+                label={{
+                  basic: true,
+                  content: currentOption?.CurrencyCode,
+                }}
+                labelPosition="right"
+                size="large"
                 value={amount}
                 onChange={(_, { value }) => setAmount(value)}
-                className="amount-input"
               />
-            </div>
+            </Form.Field>
 
             {confirmationError?.error && (
               <ErrorMessage
