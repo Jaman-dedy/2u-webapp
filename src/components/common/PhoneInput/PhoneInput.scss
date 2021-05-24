@@ -7,8 +7,12 @@
     border-radius: 5px;
     .react-tel-input {
       width: 100%;
+      border: none !important;
       .form-control {
-        margin-left: 28px;
+        margin: 0 !important;
+        margin-left: 40px !important;
+        width: 83% !important;
+        height: 100%;
       }
       .flag-dropdown {
         background: #ffff !important;
