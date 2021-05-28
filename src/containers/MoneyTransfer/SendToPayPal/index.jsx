@@ -31,11 +31,7 @@ const SendToPayPalContainer = () => {
   } = useSelector(({ moneyTransfer }) => moneyTransfer);
 
   const {
-    transferToOthers: {
-      loading: loadMoveFund,
-      error: errorMoveFund,
-      data: dataMoveFund,
-    },
+    transferToOthers: { loading: loadMoveFund, data: dataMoveFund },
   } = useSelector(({ moneyTransfer }) => moneyTransfer);
 
   useEffect(() => {
@@ -106,7 +102,6 @@ const SendToPayPalContainer = () => {
       handleConfirmTransaction={handleConfirmTransaction}
       checking={checking}
       confirmationData={confirmationData}
-      pinData={pinData}
       setOpenPinModal={setOpenPinModal}
       openPinModal={openPinModal}
       loadMoveFund={loadMoveFund}

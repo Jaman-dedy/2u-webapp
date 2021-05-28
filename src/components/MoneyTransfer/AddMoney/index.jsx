@@ -173,7 +173,9 @@ const AddMoney = ({
       />
     );
   };
-
+  useEffect(() => {
+    getLinkedBankAccounts()(dispatch);
+  }, []);
   const handleBackEvent = () => {
     setStep(step - 1);
     setLevelTwo(false);
@@ -348,10 +350,9 @@ const AddMoney = ({
                 />
                 <DisplayProviders
                   providerLogo={TopUpPayPalImg}
-                  title={global.translate('Paypal', 170)}
+                  title={global.translate('Paypal')}
                   subtitle={global.translate(
                     'Top Up money from your Paypal account',
-                    2134,
                   )}
                   onClick={checkTopUpPayPal}
                   ticked={topUpPaypalCard}

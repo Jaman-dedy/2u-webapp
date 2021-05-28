@@ -5,7 +5,7 @@ import './style.scss';
 
 const TransactionDetails = ({ confirmationData, payPal }) => {
   return (
-    <div className="details__right-side">
+    <div className="right-side">
       <h3>{global.translate('Summary')}</h3>
       <Table basic="very">
         <Table.Body>

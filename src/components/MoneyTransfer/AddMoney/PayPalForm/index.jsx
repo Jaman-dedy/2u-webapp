@@ -67,31 +67,24 @@ PayPalForm.propTypes = {
   errors: PropTypes.instanceOf(Object),
   addMoneyData: PropTypes.instanceOf(Object),
   handleInputChange: PropTypes.func,
-  options: PropTypes.instanceOf(Array),
-  cvvRef: PropTypes.instanceOf(Object),
-  handleSubmit: PropTypes.func,
   step: PropTypes.instanceOf(Object),
   setStep: PropTypes.func,
   handleBackEvent: PropTypes.func,
-  addMoneyFromCreditCard: PropTypes.instanceOf(Object),
-  selectedMonth: PropTypes.string.isRequired,
-  setSelectedMonth: PropTypes.func,
-  CustomInput: PropTypes.func,
+  setAddMoneyData: PropTypes.objectOf(PropTypes.any),
+  handleSubmitPayPal: PropTypes.objectOf(PropTypes.any),
+  payPalOperationFees: PropTypes.objectOf(PropTypes.any),
 };
 
 PayPalForm.defaultProps = {
   errors: {},
   addMoneyData: {},
   handleInputChange: {},
-  options: [],
-  cvvRef: {},
-  handleSubmit: {},
   step: {},
   setStep: {},
   handleBackEvent: () => {},
-  addMoneyFromCreditCard: {},
-  setSelectedMonth: () => {},
-  CustomInput: () => {},
+  setAddMoneyData: {},
+  handleSubmitPayPal: {},
+  payPalOperationFees: {},
 };
 
 export default PayPalForm;

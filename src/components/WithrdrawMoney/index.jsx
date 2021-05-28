@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { Input, Image, Button } from 'semantic-ui-react';
 import PhoneInput from 'react-phone-input-2';
 import PropTypes from 'prop-types';
+
 import DashboardLayout from 'components/common/DashboardLayout';
 import WelcomeBar from 'components/Dashboard/WelcomeSection';
 import GoBack from 'components/common/GoBack';
@@ -214,33 +215,8 @@ const WithdrawMoney = ({
     </DashboardLayout>
   );
 };
+
 WithdrawMoney.propTypes = {
-  walletList: [],
-  setCurrentOption: () => {},
-  currentOption: {},
-  onOptionChange: () => {},
-  setSelectedCountry: () => {},
-  selectedCountry: {},
-  phoneValue: '',
-  setPhoneValue: () => {},
-  supportedCountries: [],
-  onCountryChange: () => {},
-  buttonDisabled: false,
-  confirmTransaction: () => {},
-  checking: false,
-  confirmationData: {},
-  handleCashout: () => {},
-  loadMoveFund: false,
-  userData: {},
-  setOpenPinModal: () => {},
-  openPinModal: false,
-  setUserPinDigit: () => {},
-  userPinDigit: '',
-  allErrors: {},
-  pinData: {},
-  form: {},
-};
-WithdrawMoney.defaultProps = {
   walletList: PropTypes.arrayOf(PropTypes.any),
   setCurrentOption: PropTypes.func,
   currentOption: PropTypes.objectOf(PropTypes.any),
@@ -260,10 +236,32 @@ WithdrawMoney.defaultProps = {
   userData: PropTypes.objectOf(PropTypes.any),
   setOpenPinModal: PropTypes.func,
   openPinModal: PropTypes.bool,
-  setUserPinDigit: PropTypes.func,
-  userPinDigit: PropTypes.string,
   allErrors: PropTypes.objectOf(PropTypes.any),
   pinData: PropTypes.objectOf(PropTypes.any),
   form: PropTypes.objectOf(PropTypes.any),
+};
+WithdrawMoney.defaultProps = {
+  walletList: [],
+  setCurrentOption: () => {},
+  currentOption: {},
+  onOptionChange: () => {},
+  setSelectedCountry: () => {},
+  selectedCountry: {},
+  phoneValue: '',
+  setPhoneValue: () => {},
+  supportedCountries: [],
+  onCountryChange: () => {},
+  buttonDisabled: false,
+  confirmTransaction: () => {},
+  checking: false,
+  confirmationData: {},
+  handleCashout: () => {},
+  loadMoveFund: false,
+  userData: {},
+  setOpenPinModal: () => {},
+  openPinModal: false,
+  allErrors: {},
+  pinData: {},
+  form: {},
 };
 export default WithdrawMoney;
