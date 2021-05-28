@@ -323,12 +323,10 @@ h5 {
 }
 .animate-placeholder {
   animation: animate-profile 1.5s infinite;
-
-  .ui.img {
-    width: 100%;
-  }
 }
-
+.animate-placeholder.ui.image.fluid {
+  width: 100% !important;
+}
 @keyframes animate-profile {
   0% {
     opacity: 0.3;
