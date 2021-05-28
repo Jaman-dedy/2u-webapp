@@ -41,7 +41,7 @@ export default data => dispatch =>
         return dispatch({
           type: LOGIN_ERROR,
           payload: {
-            error: data,
+            error: res,
           },
         });
       },

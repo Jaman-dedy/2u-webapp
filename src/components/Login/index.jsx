@@ -70,22 +70,19 @@ const Login = ({
   console.log(`error`, error);
 
   useEffect(() => {
-    if (error) {
-      if (error.error) {
-        if (error.error[0]) {
-          if (error.error[0].UserMustChangePassword === 'YES') {
-            toast(global.translate(error.error[0].Description), {
-              autoClose: 5000 * 6,
-              type: 'error',
-              toastId: 13,
-            });
-            setOTP(error.error[0].OTP);
-            setIsSettingNewPassword(true);
-          }
-        }
+    if (error && error?.error) {
+      const err = error?.error;
+      if (err.UserMustChangePassword === 'YES') {
+        toast(global.translate(err.Description), {
+          autoClose: 5000 * 6,
+          type: 'error',
+          toastId: 13,
+        });
+        setOTP(err.OTP);
+        setIsSettingNewPassword(true);
       }
     }
-  }, [error]);
+  }, [error?.error]);
 
   return (
     <AuthWrapper

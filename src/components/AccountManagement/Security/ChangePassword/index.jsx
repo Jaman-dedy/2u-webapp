@@ -108,10 +108,7 @@ const ChangePassword = ({ style, OTP, PID }) => {
   return (
     <div
       style={size.width > 500 ? style : {}}
-      className="change-password-container
-       large-padding border-1
-        b-light-grey border-radius-4
-        medium-v-margin xlarge-h-margin"
+      className="change-password-container"
     >
       <Form>
         <PasswordInput
