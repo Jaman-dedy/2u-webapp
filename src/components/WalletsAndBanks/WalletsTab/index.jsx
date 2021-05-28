@@ -60,9 +60,11 @@ const WalletComponents = ({ userWallets }) => {
   const [isModalOpened, setModalOpen] = useState(false);
 
   const history = useHistory();
-  const { language: { preferred } = {}, userData } = useSelector(
-    ({ user }) => user,
-  );
+  const {
+    language: { preferred } = {},
+    userData,
+    currenciesList: { loading: userCurrencies },
+  } = useSelector(({ user }) => user);
 
   const handleDismis = () => {
     clearForm();
@@ -302,6 +304,7 @@ const WalletComponents = ({ userWallets }) => {
             getMyWalletsFX={getMyWalletsFX}
             clearForm={clearForm}
             getMyCurrencies={getMyCurrencies}
+            getCurrenciesListLoading={userCurrencies}
           />
 
           <CurrencyExchangeContainer

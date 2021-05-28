@@ -107,7 +107,7 @@ const AddWalletModal = ({
       onClose={() => toggleShowModal()}
     >
       <Modal.Header className="modal-title">
-        {global.translate('Add wallets', 111)}
+        {global.translate('Add wallets')}
       </Modal.Header>
       <Modal.Content>
         {!addWallet.success && (
@@ -193,7 +193,7 @@ const AddWalletModal = ({
       {!addWallet.success && (
         <Modal.Actions>
           <Button className="cancel" onClick={toggleShowModal}>
-            {global.translate('Cancel', 86)}
+            {global.translate('Cancel')}
           </Button>
           <Button
             positive
@@ -213,7 +213,7 @@ const AddWalletModal = ({
               form[0].Currency.length < 1
             }
           >
-            {global.translate('Add', 112)}
+            {global.translate('Add')}
           </Button>
         </Modal.Actions>
       )}
