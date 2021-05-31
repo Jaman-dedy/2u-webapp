@@ -10,9 +10,10 @@ import DashboardLayout from 'components/common/DashboardLayout';
 import WelcomeBar from 'components/Dashboard/WelcomeSection';
 import './VerifyEmail.scss';
 
-const ANDROID_APP_URI =
-  'intent://app.2u.money/#Intent;scheme=moneyapp;package=technology.ossix.toumoney;end';
-const IOS_APP_URI = 'moneyapp://app.2u.money/ManageEmails';
+const {
+  REACT_APP_ANDROID_APP_URI,
+  REACT_APP_IOS_APP_URI,
+} = process.env;
 
 const VerifyEmail = ({ verifyEmailState }) => {
   const history = useHistory();
@@ -97,8 +98,8 @@ const VerifyEmail = ({ verifyEmailState }) => {
                         ref={openAppLinkRef}
                         href={
                           deviceOs.includes('android')
-                            ? ANDROID_APP_URI
-                            : IOS_APP_URI
+                            ? REACT_APP_ANDROID_APP_URI
+                            : `${REACT_APP_IOS_APP_URI}/ManageEmails`
                         }
                         className="text-white"
                       >
@@ -159,8 +160,8 @@ const VerifyEmail = ({ verifyEmailState }) => {
                       ref={openAppLinkRef}
                       href={
                         deviceOs.includes('android')
-                          ? ANDROID_APP_URI
-                          : IOS_APP_URI
+                          ? REACT_APP_ANDROID_APP_URI
+                          : `${REACT_APP_IOS_APP_URI}/ManageEmails`
                       }
                       className="text-white"
                     >
