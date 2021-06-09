@@ -23,7 +23,6 @@ const defaultOptions = [
 const AddMoneyContainer = () => {
   const { userData, myWallets } = useSelector(({ user }) => user);
   const [selectedWallet, setSelectedWallet] = useState({});
-  const [hasSameCurrency, setHasSameCurrency] = useState(false);
 
   const {
     cardOperationFees,
@@ -151,6 +150,16 @@ const AddMoneyContainer = () => {
         : 'USD',
     });
   };
+
+  useEffect(() => {
+    if (Object.keys(selectedWallet)?.length !== 0) {
+      const { AccountNumber } = selectedWallet;
+      setAddMoneyData({
+        ...addMoneyData,
+        WalletNumber: AccountNumber,
+      });
+    }
+  }, [selectedWallet]);
 
   useEffect(() => {
     if (myWallets.walletList.length === 0) {

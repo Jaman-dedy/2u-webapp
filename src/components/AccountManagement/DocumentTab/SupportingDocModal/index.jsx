@@ -52,6 +52,7 @@ const SupportingDocModal = ({
                     img
                     src={EditDoc}
                     loading={uploadingDoc}
+                    uploadedImg={userIdUrlData?.MediaSourceURL}
                   />
                 </div>
                 <div className="overlay" />
@@ -71,6 +72,7 @@ const SupportingDocModal = ({
               onChooseFile={onImageChange}
               title={global.translate('Browse document')}
               loading={uploadingDoc}
+              uploadedImg={userIdUrlData?.MediaSourceURL}
             />
           )}
         </div>

@@ -83,7 +83,7 @@
     "semantic-ui-react": "^0.88.2",
     "serve": "^11.3.0",
     "socket.io-client": "^2.3.0",
-    "styled-components": "^5.2.1",
+    "styled-components": "^5.2´.1",
     "text-security": "^3.1.1",
     "uuid": "^7.0.3"
   },

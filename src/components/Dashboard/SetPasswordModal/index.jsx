@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Form, Button } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 import PasswordInput from 'components/common/PasswordInput';
 import checkPassword from 'utils/checkPassword';
 import './style.scss';
@@ -116,6 +117,23 @@ const SetPasswordModal = ({
       </Form>
     </Modal>
   );
+};
+
+SetPasswordModal.propTypes = {
+  open: PropTypes.bool,
+  setOpen: PropTypes.func,
+  onInputChange: PropTypes.func,
+  form: PropTypes.objectOf(PropTypes.any),
+  handleSetPassword: PropTypes.func,
+  loading: PropTypes.bool,
+};
+SetPasswordModal.defaultProps = {
+  open: false,
+  setOpen: () => {},
+  onInputChange: () => {},
+  form: {},
+  handleSetPassword: () => {},
+  loading: false,
 };
 
 export default SetPasswordModal;

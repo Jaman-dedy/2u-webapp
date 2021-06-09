@@ -31,10 +31,11 @@ const Profile = ({
   changeUserPresence,
   switchAccount,
   supportingDocuments,
+  activeTabIndex,
+  setActiveTabIndex,
 }) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const [activeTabIndex, setActiveTabIndex] = useState(0);
   const { referreesList } = useSelector(state => state.contacts);
 
   const businessInfoTitle = global.translate('Business Information');
@@ -284,29 +285,26 @@ const Profile = ({
 
 Profile.propTypes = {
   userData: PropTypes.objectOf(PropTypes.any),
-  target: PropTypes.objectOf(PropTypes.any),
-  profileImageData: PropTypes.objectOf(PropTypes.any),
-  general: PropTypes.objectOf(PropTypes.any),
-  emailAndPhone: PropTypes.objectOf(PropTypes.any),
-  securityQuestions: PropTypes.objectOf(PropTypes.any),
-  changePIN: PropTypes.func,
-  changeDOB: PropTypes.func,
-  changeGender: PropTypes.func,
-  documents: PropTypes.objectOf(PropTypes.any),
   switchAccount: PropTypes.objectOf(PropTypes.any).isRequired,
-  bankAccount: PropTypes.objectOf(PropTypes.any).isRequired,
+  supportingDocuments: PropTypes.objectOf(PropTypes.any),
+  activeTabIndex: PropTypes.number,
+  setActiveTabIndex: PropTypes.func,
+  personalInfo: PropTypes.objectOf(PropTypes.any),
+  identityConfirmation: PropTypes.objectOf(PropTypes.any),
+  residenceData: PropTypes.objectOf(PropTypes.any),
+  userDetails: PropTypes.objectOf(PropTypes.any),
+  changeUserPresence: PropTypes.func,
 };
 Profile.defaultProps = {
   userData: {},
-  target: {},
-  profileImageData: {},
-  general: {},
-  emailAndPhone: {},
-  securityQuestions: {},
-  changePIN: () => {},
-  changeDOB: () => {},
-  changeGender: () => {},
-  documents: {},
+  supportingDocuments: {},
+  activeTabIndex: 0,
+  setActiveTabIndex: () => {},
+  personalInfo: {},
+  identityConfirmation: {},
+  residenceData: {},
+  userDetails: {},
+  changeUserPresence: () => {},
 };
 
 export default Profile;

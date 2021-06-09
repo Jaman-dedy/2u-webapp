@@ -279,12 +279,12 @@ export default () => {
   };
 
   useEffect(() => {
-    if (verifyOTP.isValid) {
+    if (verifyOTP.isValid && phoneValue) {
       const newPhone = {
         OTP: OTP,
         PhoneNumber: phoneValue
-          .replace(/\D/g, '')
-          .replace(/(\d{3})(\d{3})(\d{3})/, '+$1 $2 $3 '),
+          ?.replace(/\D/g, '')
+          ?.replace(/(\d{3})(\d{3})(\d{3})/, '+$1 $2 $3 '),
         Phone: phoneValue,
         Category: '1',
         CountryCode: phoneCountryCode,

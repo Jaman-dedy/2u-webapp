@@ -245,6 +245,11 @@ const App = () => {
                     },
                   });
                 }
+                if (!route.protected && isAuth()) {
+                  props.history.push({
+                    pathname: '/', 
+                  });
+                }
                 if (!route.indexPage) {
                   document.title = global.translate(route.name);
                 }

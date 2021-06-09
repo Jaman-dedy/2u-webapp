@@ -119,6 +119,23 @@
         align-items: center;
       }
     }
+    .amount-paypal {
+      width: 100%;
+      display: flex;
+      .amount-credit-card-input {
+        width: 70%;
+      }
+      input {
+        border: 1px solid #cfcfcf !important;
+      }
+      .amount-pay-pal-input {
+        width: 55%;
+      }
+      .amount-currency-paypal {
+        height: 45px;
+        padding-top: 17px;
+      }
+    }
 
     .card-number {
       display: flex;

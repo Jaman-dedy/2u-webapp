@@ -77,6 +77,7 @@ const WalletCarousel = ({
         ({ AccountNumber }) => AccountNumber === selectedWalletNumber,
       );
     }
+
     if (defaultSelectedWallet) {
       setSelectedWallet(defaultSelectedWallet);
       selectWallet({

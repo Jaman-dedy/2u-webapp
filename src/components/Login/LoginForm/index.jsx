@@ -51,6 +51,7 @@ const LoginForm = ({
   const {
     currentUser: { authData },
   } = useSelector(({ user }) => user);
+  
 
   useEffect(() => {
     if (authData?.UserShouldSetPassword === 'NO') {
@@ -94,7 +95,6 @@ const LoginForm = ({
     if (!phoneValue) {
       setWebUserStep(false);
       setUssdUserStep(false);
-    } else {
     }
   }, [credentials.PID, phoneValue]);
 

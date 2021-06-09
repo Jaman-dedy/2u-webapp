@@ -102,12 +102,15 @@ const UserDetails = ({
               }}
             />
             <UploadImgButton
-              name="UserProofOfAddressURL"
+              name="UserIDURL"
               onChooseFile={onImageChange}
               img
               src={UploadImg}
               circular
               loading={uploadingImg}
+              uploadedImg={
+                userIdUrlData?.MediaSourceURL || userData?.PictureURL
+              }
             />
           </div>
           <div>

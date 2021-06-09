@@ -64,7 +64,7 @@ const Dashboard = ({
           474,
         ),
         type: 'IdDocs',
-        tab: 'documents',
+        tab: 'personalInfo',
       };
     }
     return null;
@@ -72,9 +72,7 @@ const Dashboard = ({
   const onEdit = () => {
     if (getStatusMessage()) {
       history.push(
-        `/account-management?tab=${getStatusMessage().tab}&target=${
-          getStatusMessage().type
-        }`,
+        `/account-management?tab=${getStatusMessage().tab}`,
       );
     }
   };

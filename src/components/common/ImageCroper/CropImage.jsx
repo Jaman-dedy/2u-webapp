@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Modal, Form, Button, Icon } from 'semantic-ui-react';
+import { Modal, Form, Button, Icon, Image } from 'semantic-ui-react';
 import Cropper from 'react-cropper';
 import 'cropperjs/dist/cropper.css';
 
@@ -12,6 +12,7 @@ const CropImage = ({
   file,
   uploadImage,
   chooseImage,
+  uploadedUrl,
 }) => {
   const [cropper, setCropper] = useState();
   const [imageUrl, setImageUrl] = useState('');
@@ -45,22 +46,25 @@ const CropImage = ({
         {global.translate('Select a Picture', 2027)}
       </Modal.Header>
       <Modal.Content>
-        <Cropper
-          style={{ height: 400, width: '100%' }}
-          initialAspectRatio={1}
-          src={imageUrl}
-          viewMode={1}
-          guides
-          background={false}
-          responsive
-          autoCropArea={1}
-          checkOrientation={false}
-          onInitialized={instance => {
-            setCropper(instance);
-          }}
-          rotatable
-          aspectRatio={aspectRatio}
-        />
+        {!loading && (
+          <Cropper
+            style={{ height: 400, width: '100%' }}
+            initialAspectRatio={1}
+            src={imageUrl}
+            viewMode={1}
+            guides
+            background={false}
+            responsive
+            autoCropArea={1}
+            checkOrientation={false}
+            onInitialized={instance => {
+              setCropper(instance);
+            }}
+            rotatable
+            aspectRatio={aspectRatio}
+          />
+        )}
+        {loading && <Image src={uploadedUrl} />}
         <div className="center-align rotate-actions">
           <Button
             icon
@@ -70,7 +74,7 @@ const CropImage = ({
             }}
           >
             <Icon disabled name="undo" />
-            Rotate left
+            {global.translate('Rotate left')}
           </Button>
           <Button
             icon
@@ -80,7 +84,7 @@ const CropImage = ({
             }}
           >
             <Icon disabled name="redo" />
-            Rotate right
+            {global.translate('Rotate right')}
           </Button>
         </div>
       </Modal.Content>
@@ -138,6 +142,7 @@ CropImage.propTypes = {
   loading: PropTypes.bool,
   aspectRatio: PropTypes.number,
   file: PropTypes.instanceOf(File).isRequired,
+  uploadedUrl: PropTypes.string,
 };
 CropImage.defaultProps = {
   open: false,
@@ -146,6 +151,7 @@ CropImage.defaultProps = {
   chooseImage: false,
   loading: false,
   aspectRatio: NaN,
+  uploadedUrl: '',
 };
 
 export default CropImage;
