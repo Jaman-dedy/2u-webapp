@@ -1,9 +1,19 @@
 .otp-box__pin {
   margin-bottom: 20px;
   .pin {
-    max-width: 69% !important;
+    max-width: 79% !important;
+    padding-left: 0px !important;
     .ui.form .field.field input {
       padding: 3px 10px !important;
+    }
+    .pin__input {
+      border-top: none !important;
+      border-right: none !important;
+      border-left: none !important;
+      &:focus,
+      &:valid {
+        border-bottom: 1.8px solid #ea5726 !important;
+      }
     }
   }
 }
@@ -17,6 +27,18 @@
   color: #218ecc;
 }
 .otp-box {
+  .pin {
+    padding-left: 0px !important;
+  }
+  .pin__input {
+    border-top: none !important;
+    border-right: none !important;
+    border-left: none !important;
+    &:focus,
+    &:valid {
+      border-bottom: 1.8px solid #ea5726 !important;
+    }
+  }
   input {
     padding: 3px 10px !important;
   }
