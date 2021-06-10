@@ -67,6 +67,8 @@ const Login = ({
     }
   }, [credentials, updatePassword]);
 
+  console.log(`error`, error);
+
   useEffect(() => {
     if (error && error?.error) {
       const err = error?.error;

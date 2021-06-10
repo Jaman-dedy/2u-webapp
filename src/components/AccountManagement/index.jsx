@@ -294,6 +294,7 @@ Profile.propTypes = {
   residenceData: PropTypes.objectOf(PropTypes.any),
   userDetails: PropTypes.objectOf(PropTypes.any),
   changeUserPresence: PropTypes.func,
+  bankAccount: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 Profile.defaultProps = {
   userData: {},

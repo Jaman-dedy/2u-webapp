@@ -2,7 +2,7 @@ import { lazy } from 'react';
 
 export default {
   name: 'Marketplace',
-  protected: false,
+  protected: true,
   exact: false,
   indexPage: true,
   path: '/marketplace',
