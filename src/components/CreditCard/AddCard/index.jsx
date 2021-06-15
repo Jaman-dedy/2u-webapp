@@ -140,7 +140,6 @@ const AddCard = ({
   }
 
   const onClickHandler = () => history.goBack();
-  console.log(`userData`, userData);
   return (
     <DashboardLayout>
       <WelcomeBar>
