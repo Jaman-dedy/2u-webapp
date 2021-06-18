@@ -47,6 +47,7 @@ const Index = () => {
     isTopingUp,
     isSendingVoucher,
   } = useSelector(state => state.dashboard.contactActions);
+
   const [sendCashOpen, setSendCashOpen] = useState(false);
   const [sendMoneyOpen, setSendMoneyOpen] = useState(false);
   const [topUpOpen, setTopUpOpen] = useState(false);
@@ -122,10 +123,14 @@ const Index = () => {
       case 'to-up':
         setIsTopingUp(dispatch);
         break;
+      case 'send-voucher':
+        setIsSendingVoucher(dispatch);
+        break;
       default:
         setManageContacts(dispatch);
     }
-  }, [sendMoneyOpen, sendCashOpen, topUpOpen, sendToOthersOpen]);
+  }, [ref, dispatch]);
+
   useEffect(() => {
     if (targetContact) {
       setIsDetail(true);

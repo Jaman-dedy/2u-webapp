@@ -1,17 +1,16 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Modal, Button } from 'semantic-ui-react';
-
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory, useLocation } from 'react-router-dom';
 import redeemStoreVoucher from 'redux/actions/vouchers/redeemStoreVoucher';
 import VoucherTokenVerification from 'components/common/VoucherTokenVerification';
-import VoucherSecurityCode from 'components/common/VoucherSecurityCode';
 import Message from 'components/common/Message';
-
+import PINInput from 'components/common/PINInput';
 import verifyVoucherFn from 'redux/actions/vouchers/verifyStoreVoucher';
 import PendingVoucherDetails from './pendingVoucherDetail';
 import VoucherReceiptModal from './VoucherReceiptModal';
+import './RedeemVoucher.scss';
 
 const RedeemVoucherModal = ({ open, setOpen, item }) => {
   const dispatch = useDispatch();
@@ -112,14 +111,15 @@ const RedeemVoucherModal = ({ open, setOpen, item }) => {
                 className="pin-number-inputs"
                 style={{ marginBottom: 10 }}
               >
-                <VoucherSecurityCode
-                  label={global.translate(
-                    'Enter the Security code',
-                    941,
-                  )}
-                  onChange={onChange}
-                  name="SecurityCode"
-                  value={form.SecurityCode || ''}
+                <label>
+                  {global.translate('Enter the security code')}
+                </label>
+
+                <PINInput
+                  value={form?.SecurityCode}
+                  onChange={value => {
+                    onChange(null, { name: 'SecurityCode', value });
+                  }}
                 />
               </div>
             </>
@@ -130,19 +130,23 @@ const RedeemVoucherModal = ({ open, setOpen, item }) => {
             <div className="main-content">
               <Button
                 disabled={redeemLoading}
-                className="btn-cancel"
+                className="btn--cancel"
                 onClick={() => setOpen(false)}
               >
                 {global.translate('Close', 186)}
               </Button>
+
               <Button
                 className="verify-voucher-btn btn--confirm"
-                disabled={verifyLoading}
+                disabled={
+                  verifyLoading ||
+                  form?.VoucherNumber?.length < 10 ||
+                  form?.SecurityCode?.length < 4
+                }
                 loading={verifyLoading}
                 onClick={() => {
-                  const SecurityCode = `${form?.digit0}${form?.digit1}${form?.digit2}${form?.digit3}`;
                   const postData = {
-                    SecurityCode,
+                    SecurityCode: form?.SecurityCode,
                     VoucherNumber: form?.VoucherNumber,
                     StoreID: item?.StoreSID,
                   };

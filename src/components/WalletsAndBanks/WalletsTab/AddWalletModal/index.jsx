@@ -145,6 +145,7 @@ const AddWalletModal = ({
                           options &&
                           options
                         }
+                        className="walletCurrency"
                         name="Currency"
                         value={inputField.Currency}
                         onChange={(event, data) => {

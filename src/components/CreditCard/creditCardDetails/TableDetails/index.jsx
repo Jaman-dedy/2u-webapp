@@ -27,7 +27,7 @@ const TableDetails = ({
   loadOnActivate,
   getCreditCardLoading,
 }) => {
-  const creationDate = moment(card.CreationDate).format('ll');
+  const creationDate = moment(card?.CreationDate).format('ll');
   return (
     <div>
       <Table unstackable>

@@ -517,7 +517,7 @@ SendCashContainer.propTypes = {
   setOptionsOpen: PropTypes.func,
   setIsEditing: PropTypes.func,
   transactionType: PropTypes.string,
-  EditSendToOther: PropTypes.bool,
+  handleDismissModal: PropTypes.func.isRequired,
 };
 
 SendCashContainer.defaultProps = {
@@ -527,6 +527,5 @@ SendCashContainer.defaultProps = {
   setOptionsOpen: () => {},
   setIsEditing: () => {},
   transactionType: 'CASH_TRANSACTION',
-  EditSendToOther: false,
 };
 export default SendCashContainer;

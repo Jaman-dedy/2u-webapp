@@ -21,12 +21,15 @@ const PINInput = ({ value, onChange, numberOfInputs, type }) => {
 
   const [inputValues, setInputValues] = useState({ ...INPUT_VALUES });
 
-  const handleValueChange = ({ target: { name, value } }) => {
-    setInputValues(prevValues => ({
-      ...prevValues,
-      [name]: value,
-    }));
-  };
+  const handleValueChange = useCallback(
+    ({ target: { name, value } }) => {
+      setInputValues(prevValues => ({
+        ...prevValues,
+        [name]: value,
+      }));
+    },
+    [],
+  );
 
   useEffect(() => {
     if (value.trim() === '') {
@@ -41,7 +44,7 @@ const PINInput = ({ value, onChange, numberOfInputs, type }) => {
     if (inputValues) {
       onChange(Object.values(inputValues).join(''));
     }
-  }, [inputValues, onChange]);
+  }, [inputValues]);
 
   useEffect(() => {
     if (digitRefs.current[digitWithFocus]) {

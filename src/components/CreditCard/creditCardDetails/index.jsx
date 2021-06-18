@@ -219,7 +219,7 @@ const CreditCardDetails = ({ creditCardDetails }) => {
               'Please type the following text to proceed',
               2129,
             )}{' '}
-            <span className="ui label">{`${wallet.Last4Digits}`}</span>
+            <span className="ui label">{`${wallet?.Last4Digits}`}</span>
           </p>
 
           <TextInput
@@ -243,7 +243,7 @@ const CreditCardDetails = ({ creditCardDetails }) => {
               setDeleteCardStep(2);
               setConfirmationText('');
             }}
-            disabled={confirmationText !== wallet.Last4Digits}
+            disabled={confirmationText !== wallet?.Last4Digits}
           >
             {global.translate('Proceed')}
           </Button>

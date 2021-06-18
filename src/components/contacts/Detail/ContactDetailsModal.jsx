@@ -43,10 +43,10 @@ import allCountries from 'utils/countries';
 import countries from 'utils/countryCodes';
 import useWindowSize from 'utils/useWindowSize';
 
+import AirtimeactionsImage from 'assets/images/top-up.png';
 import DragDropWallets from '../Edit/DragDropWallets';
 import EditContactContents from '../Edit/EditContactContents';
 import PreviewProfileImg from './PreviewProfileImg';
-import AirtimeactionsImage from 'assets/images/top-up.png';
 
 const ContactDetailsModal = ({
   open,
@@ -166,6 +166,7 @@ const ContactDetailsModal = ({
   const { data: newTransaction } = useSelector(
     state => state.moneyTransfer.moveFundsTo2UWallet,
   );
+
   const { data: updatePic } = useSelector(
     state => state.contacts.updateExternalContactImage,
   );

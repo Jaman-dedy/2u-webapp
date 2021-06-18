@@ -14,7 +14,7 @@ const CreditCardDetailsContainer = () => {
     activateCreditCard,
     enableCreditCard,
   } = useSelector(({ creditCard }) => creditCard);
-  const { wallet } = location.state;
+  const { wallet } = location?.state || {};
 
   useEffect(() => {
     if (!creditCardList.data) {
@@ -25,7 +25,7 @@ const CreditCardDetailsContainer = () => {
   useEffect(() => {
     if (creditCardList?.data) {
       creditCardList.data.map(item => {
-        if (item.CardNumber === location.state.wallet.CardNumber) {
+        if (item?.CardNumber === location.state?.wallet.CardNumber) {
           setCurrentWallet(item);
         }
       });

@@ -1,13 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import {
-  Button,
-  Form,
-  Input,
-  Modal,
-  Message as displayMessage,
-} from 'semantic-ui-react';
+import { Button, Form, Input, Modal } from 'semantic-ui-react';
 import 'moment/locale/fr';
 import CustomDropdown from 'components/common/Dropdown/CountryDropdown';
 import Message from 'components/common/Message';
@@ -209,6 +203,7 @@ const SendCashModal = ({
     value: item.day,
     text: item.val,
   }));
+
   return (
     <Modal
       size="small"
@@ -521,6 +516,7 @@ SendCashModal.propTypes = {
   defaultDestinationCurrency: PropTypes.string,
   transactionType: PropTypes.string,
   loadingOther: PropTypes.bool.isRequired,
+  handleDismissModal: PropTypes.func.isRequired,
 };
 
 SendCashModal.defaultProps = {
