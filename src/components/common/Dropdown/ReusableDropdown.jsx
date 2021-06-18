@@ -211,6 +211,7 @@ const ReusableDropdown = ({
                   <Image
                     src={newCurrentOption && newCurrentOption.Img}
                     className="inline"
+                    style={{ width: '30px', height: '30px' }}
                   />
                   <div>
                     <div>
@@ -269,7 +270,11 @@ const ReusableDropdown = ({
               >
                 <span className="dropdown-trigger">
                   <div className="dropdown-wallet">
-                    <Image src={option?.Img} className="inline" />
+                    <Image
+                      src={option?.Img}
+                      className="inline"
+                      style={{ width: '30px', height: '30px' }}
+                    />
                     <div>
                       <div>{option?.Title}</div>
                     </div>

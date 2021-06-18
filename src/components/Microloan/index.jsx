@@ -159,7 +159,7 @@ const MicroLoan = ({ listData, listLoading, userData }) => {
         </div>
       </WelcomeBar>
       <div className="micro-container">
-        {listLoading && (
+        {listLoading && listData?.length === 0 && (
           <div className="loan-placeholder ">
             <Image
               src={listPlaceHolder}

@@ -68,6 +68,7 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  justify-content: space-between;
   .one-service {
     width: calc(33.3% - 8px);
     margin-bottom: 10px;
@@ -306,7 +307,10 @@
     width: 100%;
   }
   .wrap-wallet-actions {
+    display: flex;
+    justify-content: space-between;
     width: 100%;
+    padding-top: 15px;
     .wrap-wallet-btn a {
       padding: 15px 0px;
       height: 120px;

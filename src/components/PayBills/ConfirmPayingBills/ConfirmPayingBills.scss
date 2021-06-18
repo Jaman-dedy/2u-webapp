@@ -12,9 +12,11 @@
       border-top: none;
       border-right: none;
       border-left: none;
+      border: 1px solid #9b9593;
+      margin-left: 5px;
 
       &:focus {
-        border-bottom: 1px solid #ea5726;
+        border: 1px solid #ea5726;
       }
     }
   }
