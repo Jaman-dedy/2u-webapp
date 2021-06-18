@@ -9,6 +9,11 @@ export default {
     loading: false,
     success: false,
   },
+  deletePhone: {
+    error: null,
+    loading: false,
+    success: false,
+  },
   updateUserEmailList: {
     error: null,
     loading: false,

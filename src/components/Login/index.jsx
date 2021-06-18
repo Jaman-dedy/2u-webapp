@@ -80,7 +80,7 @@ const Login = ({
         setIsSettingNewPassword(true);
       }
     }
-  }, [error?.error]);
+  }, [error]);
 
   return (
     <AuthWrapper

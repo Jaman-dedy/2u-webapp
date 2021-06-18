@@ -92,7 +92,20 @@ export default () => {
 
   // FUNCTIONS
   const isEmpty = value => `${value}`.trim().length === 0;
-
+  const addPhoneNumberHandler = useCallback(
+    e => {
+      e.preventDefault();
+      history.push({
+        pathname: '/account-management',
+        state: {
+          addPhone: true,
+          fromBankAccount: true,
+          activeTab: 1,
+        },
+      });
+    },
+    [history],
+  );
   const resetOperationHandler = useCallback(() => {
     setStep(1);
     setOpenLinkBankModal(false);
@@ -355,7 +368,7 @@ export default () => {
         ...form,
         PhoneNumber: primaryPhone?.Phone,
       }));
-      setPhones(userData?.data?.Phones);
+      setPhones(userData?.data?.Phones.map(phone => phone));
     }
   }, [userData?.data?.Phones, openLinkBankModal]);
 
@@ -440,5 +453,6 @@ export default () => {
     handleAddMoneyToWallet,
     handleSendMoneyToBank,
     currentItem,
+    addPhoneNumberHandler,
   };
 };

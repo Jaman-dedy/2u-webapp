@@ -8,7 +8,6 @@ import {
   Image,
   Table,
   Loader,
-  Input,
 } from 'semantic-ui-react';
 import PhoneInput from 'react-phone-input-2';
 import AddPhoneIcon from 'assets/images/profile/add-phone.svg';
@@ -16,7 +15,7 @@ import './style.scss';
 import InfoMessage from 'components/common/Alert/InfoMessage';
 import PINInput from 'components/common/PINInput';
 import ErrorMessage from 'components/common/Alert/Danger';
-
+import { useSelector } from 'react-redux';
 const ManagePhoneModal = ({
   open,
   setOpen,
@@ -38,17 +37,30 @@ const ManagePhoneModal = ({
     secondOpen,
     setSecondOpen,
     verifyOTP,
+    deletePhone,
   } = personalInfo;
   const [addingPhone, setIAddingPhone] = useState(false);
   const [sendOtp, setSendOtp] = useState(false);
   const [verifyPhoneLoading, setVerifyPhoneLoading] = useState(false);
   const [currentPhone, setCurrentPhone] = useState(null);
   const { loading, success } = updateUserPhoneList;
+
+  const updatePhoneListData = useSelector(
+    ({ userAccountManagement: { updateUserPhoneList } }) =>
+      updateUserPhoneList,
+  );
+
   useEffect(() => {
     if (sendOTP.success) {
       setSendOtp(true);
     }
   }, [sendOTP]);
+
+  useEffect(() => {
+    setSendOtp(false);
+    setIAddingPhone(false);
+
+  }, [updatePhoneListData?.success]);
 
   useEffect(() => {
     if (verifyOTP.isValid) {
@@ -58,10 +70,21 @@ const ManagePhoneModal = ({
   }, [verifyOTP]);
 
   useEffect(() => {
-    if (success) {
+    const {data} =  updatePhoneListData
+    if (data?.success) {
+      setSecondOpen(false);
+      setIAddingPhone(false);
+      setSendOtp(false);
+    }
+
+
+  }, [updatePhoneListData?.data?.success]);
+
+  useEffect(() => {
+    if (deletePhone.success) {
       setSecondOpen(false);
     }
-  }, [success]);
+  }, [deletePhone]);
 
   const handleClick = phone => {
     setCurrentPhone(phone);
@@ -122,13 +145,13 @@ const ManagePhoneModal = ({
                       <div className="display-phone">
                         <Image src={phone.PhoneFlag} />
                         <div>
-                          {phone.Phone.replace(/\D/g, '').replace(
+                          {phone?.Phone?.replace(/\D/g, '').replace(
                             /(\d{3})(\d{3})(\d{3})/,
                             '+$1 $2 $3 ',
                           )}
                           &nbsp;
-                          {phone.Primary === 'YES' &&
-                          phone.Phone !== ''
+                          {phone?.Primary === 'YES' &&
+                          phone?.Phone !== ''
                             ? global.translate('(primary)')
                             : null}
                         </div>
@@ -195,7 +218,7 @@ const ManagePhoneModal = ({
                             >
                               {global.translate('Proceed')}
                               &nbsp;
-                              {loading && (
+                              {deletePhone?.loading && (
                                 <Loader
                                   size="mini"
                                   active

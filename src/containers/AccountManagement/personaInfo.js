@@ -11,6 +11,7 @@ import getUserProfessionAction from 'redux/actions/users/getProfession';
 import isFileImage from 'utils/isFileImage';
 import uploadDocs from 'helpers/uploadDocs/checkUpload';
 import updateUserPhoneListAction from 'redux/actions/userAccountManagement/updateUserPhoneList';
+import deletePhoneNumber from 'redux/actions/userAccountManagement/deletePhoneNumber';
 import updateUserEmailListAction from 'redux/actions/userAccountManagement/updateUserEmailList';
 
 import verifyOTPAction, {
@@ -27,6 +28,7 @@ export default () => {
     saveUserData,
     updateUserPhoneList,
     updateUserEmailList,
+    deletePhone,
   } = useSelector(
     ({ userAccountManagement }) => userAccountManagement,
   );
@@ -253,11 +255,6 @@ export default () => {
         );
     }
   };
-  useEffect(() => {
-    if (updateUserPhoneList.success) {
-      setSecondOpen(false);
-    }
-  }, [updateUserPhoneList]);
 
   useEffect(() => {
     if (OTP.length === 6) {
@@ -278,24 +275,31 @@ export default () => {
     return unique;
   };
 
+  const updatePhoneListHandler = useCallback(
+    newPhone => {
+      updateUserPhoneListAction({
+        updatedPhoneList: new Set([...data?.Phones, newPhone]),
+        Phones: [newPhone],
+      })(dispatch);
+    },
+    [data, dispatch],
+  );
   useEffect(() => {
     if (verifyOTP.isValid && phoneValue) {
       const newPhone = {
-        OTP: OTP,
+        OTP,
         PhoneNumber: phoneValue
           ?.replace(/\D/g, '')
           ?.replace(/(\d{3})(\d{3})(\d{3})/, '+$1 $2 $3 '),
         Phone: phoneValue,
         Category: '1',
         CountryCode: phoneCountryCode,
-        PhoneFlag: `https://celinemoneypicfiles.blob.core.windows.net/icons/${phoneCountryCode}.png`,
+        PhoneFlag: `https://celinemoneypicfiles.blob.core.windows.net/icons/${phoneCountryCode?.toLowerCase()}.png`,
       };
-      updateUserPhoneListAction({
-        existingPhones: data?.Phones,
-        data: { Phones: [newPhone] },
-      })(dispatch);
+      updatePhoneListHandler(newPhone);
+      clearVerifyOTP()(dispatch);
     }
-  }, [verifyOTP]);
+  }, [verifyOTP, updatePhoneListHandler, dispatch]);
 
   const handleDelete = (e, phone) => {
     e.stopPropagation();
@@ -312,15 +316,14 @@ export default () => {
         Category: '1',
         CountryCode: item.CountryCode ?? item.NumberCountryCode,
         NumberCountryCode: item.CountryCode ?? item.NumberCountryCode,
-        PhoneFlag: `https://celinemoneypicfiles.blob.core.windows.net/icons/${item.CountryCode ??
-          item.NumberCountryCode}.png`,
+        PhoneFlag: `https://celinemoneypicfiles.blob.core.windows.net/icons/${item.CountryCode?.toLowerCase() ??
+          item.NumberCountryCode?.toLowerCase()}.png`,
         Primary: item.Primary,
       };
     });
     const filteredPhones = phones(newList, 'Phone');
-    updateUserPhoneListAction({
-      isDeleting: true,
-      data: { Phones: [...filteredPhones] },
+    deletePhoneNumber({
+      Phones: [...filteredPhones],
     })(dispatch);
   };
   const emails = (userEmails, Email) => {
@@ -401,5 +404,6 @@ export default () => {
     setBornCountry,
     bornCountry,
     verifyOTP,
+    deletePhone,
   };
 };

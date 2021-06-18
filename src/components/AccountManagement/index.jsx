@@ -22,6 +22,7 @@ import PersonalInfoTab from './PersonalInfoTab';
 import DocumentTab from './DocumentTab';
 import UserDetails from './UserDetails';
 import BusinessInfoTab from './BusinessInfoTab';
+import { clearUpdatePhoneList } from 'redux/actions/userAccountManagement/updateUserPhoneList';
 const Profile = ({
   userData,
   personalInfo,
@@ -37,6 +38,11 @@ const Profile = ({
   const history = useHistory();
   const dispatch = useDispatch();
   const { referreesList } = useSelector(state => state.contacts);
+
+  const updatePhoneListData = useSelector(
+    ({ userAccountManagement: { updateUserPhoneList } }) =>
+      updateUserPhoneList,
+  );
 
   const businessInfoTitle = global.translate('Business Information');
   const personalInfoTitle = global.translate('Personal information');
@@ -73,6 +79,31 @@ const Profile = ({
   const onTabChange = (_, { activeIndex }) => {
     setActiveTabIndex(activeIndex);
   };
+
+  useEffect(() => {
+    const { state } = history.location;
+
+    if (state?.activeTab) {
+      setActiveTabIndex(state?.activeTab);
+    }
+    if (state?.fromBankAccount && state?.addPhone) {
+      personalInfo.setOpenPhoneModal(true);
+      history.replace({
+        ...history.location,
+        state: {
+          ...history.location.state,
+          addPhone: false,
+        },
+      });
+    }
+    if (state?.fromBankAccount && updatePhoneListData?.success) {
+      clearUpdatePhoneList(dispatch);
+      history.push({
+        pathname: '/wallets',
+        state: { activeTab: 1, openModal: true },
+      });
+    }
+  }, [history.location, updatePhoneListData, dispatch]);
 
   useEffect(() => {
     if (updateBusinessAccount) {

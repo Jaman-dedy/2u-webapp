@@ -54,11 +54,11 @@ export default (state, { type, payload }) => {
       return {
         ...state,
         userData: {
-          ...state.userData,
           loading: false,
+          ...state.userData,
           data: {
             ...state.userData.data,
-            Phones: payload.Phones,
+            Phones: [...payload?.data],
           },
         },
       };

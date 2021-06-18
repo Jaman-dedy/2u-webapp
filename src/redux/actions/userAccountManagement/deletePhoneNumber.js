@@ -1,10 +1,10 @@
 import { toast } from 'react-toastify';
 import {
-  UPDATE_USER_PHONE_LIST_START,
-  UPDATE_USER_PHONE_LIST_SUCCESS,
-  UPDATE_USER_PHONE_LIST_FAILURE,
+  DELETE_PHONE_START,
+  DELETE_PHONE_SUCCESS,
+  DELETE_PHONE_FAILURE,
   UPDATE_USER_PHONE_LIST,
-  CLEAR_UPDATE_USER_PHONE_LIST,
+  CLEAR_DELETE_PHONE,
 } from 'constants/action-types/userAccountManagement/updateUserPhoneList';
 import apiAction from 'helpers/apiAction';
 
@@ -13,10 +13,10 @@ export default data => dispatch =>
     apiAction({
       method: 'post',
       url: '/UpdateUserPhoneList',
-      data: { Phones: data.Phones },
+      data,
       onStart: () => dispatch =>
         dispatch({
-          type: UPDATE_USER_PHONE_LIST_START,
+          type: DELETE_PHONE_START,
         }),
       onSuccess: result => dispatch => {
         const res = Array.isArray(result)
@@ -25,23 +25,24 @@ export default data => dispatch =>
         toast.success(res.Description);
         if (res.Result === 'Success') {
           dispatch({
-            type: UPDATE_USER_PHONE_LIST_SUCCESS,
+            type: DELETE_PHONE_SUCCESS,
             payload: {
               data: {
                 ...res,
               },
             },
           });
-
           dispatch({
             type: UPDATE_USER_PHONE_LIST,
             payload: {
-              data: data.updatedPhoneList,
+              data: data?.Phones,
             },
           });
+          {
+          }
         } else {
           dispatch({
-            type: UPDATE_USER_PHONE_LIST_FAILURE,
+            type: DELETE_PHONE_FAILURE,
             payload: {
               ...res,
             },
@@ -54,7 +55,7 @@ export default data => dispatch =>
           : error || {};
         toast.error(err.Description);
         return dispatch({
-          type: UPDATE_USER_PHONE_LIST_FAILURE,
+          type: DELETE_PHONE_FAILURE,
           payload: {
             ...err,
           },
@@ -62,8 +63,7 @@ export default data => dispatch =>
       },
     }),
   );
-
 export const clearUpdatePhoneList = dispatch =>
   dispatch({
-    type: CLEAR_UPDATE_USER_PHONE_LIST,
+    type: CLEAR_DELETE_PHONE,
   });

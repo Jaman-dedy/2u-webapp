@@ -8,6 +8,14 @@
   border: 1px solid #d1d1d1;
   padding: 0 10px;
   border-radius: 5px;
+
+  .dropdown {
+    &__button {
+      color: #555;
+      width: 100% !important;
+      border-radius: 0 !important;
+    }
+  }
   .ui.input {
     border: 1px solid #d1d1d1;
   }

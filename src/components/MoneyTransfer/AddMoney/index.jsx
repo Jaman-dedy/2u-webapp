@@ -360,7 +360,7 @@ const AddMoney = ({
                 {linkedBankAccounts?.length === 0 && (
                   <InfoMessage
                     description={global.translate(
-                      'To to up from a bank account, you need to have at least one bank account linked to your 2U Money account',
+                      'To top up from a bank account, you need to have at least one bank account linked to your 2U Money account',
                     )}
                     actionLabel={global.translate('Link an account')}
                     actionHandler={() =>
@@ -368,6 +368,7 @@ const AddMoney = ({
                         pathname: '/wallets',
                         state: {
                           activeTab: 1,
+                          openModal: true,
                         },
                       })
                     }

@@ -2,13 +2,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable consistent-return */
 import React, { useState, useEffect } from 'react';
-import { Image, Dropdown, Icon, Input } from 'semantic-ui-react';
+import {
+  Image,
+  Dropdown,
+  Icon,
+  Input,
+  Button,
+} from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 import './Dropdown.scss';
 import Wrapper from 'hoc/Wrapper';
 
-const ReusableDrowdown = ({
+const ReusableDropdown = ({
   options,
   currentOption,
   onChange,
@@ -19,6 +25,9 @@ const ReusableDrowdown = ({
   customstyle,
   customStyleSelector,
   value,
+  bottomAction,
+  actionHandler,
+  actionLabel,
 }) => {
   let name;
 
@@ -52,16 +61,17 @@ const ReusableDrowdown = ({
         };
       }
       // select phoneNumber
-      if (
-        option.PhonePrefix &&
-        option.PhoneFlag &&
-        option.PhoneNumber
-      ) {
+      if (option.PhoneFlag && option.PhoneNumber) {
         name = 'OperatorName';
-        return {
-          Title: `+${option.PhonePrefix} ${option.PhoneNumber}`,
+        const phoneData = {
+          Title: `+${
+            option?.PhonePrefix ? option?.PhonePrefix : ''
+          } ${option.PhoneNumber}`
+            ?.replaceAll('+ +', '+')
+            .replaceAll('++', '+'),
           Img: option.PhoneFlag,
         };
+        return phoneData;
       }
       // select wallet
       if (
@@ -268,13 +278,23 @@ const ReusableDrowdown = ({
               </Dropdown.Item>
             ))}
           </Dropdown.Menu>
+          {bottomAction && (
+            <Button
+              className="dropdown__button"
+              onClick={actionHandler}
+              basic
+            >
+              <Icon disabled name="add" />
+              {actionLabel || global.translate('Add')}
+            </Button>
+          )}
         </Dropdown.Menu>
       </Dropdown>
     </>
   );
 };
 
-ReusableDrowdown.defaultProps = {
+ReusableDropdown.defaultProps = {
   options: [{}],
   currentOption: undefined,
   onChange: () => null,
@@ -286,7 +306,7 @@ ReusableDrowdown.defaultProps = {
   customStyleSelector: false,
 };
 
-ReusableDrowdown.propTypes = {
+ReusableDropdown.propTypes = {
   options: PropTypes.arrayOf(PropTypes.instanceOf(Object)),
   currentOption: PropTypes.instanceOf(Object),
   onChange: PropTypes.func,
@@ -296,6 +316,15 @@ ReusableDrowdown.propTypes = {
   placeholder: PropTypes.string,
   customstyle: PropTypes.bool,
   customStyleSelector: PropTypes.bool,
+  bottomAction: PropTypes.bool,
+  actionLabel: PropTypes.string,
+  actionHandler: PropTypes.func,
 };
 
-export default ReusableDrowdown;
+ReusableDropdown.defaultProps = {
+  bottomAction: false,
+  actionLabel: '',
+  actionHandler: () => {},
+};
+
+export default ReusableDropdown;

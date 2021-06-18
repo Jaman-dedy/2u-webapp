@@ -17,6 +17,7 @@ const WalletsAndBanks = ({ userWallets, bankAccounts }) => {
   const history = useHistory();
   const { setOpenAddWalletModal, clearForm } = userWallets;
   const { setOpenLinkBankModal } = bankAccounts;
+
   const openAddModalFX = () => {
     setOpenAddWalletModal(true);
     clearForm();
@@ -54,6 +55,20 @@ const WalletsAndBanks = ({ userWallets, bankAccounts }) => {
     return () => {
       setActiveTabIndex(0);
     };
+  }, [history.location.state]);
+
+  useEffect(() => {
+    const { openModal } = history?.location?.state ?? {};
+    if (openModal) {
+      history.replace({
+        ...history.location,
+        state: {
+          ...history.location.state,
+          openModal: false,
+        },
+      });
+      bankAccounts.setOpenLinkBankModal(true);
+    }
   }, [history.location.state]);
 
   return (
