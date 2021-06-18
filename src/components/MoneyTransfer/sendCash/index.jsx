@@ -287,7 +287,7 @@ const SendCashModal = ({
               </div>
               <div className="currency">
                 <p className="choose-dest-country">
-                  {global.translate('Destination Currency', 1629)}
+                  {global.translate('Destination Currency')}
                 </p>
                 <Form.Select
                   className="currency-chooser"

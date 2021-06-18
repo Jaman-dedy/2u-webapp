@@ -127,7 +127,7 @@ const QuickPay = ({
                       setCurrentOption={setSelectedWallet}
                       customstyle
                     />
-                    <div>
+                    <div className="money-label">
                       <Label size="large">
                         {formatNumber(selectWallet?.Balance, {
                           locales: preferred,
@@ -153,7 +153,7 @@ const QuickPay = ({
                       onChange={onOptionChange}
                     />
                   </div>
-                  <div>
+                  <div className="amount-label">
                     <Label size="large">
                       {selectWallet?.CurrencyCode}
                     </Label>

@@ -245,7 +245,6 @@ const AddCard = ({
                     <label>
                       {global.translate(
                         'By ordering this card, you agree to our ',
-                        2181,
                       )}
                       <span
                         role="link"
@@ -254,25 +253,20 @@ const AddCard = ({
                           openInNewTab('https//:www.m2u.com')
                         }
                       >
-                        {global.translate(
-                          'terms and conditions',
-                          1238,
-                        )}
+                        {global.translate('terms and conditions')}
                       </span>
                     </label>
                   }
                   onChange={() => setHasNotAgreed(!hasNotAgreed)}
                 />
                 <div className="card-actions">
-                  <Button basic>
-                    {global.translate('Cancel', 86)}
-                  </Button>
+                  <Button basic>{global.translate('Cancel')}</Button>
                   <Button
                     disabled={isDisabled}
                     positive
                     onClick={() => setOpenPinModal(true)}
                   >
-                    {global.translate('Order a card', 2182)}
+                    {global.translate('Order a card')}
                   </Button>
                 </div>
               </div>

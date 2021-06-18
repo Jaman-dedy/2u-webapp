@@ -82,6 +82,9 @@
   .sidebar .sidebar-submenu li {
     display: block;
     padding: 10px 12px 10px 55px;
+    &:hover {
+      background: #dcdcdc;
+    }
   }
   .sidebar li .sidebar-submenu {
     display: none;

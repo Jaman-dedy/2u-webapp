@@ -36,7 +36,7 @@ LoaderComponent.defaultProps = {
   paddingTop: '',
   paddingBottom: '',
   style: {},
-  loaderSize: 'small',
+  loaderSize: 'tiny',
   loaderContent: '',
 };
 

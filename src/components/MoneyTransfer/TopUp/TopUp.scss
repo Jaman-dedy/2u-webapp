@@ -6,7 +6,14 @@
   justify-content: space-between;
 }
 .ui.dropdown.custom-dropdown {
-  max-width: 270px !important;
+  max-width: 100% !important;
+}
+.country {
+  margin-bottom: 1rem;
+}
+
+#input-8046 {
+  margin-top: 10px;
 }
 .phone-bank {
   width: 59%;
@@ -34,9 +41,11 @@
   }
   margin-top: 9px;
   .add-new-phone {
+    max-width: 100% !important;
     .react-tel-input {
+      margin-top: 10px;
       .form-control {
-        width: 90% !important;
+        width: 93% !important;
         padding-left: 20px !important;
       }
       .form-information {
@@ -83,8 +92,19 @@
     width: 68%;
   }
   .ui.input {
-    width: 68%;
+    width: 78%;
     border: 1px solid #cfcfcf;
+  }
+
+  .amount-value {
+    .form-information {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      .label {
+        margin: auto 0px;
+      }
+    }
   }
 }
 

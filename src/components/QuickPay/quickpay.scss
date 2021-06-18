@@ -7,7 +7,7 @@
   }
   margin: auto;
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   padding: 15px;
@@ -29,11 +29,20 @@
     .amount-div {
       width: 85%;
     }
+
+    .amount-label {
+      margin: auto;
+    }
   }
   .change-wallet {
     margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
+
+    .money-label {
+      margin: auto;
+      margin-left: 1rem;
+    }
   }
 
   .account-number-input,

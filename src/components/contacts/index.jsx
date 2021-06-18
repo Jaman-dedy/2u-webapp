@@ -343,21 +343,18 @@ const ManageContacts = ({
               !isManagingContacts &&
               global.translate(
                 'Select a contact to transfer money to',
-                1198,
               )}
             {isManagingContacts &&
               !isTopingUp &&
-              global.translate('My contacts', 1195)}
+              global.translate('My contacts')}
             {isTopingUp &&
               !isSendingOthers &&
               global.translate(
                 'Buy for your self or for your contact',
-                1552,
               )}
             {isSendingOthers &&
               global.translate(
                 'Select a contact to transfer money to',
-                581,
               )}
           </h2>
           {!allContacts.loading && (

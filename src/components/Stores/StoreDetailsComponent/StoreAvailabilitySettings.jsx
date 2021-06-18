@@ -7,6 +7,7 @@ import {
   Header,
   Label,
   Form,
+  Checkbox,
 } from 'semantic-ui-react';
 import FormCheckBox from 'components/common/CheckBox';
 import LoaderComponent from 'components/common/Loader';
@@ -63,7 +64,6 @@ const StoreAvailabilitySettings = props => {
           <Modal.Header>
             {global.translate(
               'Store deletion confirmation required.',
-              776,
             )}
           </Modal.Header>
           <Modal.Content>
@@ -71,11 +71,7 @@ const StoreAvailabilitySettings = props => {
               color="red"
               content={`${global.translate(
                 'Deleting this store will permanently remove it.',
-                776,
-              )} ${global.translate(
-                'Would you like to proceed?',
-                23,
-              )}`}
+              )} ${global.translate('Would you like to proceed?')}`}
             />
             <p>
               {global.translate(
@@ -113,7 +109,7 @@ const StoreAvailabilitySettings = props => {
               onClick={handleDeleteStore}
             >
               {deletStoreLoading
-                ? global.translate('Please wait a moment.', 413)
+                ? global.translate('Please wait a moment.')
                 : global.translate('Confirm')}
             </Button>
           </Modal.Actions>
@@ -123,8 +119,8 @@ const StoreAvailabilitySettings = props => {
             {global.translate('Store availability')}
           </h2>
           <div className="current-item">
-            <FormCheckBox
-              checkLabel={global.translate('Temporarily unavailable')}
+            <Checkbox
+              label={global.translate('Temporarily unavailable')}
               value={form.storeAvailable || false}
               name="storeAvailable"
               defaultChecked={storeIsAsInactive()}
@@ -137,21 +133,18 @@ const StoreAvailabilitySettings = props => {
           <p className="_7LpC8">
             {global.translate(
               'When your store is temporarily unavailable, it will not be accepting vouchers until you avail it again.',
-              781,
             )}
           </p>
         </div>
         <hr className="app-hr" />
         <div>
           <h2 className="account-availablity">
-            {global.translate('Delete', 415)}{' '}
-            {global.translate('Store', 803)}
+            {global.translate('Delete')} {global.translate('Store')}
           </h2>
 
           <p className="_7LpC8">
             {global.translate(
               'When you delete this store, it will permanently be removed. This process is non reversible.',
-              782,
             )}
           </p>
           <div className="current-item">

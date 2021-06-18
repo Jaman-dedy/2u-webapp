@@ -21,7 +21,26 @@
   border-style: none;
 }
 
-.ui.checkbox input:checked ~ .box:after,
-.ui.checkbox input:checked ~ label:after {
+.ui.checkbox input.hidden:checked ~ .box:after,
+.ui.checkbox input.hidden:checked ~ label:after {
   color: #0a9220;
+}
+
+.ui.checkbox input.hidden {
+  opacity: 1 !important;
+  z-index: 3;
+}
+
+.ui.checkbox > input[type='checkbox'] {
+  display: none;
+}
+
+.ui.checkbox > input[type='checkbox'] + *::before {
+  content: '';
+  display: inline-block;
+  vertical-align: bottom;
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 10%;
+  border: 1.5px solid #000000;
 }

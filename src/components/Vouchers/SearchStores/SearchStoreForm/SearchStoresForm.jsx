@@ -88,10 +88,7 @@ const SearchStoresForm = ({
           <Grid.Column>
             <div className="form-compo">
               <span className="form-labels">
-                {global.translate(
-                  'Select a destination country',
-                  1628,
-                )}
+                {global.translate('Select a destination country')}
               </span>
               <CountryDropdown
                 className="country-dropdwn-search-store"
@@ -104,11 +101,11 @@ const SearchStoresForm = ({
           </Grid.Column>
           <Grid.Column>
             <div className="form-labels">
-              {global.translate('City', 294)}
+              {global.translate('City')}
             </div>
             <Form.Input
               className="input"
-              placeholder={global.translate('City', 294)}
+              placeholder={global.translate('City')}
               name="City"
               onChange={e => handleInputChange(e)}
             />
@@ -118,7 +115,7 @@ const SearchStoresForm = ({
         <Grid stackable columns={2} className="form-compo2">
           <Grid.Column>
             <span className="form-labels">
-              {global.translate('Category', 343)}
+              {global.translate('Category')}
             </span>
             <div className="icon-form-el">
               <Dropdown
@@ -138,11 +135,11 @@ const SearchStoresForm = ({
           </Grid.Column>
           <Grid.Column>
             <span className="form-labels">
-              {global.translate('Store name', 837)}
+              {global.translate('Store name')}
             </span>
             <Form.Input
               className="input"
-              placeholder={global.translate('Store name', 837)}
+              placeholder={global.translate('Store name')}
               name="StoreName"
               onChange={e => handleInputChange(e)}
             />
@@ -153,7 +150,7 @@ const SearchStoresForm = ({
             <div className="flex flex-row align-items-center justify-content-space-between">
               <span>
                 <div className="toggle-el">
-                  {global.translate('Match all', 1442)}
+                  {global.translate('Match all')}
                 </div>
                 <div className="toggle--switch">
                   <ToggleSwitch
@@ -184,7 +181,7 @@ const SearchStoresForm = ({
               >
                 <span style={{ marginLeft: 'auto' }}>
                   <span className="bold">
-                    {global.translate('Search', 278)}{' '}
+                    {global.translate('Search')}{' '}
                   </span>
                   &nbsp;
                   <Icon name="search" />
