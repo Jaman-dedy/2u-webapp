@@ -34,7 +34,6 @@ const SendMoneyModal = ({ sendMoneyModal, locateUser }) => {
     text: item.val,
   }));
   const clearForm = () => {
-    // setForm({});
     setOpen(false);
     resetState();
     setErrors(null);

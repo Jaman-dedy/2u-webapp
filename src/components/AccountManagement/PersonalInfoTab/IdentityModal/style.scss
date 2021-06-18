@@ -75,7 +75,7 @@
     .images-doc-actions,
     .edit-delete-doc {
       position: absolute;
-      z-index: 2;
+      z-index: 2 !important;
       display: flex;
       width: 88.2%;
       opacity: 0;
@@ -90,8 +90,9 @@
     .edit-delete-doc {
       justify-content: flex-end;
       margin-top: 181px;
+
       img {
-        margin-right: 7px;
+        margin-right: 25px;
         width: 20px;
       }
       z-index: 1;

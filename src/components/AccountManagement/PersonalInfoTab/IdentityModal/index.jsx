@@ -206,7 +206,6 @@ const IdentityModal = ({
               <DangerMessage
                 description={global.translate(
                   'You have not uploaded a photo of your identity yet.',
-                  3193,
                 )}
               />
               <UploadImgButton

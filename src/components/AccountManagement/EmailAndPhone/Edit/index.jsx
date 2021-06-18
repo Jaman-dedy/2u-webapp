@@ -30,12 +30,12 @@ const EditGeneralInfo = ({ emailAndPhone }) => {
     },
     {
       key: 2,
-      text: global.translate('Professional', 302),
+      text: global.translate('Professional'),
       value: 2,
     },
     {
       key: 3,
-      text: global.translate('Other', 303),
+      text: global.translate('Other'),
       value: 3,
     },
   ];
@@ -45,11 +45,11 @@ const EditGeneralInfo = ({ emailAndPhone }) => {
       <Grid stackable columns={3} className="phone-label-grid">
         <Grid.Column width={9}>
           <span>
-            {global.translate('Provide your phone number (s)', 1937)}
+            {global.translate('Provide your phone number (s)')}
           </span>
         </Grid.Column>
         <Grid.Column width={4} className="category">
-          <span>{global.translate('Select a category', 1227)}</span>
+          <span>{global.translate('Select a category')}</span>
         </Grid.Column>
         <Grid.Column width={3} className="empty-column" />
       </Grid>
@@ -142,7 +142,7 @@ const EditGeneralInfo = ({ emailAndPhone }) => {
               prompt
               style={{ width: '100%', textAlign: 'center' }}
             >
-              {global.translate('Please, fill all the fields', 1938)}
+              {global.translate('Please, fill all the fields')}
             </Label>
           </Form.Field>
         )}
@@ -158,7 +158,7 @@ const EditGeneralInfo = ({ emailAndPhone }) => {
           </span>
         </Grid.Column>
         <Grid.Column width={4} className="category">
-          <span>{global.translate('Select a category', 1227)}</span>
+          <span>{global.translate('Select a category')}</span>
         </Grid.Column>
         <Grid.Column width={3} className="empty-column" />
       </Grid>
@@ -255,7 +255,7 @@ const EditGeneralInfo = ({ emailAndPhone }) => {
           }
           style={{ marginLeft: 14 }}
         >
-          {global.translate('Submit', 1695)}
+          {global.translate('Submit')}
         </Form.Button>
       </Form>
     </div>

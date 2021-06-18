@@ -122,10 +122,7 @@ const AddWalletModal = ({
                     <Grid.Column>
                       <Form.Input
                         className="input"
-                        placeholder={global.translate(
-                          'Wallet name',
-                          97,
-                        )}
+                        placeholder={global.translate('Wallet name')}
                         type="text"
                         id="Name"
                         name="Name"
@@ -208,9 +205,7 @@ const AddWalletModal = ({
             }}
             loading={addWallet.loading}
             disabled={
-              addWallet.loading ||
-              form[0].Name.length < 1 ||
-              form[0].Currency.length < 1
+              addWallet.loading || form[0].Name.match(/^\s*$/)
             }
           >
             {global.translate('Add')}
