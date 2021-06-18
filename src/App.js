@@ -18,7 +18,7 @@ import { Button, Modal } from 'semantic-ui-react';
 import moment from 'moment';
 
 import 'react-phone-input-2/lib/style.css';
-import ChatModal from 'components/Chat/ChatModal';
+
 import UserLeaveConfirmation from 'components/common/UserConfirmation';
 import InstallApp from 'components/InstallApp';
 import NotFoundPage from 'components/NotFoundPage';
@@ -270,7 +270,6 @@ const App = () => {
   );
   return (
     <>
-      <ChatModal open={chatOpen} routeRef={routeRef} />
       <ToastContainer position={toast.POSITION.TOP_RIGHT} />
       <div className="App">
         <Modal

@@ -8,7 +8,7 @@ import { useHistory } from 'react-router';
 import toggleSidebar from 'redux/actions/dashboard/dashboard';
 import isAppDisplayedInWebView from 'helpers/isAppDisplayedInWebView';
 import useWindowSize from 'utils/useWindowSize';
-
+import ChatModal from 'components/Chat/ChatModal';
 import SideBar from './SideBar/SideBar';
 import NavBar from './NavBar/NavBar';
 import Fab from './Fab';
@@ -25,7 +25,7 @@ const DashboardLayout = ({
   const {
     dashboardData: { isSidebarActive },
   } = useSelector(({ dashboard }) => dashboard);
-
+  const { open: chatOpen } = useSelector(state => state.chat.appChat);
   const { width } = useWindowSize();
 
   const goToVoucher = () => {
@@ -58,6 +58,7 @@ const DashboardLayout = ({
 
   return (
     <div className="dashboard_layout">
+      <ChatModal open={chatOpen} />
       <div
         onClick={() => {
           if (isSidebarActive) {

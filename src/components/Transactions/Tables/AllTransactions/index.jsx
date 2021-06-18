@@ -1,13 +1,11 @@
 import React from 'react';
-import { Table, Image } from 'semantic-ui-react';
+import { Table } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import creditImg from 'assets/images/transactions/credit.svg';
-import debitImg from 'assets/images/transactions/debit.svg';
 import '../style.scss';
 import useWindowSize from 'utils/useWindowSize';
 import EmptyTransaction from 'components/common/EmptyTransaction';
-
+import { formatDate } from 'utils/formatDate';
 const AllTransactions = ({
   onClick,
   allTransactionData,
@@ -53,7 +51,7 @@ const AllTransactions = ({
                 className="date-title"
                 style={{ width: '125px' }}
               >
-                {moment(item.Date.substr(0, 11)).format('ll')}
+                {moment(formatDate(item?.Date)).format('ll')}
               </Table.Cell>
               <Table.Cell>{item.Description}</Table.Cell>
               {size.width > 600 && (

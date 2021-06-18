@@ -24,6 +24,7 @@ import { ONE_TO_ONE } from 'constants/general';
 import { clearDeleteContact } from 'redux/actions/contacts/deleteContact';
 import { setActiveChatThread } from 'redux/actions/chat/chatThreads';
 import AppListItem from '../ListItem/List';
+import { useHistory } from 'react-router-dom';
 
 const ChatInfoSideBar = ({
   animation,
@@ -38,7 +39,7 @@ const ChatInfoSideBar = ({
   setChatInfoOpen,
 }) => {
   const [hasError, setHasError] = useState(false);
-  const history = routeRef?.current?.props?.history;
+  const history = useHistory();
 
   const { currentChatTarget, currentChatType } = useSelector(
     state => state.chat.appChat,
