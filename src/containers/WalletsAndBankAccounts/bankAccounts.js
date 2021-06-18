@@ -211,9 +211,8 @@ export default () => {
 
   // fetch data
   useEffect(() => {
-    getBankList()(dispatch);
     getLinkedBankAccounts()(dispatch);
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (form?.CountryCode) {
@@ -221,7 +220,7 @@ export default () => {
         CountryCode: form?.CountryCode,
       })(dispatch);
     }
-  }, [form?.CountryCode]);
+  }, [form?.CountryCode, dispatch]);
 
   useEffect(() => {
     setCurrentBankOption({});
