@@ -11,9 +11,6 @@ const NestedModal = ({
   openConfirmModal,
   setOpenConfirmModal,
   onRedeeMoney,
-  errors,
-  error,
-  virtualCard,
 }) => {
   const closeModal = () => {
     setIsRedeeming(false);
@@ -45,9 +42,6 @@ NestedModal.propTypes = {
   openConfirmModal: PropTypes.bool,
   setOpenConfirmModal: PropTypes.func,
   onRedeeMoney: PropTypes.bool,
-  errors: PropTypes.objectOf(PropTypes.any),
-  error: PropTypes.objectOf(PropTypes.any),
-  virtualCard: PropTypes.objectOf(PropTypes.any),
 };
 
 NestedModal.defaultProps = {
@@ -57,10 +51,6 @@ NestedModal.defaultProps = {
   openConfirmModal: false,
   setOpenConfirmModal: () => {},
   onRedeeMoney: false,
-  loadRedeeMoney: false,
-  errors: {},
-  error: {},
-  virtualCard: {},
 };
 
 export default NestedModal;

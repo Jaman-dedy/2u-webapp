@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import {
   RENEW_VIRTUAL_CARD_START,
   RENEW_VIRTUAL_CARD_SUCCESS,
@@ -18,27 +19,31 @@ export default data => dispatch =>
           type: RENEW_VIRTUAL_CARD_START,
         }),
       onSuccess: data => dispatch => {
-        if (data[0].Result === 'Success') {
+        const res = Array.isArray(data) ? data[0] : data;
+        if (res.Result === 'Success') {
+          toast.success(res.Description);
           return dispatch({
             type: RENEW_VIRTUAL_CARD_SUCCESS,
             payload: {
-              ...data[0],
-              success: data[0].Result === 'Success',
+              ...res,
+              success: res.Result === 'Success',
             },
           });
         }
         return dispatch({
           type: RENEW_VIRTUAL_CARD_ERROR,
           payload: {
-            ...data[0],
+            ...res,
           },
         });
       },
       onFailure: error => dispatch => {
+        const err = Array.isArray(error) ? error[0] : error;
+        toast.error(err?.Description);
         return dispatch({
           type: RENEW_VIRTUAL_CARD_ERROR,
           payload: {
-            ...error[0],
+            ...err,
           },
         });
       },

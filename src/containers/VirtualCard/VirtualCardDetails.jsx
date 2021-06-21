@@ -31,9 +31,8 @@ const VirtualCardDetailsContainer = () => {
   const [errors, setErrors] = useState(null);
   const [step, setStep] = useState(1);
   const { userData } = useSelector(({ user }) => user);
-  const [toastMessage, setToasMessage] = useState(null);
+  const [toastMessage, setToasMessage] = useState('');
   const [toastCardStatus, setToastCardStatus] = useState(null);
-  const [redeemMoneyToast, setRedeemMoneyToast] = useState(null);
   const [renewCardToast, setrenewCardToast] = useState(null);
   const [isViewingDetail, setIsViewingDetail] = useState(false);
   const [cardsStatus, setCardStatus] = useState('YES');
@@ -145,7 +144,7 @@ const VirtualCardDetailsContainer = () => {
 
   useEffect(() => {
     if (toastMessage) {
-      setToasMessage(null);
+      setToasMessage('');
       clearAddMoneyToVirtuaCard()(dispatch);
       clearConfirmation()(dispatch);
     }
@@ -160,7 +159,6 @@ const VirtualCardDetailsContainer = () => {
 
   useEffect(() => {
     if (toastCardStatus) {
-      toast.success(toastCardStatus);
       setToastCardStatus(null);
       clearUpdateCardStatus()(dispatch);
     }
@@ -174,7 +172,6 @@ const VirtualCardDetailsContainer = () => {
 
   useEffect(() => {
     if (renewCardToast) {
-      toast.success(renewCardToast);
       setrenewCardToast(null);
       clearRenewCardStatus()(dispatch);
     }
@@ -182,38 +179,22 @@ const VirtualCardDetailsContainer = () => {
 
   useEffect(() => {
     if (redeeMoney?.data) {
-      setRedeemMoneyToast(redeeMoney.data.Description);
-    }
-  }, [redeeMoney.data]);
-
-  useEffect(() => {
-    if (redeeMoney?.error) {
-      setRedeemMoneyToast(redeeMoney.error.Description);
-    }
-  }, [redeeMoney?.error]);
-
-  useEffect(() => {
-    if (redeeMoney?.data) {
       clearRedeeMoney()(dispatch);
-      toast.success(redeemMoneyToast);
-      setRedeemMoneyToast(null);
       setStep(1);
       setisRedeeming(false);
       setErrors(null);
       setError(null);
       setOpenConfirmModal(false);
     }
-  }, [redeemMoneyToast, redeeMoney.data, dispatch]);
+  }, [redeeMoney.data, dispatch]);
 
   useEffect(() => {
     if (redeeMoney?.error) {
-      toast.error(redeemMoneyToast);
-      setRedeemMoneyToast(null);
       setStep(1);
       setAddMoneyOpen(false);
       setOpenConfirmModal(false);
     }
-  }, [redeemMoneyToast, redeeMoney.error]);
+  }, [redeeMoney.error]);
 
   useEffect(() => {
     setIsLoadingStatus(cardStatus.loading);

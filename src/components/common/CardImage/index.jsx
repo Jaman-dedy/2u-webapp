@@ -23,6 +23,7 @@ const getCardImage = (cardType = '1', cardLevel = '1') => {
     return VisaSilverImg;
   }
   if (cardType === '1' && cardLevel === '3') {
+    // return VisaBlackImg;
     return VisaGoldImg;
   }
   if (cardType === '1' && cardLevel === '4') {

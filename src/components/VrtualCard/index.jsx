@@ -10,11 +10,11 @@ import EmptyCard from 'components/common/EmptyCard';
 import EmptyCardList from 'assets/images/empty_card.svg';
 import isAppDisplayedInWebView from 'helpers/isAppDisplayedInWebView';
 import VirtualCard from 'components/common/Card';
+import modalIcon from 'assets/images/microloan/danger-cross.svg';
+import ModalInfo from 'components/common/ModalInfo';
 import classes from './VirtualCards.module.scss';
 import Placeholder from './PlaceHolder/PlaceHolder';
 import AddVirtualCardModal from './AddVirtualCardModal/AddVirtualCardModal';
-import modalIcon from 'assets/images/microloan/danger-cross.svg';
-import ModalInfo from 'components/common/ModalInfo';
 
 const MyVirtualCards = ({
   virtualCardList,
@@ -208,18 +208,7 @@ const MyVirtualCards = ({
           </div>
         </WelcomeBar>
         {!isLoading && !loadingUserData && !isEmpty && (
-          <>
-            <div className="search-area">
-              <Input
-                placeholder={global.translate('Search', 278)}
-                icon="search"
-                iconPosition="left"
-                disabled={!virtualCardList}
-                onKeyUp={e => handleKeyUp(e)}
-              />
-            </div>
-            {renderCardList()}
-          </>
+          <>{renderCardList()}</>
         )}
 
         {isLoading && renderPlaceholders()}

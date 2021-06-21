@@ -30,7 +30,7 @@
 - After cloning the [repo](git@github.com:Ossix-Technologies/2u-webapp.git)
 - Check out this branch by `branch here`
 - Run `yarn or npm install` to install the project dependencies
-- Run 'action to be done`
+- Run `yarn start:dev` to start the development server
 
 #### Checklist
 

@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { toast } from 'react-toastify';
 import getVirtualCard from 'redux/actions/virtualCard/getVirtualCard';
 
 import MyVirtualCards from 'components/VrtualCard';
@@ -16,7 +15,7 @@ const MyVirtualCardsContainer = () => {
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState(null);
   const [selectedCurrency, setSelectedCurrency] = useState(null);
-  const [toastMessage, setToasMessage] = useState(null);
+  const [toastMessage, setToasMessage] = useState('');
   const [selectedCard, setSelectedCard] = useState(null);
   const [open, setOpen] = useState(false);
   const [size, setSize] = useState('');
@@ -82,8 +81,7 @@ const MyVirtualCardsContainer = () => {
   }, [addVirtualCard?.error]);
   useEffect(() => {
     if (addVirtualCard?.data) {
-      toast.success(toastMessage);
-      setToasMessage(null);
+      setToasMessage('');
       setOpen(false);
       setSelectedCard(null);
       setSelectedCurrency(null);
@@ -93,12 +91,10 @@ const MyVirtualCardsContainer = () => {
 
   useEffect(() => {
     if (addVirtualCard?.error) {
-      toast.error(toastMessage);
-
       setSelectedCard(null);
       setSelectedCurrency(null);
       clearAddVirtuaCard()(dispatch);
-      setToasMessage(null);
+      setToasMessage('');
     }
   }, [toastMessage]);
   const onAddVirtualCard = () => {

@@ -19,28 +19,31 @@ export default data => dispatch =>
           type: UPDATE_CARD_STATUS_START,
         }),
       onSuccess: data => dispatch => {
-        if (data[0].Result === 'Success') {
+        const res = Array.isArray(data) ? data[0] : data;
+        if (res.Result === 'Success') {
+          toast.success(res.Description);
           return dispatch({
             type: UPDATE_CARD_STATUS_SUCCESS,
             payload: {
-              ...data[0],
-              success: data[0].Result === 'Success',
+              ...res,
+              success: res.Result === 'Success',
             },
           });
         }
         return dispatch({
           type: UPDATE_CARD_STATUS_ERROR,
           payload: {
-            ...data[0],
+            ...res,
           },
         });
       },
       onFailure: error => dispatch => {
-        toast.error(Array.isArray(error) && error[0].Description);
+        const err = Array.isArray(error) ? error[0] : error;
+        toast.error(err?.Description);
         return dispatch({
           type: UPDATE_CARD_STATUS_ERROR,
           payload: {
-            ...error[0],
+            ...err,
           },
         });
       },
