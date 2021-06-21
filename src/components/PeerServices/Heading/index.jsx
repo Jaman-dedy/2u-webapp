@@ -281,12 +281,12 @@ const HomepageHeading = ({ disableSearch, title }) => {
               direction={width > 678 ? 'left' : 'right'}
               options={
                 appCountries?.map(item => ({
-                  key: item.CountryCode,
-                  text: item.CountryName,
-                  value: item.CountryCode,
+                  key: item?.CountryCode,
+                  text: item?.CountryName,
+                  value: item?.CountryCode,
                   selected:
-                    item.CountryName.toLowerCase() ===
-                    user?.CountryName.toLowerCase(),
+                    item?.CountryName?.toLowerCase() ===
+                    user?.CountryName?.toLowerCase(),
                 })) || []
               }
               many

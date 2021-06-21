@@ -5,15 +5,21 @@
   .category-tagOptions {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     .ui .label {
       padding: 2px !important;
+    }
+
+    .react-tagsinput {
+      border: none !important;
+      padding: 0 !important;
     }
     .tags-area {
       margin-bottom: 15px;
       flex: 1;
       margin-left: 20px;
+
       .ui .label {
-        padding: 2px !important;
         margin-bottom: 5px;
       }
     }

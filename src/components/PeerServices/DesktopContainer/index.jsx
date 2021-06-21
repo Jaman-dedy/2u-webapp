@@ -7,6 +7,7 @@ import getWidth from 'utils/getWidth';
 import handleSetNavbarFixed from 'redux/actions/peerServices/handleSetNavbarFixed';
 import PostsNavbar from '../Navbar';
 import HomepageHeading from '../Heading';
+import './style.scss';
 
 const DesktopContainer = ({ children, title }) => {
   const { navbarFixed: fixed } = useSelector(
@@ -15,8 +16,25 @@ const DesktopContainer = ({ children, title }) => {
   const dispatch = useDispatch();
 
   const { pathname: path } = useLocation();
-  const hideFixedMenu = () => handleSetNavbarFixed(false)(dispatch);
-  const showFixedMenu = () => handleSetNavbarFixed(true)(dispatch);
+  const hideFixedMenu = () => {
+    document
+      .querySelector(
+        '.ui.large.borderless.inverted.secondary.navbar.menu',
+      )
+      .classList.toggle('white');
+    document
+      .querySelector('#sidebar')
+      .classList.remove('sidebar-add');
+  };
+
+  const showFixedMenu = () => {
+    document
+      .querySelector(
+        '.ui.large.borderless.inverted.secondary.navbar.menu',
+      )
+      .classList.toggle('white');
+    document.querySelector('#sidebar').classList.add('sidebar-add');
+  };
 
   return (
     <Responsive
