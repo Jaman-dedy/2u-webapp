@@ -2,10 +2,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { DateInput } from 'semantic-ui-calendar-react';
 import { Dropdown, Input, Modal } from 'semantic-ui-react';
-import LoaderComponent from 'components/common/Loader';
 import Message from 'components/common/Message';
 import PinCodeForm from 'components/common/PinCodeForm';
 import ToggleSwitch from 'components/common/ToggleButton';
+import './style.scss';
 
 const ConfirmationForm = ({
   confirmationData,
@@ -15,12 +15,9 @@ const ConfirmationForm = ({
   setShouldClear,
   errors,
   error,
-  loading,
   days,
   isEditing,
-  updating,
   updatingError,
-  checking
 }) => {
   return (
     <Modal.Content className="ss-content">
@@ -177,9 +174,7 @@ const ConfirmationForm = ({
                   />
                 </div>
                 <div className="from-two-group">
-                  <p className="from">
-                    {global.translate('to', 115)}:
-                  </p>
+                  <p className="to">{global.translate('to', 115)}:</p>
                   <DateInput
                     icon="dropdown"
                     popupPosition="top left"
@@ -228,7 +223,7 @@ const ConfirmationForm = ({
           setShouldClear={setShouldClear}
         />
       </div>
-    
+
       <div className="loader-section" style={{ alignSelf: 'center' }}>
         {errors && <Message message={errors} />}
         {error && error[0] && (
@@ -274,13 +269,11 @@ ConfirmationForm.propTypes = {
   setShouldClear: PropTypes.func,
   errors: PropTypes.arrayOf(PropTypes.any),
   error: PropTypes.objectOf(PropTypes.any),
-  loading: PropTypes.bool,
   days: PropTypes.arrayOf(PropTypes.any).isRequired,
 };
 ConfirmationForm.defaultProps = {
   errors: [],
   error: null,
-  loading: false,
   shouldClear: () => {},
   setShouldClear: () => {},
 };
