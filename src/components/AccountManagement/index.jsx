@@ -252,7 +252,7 @@ const Profile = ({
           </div>
           <div className="title">
             <h2 className="head-title">
-              {global.translate('My Account', 1947)}
+              {global.translate('My Account')}
             </h2>
           </div>
           <div className="clear" />

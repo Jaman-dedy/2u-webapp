@@ -151,10 +151,7 @@ const EditGeneralInfo = ({ emailAndPhone }) => {
       <Grid stackable columns={3} className="email-label-grid">
         <Grid.Column width={9}>
           <span>
-            {global.translate(
-              'Provide your email address (es)',
-              1939,
-            )}
+            {global.translate('Provide your email address (es)')}
           </span>
         </Grid.Column>
         <Grid.Column width={4} className="category">
@@ -235,7 +232,6 @@ const EditGeneralInfo = ({ emailAndPhone }) => {
             >
               {global.translate(
                 'Please, provide valid emails for all the fields',
-                2234,
               )}
             </Label>
           </Form.Field>

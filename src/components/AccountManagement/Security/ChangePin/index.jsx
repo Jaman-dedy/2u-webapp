@@ -85,13 +85,13 @@ const ChangePIN = ({ changePIN }) => {
       />
       <div className="large-v-margin" />
       <PinCodeForm
-        label={global.translate('Provide the new PIN number', 2189)}
+        label={global.translate('Provide the new PIN number')}
         onChange={e => onChange({ ...e, input: 'pin' })}
         pinError={errors.pin}
       />
       <div className="large-v-margin" />
       <PinCodeForm
-        label={global.translate('Confirm the new PIN number', 2195)}
+        label={global.translate('Confirm the new PIN number')}
         onChange={e => onChange({ ...e, input: 'confirmPin' })}
         pinError={errors.confirmPin || errors.confirmation}
       />

@@ -228,7 +228,8 @@ const IdentityModal = ({
                 formData?.IDNumber &&
                 selectedCurrentType &&
                 selectedDateOfIssue &&
-                selectedExpiryDate
+                selectedExpiryDate &&
+                isImgCorrect
               )
             }
             className="change-button"

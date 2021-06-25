@@ -59,7 +59,6 @@ const ManagePhoneModal = ({
   useEffect(() => {
     setSendOtp(false);
     setIAddingPhone(false);
-
   }, [updatePhoneListData?.success]);
 
   useEffect(() => {
@@ -70,14 +69,12 @@ const ManagePhoneModal = ({
   }, [verifyOTP]);
 
   useEffect(() => {
-    const {data} =  updatePhoneListData
+    const { data } = updatePhoneListData;
     if (data?.success) {
       setSecondOpen(false);
       setIAddingPhone(false);
       setSendOtp(false);
     }
-
-
   }, [updatePhoneListData?.data?.success]);
 
   useEffect(() => {
@@ -352,7 +349,7 @@ const ManagePhoneModal = ({
                   setSendOtp(false);
                 }}
               >
-                {global.translate('Back', 174)}
+                {global.translate('Back')}
               </Button>
             </div>
           </>

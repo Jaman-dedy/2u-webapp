@@ -114,7 +114,8 @@ const ManageEmailModal = ({
                       <div className="display-phone">
                         <div>{email?.Email}</div> &nbsp;
                         <div>
-                          {email?.Primary === 'YES' && email?.Email !== ""
+                          {email?.Primary === 'YES' &&
+                          email?.Email !== ''
                             ? global.translate('(Primary)')
                             : null}
                         </div>
@@ -233,7 +234,7 @@ const ManageEmailModal = ({
                 className="back-button"
                 onClick={() => setIAddingPhone(false)}
               >
-                {global.translate('Back', 174)}
+                {global.translate('Back')}
               </Button>
               <Button
                 loading={sendEmail.loading}
