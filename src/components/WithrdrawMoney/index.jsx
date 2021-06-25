@@ -236,9 +236,10 @@ WithdrawMoney.propTypes = {
   userData: PropTypes.objectOf(PropTypes.any),
   setOpenPinModal: PropTypes.func,
   openPinModal: PropTypes.bool,
-  allErrors: PropTypes.objectOf(PropTypes.any),
-  pinData: PropTypes.objectOf(PropTypes.any),
+  confirmationError: PropTypes.objectOf(PropTypes.any),
   form: PropTypes.objectOf(PropTypes.any),
+  setPIN: PropTypes.func,
+  PIN: PropTypes.func,
 };
 WithdrawMoney.defaultProps = {
   walletList: [],
@@ -260,8 +261,9 @@ WithdrawMoney.defaultProps = {
   userData: {},
   setOpenPinModal: () => {},
   openPinModal: false,
-  allErrors: {},
-  pinData: {},
+  confirmationError: {},
   form: {},
+  setPIN: () => {},
+  PIN: () => {},
 };
 export default WithdrawMoney;

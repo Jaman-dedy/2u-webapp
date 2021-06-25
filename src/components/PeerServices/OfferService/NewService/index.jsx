@@ -429,6 +429,11 @@ NewService.propTypes = {
   setPrevFiles: PropTypes.func.isRequired,
   categoryOptions: PropTypes.arrayOf(PropTypes.any).isRequired,
   onFileRemoved: PropTypes.func.isRequired,
+  setPricingForm: PropTypes.func.isRequired,
+  setManageAllMedia: PropTypes.func.isRequired,
+  manageAllMedia: PropTypes.bool.isRequired,
+  handleTagsChange: PropTypes.func.isRequired,
+  tags: PropTypes.func.isRequired,
 };
 
 export default NewService;

@@ -202,7 +202,7 @@ const PersonalInfoTab = ({
               {global.translate('Phone numbers')}
             </Table.Cell>
             <Table.Cell>
-              +{userData?.MainPhonePrefix}&nbsp;
+              {userData?.MainPhonePrefix}&nbsp;
               {userData?.MainPhoneNumber}
               {` (${global.translate('Primary')})`}
             </Table.Cell>

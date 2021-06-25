@@ -247,7 +247,7 @@ const App = () => {
                 }
                 if (!route.protected && isAuth()) {
                   props.history.push({
-                    pathname: '/', 
+                    pathname: '/',
                   });
                 }
                 if (!route.indexPage) {

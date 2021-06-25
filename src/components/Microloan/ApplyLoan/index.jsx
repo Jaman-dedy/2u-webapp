@@ -22,6 +22,7 @@ import DangerMessage from 'components/common/Alert/DangerMessage';
 import { getPossibleDates } from 'utils/monthLoansdates';
 import useWindowSize from 'utils/useWindowSize';
 import PINConfirmationModal from 'components/common/PINConfirmationModal';
+import LoadWalletImg from 'assets/images/withdraw/load-wallet.svg';
 import DayMonth from '../DayMonth';
 
 const ApplyLoan = ({
@@ -105,11 +106,20 @@ const ApplyLoan = ({
               {global.translate('Select wallet', 2167)}
             </div>
             <div className="apply-box-wallet">
-              <WalletDropDown
-                walletList={walletList}
-                setCurrentOption={setCurrentOption}
-                currentOption={currentOption}
-              />
+              {walletList?.length !== 0 ? (
+                <WalletDropDown
+                  walletList={walletList}
+                  setCurrentOption={setCurrentOption}
+                  currentOption={currentOption}
+                />
+              ) : (
+                <div className="load-data">
+                  <Image
+                    src={LoadWalletImg}
+                    className="animate-placeholder"
+                  />
+                </div>
+              )}
             </div>
             <div>
               <div className="apply-box-item">

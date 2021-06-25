@@ -110,7 +110,7 @@ const NewServiceContainer = () => {
         ...form,
         Latitude: value.Latitude?.toString(),
         Longitude: value.Longitude?.toString(),
-        CountryCode: value.CountryCode?.toLowerCase(),
+        CountryCode: user?.CountryCode?.toLowerCase(),
         City: value?.City,
         PhoneNumberCode: value?.PhoneNumberCode,
       });
