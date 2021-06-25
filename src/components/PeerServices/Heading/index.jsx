@@ -59,6 +59,7 @@ const SearchInput = () => {
       handleSearch();
     }
   };
+
   const onChange = (e, { name, value }) => {
     setForm({ ...form, [name]: value });
   };

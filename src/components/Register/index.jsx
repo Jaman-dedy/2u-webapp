@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
+import { Prompt } from 'react-router';
 import AuthWrapper from '../common/AuthWrapper/AuthWrapper';
 import Congratulation from './Congratulation';
 import IdentityForm from './IdentityForm';
@@ -21,6 +22,40 @@ const Register = ({
   congratulationPage,
   referralScreen,
 }) => {
+  const [formIsHalfFilled, setFormIsHalfFilled] = useState(false);
+
+  useEffect(() => {
+    const warnBeforeUnload = e => {
+      e.preventDefault();
+      return formIsHalfFilled;
+    };
+
+    window.onbeforeunload = warnBeforeUnload;
+
+    return () => {
+      window.removeEventListener('beforeunload', warnBeforeUnload);
+    };
+  }, [formIsHalfFilled]);
+
+  useEffect(() => {
+    const {
+      phoneNUmber,
+      countryCode,
+      userAgrees,
+      ...userFormData
+    } = registrationData;
+
+    if (
+      Object.values(userFormData).some(
+        value => value.toString().trim().length !== '',
+      )
+    ) {
+      setFormIsHalfFilled(true);
+    } else {
+      setFormIsHalfFilled(false);
+    }
+  }, [registrationData]);
+
   const renderForm = () => {
     const onClickHandler = () =>
       setScreenNumber(screenNumber - 1 || 1);
@@ -109,6 +144,16 @@ const Register = ({
       rightHeadlineText={global.translate(setTitle())}
       register={screenNumber === 1}
     >
+      <Prompt
+        when={formIsHalfFilled}
+        message={JSON.stringify({
+          header: global.translate('Confirm', 1750),
+          content: global.translate(
+            'You have unsaved changes, Are you sure you want to leave?',
+            1751,
+          ),
+        })}
+      />
       <div>{renderForm()}</div>
       <div className="dots">
         {Array(5)
@@ -134,11 +179,8 @@ Register.propTypes = {
   screenNumber: PropTypes.number,
   setScreenNumber: PropTypes.func.isRequired,
   identityData: PropTypes.instanceOf(Object).isRequired,
-  screenTwo: PropTypes.instanceOf(Object).isRequired,
   verifyOtp: PropTypes.instanceOf(Object).isRequired,
   userNameData: PropTypes.instanceOf(Object).isRequired,
-  passwordData: PropTypes.instanceOf(Object).isRequired,
-  pinData: PropTypes.instanceOf(Object).isRequired,
   congratulationPage: PropTypes.instanceOf(Object).isRequired,
   referralScreen: PropTypes.instanceOf(Object).isRequired,
 };
