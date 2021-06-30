@@ -195,10 +195,7 @@ const ServiceFeedList = () => {
               )}
             </Grid.Column>
             <Grid.Column width={3} id="right-services-side-column">
-              <div
-                id="sidebar"
-                className={fixed ? 'sidebar-add' : ''}
-              >
+              <div id="sidebar">
                 <SidebarAd />
               </div>
             </Grid.Column>

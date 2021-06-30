@@ -21,7 +21,7 @@ const Message = ({
     color={color}
     size="small"
     info={info}
-    error={error}
+    error={error?.Description || error}
     style={{ ...style }}
     className="message-component-header"
   >
@@ -31,7 +31,9 @@ const Message = ({
     >
       <span>
         {icon ? <Icon name={icon} size={iconSize} /> : ''}
-        {global.translate(message?.Description || message)}
+        {global.translate(
+          message?.Description || message?.message || message,
+        )}
       </span>
       {action ? (
         <Button

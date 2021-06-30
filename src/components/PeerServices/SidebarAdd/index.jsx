@@ -9,17 +9,16 @@ import {
   PRIVACY_POLICY_URL,
 } from 'constants/general';
 
-const SidebarAd = ({ className = '' }) => {
+const SidebarAd = () => {
   return (
-    <div className={className}>
+    <div>
       <Card>
         <Image src={EventsImage} wrapped ui={false} />
         <Card.Content className="cp-footer">
           <div className="cp-footer">
             <a href={TERMS_AND_CONDITIONS_URL}>
               {global.translate('Terms and Conditions')}
-            </a>{' '}
-            {''}
+            </a>
             <a href={PRIVACY_POLICY_URL}>
               {global.translate('Privacy Policy.')}
             </a>
