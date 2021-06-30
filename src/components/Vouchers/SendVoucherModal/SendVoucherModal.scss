@@ -90,7 +90,7 @@
 
   .ss-content {
     .ss-amount {
-      display: flex;
+      display: flex !important;
       font-weight: 300;
       font-size: 16px;
       line-height: 20px;
@@ -316,7 +316,6 @@
     .form-information {
       display: flex;
       align-items: baseline;
-     
     }
     .ui.input input {
       border-radius: 0px !important;

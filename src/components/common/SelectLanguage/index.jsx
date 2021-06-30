@@ -82,14 +82,7 @@ const SelectLanguage = ({ pointing, hasLabel, open, setOpen }) => {
           pointing={width > 600 ? pointing : false}
           onBlur={() => setOpen(false)}
         >
-          {/* right: !hasLabel && width < 375 ? '-20vw' : 0, */}
-          {/* className="wrap-languages" */}
-          {/* tabindex="1000000"
-          style={{
-            left: 'auto',
-          }} */}
-          <Dropdown.Menu
-          >
+          <Dropdown.Menu>
             <Dropdown.Menu scrolling>
               {getLanguageLoading ||
                 (getSupportedLanguagesLoading && (

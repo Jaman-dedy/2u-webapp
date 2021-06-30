@@ -73,14 +73,13 @@ const ReferralForm = ({
           <span className="title">
             {global.translate(
               'Provide the username of the user who told you about us',
-              1414,
             )}{' '}
           </span>
         )}
         <Form.Field>
           {!skipLoading && addReferral && (
             <Form.Input
-              placeholder={global.translate('Username', 1992)}
+              placeholder={global.translate('Username')}
               className="referral-pid-input"
               name="ReferralPID"
               value={registrationData.ReferralPID}
@@ -90,7 +89,7 @@ const ReferralForm = ({
               }}
               action={
                 <button
-                  className="cursor-pointer"
+                  className="search-btn"
                   type="button"
                   onClick={() => handleSearUser(true)}
                 >
@@ -106,7 +105,7 @@ const ReferralForm = ({
               <LoaderComponent
                 className="loading"
                 loaderContent={
-                  global.translate('searching for the user: ', 2016) +
+                  global.translate('searching for the user: ') +
                   registrationData.ReferralPID
                 }
               />
@@ -187,15 +186,14 @@ const ReferralForm = ({
                 className="loading"
                 loaderContent={global.translate(
                   'Creating the account',
-                  2017,
                 )}
               />
             </>
           </div>
         )}
         <br />
-        {global.translate('Already registered?', 1200)}{' '}
-        <Link to="/login">{global.translate('Login', 190)}</Link>
+        {global.translate('Already registered?')}{' '}
+        <Link to="/login">{global.translate('Login')}</Link>
       </Form>
     </Container>
   );

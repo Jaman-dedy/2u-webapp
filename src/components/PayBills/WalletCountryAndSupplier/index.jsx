@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
+import { Image } from 'semantic-ui-react';
 import formatNumber from 'utils/formatNumber';
 import Message from 'components/common/Message';
-import Loader from 'components/common/Loader';
+import SupplierPlaceholder from 'assets/images/placeholders/supplier-placeholder.svg';
 import Thumbnail from 'components/common/Thumbnail';
 import DropdownWallet from '../../common/Dropdown/WalletDropdown';
 import DropdownCountries from '../../common/Dropdown/CountryDropdown';
@@ -142,8 +143,9 @@ const WalletCountryAndSupplier = ({
             <div className="suppliers">
               {suppliers.loading ? (
                 <div style={{ padding: '10px' }}>
-                  <Loader
-                    loaderContent={global.translate('Working...')}
+                  <Image
+                    src={SupplierPlaceholder}
+                    className="animate-placeholder fluid"
                   />
                 </div>
               ) : (
