@@ -6,6 +6,7 @@ import '../style.scss';
 import useWindowSize from 'utils/useWindowSize';
 import EmptyTransaction from 'components/common/EmptyTransaction';
 import { formatDate } from 'utils/formatDate';
+
 const AllTransactions = ({
   onClick,
   allTransactionData,

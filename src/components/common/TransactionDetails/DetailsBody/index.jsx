@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import './style.scss';
 import Img from 'components/Chat/ChatMessage/Img';
+import { formatDate } from 'utils/formatDate';
 
 const DetailsBody = ({
   item,
@@ -174,7 +175,7 @@ const DetailsBody = ({
               <Table.Cell>
                 <div className="details-data">
                   {global.translate('Exchange fees', 1612)}
-                </div>{' '}
+                </div>
               </Table.Cell>
               <Table.Cell textAlign="right">
                 {item?.ExchangeFees}
@@ -184,10 +185,9 @@ const DetailsBody = ({
           {(item?.DisplayTransferNumber || item?.TransferNumber) && (
             <Table.Row>
               <Table.Cell>
-                {' '}
                 <div className="details-data">
                   {global.translate('Transfer number', 924)}
-                </div>{' '}
+                </div>
               </Table.Cell>
               <Table.Cell textAlign="right">
                 {item?.DisplayTransferNumber || item?.TransferNumber}
@@ -197,10 +197,9 @@ const DetailsBody = ({
           {(item?.DisplaySecurityCode || item?.SecurityCode) && (
             <Table.Row>
               <Table.Cell>
-                {' '}
                 <div className="details-data">
                   {global.translate('Security code', 833)}
-                </div>{' '}
+                </div>
               </Table.Cell>
               <Table.Cell textAlign="right">
                 {item?.SecurityCode}
@@ -210,10 +209,9 @@ const DetailsBody = ({
           {item?.Reference && (
             <Table.Row>
               <Table.Cell>
-                {' '}
                 <div className="details-data">
                   {global.translate('Reference', 124)}
-                </div>{' '}
+                </div>
               </Table.Cell>
               <Table.Cell textAlign="right">
                 {item?.Reference}
@@ -223,13 +221,12 @@ const DetailsBody = ({
 
           <Table.Row>
             <Table.Cell>
-              {' '}
               <div className="details-data">
                 {global.translate('Transfer date', 1228)}
-              </div>{' '}
+              </div>
             </Table.Cell>
             <Table.Cell textAlign="right">
-              {`${moment(newDate).format('LL')} ${newTime}`}
+              {moment(formatDate(item?.Date)).format('LL')}
             </Table.Cell>
           </Table.Row>
         </Table.Body>
