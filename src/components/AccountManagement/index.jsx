@@ -13,6 +13,7 @@ import './style.scss';
 import UserDetailsPlaceHolder from 'assets/images/profile/load-user-details.svg';
 import ProfilePlaceHolder from 'assets/images/profile/load-profile-data.svg';
 import LoadReferrals from 'assets/images/profile/load-referrals.svg';
+import { clearUpdatePhoneList } from 'redux/actions/userAccountManagement/updateUserPhoneList';
 import UserProfile from './Profile';
 import TransactionLimit from './TransactionLimit';
 import ReferralTab from './ReferralTab';
@@ -22,7 +23,7 @@ import PersonalInfoTab from './PersonalInfoTab';
 import DocumentTab from './DocumentTab';
 import UserDetails from './UserDetails';
 import BusinessInfoTab from './BusinessInfoTab';
-import { clearUpdatePhoneList } from 'redux/actions/userAccountManagement/updateUserPhoneList';
+
 const Profile = ({
   userData,
   personalInfo,
