@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Segment } from 'semantic-ui-react';
+import { Button, Image, Segment } from 'semantic-ui-react';
 
 import WelcomeBar from 'components/Dashboard/WelcomeSection';
 import GoBack from 'components/common/GoBack';
 import PositionPickerModal from 'components/Stores/AddStore/PositionPickerModal';
 import Pagination from 'components/common/Pagination';
-import LoaderComponent from 'components/common/Loader';
+import CommentPlaceholder from 'assets/images/placeholders/comments-placeholder.svg';
 import Thumbnail from 'components/common/Thumbnail';
 import Message from 'components/common/Message';
 import SendVoucherModalComp from 'components/Vouchers/SendVoucherModal';
@@ -76,8 +76,9 @@ const StoreDetails = ({
         <div className="commentThreads">
           {comments && comments.loading && (
             <Segment style={{ margin: '10px', marginLeft: '20px' }}>
-              <LoaderComponent
-                loaderContent={global.translate('Working...', 412)}
+              <Image
+                src={CommentPlaceholder}
+                className="animate-placeholder"
               />
             </Segment>
           )}
@@ -122,7 +123,7 @@ const StoreDetails = ({
             comments.data[0].Error === '2016' && (
               <Message
                 error={false}
-                message={global.translate('No comment', 871)}
+                message={global.translate('No comment')}
                 style={{ width: '95%', margin: 'auto' }}
               />
             )}

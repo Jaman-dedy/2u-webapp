@@ -255,7 +255,6 @@ const ProfileDropdown = ({
               <LoaderComponent
                 loaderContent={global.translate(
                   'Please wait a moment.',
-                  413,
                 )}
               />
             )}
@@ -264,14 +263,14 @@ const ProfileDropdown = ({
                 {!loading && (
                   <div>
                     <Icon name="sign-out" />
-                    {global.translate('Log out', 2207)}
+                    {global.translate('Log out')}
                   </div>
                 )}
               </>
             ) : (
               <div>
                 <Icon name="sign-out" />
-                {global.translate('Log in', 2208)}
+                {global.translate('Log in')}
               </div>
             )}
           </Dropdown.Item>

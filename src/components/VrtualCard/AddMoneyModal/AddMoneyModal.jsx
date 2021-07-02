@@ -118,8 +118,8 @@ const AddMoneyModal = ({
         >
           <Modal.Header centered className="modal-title">
             {isRedeeming
-              ? global.translate(`Redeem money from my O-Card`, 2043)
-              : global.translate(`Add money to my O-Card`, 2044)}
+              ? global.translate(`Redeem money from my O-Card`)
+              : global.translate(`Add money to my O-Card`)}
           </Modal.Header>
           {step === 1 && (
             <Modal.Content className="entities">
@@ -143,7 +143,6 @@ const AddMoneyModal = ({
                 <h4 className="available">
                   {global.translate(
                     'Available Balance in the Selected Wallet',
-                    1223,
                   )}
                   <p className="available-value">
                     {formatNumber(selectedWallet?.Balance, {
@@ -158,12 +157,12 @@ const AddMoneyModal = ({
               ) : (
                 <div className="wrap-money-form">
                   <div className="wrap-money-input">
-                    <div>{global.translate('Amount', 116)}</div>
+                    <div>{global.translate('Amount')}</div>
                     <div className="money-input">
                       <Input
                         type="number"
                         name="amount"
-                        placeholder={global.translate('Amount', 116)}
+                        placeholder={global.translate('Amount')}
                         onChange={onOptionsChange}
                         value={form?.amount || null}
                         min="0"
@@ -213,19 +212,18 @@ const AddMoneyModal = ({
               {confirmationData && confirmationData[0] && (
                 <>
                   <div className="ss-amount">
-                    <p>{global.translate('Amount', 116)}: </p>{' '}
-                    &nbsp;&nbsp;
+                    <p>{global.translate('Amount')}: </p> &nbsp;&nbsp;
                     <p>
                       <strong>{confirmationData[0].Amount}</strong>
                     </p>
                   </div>
                   <div className="fees">
                     <div className="fees-list">
-                      <p>{global.translate('Fees', 117)}</p>
+                      <p>{global.translate('Fees')}</p>
 
                       <div className="fees-item">
                         <p className="left">
-                          {global.translate('Fees', 117)}:
+                          {global.translate('Fees')}:
                         </p>
                         <p className="right">
                           {confirmationData[0].Fees}
@@ -233,7 +231,7 @@ const AddMoneyModal = ({
                       </div>
                       <div className="fees-item">
                         <p className="left">
-                          {global.translate('External fees', 121)}:
+                          {global.translate('External fees')}:
                         </p>
                         <p className="right">
                           {confirmationData[0].ExternalFees}
@@ -241,7 +239,7 @@ const AddMoneyModal = ({
                       </div>
                       <div className="fees-item">
                         <p className="left">
-                          {global.translate('Exchange fees', 120)}:
+                          {global.translate('Exchange fees')}:
                         </p>
                         <p className="right">
                           {' '}
@@ -250,7 +248,7 @@ const AddMoneyModal = ({
                       </div>
                       <div className="fees-item">
                         <p className="left">
-                          {global.translate('Taxes', 956)}:
+                          {global.translate('Taxes')}:
                         </p>
                         <p className="right">
                           {confirmationData[0].Taxes}
@@ -260,7 +258,7 @@ const AddMoneyModal = ({
                   </div>
                   <div className="exchange-rate">
                     <p>
-                      {global.translate('Exchange Rate', 80)}=
+                      {global.translate('Exchange Rate')}=
                       {confirmationData[0].ExchangeRate}
                     </p>
                   </div>
@@ -270,7 +268,7 @@ const AddMoneyModal = ({
                         className="left"
                         style={{ marginTop: '13px' }}
                       >
-                        {global.translate('Total', 269)}:
+                        {global.translate('Total')}:
                       </p>
                       <p className="right">
                         <strong
@@ -289,11 +287,7 @@ const AddMoneyModal = ({
                         className="left"
                         style={{ marginTop: '13px' }}
                       >
-                        {global.translate(
-                          'Amount to be received',
-                          397,
-                        )}
-                        :
+                        {global.translate('Amount to be received')}:
                       </p>
                       <p className="right">
                         {' '}
@@ -357,7 +351,7 @@ const AddMoneyModal = ({
                     setStep(step - 1);
                   }}
                 >
-                  {global.translate('Back', 174)}
+                  {global.translate('Back')}
                 </Button>
               )}
               {step !== 3 && (
@@ -378,7 +372,7 @@ const AddMoneyModal = ({
                     clearConfirmation()(dispatch);
                   }}
                 >
-                  {global.translate('Cancel', 86)}
+                  {global.translate('Cancel')}
                 </Button>
               )}
 
@@ -390,7 +384,7 @@ const AddMoneyModal = ({
                     setAddMoneyOpen(false);
                   }}
                 >
-                  {global.translate('Redeem Money', 1689)}
+                  {global.translate('Redeem Money')}
                 </Button>
               ) : (
                 <Button
@@ -405,7 +399,7 @@ const AddMoneyModal = ({
                     }
                   }}
                 >
-                  {global.translate('Add money', 89)}
+                  {global.translate('Add money')}
                 </Button>
               )}
             </>

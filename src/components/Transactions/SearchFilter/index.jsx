@@ -52,7 +52,9 @@ const SearchFilter = ({
       closeOnBlur={false}
     >
       <Dropdown.Menu className="search-dropdown-menu">
-        <div className="menu-title">Search transaction</div>
+        <div className="menu-title">
+          {global.translate('Search transaction')}
+        </div>
         <Input
           onClick={e => e.stopPropagation()}
           placeholder="Type and search..."

@@ -91,7 +91,7 @@ const ExchangeCurrencyModal = ({
     >
       <Modal size="small" open={open} onOpen={() => setOpen(!open)}>
         <Modal.Header className="modal-title">
-          {global.translate('Currency Exchange or Cash pooling', 569)}
+          {global.translate('Currency Exchange or Cash pooling')}
         </Modal.Header>
         {step === 1 && (
           <Modal.Content className="entities">
@@ -101,23 +101,20 @@ const ExchangeCurrencyModal = ({
                 id={1}
                 name="sourceWallet"
                 form={form}
-                walletTitle={global.translate(
-                  'Transfer from wallet',
-                  271,
-                )}
+                walletTitle={global.translate('Transfer from wallet')}
                 walletList={walletList}
                 currentOption={currentOption}
                 setCurrentOption={setCurrentOption}
                 onChange={onOptionsChange}
               />
-              <h4 className="to">{global.translate('To', 115)}: </h4>
+              <h4 className="to">{global.translate('To')}: </h4>
 
               <TransactionEntity
                 data={userData}
                 form={form}
                 name="user2wallets"
                 id={2}
-                walletTitle={global.translate('Target wallet', 233)}
+                walletTitle={global.translate('Target wallet')}
                 walletList={walletList}
                 currentOption={currentDestOption}
                 setCurrentOption={setCurrentDestOption}
@@ -129,7 +126,6 @@ const ExchangeCurrencyModal = ({
               <h4 className="available">
                 {global.translate(
                   'Available Balance in the Selected Wallet',
-                  1223,
                 )}
                 <p className="available-value">
                   {formatNumber(balanceOnWallet, {
@@ -142,12 +138,12 @@ const ExchangeCurrencyModal = ({
 
             <div className="money-section">
               <div className="wrap-money-input">
-                <div>{global.translate('Amount', 116)}</div>
+                <div>{global.translate('Amount')}</div>
                 <div className="money-input">
                   <Input
                     type="number"
                     name="amount"
-                    placeholder={global.translate('Amount', 116)}
+                    placeholder={global.translate('Amount')}
                     onChange={onOptionsChange}
                     value={form.amount || null}
                     min="0"
@@ -178,7 +174,7 @@ const ExchangeCurrencyModal = ({
               )}
               {checking && (
                 <LoaderComponent
-                  loaderContent={global.translate('Working…', 412)}
+                  loaderContent={global.translate('Working…')}
                 />
               )}
             </div>
@@ -187,7 +183,7 @@ const ExchangeCurrencyModal = ({
         {step === 2 && confirmationData && confirmationData[0] && (
           <Modal.Content className="ss-content">
             <div className="ss-amount">
-              <p>{global.translate('Amount', 116)}: </p> &nbsp;&nbsp;
+              <p>{global.translate('Amount')}: </p> &nbsp;&nbsp;
               <p>
                 <strong>{confirmationData[0].Amount}</strong>
               </p>
@@ -195,17 +191,15 @@ const ExchangeCurrencyModal = ({
 
             <div className="fees">
               <div className="fees-list">
-                <p>{global.translate('Fees', 117)}</p>
+                <p>{global.translate('Fees')}</p>
 
                 <div className="fees-item">
-                  <p className="left">
-                    {global.translate('Fees', 117)}:
-                  </p>
+                  <p className="left">{global.translate('Fees')}:</p>
                   <p className="right">{confirmationData[0].Fees}</p>
                 </div>
                 <div className="fees-item">
                   <p className="left">
-                    {global.translate('External fees', 121)}:
+                    {global.translate('External fees')}:
                   </p>
                   <p className="right">
                     {confirmationData[0].ExternalFees}
@@ -213,7 +207,7 @@ const ExchangeCurrencyModal = ({
                 </div>
                 <div className="fees-item">
                   <p className="left">
-                    {global.translate('Exchange fees', 120)}:
+                    {global.translate('Exchange fees')}:
                   </p>
                   <p className="right">
                     {' '}
@@ -221,23 +215,21 @@ const ExchangeCurrencyModal = ({
                   </p>
                 </div>
                 <div className="fees-item">
-                  <p className="left">
-                    {global.translate('Taxes', 956)}:
-                  </p>
+                  <p className="left">{global.translate('Taxes')}:</p>
                   <p className="right">{confirmationData[0].Taxes}</p>
                 </div>
               </div>
             </div>
             <div className="exchange-rate">
               <p>
-                {global.translate('Exchange Rate', 80)}=
+                {global.translate('Exchange Rate')}=
                 {confirmationData[0].ExchangeRate}
               </p>
             </div>
             <div className="amount-to-be-recieved-break-down">
               <div className="fees-item">
                 <p className="left" style={{ marginTop: '13px' }}>
-                  {global.translate('Total', 269)}:
+                  {global.translate('Total')}:
                 </p>
                 <p className="right">
                   <strong
@@ -250,7 +242,7 @@ const ExchangeCurrencyModal = ({
               </div>
               <div className="fees-item">
                 <p className="left" style={{ marginTop: '13px' }}>
-                  {global.translate('Amount to be received', 397)}:
+                  {global.translate('Amount to be received')}:
                 </p>
                 <p className="right">
                   {' '}
@@ -269,10 +261,7 @@ const ExchangeCurrencyModal = ({
                 name="reference"
                 onChange={onOptionsChange}
                 value={form.reference || ''}
-                placeholder={global.translate(
-                  'Enter reference here',
-                  433,
-                )}
+                placeholder={global.translate('Enter reference here')}
               />
               <Input
                 name="description"
@@ -280,16 +269,12 @@ const ExchangeCurrencyModal = ({
                 value={form.description || ''}
                 placeholder={global.translate(
                   'Enter description here',
-                  434,
                 )}
               />
             </div>
             <div className="pin-number">
               <PinCodeForm
-                label={global.translate(
-                  'Confirm  your PIN number',
-                  941,
-                )}
+                label={global.translate('Confirm  your PIN number')}
                 onChange={onOptionsChange}
                 shouldClear={shouldClear}
                 setShouldClear={setShouldClear}
@@ -305,18 +290,16 @@ const ExchangeCurrencyModal = ({
                   message={
                     error && error[0].Description
                       ? global.translate(error[0].Description)
-                      : global.translate(error.error, 162)
+                      : global.translate(error.error)
                   }
                 />
               )}
               {error && !error[0] && (
-                <Message
-                  message={global.translate(error.error, 162)}
-                />
+                <Message message={global.translate(error.error)} />
               )}
               {loading && (
                 <LoaderComponent
-                  loaderContent={global.translate('Working…', 412)}
+                  loaderContent={global.translate('Working…')}
                 />
               )}
             </div>
@@ -333,7 +316,7 @@ const ExchangeCurrencyModal = ({
                   resetState();
                 }}
               >
-                {global.translate('Back', 174)}
+                {global.translate('Back')}
               </Button>
             )}
 
@@ -351,7 +334,7 @@ const ExchangeCurrencyModal = ({
                   setCurrentDestOption(null);
                 }}
               >
-                {global.translate('Cancel', 86)}
+                {global.translate('Cancel')}
               </Button>
             )}
             <Button
@@ -366,8 +349,8 @@ const ExchangeCurrencyModal = ({
               }}
             >
               {step !== 3
-                ? global.translate('Exchange', 1997)
-                : global.translate('Done', 55)}
+                ? global.translate('Exchange')
+                : global.translate('Done')}
             </Button>
           </>
         </Modal.Actions>

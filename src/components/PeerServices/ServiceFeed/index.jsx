@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { Image } from 'semantic-ui-react';
 import openCreateModal from 'redux/actions/peerServices/openCreateModal';
-import LoaderComponent from 'components/common/Loader';
+import ServicePlaceholder from 'assets/images/placeholders/marketplace-service-placeholder.svg';
 import EmptyCard from 'components/Stores/MyStores/EmptyCard';
 import { LOGIN_RETURN_URL } from 'constants/general';
 import PostFeedItem from './Item';
@@ -29,7 +30,7 @@ const ServicesFeed = ({
 
   const handleOpenCreateForm = () => {
     if (!user?.PID) {
-      toast.info(global.translate('You need to login first', 1841));
+      toast.info(global.translate('You need to login first'));
       localStorage.toOpenCreateForm = '1';
       history.push({
         pathname: `/login`,
@@ -71,9 +72,10 @@ const ServicesFeed = ({
           />
         ))}
       {loading && (
-        <LoaderComponent
-          style={{ marginTop: 25 }}
-          loaderContent={global.translate('Working...', 412)}
+        <Image
+          src={ServicePlaceholder}
+          className="animate-placeholder fluid"
+          style={{ marginTop: '10px' }}
         />
       )}
 
@@ -84,7 +86,6 @@ const ServicesFeed = ({
               emptyMessage?.body ||
               global.translate(
                 'You can create your own services or products and let the public know',
-                1892,
               )
             }
             disableAdd={!!emptyMessage || disableEmptyAdd}
@@ -92,10 +93,9 @@ const ServicesFeed = ({
               emptyMessage?.title ||
               global.translate(
                 'Looks like there are no services or products yet',
-                1893,
               )
             }
-            createText={global.translate('Create Post', 1894)}
+            createText={global.translate('Create Post')}
             onAddClick={handleOpenCreateForm}
           />
         )}
