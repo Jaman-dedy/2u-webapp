@@ -39,6 +39,9 @@ const ApplyLoan = () => {
   const [openPinModal, setOpenPinModal] = useState(false);
   const [PIN, setPIN] = useState('');
   const [pinData, setPinData] = useState(null);
+  const [checkLoanErrorMessage, setCheckLoanErrorMessage] = useState(
+    null,
+  );
 
   const [pinErrors, setPinErrors] = useState(null);
 
@@ -47,6 +50,7 @@ const ApplyLoan = () => {
       ...form,
       [name]: value,
     });
+    setCheckLoanErrorMessage(null);
   };
   const handleOnClick = day => {
     setDuration(day);
@@ -156,6 +160,8 @@ const ApplyLoan = () => {
       pinErrors={pinErrors}
       pinData={pinData}
       clearCheckEligibility={clearCheckEligibility}
+      setCheckLoanErrorMessage={setCheckLoanErrorMessage}
+      checkLoanErrorMessage={checkLoanErrorMessage}
     />
   );
 };

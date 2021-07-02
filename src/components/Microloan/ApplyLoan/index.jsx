@@ -47,13 +47,12 @@ const ApplyLoan = ({
   PIN,
   pinData,
   clearCheckEligibility,
+  setCheckLoanErrorMessage,
+  checkLoanErrorMessage,
 }) => {
   const history = useHistory();
   const { width } = useWindowSize();
 
-  const [checkLoanErrorMessage, setCheckLoanErrorMessage] = useState(
-    null,
-  );
   const [displayLimit, setDisplayLimit] = useState(null);
   const onClickHandler = () => history.goBack();
   const days = getPossibleDates().map(item => ({
@@ -221,7 +220,7 @@ const ApplyLoan = ({
               )}
             </div>
             <Button
-              disabled={buttonDisabled}
+              disabled={buttonDisabled || checkLoanErrorMessage}
               loading={checkLoanLoading}
               onClick={() => {
                 checkLoanEligibility();
@@ -356,6 +355,8 @@ ApplyLoan.propTypes = {
   clearCheckEligibility: PropTypes.func,
   setPIN: PropTypes.func.isRequired,
   PIN: PropTypes.string.isRequired,
+  setCheckLoanErrorMessage: PropTypes.func,
+  checkLoanErrorMessage: PropTypes.number,
 };
 ApplyLoan.defaultProps = {
   walletList: () => {},
@@ -380,6 +381,8 @@ ApplyLoan.defaultProps = {
   pinErrors: {},
   pinData: {},
   clearCheckEligibility: () => {},
+  checkLoanErrorMessage: null,
+  setCheckLoanErrorMessage: () => {},
 };
 
 export default ApplyLoan;
