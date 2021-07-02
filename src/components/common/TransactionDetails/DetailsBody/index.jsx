@@ -12,9 +12,6 @@ const DetailsBody = ({
   updatingData,
   withdraw,
 }) => {
-  const newDate = item?.Date?.substring(0, 11);
-  const newTime = item?.Date?.substring(11) || '';
-
   const displayUserNames = () => {
     if (selectedCard === 1) {
       return {
