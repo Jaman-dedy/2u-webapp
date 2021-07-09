@@ -201,7 +201,7 @@ const MyVirtualCards = ({
                   }
                 }}
               >
-                {global.translate(`Add an O-Card`, 2039)}
+                {global.translate(`Add an O-Card`)}
               </button>
             </div>
             <div className="clear" />
@@ -237,13 +237,13 @@ const MyVirtualCards = ({
         <ModalInfo
           open={openModal}
           setOpen={setOpenModal}
-          title={global.translate('You are not eligible', 2280)}
+          title={global.translate('You are not eligible yet')}
           body={global.translate(
             'You are not eligible to order an O Card. Only verified accounts can order an O Card. To be verified you need to navigate to the profile page and upload your documents',
           )}
           icon={modalIcon}
           isEligible={isEligible}
-          buttonText={global.translate('Okay', 2554)}
+          buttonText={global.translate('Okay')}
         />
       </DashboardLayout>
     </>

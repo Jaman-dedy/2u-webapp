@@ -66,10 +66,7 @@ const AllTransactions = ({
     </Table>
   ) : (
     <EmptyTransaction
-      message={global.translate(
-        'No pending cash transactions found',
-        2210,
-      )}
+      message={global.translate('No pending cash transactions found')}
     />
   );
 };

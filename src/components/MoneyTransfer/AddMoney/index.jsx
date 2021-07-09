@@ -308,18 +308,15 @@ const AddMoney = ({
             />
             <ShowStep
               title={global.translate('Top Up', 542)}
-              subTitle={global.translate(
-                'Add money to your wallet',
-                173,
-              )}
+              subTitle={global.translate('Add money to your wallet')}
               levelNumber={levelTwo ? levelTwoVisited : Step2Img}
               visited={levelTwo}
               onClick={handleNavigateSteps}
               number={2}
             />
             <ShowStep
-              title={global.translate('Confirm', 1750)}
-              subTitle={global.translate('Review and confirm', 2219)}
+              title={global.translate('Confirm')}
+              subTitle={global.translate('Review and confirm')}
               levelNumber={levelThree ? levelThreeVisited : Step3Img}
               visited={levelThree}
               onClick={handleNavigateSteps}
@@ -337,13 +334,12 @@ const AddMoney = ({
                   setNextButton={setNextButton}
                 />
 
-                <h3>{global.translate('Choose a provider', 2168)}</h3>
+                <h3>{global.translate('Choose a provider')}</h3>
                 <DisplayProviders
                   providerLogo={TopUpCreditCardImg}
                   title="Credit/Prepaid card"
                   subTitle={global.translate(
                     'Top up money from any major credit card',
-                    2133,
                   )}
                   onClick={checkTopUpCreditCard}
                   ticked={topUpFromCreditCard}

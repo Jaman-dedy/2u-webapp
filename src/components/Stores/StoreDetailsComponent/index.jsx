@@ -211,7 +211,6 @@ const StoreDetailsComponent = ({
                 <EmptyTransaction
                   message={global.translate(
                     'This store has no pending vouchers',
-                    2558,
                   )}
                 />
               )}

@@ -58,7 +58,7 @@ const CreditCardList = ({ creditCardList, loading, userData }) => {
           )}
 
           <h2 className="head-title">
-            {global.translate('My M-Cards', 2159)}
+            {global.translate('My M-Cards')}
           </h2>
           <div className="head-buttons">
             <button
@@ -71,7 +71,7 @@ const CreditCardList = ({ creditCardList, loading, userData }) => {
                 }
               }}
             >
-              {global.translate(`Order an M-Card`, 2171)}
+              {global.translate(`Order an M-Card`)}
             </button>
           </div>
           <div className="clear" />
@@ -97,10 +97,9 @@ const CreditCardList = ({ creditCardList, loading, userData }) => {
               "Looks like you don't have any M-Card yet",
               2161,
             )}
-            createText={global.translate('add an M-Card', 1961)}
+            createText={global.translate('add an M-Card')}
             body={global.translate(
               'You can create your M-card and use them for your transactions',
-              2162,
             )}
             onAddClick={handleCreateCard}
             imgSrc={EmptyCardList}
@@ -125,13 +124,13 @@ const CreditCardList = ({ creditCardList, loading, userData }) => {
       <ModalInfo
         open={openModal}
         setOpen={setOpenModal}
-        title={global.translate('You are not eligible', 2280)}
+        title={global.translate('You are not eligible yet')}
         body={global.translate(
           'You are not eligible to order an M Card. Only verified accounts can order an M Card. To be verified you need navigate to the profile page and upload your documents',
         )}
         icon={modalIcon}
         isEligible={isEligible}
-        buttonText={global.translate('Okay', 2554)}
+        buttonText={global.translate('Okay')}
       />
     </DashboardLayout>
   );

@@ -84,6 +84,7 @@ const DashboardContainer = () => {
     const data = {
       NewPwd: form?.password,
       OTP: authData?.OTP,
+      PID: authData?.PID,
     };
     updatePasswordAction(data)(dispatch);
   };

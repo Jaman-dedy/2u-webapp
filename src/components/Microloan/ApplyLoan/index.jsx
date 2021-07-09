@@ -122,7 +122,7 @@ const ApplyLoan = ({
             </div>
             <div>
               <div className="apply-box-item">
-                {global.translate('Amount', 116)}
+                {global.translate('Amount')}
               </div>
               <div className="amount-input">
                 <Input
@@ -139,7 +139,6 @@ const ApplyLoan = ({
                 <InfoMessage
                   description={global.translate(
                     'The monthly payment amount will be withdrawn automatically from your wallet every month. ',
-                    2556,
                   )}
                 />
               </div>
@@ -230,7 +229,7 @@ const ApplyLoan = ({
               }}
             >
               {checkLoanData
-                ? global.translate('Apply now', 2557)
+                ? global.translate('Apply now')
                 : global.translate('Next')}
             </Button>
           </div>

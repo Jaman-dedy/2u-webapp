@@ -6,10 +6,16 @@
   padding: 16px;
   margin-bottom: 15px;
   color: #218ecc;
-
+  @media (max-width: 420px) {
+    flex-direction: column;
+  }
   .ui.button {
     padding: 0 !important;
     min-width: 10rem !important;
+    @media (max-width: 420px) {
+      padding: 10px !important;
+      margin-top: 10px;
+    }
   }
   img {
     margin-right: 8px;
