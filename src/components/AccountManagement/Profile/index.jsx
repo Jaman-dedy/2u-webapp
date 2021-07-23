@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import './style.scss';
 import CardFidelity from './CardFidelity';
@@ -20,7 +19,7 @@ const Profile = ({
         <h3>
           {global.translate('Hi')}
           &nbsp;
-          {userData?.FirstName}
+          {userData?.FirstName}, &nbsp;
           {global.translate("let's setup your account")}
         </h3>
         <div>

@@ -11,9 +11,11 @@ import {
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import queryString from 'query-string';
+import NoPendingVouchers from 'assets/images/empty-pending-voucher.svg';
 import useWindowSize from 'utils/useWindowSize';
 import DashboardLayout from 'components/common/DashboardLayout';
 import WelcomeBar from 'components/Dashboard/WelcomeSection';
+import EmptyCard from 'components/common/EmptyCard';
 import './style.scss';
 import NewAgentModal from 'components/Stores/StoreDetailsComponent/AgentsView/New/AddNewAgentModal';
 import AgentsView from 'components/Stores/StoreDetailsComponent/AgentsView';
@@ -24,7 +26,6 @@ import loadTransactions from 'assets/images/placeholders/table-data-placeholder.
 import AddStoreContainer from 'containers/Stores/AddStore';
 import GoBack from 'components/common/GoBack';
 import PendingVoucherTable from 'components/common/PendingVoucherTable';
-import EmptyTransaction from 'components/common/EmptyTransaction';
 import StoreInfoTab from './StoreInfoTab';
 import NotificationSettingsTab from './NotificationSettingsTab';
 import StoreAvailabilitySettings from './StoreAvailabilitySettings';
@@ -52,7 +53,11 @@ const SettingView = props => {
         <Tab.Pane>
           <Grid>
             <Grid.Column>
-              <AddStoreContainer currentStore={currentStore} />
+              <AddStoreContainer
+                currentStore={
+                  currentStore ?? history?.location?.state?.storeInfo
+                }
+              />
             </Grid.Column>
           </Grid>
         </Tab.Pane>
@@ -109,7 +114,11 @@ const SettingView = props => {
           pathname: '/store-details',
           search: '?tab=settings',
           hash: `#${tabHash}`,
-          state: { store: currentStore?.StoreID },
+          state: {
+            store:
+              currentStore?.StoreID ??
+              history?.location?.state?.storeInfo?.StoreID,
+          },
         });
         setActiveSettingTab(data.activeIndex);
       }}
@@ -172,9 +181,7 @@ const StoreDetailsComponent = ({
           <Tab.Pane>
             <StoreInfoTab
               currentStore={
-                currentStore && Object.keys(currentStore).length
-                  ? currentStore
-                  : history?.location?.state?.storeInfo
+                currentStore ?? history?.location?.state?.storeInfo
               }
               onChangeTab={onChangeTab}
             />
@@ -208,10 +215,16 @@ const StoreDetailsComponent = ({
           >
             {!loadingPendingVouchers &&
               !pendingVouchers?.data?.length > 0 && (
-                <EmptyTransaction
-                  message={global.translate(
+                <EmptyCard
+                  header={global.translate(
                     'This store has no pending vouchers',
+                    2558,
                   )}
+                  body={global.translate(
+                    'No unused vouchers has been sent from this store',
+                  )}
+                  disableAdd
+                  imgSrc={NoPendingVouchers}
                 />
               )}
             {!loadingPendingVouchers &&
@@ -255,6 +268,7 @@ const StoreDetailsComponent = ({
             deleteStoreData={deleteStoreData}
             activeSettingTab={activeSettingTab}
             setActiveSettingTab={setActiveSettingTab}
+            setIsOpenAddAgent={setIsOpenAddAgent}
           />
         </Tab.Pane>
       ),
@@ -270,7 +284,9 @@ const StoreDetailsComponent = ({
         <AgentsView
           form={form}
           onEditChange={onEditChange}
-          currentStore={currentStore}
+          currentStore={
+            currentStore ?? history?.location?.state?.storeInfo
+          }
           isOpenAddAgent={isOpenAddAgent}
           setIsOpenAddAgent={setIsOpenAddAgent}
         />
@@ -309,7 +325,7 @@ const StoreDetailsComponent = ({
         setActiveSettingTab(activeSettingTabIndex);
       }
     }
-  }, [activeTab]);
+  }, [activeTab, queryParams.fragmentIdentifier]);
 
   const { userData } = useSelector(state => state.user);
   const searchData = useSelector(state => state.contacts.locateUser);
@@ -439,14 +455,16 @@ const StoreDetailsComponent = ({
               panes={panes}
               pendingVouchers={pendingVouchers}
               onCancelTransactionConfirm={onCancelTransactionConfirm}
-              store={store}
+              store={store ?? history?.location?.state?.storeInfo}
               setSelectedItem={setSelectedItem}
               selectedItem={selectedItem}
               setCancelOpen={setCancelOpen}
               cancelOpen={cancelOpen}
               onRejectVoucher={onRejectVoucher}
               form={form}
-              currentStore={currentStore}
+              currentStore={
+                currentStore ?? history?.location?.state?.storeInfo
+              }
               setStoreStatus={setStoreStatus}
               getPendingStoreVouchers={getPendingStoreVouchers}
               onEditChange={onEditChange}
@@ -471,7 +489,9 @@ const StoreDetailsComponent = ({
             localError={localError}
             setLocalError={setLocalError}
             addNewUserData={addNewUserData}
-            currentStore={currentStore}
+            currentStore={
+              currentStore ?? history?.location?.state?.storeInfo
+            }
             addAgentsLoading={addAgentsLoading}
           />
         </>
@@ -492,11 +512,8 @@ StoreDetailsComponent.propTypes = {
   getPendingStoreVouchers: PropTypes.func,
   deleteStore: PropTypes.objectOf(PropTypes.any),
   deleteStoreData: PropTypes.objectOf(PropTypes.any),
-  setStoreStatus: PropTypes.func,
   activeTab: PropTypes.number,
   setActiveTab: PropTypes.func,
-  isOpenAddAgent: PropTypes.bool,
-  setIsOpenAddAgent: PropTypes.func,
 };
 
 StoreDetailsComponent.defaultProps = {
@@ -511,10 +528,7 @@ StoreDetailsComponent.defaultProps = {
   setForm: () => null,
   onEditChange: () => null,
   getPendingStoreVouchers: () => null,
-  setStoreStatus: () => {},
   activeTab: 1,
   setActiveTab: () => {},
-  isOpenAddAgent: false,
-  setIsOpenAddAgent: () => {},
 };
 export default StoreDetailsComponent;
