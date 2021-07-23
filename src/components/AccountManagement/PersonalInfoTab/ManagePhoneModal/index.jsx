@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+
 import PropTypes from 'prop-types';
 import {
   Modal,
@@ -15,7 +17,7 @@ import './style.scss';
 import InfoMessage from 'components/common/Alert/InfoMessage';
 import PINInput from 'components/common/PINInput';
 import ErrorMessage from 'components/common/Alert/Danger';
-import { useSelector } from 'react-redux';
+
 const ManagePhoneModal = ({
   open,
   setOpen,

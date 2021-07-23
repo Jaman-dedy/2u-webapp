@@ -65,10 +65,7 @@ const IdentityForm = ({
                   {global.translate('First name')}
                 </div>
                 <Form.Input
-                  placeholder={`${global.translate(
-                    'First name',
-                    8,
-                  )} *`}
+                  placeholder={`${global.translate('First name')} *`}
                   name="firstName"
                   type="text"
                   required
@@ -86,10 +83,7 @@ const IdentityForm = ({
                   {global.translate('Last name')}
                 </div>
                 <Form.Input
-                  placeholder={`${global.translate(
-                    'Last name',
-                    9,
-                  )} *`}
+                  placeholder={`${global.translate('Last name')} *`}
                   name="lastName"
                   type="text"
                   required
@@ -126,7 +120,7 @@ const IdentityForm = ({
                   {global.translate('Email')}
                 </div>
                 <Form.Input
-                  placeholder={global.translate('E-mail', 28)}
+                  placeholder={global.translate('E-mail')}
                   name="email"
                   type="email"
                   value={registrationData.email}
@@ -140,7 +134,7 @@ const IdentityForm = ({
             <div className="clear" />
             <Grid.Column mobile={16} computer={8}>
               <div className="sub-titles">
-                {global.translate('Date of birth', 442)}
+                {global.translate('Date of birth')}
               </div>
               <DatePicker
                 className="wrap-date-picker"
@@ -165,7 +159,7 @@ const IdentityForm = ({
               />
             </Grid.Column>
             <div className="clear" />
-            <Grid.Column mobile={16} computer={8}>
+            <Grid.Column mobile={16} computer={16}>
               <div>
                 <button
                   type="submit"
@@ -179,14 +173,15 @@ const IdentityForm = ({
                   {verifyPhoneNumber.loading && (
                     <div className="loading-button" />
                   )}
-                  {global.translate('NEXT', 10)}
+                  {global.translate('NEXT')}
                 </button>
               </div>
             </Grid.Column>
-            <Grid.Column mobile={16} computer={8}>
+            <Grid.Column mobile={16} computer={16}>
               <div className="btn-signup-login">
+                {global.translate('Already have an account?')}
                 <Link to="/login" className="btn-auth">
-                  {global.translate('LOGIN', 190).toUpperCase()}
+                  {global.translate('LOGIN').toUpperCase()}
                 </Link>
               </div>
             </Grid.Column>

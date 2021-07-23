@@ -58,7 +58,7 @@ const PostsNavbar = ({ fixed, mobile, handleToggle }) => {
           height={30}
         />
       )}{' '}
-      {user ? user?.PID : global.translate('My account', 1797)}
+      {user ? user?.PID : global.translate('My account')}
     </div>
   );
   const handleNewServiceClicked = () => {
@@ -99,7 +99,7 @@ const PostsNavbar = ({ fixed, mobile, handleToggle }) => {
             />
           )}
           <Menu.Item position="right">
-            <Link to="/">{global.translate('Dashboard', 1239)}</Link>
+            <Link to="/">{global.translate('Dashboard')}</Link>
           </Menu.Item>
 
           {user && (
@@ -111,7 +111,7 @@ const PostsNavbar = ({ fixed, mobile, handleToggle }) => {
                   color: 'white',
                   marginLeft: mobile ? '0em' : '0.5em',
                 }}
-                content={global.translate('Create Post', 2108)}
+                content={global.translate('Create Post')}
               />
             </Menu.Item>
           )}
@@ -127,7 +127,7 @@ const PostsNavbar = ({ fixed, mobile, handleToggle }) => {
                   },
                 }}
               >
-                {global.translate('Log in', 2208)}
+                {global.translate('Log in')}
               </Button>
               <Button
                 style={{
@@ -138,7 +138,7 @@ const PostsNavbar = ({ fixed, mobile, handleToggle }) => {
                 as={Link}
                 className="bg-orange"
               >
-                {global.translate('Register', 6)}
+                {global.translate('Register')}
               </Button>
             </Menu.Item>
           )}

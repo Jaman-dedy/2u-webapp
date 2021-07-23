@@ -122,18 +122,18 @@ const Register = ({
   const setTitle = () => {
     switch (screenNumber) {
       case 1:
-        return global.translate('Register', 6);
+        return global.translate('Register');
       case 2:
-        return global.translate('Register', 6);
+        return global.translate('Register');
       case 3:
-        return global.translate('Register', 6);
+        return global.translate('Register');
       case 4:
-        return global.translate('Someone told you about us?', 1412);
+        return global.translate('Someone told you about us?');
       case 5:
-        return global.translate('Congratulations', 950);
+        return global.translate('Congratulations');
 
       default:
-        return global.translate('Register', 6);
+        return global.translate('Register');
     }
   };
 
@@ -147,10 +147,9 @@ const Register = ({
       <Prompt
         when={formIsHalfFilled}
         message={JSON.stringify({
-          header: global.translate('Confirm', 1750),
+          header: global.translate('Confirm'),
           content: global.translate(
             'You have unsaved changes, Are you sure you want to leave?',
-            1751,
           ),
         })}
       />
