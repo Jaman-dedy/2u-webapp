@@ -10,7 +10,7 @@ const Invoice = ({ screen2, handleInputChange, payBillsData }) => {
   return (
     <div className="invoice">
       <div className="invoice-label">
-        <span>{global.translate('Fill your Invoice', 691)}</span>
+        <span>{global.translate('Fill your Invoice')}</span>
       </div>
       <Input
         name="ClientNumber"
@@ -20,7 +20,7 @@ const Invoice = ({ screen2, handleInputChange, payBillsData }) => {
           clearError(e);
           handleInputChange(e);
         }}
-        placeholder={global.translate('Customer number', 694)}
+        placeholder={global.translate('Customer number')}
       />
       <Input
         name="InvoiceNumber"
@@ -30,7 +30,7 @@ const Invoice = ({ screen2, handleInputChange, payBillsData }) => {
           clearError(e);
           handleInputChange(e);
         }}
-        placeholder={global.translate('Invoice Number', 695)}
+        placeholder={global.translate('Invoice Number')}
       />
       <div className="calendar_input">
         <DateInput
@@ -58,7 +58,7 @@ const Invoice = ({ screen2, handleInputChange, payBillsData }) => {
           clearError(e);
           handleInputChange(e);
         }}
-        placeholder={global.translate('Description', 119)}
+        placeholder={global.translate('Description')}
       />
       <Input
         name="Reference"
@@ -68,7 +68,7 @@ const Invoice = ({ screen2, handleInputChange, payBillsData }) => {
           clearError(e);
           handleInputChange(e);
         }}
-        placeholder={global.translate('Reference', 124)}
+        placeholder={global.translate('Reference')}
       />
       <TextArea
         name="SupplierNote"
@@ -78,10 +78,7 @@ const Invoice = ({ screen2, handleInputChange, payBillsData }) => {
           clearError(e);
           handleInputChange(e);
         }}
-        placeholder={global.translate(
-          'Send a note to the supplier',
-          696,
-        )}
+        placeholder={global.translate('Send a note to the supplier')}
       />
     </div>
   );

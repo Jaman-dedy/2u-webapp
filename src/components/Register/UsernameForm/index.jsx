@@ -50,6 +50,17 @@ const UsernameForm = ({
     } else {
       setDisableButton(false);
     }
+    if (!registrationData.personalId || PINNumber.length < 4) {
+      setDisableButton(true);
+    }
+
+    if (
+      registrationData.personalId &&
+      registrationData.personalId[0] >= '0' &&
+      registrationData.personalId[0] <= '9'
+    ) {
+      setDisableButton(true);
+    }
   }, [errors?.personalId, checkPassword(password)]);
 
   useEffect(() => {
@@ -107,7 +118,7 @@ const UsernameForm = ({
               onInputChange(e);
               handleClearUsername();
             }}
-            placeholder={global.translate('Create your username', 35)}
+            placeholder={global.translate('Create your username')}
             onBlur={handleOnBlur}
             loading={verifyPID.loading}
           />
@@ -129,7 +140,7 @@ const UsernameForm = ({
             {global.translate('Password')}
           </div>
           <PasswordInput
-            placeholder={global.translate('Enter your password', 2)}
+            placeholder={global.translate('Enter your password')}
             name="password"
             type="password"
             value={password}
@@ -202,7 +213,7 @@ const UsernameForm = ({
           )}
           {registrationData?.ReferralPID
             ? global.translate('REGISTER NOW')
-            : global.translate('Next', 10)}
+            : global.translate('Next')}
         </button>
       </Form>
     </Container>

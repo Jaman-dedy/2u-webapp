@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Form, Button, Header, Input } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import 'react-datepicker/dist/react-datepicker.css';

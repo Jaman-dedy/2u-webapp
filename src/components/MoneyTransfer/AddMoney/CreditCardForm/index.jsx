@@ -30,7 +30,7 @@ const CreditCardForm = ({
     <Form className="add-money-form" autoComplete="off">
       <div className="amount">
         <Form.Input
-          placeholder={global.translate('Amount', 116)}
+          placeholder={global.translate('Amount')}
           className="amount-credit-card-input"
           error={errors.Amount || false}
           name="Amount"
@@ -53,7 +53,7 @@ const CreditCardForm = ({
       </div>
       <Form.Field className="amount">
         <Form.Input
-          placeholder={global.translate('Name on card', 493)}
+          placeholder={global.translate('Name on card')}
           name="NameOnCard"
           value={addMoneyData.NameOnCard}
           error={errors.NameOnCard || false}
@@ -63,13 +63,13 @@ const CreditCardForm = ({
           width={16}
         />
       </Form.Field>
-      <span>{global.translate('Card number', 491)}</span>
+      <span>{global.translate('Card number')}</span>
       <CreditCardNumberInput
         addMoneyFromCreditCard={addMoneyFromCreditCard}
         handleInputChange={handleInputChange}
         errors={errors}
       />
-      <span>{global.translate('Expiration date', 492)}</span>
+      <span>{global.translate('Expiration date')}</span>
       <Form.Field className="expiry-date">
         <DatePicker
           selected={selectedMonth}
@@ -96,7 +96,7 @@ const CreditCardForm = ({
       </Form.Field>
       <Form.Group widths="equal">
         <Form.Field>
-          <span>{global.translate('Address', 1210)}</span>
+          <span>{global.translate('Address')}</span>
           <Form.Input
             name="Address"
             value={addMoneyData.Address}
@@ -106,7 +106,7 @@ const CreditCardForm = ({
           />
         </Form.Field>
         <Form.Field>
-          <span>{global.translate('City', 294)}</span>
+          <span>{global.translate('City')}</span>
           <Form.Input
             name="City"
             value={addMoneyData.City}
@@ -116,7 +116,7 @@ const CreditCardForm = ({
           />
         </Form.Field>
         <Form.Field>
-          <span>{global.translate('Country', 275)}</span>
+          <span>{global.translate('Country')}</span>
           <Form.Input
             name="Country"
             value={addMoneyData.Country}
@@ -128,8 +128,8 @@ const CreditCardForm = ({
       </Form.Group>
       <Form.Field>
         <span>
-          {global.translate('Description', 1871)} [
-          {global.translate('Optional', 1211)}]
+          {global.translate('Description')} [
+          {global.translate('Optional')}]
         </span>
         <Input
           name="OpDescription"
@@ -145,7 +145,7 @@ const CreditCardForm = ({
       )}
       <div className="topup-actions">
         <Form.Button onClick={handleBackEvent}>
-          {global.translate('Back', 174)}
+          {global.translate('Back')}
         </Form.Button>
 
         <Form.Button
@@ -159,7 +159,7 @@ const CreditCardForm = ({
           }}
           positive
         >
-          {global.translate('Next', 10)}
+          {global.translate('Next')}
         </Form.Button>
       </div>
     </Form>
