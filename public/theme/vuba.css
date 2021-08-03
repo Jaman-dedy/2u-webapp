@@ -1,0 +1,61 @@
+/* Color background*/
+
+:root {
+  --color-primary: green;
+  --color-secondary: #84c551;
+  --color-disabled-secondary: #64814e;
+  --color-background: #84c551;
+  --page-wrapper-background: #574a42;
+  --wrap-top-bar-background: rgb(87, 74, 66);
+  --bg-gradient-100-percent: rgba(87, 74, 66, 1);
+  --bg-gradient-0-percent: rgba(87, 74, 66, 0);
+  --disabled-button-primary: #64814e;
+  --disabled-button-secondary: #574a42;
+}
+
+.bg-primary {
+  background: var(--color-secondary);
+}
+
+.bg-secondary {
+  background: var(--color-primary);
+}
+/* Color text */
+.text-primary {
+  color: var(--color-secondary);
+}
+.text-secondary {
+  color: var(--color-primary);
+}
+/* Color border  */
+.border-primary {
+  border-color: var(--color-secondary);
+}
+.border-secondary {
+  border-color: var(--color-primary);
+}
+.disabled-button-primary {
+  background: var(--color-disabled-secondary);
+}
+.disabled-button-secondary {
+  background: var(--color-primary);
+}
+
+.bg-primary {
+  background: #84c551;
+}
+.bg-secondary {
+  background: #574a42;
+}
+
+.text-secondary {
+  color: #574a42;
+}
+
+/* Color border  */
+.border-primary {
+  border-color: #84c551;
+}
+.border-secondary {
+  border-color: #574a42;
+}

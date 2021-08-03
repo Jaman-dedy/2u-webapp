@@ -6,8 +6,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Grid } from 'semantic-ui-react';
 
-import AlertDanger from 'components/common/Alert/Danger';
 import PhoneInput from 'react-phone-input-2';
+import AlertDanger from 'components/common/Alert/Danger';
 import './style.scss';
 import 'assets/styles/spinner.scss';
 import PasswordForm from './PasswordForm';
@@ -51,7 +51,6 @@ const LoginForm = ({
   const {
     currentUser: { authData },
   } = useSelector(({ user }) => user);
-  
 
   useEffect(() => {
     if (authData?.UserShouldSetPassword === 'NO') {

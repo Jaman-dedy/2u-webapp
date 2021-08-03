@@ -8,6 +8,8 @@ import { Integrations } from '@sentry/tracing';
 
 import App from './App';
 import store from './redux/store';
+import './themes';
+// console.log('process-env', process.env);
 
 Sentry.init({
   dsn:

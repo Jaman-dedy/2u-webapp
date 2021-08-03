@@ -1,0 +1,8 @@
+:root {
+  --page-wrapper-background: #323556;
+  --wrap-top-bar-background: rgb(50, 53, 86);
+  --bg-gradient-100-percent: rgba(50, 53, 86, 1);
+  --bg-gradient-0-percent: rgba(50, 53, 86, 0);
+  --disabled-button-primary: #d4975d;
+  --disabled-button-secondary: #574a42;
+}

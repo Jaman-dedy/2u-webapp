@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "serve -s build $(perl -pe 's/PORT=/-l /' .env | grep '\\-l ')",
-    "start:dev": "react-scripts start",
+    "start:2u": "PORT=3002 REACT_APP_PLATFORM=2u react-scripts start",
+    "start:vuba": "PORT=3001 REACT_APP_PLATFORM=vuba react-scripts start",
     "build": "CI=false react-scripts build && echo '/* /index.html 200' > ./build/_redirects",
     "lint": "eslint src/",
     "lint:fix": "eslint --fix src/",

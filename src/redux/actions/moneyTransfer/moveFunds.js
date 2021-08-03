@@ -23,9 +23,11 @@ export default (
           payload: data,
         }),
       onSuccess: data => dispatch => {
+        const result = Array.isArray(data) ? data[0] : data || {};
+        toast.success(result.Description);
         dispatch({
           type: MOVE_FUNDS_SUCCESS,
-          payload: [{ ...data[0], type }],
+          payload: [{ ...result, type }],
         });
         if (data[0].ReccurentTransactionsSet === 'YES') {
           toast.success(
