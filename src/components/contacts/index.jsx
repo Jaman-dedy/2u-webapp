@@ -331,13 +331,10 @@ const ManageContacts = ({
           <h2 className="head-title">
             {isSendingCash &&
               !isSendingMoney &&
-              global.translate(
-                'Select the contact to send cash to',
-                915,
-              )}
+              global.translate('Select the contact to send cash to')}
 
             {isSendingVoucher &&
-              global.translate('Select the voucher recipient', 2157)}
+              global.translate('Select the voucher recipient')}
 
             {isSendingMoney &&
               !isManagingContacts &&
@@ -373,7 +370,7 @@ const ManageContacts = ({
                     });
                   }}
                 >
-                  {global.translate('Send to your numbers', 1713)}
+                  {global.translate('Send to your numbers')}
                 </button>
               )}
               {isTopingUp && (
@@ -390,7 +387,7 @@ const ManageContacts = ({
                     });
                   }}
                 >
-                  {global.translate('Buy for yourself', 1553)}
+                  {global.translate('Buy for yourself')}
                 </button>
               )}
               {(isSendingMoney ||
@@ -421,7 +418,7 @@ const ManageContacts = ({
                     setNewContactType('INTERNAL');
                   }}
                 >
-                  {global.translate('Add Contact', 1732)}
+                  {global.translate('Add Contact')}
                 </button>
               )}
               {(isSendingCash ||
@@ -436,7 +433,7 @@ const ManageContacts = ({
                     setNewContactType('EXTERNAL');
                   }}
                 >
-                  {global.translate('Add External Contact', 1714)}
+                  {global.translate('Add External Contact')}
                 </button>
               )}
             </div>
@@ -494,7 +491,7 @@ const ManageContacts = ({
       <div className="search-area">
         {(allMyContacts?.length !== 0 || !allContacts.loading) && (
           <Input
-            placeholder={global.translate('Search', 278)}
+            placeholder={global.translate('Search')}
             icon="search"
             iconPosition="left"
             disabled={!allContacts.data}
@@ -503,7 +500,7 @@ const ManageContacts = ({
         )}
       </div>
       <div className="select-contact">
-        {global.translate('Select a contact', 485)}
+        {global.translate('Select a contact')}
       </div>
       <div className="contact-list">
         {!isSearching && allMyContacts?.length === 0 && (
@@ -517,7 +514,7 @@ const ManageContacts = ({
               2246,
             )}
             imgSrc={EmptyContactList}
-            createText={global.translate('Add contact', 574)}
+            createText={global.translate('Add contact')}
             onAddClick={() => {
               setOpen(true);
               setNewContactType('INTERNAL');
@@ -546,7 +543,6 @@ const ManageContacts = ({
             <Message
               message={global.translate(
                 'The search returned no result',
-                1253,
               )}
               error={false}
               style={{ margin: '0px 25px' }}
@@ -557,7 +553,7 @@ const ManageContacts = ({
         )}
         {error && !Array.isArray(allMyContacts) && (
           <Message
-            message={global.translate('Something went wrong', 1933)}
+            message={global.translate('Something went wrong')}
             action={{
               onClick: () => {
                 getContacts();
@@ -577,7 +573,7 @@ const ManageContacts = ({
                     ? [
                         {
                           image: ChatImage,
-                          name: global.translate('Chat', 577),
+                          name: global.translate('Chat'),
                           onClick: item => {
                             setGlobalChat({
                               currentChatType: ONE_TO_ONE,
@@ -656,7 +652,7 @@ const ManageContacts = ({
                     ? [
                         {
                           image: ChatImage,
-                          name: global.translate('Chat', 577),
+                          name: global.translate('Chat'),
                           onClick: item => {
                             setGlobalChat({
                               currentChatType: ONE_TO_ONE,

@@ -214,8 +214,8 @@ const SendCashModal = ({
     >
       {transactionType === 'CASH_TRANSACTION' && destinationContact && (
         <Modal.Header centered className="modal-title">
-          {isEditing && global.translate(`Edit Transaction`, 2035)}
-          {!isEditing && global.translate(`Send cash to`, 2259)}&nbsp;
+          {isEditing && global.translate(`Edit Transaction`)}
+          {!isEditing && global.translate(`Send cash to`)}&nbsp;
           {!isEditing && (
             <strong>{destinationContact.FirstName}</strong>
           )}
@@ -223,7 +223,7 @@ const SendCashModal = ({
       )}
       {!destinationContact && transactionType === 'CASH_TRANSACTION' && (
         <Modal.Header centered className="modal-title">
-          {global.translate(`Send cash`, 1948)}
+          {global.translate(`Send cash`)}
         </Modal.Header>
       )}
       {step === 1 && (
@@ -265,7 +265,7 @@ const SendCashModal = ({
             <div className="dest-country">
               <div className="country">
                 <p className="choose-dest-country">
-                  {global.translate('Destination Country', 689)}
+                  {global.translate('Destination Country')}
                 </p>
                 <CustomDropdown
                   options={appCountries}
@@ -301,14 +301,14 @@ const SendCashModal = ({
                 onChange={onOptionsChange}
                 disabled={destinationContact && !isEditing}
                 value={form.firstName || ''}
-                placeholder={global.translate('First Name', 8)}
+                placeholder={global.translate('First Name')}
               />
               <Input
                 name="lastName"
                 onChange={onOptionsChange}
                 disabled={destinationContact && !isEditing}
                 value={form.lastName || ''}
-                placeholder={global.translate('Last Name', 9)}
+                placeholder={global.translate('Last Name')}
               />
 
               <div className="tel-area">
@@ -353,7 +353,7 @@ const SendCashModal = ({
                     marginBottom: '10px',
                   }}
                 >
-                  {global.translate(`Default phone number`, 2274)} :{' '}
+                  {global.translate(`Default phone number`)} :{' '}
                   <strong>
                     {`+${
                       destinationContact?.PhonePrefix
@@ -369,13 +369,13 @@ const SendCashModal = ({
               )}
 
               <div className="wrap-money-input">
-                <div>{global.translate('Amount', 116)}</div>
+                <div>{global.translate('Amount')}</div>
                 <div className="money-input">
                   <Input
                     type="number"
                     disabled={isEditing}
                     name="amount"
-                    placeholder={global.translate('Amount', 116)}
+                    placeholder={global.translate('Amount')}
                     onChange={onOptionsChange}
                     value={form.amount || null}
                   />
@@ -386,6 +386,17 @@ const SendCashModal = ({
           )}
 
           <div className="loader-section">
+            {parseInt(form.amount, 10) >
+            parseInt(
+              formatNumber(balanceOnWallet).replace(/[^\w\s]/gi, ''),
+              10,
+            ) ? (
+              <Message
+                message={global.translate(
+                  'The amount entered is greater than your available balance',
+                )}
+              />
+            ) : null}
             {errors && <Message message={errors} />}
             {confirmationError && confirmationError[0] && (
               <Message
@@ -433,7 +444,7 @@ const SendCashModal = ({
                 resetState();
               }}
             >
-              {global.translate('Back', 174)}
+              {global.translate('Back')}
             </Button>
           )}
 
@@ -456,12 +467,26 @@ const SendCashModal = ({
                 setDestinationContact(null);
               }}
             >
-              {global.translate('Cancel', 86)}
+              {global.translate('Cancel')}
             </Button>
           )}
           <Button
             positive
-            disabled={checking || loading || updating || loadingOther}
+            disabled={
+              checking ||
+              loading ||
+              updating ||
+              loadingOther ||
+              !form.amount ||
+              parseInt(form.amount, 10) >
+                parseInt(
+                  formatNumber(balanceOnWallet).replace(
+                    /[^\w\s]/gi,
+                    '',
+                  ),
+                  10,
+                )
+            }
             loading={checking || loading || updating || loadingOther}
             onClick={() => {
               if (step === 1) {
@@ -472,8 +497,8 @@ const SendCashModal = ({
             }}
           >
             {!isEditing
-              ? global.translate('Send cash', 1948)
-              : global.translate('Submit', 1695)}
+              ? global.translate('Send cash')
+              : global.translate('Submit')}
           </Button>
         </>
       </Modal.Actions>

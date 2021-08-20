@@ -73,7 +73,7 @@ const RedeemVoucherModal = ({ open, setOpen, item }) => {
         className="redeem-voucher-modal"
       >
         <Modal.Header className="modal-title">
-          {global.translate('Redeem voucher', 2215)}
+          {global.translate('Redeem voucher')}
         </Modal.Header>
         <Modal.Content centered className="main-content">
           {step === 2 && (
@@ -133,7 +133,7 @@ const RedeemVoucherModal = ({ open, setOpen, item }) => {
                 className="btn--cancel"
                 onClick={() => setOpen(false)}
               >
-                {global.translate('Close', 186)}
+                {global.translate('Close')}
               </Button>
 
               <Button
@@ -153,7 +153,7 @@ const RedeemVoucherModal = ({ open, setOpen, item }) => {
                   verifyVoucherFn(postData)(dispatch);
                 }}
               >
-                {global.translate('verify', 1296)}
+                {global.translate('verify')}
               </Button>
             </div>
           )}
@@ -166,7 +166,7 @@ const RedeemVoucherModal = ({ open, setOpen, item }) => {
                 color="red"
                 onClick={() => setStep(step - 1)}
               >
-                {global.translate('Back', 174)}
+                {global.translate('Back')}
               </Button>
               <Button
                 disabled={redeemLoading}
@@ -181,7 +181,7 @@ const RedeemVoucherModal = ({ open, setOpen, item }) => {
                   redeemStoreVoucher(postData)(dispatch);
                 }}
               >
-                {global.translate('Redeem', 809)}
+                {global.translate('Redeem')}
               </Button>
             </>
           )}

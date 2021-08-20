@@ -149,7 +149,7 @@ const SendMoneyModal = ({
               onChange={onOptionsChange}
               isSendingMoney={isSendingMoney}
             />
-            <h4 className="to">{global.translate('To', 115)}: </h4>
+            <h4 className="to">{global.translate('To')}: </h4>
 
             {destinationContact && (
               <TransactionEntity
@@ -179,7 +179,6 @@ const SendMoneyModal = ({
             <h4 className="available">
               {global.translate(
                 'Available Balance in the Selected Wallet',
-                1223,
               )}
               <p className="available-value">
                 {formatNumber(balanceOnWallet, {
@@ -191,12 +190,12 @@ const SendMoneyModal = ({
           </div>
           <div className="wrap-money-form">
             <div className="wrap-money-input">
-              <div>{global.translate('Amount', 116)}</div>
+              <div>{global.translate('Amount')}</div>
               <div className="money-input">
                 <Input
                   type="number"
                   name="amount"
-                  placeholder={global.translate('Amount', 116)}
+                  placeholder={global.translate('Amount')}
                   onChange={onOptionsChange}
                   value={form.amount || null}
                   min="0"
@@ -205,6 +204,20 @@ const SendMoneyModal = ({
               </div>
             </div>
             <div className="loader-section">
+              {parseInt(form.amount, 10) >
+              parseInt(
+                formatNumber(balanceOnWallet).replace(
+                  /[^\w\s]/gi,
+                  '',
+                ),
+                10,
+              ) ? (
+                <Message
+                  message={global.translate(
+                    'The amount entered is greater than your available balance',
+                  )}
+                />
+              ) : null}
               {errors && <Message message={errors} />}
               {confirmationError && confirmationError[0] && (
                 <Message
@@ -254,7 +267,7 @@ const SendMoneyModal = ({
                 resetState();
               }}
             >
-              {global.translate('Back', 174)}
+              {global.translate('Back')}
             </Button>
           )}
 
@@ -268,13 +281,25 @@ const SendMoneyModal = ({
               handleDismissModal();
             }}
           >
-            {global.translate('Cancel', 86)}
+            {global.translate('Cancel')}
           </Button>
 
           <Button
             positive
             loading={checking || loading}
-            disabled={checking || loading}
+            disabled={
+              checking ||
+              loading ||
+              !form.amount ||
+              parseInt(form.amount, 10) >
+                parseInt(
+                  formatNumber(balanceOnWallet).replace(
+                    /[^\w\s]/gi,
+                    '',
+                  ),
+                  10,
+                )
+            }
             onClick={() => {
               if (step === 1) {
                 checkTransactionConfirmation();
@@ -283,7 +308,7 @@ const SendMoneyModal = ({
               }
             }}
           >
-            {global.translate('Transfer Money', 1950)}
+            {global.translate('Transfer Money')}
           </Button>
         </>
       </Modal.Actions>
