@@ -33,11 +33,11 @@ import {
 } from 'redux/actions/dashboard/dashboard';
 import { setSelectedStore } from 'redux/actions/vouchers/selectedStore';
 
+import TopuUpImage from 'assets/images/top-up.png';
 import DeleteContactModal from './Delete/DeleteContactModal';
 import ContactDetailsModal from './Detail/ContactDetailsModal';
 import ListItem from './List/ListItem';
 import AddNewContactModal from './New/AddNewContactModal';
-import TopuUpImage from 'assets/images/top-up.png';
 
 const ManageContacts = ({
   walletList,

@@ -119,7 +119,7 @@ const StoreInfoTab = ({
                     onClick={() => likeFun()}
                     className="blank-button"
                     disabled={likeIsDisables}
-                    style={{ color: '#EA5726' }}
+                    style={{ color: 'var(--color-secondary)' }}
                   >
                     <Icon name="thumbs up" />
                   </button>
@@ -135,7 +135,7 @@ const StoreInfoTab = ({
                     onClick={() => disLikeFun()}
                     className="blank-button"
                     disabled={disLikeIsDisables}
-                    style={{ color: '#EA5726' }}
+                    style={{ color: 'var(--color-secondary)' }}
                   >
                     <Icon name="thumbs down" />
                   </button>

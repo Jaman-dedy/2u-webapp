@@ -205,7 +205,7 @@ SimpleLineChart.defaultProps = {
       },
     ],
   },
-  stroke2: '#EA5726',
+  stroke2: 'var(--color-secondary)',
   stroke1: '#57B894',
 };
 

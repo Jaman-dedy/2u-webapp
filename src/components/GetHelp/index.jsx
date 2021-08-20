@@ -97,7 +97,7 @@ const GetHelp = ({
                     onClick={() => {
                       submitText();
                     }}
-                    color="orange"
+                    className="btn--primary"
                   >
                     {global.translate('Send Email', 2184)}
                   </Button>

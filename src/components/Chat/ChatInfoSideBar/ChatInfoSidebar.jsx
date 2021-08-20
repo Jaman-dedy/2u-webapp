@@ -13,6 +13,7 @@ import {
 import './Sidebar.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
+import { useHistory } from 'react-router-dom';
 import Thumbnail from 'components/common/Thumbnail';
 import ToggleSwitch from 'components/common/ToggleButton';
 import {
@@ -24,7 +25,6 @@ import { ONE_TO_ONE } from 'constants/general';
 import { clearDeleteContact } from 'redux/actions/contacts/deleteContact';
 import { setActiveChatThread } from 'redux/actions/chat/chatThreads';
 import AppListItem from '../ListItem/List';
-import { useHistory } from 'react-router-dom';
 
 const ChatInfoSideBar = ({
   animation,
@@ -138,7 +138,7 @@ const ChatInfoSideBar = ({
             {currentChatType === 'GROUP' && (
               <Button
                 basic
-                color="orange"
+                className="btn--primary"
                 onClick={() => setEditModalOpen(true)}
                 content={global.translate('Edit', 820)}
               />
@@ -172,7 +172,7 @@ const ChatInfoSideBar = ({
               <Button
                 content={global.translate('Add People', 1712)}
                 basic
-                color="orange"
+                className="btn--primary"
               />
             </div>
           </Segment>

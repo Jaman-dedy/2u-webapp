@@ -16,7 +16,7 @@
       margin-left: 5px;
 
       &:focus {
-        border: 1px solid #ea5726;
+        border: 1px solid var(--color-secondary);
       }
     }
   }
@@ -93,7 +93,7 @@
           background: #e6e8ec;
           border: none;
           &:focus {
-            border: 1px solid #ea5726;
+            border: 1px solid var(--color-secondary);
           }
         }
       }

@@ -141,13 +141,12 @@ const FilePreview = ({
         <Button
           content="Send"
           basic
-          color="orange"
           onClick={() => {
             handleSendFileMessage(prevFiles.reverse());
             setVisible(false);
             setPrevFiles([]);
           }}
-          className="sendBtn"
+          className="btn-primary sendBtn"
         />
 
         <FilePickerList

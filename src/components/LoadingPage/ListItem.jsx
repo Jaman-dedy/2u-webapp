@@ -2,14 +2,14 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import './optionItems.scss';
 
-import PropTypes from 'prop-types';
-import React, { useState } from 'react';
-import { Icon, Image } from 'semantic-ui-react';
 import Logo from 'assets/images/logo.png';
-import assets from 'helpers/assets';
+import assets from 'helpers/assets'
 import VerifiedIcon from 'assets/images/verified.png';
 import EllipseMenu from 'components/common/EllipseOptions';
 import Thumbnail from 'components/common/Thumbnail';
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import { Icon, Image } from 'semantic-ui-react';
 
 const ListItem = ({ item, onItemClick, moreOptions }) => {
   const [hasError, setHasError] = useState(false);
@@ -53,11 +53,10 @@ const ListItem = ({ item, onItemClick, moreOptions }) => {
                   </span>
                 )}
               </h4>
-              <div className="sub-text">
+              assets.logoIcon>
                 {item.ContactPID ? (
                   <>
-                    <Image inline src={assets.logoIcon} height={15} />{' '}
-                    &nbsp;
+                    <Image inline src={assets.logoIcon} height={15} /> &nbsp;
                     {item.ContactPID}
                   </>
                 ) : (

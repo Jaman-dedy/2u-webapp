@@ -3,7 +3,7 @@ $light-black: #333556;
 $light: #f4f4f4;
 $grey: #b0aeae;
 $white: #ffffff;
-$primary: #da6138;
+$primary: var(--color-primary);
 $dark-primary: #ca5a39;
 $darken-primary: #ca5a39;
 $secondary: #0a94be;
@@ -19,7 +19,7 @@ $yellow: #f9d342;
 $blue: #00027a;
 $darken-blue: #333556;
 $darker-blue: #282b4e;
-$orange: #ea5726;
+$orange: var(--color-secondary);
 
 $colors: (
   black: #101010,
@@ -45,6 +45,9 @@ $colors: (
   darker-blue: #282b4e,
   dark-blue: #333556,
 );
+.btn--primary {
+  background: $primary;
+}
 .btn-primary {
   background: $primary;
 }
@@ -67,7 +70,7 @@ $colors: (
     color: $hex;
   }
   .bg-orange {
-    background-color: $orange !important;
+    background-color: var(--color-primary) !important;
   }
 
   // text

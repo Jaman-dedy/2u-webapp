@@ -331,7 +331,7 @@ const MyRewards = ({ userData }) => {
                     <Button
                       onClick={() => printUCard()}
                       style={{
-                        backgroundColor: '#ea5726',
+                        backgroundColor: 'var(--color-secondary)',
                         color: '#fff',
                       }}
                     >

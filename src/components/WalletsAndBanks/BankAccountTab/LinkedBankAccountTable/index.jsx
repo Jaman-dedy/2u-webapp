@@ -149,10 +149,9 @@ const LinkedBankAccountTable = ({ bankAccount }) => {
                     {bankAccount?.Status === '1' && (
                       <>
                         <Button
-                          color="orange"
+                          className="btn--primary list-button"
                           basic
                           size="tiny"
-                          className="list-button"
                           onClick={() =>
                             handleAddMoneyToWallet(bankAccount)
                           }

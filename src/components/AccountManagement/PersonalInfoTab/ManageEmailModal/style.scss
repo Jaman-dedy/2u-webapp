@@ -28,7 +28,7 @@
     }
   }
   .set-primary {
-    color: #ea5726;
+    color: var(--color-secondary);
     font-weight: 400;
   }
   .add-phone-actions {
@@ -40,7 +40,7 @@
       background: #fff !important;
     }
     .add-button {
-      background: #ea5726;
+      background: var(--color-secondary);
       border-radius: 2px;
       font-size: 400;
       color: #fff;

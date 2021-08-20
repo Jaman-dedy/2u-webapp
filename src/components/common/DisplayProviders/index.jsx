@@ -19,7 +19,7 @@ const DisplayProviders = ({
   let styles;
   if (ticked) {
     styles = {
-      border: '1px solid #EA5726',
+      border: '1px solid var(--color-secondary)',
       boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.1)',
     };
   }

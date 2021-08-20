@@ -85,7 +85,7 @@ const PublicityInfoTab = ({
             <div className="edit-button ">
               <Button
                 basic
-                color="orange"
+                className="btn--primary"
                 content={`${global.translate(
                   'Share with my contacts',
                   1559,

@@ -136,7 +136,7 @@ const TransacOverview = ({ transactionOverview }) => {
           &nbsp;
           <Button
             icon="refresh"
-            color="orange"
+            className="btn--primary"
             onClick={() => {
               refreshGraphs();
             }}

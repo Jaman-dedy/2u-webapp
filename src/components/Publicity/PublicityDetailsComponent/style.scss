@@ -39,13 +39,13 @@
         padding-left: 0px !important;
       }
       input {
-        color: #ea5726;
+        color: var(--color-secondary);
         font-size: 1.4rem;
         padding-left: 0;
         padding-right: 10px;
 
         &:focus {
-          color: #ea5726;
+          color: var(--color-secondary);
         }
       }
     }
@@ -53,7 +53,7 @@
     .input-action-percent {
       display: flex;
       align-items: center;
-      color: #ea5726;
+      color: var(--color-secondary);
       font-size: 1.5rem;
       border-radius: 0;
       margin-right: 0;
@@ -112,7 +112,7 @@
 
     .ui.checkbox input:checked ~ .box:after,
     .ui.checkbox input:checked ~ label:after {
-      color: #ea5726;
+      color: var(--color-secondary);
     }
   }
 }
@@ -140,7 +140,7 @@
   padding: 10px 0px;
 
   .executed-count {
-    color: #ea5726;
+    color: var(--color-secondary);
   }
 
   .details-inner-name {

@@ -2,8 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Image, Loader, Dimmer, Icon } from 'semantic-ui-react';
-
-import logo from 'assets/images/2u-money-logo-filled.svg';
+import assets from 'helpers/assets';
 import isAuth from 'utils/isAuth';
 import getDeviceType from 'hooks/useDeviceType';
 import DashboardLayout from 'components/common/DashboardLayout';
@@ -64,7 +63,7 @@ const VerifyEmail = ({ verifyEmailState }) => {
                 )}...`}</Loader>
               </Dimmer>
             ) : null}
-            <Image src={logo} className="logo" />
+            <Image src={assets.logoFilled} className="logo" />
             {verifyEmailState?.loading ? null : (
               <>
                 <h2 className="center-align">
@@ -133,7 +132,7 @@ const VerifyEmail = ({ verifyEmailState }) => {
               )}...`}</Loader>
             </Dimmer>
           ) : null}
-          <Image src={logo} className="logo" />
+          <Image src={assets.logoFilled} className="logo" />
           {verifyEmailState?.loading ? null : (
             <>
               <h2 className="center-align">

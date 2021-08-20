@@ -3,14 +3,14 @@ import './NotificationDropdown.scss';
 
 import notificationIcon from 'assets/images/h-notification.svg';
 import chatIcon from 'assets/images/chat-icon.png';
-import logo from 'assets/images/logo.png';
+import assets from 'helpers/assets';
 import notifLink from 'assets/images/notif-type-advert.png';
 import notifRequest from 'assets/images/notif-type-request.png';
 import notifTransac from 'assets/images/notif-type-transaction.png';
 import Thumbnail from 'components/common/Thumbnail';
 import TimeAgo from 'components/common/TimeAgo';
 import { ONE_TO_ONE } from 'constants/general';
-import PropTypes, { object } from 'prop-types';
+import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -200,7 +200,7 @@ const NotificationDropdown = ({
                       avatar={
                         Object.keys(data).length
                           ? data.PictureURL
-                          : logo
+                          : assets.logoIcon
                       }
                       size="small"
                       name={data.FirstName || ''}

@@ -6,7 +6,7 @@ import { Image, Icon } from 'semantic-ui-react';
 import isAuth from 'utils/isAuth';
 import DashboardLayout from 'components/common/DashboardLayout';
 import WelcomeBar from 'components/Dashboard/WelcomeSection';
-import logo from 'assets/images/2ULogo.png';
+import assets from 'helpers/assets';
 import './LoadingPage.scss';
 
 const LoadingPage = ({ loading }) => {
@@ -24,7 +24,7 @@ const LoadingPage = ({ loading }) => {
         className="LoadingPage xlarge-padding flex flex-column justify-content-center align-items-center"
         style={{ minHeight: '100vh' }}
       >
-        <Image src={logo} className="logo" />
+        <Image src={assets.logoIcon} className="logo" />
         {loading ? null : (
           <div>
             <button
@@ -46,7 +46,7 @@ const LoadingPage = ({ loading }) => {
       className="LoadingPage xlarge-padding flex flex-column justify-content-center align-items-center"
       style={{ minHeight: '100vh' }}
     >
-      <Image src={logo} className="logo" />
+      <Image src={assets.logoIcon} className="logo" />
       {loading ? null : (
         <div>
           <button

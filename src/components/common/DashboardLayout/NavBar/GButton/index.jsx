@@ -25,6 +25,7 @@ const GButton = ({
         trigger={
           <Button
             content={global.translate('Transfer Money', 1950)}
+            className="btn--secondary"
           />
         }
       >

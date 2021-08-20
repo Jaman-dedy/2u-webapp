@@ -1,5 +1,5 @@
 .page-wrapper {
-  background: var(--page-wrapper-background);
+  background: rgb(50, 53, 86);
   background-image: url('../../../assets/images/BGAuth.png');
   background-position: center bottom;
   background-attachment: fixed;
@@ -91,8 +91,12 @@
   color: #ffffff !important;
   cursor: pointer !important;
 }
+
+.btn-auth.btn-login {
+  background-color: var(--color-primary) !important;
+}
 .btn-auth:disabled {
-  background: var(--disabled-button-primary) !important;
+  background: var(--disabled-primary) !important;
   pointer-events: none !important;
   color: #ecddcf !important;
 }
@@ -114,8 +118,8 @@
     padding: 12px 0;
     text-align: center;
     font-weight: 500;
-    color: var(--page-wrapper-background) !important;
-    border: 1px solid var(--page-wrapper-background);
+    color: rgb(50, 53, 86) !important;
+    border: 1px solid rgb(50, 53, 86);
   }
 }
 .go-back {

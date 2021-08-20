@@ -197,6 +197,7 @@ const WithdrawMoney = ({
             }
           }}
           loading={checking}
+          className="btn--primary"
         >
           {!confirmationData
             ? global.translate('Next')

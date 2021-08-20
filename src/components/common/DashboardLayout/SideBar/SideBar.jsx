@@ -1,7 +1,6 @@
 /* eslint-disable */
 import './SideBar.scss';
-
-import Logo from 'assets/images/2u-money-logo.svg';
+import assets from 'helpers/assets';
 import NavAddMoney from 'assets/images/NavAddMoney.svg';
 import CreditCardIcon from 'assets/images/NavCardsIcon.svg';
 import NavContactIcon from 'assets/images/NavContactIcon.svg';
@@ -28,6 +27,8 @@ import toggleSidebar, {
 } from 'redux/actions/dashboard/dashboard';
 import { clearSelectedStore } from 'redux/actions/vouchers/selectedStore';
 import { Icon, Image } from 'semantic-ui-react';
+
+const platform = process.env.REACT_APP_PLATFORM;
 
 const SideBar = () => {
   const history = useHistory();
@@ -74,7 +75,7 @@ const SideBar = () => {
             }}
             className="dash_logo"
           >
-            <Image src={Logo} />
+            <Image src={assets.logoWhiteBg} />
           </div>
           <ul>
             <li>

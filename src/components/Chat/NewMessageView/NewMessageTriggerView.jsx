@@ -27,7 +27,7 @@ const NewMessageTriggerView = ({ onStartClick }) => {
 
         <Button
           basic
-          color="orange"
+          className="btn--primary"
           content={global.translate('Start Chat', 1657)}
           onClick={onStartClick}
         />

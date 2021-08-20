@@ -10,8 +10,8 @@ import WelcomeBar from 'components/Dashboard/WelcomeSection';
 import microLoanImg from 'assets/images/microloan/micro-loan.svg';
 import dangerCross from 'assets/images/microloan/danger-cross.svg';
 import listPlaceHolder from 'assets/images/microloan/load-loans.svg';
-import ListLoan from './ListLoan';
 import ModalInfo from 'components/common/ModalInfo';
+import ListLoan from './ListLoan';
 import './style.scss';
 
 const MicroLoan = ({ listData, listLoading, userData }) => {
@@ -169,6 +169,7 @@ const MicroLoan = ({ listData, listLoading, userData }) => {
                 onClick={() => {
                   setOpenModal(true);
                 }}
+                className="btn--secondary"
               >
                 <Icon name="plus" />
                 {global.translate('Request a loan')}

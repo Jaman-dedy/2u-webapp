@@ -21,7 +21,7 @@ const ModalHeader = ({
       <p className="title">{title}</p>{' '}
       <Button
         basic
-        color="orange"
+        className="btn--primary"
         disabled={nextDisabled}
         onClick={onConfirmClick}
         content={confirmContent}

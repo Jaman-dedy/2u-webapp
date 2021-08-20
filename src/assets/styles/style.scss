@@ -380,7 +380,7 @@ h5 {
 // Button styles
 .btn {
   &--confirm {
-    background-color: $primary !important;
+    background-color: var(--color-primary) !important;
     color: white !important;
     border-radius: 2px !important;
   }
@@ -389,7 +389,7 @@ h5 {
   }
 }
 .btn-login {
-  background: #da893e;
+  background: var(--color-primary);
 }
 
 .br-2 {
@@ -397,4 +397,32 @@ h5 {
 }
 .uppercase {
   text-transform: uppercase !important;
+}
+
+.btn {
+  &--primary {
+    background-color: var(--color-primary) !important;
+    &.disabled {
+      background-color: var(--disabled-primary) !important;
+    }
+  }
+  &--secondary {
+    background: var(--color-secondary) !important;
+  }
+}
+.ui.button {
+  background-color: var(--color-primary);
+}
+
+.ui.disabled.button {
+  background-color: var(--disabled-primary);
+}
+.actions.ui.red.basic.button {
+  background-color: transparent !important;
+}
+
+.actions.ui.positive.button.primary {
+  background-color: var(--color-primary) !important;
+  color: white !important;
+  border-radius: 2px !important;
 }

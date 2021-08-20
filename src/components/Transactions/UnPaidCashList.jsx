@@ -187,8 +187,7 @@ const UnPaidCashList = ({
         data.length > 0 &&
         !noItems && (
           <Button
-            className="to-cashlist"
-            color="orange"
+            className="btn--primary to-cashlist"
             as={Link}
             to={{
               pathname: '/cash-list',

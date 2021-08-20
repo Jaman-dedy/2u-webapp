@@ -186,7 +186,7 @@ const HelpForm = ({ open, setOpen }) => {
               setOpen(false);
             }}
             basic
-            color="orange"
+            className="btn--primary"
             content="Close"
           />
         </Modal.Actions>

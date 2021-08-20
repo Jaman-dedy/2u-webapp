@@ -21,7 +21,11 @@ const PricingSection = ({ service, onStartChatClick }) => {
             <Icon name="money bill alternate" />
             {global.translate('No pricing options available')}
           </Header>
-          <Button color="orange" basic onClick={onStartChatClick}>
+          <Button
+            className="btn--primary"
+            basic
+            onClick={onStartChatClick}
+          >
             {user?.PID === service.Owner.OwnerPID
               ? global.translate('Add Pricing')
               : global.translate('DM for Prices')}

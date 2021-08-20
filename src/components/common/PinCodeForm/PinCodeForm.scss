@@ -18,7 +18,7 @@
         background-color: #fff !important;
 
         &:focus {
-          border-bottom: 1.8px solid #ea5726 !important;
+          border-bottom: 1.8px solid var(--color-secondary) !important;
         }
 
         &::-webkit-outer-spin-button,

@@ -21,7 +21,11 @@ const EmptyCard = ({
       <h2>{header}</h2>
       <div>{body}</div>
       {!disableAdd && (
-        <button type="button" onClick={onAddClick}>
+        <button
+          type="button"
+          className="btn--primary"
+          onClick={onAddClick}
+        >
           {createText}
         </button>
       )}

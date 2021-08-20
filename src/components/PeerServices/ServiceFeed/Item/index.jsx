@@ -238,9 +238,8 @@ const Index = React.forwardRef(({ service, allowView }, ref) => {
 
         {allowView && (
           <Button
-            color="orange"
+            className="to-detail-btn btn--primary"
             basic
-            className="to-detail-btn"
             content={global.translate('View')}
             onClick={() => {
               history.push({
@@ -468,7 +467,7 @@ const Index = React.forwardRef(({ service, allowView }, ref) => {
                   <Button
                     icon
                     basic
-                    color="orange"
+                    className="btn--primary"
                     onClick={() => {
                       onStartChatClick(service.Owner);
                     }}

@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Image } from 'semantic-ui-react';
-import LogoColored from 'assets/images/MasterLOGO-white.svg';
+import assets from 'helpers/assets';
 import SelectLanguage from 'components/common/SelectLanguage';
 import PersonaBackGround from 'assets/images/BGPersona.png';
 import PhoneBackGround from 'assets/images/BGPhone.png';
@@ -23,7 +23,6 @@ const AuthWrapper = ({
   register,
 }) => {
   const [openLanguage, setOpenLanguage] = useState(false);
-  const [eventUrl, setEventUrl] = useState(null);
 
   const {
     language: {
@@ -38,9 +37,9 @@ const AuthWrapper = ({
       }}
       className="page-wrapper"
     >
-      <div class="wrap-top-bar">
+      <div className="wrap-top-bar">
         <div className="main-logo">
-          <Image src={LogoColored} />
+          <Image src={assets.logoWhiteText} />
         </div>
         <div className="lang-dropdown">
           {getSupportedLanguagesLoading ? null : (
