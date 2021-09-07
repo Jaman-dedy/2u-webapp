@@ -1,6 +1,8 @@
 const platform = process.env.REACT_APP_PLATFORM;
 const themeURL =
-  platform === 'vuba' ? './theme/vuba.css' : './theme/2u-money.css';
+  platform.trim() === 'vuba'
+    ? './theme/vuba.css'
+    : './theme/2u-money.css';
 
 const link = document.createElement('link');
 link.href = themeURL;

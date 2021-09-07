@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start": "serve -s build $(perl -pe 's/PORT=/-l /' .env | grep '\\-l ')",
-    "start:2u": "PORT=3002 REACT_APP_PLATFORM=2u react-scripts start",
-    "start:vuba": "PORT=3001 REACT_APP_PLATFORM=vuba react-scripts start",
+    "start:2u": "cross-env PORT=3002 REACT_APP_PLATFORM=2u react-scripts start",
+    "start:vuba": "cross-env PORT=3001 REACT_APP_PLATFORM=vuba react-scripts start",
     "build": "CI=false react-scripts build && echo '/* /index.html 200' > ./build/_redirects",
     "lint": "eslint src/",
     "lint:fix": "eslint --fix src/",
@@ -33,6 +33,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "axios": "^0.21.1",
     "cleave.js": "^1.6.0",
+    "cross-env": "^7.0.3",
     "device-detector-js": "^2.2.1",
     "dotenv": "^8.2.0",
     "draft-js": "^0.11.6",

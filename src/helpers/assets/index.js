@@ -21,4 +21,4 @@ const assets = {
     logoFilled: logoFilledVuba,
   },
 };
-export default assets[process.env.REACT_APP_PLATFORM];
+export default assets[process.env.REACT_APP_PLATFORM.trim()];
