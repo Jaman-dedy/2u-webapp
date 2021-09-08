@@ -6,10 +6,10 @@ import PhoneInput from 'react-phone-input-2';
 import { Link } from 'react-router-dom';
 import { Grid, Form } from 'semantic-ui-react';
 import DatePicker from 'react-datepicker';
+import ReactFlagsSelect from 'react-flags-select';
 import AlertDanger from 'components/common/Alert/Danger';
 import { clearPhoneNumber } from 'redux/actions/users/verifyPhoneNumber';
 import TermsAndConditions from '../TermAndConditions';
-import ReactFlagsSelect from 'react-flags-select';
 
 import './style.scss';
 import 'assets/styles/spinner.scss';
@@ -31,7 +31,6 @@ const IdentityForm = ({
     handleTermsAndCondition,
     startDate,
     setStartDate,
-    endDate,
     setNationalityCountry,
     nationalityCountry,
   } = identityData;
@@ -50,6 +49,9 @@ const IdentityForm = ({
       setDisableButton(false);
     }
   }, [registrationData, phonevalue, startDate]);
+
+  const date = new Date();
+  const minDate = date.setFullYear(date.getFullYear() - 100);
 
   return (
     <div>
@@ -138,12 +140,21 @@ const IdentityForm = ({
               </div>
               <DatePicker
                 className="wrap-date-picker"
-                selected={startDate}
+                selected={
+                  startDate ||
+                  new Date().setFullYear(
+                    new Date().getFullYear() - 18,
+                  )
+                }
                 onChange={date => setStartDate(date)}
                 showMonthDropdown
                 showYearDropdown
-                maxDate={endDate}
-                placeholderText={global.translate('Select a date*')}
+                maxDate={new Date().setFullYear(
+                  new Date().getFullYear() - 13,
+                )}
+                minDate={minDate}
+                placeholderText={global.translate('Select a date')}
+                dropdownMode="select"
               />
             </Grid.Column>
             <Grid.Column mobile={16} computer={8}>
