@@ -5,11 +5,11 @@ import { useDispatch } from 'react-redux';
 import PhoneInput from 'react-phone-input-2';
 import { Link } from 'react-router-dom';
 import { Grid, Form } from 'semantic-ui-react';
+import ReactFlagsSelect from 'react-flags-select';
 import DatePicker from 'react-datepicker';
 import AlertDanger from 'components/common/Alert/Danger';
 import { clearPhoneNumber } from 'redux/actions/users/verifyPhoneNumber';
 import TermsAndConditions from '../TermAndConditions';
-import ReactFlagsSelect from 'react-flags-select';
 
 import './style.scss';
 import 'assets/styles/spinner.scss';
@@ -22,6 +22,7 @@ const IdentityForm = ({
   const {
     handleNext,
     clearError,
+    errors,
     verifyPhoneNumber,
     phonevalue,
     setPhonevalue,
@@ -43,13 +44,14 @@ const IdentityForm = ({
       !registrationData.firstName ||
       !registrationData.lastName ||
       !phonevalue ||
-      !startDate
+      !startDate ||
+      errors.phoneNumber
     ) {
       setDisableButton(true);
     } else {
       setDisableButton(false);
     }
-  }, [registrationData, phonevalue, startDate]);
+  }, [registrationData, phonevalue, startDate, errors]);
 
   return (
     <div>
