@@ -28,6 +28,7 @@ const OTPForm = ({
     resendOtp,
     setOTPNumber,
     OTPNumber,
+    verifyPhoneNumber,
   } = verifyOtp;
   const dispatch = useDispatch();
 
@@ -47,12 +48,13 @@ const OTPForm = ({
   };
 
   useEffect(() => {
-    if (verifyOTP.loading) {
+    if (verifyOTP.loading || verifyPhoneNumber.loading) {
       setVerifyPhoneLoading(true);
     } else {
       setVerifyPhoneLoading(false);
     }
-  }, [verifyOTP.loading]);
+  }, [verifyOTP.loading, verifyPhoneNumber.loading]);
+
   return (
     <Container>
       <div className="sub-titles">
@@ -97,7 +99,10 @@ const OTPForm = ({
           'It may take a moment to receive your code. Haven’t receive it yet?',
         )}
 
-        <span onClick={resendOtp} className="feedback">
+        <span
+          onClick={!verifyPhoneLoading && resendOtp}
+          className="feedback"
+        >
           {' '}
           {global.translate('Resend a new code')}
         </span>
