@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import './style.scss';
 
 import UpdateBusinessInfoModal from 'components/AccountManagement/PersonalInfoTab/UpdateBusinessInfoModal';
+
 const BusinessInfoTab = ({ userData, switchAccount }) => {
   const companyTypes = useSelector(
     ({

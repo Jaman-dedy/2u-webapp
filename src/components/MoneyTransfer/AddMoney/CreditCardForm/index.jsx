@@ -78,6 +78,7 @@ const CreditCardForm = ({
           customInput={<CustomInput />}
           dateFormat="MM-yyyy"
           showMonthYearPicker
+          dropdownMode="select"
         />
 
         <Form.Input

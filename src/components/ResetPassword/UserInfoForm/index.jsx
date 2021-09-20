@@ -111,9 +111,8 @@ const UserInfoForm = ({
               }}
               date={resetPasswordData.DOB}
               dateFormat="yyyy-MM-dd"
-              placeholder={global.translate(
-                'Select your date of birth',
-              )}
+              placeholder={global.translate('YYYY-MM-DD')}
+              dropdownMode="select"
             />
           </Form.Field>
           <button

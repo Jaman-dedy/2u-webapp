@@ -6,9 +6,9 @@ import PhoneInput from 'react-phone-input-2';
 import { Link } from 'react-router-dom';
 import { Grid, Form } from 'semantic-ui-react';
 import ReactFlagsSelect from 'react-flags-select';
-import DatePicker from 'react-datepicker';
 import AlertDanger from 'components/common/Alert/Danger';
 import { clearPhoneNumber } from 'redux/actions/users/verifyPhoneNumber';
+import DatePicker from 'components/common/DatePicker';
 import TermsAndConditions from '../TermAndConditions';
 
 import './style.scss';
@@ -141,22 +141,15 @@ const IdentityForm = ({
                 {global.translate('Date of birth')}
               </div>
               <DatePicker
-                className="wrap-date-picker"
-                selected={
-                  startDate ||
-                  new Date().setFullYear(
-                    new Date().getFullYear() - 18,
-                  )
-                }
-                onChange={date => setStartDate(date)}
-                showMonthDropdown
-                showYearDropdown
+                onDateChange={date => setStartDate(date)}
                 maxDate={new Date().setFullYear(
                   new Date().getFullYear() - 13,
                 )}
+                dateFormat="yyyy-MM-dd"
                 minDate={minDate}
-                placeholderText={global.translate('Select a date')}
+                placeholder="YYYY-MM-DD"
                 dropdownMode="select"
+                date={startDate}
               />
             </Grid.Column>
             <Grid.Column mobile={16} computer={8}>

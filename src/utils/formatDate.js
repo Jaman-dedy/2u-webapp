@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import moment from 'moment';
 
 export const formatDate = targetDate => {
@@ -16,9 +17,8 @@ export const formatDate = targetDate => {
         dateValues = dateValues.map((value, index) => {
           if (index === 1) {
             return +value - 1;
-          } else {
-            return +value;
           }
+          return +value;
         });
         date = new Date(...dateValues);
 
@@ -30,6 +30,13 @@ export const formatDate = targetDate => {
   } catch (error) {
     return date.substr(0, 11);
   }
+};
+export const validateDate = date => {
+  const time = new Date(date).getTime();
+  if (isNaN(time)) {
+    return false;
+  }
+  return true;
 };
 export default (date, langue) => {
   if (langue === 'fr') {

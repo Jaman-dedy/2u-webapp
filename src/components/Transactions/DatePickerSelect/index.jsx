@@ -53,6 +53,7 @@ const DatePickerSelect = ({ form, setForm, getTransactions }) => {
                 startDate={startDate}
                 endDate={endDate}
                 inline
+                dropdownMode="select"
               />
               <DatePicker
                 selected={endDate}
@@ -62,6 +63,7 @@ const DatePickerSelect = ({ form, setForm, getTransactions }) => {
                 endDate={endDate}
                 minDate={startDate}
                 inline
+                dropdownMode="select"
               />
             </div>
             <div className="date-picker-button-action">

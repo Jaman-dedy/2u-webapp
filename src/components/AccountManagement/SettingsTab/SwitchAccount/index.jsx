@@ -143,6 +143,7 @@ const SwitchAccountForm = ({ switchAccount, fromUpdateMenu }) => {
             onChange={setSelectedDate}
             showMonthDropdown
             showYearDropdown
+            dropdownMode="select"
           />
         </Form.Field>
       </Form.Group>
