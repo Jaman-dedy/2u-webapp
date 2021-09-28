@@ -43,7 +43,7 @@ export const postResetPassword = data => dispatch => {
           type: RESET_PASSWORD_SUCCESS,
           payload: {
             success: data[0].Result === 'Success',
-            message: data[0].Description,
+            message: data[0]?.Description,
             FirstName: data[0].FirstName,
           },
         });

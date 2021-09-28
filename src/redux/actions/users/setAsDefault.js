@@ -30,14 +30,14 @@ export default (data, walletDetails) => dispatch => {
           type: SET_DEFAULT_WALLET_SUCCESS,
           payload: {
             success: data[0].Result === 'Success',
-            message: data[0].Description,
+            message: data[0]?.Description,
             defaultWallet: data[0].NewDefaultWallet,
             walletDetails,
           },
         });
       },
       onFailure: error => dispatch => {
-        toast.error(error && error[0] && error[0].Description);
+        toast.error(error && error[0] && error[0]?.Description);
         return dispatch({
           type: SET_DEFAULT_WALLET_ERROR,
           payload: {

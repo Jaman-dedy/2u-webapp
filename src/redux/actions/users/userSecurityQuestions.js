@@ -23,7 +23,7 @@ export default data => dispatch =>
           type: SECURITY_QUESTION_SUCCESS,
           payload: {
             success: data[0].Result === 'Success',
-            message: data[0].Description,
+            message: data[0]?.Description,
             Questions: data[0].Questions,
           },
         });

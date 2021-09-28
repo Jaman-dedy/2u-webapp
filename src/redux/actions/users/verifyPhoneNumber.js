@@ -26,7 +26,7 @@ export default phoneNumber => dispatch =>
             type: VERIFY_PHONE_ERROR,
             payload: {
               isValid: false,
-              error: { message: data[0].Description },
+              error: { message: data[0]?.Description },
             },
           });
         }
@@ -34,7 +34,7 @@ export default phoneNumber => dispatch =>
           type: VERIFY_PHONE_SUCCESS,
           payload: {
             isValid: data[0].PhoneNumberFound === 'NO',
-            message: data[0].Description,
+            message: data[0]?.Description,
           },
         });
       },

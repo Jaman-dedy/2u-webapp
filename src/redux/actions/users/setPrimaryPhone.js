@@ -29,13 +29,13 @@ export default data => dispatch => {
           type: SET_PRIMARY_PHONE_SUCCESS,
           payload: {
             success: data[0].Result === 'Success',
-            message: data[0].Description,
+            message: data[0]?.Description,
             defaultPhone: data[0].NewDefaultPhone,
           },
         });
       },
       onFailure: error => dispatch => {
-        toast.error(error && error[0] && error[0].Description);
+        toast.error(error && error[0] && error[0]?.Description);
         return dispatch({
           type: SET_PRIMARY_PHONE_ERROR,
           payload: {

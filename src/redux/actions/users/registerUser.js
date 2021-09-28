@@ -38,7 +38,7 @@ export default data => dispatch =>
             type: REGISTER_USER_SUCCESS,
             payload: {
               success: data[0].Result === 'Success',
-              message: data[0].Description,
+              message: data[0]?.Description,
               username: data[0].UserName,
               Wallets: data[0].Wallets,
             },
