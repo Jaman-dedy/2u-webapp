@@ -141,7 +141,8 @@ const WithdrawMoney = ({
                 />
               </div>
             </div>
-            {confirmationError && (
+
+            {confirmationError?.Description && (
               <AlertDanger message={confirmationError?.Description} />
             )}
 
@@ -188,7 +189,12 @@ const WithdrawMoney = ({
           )}
         </div>
         <Button
-          disabled={buttonDisabled}
+          disabled={
+            buttonDisabled ||
+            parseFloat(currentOption?.Balance?.replace(',', ''), 10) <
+              parseFloat(form?.amount, 10) ||
+            parseFloat(form?.amount) === 0
+          }
           onClick={() => {
             if (!confirmationData) {
               confirmTransaction();
