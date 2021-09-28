@@ -302,7 +302,7 @@ const Index = () => {
         history.push('/contacts');
       }
     }
-  }, [allContacts]);
+  }, [allContacts, queryParams.ref, queryParams.PID, history]);
 
   useEffect(() => {
     if (queryParams.ref === 'contact-info' && queryParams.PID) {
@@ -318,20 +318,20 @@ const Index = () => {
         history.push('/contacts');
       }
     }
-  }, [allContacts]);
+  }, [allContacts, history, queryParams.PID, queryParams.ref]);
 
   useEffect(() => {
     if (queryParams.add === 'true') {
       setOpen(true);
     }
-  }, []);
+  }, [queryParams.add]);
 
   useEffect(() => {
     if (queryParams.ref === 'send-voucher') {
       setIsSendingVoucher(dispatch);
       clearSearchStoreAction()(dispatch);
     }
-  }, [allContacts]);
+  }, [allContacts, queryParams.ref, dispatch]);
 
   const walletsArr =
     form &&
@@ -503,7 +503,7 @@ const Index = () => {
 
       clearSuccess();
     }
-  }, [addNewUserData.success]);
+  }, [addNewUserData?.success]);
 
   const onEditChange = (e, { name, value }) => {
     setEditForm({ ...editForm, [name]: value });
