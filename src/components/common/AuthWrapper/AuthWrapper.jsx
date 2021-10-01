@@ -7,6 +7,8 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Image } from 'semantic-ui-react';
+import { useHistory } from 'react-router-dom';
+
 import assets from 'helpers/assets';
 import SelectLanguage from 'components/common/SelectLanguage';
 import PersonaBackGround from 'assets/images/BGPersona.png';
@@ -23,7 +25,7 @@ const AuthWrapper = ({
   register,
 }) => {
   const [openLanguage, setOpenLanguage] = useState(false);
-
+  const history = useHistory();
   const {
     language: {
       supported: { loading: getSupportedLanguagesLoading },
@@ -38,7 +40,10 @@ const AuthWrapper = ({
       className="page-wrapper"
     >
       <div className="wrap-top-bar">
-        <div className="main-logo">
+        <div
+          className="main-logo"
+          onClick={() => history.push('/login')}
+        >
           <Image src={assets.logoWhiteText} />
         </div>
         <div className="lang-dropdown">

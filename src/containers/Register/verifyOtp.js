@@ -20,7 +20,7 @@ export default ({
   const [shouldVerifyOtp, setShouldVerifyOtp] = useState(false);
   const [OTPNumber, setOTPNumber] = useState('');
   const [errors, setErrors] = useState({});
-  const { countryCode, phoneNumber, OTP } = registrationData;
+  const { countryCode, phoneNumber } = registrationData;
 
   const handleVerifyOTP = () => {
     verifyOTPAction(

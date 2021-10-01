@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import Tour from 'reactour';
-import { Image } from 'semantic-ui-react';
+import { Image, Modal } from 'semantic-ui-react';
 
 import RedeemVoucherModal from 'components/Stores/StoreDetailsComponent/RedeemVoucherModal';
 import UserProfilePlaceholder from 'assets/images/avatarplaceholder.png';
@@ -32,6 +32,9 @@ import GraphDataContainer from 'containers/Dashboard/cumulativeGraph';
 import DefaultWalletContainer from 'containers/Dashboard/DefaultWallet';
 import UserCurrenciesContainer from 'containers/Dashboard/userCurrencies';
 import SetPasswordModal from './SetPasswordModal';
+import '../../components/Fidelity/NewReferral/style.scss';
+import NewReferral from 'components/Fidelity/NewReferral';
+
 const Dashboard = ({
   userData,
   authData,
@@ -50,6 +53,8 @@ const Dashboard = ({
   const [hasError, setHasError] = useState(false);
   const [isShowing, setShowing] = useState(true);
   const [isTourOpen, setIsTourOpen] = useState(false);
+  const [isReferOpen, setIsReferOpen] = useState(false);
+
   const [
     isOpenRedeemVoucherModal,
     setIsOpenRedeemVoucherModal,
@@ -80,10 +85,10 @@ const Dashboard = ({
     if (userData?.data) {
       if (userData.data?.FirstTimeLogin === 'YES') {
         setIsTourOpen(true);
+        setIsReferOpen(true);
       }
     }
   }, [userData]);
-
   useEffect(() => {
     if (authData?.UserShouldSetPassword === 'YES') {
       setOpenSetPasswordModal(true);
@@ -96,13 +101,13 @@ const Dashboard = ({
   };
 
   return (
-    <>
+    <div>
       <ChartModal open={open} />
       <DashboardLayout setTourStep={setIsTourOpen}>
         <Tour
           onRequestClose={closeTour}
           steps={tourConfig()}
-          isOpen={isTourOpen}
+          isOpen={!isReferOpen && isTourOpen}
           rounded={5}
           accentColor={accentColor}
         />
@@ -361,6 +366,16 @@ const Dashboard = ({
             </div>
           </div>
         </div>
+        <Modal
+          open={isReferOpen}
+          centered
+          size="tiny"
+          onClose={() => setIsReferOpen(false)}
+        >
+          <div>
+            <NewReferral onClose={() => setIsReferOpen(false)} />
+          </div>
+        </Modal>
         <RedeemVoucherModal
           open={isOpenRedeemVoucherModal}
           setOpen={setIsOpenRedeemVoucherModal}
@@ -374,7 +389,7 @@ const Dashboard = ({
           loading={loadSetPwd}
         />
       </DashboardLayout>
-    </>
+    </div>
   );
 };
 Dashboard.propTypes = {

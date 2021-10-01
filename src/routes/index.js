@@ -28,6 +28,7 @@ import withdrawMoney from './withdrawMoney';
 import verifyEmail from './verifyEmail';
 import sendToPayPal from './sendToPayPal';
 import walletsAndBanks from './walletsAndBanks';
+
 export default [
   login,
   dashboard,

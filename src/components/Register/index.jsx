@@ -7,7 +7,6 @@ import Congratulation from './Congratulation';
 import IdentityForm from './IdentityForm';
 import OTPForm from './OTPForm';
 import UsernameForm from './UsernameForm';
-import ReferralForm from './ReferralForm';
 
 const Register = ({
   registrationData,
@@ -20,7 +19,6 @@ const Register = ({
   verifyOtp,
   userNameData,
   congratulationPage,
-  referralScreen,
 }) => {
   const [formIsHalfFilled, setFormIsHalfFilled] = useState(false);
 
@@ -95,17 +93,7 @@ const Register = ({
             userNameData={userNameData}
           />
         );
-
       case 4:
-        return (
-          <ReferralForm
-            registrationData={registrationData}
-            onInputChange={handleInputChange}
-            referralScreen={referralScreen}
-            onClickHandler={onClickHandler}
-          />
-        );
-      case 5:
         return (
           <Congratulation
             registrationData={registrationData}
@@ -128,8 +116,6 @@ const Register = ({
       case 3:
         return global.translate('Register');
       case 4:
-        return global.translate('Someone told you about us?');
-      case 5:
         return global.translate('Congratulations');
 
       default:
@@ -137,7 +123,7 @@ const Register = ({
     }
   };
 
-  return screenNumber === 5 ? (
+  return screenNumber === 4 ? (
     renderForm()
   ) : (
     <AuthWrapper
@@ -155,7 +141,7 @@ const Register = ({
       />
       <div>{renderForm()}</div>
       <div className="dots">
-        {Array(5)
+        {Array(4)
           .fill()
           .map((value, index) => (
             <div
