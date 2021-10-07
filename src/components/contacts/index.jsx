@@ -103,6 +103,7 @@ const ManageContacts = ({
   const [isSelfBuying, setIsSelfBuying] = useState(false);
 
   const dispatch = useDispatch();
+
   useEffect(() => {
     setAllContacts(allContacts.data?.filter(item => !item.Error));
   }, [allContacts]);
@@ -122,12 +123,6 @@ const ManageContacts = ({
   }, [sendMoneyOpen, resetContactAction]);
 
   useEffect(() => {
-    if (!open) {
-      resetContactAction();
-    }
-  }, [open, resetContactAction]);
-
-  useEffect(() => {
     if (!sendCashOpen) {
       resetContactAction();
     }
@@ -140,6 +135,7 @@ const ManageContacts = ({
   }, [topUpOpen, resetContactAction]);
 
   const [isDeletingContact, setIsDeletingContact] = useState(false);
+
   const onClickHandler = () => history.goBack();
 
   const options = [
