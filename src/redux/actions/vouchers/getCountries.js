@@ -22,7 +22,7 @@ export default data => dispatch =>
           payload: {
             data,
             success: data[0].Result === 'Success',
-            message: data[0]?.Description,
+            message: data[0].Description,
           },
         });
       },

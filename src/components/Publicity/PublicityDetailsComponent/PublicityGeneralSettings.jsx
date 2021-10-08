@@ -85,7 +85,7 @@ const StoreAvailabilitySettings = props => {
             {error && (
               <Message
                 message={
-                  error[0] && error[0]?.Description
+                  error[0] && error[0].Description
                     ? global.translate(error[0].Description)
                     : global.translate(error.error)
                 }

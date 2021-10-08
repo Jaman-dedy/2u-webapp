@@ -66,11 +66,15 @@ const IdentityModal = ({
   } = identityConfirmation;
 
   useEffect(() => {
-    console.log(`userData?.UserIDURL`, userData?.UserIDURL);
     if (userData?.UserIDURL) {
       validateImg(userData?.UserIDURL).then(
-        () => setIsImgCorrect(true),
-        () => setIsImgCorrect(false),
+        function fulfilled(img) {
+          setIsImgCorrect(true);
+        },
+
+        function rejected() {
+          setIsImgCorrect(false);
+        },
       );
     }
   }, [userData]);
@@ -231,7 +235,7 @@ const IdentityModal = ({
                 selectedCurrentType &&
                 selectedDateOfIssue &&
                 selectedExpiryDate &&
-                userIdUrlData
+                isImgCorrect
               )
             }
             className="change-button"

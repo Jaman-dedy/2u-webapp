@@ -119,7 +119,7 @@ const StorePendingVoucherTab = ({
           error={false}
           message={
             data && data.length > 0
-              ? data[0]?.Description
+              ? data[0].Description
               : global.translate("You don't have any active voucher.")
           }
         />

@@ -36,7 +36,7 @@ export default (walletData, userData) => dispatch => {
           payload: {
             deletedWallet: walletData,
             success: data[0].Result === 'Success',
-            message: data[0]?.Description,
+            message: data[0].Description,
           },
         });
       },
