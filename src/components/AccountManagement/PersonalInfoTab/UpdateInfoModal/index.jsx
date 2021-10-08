@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Modal, Button, Form } from 'semantic-ui-react';
-import DatePicker from 'react-datepicker';
 import ReactFlagsSelect from 'react-flags-select';
+import DatePicker from 'components/common/DatePicker';
 
 import './style.scss';
 
@@ -73,11 +73,12 @@ const UpdateInfoModal = ({ open, setOpen, personalInfo }) => {
                   {global.translate('Date of birth*')}
                 </div>
                 <DatePicker
-                  selected={selectedDate}
-                  onChange={date => setSelectedDate(date)}
+                  date={selectedDate}
+                  onDateChange={date => setSelectedDate(date)}
                   maxDate={startDate}
-                  showYearDropdown
-                  showMonthDropdown
+                  dropdownMode="select"
+                  dateFormat="yyyy-MM-dd"
+                  placeholder={global.translate('YYYY-MM-DD')}
                 />
               </div>
             </Form.Group>

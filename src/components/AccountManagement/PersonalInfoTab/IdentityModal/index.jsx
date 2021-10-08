@@ -133,6 +133,7 @@ const IdentityModal = ({
                   className="date-issue"
                   showYearDropdown
                   showMonthDropdown
+                  dropdownMode="select"
                 />
               </div>
               <div className="date-of-birth">
@@ -149,6 +150,7 @@ const IdentityModal = ({
                   className="expiry-date"
                   showYearDropdown
                   showMonthDropdown
+                  dropdownMode="select"
                 />
               </div>
             </Form.Group>

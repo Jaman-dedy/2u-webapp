@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Table } from 'semantic-ui-react';
 import moment from 'moment';
+import rawCountries from 'utils/countries';
 import UpdateInfoModal from './UpdateInfoModal';
 import UpdatePhoneModal from './ManagePhoneModal';
 import ManageEmailModal from './ManageEmailModal';
 import IdentityModal from './IdentityModal';
 import './style.scss';
 import ResidenceModal from './ResidenceModal';
-import rawCountries from 'utils/countries';
 
 const PersonalInfoTab = ({
   userData,
@@ -182,7 +182,6 @@ const PersonalInfoTab = ({
         </>
       );
     }
-    return;
   }, [userData]);
 
   return (
