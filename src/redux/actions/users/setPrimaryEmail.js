@@ -30,13 +30,13 @@ export default data => dispatch => {
           type: SET_PRIMARY_EMAIL_SUCCESS,
           payload: {
             success: data[0].Result === 'Success',
-            message: data[0].Description,
+            message: data[0]?.Description,
             defaultEmail: data[0].NewDefaultEmail,
           },
         });
       },
       onFailure: error => dispatch => {
-        toast.error(error && error[0] && error[0].Description);
+        toast.error(error && error[0] && error[0]?.Description);
         return dispatch({
           type: SET_PRIMARY_EMAIL_ERROR,
           payload: {

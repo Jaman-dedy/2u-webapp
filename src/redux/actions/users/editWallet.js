@@ -22,7 +22,7 @@ export default data => dispatch =>
           type: EDIT_WALLET_SUCCESS,
           payload: {
             success: data[0].Result === 'Success',
-            message: data[0].Description,
+            message: data[0]?.Description,
           },
         });
       },

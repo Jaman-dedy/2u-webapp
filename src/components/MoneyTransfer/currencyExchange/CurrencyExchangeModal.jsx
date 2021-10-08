@@ -302,7 +302,7 @@ const ExchangeCurrencyModal = ({
               {error && error[0] && (
                 <Message
                   message={
-                    error && error[0].Description
+                    error && error[0]?.Description
                       ? global.translate(error[0].Description)
                       : global.translate(error.error)
                   }

@@ -34,7 +34,7 @@ export default personalId => dispatch =>
           type: VERIFY_PID_SUCCESS,
           payload: {
             isValid: true,
-            message: data[0].Description,
+            message: data[0]?.Description,
           },
         });
       },

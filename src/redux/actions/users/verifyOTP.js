@@ -24,7 +24,7 @@ export default (phoneNumber, OTP) => dispatch =>
           return dispatch({
             type: VERIFY_OTP_ERROR,
             payload: {
-              message: data[0].Description,
+              message: data[0]?.Description,
             },
           });
         }
@@ -32,7 +32,7 @@ export default (phoneNumber, OTP) => dispatch =>
           type: VERIFY_OTP_SUCCESS,
           payload: {
             isValid: true,
-            message: data[0].Description,
+            message: data[0]?.Description,
           },
         });
       },

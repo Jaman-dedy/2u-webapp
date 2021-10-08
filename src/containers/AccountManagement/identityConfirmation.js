@@ -123,7 +123,7 @@ export default () => {
         userIdUrlData,
       );
       if (!status) {
-        toast.error(data[0].Description);
+        toast.error(data[0]?.Description);
       }
       toast.success(
         global.translate('Document uploaded successfully', 2055),
