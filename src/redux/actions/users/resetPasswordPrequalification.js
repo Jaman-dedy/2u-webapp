@@ -36,7 +36,7 @@ export const postResetPasswordPrequalification = data => dispatch => {
           type: RESET_PREQUALIFICATION_SUCCESS,
           payload: {
             success: data[0].Result === 'Success',
-            message: data[0]?.Description,
+            message: data[0].Description,
           },
         });
       },

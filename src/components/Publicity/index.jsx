@@ -74,7 +74,7 @@ const MyStores = ({
               <div className="publicity-state">
                 <Message
                   message={
-                    error[0]?.Description
+                    error[0].Description
                       ? global.translate(error[0].Description)
                       : global.translate(error.error)
                   }

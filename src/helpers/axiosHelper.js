@@ -90,7 +90,7 @@ export default (httpOptions = {}) => {
             const { data } = error.response;
             if (
               data &&
-              data[0]?.Description.includes(
+              data[0].Description.includes(
                 'The Token not found or has been deleted',
               )
             ) {
