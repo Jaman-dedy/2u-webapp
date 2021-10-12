@@ -65,6 +65,13 @@ const ManageEmailModal = ({
       setIAddingPhone(false);
     }
   }, [success]);
+
+  useEffect(() => {
+    if (!open) {
+      setIAddingPhone(false);
+    }
+  }, [open]);
+
   const handleClick = email => {
     setCurrentEmail(email);
   };
@@ -246,7 +253,6 @@ const ManageEmailModal = ({
                 <ErrorMessage
                   message={global.translate(
                     'Please provide a valid e-mail.',
-                    29,
                   )}
                 />
               </div>
