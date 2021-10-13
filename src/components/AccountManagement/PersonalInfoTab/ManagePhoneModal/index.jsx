@@ -116,6 +116,10 @@ const ManagePhoneModal = ({
     }
   }, [userData]);
 
+  const duplicatePhoneNumber = phones(userPhones, 'Phone').find(
+    phone => phone.Phone === phoneValue,
+  );
+
   return (
     <Modal
       onOpen={() => setOpen(true)}
@@ -269,6 +273,15 @@ const ManagePhoneModal = ({
                 }}
               />
             </div>
+            {duplicatePhoneNumber && (
+              <div className="error-message">
+                <ErrorMessage
+                  message={global.translate(
+                    'This phone number is already registered. Enter another one.',
+                  )}
+                />
+              </div>
+            )}
             <div className="add-phone-actions">
               <Button
                 className="back-button"
@@ -282,7 +295,11 @@ const ManagePhoneModal = ({
                   handleSendOTP();
                 }}
                 loading={sendOTP.loading}
-                disabled={!phoneValue || phoneValue?.length < 11}
+                disabled={
+                  !phoneValue ||
+                  phoneValue?.length < 11 ||
+                  duplicatePhoneNumber
+                }
               >
                 {global.translate('Add')}
               </Button>
