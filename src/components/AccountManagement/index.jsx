@@ -256,7 +256,6 @@ const Profile = ({
               {global.translate('My Account')}
             </h2>
           </div>
-          <div className="clear" />
         </div>
       </WelcomeBar>
       <div className="profile-container">

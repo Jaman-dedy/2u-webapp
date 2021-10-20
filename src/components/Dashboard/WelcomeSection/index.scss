@@ -10,7 +10,7 @@
   flex-wrap: wrap;
   align-content: space-between;
   .go-back {
-    flex: 0 0 130px;
+    margin-right: 10px;
     button {
       cursor: pointer;
       background: #ffffff;
@@ -60,7 +60,7 @@
       &:hover {
         opacity: 0.9;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.75);
-        background: #1E2120;
+        background: #1e2120;
         color: #ffffff;
       }
     }

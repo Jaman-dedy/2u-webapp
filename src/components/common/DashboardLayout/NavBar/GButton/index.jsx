@@ -24,7 +24,7 @@ const GButton = ({
         openOnTriggerClick
         trigger={
           <Button
-            content={global.translate('Transfer Money', 1950)}
+            content={global.translate('Transfer Money')}
             className="btn--secondary"
           />
         }
@@ -43,7 +43,7 @@ const GButton = ({
               <Icon name="sync" />
               <List.Content onClick={goToSendMoney}>
                 <List.Header>
-                  {global.translate('Transfer Money', 1950)}
+                  {global.translate('Transfer Money')}
                 </List.Header>
               </List.Content>
             </List.Item>
@@ -59,7 +59,7 @@ const GButton = ({
               <Icon name="dollar sign" />
               <List.Content onClick={goToQuickPay}>
                 <List.Header>
-                  {global.translate('Quick pay', 431)}
+                  {global.translate('Quick pay')}
                 </List.Header>
               </List.Content>
             </List.Item>
@@ -67,7 +67,7 @@ const GButton = ({
               <Icon name="qrcode" />
               <List.Content onClick={goToGetPaid}>
                 <List.Header>
-                  {global.translate('Get Paid', 482)}
+                  {global.translate('Get Paid')}
                 </List.Header>
               </List.Content>
             </List.Item>
@@ -75,7 +75,7 @@ const GButton = ({
               <Icon name="money bill alternate" />
               <List.Content onClick={goToSendCash}>
                 <List.Header>
-                  {global.translate('Send Cash', 1948)}
+                  {global.translate('Send Cash')}
                 </List.Header>
               </List.Content>
             </List.Item>
@@ -83,7 +83,7 @@ const GButton = ({
               <Icon name="gift" />
               <List.Content onClick={goToSendVoucher}>
                 <List.Header>
-                  {global.translate('Send Voucher', 863)}
+                  {global.translate('Send Voucher')}
                 </List.Header>
               </List.Content>
             </List.Item>

@@ -210,7 +210,7 @@ const UserDetails = ({
 
       <div className="presence-status">
         <span>
-          {global.translate('Your presence status is set to', 1668)}
+          {global.translate('Your presence status is set to')}
         </span>
         <div className="flex flex-row align-items-center">
           <div style={{ marginRight: '5px' }}>

@@ -120,7 +120,7 @@ const CreditCardDetails = ({ creditCardDetails }) => {
             <GoBack style onClickHandler={onClickHandler} />
           </div>
           <h2 className="head-title">
-            {global.translate('My M-Card', 2159)}
+            {global.translate('My M-Card')}
           </h2>
           <div className="clear" />
         </div>
@@ -132,7 +132,6 @@ const CreditCardDetails = ({ creditCardDetails }) => {
             <InfoMessage
               description={global.translate(
                 'This card is currently inactive. You will be able to activate it once your confirm that you have received it',
-                2253,
               )}
             />
           )}
