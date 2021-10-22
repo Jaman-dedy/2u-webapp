@@ -235,7 +235,7 @@ const IdentityModal = ({
                 selectedCurrentType &&
                 selectedDateOfIssue &&
                 selectedExpiryDate &&
-                isImgCorrect
+                (isImgCorrect || userIdUrlData)
               )
             }
             className="change-button"
