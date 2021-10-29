@@ -299,7 +299,7 @@ const Index = () => {
           setSendCashOpen(true);
         }
         setDestinationContact(contact);
-        history.push('/contacts');
+        history.push('/contacts?ref=send-money');
       }
     }
   }, [allContacts, queryParams.ref, queryParams.PID, history]);
