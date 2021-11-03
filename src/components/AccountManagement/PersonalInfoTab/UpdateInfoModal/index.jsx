@@ -154,7 +154,7 @@ const UpdateInfoModal = ({ open, setOpen, personalInfo }) => {
                     [name]: value,
                   });
                 }}
-                defaultValue={currentOption}
+                defaultValue={personalInfoData?.Profession}
                 name="Profession"
               />
             </Form.Group>
