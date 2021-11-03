@@ -103,9 +103,9 @@ const TransactionEntity = ({
       {data && data.data && (
         <div className="transacters">
           <Thumbnail
-            name={data.data.FirstName}
-            avatar={data.data.PictureURL}
-            secondName={data.data.LastName}
+            name={data?.data?.FirstName|| ''}
+            avatar={data?.data?.PictureURL|| ''}
+            secondName={data?.data?.LastName|| ''}
             width={75}
             height={75}
             style={{

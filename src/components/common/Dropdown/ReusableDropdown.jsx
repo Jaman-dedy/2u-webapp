@@ -253,7 +253,7 @@ const ReusableDropdown = ({
           )}
           <Dropdown.Menu scrolling search={search}>
             {filteredOptions?.map(option => (
-              <Dropdown.Item
+              option !== undefined &&(<Dropdown.Item
                 key={option?.Title}
                 onClick={() => {
                   setOpen(false);
@@ -280,7 +280,7 @@ const ReusableDropdown = ({
                     </div>
                   </div>
                 </span>
-              </Dropdown.Item>
+              </Dropdown.Item>)
             ))}
           </Dropdown.Menu>
           {bottomAction && (
