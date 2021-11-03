@@ -26,14 +26,6 @@ const SupportingDocModal = ({
     <Modal onOpen={() => setOpen(true)} open={open} size="tiny">
       <div className="upload-other-docs">
         <h3>{global.translate('Supporting document')}</h3>
-        <Form>
-          <Form.Field>
-            <label>{global.translate('Document description')}</label>
-            <input
-              placeholder={global.translate('Document description')}
-            />
-          </Form.Field>
-        </Form>
         <div className="doc-img-content">
           <div>{global.translate('Document')}</div>
           {userIdUrlData ? (
