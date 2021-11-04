@@ -71,7 +71,7 @@ const ConfirmExecutePublicity = ({
     <div>
       <Modal size="mini" open={open} onClose={() => setOpen(false)}>
         <Modal.Header className="modal-title">
-          {global.translate('Would you like to proceed', 23)}?
+          {global.translate('Would you like to proceed?', 23)}?
         </Modal.Header>
         <Modal.Content centered className="main-content">
           <div className="description center-align bold">

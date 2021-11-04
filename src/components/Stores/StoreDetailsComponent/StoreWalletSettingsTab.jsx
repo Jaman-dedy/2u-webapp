@@ -98,9 +98,8 @@ const StoreWalletSettingsTab = ({ currentStore }) => {
                 {global.translate('Service fee')}
               </p>
               <span className="stats-value">
-                {`${currentStore?.ServiceFeeRate ?? ''} ${
-                  currentStore?.ServiceFeeRate ? '%' : ''
-                }`}
+                {`${currentStore?.ServiceFeeRate ?? ''} ${currentStore?.ServiceFeeRate ? '%' : ''
+                  }`}
               </span>
             </Card.Content>
           </div>
@@ -109,7 +108,7 @@ const StoreWalletSettingsTab = ({ currentStore }) => {
           <div className="stats-card">
             <Card.Content>
               <p className="stat-header">
-                {global.translate('Number of agents')}
+                {global.translate('Number of agent')}
               </p>
               <span className="stats-value">
                 {`${currentStore?.AgentsCount ?? ''}`}

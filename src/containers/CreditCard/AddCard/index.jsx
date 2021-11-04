@@ -124,13 +124,13 @@ const AddCardContainer = () => {
     }
     if (!selectedProvider) {
       setError(
-        global.translate('Please choose the card type.', 2069),
+        global.translate('Please choose the card type', 2069),
       );
       return true;
     }
     if (!form?.cardLevel) {
       setError(
-        global.translate('Please select the card level.', 2070),
+        global.translate('Please select the card level', 2070),
       );
       return true;
     }
