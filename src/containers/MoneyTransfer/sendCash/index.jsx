@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import SendCashModal from 'components/MoneyTransfer/sendCash';
 import { CASH_OUT } from 'constants/general';
 import { clearFoundUser } from 'redux/actions/contacts/locateUser';
@@ -448,11 +447,8 @@ const SendCashContainer = ({
       }
     }
     setErrors(null);
-
     if (!isEditing) {
-      moveFunds(data, '/SendCash', 'send-cash')(dispatch)(data => {
-        toast.success(global.translate(data?.Description));
-      });
+      moveFunds(data, '/SendCash', 'send-cash')(dispatch)();
     }
   };
 
