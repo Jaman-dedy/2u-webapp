@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   Modal,
@@ -11,6 +11,7 @@ import {
 } from 'semantic-ui-react';
 import './style.scss';
 import PasswordInput from 'components/common/PasswordInput';
+import checkPassword from 'utils/checkPassword';
 import ErrorMessage from 'components/common/Alert/Danger';
 import PINInput from '../PINInput';
 import resetPIN from './resetPIN';
@@ -35,6 +36,7 @@ const ResetPIN = ({ open, setOpen, close, isOnResetPassword }) => {
     clearResetSuccess,
     verifySentOTP,
   } = resetPIN();
+  const [disableButton, setDisableButton] = useState(false);
 
   const handleCloseModal = useCallback(() => {
     setStep(1);
@@ -51,6 +53,21 @@ const ResetPIN = ({ open, setOpen, close, isOnResetPassword }) => {
       handleCloseModal();
     }
   }, [resetPassword, clearResetSuccess, handleCloseModal]);
+
+  useEffect(() => {
+    const passwordChecker = checkPassword(newPassword);
+    if (
+      !passwordChecker.number ||
+      !passwordChecker.uppercase ||
+      !passwordChecker.lowercase ||
+      !passwordChecker.specialCharacter ||
+      !passwordChecker.digit
+    ) {
+      setDisableButton(true);
+    } else {
+      setDisableButton(false);
+    }
+  }, [newPassword]);
 
   const renderInformationModal = () => {
     return (
@@ -123,6 +140,55 @@ const ResetPIN = ({ open, setOpen, close, isOnResetPassword }) => {
                 icon="eye"
               />
             </Form.Field>
+            <div className="checklist">
+              <div>
+                {global.translate('The password must be at least')}{' '}
+                <span
+                  className={
+                    checkPassword(newPassword).number ? '' : 'invalid'
+                  }
+                >
+                  {global.translate('8 characters long,')}
+                </span>
+                , {global.translate('containing an')}{' '}
+                <span
+                  className={
+                    checkPassword(newPassword).uppercase
+                      ? ''
+                      : 'invalid'
+                  }
+                >
+                  {global.translate('uppercase')}
+                </span>
+                , {global.translate('a')}&nbsp;
+                <span
+                  className={
+                    checkPassword(newPassword).lowercase
+                      ? ''
+                      : 'invalid'
+                  }
+                >
+                  {global.translate('lowercase,')}
+                </span>{' '}
+                <span
+                  className={
+                    checkPassword(newPassword).digit ? '' : 'invalid'
+                  }
+                >
+                  {global.translate('digit')}
+                </span>{' '}
+                {global.translate('and at least')}{' '}
+                <span
+                  className={
+                    checkPassword(newPassword).specialCharacter
+                      ? ''
+                      : 'invalid'
+                  }
+                >
+                  {global.translate('a special character(!@#$%^&*)')}
+                </span>
+              </div>
+            </div>
           </Form>
         )}
       </div>
@@ -186,7 +252,8 @@ const ResetPIN = ({ open, setOpen, close, isOnResetPassword }) => {
             disabled={
               loadOnChangePIN ||
               disableProceed ||
-              verifySentOTP?.loading
+              verifySentOTP?.loading ||
+              (disableButton && step === 3 && isOnResetPassword)
             }
             loading={
               loadOnChangePIN ||
