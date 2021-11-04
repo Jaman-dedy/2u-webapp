@@ -33,7 +33,7 @@ const DetailTypeAction = ({
             displayTransactionType(item?.TransactionType)
               ?.Description}
           {selectedCard === 2 &&
-            global.translate('Pending cash sent', 916)}
+            global.translate('Pending transaction', 916)}
           {selectedCard === 3 &&
             global.translate('Pending voucher', 858)}
           {selectedCard === 4 &&
@@ -102,15 +102,15 @@ DetailTypeAction.propTypes = {
 DetailTypeAction.defaultProps = {
   item: {},
   selectedCard: 1,
-  setPhoneValue: () => {},
+  setPhoneValue: () => { },
   phoneValue: '',
   onOptionChange: {},
   form: {},
-  modifyOneTransaction: () => {},
+  modifyOneTransaction: () => { },
   updatingError: {},
   updating: PropTypes.bool,
   updatingData: {},
   openEditTransaction: PropTypes.bool,
-  setOpenEditTransaction: () => {},
+  setOpenEditTransaction: () => { },
 };
 export default DetailTypeAction;

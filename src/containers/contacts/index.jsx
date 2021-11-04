@@ -395,7 +395,7 @@ const Index = () => {
         if (
           element.ContactPID &&
           element.ContactPID.toLowerCase() ===
-            form.PID.trim().toLowerCase()
+          form.PID.trim().toLowerCase()
         ) {
           exists = true;
         }
@@ -483,7 +483,7 @@ const Index = () => {
 
           history.push(
             `/contact/${newContact.ContactPID ??
-              newContact.PhoneNumber}?type=${newContact.ContactType}`,
+            newContact.PhoneNumber}?type=${newContact.ContactType}`,
           );
           setIsDetail(true);
         }
@@ -496,7 +496,7 @@ const Index = () => {
         }
         history.push(
           `/contact/${newContact.ContactPID ??
-            newContact.PhoneNumber}?type=${newContact.ContactType}`,
+          newContact.PhoneNumber}?type=${newContact.ContactType}`,
         );
         setContact(addNewUserData.data[0]);
       }
@@ -536,7 +536,7 @@ const Index = () => {
 
         if (!editForm.phoneNumber || editForm.phoneNumber === '') {
           setEditErrors(
-            global.translate('Please provide a phone number.', 2066),
+            global.translate('Please provide a phone number', 2066),
           );
           break;
         } else {
@@ -573,7 +573,7 @@ const Index = () => {
         if (editForm.wallets.length > 10) {
           toast.error(
             global.translate(
-              'You can not share more than 10 wallets with a user.',
+              'You can not share more than 10 wallets with a user',
               2164,
             ),
           );

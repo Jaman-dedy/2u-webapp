@@ -24,7 +24,7 @@ const Profile = ({
         </h3>
         <div>
           {global.translate(
-            'Your account is active and you can explore different features tailored for you. We only need to verify your identify so that your account is fully functional.',
+            'Your account is active and you can explore different features tailored for you. We only need to verify your identify so that your account is fully functional',
           )}
         </div>
       </div>
@@ -54,7 +54,7 @@ Profile.propTypes = {
 };
 Profile.defaultProps = {
   isABusinessAccount: false,
-  onClick: () => {},
+  onClick: () => { },
   userData: {},
 };
 

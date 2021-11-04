@@ -57,7 +57,7 @@ const StoreAvailabilitySettings = props => {
             <Header
               color="red"
               content={`${global.translate(
-                'Deleting this campaign will permanently remove it.',
+                'Deleting this campaign will permanently remove it',
                 776,
               )} ${global.translate(
                 'Would you like to proceed?',
@@ -142,7 +142,7 @@ StoreAvailabilitySettings.propTypes = {
 
 StoreAvailabilitySettings.defaultProps = {
   currentPublicity: {},
-  deletePublicity: () => {},
+  deletePublicity: () => { },
   deleteCampaignData: {},
 };
 

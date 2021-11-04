@@ -76,7 +76,7 @@ const MicroLoan = ({ listData, listLoading, userData }) => {
         <>
           <p>
             {global.translate(
-              'Please note that short term loans are intended as a short-term measure to help cover urgent financials needs.',
+              'Please note that short term loans are intended as a short-term measure to help cover urgent financials needs',
             )}
           </p>{' '}
           <p>

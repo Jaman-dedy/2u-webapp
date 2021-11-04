@@ -196,7 +196,7 @@ const TableDetails = ({
                 loading={loadOnRenew}
                 disabled={!isExpired}
               >
-                {global.translate('Renew O-Card', 1691)}
+                {global.translate('Renew your O-Card', 1691)}
               </Button>
             </Table.Cell>
           </Table.Row>

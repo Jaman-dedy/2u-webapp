@@ -75,7 +75,7 @@ const TopUpFromBankForm = ({ onChange, form, setStep }) => {
             description={`${global.translate(
               'Please select a bank account that uses ',
             )} ${form?.WalletCurrency} ${global.translate(
-              'currency or change the target wallet.',
+              'currency or change the target wallet',
             )}.`}
           />
         )}

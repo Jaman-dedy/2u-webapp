@@ -70,7 +70,7 @@ const AddCommentForm = ({
           placeholder={
             user
               ? global.translate('Write a comment here…', 1837)
-              : global.translate('Please login to comment...', 1838)
+              : global.translate('Please login to comment.', 1838)
           }
           onChange={onChange}
           name="comment"
