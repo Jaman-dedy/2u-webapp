@@ -8,7 +8,7 @@ export default () => [
   {
     selector: '[data-tut="second-step"]',
     content: global.translate(
-      `The currencies you are using are displayed here. You can click on any of them to get your total Net worth in the given currency.`,
+      `The currencies you are using are displayed here. You can click on any of them to get your total Net worth in the given currency`,
     ),
   },
   {
