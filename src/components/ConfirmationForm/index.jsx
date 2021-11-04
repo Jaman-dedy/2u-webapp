@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { DateInput } from 'semantic-ui-calendar-react';
 import { Dropdown, Input, Modal } from 'semantic-ui-react';
 import Message from 'components/common/Message';
 import PinCodeForm from 'components/common/PinCodeForm';
 import ToggleSwitch from 'components/common/ToggleButton';
+import DatePicker from 'components/common/DatePicker';
 import './style.scss';
 
 const ConfirmationForm = ({
@@ -142,43 +142,31 @@ const ConfirmationForm = ({
               <div className="from-to-dates">
                 <div className="from-two-group">
                   <p className="from">{global.translate('From')}:</p>
-                  <DateInput
-                    icon="dropdown"
-                    popupPosition="top left"
-                    animation="fade"
-                    placeholder={global.translate('Start date')}
-                    iconPosition="right"
-                    dateFormat="YYYY-MM-DD"
-                    name="startDate"
-                    pickerWidth="100%"
+                  <DatePicker
                     minDate={new Date()}
-                    value={
-                      form.startDate
-                        ? new Date(form.startDate).toDateString()
-                        : ''
+                    placeholder="YYYY-MM-DD"
+                    date={form.startDate}
+                    onDateChange={value =>
+                      onOptionsChange(null, {
+                        name: 'startDate',
+                        value,
+                      })
                     }
-                    onChange={onOptionsChange}
-                    localization={localStorage.language || 'en'}
                   />
                 </div>
                 <div className="from-two-group">
                   <p className="to">{global.translate('to')}:</p>
-                  <DateInput
-                    icon="dropdown"
-                    popupPosition="top left"
-                    animation="fade"
-                    placeholder={global.translate('End date')}
-                    iconPosition="right"
-                    dateFormat="YYYY-MM-DD"
-                    name="endDate"
-                    minDate={new Date()}
-                    value={
-                      form.endDate
-                        ? new Date(form.endDate).toDateString()
-                        : ''
+
+                  <DatePicker
+                    minDate={form.startDate}
+                    placeholder="YYYY-MM-DD"
+                    date={form.endDate}
+                    onDateChange={value =>
+                      onOptionsChange(null, {
+                        name: 'endDate',
+                        value,
+                      })
                     }
-                    onChange={onOptionsChange}
-                    localization={localStorage.language || 'en'}
                   />
                 </div>
               </div>
@@ -230,15 +218,15 @@ const ConfirmationForm = ({
             {updatingError && updatingError[0] && (
               <Message
                 message={
-                  updatingError[0].Description
-                    ? global.translate(updatingError[0].Description)
-                    : global.translate(updatingError.error)
+                  updatingError[0]?.Description
+                    ? global.translate(updatingError[0]?.Description)
+                    : global.translate(updatingError?.error)
                 }
               />
             )}
             {updatingError && !updatingError[0] && (
               <Message
-                message={global.translate(updatingError.error)}
+                message={global.translate(updatingError?.error)}
               />
             )}
           </>

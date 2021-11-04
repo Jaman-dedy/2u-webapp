@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { Modal, Button, Form } from 'semantic-ui-react';
 import ReactFlagsSelect from 'react-flags-select';
@@ -25,8 +25,18 @@ const UpdateInfoModal = ({ open, setOpen, personalInfo }) => {
     setBornCountry,
     bornCountry,
   } = personalInfo;
-  const [startDate, setStartDate] = useState(new Date('2014/02/08'));
 
+  const maxDate = useMemo(() => {
+    const date = new Date();
+    date.setYear(new Date().getFullYear() - 13);
+    return date;
+  }, []);
+
+  const minDate = useMemo(() => {
+    const date = new Date();
+    date.setYear(new Date().getFullYear() - 13);
+    return date;
+  }, []);
   return (
     <Modal onOpen={() => setOpen(true)} open={open} size="small">
       <Modal.Content>
@@ -73,12 +83,13 @@ const UpdateInfoModal = ({ open, setOpen, personalInfo }) => {
                   {global.translate('Date of birth*')}
                 </div>
                 <DatePicker
+                  maxDate={maxDate}
                   date={selectedDate}
+                  minDate={minDate}
                   onDateChange={date => setSelectedDate(date)}
-                  maxDate={startDate}
                   dropdownMode="select"
                   dateFormat="yyyy-MM-dd"
-                  placeholder={global.translate('YYYY-MM-DD')}
+                  placeholder="YYYY-MM-DD"
                 />
               </div>
             </Form.Group>

@@ -90,13 +90,7 @@ const DateInput = ({
         </div>
       </div>
       {isInvalidDate && (
-        <span
-          style={{
-            color: 'red',
-            display: 'inline-block',
-            margin: '1rem 0',
-          }}
-        >
+        <span className="date-error">
           {global.translate('The date is invalid')}
         </span>
       )}
@@ -157,7 +151,7 @@ CustomDatePicker.propTypes = {
 };
 
 CustomDatePicker.defaultProps = {
-  dateFormat: '',
+  dateFormat: 'yyyy-MM-dd',
   maxDate: '',
   minDate: '',
   label: '',
