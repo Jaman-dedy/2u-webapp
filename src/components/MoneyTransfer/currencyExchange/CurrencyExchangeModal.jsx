@@ -323,8 +323,7 @@ const ExchangeCurrencyModal = ({
           <>
             {step !== 1 && (
               <Button
-                basic
-                color="red"
+                className="btn--cancel"
                 disabled={checking || loading}
                 onClick={() => {
                   resetState();
@@ -336,8 +335,7 @@ const ExchangeCurrencyModal = ({
 
             {step !== 3 && (
               <Button
-                basic
-                color="red"
+                className="btn--cancel"
                 disabled={checking || loading}
                 onClick={() => {
                   setOpen(!open);
@@ -352,7 +350,7 @@ const ExchangeCurrencyModal = ({
               </Button>
             )}
             <Button
-              positive
+              className="btn--confirm"
               disabled={
                 checking ||
                 loading ||

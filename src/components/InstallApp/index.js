@@ -12,7 +12,7 @@ const InstallApp = ({ onInstall, onCancel }) => {
         <Button
           onClick={onInstall}
           content={global.translate('Install', 2257)}
-          className="install-btn"
+          className="install-btn btn--cancel"
           icon="plus"
           labelPosition="right"
         />

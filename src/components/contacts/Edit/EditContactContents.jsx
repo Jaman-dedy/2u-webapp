@@ -180,8 +180,7 @@ const EditContactContents = ({
           <Modal.Actions>
             <Button
               disabled={loading}
-              basic
-              color="red"
+              className="btn--cancel"
               onClick={() => {
                 setIsUploading(false);
                 setEditErrors(null);

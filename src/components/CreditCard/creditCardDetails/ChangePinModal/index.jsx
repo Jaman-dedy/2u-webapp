@@ -81,7 +81,7 @@ const PinModal = ({
       <Modal.Actions>
         <Button
           disabled={disabled}
-          basic
+          className="btn--cancel"
           onClick={() => setOpenPinModal(false)}
         >
           {global.translate('Cancel', 86)}

@@ -103,7 +103,7 @@ const ConfirmExecutePublicity = ({
         <Modal.Actions>
           <Button
             disabled={loading}
-            negative
+            className="btn--cancel"
             onClick={() => setOpen(false)}
           >
             {global.translate('Cancel', 86)}

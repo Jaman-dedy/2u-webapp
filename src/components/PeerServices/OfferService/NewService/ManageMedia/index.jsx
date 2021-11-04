@@ -323,6 +323,7 @@ const ManageMediaModal = ({
         <Button
           disabled={updateLoading}
           onClick={() => onClose({ clearMedia: true })}
+          className="btn--cancel"
         >
           {global.translate('Cancel')}
         </Button>

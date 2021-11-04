@@ -190,12 +190,11 @@ const AddWalletModal = ({
       </Modal.Content>
       {!addWallet.success && (
         <Modal.Actions>
-          <Button className="cancel" onClick={toggleShowModal}>
+          <Button className="btn--cancel" onClick={toggleShowModal}>
             {global.translate('Cancel')}
           </Button>
           <Button
-            positive
-            className="add"
+            className="btn--confirm"
             onClick={() => {
               form.forEach((item, index) => {
                 if (item.Name === '' || item.Currency === '') {

@@ -102,15 +102,14 @@ const AddMoneyModal = ({ open, setOpen, payBills }) => {
               }
               setOpen(false);
             }}
-            basic
-            color="red"
+            className="btn--cancel"
             content={global.translate('Cancel', 86)}
           />
           <Button
             onClick={() => {
               screen1.handleNext();
             }}
-            positive
+            className="btn--confirm"
             content={global.translate('Next', 10)}
           />
         </>

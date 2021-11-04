@@ -240,14 +240,14 @@ const ManagePhoneModal = ({
             </Table>
             <div className="add-phones-actions">
               <Button
-                className="btn-add-phone"
+                className="btn-add-phone btn--confirm"
                 onClick={() => setIAddingPhone(true)}
               >
                 <Image src={AddPhoneIcon} />{' '}
                 {global.translate('Add phone number')}
               </Button>
               <Button
-                className="cancel-button"
+                className="btn--cancel"
                 onClick={() => setOpen(false)}
               >
                 {global.translate('Cancel')}

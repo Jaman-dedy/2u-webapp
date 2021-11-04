@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { useState, useEffect } from 'react';
-import DatePicker from 'react-datepicker';
+import CalendarArrow from 'assets/images/transactions/calendar-arrow.svg';
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import { Dropdown, Image, Button } from 'semantic-ui-react';
-import CalendarArrow from 'assets/images/transactions/calendar-arrow.svg';
+import React, { useEffect, useState } from 'react';
+import DatePicker from 'react-datepicker';
+import { Button, Dropdown, Image } from 'semantic-ui-react';
 import './style.scss';
 
 const DatePickerSelect = ({ form, setForm, getTransactions }) => {
@@ -67,12 +67,16 @@ const DatePickerSelect = ({ form, setForm, getTransactions }) => {
               />
             </div>
             <div className="date-picker-button-action">
-              <Button onClick={e => e.preventDefault()}>
-                {' '}
+              <Button
+                className="btn--cancel"
+                onClick={e => e.preventDefault()}
+              >
                 {global.translate('Cancel')}{' '}
               </Button>
-              <Button onClick={getTransactions}>
-                {' '}
+              <Button
+                className="btn--confirm"
+                onClick={getTransactions}
+              >
                 {global.translate('Apply ')}
               </Button>
             </div>

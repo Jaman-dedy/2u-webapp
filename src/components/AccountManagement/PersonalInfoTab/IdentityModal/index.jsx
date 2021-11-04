@@ -225,7 +225,7 @@ const IdentityModal = ({
           )}
         </div>
         <div className="update-info-actions">
-          <Button className="cancel-button" onClick={dismissModal}>
+          <Button className="btn--cancel" onClick={dismissModal}>
             {global.translate('Cancel')}
           </Button>
           <Button

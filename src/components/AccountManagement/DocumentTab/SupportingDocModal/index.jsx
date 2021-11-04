@@ -70,14 +70,14 @@ const SupportingDocModal = ({
         </div>
         <div className="update-info-actions">
           <Button
-            className="cancel-button"
+            className="btn--cancel"
             onClick={() => setOpen(false)}
           >
             {global.translate('Cancel')}
           </Button>
           <Button
             disabled={!userIdUrlData}
-            className="change-button"
+            className="btn--confirm"
             loading={submittingDoc}
             onClick={handleSubmit}
           >

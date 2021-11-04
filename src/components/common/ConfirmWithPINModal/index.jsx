@@ -37,7 +37,7 @@ const ConfirmWithPINModal = ({
       </Modal.Content>
       <Modal.Actions>
         <Button
-          color="red"
+          className="btn--cancel"
           onClick={() => {
             onClickNo();
             close();

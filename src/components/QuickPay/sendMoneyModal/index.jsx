@@ -75,8 +75,7 @@ const SendMoneyModal = ({ sendMoneyModal, locateUser }) => {
       <Modal.Actions>
         <>
           <Button
-            basic
-            color="red"
+            className="btn--cancel"
             disabled={loading}
             onClick={() => {
               clearForm();

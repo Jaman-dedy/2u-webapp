@@ -438,8 +438,7 @@ const SendCashModal = ({
           {step !== 1 && (
             <Button
               disabled={checking || loading}
-              basic
-              color="red"
+              className="btn--cancel"
               onClick={() => {
                 resetState();
               }}
@@ -451,8 +450,7 @@ const SendCashModal = ({
           {step !== 3 && (
             <Button
               disabled={checking || loading}
-              basic
-              color="red"
+              className="btn--cancel"
               onClick={() => {
                 handleDismissModal();
                 setOpen(!open);
@@ -471,7 +469,7 @@ const SendCashModal = ({
             </Button>
           )}
           <Button
-            positive
+            className="btn--confirm"
             disabled={
               checking ||
               loading ||

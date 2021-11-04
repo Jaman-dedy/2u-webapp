@@ -458,8 +458,7 @@ const SendMoneyModal = ({ SendVoucherModal }) => {
           <>
             {step !== 1 && (
               <Button
-                basic
-                color="red"
+                className="btn--cancel"
                 disabled={checking || loading}
                 onClick={() => {
                   resetState();
@@ -470,8 +469,7 @@ const SendMoneyModal = ({ SendVoucherModal }) => {
             )}
 
             <Button
-              basic
-              color="red"
+              className="btn--cancel"
               disabled={checking || loading}
               onClick={() => {
                 if (selectedStore.skipSearchPage === true) {
@@ -487,7 +485,7 @@ const SendMoneyModal = ({ SendVoucherModal }) => {
             </Button>
 
             <Button
-              className="success-button"
+              className="btn--confirm"
               disabled={checking || loading}
               onClick={() => {
                 if (step === 1) {

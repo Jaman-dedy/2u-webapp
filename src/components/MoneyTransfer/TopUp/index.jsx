@@ -684,8 +684,7 @@ const TopUpModal = ({
           {step !== 1 && step !== 3 && (
             <Button
               disabled={checking || loading}
-              basic
-              color="red"
+              className="btn--cancel"
               onClick={() => {
                 updateMoneyTransferStep(1)(dispatch);
                 clearConfirmation()(dispatch);
@@ -700,8 +699,7 @@ const TopUpModal = ({
           {step !== 3 && (
             <Button
               disabled={checking || loading}
-              basic
-              color="red"
+              className="btn--cancel"
               onClick={() => {
                 setOpen(!open);
                 setForm({
@@ -728,7 +726,7 @@ const TopUpModal = ({
             </Button>
           )}
           <Button
-            positive
+            className="btn--confirm"
             disabled={
               checking ||
               loading ||

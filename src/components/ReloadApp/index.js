@@ -20,7 +20,10 @@ const ReloadApp = ({ onReload }) => {
           icon="refresh"
           labelPosition="right"
         />
-        <Button content={global.translate('Cancel', 86)} />
+        <Button
+          className="btn--cancel"
+          content={global.translate('Cancel', 86)}
+        />
       </div>
     </div>
   );

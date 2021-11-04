@@ -172,7 +172,7 @@ const UpdateInfoModal = ({ open, setOpen, personalInfo }) => {
         </div>
         <div className="update-info-actions">
           <Button
-            className="cancel-button"
+            className="btn--cancel"
             onClick={() => {
               setOpen(false);
             }}

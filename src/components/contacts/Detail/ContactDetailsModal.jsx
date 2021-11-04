@@ -434,8 +434,7 @@ const ContactDetailsModal = ({
 
             <Modal.Actions>
               <Button
-                basic
-                color="gray"
+                className="btn--cancel"
                 disabled={loading}
                 onClick={() => {
                   clearDeleteContact();
@@ -933,8 +932,7 @@ const ContactDetailsModal = ({
             </div>
             <Modal.Actions>
               <Button
-                basic
-                color="red"
+                className="btn--cancel"
                 onClick={() => {
                   setDestinationContact(null);
                   clearDeleteContact();

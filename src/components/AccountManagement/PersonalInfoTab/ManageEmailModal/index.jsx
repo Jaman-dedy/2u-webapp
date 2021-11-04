@@ -1,20 +1,19 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { useLocation, useHistory } from 'react-router-dom';
-import {
-  Modal,
-  Button,
-  Image,
-  Table,
-  Input,
-  Loader,
-} from 'semantic-ui-react';
-
-import checkEmail from 'helpers/checkEmail';
 import AddPhoneIcon from 'assets/images/profile/add-phone.svg';
 import ErrorMessage from 'components/common/Alert/Danger';
+import checkEmail from 'helpers/checkEmail';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
+import {
+  Button,
+  Image,
+  Input,
+  Loader,
+  Modal,
+  Table,
+} from 'semantic-ui-react';
 import './style.scss';
 
 const ManageEmailModal = ({
@@ -224,7 +223,7 @@ const ManageEmailModal = ({
                 {global.translate('Add Email')}
               </Button>
               <Button
-                className="cancel-button"
+                className="btn--cancel"
                 onClick={() => {
                   setOpen(false);
                 }}
