@@ -2,9 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
-
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import {
   Modal,
   Button,
@@ -14,7 +12,9 @@ import {
   Loader,
 } from 'semantic-ui-react';
 
+import checkEmail from 'helpers/checkEmail';
 import AddPhoneIcon from 'assets/images/profile/add-phone.svg';
+import ErrorMessage from 'components/common/Alert/Danger';
 import './style.scss';
 
 const ManageEmailModal = ({
@@ -41,6 +41,17 @@ const ManageEmailModal = ({
   const { loading, success, error } = updateUserEmailList;
   const [secondOpen, setSecondOpen] = useState(false);
   const [currentEmail, setCurrentEmail] = useState(null);
+  const [emailError, setEmailError] = useState(null);
+
+  useEffect(() => {
+    setEmailError(null);
+  }, [formEmail?.email]);
+
+  const isValidEmail = email => {
+    const isValid = checkEmail(email);
+    setEmailError(!isValid ? true : null);
+    return isValid;
+  };
 
   useEffect(() => {
     if (sendEmail.success) {
@@ -54,6 +65,13 @@ const ManageEmailModal = ({
       setIAddingPhone(false);
     }
   }, [success]);
+
+  useEffect(() => {
+    if (!open) {
+      setIAddingPhone(false);
+    }
+  }, [open]);
+
   const handleClick = email => {
     setCurrentEmail(email);
   };
@@ -227,8 +245,18 @@ const ManageEmailModal = ({
                 placeholder="john@gmail.com"
                 onChange={handleEmailInputChange}
                 name="email"
+                error={emailError}
               />
             </div>
+            {emailError && (
+              <div className="error-message">
+                <ErrorMessage
+                  message={global.translate(
+                    'Please provide a valid e-mail.',
+                  )}
+                />
+              </div>
+            )}
             <div className="add-phone-actions">
               <Button
                 className="back-button"
@@ -240,9 +268,10 @@ const ManageEmailModal = ({
                 loading={sendEmail.loading}
                 disabled={!formEmail?.email}
                 className="add-button"
-                onClick={() => {
-                  handleSubmitEmail();
-                }}
+                onClick={() =>
+                  isValidEmail(formEmail?.email) &&
+                  handleSubmitEmail()
+                }
               >
                 {global.translate('Add')}
               </Button>
