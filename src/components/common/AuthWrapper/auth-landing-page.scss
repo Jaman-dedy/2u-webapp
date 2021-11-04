@@ -42,10 +42,25 @@
     }
     cursor: pointer;
   }
+
   .lang-dropdown {
     margin: 20px;
     width: 120px;
-    float: right;
+    position: absolute;
+    right: 0;
+    top: 15px;
+    @media screen and(max-width: 600px) {
+      width: 160px;
+      right: 0;
+
+      .hlanguage {
+        right: -80px;
+      }
+      .display-language-icon {
+        right: -70px;
+      }
+    }
+
     padding: 10px auto;
     font-size: 16px;
     .lang-text {
