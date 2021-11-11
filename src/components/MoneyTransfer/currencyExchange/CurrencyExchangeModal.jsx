@@ -405,6 +405,7 @@ ExchangeCurrencyModal.propTypes = {
   setErrors: PropTypes.func.isRequired,
   step: PropTypes.number.isRequired,
   resetState: PropTypes.func.isRequired,
+  DefaultWallet: PropTypes.objectOf(PropTypes.any),
 };
 
 ExchangeCurrencyModal.defaultProps = {
@@ -419,5 +420,6 @@ ExchangeCurrencyModal.defaultProps = {
   setOpen: () => {},
   walletList: [],
   open: false,
+  DefaultWallet: {},
 };
 export default ExchangeCurrencyModal;
