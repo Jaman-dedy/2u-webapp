@@ -93,6 +93,7 @@ const AddMoneyModal = ({ open, setOpen, payBills }) => {
           <Button
             onClick={() => {
               clearPayBillsData();
+              screen1.clearError();
               if (isAppDisplayedInWebView()) {
                 history.push(
                   `${history.location.pathname}?redirect_back=1`,
