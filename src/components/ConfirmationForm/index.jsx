@@ -1,10 +1,10 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import { Dropdown, Input, Modal } from 'semantic-ui-react';
+import DatePicker from 'components/common/DatePicker';
 import Message from 'components/common/Message';
 import PinCodeForm from 'components/common/PinCodeForm';
 import ToggleSwitch from 'components/common/ToggleButton';
-import DatePicker from 'components/common/DatePicker';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { Dropdown, Input, Modal } from 'semantic-ui-react';
 import './style.scss';
 
 const ConfirmationForm = ({
