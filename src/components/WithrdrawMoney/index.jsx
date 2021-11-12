@@ -158,7 +158,7 @@ const WithdrawMoney = ({
             {parseFloat(form.amount, 10) <= 0 && (
               <AlertDanger
                 message={global.translate(
-                  'The amount entered is should be greater than zero',
+                  'The amount entered should be greater than zero',
                 )}
               />
             )}

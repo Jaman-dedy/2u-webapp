@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import {
-  Modal,
-  Button,
-  Icon,
-  Input,
-  TransitionablePortal,
-} from 'semantic-ui-react';
-import { useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
-import '../SendMoney/modal.scss';
-import PinCodeForm from 'components/common/PinCodeForm';
 import LoaderComponent from 'components/common/Loader';
 import Message from 'components/common/Message';
+import PinCodeForm from 'components/common/PinCodeForm';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import {
+  Button,
+  Input,
+  Modal,
+  TransitionablePortal,
+} from 'semantic-ui-react';
 import formatNumber from 'utils/formatNumber';
+import '../SendMoney/modal.scss';
 import TransactionEntity from '../SendMoney/TransactionEntity';
 import './style.scss';
 
@@ -163,7 +162,7 @@ const ExchangeCurrencyModal = ({
               ) ? (
                 <Message
                   message={global.translate(
-                    'The amount entered is greater than your available balance',
+                    'The amount entered greater than your available balance',
                   )}
                 />
               ) : null}

@@ -1,20 +1,20 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useEffect, useCallback, useState } from 'react';
+import ErrorMessage from 'components/common/Alert/Danger';
+import PasswordInput from 'components/common/PasswordInput';
 import PropTypes from 'prop-types';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
-  Modal,
   Button,
+  Dimmer,
   Form,
   Image,
   Loader,
-  Dimmer,
+  Modal,
 } from 'semantic-ui-react';
-import './style.scss';
-import PasswordInput from 'components/common/PasswordInput';
 import checkPassword from 'utils/checkPassword';
-import ErrorMessage from 'components/common/Alert/Danger';
 import PINInput from '../PINInput';
 import resetPIN from './resetPIN';
+import './style.scss';
 
 const ResetPIN = ({ open, setOpen, close, isOnResetPassword }) => {
   const {

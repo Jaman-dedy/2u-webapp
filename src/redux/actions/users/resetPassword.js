@@ -40,9 +40,17 @@ export const postResetPassword = data => dispatch => {
           if (data?.NewPassword && data?.NewPIN) {
             toast.success(res[0]?.Description);
           } else if (data?.NewPassword) {
-            toast.success(global.translate('User Password have been reset and is effective immediately.'));
+            toast.success(
+              global.translate(
+                'User Password have been reset and is effective immediately.',
+              ),
+            );
           } else {
-            toast.success(global.translate('User PIN have been reset and are effective immediately.'));
+            toast.success(
+              global.translate(
+                'User PIN have been reset and are effective immediately.',
+              ),
+            );
           }
         }
         return dispatch({
