@@ -1,33 +1,32 @@
+import InputLoader from 'assets/images/LoaderRectangle.svg';
+import ReusableDrowdown from 'components/common/Dropdown/ReusableDropdown';
+import LoaderComponent from 'components/common/Loader';
+import Message from 'components/common/Message';
+import Wrapper from 'hoc/Wrapper';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import NumberFormat from 'react-number-format';
 import PhoneInput from 'react-phone-input-2';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { updateMoneyTransferStep } from 'redux/actions/dashboard/dashboard';
+import { clearConfirmation } from 'redux/actions/moneyTransfer/confirmTransaction';
 import {
   Button,
   Checkbox,
+  Image,
   Input,
   Label,
   Modal,
-  Image,
 } from 'semantic-ui-react';
-import { useHistory } from 'react-router-dom';
-
-import ReusableDrowdown from 'components/common/Dropdown/ReusableDropdown';
-import LoaderComponent from 'components/common/Loader';
-import Message from 'components/common/Message';
-import Wrapper from 'hoc/Wrapper';
-import { updateMoneyTransferStep } from 'redux/actions/dashboard/dashboard';
-import { clearConfirmation } from 'redux/actions/moneyTransfer/confirmTransaction';
 import countryCodes from 'utils/countryCodes';
 import formatNumber from 'utils/formatNumber';
 import { getPossibleDates } from 'utils/monthdates';
-
-import '../SendMoney/modal.scss';
-import './TopUp.scss';
-import InputLoader from 'assets/images/LoaderRectangle.svg';
 import ConfirmationForm from '../../ConfirmationForm';
+import '../SendMoney/modal.scss';
 import TransactionEntity from '../SendMoney/TransactionEntity';
+import './TopUp.scss';
+
 /* eslint-disable no-unused-vars */
 
 const countries = countryCodes;

@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import CustomDropdown from 'components/common/Dropdown/WalletDropdown';
+import Img from 'components/common/Img';
+import Thumbnail from 'components/common/Thumbnail';
+import Wrapper from 'hoc/Wrapper';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import './entity-wrapper.scss';
-import PropTypes from 'prop-types';
-import Thumbnail from 'components/common/Thumbnail';
-import CustomDropdown from 'components/common/Dropdown/WalletDropdown';
-import Wrapper from 'hoc/Wrapper';
-import Img from 'components/common/Img';
 
 const TransactionEntity = ({
   onChange,
@@ -103,9 +103,9 @@ const TransactionEntity = ({
       {data && data.data && (
         <div className="transacters">
           <Thumbnail
-            name={data?.data?.FirstName|| ''}
-            avatar={data?.data?.PictureURL|| ''}
-            secondName={data?.data?.LastName|| ''}
+            name={data?.data?.FirstName || ''}
+            avatar={data?.data?.PictureURL || ''}
+            secondName={data?.data?.LastName || ''}
             width={75}
             height={75}
             style={{
@@ -200,4 +200,4 @@ TransactionEntity.defaultProps = {
   destinationContact: {},
   isSelfBuying: false,
 };
-export default TransactionEntity;
+export default React.memo(TransactionEntity);

@@ -88,7 +88,13 @@ const ExchangeCurrencyModal = ({
       className="currency-exchange-container"
       open={open}
     >
-      <Modal size="small" open={open} onOpen={() => setOpen(!open)}>
+      <Modal
+        size="small"
+        open={open}
+        onOpen={() => setOpen(!open)}
+        closeOnDimmerClick={false}
+        closeOnDocumentClick={false}
+      >
         <Modal.Header className="modal-title">
           {global.translate('Currency Exchange or Cash pooling')}
         </Modal.Header>

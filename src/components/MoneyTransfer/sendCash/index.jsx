@@ -1,19 +1,17 @@
+import CustomDropdown from 'components/common/Dropdown/CountryDropdown';
+import Message from 'components/common/Message';
+import SelectCountryCode from 'components/common/SelectCountryCode';
+import 'moment/locale/fr';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Button, Form, Input, Modal } from 'semantic-ui-react';
-import 'moment/locale/fr';
-import CustomDropdown from 'components/common/Dropdown/CountryDropdown';
-import Message from 'components/common/Message';
-import SelectCountryCode from 'components/common/SelectCountryCode';
 import countryCodes from 'utils/countryCodes';
 import formatNumber from 'utils/formatNumber';
 import { getPossibleDates } from 'utils/monthdates';
-
 import ConfirmationForm from '../../ConfirmationForm';
-import TransactionEntity from '../SendMoney/TransactionEntity';
-
 import '../SendMoney/modal.scss';
+import TransactionEntity from '../SendMoney/TransactionEntity';
 import './style.scss';
 
 const countries = countryCodes;
@@ -207,10 +205,13 @@ const SendCashModal = ({
   return (
     <Modal
       size="small"
+      onClick={e => e.stopPropagation()}
       open={open}
       onOpen={() => {
         setOpen(false);
       }}
+      closeOnDimmerClick={false}
+      closeOnDocumentClick={false}
     >
       {transactionType === 'CASH_TRANSACTION' && destinationContact && (
         <Modal.Header centered className="modal-title">
@@ -562,4 +563,4 @@ SendCashModal.defaultProps = {
   defaultDestinationCurrency: null,
   transactionType: null,
 };
-export default SendCashModal;
+export default React.memo(SendCashModal);
