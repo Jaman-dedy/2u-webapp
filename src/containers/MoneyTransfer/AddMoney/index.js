@@ -83,6 +83,10 @@ const AddMoneyContainer = () => {
         ? ''
         : 'Enter the expiry date';
     const CVV = addMoneyData.CVV ? '' : 'Enter the CVV';
+    const CVVLength =
+      addMoneyData.CVV.length === 3
+        ? ''
+        : 'The CVV should have 3 digits';
     const CVVValid =
       addMoneyData.CVV.search(/[A-Z]/) === -1 &&
       addMoneyData.CVV.search(/[a-z]/) === -1 &&
@@ -98,7 +102,9 @@ const AddMoneyContainer = () => {
       Amount,
       date,
       CardNumber: CardNumber || CardNumberLength || CardNumberValid,
-      CVV: CVV || CVVValid,
+      CVV,
+      CVVValid,
+      CVVLength,
       NameOnCard,
       Address,
       City,
@@ -112,6 +118,7 @@ const AddMoneyContainer = () => {
       CardNumberValid ||
       CVV ||
       CVVValid ||
+      CVVLength ||
       NameOnCard ||
       Address ||
       City ||
