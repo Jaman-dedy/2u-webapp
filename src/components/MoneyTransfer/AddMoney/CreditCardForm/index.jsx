@@ -25,7 +25,8 @@ const CreditCardForm = ({
     if (success || error) {
       setStep(step + 1);
     }
-  }, [success, error]);
+  }, [success, error, setStep, step]);
+
   return (
     <Form className="add-money-form" autoComplete="off">
       <div className="amount">
