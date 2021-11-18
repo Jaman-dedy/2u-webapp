@@ -225,7 +225,7 @@ const VirtualCardDetailsContainer = () => {
       );
       hasError = true;
     }
-    if (parseFloat(selectedWallet.Balance, 10) === 0) {
+    if (parseFloat(selectedWallet?.Balance, 10) === 0) {
       setErrors(
         global.translate(
           "You don't have enough money in this wallet for this operation",
@@ -391,6 +391,10 @@ const VirtualCardDetailsContainer = () => {
       setStep(step => step + 1);
     }
   }, [confirmationData]);
+
+  useEffect(() => {
+    setErrors(null);
+  }, [step]);
 
   return (
     <VirtualCardDetails
