@@ -375,7 +375,7 @@ const VirtualCardDetailsContainer = () => {
       PIN,
       CardNumber:
         form?.CardNumber ?? location?.state?.item?.CardNumber,
-      TargetWallet: selectedWallet.AccountNumber,
+      TargetWallet: selectedWallet?.AccountNumber,
     };
     if (!pinIsValid()) {
       setErrors(
