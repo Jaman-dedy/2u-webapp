@@ -207,6 +207,7 @@ const AddStoreContainer = ({ currentStore }) => {
     const OpeningHour = addStoreData.OpeningHour
       ? ''
       : global.translate('Enter the opening hours', 2092);
+
     const ClosingHour = addStoreData.ClosingHour
       ? ''
       : global.translate('Enter the closing hours', 2094);
