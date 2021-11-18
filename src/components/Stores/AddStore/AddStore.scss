@@ -71,7 +71,7 @@
         font-weight: 300;
         font-size: 14px;
         line-height: 21px;
-        color: #333556;
+        color: #bbb;
       }
     }
 
@@ -93,14 +93,21 @@
 
     .category-selector {
       border: 1px solid #cfcfcf;
+      border-radius: 4px !important;
+
       .selection.dropdown {
         display: flex;
         align-items: center;
-        border-radius: 0;
+        border-radius: 0 !important;
         border: none;
         background: #ffffff !important;
-        height: 44px;
+        max-height: 46px;
       }
+    }
+
+    .error.field.category-selector {
+      max-height: 46px !important;
+      margin-bottom: 4rem !important;
     }
 
     .isOpenWeekend {
@@ -125,7 +132,7 @@
         font-weight: 300;
         font-size: 14px;
         line-height: 21px;
-        color: #333556;
+        color: #bbb;
       }
 
       &:focus {
