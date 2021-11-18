@@ -2,6 +2,21 @@
   .user-phone-number {
     border: 1px solid #d8dcde;
     border-radius: 5px;
+    height: 46px;
+
+    .dropdown-flag {
+      position: relative;
+      width: 50px;
+      .caret.down.icon.inline {
+        top: -5px !important;
+        position: absolute;
+        left: 30px;
+      }
+      img {
+        width: 30px !important;
+        height: 20px !important;
+      }
+    }
   }
   .ui.input {
     border: 1px solid #cfcfcf;
@@ -138,10 +153,6 @@
       }
     }
 
-    .input-image.city {
-      width: 50%;
-    }
-
     .programme {
       display: flex;
       justify-content: space-between;
@@ -182,6 +193,10 @@
     .country-input {
       margin-bottom: 14px;
       margin-top: 10px;
+
+      img {
+        width: 30px !important;
+      }
     }
   }
 }
