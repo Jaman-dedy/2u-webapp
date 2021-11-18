@@ -9,8 +9,9 @@
   display: flex;
   flex-wrap: wrap;
   align-content: space-between;
+  align-items: center;
   .go-back {
-    margin-right: 10px;
+    margin-right: 1.6rem;
     button {
       cursor: pointer;
       background: #ffffff;
