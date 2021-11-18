@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import './SendVoucherModal.scss';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import getPendingVouchers from 'redux/actions/transactions/getPendingVouchers';
 import PinCodeForm from 'components/common/PinCodeForm';
 import { getPossibleDates } from 'utils/monthdates';
@@ -80,6 +81,7 @@ const SendMoneyModal = ({ SendVoucherModal }) => {
       clearMoveFundsErrors()(dispatch);
       getPendingVouchers()(dispatch);
       resetState();
+      toast.success(`${data[0].Description}`);
     }
   }, [data]);
 
