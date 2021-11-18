@@ -57,6 +57,10 @@ const SearchStoresForm = ({
         : CountryCode === userLocationData.CountryCode;
     });
 
+    if (!form.CountryCode) {
+      form.CountryCode = selectedCountry?.CountryCode;
+    }
+
     setSelectedCountry(thisCountry);
   }, [form.CountryCode, userLocationData]);
 
