@@ -200,9 +200,9 @@ export default ({
         selectedContact?.ContactType === 'INTERNAL'
           ? selectedContact?.ContactPID
           : '',
-      FirstName: selectedContact?.FirstName,
+      FirstName: selectedContact.FirstName,
 
-      LastName: selectedContact?.LastName,
+      LastName: selectedContact.LastName,
 
       Amount: form.amount ? form.amount.toString() : '',
       SourceWallet: form?.user1wallets,
