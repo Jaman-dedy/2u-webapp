@@ -322,7 +322,7 @@ const AddMoneyModal = ({
                   style={{ alignSelf: 'center' }}
                 >
                   {' '}
-                  {errors && shouldClear && (
+                  {errors && !shouldClear && (
                     <Message message={errors} />
                   )}
                   <>
