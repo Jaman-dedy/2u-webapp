@@ -8,16 +8,16 @@ import {
   Loader,
   Dimmer,
 } from 'semantic-ui-react';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import ReactFlagsSelect from 'react-flags-select';
 import ReusableDropDown from 'components/common/Dropdown/ReusableDropdown';
 import OTPInput from 'components/common/PINInput';
 import InfoMessage from 'components/common/Alert/InfoMessage';
 import ErrorMessage from 'components/common/Alert/Danger';
-import ReactFlagsSelect from 'react-flags-select';
 import './style.scss';
-import { useSelector } from 'react-redux';
 import { clearUpdatePhoneList } from 'redux/actions/userAccountManagement/deletePhoneNumber';
-import { useDispatch } from 'react-redux';
+
 const AddBankAccountModal = ({
   open,
   onOpen,
