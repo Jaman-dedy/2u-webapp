@@ -1,16 +1,9 @@
-import InputLoader from 'assets/images/LoaderRectangle.svg';
-import ReusableDrowdown from 'components/common/Dropdown/ReusableDropdown';
-import LoaderComponent from 'components/common/Loader';
-import Message from 'components/common/Message';
-import Wrapper from 'hoc/Wrapper';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import NumberFormat from 'react-number-format';
 import PhoneInput from 'react-phone-input-2';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { updateMoneyTransferStep } from 'redux/actions/dashboard/dashboard';
-import { clearConfirmation } from 'redux/actions/moneyTransfer/confirmTransaction';
 import {
   Button,
   Checkbox,
@@ -19,6 +12,13 @@ import {
   Label,
   Modal,
 } from 'semantic-ui-react';
+import InputLoader from 'assets/images/LoaderRectangle.svg';
+import ReusableDrowdown from 'components/common/Dropdown/ReusableDropdown';
+import LoaderComponent from 'components/common/Loader';
+import Message from 'components/common/Message';
+import Wrapper from 'hoc/Wrapper';
+import { updateMoneyTransferStep } from 'redux/actions/dashboard/dashboard';
+import { clearConfirmation } from 'redux/actions/moneyTransfer/confirmTransaction';
 import countryCodes from 'utils/countryCodes';
 import formatNumber from 'utils/formatNumber';
 import { getPossibleDates } from 'utils/monthdates';
@@ -281,6 +281,16 @@ const TopUpModal = ({
     value: item.day,
     text: item.val,
   }));
+
+  const getButtonAction = () => {
+    if (isTopingUp) {
+      return global.translate('Buy Airtime');
+    }
+
+    return isSendingOthers
+      ? buttonAction || global.translate('Send')
+      : global.translate('Send');
+  };
 
   return (
     <Modal
@@ -756,10 +766,7 @@ const TopUpModal = ({
               }
             }}
           >
-            <>
-              {isTopingUp && global.translate('Buy Airtime')}
-              {isSendingOthers && buttonAction}
-            </>
+            {getButtonAction()}
           </Button>
         </>
       </Modal.Actions>
