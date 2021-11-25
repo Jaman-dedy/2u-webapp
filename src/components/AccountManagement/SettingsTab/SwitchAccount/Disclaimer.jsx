@@ -16,7 +16,7 @@ const UpgradeAccountDisclaimer = ({
       </Header>
       <p className="disclaimer__message">
         {global.translate(
-          `Converting your account to business will allow you to create stores, broadcast campaigns to millions
+          `Converting your account to a business account will allow you to create stores, broadcast campaigns to millions
             of customers around the world, make unlimited number of money transfer per day. You will not lose your
             information such as transactions history, wallets, cards and contacts. However, some of your personal
              information will be converted into business information. Don’t worry,
