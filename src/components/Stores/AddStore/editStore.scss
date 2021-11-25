@@ -1,4 +1,23 @@
 .edit-store-container {
+  .user-phone-number {
+    border: 1px solid #d8dcde;
+    border-radius: 5px;
+    height: 46px;
+
+    .dropdown-flag {
+      position: relative;
+      width: 50px;
+      .caret.down.icon.inline {
+        top: -5px !important;
+        position: absolute;
+        left: 30px;
+      }
+      img {
+        width: 30px !important;
+        height: 20px !important;
+      }
+    }
+  }
   .ui.input {
     border: 1px solid #cfcfcf;
   }
@@ -146,6 +165,48 @@
       display: flex;
       justify-content: space-between;
       margin-bottom: 14px;
+    }
+
+    .opening-hours-group {
+      display: flex !important;
+      flex-direction: column !important;
+      .dropdowns {
+        display: flex;
+        flex: 1;
+
+        .ui.search.selection.dropdown {
+          border-top: none;
+          border-left: none;
+          border-right: none;
+          border-radius: 0 !important;
+        }
+        .to-label {
+          margin: 0 10px;
+          margin-top: 10px;
+        }
+
+        .ui.search.dropdown {
+          min-width: 80px;
+          max-height: 20px;
+        }
+        .error.field.hours.from {
+          max-height: 36px;
+          max-width: 100px;
+        }
+
+        .error.field.hours.to {
+          max-height: 36px;
+          max-width: 100px;
+        }
+
+        .error.field.hours {
+          margin-bottom: 1.5rem !important;
+        }
+
+        div.search.selection.dropdown {
+          max-width: 20px !important;
+        }
+      }
     }
 
     .opening-hours {
