@@ -37,7 +37,7 @@ const LoanTableDetails = ({ loan }) => {
           <Table.Cell>
             {`${global.translate('Total payment')} ${global.translate(
               '(last',
-            )}  ${loan?.MonthPaid} ${global.transglobal.translalate('months)')}`}
+            )} ${loan?.MonthPaid} ${global.translate('months)')}`}
             <div className="amount">
               {loan?.Currency} <strong>{loan?.AmountPaid}</strong>{' '}
             </div>
