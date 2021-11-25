@@ -6,12 +6,12 @@ import './SelectLanguage.scss';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import changeLanguage from 'redux/actions/users/changeLanguage';
 import { Dropdown, Loader } from 'semantic-ui-react';
+import changeLanguage from 'redux/actions/users/changeLanguage';
 import useWindowSize from 'utils/useWindowSize';
-import LoaderComponent from '../Loader';
 import languageIcon from 'assets/images/h-languages.svg';
 import replaceCountryFlag from 'helpers/replaceCountryFlag';
+import LoaderComponent from '../Loader';
 
 const SelectLanguage = ({ pointing, hasLabel, open, setOpen }) => {
   const dispatch = useDispatch();
@@ -82,7 +82,7 @@ const SelectLanguage = ({ pointing, hasLabel, open, setOpen }) => {
           pointing={width > 600 ? pointing : false}
           onBlur={() => setOpen(false)}
         >
-          <Dropdown.Menu>
+          <Dropdown.Menu className="dropdown-menu">
             <Dropdown.Menu scrolling>
               {getLanguageLoading ||
                 (getSupportedLanguagesLoading && (

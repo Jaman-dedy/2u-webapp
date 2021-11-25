@@ -1,31 +1,32 @@
+import InputLoader from 'assets/images/LoaderRectangle.svg';
+import ReusableDrowdown from 'components/common/Dropdown/ReusableDropdown';
+import LoaderComponent from 'components/common/Loader';
+import Message from 'components/common/Message';
+import Wrapper from 'hoc/Wrapper';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import NumberFormat from 'react-number-format';
 import PhoneInput from 'react-phone-input-2';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { updateMoneyTransferStep } from 'redux/actions/dashboard/dashboard';
+import { clearConfirmation } from 'redux/actions/moneyTransfer/confirmTransaction';
 import {
   Button,
   Checkbox,
+  Image,
   Input,
   Label,
   Modal,
 } from 'semantic-ui-react';
-import { useHistory } from 'react-router-dom';
-
-import ReusableDrowdown from 'components/common/Dropdown/ReusableDropdown';
-import LoaderComponent from 'components/common/Loader';
-import Message from 'components/common/Message';
-import Wrapper from 'hoc/Wrapper';
-import { updateMoneyTransferStep } from 'redux/actions/dashboard/dashboard';
-import { clearConfirmation } from 'redux/actions/moneyTransfer/confirmTransaction';
 import countryCodes from 'utils/countryCodes';
 import formatNumber from 'utils/formatNumber';
 import { getPossibleDates } from 'utils/monthdates';
-
-import '../SendMoney/modal.scss';
-import './TopUp.scss';
 import ConfirmationForm from '../../ConfirmationForm';
+import '../SendMoney/modal.scss';
 import TransactionEntity from '../SendMoney/TransactionEntity';
+import './TopUp.scss';
+
 /* eslint-disable no-unused-vars */
 
 const countries = countryCodes;
@@ -323,12 +324,18 @@ const TopUpModal = ({
               {global.translate(
                 'Available Balance in the Selected Wallet',
               )}
-              <p className="available-value">
-                {formatNumber(balanceOnWallet, {
-                  locales: preferred,
-                  currency,
-                })}
-              </p>
+              {balanceOnWallet ? (
+                <p className="available-value">
+                  {formatNumber(balanceOnWallet, {
+                    locales: preferred,
+                    currency,
+                  })}
+                </p>
+              ) : (
+                <div className="wallet-loader-container">
+                  <LoaderComponent className="wallet-loader" />
+                </div>
+              )}
             </h4>
           </div>
           <Wrapper>
@@ -338,7 +345,10 @@ const TopUpModal = ({
                   {global.translate('Destination Country')}
                 </p>
                 {loadProvidersCountries ? (
-                  <LoaderComponent />
+                  <Image
+                    className="animate-placeholder loader-others"
+                    src={InputLoader}
+                  />
                 ) : (
                   <ReusableDrowdown
                     options={appCountries}
@@ -349,6 +359,7 @@ const TopUpModal = ({
                         value: e.target.value,
                       });
                     }}
+                    customstyle
                     search
                     setCurrentOption={setCurrentOption}
                     placeholder={global.translate('Select a country')}
@@ -356,17 +367,15 @@ const TopUpModal = ({
                 )}
               </div>
               <div className="currency">
-                <span className="choose-dest-country">
+                <p className="choose-dest-country">
                   {global.translate(`Providers in `)}
                   &nbsp;
                   <strong>
                     {(currentOption && currentOption?.CountryName) ||
                       currentOption?.Title}
                   </strong>
-                </span>
-                {loadProvidersList ? (
-                  <LoaderComponent />
-                ) : (
+                </p>
+                {!loadProvidersList && providersListOption ? (
                   <ReusableDrowdown
                     options={providersListOption}
                     currentOption={currentProviderOption}
@@ -377,10 +386,16 @@ const TopUpModal = ({
                       });
                     }}
                     setCurrentOption={setCurrentProviderOption}
+                    customstyle
                     search
                     placeholder={global.translate(
                       'Select a provider',
                     )}
+                  />
+                ) : (
+                  <Image
+                    className="animate-placeholder loader-others"
+                    src={InputLoader}
                   />
                 )}
               </div>
@@ -523,7 +538,9 @@ const TopUpModal = ({
                         <PhoneInput
                           enableSearch
                           className="new-phone-number"
-                          value={phoneValue}
+                          value={
+                            currentOption?.PhoneAreaCode || phoneValue
+                          }
                           onChange={phone => {
                             setPhoneValue(phone);
                             setNextStep(false);
@@ -666,8 +683,7 @@ const TopUpModal = ({
           {step !== 1 && step !== 3 && (
             <Button
               disabled={checking || loading}
-              basic
-              color="red"
+              className="btn--cancel"
               onClick={() => {
                 updateMoneyTransferStep(1)(dispatch);
                 clearConfirmation()(dispatch);
@@ -682,8 +698,7 @@ const TopUpModal = ({
           {step !== 3 && (
             <Button
               disabled={checking || loading}
-              basic
-              color="red"
+              className="btn--cancel"
               onClick={() => {
                 setOpen(!open);
                 setForm({
@@ -710,7 +725,7 @@ const TopUpModal = ({
             </Button>
           )}
           <Button
-            positive
+            className="btn--confirm"
             disabled={
               checking ||
               loading ||

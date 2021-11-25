@@ -25,7 +25,8 @@ const CreditCardForm = ({
     if (success || error) {
       setStep(step + 1);
     }
-  }, [success, error]);
+  }, [success, error, setStep, step]);
+
   return (
     <Form className="add-money-form" autoComplete="off">
       <div className="amount">
@@ -43,6 +44,7 @@ const CreditCardForm = ({
           className="currency"
           name="Currency"
           value={addMoneyData.Currency}
+          placeholder={global.translate('Currency')}
           error={errors.Currency || false}
           onChange={(_, { name, value }) => {
             handleInputChange({ target: { name, value } });
@@ -68,6 +70,7 @@ const CreditCardForm = ({
         addMoneyFromCreditCard={addMoneyFromCreditCard}
         handleInputChange={handleInputChange}
         errors={errors}
+        inputValue={addMoneyData.CardNumber}
       />
       <span>{global.translate('Expiration date')}</span>
       <Form.Field className="expiry-date">
@@ -86,7 +89,9 @@ const CreditCardForm = ({
           placeholder="CVV"
           name="CVV"
           value={addMoneyData.CVV}
-          error={errors.CVV || false}
+          error={
+            errors.CVV || errors.CVVValid || errors.CVVLength || false
+          }
           onChange={handleInputChange}
           ref={cvvRef}
           type="number"

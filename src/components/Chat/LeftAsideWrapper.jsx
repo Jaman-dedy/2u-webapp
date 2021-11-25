@@ -282,8 +282,7 @@ const ChartListComponent = ({
           {width < 700 && (
             <Button
               icon
-              basic
-              color="red"
+              className="btn--cancel"
               className="chat-close"
               onClick={() => {
                 closeChatList()(dispatch);

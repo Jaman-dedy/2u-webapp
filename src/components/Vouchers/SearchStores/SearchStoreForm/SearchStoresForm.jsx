@@ -27,7 +27,7 @@ const SearchStoresForm = ({
 
   const countries = rawCountries.map(({ text, flag, key }) => ({
     CountryName: text,
-    Flag: `https://www.countryflags.io/${flag}/flat/32.png`,
+    Flag: `https://flagcdn.com/h20/${flag}.png`,
     CountryCode: key,
   }));
 
@@ -56,6 +56,10 @@ const SearchStoresForm = ({
         ? CountryCode === Country.CountryCode
         : CountryCode === userLocationData.CountryCode;
     });
+
+    if (!form.CountryCode) {
+      form.CountryCode = selectedCountry?.CountryCode;
+    }
 
     setSelectedCountry(thisCountry);
   }, [form.CountryCode, userLocationData]);

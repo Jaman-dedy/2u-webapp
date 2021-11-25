@@ -93,6 +93,7 @@ const AddMoneyModal = ({ open, setOpen, payBills }) => {
           <Button
             onClick={() => {
               clearPayBillsData();
+              screen1.clearError();
               if (isAppDisplayedInWebView()) {
                 history.push(
                   `${history.location.pathname}?redirect_back=1`,
@@ -102,15 +103,14 @@ const AddMoneyModal = ({ open, setOpen, payBills }) => {
               }
               setOpen(false);
             }}
-            basic
-            color="red"
+            className="btn--cancel"
             content={global.translate('Cancel', 86)}
           />
           <Button
             onClick={() => {
               screen1.handleNext();
             }}
-            positive
+            className="btn--confirm"
             content={global.translate('Next', 10)}
           />
         </>

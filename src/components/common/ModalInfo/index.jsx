@@ -42,7 +42,10 @@ const ModalInfo = ({
           {buttonText}
         </Button>
         {isEligible && (
-          <Button basic color="red" onClick={() => setOpen(false)}>
+          <Button
+            className="btn--cancel"
+            onClick={() => setOpen(false)}
+          >
             {global.translate('Cancel')}
           </Button>
         )}

@@ -1,30 +1,29 @@
 /* eslint-disable jsx-a11y/interactive-supports-focus */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { Checkbox, Button, Input } from 'semantic-ui-react';
-import './style.scss';
-import PropTypes from 'prop-types';
-import MyWallets from 'components/common/WalletCarousselSelector';
-import DashboardLayout from 'components/common/DashboardLayout';
-import WelcomeBar from 'components/Dashboard/WelcomeSection';
-import GoBack from 'components/common/GoBack';
-import DisplayProviders from 'components/common/DisplayProviders';
-import openInNewTab from 'helpers/openInNewTab';
-import clearWalletForm from 'redux/actions/users/clearWalletForm';
-import ReusableDrowdown from 'components/common/Dropdown/ReusableDropdown';
-import InfoMessage from 'components/common/Alert/InfoMessage';
-import getUserCurrencies from 'redux/actions/users/getUserCurrencies';
-
-import EmptyCard from 'components/common/EmptyCard';
-import addWallets from 'redux/actions/users/addWallet';
-import getMyWalletsAction from 'redux/actions/users/getMyWallets';
-import endWalletAction from 'redux/actions/walletsAndBanks/endWalletAction';
-import AddWalletModal from 'components/WalletsAndBanks/WalletsTab/AddWalletModal';
 import WalletImage from 'assets/images/empty_wallet.svg';
+import InfoMessage from 'components/common/Alert/InfoMessage';
+import DashboardLayout from 'components/common/DashboardLayout';
+import DisplayProviders from 'components/common/DisplayProviders';
+import ReusableDrowdown from 'components/common/Dropdown/ReusableDropdown';
+import EmptyCard from 'components/common/EmptyCard';
+import GoBack from 'components/common/GoBack';
+import MyWallets from 'components/common/WalletCarousselSelector';
+import WelcomeBar from 'components/Dashboard/WelcomeSection';
+import AddWalletModal from 'components/WalletsAndBanks/WalletsTab/AddWalletModal';
+import openInNewTab from 'helpers/openInNewTab';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import addWallets from 'redux/actions/users/addWallet';
+import clearWalletForm from 'redux/actions/users/clearWalletForm';
+import getMyWalletsAction from 'redux/actions/users/getMyWallets';
+import getUserCurrencies from 'redux/actions/users/getUserCurrencies';
+import endWalletAction from 'redux/actions/walletsAndBanks/endWalletAction';
+import { Button, Checkbox, Input } from 'semantic-ui-react';
 import LoadCardLevel from './LoadCardLevel';
 import PinModal from './PinModal';
+import './style.scss';
 
 const AddCard = ({
   creditCardOptions,
@@ -260,7 +259,6 @@ const AddCard = ({
                   onChange={() => setHasNotAgreed(!hasNotAgreed)}
                 />
                 <div className="card-actions">
-                  <Button basic>{global.translate('Cancel')}</Button>
                   <Button
                     disabled={isDisabled}
                     positive

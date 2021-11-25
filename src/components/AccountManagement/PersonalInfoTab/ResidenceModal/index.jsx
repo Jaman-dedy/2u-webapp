@@ -166,19 +166,19 @@ const ResidenceModal = ({
         </div>
         <div className="update-info-actions">
           <Button
-            className="cancel-button"
+            className="btn--cancel"
             onClick={() => setOpen(false)}
           >
             {global.translate('Cancel')}
           </Button>
           <Button
             disabled={
-              formData?.Address1 &&
-              formData?.City &&
-              formData?.POBox &&
-              formData?.Address2
-                ? false
-                : true
+              !(
+                formData?.Address1 &&
+                formData?.City &&
+                formData?.POBox &&
+                formData?.Address2
+              )
             }
             className="change-button"
             loading={loading}

@@ -1,12 +1,12 @@
 .SelectLanguage {
-  margin: 10px 30px;
-  float: right;
+  margin: 10px auto;
   min-width: 40px !important;
-  position: relative;
+  position: absolute;
   z-index: 100;
   img.h-language {
     position: absolute;
     top: -6px;
+
     width: 34px !important;
   }
   .display-language-icon {
@@ -17,5 +17,11 @@
       min-width: 50px;
       font-weight: 300;
     }
+  }
+}
+
+.ui.dropdown .scrolling.menu {
+  &::-webkit-scrollbar {
+    display: none;
   }
 }

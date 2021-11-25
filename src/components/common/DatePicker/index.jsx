@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
-import DatePicker from 'react-datepicker';
-import PropTypes from 'prop-types';
-import 'react-datepicker/dist/react-datepicker.css';
 import calendar from 'assets/images/calendar.png';
-import './DatePicker.scss';
+import PropTypes from 'prop-types';
+import React, { useEffect, useRef, useState } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import { validateDate } from 'utils/formatDate';
+import './DatePicker.scss';
 
 const DateInput = ({
   onChange,
@@ -90,13 +90,7 @@ const DateInput = ({
         </div>
       </div>
       {isInvalidDate && (
-        <span
-          style={{
-            color: 'red',
-            display: 'inline-block',
-            margin: '1rem 0',
-          }}
-        >
+        <span className="date-error">
           {global.translate('The date is invalid')}
         </span>
       )}
@@ -157,7 +151,7 @@ CustomDatePicker.propTypes = {
 };
 
 CustomDatePicker.defaultProps = {
-  dateFormat: '',
+  dateFormat: 'yyyy-MM-dd',
   maxDate: '',
   minDate: '',
   label: '',

@@ -171,8 +171,7 @@ const AddNewContactModal = ({
         <Modal.Actions>
           <>
             <Button
-              basic
-              color="red"
+              className="btn--cancel"
               onClick={() => {
                 clearFoundUser()(dispatch);
                 setForm({});
@@ -186,7 +185,7 @@ const AddNewContactModal = ({
             </Button>
 
             <Button
-              positive
+              className="btn--confirm"
               disabled={
                 !data ||
                 (data && data[0] && data[0]?.Result !== 'Success') ||

@@ -22,6 +22,7 @@ const AddWalletModal = ({
   getMyCurrencies,
   getCurrenciesListLoading,
 }) => {
+  const [loadingCurrencies, setLoadingCurrencies] = useState(false);
   const [form, setForm] = useState([
     {
       Currency: '',
@@ -60,6 +61,14 @@ const AddWalletModal = ({
         image: { avatar: false, src: el.Flag },
       };
     });
+
+  useEffect(() => {
+    if (!currencies) {
+      setLoadingCurrencies(true);
+    } else {
+      setLoadingCurrencies(false);
+    }
+  }, [currencies]);
 
   const onSuccess = React.useCallback(() => {
     getMyWalletsFX();
@@ -136,7 +145,7 @@ const AddWalletModal = ({
                     </Grid.Column>
                     <Grid.Column>
                       <Dropdown
-                        loading={getCurrenciesListLoading}
+                        loading={loadingCurrencies}
                         fluid
                         search
                         selection
@@ -161,7 +170,6 @@ const AddWalletModal = ({
                           'Select a currency',
                         )}
                       />
-
                       <span className="wallet-row-actions">
                         {index !== 0 && (
                           <Icon
@@ -190,12 +198,11 @@ const AddWalletModal = ({
       </Modal.Content>
       {!addWallet.success && (
         <Modal.Actions>
-          <Button className="cancel" onClick={toggleShowModal}>
+          <Button className="btn--cancel" onClick={toggleShowModal}>
             {global.translate('Cancel')}
           </Button>
           <Button
-            positive
-            className="add"
+            className="btn--confirm"
             onClick={() => {
               form.forEach((item, index) => {
                 if (item.Name === '' || item.Currency === '') {
@@ -206,7 +213,11 @@ const AddWalletModal = ({
             }}
             loading={addWallet.loading}
             disabled={
-              addWallet.loading || form[0].Name.match(/^\s*$/)
+              addWallet.loading ||
+              !options ||
+              form.some(
+                item => item.Name === '' || item.Currency === '',
+              )
             }
           >
             {global.translate('Add')}

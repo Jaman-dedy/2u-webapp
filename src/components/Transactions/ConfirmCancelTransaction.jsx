@@ -187,8 +187,7 @@ const ConfirmCancelTransaction = ({
           {step !== 2 && (
             <Button
               disabled={loading}
-              basic
-              color="red"
+              className="btn--cancel"
               active
               onClick={() => setOpen(false)}
             >
@@ -198,8 +197,7 @@ const ConfirmCancelTransaction = ({
           {step === 2 && (
             <Button
               disabled={loading || voucherLoading || loadOther}
-              basic
-              color="red"
+              className="btn--cancel"
               onClick={() => setStep(step - 1)}
             >
               {global.translate('Back', 174)}

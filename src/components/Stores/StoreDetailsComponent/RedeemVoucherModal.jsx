@@ -162,8 +162,7 @@ const RedeemVoucherModal = ({ open, setOpen, item }) => {
             <>
               <Button
                 disabled={redeemLoading}
-                basic
-                color="red"
+                className="btn--cancel"
                 onClick={() => setStep(step - 1)}
               >
                 {global.translate('Back')}

@@ -62,6 +62,12 @@ const AddMoneyContainer = () => {
     const Amount = addMoneyData.Amount
       ? ''
       : 'Please Enter your Amount';
+
+    const ZeroAmount =
+      Number(addMoneyData.Amount) > 0
+        ? ''
+        : 'Please Enter a valid Amount';
+
     const NameOnCard = addMoneyData.NameOnCard
       ? ''
       : 'Enter the name on the card';
@@ -83,6 +89,10 @@ const AddMoneyContainer = () => {
         ? ''
         : 'Enter the expiry date';
     const CVV = addMoneyData.CVV ? '' : 'Enter the CVV';
+    const CVVLength =
+      addMoneyData.CVV.length === 3
+        ? ''
+        : 'The CVV should have 3 digits';
     const CVVValid =
       addMoneyData.CVV.search(/[A-Z]/) === -1 &&
       addMoneyData.CVV.search(/[a-z]/) === -1 &&
@@ -95,10 +105,12 @@ const AddMoneyContainer = () => {
 
     setErrors({
       ...errors,
-      Amount,
+      Amount: Amount || ZeroAmount,
       date,
       CardNumber: CardNumber || CardNumberLength || CardNumberValid,
-      CVV: CVV || CVVValid,
+      CVV,
+      CVVValid,
+      CVVLength,
       NameOnCard,
       Address,
       City,
@@ -106,12 +118,14 @@ const AddMoneyContainer = () => {
     });
     return !(
       Amount ||
+      ZeroAmount ||
       date ||
       CardNumber ||
       CardNumberLength ||
       CardNumberValid ||
       CVV ||
       CVVValid ||
+      CVVLength ||
       NameOnCard ||
       Address ||
       City ||
@@ -153,10 +167,15 @@ const AddMoneyContainer = () => {
 
   useEffect(() => {
     if (Object.keys(selectedWallet)?.length !== 0) {
-      const { AccountNumber } = selectedWallet;
+      const { AccountNumber, CurrencyCode } = selectedWallet;
       setAddMoneyData({
         ...addMoneyData,
         WalletNumber: AccountNumber,
+        Currency: defaultOptions.find(
+          option => option.value === CurrencyCode,
+        )
+          ? CurrencyCode
+          : 'USD',
       });
     }
   }, [selectedWallet]);

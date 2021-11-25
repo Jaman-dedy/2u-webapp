@@ -110,7 +110,7 @@ const CropImage = ({
             )}
 
             <Button
-              positive
+              className="btn--confirm"
               type="button"
               loading={loading}
               disabled={loading}

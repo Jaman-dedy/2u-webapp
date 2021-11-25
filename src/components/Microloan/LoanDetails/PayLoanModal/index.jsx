@@ -138,7 +138,10 @@ const PayLoanModal = ({
           />
         </div>
         <div className="cancel-now-button">
-          <Button basic color="red" onClick={() => setOpen(false)}>
+          <Button
+            className="btn--cancel"
+            onClick={() => setOpen(false)}
+          >
             {global.translate('Cancel')}
           </Button>
         </div>

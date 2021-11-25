@@ -295,8 +295,7 @@ const App = () => {
           </Modal.Content>
           <Modal.Actions>
             <Button
-              basic
-              color="red"
+              className="btn--cancel"
               onClick={() => {
                 logUserOut();
               }}
@@ -304,7 +303,7 @@ const App = () => {
               {global.translate('Log me out', 1342)}
             </Button>
             <Button
-              positive
+              className="btn--confirm"
               onClick={stayActive}
               content={global.translate('Keep me signed in.')}
             />

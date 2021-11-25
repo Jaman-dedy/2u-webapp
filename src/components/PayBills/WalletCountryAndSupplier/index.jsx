@@ -121,7 +121,7 @@ const WalletCountryAndSupplier = ({
             <Message
               error
               message={global.translate(
-                suppliersCountriesError.Description,
+                suppliersCountriesError?.Description,
               )}
             />
           )}

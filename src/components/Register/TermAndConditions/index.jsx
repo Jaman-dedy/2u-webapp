@@ -26,7 +26,7 @@ const TermsAndConditions = ({
         </Modal.Content>
         <Modal.Actions>
           <Button
-            className="btn-cancel"
+            className="btn--cancel"
             onClick={() => setOpen(false)}
           >
             {global.translate('Cancel')}

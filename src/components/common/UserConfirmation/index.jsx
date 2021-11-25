@@ -33,7 +33,7 @@ const UserConfirmation = (message, open, setOpen, callback) => {
           <Button positive>{global.translate('OK', 69)}</Button>
         }
         cancelButton={
-          <Button basic color="red">
+          <Button className="btn--cancel">
             {global.translate('Cancel', 86)}
           </Button>
         }

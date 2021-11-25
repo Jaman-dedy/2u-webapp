@@ -68,8 +68,7 @@ const ConfirmPin = ({
       <Modal.Actions>
         <Button
           disabled={loading}
-          basic
-          color="red"
+          className="btn--cancel"
           onClick={() => {
             setIsActivatingCard(false);
             setIsEnablingCard(false);

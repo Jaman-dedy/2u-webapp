@@ -54,13 +54,15 @@ const EditWalletModal = ({
 
       {!addWallet.success && (
         <Modal.Actions>
-          <Button className="cancel" onClick={openEdtWalletModalFx}>
+          <Button
+            className="btn--cancel"
+            onClick={openEdtWalletModalFx}
+          >
             {global.translate('Cancel', 86)}
           </Button>
           <Button
             disabled={!form?.Name || form?.Name?.length < 4}
-            positive
-            className="add"
+            className="btn--confirm"
             onClick={onSubmit}
             loading={addWallet.loading}
           >

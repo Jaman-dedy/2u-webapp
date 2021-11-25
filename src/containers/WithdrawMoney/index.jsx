@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { toast } from 'react-toastify';
 
 import WithdrawMoneyComponent from 'components/WithrdrawMoney';
 import confirmTransactionAction, {
   clearConfirmation,
 } from 'redux/actions/moneyTransfer/confirmTransaction';
 import getSupportedCountries from 'redux/actions/countries/getSupportedCountries';
-import moveFundsAction, {
-  clearMoveFundsErrors,
-} from 'redux/actions/moneyTransfer/moveFunds';
+import moveFundsAction from 'redux/actions/moneyTransfer/moveFunds';
 import { CASH_OUT } from 'constants/general';
 
 const WithdrawMoney = () => {
@@ -165,11 +162,7 @@ const WithdrawMoney = () => {
       DestCountryCode: selectedCountry?.CountryCode,
     };
     if (!validate()) {
-      moveFundsAction(data, '/SendCash', 'send-cash')(dispatch)(
-        data => {
-          toast.success(global.translate(data?.Description));
-        },
-      );
+      moveFundsAction(data, '/SendCash', 'send-cash')(dispatch)();
     }
   };
   useEffect(() => {

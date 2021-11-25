@@ -152,7 +152,7 @@ export default () => {
       MotherFName: personalInfoData?.MotherFName,
       Nationality: nationalityCountry?.toLowerCase(),
       CountryOfBirth: bornCountry.toLowerCase(),
-      Profession: currentOption.toString(),
+      Profession: personalInfoData?.Profession||currentOption.toString(),
       SpouseName: personalInfoData?.SpouseName,
       CityOfBirth: personalInfoData?.CityOfBirth,
       DateOfBirth: personalInfoData?.DateOfBirth,
@@ -174,7 +174,7 @@ export default () => {
         Profession: data?.UserExtraKYC?.Profession,
         SpouseName: data?.UserExtraKYC?.SpouseName,
         CityOfBirth: data?.UserExtraKYC?.CityOfBirth,
-        Nationality: nationality?.toLowerCase(),
+        Nationality: nationality?.toLowerCase()||'',
       });
       setBornCountry(data?.UserExtraKYC?.CountryOfBirth);
       setNationalityCountry(data?.UserExtraKYC?.Nationality);
@@ -204,13 +204,31 @@ export default () => {
       !personalInfoData?.FirstName ||
       !personalInfoData?.LastName ||
       !personalInfoData?.DateOfBirth ||
-      !personalInfoData?.Gender
+      !personalInfoData?.Gender ||
+      (personalInfoData?.FirstName === data?.FirstName &&
+        personalInfoData?.LastName === data?.LastName &&
+        personalInfoData?.Gender === data?.Gender?.Number &&
+        personalInfoData?.DateOfBirth === data?.DateOfBirth &&
+        personalInfoData?.FatherFName ===
+          data?.UserExtraKYC?.FatherFName &&
+        personalInfoData?.MotherFName ===
+          data?.UserExtraKYC?.MotherFName &&
+        personalInfoData?.Profession ===
+          data?.UserExtraKYC?.Profession &&
+        personalInfoData?.SpouseName ===
+          data?.UserExtraKYC?.SpouseName &&
+        personalInfoData?.CityOfBirth ===
+          data?.UserExtraKYC?.CityOfBirth &&
+        bornCountry?.toLowerCase() ===
+          data?.UserExtraKYC?.CountryOfBirth?.toLowerCase() &&
+        personalInfoData?.Nationality ===
+          data?.UserExtraKYC?.Nationality.toLowerCase())
     ) {
       setDisableButton(true);
     } else {
       setDisableButton(false);
     }
-  }, [personalInfoData]);
+  }, [personalInfoData, bornCountry]);
 
   const handleSendOTP = () => {
     sendOTPAction(phoneValue)(dispatch);

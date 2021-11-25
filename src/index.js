@@ -10,6 +10,12 @@ import App from './App';
 import store from './redux/store';
 import './themes';
 
+if (
+  !(
+    process.env.NODE_ENV === 'development' ||
+    process.env.NODE_ENV === 'test'
+  )
+) {
 Sentry.init({
   dsn:
     'https://96ef34597ee441e2aed2c91c941429ff@o783324.ingest.sentry.io/5798733',
@@ -20,6 +26,7 @@ Sentry.init({
   // We recommend adjusting this value in production
   tracesSampleRate: 1.0,
 });
+}
 
 ReactDOM.render(
   <Provider store={store}>

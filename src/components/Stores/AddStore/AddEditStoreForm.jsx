@@ -1,5 +1,4 @@
-import React, { useRef, useState } from 'react';
-
+import React, { useRef, useState, useEffect, useMemo } from 'react';
 import {
   Form,
   TextArea,
@@ -10,6 +9,7 @@ import {
 } from 'semantic-ui-react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+import phoneCodes from 'utils/phoneCodes';
 import cityImage from 'assets/images/city-image.png';
 import CountryDropdown from 'components/common/Dropdown/CountryDropdown';
 import ToggleSwitch from 'components/common/ToggleButton';
@@ -56,7 +56,7 @@ const AddEditStoreForm = ({
 
   const countries = rawCountries.map(({ text, flag, key }) => ({
     CountryName: text,
-    Flag: `https://www.countryflags.io/${flag}/flat/32.png`,
+    Flag: `https://flagcdn.com/h20/${flag}.png`,
     CountryCode: key,
   }));
 
@@ -134,6 +134,54 @@ const AddEditStoreForm = ({
   const chooseBannerImage = () => {
     bannerImageInput.current.click();
   };
+
+  useEffect(() => {
+    if (addStoreData.CountryCode) {
+      const phoneCode = phoneCodes.find(
+        record =>
+          record.countryCode.toLocaleLowerCase() ===
+          addStoreData?.CountryCode.toLocaleLowerCase(),
+      );
+
+      if (phoneCode) {
+        handleInputChange({
+          target: {
+            name: 'PhoneNumberCode',
+            value: phoneCode.phoneCode,
+          },
+        });
+      }
+    }
+  }, [addStoreData?.CountryCode]);
+
+  const phoneInput = useMemo(() => {
+    if (!isEditing) {
+      return (
+        <PhoneNumberInput
+          onChange={handleInputChange}
+          value={
+            addStoreData.PhoneNumber &&
+            addStoreData.PhoneNumber.split(
+              addStoreData.PhoneNumberCode,
+            )[1]
+          }
+          PhoneNumberCode={addStoreData?.PhoneNumberCode}
+          defaultCountryCode={addStoreData?.CountryCode}
+        />
+      );
+    }
+
+    return (
+      <PhoneNumberInput
+        onChange={handleInputChange}
+        value={addStoreData.PhoneNumber?.split(
+          addStoreData.PhoneNumberCode,
+        )[1]?.replace(/ /g, '')}
+        PhoneNumberCode={`+${addStoreData.PhoneNumberCode}`}
+        defaultCountryCode={addStoreData.CountryCode}
+      />
+    );
+  }, [addStoreData, isEditing]);
 
   return (
     <>
@@ -373,36 +421,42 @@ const AddEditStoreForm = ({
               }
             />
           </div>
-          <div className="opening-hours">
-            <span>{global.translate('Opening hours', 867)}</span>
-            <Dropdown
-              name="OpeningHour"
-              className="hours from"
-              selection
-              search={handleSearch}
-              placeholder="hour"
-              value={addStoreData.OpeningHour}
-              error={errors.OpeningHour || false}
-              onChange={(_, { name, value }) => {
-                handleInputChange({ target: { name, value } });
-              }}
-              options={hours.flat()}
-            />
-            <span>{global.translate('to', 115)}</span>
-            <Dropdown
-              name="ClosingHour"
-              className="hours to"
-              selection
-              search={handleSearch}
-              placeholder="hour"
-              value={addStoreData.ClosingHour}
-              error={errors.ClosingHour || false}
-              onChange={(_, { name, value }) => {
-                handleInputChange({ target: { name, value } });
-              }}
-              options={hours.flat()}
-            />
-          </div>
+          <Form.Group className="opening-hours-group">
+            <span className="opening-hours-group-label">
+              {global.translate('Opening hours', 867)}
+            </span>
+            <div className="dropdowns">
+              <Form.Dropdown
+                name="OpeningHour"
+                className="hours from"
+                selection
+                search={handleSearch}
+                placeholder="hour"
+                value={addStoreData.OpeningHour}
+                error={errors.OpeningHour || false}
+                onChange={(_, { name, value }) => {
+                  handleInputChange({ target: { name, value } });
+                }}
+                options={hours.flat()}
+              />
+              <span className="to-label">
+                {global.translate('to', 115)}
+              </span>
+              <Form.Dropdown
+                name="ClosingHour"
+                className="hours to"
+                selection
+                search={handleSearch}
+                placeholder="hour"
+                value={addStoreData.ClosingHour}
+                error={errors.ClosingHour || false}
+                onChange={(_, { name, value }) => {
+                  handleInputChange({ target: { name, value } });
+                }}
+                options={hours.flat()}
+              />
+            </div>
+          </Form.Group>
         </div>
 
         <span>
@@ -438,57 +492,36 @@ const AddEditStoreForm = ({
             </button>
           }
         />
-        {!isEditing && (
-          <PhoneNumberInput
-            onChange={handleInputChange}
-            value={
-              addStoreData.PhoneNumber &&
-              addStoreData.PhoneNumber.split(
-                addStoreData.PhoneNumberCode,
-              )[1]
-            }
-            PhoneNumberCode={addStoreData.PhoneNumberCode}
-            defaultCountryCode={
-              selectedCountry ? selectedCountry.CountryCode : ''
-            }
-          />
-        )}
 
-        {isEditing && (
-          <PhoneNumberInput
-            onChange={handleInputChange}
-            value={addStoreData.PhoneNumber?.split(
-              addStoreData.PhoneNumberCode,
-            )[1]?.replace(/ /g, '')}
-            PhoneNumberCode={`+${addStoreData.PhoneNumberCode}`}
-            defaultCountryCode={`+${addStoreData.PhoneNumberCode}`}
-          />
-        )}
-
-        <div className="country-input">
-          <span>
-            {global.translate('Select your country', 558)}
+        <Form.Group widths="equal">
+          <Form.Field>
+            <span>
+              {global.translate('Select your country', 558)}
+            </span>
             <CountryDropdown
               options={countries}
               currentOption={selectedCountry}
               onChange={handleInputChange}
               search
             />
-          </span>
-        </div>
+          </Form.Field>
 
-        <span>{global.translate('City', 294)}</span>
-        <Form.Input
-          name="City"
-          value={addStoreData.City}
-          onChange={handleInputChange}
-          error={errors.City || false}
-          className="input-image city"
-          type="text"
-          actionPosition="left"
-          action={<Image src={cityImage} />}
-          required
-        />
+          <Form.Field>
+            <span>{global.translate('City', 294)}</span>
+            <Form.Input
+              name="City"
+              value={addStoreData.City}
+              onChange={handleInputChange}
+              error={errors.City || false}
+              className="input-image city"
+              type="text"
+              actionPosition="left"
+              action={<Image src={cityImage} />}
+              required
+            />
+          </Form.Field>
+        </Form.Group>
+        {phoneInput}
 
         {addUpdateStore.error && (
           <Form.Field>

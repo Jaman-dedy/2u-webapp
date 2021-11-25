@@ -1,15 +1,14 @@
+import Message from 'components/common/Message';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Button, Input, Modal } from 'semantic-ui-react';
-
+import { useDispatch, useSelector } from 'react-redux';
 import { setIsSendingMoney } from 'redux/actions/dashboard/dashboard';
-import Message from 'components/common/Message';
+import { Button, Input, Modal } from 'semantic-ui-react';
 import formatNumber from 'utils/formatNumber';
 import { getPossibleDates } from 'utils/monthdates';
 import ConfirmationForm from '../../ConfirmationForm';
-import TransactionEntity from './TransactionEntity';
 import './modal.scss';
+import TransactionEntity from './TransactionEntity';
 
 const SendMoneyModal = ({
   open,
@@ -260,8 +259,7 @@ const SendMoneyModal = ({
         <>
           {step !== 1 && (
             <Button
-              basic
-              color="red"
+              className="btn--cancel"
               disabled={checking || loading}
               onClick={() => {
                 resetState();
@@ -272,8 +270,7 @@ const SendMoneyModal = ({
           )}
 
           <Button
-            basic
-            color="red"
+            className="btn--cancel"
             disabled={checking || loading}
             onClick={() => {
               clearForm();
@@ -285,7 +282,7 @@ const SendMoneyModal = ({
           </Button>
 
           <Button
-            positive
+            className="btn--confirm"
             loading={checking || loading}
             disabled={
               checking ||
@@ -369,4 +366,4 @@ SendMoneyModal.defaultProps = {
   isSendingMoney: false,
   setDestinationContact: () => {},
 };
-export default SendMoneyModal;
+export default React.memo(SendMoneyModal);

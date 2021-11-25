@@ -38,6 +38,12 @@ const PhoneNUmberForm = ({
   }, [country]);
 
   useEffect(() => {
+    setCountry(
+      countries.find(country => country.value === defaultCountryCode),
+    );
+  }, [defaultCountryCode]);
+
+  useEffect(() => {
     if (
       PhoneNumberCode &&
       PhoneNumberCode === defaultCountry &&
@@ -45,7 +51,7 @@ const PhoneNUmberForm = ({
     ) {
       setCountry(defaultCountry);
     }
-  }, [PhoneNumberCode]);
+  }, [PhoneNumberCode, defaultCountry, defaultCountryCode]);
 
   useEffect(() => {
     if (defaultCountryCode && !country?.value) {
@@ -59,7 +65,7 @@ const PhoneNUmberForm = ({
         );
       setCountry(defaultCountry);
     }
-  }, [defaultCountryCode]);
+  }, [defaultCountryCode, country?.value]);
 
   return (
     <>
@@ -90,16 +96,6 @@ const PhoneNUmberForm = ({
       </Form>
     </>
   );
-};
-
-PhoneNUmberForm.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  defaultCountryCode: PropTypes.string,
-  PhoneNumberCode: PropTypes.string,
-  value: PropTypes.string,
-  error: PropTypes.bool,
-  label: PropTypes.string,
-  style: PropTypes.instanceOf(Object),
 };
 
 PhoneNUmberForm.defaultProps = {

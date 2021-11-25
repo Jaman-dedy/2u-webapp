@@ -1,4 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useMemo,
+} from 'react';
 import { Dropdown, Image, Input, Icon } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
@@ -13,26 +18,33 @@ const SelectCountryCode = ({
   disabled,
   children,
 }) => {
-  const wrapperId = `input-${Math.ceil(Math.random() * 10000)}`;
+  const wrapperId = useMemo(
+    () => `input-${Math.ceil(Math.random() * 10000)}`,
+    [],
+  );
+
   const [filteredCountries, setFilteredCountries] = useState(
     countries,
   );
   const [open, setOpen] = useState(false);
 
-  const checkClickInput = event => {
-    const { target = {} } = event || {};
-    if (target.classList && target.id === wrapperId) {
-      return setOpen(false);
-    }
-    return null;
-  };
+  const checkClickInput = useCallback(
+    event => {
+      const { target = {} } = event || {};
+      if (target.classList && target.id === wrapperId) {
+        return setOpen(false);
+      }
+      return null;
+    },
+    [wrapperId],
+  );
 
   useEffect(() => {
     document.addEventListener('mousedown', checkClickInput);
     return () => {
       document.removeEventListener('mousedown', checkClickInput);
     };
-  });
+  }, [checkClickInput]);
 
   return (
     <>
@@ -60,7 +72,7 @@ const SelectCountryCode = ({
                   onClick={() => {
                     setOpen(!open);
                   }}
-                  src={`https://www.countryflags.io/${country.flag}/flat/32.png`}
+                  src={`https://flagcdn.com/h20/${country.flag}.png`}
                   className="inline"
                 />
               ) : (
@@ -123,7 +135,6 @@ SelectCountryCode.propTypes = {
   setCountry: PropTypes.func,
   children: PropTypes.node,
   disabled: PropTypes.bool,
-  disableSelect: PropTypes.bool,
 };
 
 SelectCountryCode.defaultProps = {
@@ -133,7 +144,6 @@ SelectCountryCode.defaultProps = {
   setCountry: () => true,
   disabled: false,
   children: <div />,
-  disableSelect: false,
 };
 
-export default SelectCountryCode;
+export default React.memo(SelectCountryCode);

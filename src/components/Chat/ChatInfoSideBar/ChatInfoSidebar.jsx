@@ -187,8 +187,7 @@ const ChatInfoSideBar = ({
           )}
           cancelButton={
             <Button
-              basic
-              color="red"
+              className="btn--cancel"
               onClick={e => {
                 e.preventDefault();
                 setBlockUserConfirmOpen(false);
@@ -219,8 +218,7 @@ const ChatInfoSideBar = ({
           )}
           cancelButton={
             <Button
-              basic
-              color="red"
+              className="btn--cancel"
               onClick={() => {
                 setDeleteChatOpen(false);
               }}

@@ -345,8 +345,7 @@ const AddMoneyModal = ({
               {step !== 1 && step !== 3 && (
                 <Button
                   disabled={checking || loading}
-                  basic
-                  color="red"
+                  className="btn--cancel"
                   onClick={() => {
                     setStep(step - 1);
                   }}
@@ -357,8 +356,7 @@ const AddMoneyModal = ({
               {step !== 3 && (
                 <Button
                   disabled={loading}
-                  basic
-                  color="red"
+                  className="btn--cancel"
                   onClick={() => {
                     setAddMoneyOpen(!addMoneyOpen);
                     setIsRedeeming(false);
@@ -378,7 +376,7 @@ const AddMoneyModal = ({
 
               {isRedeeming ? (
                 <Button
-                  positive
+                  className="btn--confirm"
                   onClick={() => {
                     setOpenConfirmModal(true);
                     setAddMoneyOpen(false);
@@ -388,9 +386,14 @@ const AddMoneyModal = ({
                 </Button>
               ) : (
                 <Button
-                  positive
+                  className="btn--confirm"
                   loading={loading}
-                  disabled={checking || loading}
+                  disabled={
+                    checking ||
+                    loading ||
+                    !form?.amount ||
+                    !selectedWallet?.Balance
+                  }
                   onClick={() => {
                     if (step === 1) {
                       checkTransactionConfirmation();

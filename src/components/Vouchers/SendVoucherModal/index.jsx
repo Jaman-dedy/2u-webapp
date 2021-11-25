@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import './SendVoucherModal.scss';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import getPendingVouchers from 'redux/actions/transactions/getPendingVouchers';
 import PinCodeForm from 'components/common/PinCodeForm';
 import { getPossibleDates } from 'utils/monthdates';
@@ -80,6 +81,7 @@ const SendMoneyModal = ({ SendVoucherModal }) => {
       clearMoveFundsErrors()(dispatch);
       getPendingVouchers()(dispatch);
       resetState();
+      toast.success(`${data[0].Description}`);
     }
   }, [data]);
 
@@ -458,8 +460,7 @@ const SendMoneyModal = ({ SendVoucherModal }) => {
           <>
             {step !== 1 && (
               <Button
-                basic
-                color="red"
+                className="btn--cancel"
                 disabled={checking || loading}
                 onClick={() => {
                   resetState();
@@ -470,8 +471,7 @@ const SendMoneyModal = ({ SendVoucherModal }) => {
             )}
 
             <Button
-              basic
-              color="red"
+              className="btn--cancel"
               disabled={checking || loading}
               onClick={() => {
                 if (selectedStore.skipSearchPage === true) {
@@ -487,7 +487,7 @@ const SendMoneyModal = ({ SendVoucherModal }) => {
             </Button>
 
             <Button
-              className="success-button"
+              className="btn--confirm"
               disabled={checking || loading}
               onClick={() => {
                 if (step === 1) {

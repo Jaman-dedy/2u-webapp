@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import {
-  Modal,
-  Button,
-  Icon,
-  Input,
-  TransitionablePortal,
-} from 'semantic-ui-react';
-import { useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
-import '../SendMoney/modal.scss';
-import PinCodeForm from 'components/common/PinCodeForm';
 import LoaderComponent from 'components/common/Loader';
 import Message from 'components/common/Message';
+import PinCodeForm from 'components/common/PinCodeForm';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import {
+  Button,
+  Input,
+  Modal,
+  TransitionablePortal,
+} from 'semantic-ui-react';
 import formatNumber from 'utils/formatNumber';
+import '../SendMoney/modal.scss';
 import TransactionEntity from '../SendMoney/TransactionEntity';
 import './style.scss';
 
@@ -89,7 +88,13 @@ const ExchangeCurrencyModal = ({
       className="currency-exchange-container"
       open={open}
     >
-      <Modal size="small" open={open} onOpen={() => setOpen(!open)}>
+      <Modal
+        size="small"
+        open={open}
+        onOpen={() => setOpen(!open)}
+        closeOnDimmerClick={false}
+        closeOnDocumentClick={false}
+      >
         <Modal.Header className="modal-title">
           {global.translate('Currency Exchange or Cash pooling')}
         </Modal.Header>
@@ -163,7 +168,7 @@ const ExchangeCurrencyModal = ({
               ) ? (
                 <Message
                   message={global.translate(
-                    'The amount entered is greater than your available balance',
+                    'The amount entered greater than your available balance',
                   )}
                 />
               ) : null}
@@ -323,8 +328,7 @@ const ExchangeCurrencyModal = ({
           <>
             {step !== 1 && (
               <Button
-                basic
-                color="red"
+                className="btn--cancel"
                 disabled={checking || loading}
                 onClick={() => {
                   resetState();
@@ -336,8 +340,7 @@ const ExchangeCurrencyModal = ({
 
             {step !== 3 && (
               <Button
-                basic
-                color="red"
+                className="btn--cancel"
                 disabled={checking || loading}
                 onClick={() => {
                   setOpen(!open);
@@ -352,7 +355,7 @@ const ExchangeCurrencyModal = ({
               </Button>
             )}
             <Button
-              positive
+              className="btn--confirm"
               disabled={
                 checking ||
                 loading ||
@@ -407,6 +410,7 @@ ExchangeCurrencyModal.propTypes = {
   setErrors: PropTypes.func.isRequired,
   step: PropTypes.number.isRequired,
   resetState: PropTypes.func.isRequired,
+  DefaultWallet: PropTypes.objectOf(PropTypes.any),
 };
 
 ExchangeCurrencyModal.defaultProps = {
@@ -421,5 +425,6 @@ ExchangeCurrencyModal.defaultProps = {
   setOpen: () => {},
   walletList: [],
   open: false,
+  DefaultWallet: {},
 };
 export default ExchangeCurrencyModal;
