@@ -55,7 +55,7 @@ const PasswordForm = ({
               checkPassword(password).number ? '' : 'invalid'
             }
           >
-            {global.translate('8 characters long,')}
+            {global.translate('8 characters long')}
           </span>
           , {global.translate('containing an')}{' '}
           <span

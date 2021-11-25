@@ -107,7 +107,7 @@ export default () => {
     });
 
     if (!data) {
-      toast.error(global.translate('Upload failed', 1744));
+      toast.error(global.translate('Upload failed.', 1744));
     }
     if (data) {
       toast.success(

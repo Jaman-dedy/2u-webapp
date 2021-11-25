@@ -140,7 +140,7 @@ const LoginForm = ({
                         }
                       }
                       placeholder={global.translate(
-                        'Username or Phone number*',
+                        'Username or Phone number',
                       )}
                       name="PID"
                       value={
@@ -269,8 +269,8 @@ LoginForm.defaultProps = {
   error: null,
   pidError: null,
   passwordError: null,
-  clearLoginUser: () => {},
-  onKeyDown: () => {},
+  clearLoginUser: () => { },
+  onKeyDown: () => { },
 };
 
 export default LoginForm;

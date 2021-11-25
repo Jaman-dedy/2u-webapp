@@ -67,15 +67,13 @@ const ApplyLoan = ({
         setDisplayLimit(checkLoanError?.error[0]?.MaxLoanAmount);
       }
       if (checkLoanError?.error[0]?.Text1) {
-        const errorMessage = `${checkLoanError?.error[0]?.Text1} ${
-          checkLoanError?.error?.[0]?.Text2
+        const errorMessage = `${checkLoanError?.error[0]?.Text1} ${checkLoanError?.error?.[0]?.Text2
             ? checkLoanError?.error?.[0]?.Text2
             : ''
-        } ${
-          checkLoanError?.error?.[0]?.Text3
+          } ${checkLoanError?.error?.[0]?.Text3
             ? checkLoanError?.error?.[0]?.Text3
             : ''
-        }`;
+          }`;
         setCheckLoanErrorMessage(errorMessage);
       } else {
         const errorMessage = checkLoanError?.error[0]?.Description;
@@ -250,7 +248,7 @@ const ApplyLoan = ({
                 </div>
                 <div className="right-text">
                   {global.translate(
-                    'We are offering you the easiest and quickest way to get a loan.',
+                    'We are offering you the easiest and quickest way to get a loan',
                   )}
                 </div>
               </div>
@@ -358,30 +356,30 @@ ApplyLoan.propTypes = {
   checkLoanErrorMessage: PropTypes.number,
 };
 ApplyLoan.defaultProps = {
-  walletList: () => {},
-  setCurrentOption: () => {},
+  walletList: () => { },
+  setCurrentOption: () => { },
   currentOption: {},
-  onOptionChange: () => {},
-  handleOnClick: () => {},
+  onOptionChange: () => { },
+  handleOnClick: () => { },
   duration: '',
-  setPayDay: () => {},
+  setPayDay: () => { },
   payDay: '',
   buttonDisabled: false,
   checkLoanLoading: false,
   checkLoanData: {},
-  checkLoanEligibility: () => {},
+  checkLoanEligibility: () => { },
   checkLoanError: {},
-  applyForALoan: () => {},
+  applyForALoan: () => { },
   applyLoanLoading: false,
   openPinModal: false,
-  setOpenPinModal: () => {},
-  setUserPinDigit: () => {},
+  setOpenPinModal: () => { },
+  setUserPinDigit: () => { },
   userPinDigit: '',
   pinErrors: {},
   pinData: {},
-  clearCheckEligibility: () => {},
+  clearCheckEligibility: () => { },
   checkLoanErrorMessage: null,
-  setCheckLoanErrorMessage: () => {},
+  setCheckLoanErrorMessage: () => { },
 };
 
 export default ApplyLoan;

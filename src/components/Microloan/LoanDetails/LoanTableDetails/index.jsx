@@ -29,16 +29,15 @@ const LoanTableDetails = ({ loan }) => {
           </Table.Cell>
           <Table.Cell>
             {global.translate('Automatic payment')}
-            <div className="amount">{`${global.translate('Every')} ${
-              loan?.PayDay
-            }th ${global.translate('of the month')}`}</div>
+            <div className="amount">{`${global.translate('Every')} ${loan?.PayDay
+              }th ${global.translate('of the month')}`}</div>
           </Table.Cell>
         </Table.Row>
         <Table.Row>
           <Table.Cell>
             {`${global.translate('Total payment')} ${global.translate(
               '(last',
-            )}  ${loan?.MonthPaid} ${global.translate('months)')}`}
+            )} ${loan?.MonthPaid} ${global.translate('months)')}`}
             <div className="amount">
               {loan?.Currency} <strong>{loan?.AmountPaid}</strong>{' '}
             </div>

@@ -171,7 +171,7 @@ const Profile = ({
       ),
     },
     {
-      menuItem: global.translate('Personal info'),
+      menuItem: global.translate('Personal information'),
       render: () => (
         <Tab.Pane attached={false}>
           <PersonalInfoTab
@@ -331,12 +331,12 @@ Profile.defaultProps = {
   userData: {},
   supportingDocuments: {},
   activeTabIndex: 0,
-  setActiveTabIndex: () => {},
+  setActiveTabIndex: () => { },
   personalInfo: {},
   identityConfirmation: {},
   residenceData: {},
   userDetails: {},
-  changeUserPresence: () => {},
+  changeUserPresence: () => { },
 };
 
 export default Profile;

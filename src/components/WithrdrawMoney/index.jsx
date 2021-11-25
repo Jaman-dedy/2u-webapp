@@ -148,12 +148,12 @@ const WithdrawMoney = ({
               currentOption?.Balance?.replace(',', ''),
               10,
             ) < parseFloat(form?.amount, 10) && (
-              <AlertDanger
-                message={global.translate(
-                  'The amount entered is greater than your available Balance',
-                )}
-              />
-            )}
+                <AlertDanger
+                  message={global.translate(
+                    'The amount entered is greater than your available Balance',
+                  )}
+                />
+              )}
 
             {parseFloat(form.amount, 10) <= 0 && (
               <AlertDanger
@@ -190,7 +190,7 @@ const WithdrawMoney = ({
                 </div>
                 <div className="right-text">
                   {global.translate(
-                    'We are offering you the easiest and quickest way to cashout money from your digital wallet.',
+                    'We are offering you the easiest and quickest way to cashout money from your digital wallet',
                   )}
                 </div>
               </div>
@@ -210,7 +210,7 @@ const WithdrawMoney = ({
           disabled={
             buttonDisabled ||
             parseFloat(currentOption?.Balance?.replace(',', ''), 10) <
-              parseFloat(form?.amount, 10) ||
+            parseFloat(form?.amount, 10) ||
             parseFloat(form?.amount) === 0 ||
             !(parseFloat(form.amount, 10) > 0)
           }
@@ -269,27 +269,27 @@ WithdrawMoney.propTypes = {
 };
 WithdrawMoney.defaultProps = {
   walletList: [],
-  setCurrentOption: () => {},
+  setCurrentOption: () => { },
   currentOption: {},
-  onOptionChange: () => {},
-  setSelectedCountry: () => {},
+  onOptionChange: () => { },
+  setSelectedCountry: () => { },
   selectedCountry: {},
   phoneValue: '',
-  setPhoneValue: () => {},
+  setPhoneValue: () => { },
   supportedCountries: [],
-  onCountryChange: () => {},
+  onCountryChange: () => { },
   buttonDisabled: false,
-  confirmTransaction: () => {},
+  confirmTransaction: () => { },
   checking: false,
   confirmationData: {},
-  handleCashout: () => {},
+  handleCashout: () => { },
   loadMoveFund: false,
   userData: {},
-  setOpenPinModal: () => {},
+  setOpenPinModal: () => { },
   openPinModal: false,
   confirmationError: {},
   form: {},
-  setPIN: () => {},
-  PIN: () => {},
+  setPIN: () => { },
+  PIN: () => { },
 };
 export default WithdrawMoney;

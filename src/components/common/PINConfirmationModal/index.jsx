@@ -51,7 +51,7 @@ const PINConfirmationModal = ({
             </div>
             <p className="pin-modal__description">
               {global.translate(
-                'We keep your account and transactions safe.',
+                'We keep your account and transactions safe',
               )}
             </p>
           </div>
@@ -123,7 +123,7 @@ PINConfirmationModal.propTypes = {
 
 PINConfirmationModal.defaultProps = {
   loading: false,
-  onClose: () => {},
+  onClose: () => { },
   PIN: '',
 };
 

@@ -35,7 +35,7 @@ const SearchResultsComponent = ({ searchResults }) => {
                   2105,
                 ),
                 body: global.translate(
-                  'No results found for your search, please try a new search',
+                  'No results found for your search.',
                   1878,
                 ),
               }}

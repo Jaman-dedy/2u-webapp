@@ -62,12 +62,11 @@ const SingleLoanView = ({ loan, onClick, detail }) => {
           >
             {loan?.NextDueDate
               ? `${global.translate(
-                  'Next payment due date :',
-                  2547,
-                )} ${loan.NextDueDate} `
-              : `${global.translate('Closed on :', 2446)} ${
-                  loan?.ClosedDate
-                }`}
+                'Next payment due date :',
+                2547,
+              )} ${loan.NextDueDate} `
+              : `${global.translate('Closed on ', 2446)} ${loan?.ClosedDate
+              }`}
           </div>
         </div>
       </div>
@@ -95,7 +94,7 @@ SingleLoanView.propTypes = {
 
 SingleLoanView.defaultProps = {
   loan: {},
-  onClick: () => {},
+  onClick: () => { },
   detail: undefined,
 };
 
