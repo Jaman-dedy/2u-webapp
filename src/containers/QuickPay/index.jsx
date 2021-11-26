@@ -5,7 +5,9 @@ import findUser, {
   clearFoundUser,
 } from 'redux/actions/contacts/locateWallet';
 import { updateMoneyTransferStep } from 'redux/actions/dashboard/dashboard';
-import confirmTransaction from 'redux/actions/moneyTransfer/confirmTransaction';
+import confirmTransaction, {
+  clearConfirmation,
+} from 'redux/actions/moneyTransfer/confirmTransaction';
 import { CELINE_MONEY } from 'constants/general';
 
 import sendMoneyModal from './sendMoneyModal';
@@ -38,7 +40,7 @@ const QuickPay = () => {
 
   useEffect(() => {
     if (confirmationError) {
-      setErrors(confirmationError?.[0]?.Description);
+      setErrors(confirmationError?.error?.Description);
     }
   }, [confirmationError]);
 
@@ -78,6 +80,10 @@ const QuickPay = () => {
     if (locateWallet?.error) {
       setErrors(locateWallet?.error?.Description);
     }
+
+    return () => {
+      clearConfirmation()(dispatch);
+    };
   }, [locateWallet]);
 
   useEffect(() => {
