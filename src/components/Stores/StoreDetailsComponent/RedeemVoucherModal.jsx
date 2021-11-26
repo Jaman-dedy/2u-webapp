@@ -8,6 +8,7 @@ import VoucherTokenVerification from 'components/common/VoucherTokenVerification
 import Message from 'components/common/Message';
 import PINInput from 'components/common/PINInput';
 import verifyVoucherFn from 'redux/actions/vouchers/verifyStoreVoucher';
+import capitalize from 'utils/capitalize';
 import PendingVoucherDetails from './pendingVoucherDetail';
 import VoucherReceiptModal from './VoucherReceiptModal';
 import './RedeemVoucher.scss';
@@ -153,7 +154,7 @@ const RedeemVoucherModal = ({ open, setOpen, item }) => {
                   verifyVoucherFn(postData)(dispatch);
                 }}
               >
-                {global.translate('verify')}
+                {capitalize(global.translate('Verify'))}
               </Button>
             </div>
           )}
