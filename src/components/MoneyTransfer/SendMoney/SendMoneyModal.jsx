@@ -233,7 +233,9 @@ const SendMoneyModal = ({
               )}
               {confirmationError && !confirmationError[0] && (
                 <Message
-                  message={global.translate(confirmationError.error)}
+                  message={global.translate(
+                    confirmationError.error?.Description,
+                  )}
                 />
               )}
             </div>
