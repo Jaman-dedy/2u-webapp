@@ -197,27 +197,24 @@ export default ({
       PIN,
       StoreID: selectedStore.StoreID,
       ContactPID:
-        selectedContact.ContactType === 'INTERNAL'
-          ? selectedContact.ContactPID
+        selectedContact?.ContactType === 'INTERNAL'
+          ? selectedContact?.ContactPID
           : '',
-      FirstName: selectedStore.FirstName,
+      FirstName: selectedContact?.FirstName,
 
-      LastName: selectedStore.LastName,
+      LastName: selectedContact?.LastName,
 
       Amount: form.amount ? form.amount.toString() : '',
       SourceWallet: form?.user1wallets,
     };
 
-    if (selectedContact.ContactType === 'INTERNAL') {
-      postData.TargetPhoneNumber = selectedContact.PhoneNumber;
-    } else {
-      postData.TargetPhoneNumber = selectedContact.PhoneNumber;
-    }
+    postData.TargetPhoneNumber = selectedContact?.PhoneNumber;
 
     if (!pinIsValid()) {
       setErrors('Please enter your 4 digit PIN Number');
       return;
     }
+
     setErrors(null);
     sendVoucher(postData)(dispatch);
   };

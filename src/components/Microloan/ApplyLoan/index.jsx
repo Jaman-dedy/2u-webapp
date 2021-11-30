@@ -136,7 +136,7 @@ const ApplyLoan = ({
               <div className="apply-info-message">
                 <InfoMessage
                   description={global.translate(
-                    'The monthly payment amount will be withdrawn automatically from your wallet every month. ',
+                    'The monthly payment amount will be withdrawn automatically from your wallet every month.',
                   )}
                 />
               </div>
