@@ -118,9 +118,11 @@ class Map extends Component {
       const { results } = response;
       const CountryCode =
         results[results.length - 1].address_components[0].short_name;
-      const City =
-        results[results.length - 2].address_components[0].long_name;
+
+      const City = results[0].address_components?.[1]?.long_name;
+
       const Address = results[0].formatted_address;
+
       const PhoneNumberCode = getPhoneNumberCode(
         CountryCode.toLowerCase(),
       );
