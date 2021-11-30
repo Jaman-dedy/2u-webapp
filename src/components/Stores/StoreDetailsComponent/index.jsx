@@ -71,7 +71,7 @@ const SettingView = props => {
     },
 
     {
-      menuItem: global.translate('Configurations'),
+      menuItem: global.translate('Wallets', 61),
       render: props => {
         return <StoreWalletSettingsTab {...props} />;
       },
