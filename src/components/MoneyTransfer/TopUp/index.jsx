@@ -468,7 +468,8 @@ const TopUpModal = ({
                         <NumberFormat
                           className="new-bank-account"
                           format={
-                            currentProviderOption?.AccountPattern
+                            currentProviderOption?.AccountPattern ||
+                            null
                           }
                           mask="_"
                           onValueChange={values => {
@@ -478,6 +479,7 @@ const TopUpModal = ({
                             });
                           }}
                         />
+
                         {confirmationData?.[0]?.AccountCurrency && (
                           <Label size="large">
                             {confirmationData[0].AccountCurrency}

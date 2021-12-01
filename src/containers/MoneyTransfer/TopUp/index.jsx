@@ -129,6 +129,7 @@ const TopUpContainer = ({
   useEffect(() => {
     setCurrentPhone(null);
     setAccountValue(null);
+    clearConfirmation()(dispatch);
   }, [selectedCountry, selectedProvider]);
 
   useEffect(() => {
@@ -198,7 +199,7 @@ const TopUpContainer = ({
 
   const onOptionsChange = (e, { name, value }) => {
     setForm({ ...form, [name]: value });
-    if (confirmationData?.[0]?.VerificationError) {
+    if (confirmationError?.error?.Description) {
       clearConfirmation()(dispatch);
     }
     if (name === 'OperatorName') {
@@ -207,8 +208,9 @@ const TopUpContainer = ({
     }
     setErrors(null);
   };
+
   useEffect(() => {
-    if (confirmationData?.[0]?.VerificationError) {
+    if (confirmationError?.error?.Description) {
       clearConfirmation()(dispatch);
     }
   }, [accountValue, currentBankAccount]);
@@ -717,7 +719,6 @@ const TopUpContainer = ({
       setNewProficerOption(null);
     }
   }, [selectedProvider]);
-
   return (
     <TopUpModal
       open={open}
