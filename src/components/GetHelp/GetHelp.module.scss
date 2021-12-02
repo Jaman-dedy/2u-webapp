@@ -4,25 +4,22 @@
   padding: 2rem;
 
   .PhoneList {
-    padding: .7rem !important;
+    padding: 0.7rem !important;
 
     color: rgba(37, 37, 37, 0.87);
 
     .PhoneNumber {
       font-size: 1.3rem;
-
     }
 
     .Action {
-      font-size: .9rem;
+      font-size: 0.9rem;
     }
 
     span {
       display: block;
     }
-
   }
-
 }
 
 @include respond-to(tablets) {
@@ -34,18 +31,22 @@
 @include respond-to(mobile-landscape) {
   .GetHelp {
     .PhoneBox {
-      padding: .3rem .3rem !important;
+      padding: 0.3rem 0.3rem !important;
 
       span {
-        font-size: .6rem;
+        font-size: 0.6rem;
       }
     }
 
     .Feedback {
-      padding: .2rem .5rem;
+      padding: 0.2rem 0.5rem;
 
       .TextEditor {
-        padding: .3rem !important;
+        padding: 0.3rem !important;
+
+        .ui.disabled.button {
+          color: #fff;
+        }
       }
     }
   }
@@ -54,18 +55,18 @@
 @include respond-to(mobile) {
   .GetHelp {
     .PhoneBox {
-      padding: .3rem .3rem !important;
+      padding: 0.3rem 0.3rem !important;
 
       span {
-        font-size: .6rem;
+        font-size: 0.6rem;
       }
     }
 
     .Feedback {
-      padding: .2rem .5rem;
+      padding: 0.2rem 0.5rem;
 
       .TextEditor {
-        padding: .3rem !important;
+        padding: 0.3rem !important;
       }
     }
   }

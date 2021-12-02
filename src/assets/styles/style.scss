@@ -402,6 +402,7 @@ h5 {
 .btn {
   &--primary {
     background-color: var(--color-primary) !important;
+    color: #ffffff !important;
     &.disabled {
       background-color: var(--disabled-primary) !important;
     }
