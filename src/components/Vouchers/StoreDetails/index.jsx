@@ -4,7 +4,7 @@ import { Button, Image, Segment } from 'semantic-ui-react';
 
 import WelcomeBar from 'components/Dashboard/WelcomeSection';
 import GoBack from 'components/common/GoBack';
-import PositionPickerModal from 'components/Stores/AddStore/PositionPickerModal';
+import PositionPickerModal from 'components/common/PositionPicker';
 import Pagination from 'components/common/Pagination';
 import CommentPlaceholder from 'assets/images/placeholders/comments-placeholder.svg';
 import Thumbnail from 'components/common/Thumbnail';

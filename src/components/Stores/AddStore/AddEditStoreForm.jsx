@@ -19,7 +19,7 @@ import Img from 'components/common/Img';
 import ImagePreviewModal from 'components/common/ImagePreviewModal';
 
 import imagePlaceholder from 'assets/images/image-placeholder.png';
-import PositionPickerModal from './PositionPickerModal';
+import PositionPickerModal from 'components/common/PositionPicker';
 import ConfirmImageModal from './ConfirmImageModal';
 
 const AddEditStoreForm = ({
