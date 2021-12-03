@@ -1,3 +1,7 @@
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { Button, Image, Input } from 'semantic-ui-react';
 import PeopleWithdrawImg from 'assets/images/people-withdraw.svg';
 import loadConfirmationImg from 'assets/images/withdraw/load-confirmation.svg';
 import LoadWalletImg from 'assets/images/withdraw/load-wallet.svg';
@@ -10,10 +14,6 @@ import PINConfirmationModal from 'components/common/PINConfirmationModal';
 import WalletDropDown from 'components/common/WalletDropDown';
 import WelcomeBar from 'components/Dashboard/WelcomeSection';
 import { useRegexValidation } from 'hooks/useValidation';
-import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { Button, Image, Input } from 'semantic-ui-react';
 import useWindowSize from 'utils/useWindowSize';
 
 const SendToPayPal = ({
@@ -151,6 +151,26 @@ const SendToPayPal = ({
             {confirmationError && (
               <AlertDanger message={confirmationError?.Description} />
             )}
+            <Button
+              disabled={
+                buttonDisabled ||
+                parseInt(form?.amount, 10) <= 0 ||
+                !isValidEmail
+              }
+              onClick={() => {
+                if (!confirmationData) {
+                  handleConfirmTransaction();
+                } else {
+                  setOpenPinModal(true);
+                }
+              }}
+              loading={checking}
+              className="btn--primary"
+            >
+              {!confirmationData
+                ? global.translate('Next')
+                : global.translate('Send')}
+            </Button>
           </div>
           {!confirmationData && !checking && width > 1100 && (
             <div className="right-side">
@@ -179,27 +199,6 @@ const SendToPayPal = ({
             </div>
           )}
         </div>
-
-        <Button
-          disabled={
-            buttonDisabled ||
-            parseInt(form?.amount, 10) <= 0 ||
-            !isValidEmail
-          }
-          onClick={() => {
-            if (!confirmationData) {
-              handleConfirmTransaction();
-            } else {
-              setOpenPinModal(true);
-            }
-          }}
-          loading={checking}
-          className="btn--primary"
-        >
-          {!confirmationData
-            ? global.translate('Next')
-            : global.translate('Send')}
-        </Button>
       </div>
       <PINConfirmationModal
         setOpen={setOpenPinModal}
