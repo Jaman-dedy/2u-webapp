@@ -88,9 +88,9 @@ const AddStoreContainer = ({ currentStore }) => {
     if (name === 'LogoURL' || name === 'BannerURL') {
       if (isFileImage(value)) {
         setImageLoading({ ...imageLoading, [name]: true });
-        const { status, data } = await uploadFile({ [name]: value });
+        const { data } = await uploadFile({ [name]: value });
 
-        if (status) {
+        if (data[0]?.url) {
           if (name === 'LogoURL') {
             setLogoUrl(data[0].url);
           } else {
@@ -105,11 +105,6 @@ const AddStoreContainer = ({ currentStore }) => {
         }
         setImageLoading({ ...imageLoading, [name]: false });
       }
-      return toast.error(
-        global.translate(
-          'Please, choose a image for the profile picture',
-        ),
-      );
     }
 
     return setAddStoreData({
