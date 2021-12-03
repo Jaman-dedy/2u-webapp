@@ -658,22 +658,6 @@ const TopUpModal = ({
               />
             ) : null}
             {errors && <Message message={errors} />}
-            {confirmationError && confirmationError[0] && (
-              <Message
-                message={
-                  confirmationError[0].Description
-                    ? global.translate(
-                        confirmationError[0].Description,
-                      )
-                    : global.translate(confirmationError.error)
-                }
-              />
-            )}
-            {confirmationError && !confirmationError[0] && (
-              <Message
-                message={global.translate(confirmationError.error)}
-              />
-            )}
           </div>
         </Modal.Content>
       )}

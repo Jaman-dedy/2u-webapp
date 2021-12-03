@@ -100,6 +100,12 @@ const TopUpContainer = ({
     confirmationError,
     confirmationData,
   } = useSelector(state => state.moneyTransfer.confirmTransaction);
+
+  useEffect(() => {
+    if (confirmationError) {
+      setErrors(confirmationError?.error?.Description);
+    }
+  }, [confirmationError]);
   const {
     loading: updating,
     data: updatingData,
