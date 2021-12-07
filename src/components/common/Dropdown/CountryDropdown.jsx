@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Image, Dropdown, Icon, Input } from 'semantic-ui-react';
+import {
+  Image,
+  Dropdown,
+  Icon,
+  Input,
+  Flag as SementicFlag,
+} from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 import './Dropdown.scss';
+import getCountryFlag from 'helpers/getCountryFlag';
 
 const CustomDropdown = ({
   options,
@@ -17,6 +24,7 @@ const CustomDropdown = ({
   const wrapperId = `input-${Math.ceil(Math.random() * 10000)}`;
   const [filteredOptions, setFilteredOptions] = useState([]);
   const [open, setOpen] = useState(false);
+  const [flag, setFlag] = useState('');
 
   useEffect(() => {
     setFilteredOptions(options);
@@ -37,6 +45,11 @@ const CustomDropdown = ({
     };
   });
 
+  useEffect(() => {
+    if (currentOption?.Flag) {
+      setFlag(currentOption.Flag);
+    }
+  }, [currentOption]);
   return (
     <>
       <div
@@ -66,10 +79,23 @@ const CustomDropdown = ({
             role="button"
           >
             <div className="dropdown-wallet">
-              <Image
-                src={currentOption && currentOption.Flag}
-                className="inline"
-              />
+              {(() => {
+                if (currentOption?.Flag && flag) {
+                  return (
+                    <Image
+                      src={getCountryFlag(flag)}
+                      className="inline"
+                      onError={() => setFlag('')}
+                    />
+                  );
+                }
+                if (currentOption?.Flag) {
+                  return <SementicFlag name={currentOption?.Flag} />;
+                }
+                return (
+                  <Icon name="phone" className="flag-placeholder" />
+                );
+              })()}
               <div>
                 <div>
                   {currentOption && currentOption.CountryName}
@@ -135,7 +161,7 @@ const CustomDropdown = ({
                   >
                     <span className="dropdown-trigger">
                       <div className="dropdown-wallet">
-                        <Image src={Flag} className="inline" />
+                        <SementicFlag name={Flag} />
                         <div>
                           <div>{CountryName}</div>
                         </div>

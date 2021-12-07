@@ -56,7 +56,7 @@ const AddEditStoreForm = ({
 
   const countries = rawCountries.map(({ text, flag, key }) => ({
     CountryName: text,
-    Flag: `https://flagcdn.com/h20/${flag}.png`,
+    Flag: flag,
     CountryCode: key,
   }));
 
