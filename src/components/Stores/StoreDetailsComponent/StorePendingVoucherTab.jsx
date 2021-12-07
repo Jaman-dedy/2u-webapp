@@ -21,7 +21,7 @@ const StorePendingVoucherTab = ({
     { key: 'Date', value: global.translate('Date') },
     {
       key: 'SenderFirstName',
-      value: global.translate('Sender', 1105),
+      value: global.translate('Sender'),
     },
     {
       key: 'FirstName',

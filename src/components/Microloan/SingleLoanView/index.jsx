@@ -79,8 +79,8 @@ const SingleLoanView = ({ loan, onClick, detail }) => {
         }
       >
         {loan?.ActiveLoan === 'YES'
-          ? global.translate('Active loan', 2484)
-          : global.translate('Paid', 2546)}
+          ? global.translate('Active loan')
+          : global.translate('Paid')}
         {!detail && <Image src={rightArrow} />}
       </div>
     </div>

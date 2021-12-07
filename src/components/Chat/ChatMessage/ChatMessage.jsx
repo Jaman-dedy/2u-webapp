@@ -39,7 +39,7 @@ const ChatMessage = ({
   const chatMessageOptions = [
     {
       icon: 'trash',
-      name: global.translate('Delete', 415),
+      name: global.translate('Delete'),
       itemStyle: { background: '#db2828', color: 'white' },
       onClick: () => {
         setConfirmDeleteOpen(true);
@@ -47,10 +47,10 @@ const ChatMessage = ({
     },
     {
       icon: 'copy',
-      name: global.translate('Copy to clipboard', 1666),
+      name: global.translate('Copy to clipboard'),
       onClick: (e, el2) => {
         copyToClipboard(el2.body);
-        toast.success(global.translate('Text copied', 1667));
+        toast.success(global.translate('Text copied'));
       },
     },
   ];
@@ -115,7 +115,7 @@ const ChatMessage = ({
           }}
         >
           <Button
-            content={global.translate('Cancel', 86)}
+            content={global.translate('Cancel')}
             basic
             color="red"
             onClick={() => {
@@ -123,7 +123,7 @@ const ChatMessage = ({
             }}
           />
           <Button
-            content={global.translate('Delete for all', 1664)}
+            content={global.translate('Delete for all')}
             positive
             onClick={() => {
               setConfirmDeleteOpen(false);
@@ -134,7 +134,7 @@ const ChatMessage = ({
             }}
           />
           <Button
-            content={global.translate('Delete for me', 1663)}
+            content={global.translate('Delete for me')}
             positive
             onClick={() => {
               setConfirmDeleteOpen(false);

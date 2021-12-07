@@ -189,7 +189,7 @@ const ExportCSV = ({
             className="btn--cancel"
             onClick={() => setOpenModal(false)}
           >
-            {global.translate('Close', 186)}
+            {global.translate('Close')}
           </Button>
           <CSVLink
             data={dataToExport}
@@ -204,7 +204,7 @@ const ExportCSV = ({
               onClick={() => setOpenModal(false)}
               icon
             >
-              {global.translate('Export', 2240)}{' '}
+              {global.translate('Export')}{' '}
               <Icon name="external alternate" />
             </Button>
           </CSVLink>

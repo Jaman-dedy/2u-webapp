@@ -91,7 +91,7 @@ const ConfirmPayPal = ({
           setLevelThree(false);
         }}
       >
-        {global.translate('Back', 174)}
+        {global.translate('Back')}
       </Button>
     </div>
   );

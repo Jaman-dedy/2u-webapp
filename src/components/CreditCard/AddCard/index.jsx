@@ -168,7 +168,7 @@ const AddCard = ({
 
             <div className="select-provider">
               <h3>
-                {global.translate('Select the card provider', 2180)}
+                {global.translate('Select the card provider')}
               </h3>
 
               <ReusableDrowdown
@@ -180,7 +180,7 @@ const AddCard = ({
             </div>
             {userData?.data && (
               <div className="name-on-card">
-                <h3>{global.translate('Name on the card', 2178)}</h3>
+                <h3>{global.translate('Name on the card')}</h3>
                 <Input
                   fluid
                   placeholder="Name on the card"
@@ -209,7 +209,7 @@ const AddCard = ({
               {loading && <LoadCardLevel />}
               {!loading && cardOptions && (
                 <h3 className="provider-title">
-                  {global.translate('Select card type', 2179)}
+                  {global.translate('Select card type')}
                 </h3>
               )}
               {countLevel === cardOptions?.CardLevels.length &&
@@ -217,7 +217,6 @@ const AddCard = ({
                   <InfoMessage
                     description={global.translate(
                       'To proceed with your M-Card creation, you need to first to add money to the current selected wallet',
-                      2249,
                     )}
                   />
                 )}
@@ -299,13 +298,12 @@ const AddCard = ({
               )}
               body={global.translate(
                 'To continue ordering a card, add a new wallet',
-                2149,
               )}
               onAddClick={() => {
                 setOpenAddWalletModal(true);
               }}
               imgSrc={WalletImage}
-              createText={global.translate('Add Wallet', 111)}
+              createText={global.translate('Add Wallet')}
             />
             <AddWalletModal
               open={openAddWalletModal}

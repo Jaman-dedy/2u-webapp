@@ -17,7 +17,7 @@ const GoBack = ({ onClickHandler, style, authentication }) => (
       type="button"
     >
       <Icon name="long arrow alternate left" />{' '}
-      {global.translate('Back', 174)}
+      {global.translate('Back')}
     </button>
   </div>
 );

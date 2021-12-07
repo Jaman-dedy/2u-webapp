@@ -40,7 +40,7 @@ const MyRewards = ({ userData }) => {
                     data.Rewards.StatusText &&
                     data.Rewards.StatusCode === '6' && (
                       <LevelImage
-                        level={global.translate('Gold', 1182)}
+                        level={global.translate('Gold')}
                         statusCode="4"
                       />
                     )}
@@ -87,7 +87,7 @@ const MyRewards = ({ userData }) => {
                     data.Rewards.StatusText &&
                     data.Rewards.StatusCode === '0' && (
                       <LevelImage
-                        level={global.translate('Silver', 1182)}
+                        level={global.translate('Silver')}
                         statusCode="2"
                       />
                     )}
@@ -98,7 +98,7 @@ const MyRewards = ({ userData }) => {
                   <div className="congsTxt">
                     <div className="congDesc">
                       <span className="congrats cong-title">
-                        {global.translate('Congratulations', 950)},{' '}
+                        {global.translate('Congratulations')},{' '}
                         {global.translate(
                           'Your current level is',
                           1441,
@@ -336,7 +336,7 @@ const MyRewards = ({ userData }) => {
                       }}
                     >
                       <Icon name="print" />{' '}
-                      {global.translate('Print', 1463)}
+                      {global.translate('Print')}
                     </Button>
                   )}
                   content={() => ucardRef.current}
@@ -348,7 +348,7 @@ const MyRewards = ({ userData }) => {
                   onClick={() => setOpenModal(false)}
                 >
                   {' '}
-                  {global.translate('Close', 186)}
+                  {global.translate('Close')}
                 </Button>
               </div>
             </Modal.Content>

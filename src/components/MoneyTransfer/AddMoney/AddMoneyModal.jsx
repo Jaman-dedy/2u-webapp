@@ -49,7 +49,7 @@ const AddMoneyModal = ({
         <div className="success-message">
           <Icon name="times" color="red" size="massive" />
           <span className="successful">
-            {global.translate('Failed', 1213)}
+            {global.translate('Failed')}
           </span>
           <span className="message">
             {global.translate(error.Description)}
@@ -107,7 +107,7 @@ const AddMoneyModal = ({
             return !loading && setOpen(false);
           }}
           className="btn--cancel"
-          content={global.translate('Cancel', 86)}
+          content={global.translate('Cancel')}
         />
         <Button
           onClick={() =>
@@ -115,7 +115,7 @@ const AddMoneyModal = ({
             addMoneyFromCreditCardAction(addMoneyData)(dispatch)
           }
           positive
-          content={global.translate('Proceed', 1752)}
+          content={global.translate('Proceed')}
         />
       </>
     );

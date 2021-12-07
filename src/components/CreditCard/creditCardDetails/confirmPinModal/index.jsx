@@ -39,13 +39,13 @@ const ConfirmPin = ({
     >
       <Modal.Header style={{ textAlign: 'center' }}>
         {modalTitle ??
-          global.translate('Confirm with your PIN', 2125)}
+          global.translate('Confirm with your PIN')}
       </Modal.Header>
       <Modal.Content>
         {children}
         <div className={classes.PinFormNumber}>
           <PinCodeForm
-            label={global.translate('Provide your PIN Number', 543)}
+            label={global.translate('Provide your PIN Number')}
             onChange={({ target: { value, name } }) => {
               setError(null);
               setUserPinDigit({
@@ -78,7 +78,7 @@ const ConfirmPin = ({
             setShouldClear(true);
           }}
         >
-          {global.translate('Cancel', 86)}
+          {global.translate('Cancel')}
         </Button>
         <Button
           loading={loading}
@@ -99,7 +99,7 @@ const ConfirmPin = ({
             }
           }}
         >
-          {global.translate('Proceed', 1752)}
+          {global.translate('Proceed')}
         </Button>
       </Modal.Actions>
     </Modal>

@@ -213,7 +213,7 @@ const NewService = ({
             {!editMedia && (
               <div className="create-service-wrapper">
                 <Header size="medium">
-                  {global.translate('Details', 1843)}
+                  {global.translate('Details')}
                 </Header>
                 <Form loading={loading || updateLoading} id="form">
                   <Form.Group widths="equal">
@@ -221,17 +221,17 @@ const NewService = ({
                       name="Title"
                       onChange={onChange}
                       value={form.Title || ''}
-                      placeholder={global.translate('Name', 2242)}
+                      placeholder={global.translate('Name')}
                     />
                     <Form.Input
                       name="SubTitle"
                       onChange={onChange}
                       value={form.SubTitle || ''}
-                      placeholder={global.translate('Subtitle', 1569)}
+                      placeholder={global.translate('Subtitle')}
                     />
                   </Form.Group>
                   <TextArea
-                    label={global.translate('Description', 119)}
+                    label={global.translate('Description')}
                     name="Body"
                     onChange={(_, { value }) => {
                       onChange(_, { name: 'Body', value });
@@ -247,19 +247,18 @@ const NewService = ({
                     }}
                     value={form.Body || ''}
                     rows={1}
-                    placeholder={global.translate('Description', 119)}
+                    placeholder={global.translate('Description')}
                     fluid
                   />
                   {!service && (
                     <>
                       <hr />
                       <Header>
-                        {global.translate('Media', 1844)}
+                        {global.translate('Media')}
                       </Header>
                       <Item.Description>
                         {global.translate(
                           'Upload Media that describe your product or service',
-                          1872,
                         )}
                       </Item.Description>
 
@@ -297,7 +296,7 @@ const NewService = ({
                       <br />
                     </>
                   )}
-                  <Header>{global.translate('More', 1566)}</Header>
+                  <Header>{global.translate('More')}</Header>
                   <div className="category-tagOptions">
                     <Form.Input
                       name="Category"
@@ -311,7 +310,7 @@ const NewService = ({
                       )}
                       onChange={onChange}
                       value={form.Category || ''}
-                      placeholder={global.translate('Category', 343)}
+                      placeholder={global.translate('Category')}
                     />
                     <div className="tags-area">
                       <TagsInput
@@ -338,14 +337,14 @@ const NewService = ({
                         <Modal.Header id="user-header">
                           <Image circular src={{}} width={49} />
                           <span>
-                            {global.translate('Pick Location', 1873)}
+                            {global.translate('Pick Location')}
                           </span>
                         </Modal.Header>
                       }
                     />
                     <Form.Input
                       icon="map marker"
-                      placeholder={global.translate('Address', 1210)}
+                      placeholder={global.translate('Address')}
                       name="Address"
                       value={form.Address || ''}
                       onClick={() => {
@@ -396,8 +395,8 @@ const NewService = ({
                   >
                     {global.translate(
                       !service
-                        ? global.translate('Publish Now', 1877)
-                        : global.translate('Save', 614),
+                        ? global.translate('Publish Now')
+                        : global.translate('Save'),
                     )}
                   </Button>
                 </Form>

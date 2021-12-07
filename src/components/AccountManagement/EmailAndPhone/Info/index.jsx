@@ -14,19 +14,19 @@ const EditGeneralInfo = ({ userData, setInfoOrEdit }) => {
   const categoryOptions = [
     {
       key: 1,
-      text: global.translate('Private', 301),
+      text: global.translate('Private'),
       value: 1,
       icon: privateIcon,
     },
     {
       key: 2,
-      text: global.translate('Professional', 302),
+      text: global.translate('Professional'),
       value: 2,
       icon: professionalIcon,
     },
     {
       key: 3,
-      text: global.translate('Other', 303),
+      text: global.translate('Other'),
       value: 3,
       icon: otherIcon,
     },

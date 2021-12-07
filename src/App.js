@@ -283,13 +283,12 @@ const App = () => {
           closeOnDocumentClick={false}
         >
           <Modal.Header>
-            {global.translate('Account has no activity', 1340)}!
+            {global.translate('Account has no activity')}!
           </Modal.Header>
           <Modal.Content>
             <p className="sub-title">
               {global.translate(
                 'Your account has been idle for a while, you are going to be logged out soon.',
-                1341,
               )}
             </p>
           </Modal.Content>
@@ -300,7 +299,7 @@ const App = () => {
                 logUserOut();
               }}
             >
-              {global.translate('Log me out', 1342)}
+              {global.translate('Log me out')}
             </Button>
             <Button
               className="btn--confirm"

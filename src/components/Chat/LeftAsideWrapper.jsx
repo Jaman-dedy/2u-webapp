@@ -260,17 +260,17 @@ const ChartListComponent = ({
     }
 
     if (item.fileType?.startsWith('application')) {
-      return global.translate('Document', 2235);
+      return global.translate('Document',);
     }
 
     if (item.fileType?.startsWith('image')) {
-      return global.translate('Image', 2236);
+      return global.translate('Image');
     }
   };
   return (
     <aside className="recent-chats">
       <Header className="chart_list_header">
-        {global.translate('Chat', 577)}{' '}
+        {global.translate('Chat')}{' '}
         <div className="icons">
           <Image
             src={MessageIcon}
@@ -309,7 +309,7 @@ const ChartListComponent = ({
               onKeyUp={handleItemsSearch}
               onChange={handleItemsSearch}
             />
-            <p>{global.translate('Favorites', 1959)}</p>
+            <p>{global.translate('Favorites')}</p>
             {recentUserData.length === 0 && !userFavorite.loading && (
               <Message
                 fluid
@@ -404,12 +404,12 @@ const ChartListComponent = ({
           </div>
         </div>
         <div className="bottom-recents-list">
-          <p>{global.translate('Recent', 1661)}</p>
+          <p>{global.translate('Recent')}</p>
 
           {recentChatsData.length === 0 && !loading && (
             <Message
               fluid
-              message={global.translate('No recent activity', 1253)}
+              message={global.translate('No recent activity')}
               error={false}
             />
           )}
