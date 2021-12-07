@@ -7,15 +7,16 @@ import {
   Image,
   Modal,
   TransitionablePortal,
+  Input,
 } from 'semantic-ui-react';
 import cameraIcon from 'assets/images/camera-icon.png';
 import Message from 'components/common/Message';
 import FlatInput from 'components/common/TextField/FlatInput';
-import PhoneNumberInput from 'components/common/TextField/PhoneNumber';
 import Thumbnail from 'components/common/Thumbnail';
 import uploadFile from 'helpers/uploadImages/uploadFile';
 import updateContactPicture from 'redux/actions/contacts/updateContactPicture';
 import ImageCropper from 'components/common/ImageCroper/CropImage';
+import SelectCountryCode from 'components/common/SelectCountryCode';
 
 const EditContactContents = ({
   contact,
@@ -164,13 +165,28 @@ const EditContactContents = ({
               </div>
               <div className="phone-section">
                 <div className="area">
-                  <PhoneNumberInput
+                  <Input
+                    type="tel"
+                    pattern="[0-9]"
                     name="phoneNumber"
-                    value={editForm.phoneNumber}
                     placeholder={global.translate('Phone number', 13)}
-                    country={country}
-                    setCountry={setCountry}
+                    value={editForm.phoneNumber}
                     onChange={onEditChange}
+                    className="phone-number-input"
+                    style={{ width: '100%' }}
+                    required
+                    label={
+                      <SelectCountryCode
+                        country={country}
+                        setCountry={setCountry}
+                        iconClass="inline-block small-h-margin dropdown-flag"
+                      >
+                        <span className="">
+                          {country && country.value}
+                        </span>
+                      </SelectCountryCode>
+                    }
+                    labelPosition="left"
                   />
                 </div>
               </div>

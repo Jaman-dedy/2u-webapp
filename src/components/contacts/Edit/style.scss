@@ -18,9 +18,10 @@
 }
 
 .phone-section {
+  width: 21.5rem;
   .area {
-    .common-tel-area .SelectCountryCode .country-code {
-      padding-top: 0px;
+    .phone-number-input {
+      border: 1px solid #ccc;
     }
   }
 }
