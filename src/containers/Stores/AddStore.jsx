@@ -57,7 +57,7 @@ const AddStoreContainer = ({ currentStore }) => {
 
   const [errors, setErrors] = useState({});
   const [imageLoading, setImageLoading] = useState({});
-
+  const [accountNumber, setAccountNumber] = useState('');
   const clearError = name => {
     setErrors({
       ...errors,
@@ -114,12 +114,20 @@ const AddStoreContainer = ({ currentStore }) => {
   };
 
   const selectWallet = ({ AccountNumber }) => {
+    setAccountNumber(AccountNumber);
     setAddStoreData({
       ...addStoreData,
       WalletNumber: AccountNumber,
     });
   };
-
+  useEffect(() => {
+    if (accountNumber) {
+      setAddStoreData({
+        ...addStoreData,
+        WalletNumber: accountNumber,
+      });
+    }
+  }, [accountNumber]);
   useEffect(() => {
     if (addUpdateStore.success) {
       restoreAddUpdateStoreAction()(dispatch);
