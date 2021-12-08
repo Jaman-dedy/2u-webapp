@@ -309,26 +309,20 @@ const App = () => {
             />
           </Modal.Actions>
         </Modal>
-        {isAppDisplayedInWebView() ? (
+        <IdleTimer
+          ref={appRef}
+          element={document}
+          timeout={INITIAL_TIMEOUT_DURATION}
+          onIdle={() => {
+            if (isAuth()) {
+              onIdle();
+            }
+          }}
+        >
           <ErrorBoundary FallbackComponent={ErrorFallback}>
             {AppRoutes}
           </ErrorBoundary>
-        ) : (
-          <IdleTimer
-            ref={appRef}
-            element={document}
-            timeout={INITIAL_TIMEOUT_DURATION}
-            onIdle={() => {
-              if (isAuth()) {
-                onIdle();
-              }
-            }}
-          >
-            <ErrorBoundary FallbackComponent={ErrorFallback}>
-              {AppRoutes}
-            </ErrorBoundary>
-          </IdleTimer>
-        )}
+        </IdleTimer>
       </div>
     </>
   );

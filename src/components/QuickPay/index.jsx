@@ -68,6 +68,17 @@ const QuickPay = ({
     if (result) {
       return true;
     }
+    if (form.Amount && form.Amount < 1) {
+      return true;
+    }
+
+    if (
+      form.Amount &&
+      parseInt(form?.Amount?.replace(/,/g, ''), 10) >
+        parseInt(selectWallet?.Balance.replace(/,/g, ''), 10)
+    ) {
+      return true;
+    }
     return false;
   };
 
@@ -341,24 +352,6 @@ const QuickPay = ({
       />
     </DashboardLayout>
   );
-};
-QuickPay.propTypes = {
-  form: PropTypes.objectOf(PropTypes.any).isRequired,
-  handleError: PropTypes.func.isRequired,
-  handleScan: PropTypes.func.isRequired,
-  result: PropTypes.string.isRequired,
-  canScanQR: PropTypes.bool.isRequired,
-  setCanScanQR: PropTypes.func.isRequired,
-  walletList: PropTypes.arrayOf(PropTypes.any).isRequired,
-  setSelectedWallet: PropTypes.func.isRequired,
-  selectWallet: PropTypes.objectOf(PropTypes.any).isRequired,
-  onOptionChange: PropTypes.func.isRequired,
-  searchUser: PropTypes.func.isRequired,
-  locateUser: PropTypes.objectOf(PropTypes.any).isRequired,
-  loading: PropTypes.bool.isRequired,
-  checkTransactionConfirmation: PropTypes.func.isRequired,
-  errors: PropTypes.string.isRequired,
-  sendMoneyModal: PropTypes.func.isRequired,
 };
 
 export default QuickPay;

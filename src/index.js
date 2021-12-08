@@ -16,16 +16,16 @@ if (
     process.env.NODE_ENV === 'test'
   )
 ) {
-Sentry.init({
-  dsn:
-    'https://96ef34597ee441e2aed2c91c941429ff@o783324.ingest.sentry.io/5798733',
-  integrations: [new Integrations.BrowserTracing()],
+  Sentry.init({
+    dsn:
+      'https://96ef34597ee441e2aed2c91c941429ff@o783324.ingest.sentry.io/5798733',
+    integrations: [new Integrations.BrowserTracing()],
 
-  // Set tracesSampleRate to 1.0 to capture 100%
-  // of transactions for performance monitoring.
-  // We recommend adjusting this value in production
-  tracesSampleRate: 1.0,
-});
+    // Set tracesSampleRate to 1.0 to capture 100%
+    // of transactions for performance monitoring.
+    // We recommend adjusting this value in production
+    tracesSampleRate: 1.0,
+  });
 }
 
 ReactDOM.render(
