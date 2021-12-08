@@ -27,6 +27,7 @@ import toggleSidebar, {
 } from 'redux/actions/dashboard/dashboard';
 import { clearSelectedStore } from 'redux/actions/vouchers/selectedStore';
 import { Icon, Image } from 'semantic-ui-react';
+import capitalize from 'utils/capitalize';
 
 const platform = process.env.REACT_APP_PLATFORM;
 
@@ -251,7 +252,7 @@ const SideBar = () => {
                         toggleSidebar(dispatch);
                       }}
                     >
-                      {global.translate('Buy Airtime')}
+                      {capitalize(global.translate('Buy Airtime'))}
                     </Link>
                   </li>
                   <li

@@ -19,6 +19,7 @@ import Message from 'components/common/Message';
 import Wrapper from 'hoc/Wrapper';
 import { updateMoneyTransferStep } from 'redux/actions/dashboard/dashboard';
 import { clearConfirmation } from 'redux/actions/moneyTransfer/confirmTransaction';
+import capitalize from 'utils/capitalize';
 import countryCodes from 'utils/countryCodes';
 import formatNumber from 'utils/formatNumber';
 import { getPossibleDates } from 'utils/monthdates';
@@ -308,7 +309,8 @@ const TopUpModal = ({
     >
       {destinationContact && transactionType === 'TOP_UP' && (
         <Modal.Header centered className="modal-title">
-          {isTopingUp && global.translate(`Buy Airtime for `)}
+          {isTopingUp &&
+            capitalize(global.translate(`Buy Airtime for `))}
           {isSendingOthers && global.translate(`Transfer money to `)}
           {<strong>&nbsp;{destinationContact.FirstName}</strong>}
         </Modal.Header>

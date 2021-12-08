@@ -31,6 +31,7 @@ import {
 } from 'redux/actions/dashboard/dashboard';
 import { setSelectedStore } from 'redux/actions/vouchers/selectedStore';
 import { Image, Input } from 'semantic-ui-react';
+import capitalize from 'utils/capitalize';
 import DeleteContactModal from './Delete/DeleteContactModal';
 import ContactDetailsModal from './Detail/ContactDetailsModal';
 import ListItem from './List/ListItem';
@@ -355,7 +356,7 @@ const ManageContacts = ({
                     });
                   }}
                 >
-                  {global.translate('Buy for yourself')}
+                  {capitalize(global.translate('Buy for yourself'))}
                 </button>
               )}
               {(isSendingMoney ||
