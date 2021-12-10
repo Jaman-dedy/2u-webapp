@@ -50,7 +50,7 @@ const StoreWalletSettingsTab = ({ currentStore }) => {
           <div className="stats-card">
             <Card.Content>
               <p className="stat-header">
-                {global.translate('Total turnover', 857)}
+                {global.translate('Total turnover')}
               </p>
               <span className="stats-value">
                 <Image
@@ -68,8 +68,8 @@ const StoreWalletSettingsTab = ({ currentStore }) => {
           <div className="stats-card">
             <Card.Content>
               <p className="stat-header">
-                {global.translate('Total', 269)}{' '}
-                {global.translate('Transactions', 62).toLowerCase()}
+                {global.translate('Total')}{' '}
+                {global.translate('Transactions').toLowerCase()}
               </p>
               <span className="stats-value">
                 {currentStore.TransCount}
@@ -98,8 +98,9 @@ const StoreWalletSettingsTab = ({ currentStore }) => {
                 {global.translate('Service fee')}
               </p>
               <span className="stats-value">
-                {`${currentStore?.ServiceFeeRate ?? ''} ${currentStore?.ServiceFeeRate ? '%' : ''
-                  }`}
+                {`${currentStore?.ServiceFeeRate ?? ''} ${
+                  currentStore?.ServiceFeeRate ? '%' : ''
+                }`}
               </span>
             </Card.Content>
           </div>
@@ -116,6 +117,25 @@ const StoreWalletSettingsTab = ({ currentStore }) => {
             </Card.Content>
           </div>
         </Grid.Column>
+        <Responsive as={Grid.Column} minWidth={768} />
+      </Grid>
+
+      <Grid columns="equal" className="count-stats">
+        <Grid.Column>
+          <div className="stats-card">
+            <Card.Content>
+              <p className="stat-header">
+                {global.translate('Store wallet QR code')}
+              </p>
+              <Image
+                className="store-qr-code"
+                src={currentStore?.AccountQRCode}
+                alt=""
+              />
+            </Card.Content>
+          </div>
+        </Grid.Column>
+
         <Responsive as={Grid.Column} minWidth={768} />
       </Grid>
     </Tab.Pane>
