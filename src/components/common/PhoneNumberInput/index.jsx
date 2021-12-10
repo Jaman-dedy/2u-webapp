@@ -86,7 +86,12 @@ const PhoneNUmberForm = ({
             error={!!error || false}
             value={value}
             onChange={e => {
-              onChange(e);
+              const {
+                target: { value },
+              } = e;
+              if (value.length <= 9) {
+                onChange(e);
+              }
             }}
             className="phone-number-input"
             placeholder="e.g.: 78-000-0000"

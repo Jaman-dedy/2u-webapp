@@ -8,7 +8,6 @@ import StoreDetailsComponent from 'components/Stores/StoreDetailsComponent';
 import getMyStoresAction from 'redux/actions/stores/getMyStores';
 import getPendingVouchers from 'redux/actions/vouchers/getPendingVouchers';
 import listStoreAgents from 'redux/actions/stores/listStoreAgents';
-
 import cancelStoreVoucher from 'redux/actions/vouchers/cancelStoreVoucher';
 import setStoreStatus, {
   clearStoreStatus,

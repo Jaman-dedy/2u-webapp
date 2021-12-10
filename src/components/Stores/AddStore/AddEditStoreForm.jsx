@@ -2,7 +2,6 @@ import React, { useRef, useState, useEffect, useMemo } from 'react';
 import {
   Form,
   TextArea,
-  Dropdown,
   Image,
   Label,
   Icon,
@@ -459,9 +458,7 @@ const AddEditStoreForm = ({
           </Form.Group>
         </div>
 
-        <span>
-          {global.translate('Store address and contacts', 868)}
-        </span>
+        <span>{global.translate('Store address and contacts')}</span>
         <PositionPickerModal
           open={open}
           setOpen={setOpen}
@@ -478,6 +475,7 @@ const AddEditStoreForm = ({
           type="text"
           required
           width={16}
+          onFocus={() => setOpen(true)}
           action={
             <button
               className="pick-position"
