@@ -13,7 +13,7 @@ export default data => dispatch =>
     apiAction({
       method: 'post',
       url: '/UpdateUserPhoneList',
-      data: { Phones: data.Phones },
+      data: { Phones: data.Phones, ...data.newPhone },
       onStart: () => dispatch =>
         dispatch({
           type: UPDATE_USER_PHONE_LIST_START,
@@ -22,7 +22,7 @@ export default data => dispatch =>
         const res = Array.isArray(result)
           ? result[0] || {}
           : result || {};
-        toast.success(res.Description);
+        toast.success(res?.Description);
         if (res.Result === 'Success') {
           dispatch({
             type: UPDATE_USER_PHONE_LIST_SUCCESS,

@@ -13,6 +13,7 @@ import uploadDocs from 'helpers/uploadDocs/checkUpload';
 import updateUserPhoneListAction from 'redux/actions/userAccountManagement/updateUserPhoneList';
 import deletePhoneNumber from 'redux/actions/userAccountManagement/deletePhoneNumber';
 import updateUserEmailListAction from 'redux/actions/userAccountManagement/updateUserEmailList';
+import verifyPhoneNumberExist from 'redux/actions/users/verifyPhoneNumber';
 
 import verifyOTPAction, {
   clearVerifyOTP,
@@ -152,7 +153,8 @@ export default () => {
       MotherFName: personalInfoData?.MotherFName,
       Nationality: nationalityCountry?.toLowerCase(),
       CountryOfBirth: bornCountry.toLowerCase(),
-      Profession: personalInfoData?.Profession||currentOption.toString(),
+      Profession:
+        personalInfoData?.Profession || currentOption.toString(),
       SpouseName: personalInfoData?.SpouseName,
       CityOfBirth: personalInfoData?.CityOfBirth,
       DateOfBirth: personalInfoData?.DateOfBirth,
@@ -174,7 +176,7 @@ export default () => {
         Profession: data?.UserExtraKYC?.Profession,
         SpouseName: data?.UserExtraKYC?.SpouseName,
         CityOfBirth: data?.UserExtraKYC?.CityOfBirth,
-        Nationality: nationality?.toLowerCase()||'',
+        Nationality: nationality?.toLowerCase() || '',
       });
       setBornCountry(data?.UserExtraKYC?.CountryOfBirth);
       setNationalityCountry(data?.UserExtraKYC?.Nationality);
@@ -230,9 +232,9 @@ export default () => {
     }
   }, [personalInfoData, bornCountry]);
 
-  const handleSendOTP = () => {
+  const handleSendOTP = useCallback(() => {
     sendOTPAction(phoneValue)(dispatch);
-  };
+  }, [phoneValue]);
 
   useEffect(() => {
     if (sendEmail.data) {
@@ -248,9 +250,10 @@ export default () => {
     sendEmailAction(EmailData)(dispatch);
   };
 
-  const handleSetPrimary = phone => {
-    setPhonePrimary({ PhoneNumber: phone })(dispatch);
+  const handleSetPrimary = payload => {
+    setPhonePrimary(payload)(dispatch);
   };
+
   const handleSetEmailPrimary = email => {
     setPrimaryEmail({ Email: email })(dispatch);
   };
@@ -297,7 +300,8 @@ export default () => {
     newPhone => {
       updateUserPhoneListAction({
         updatedPhoneList: new Set([...data?.Phones, newPhone]),
-        Phones: [newPhone],
+        Phones: [],
+        newPhone,
       })(dispatch);
     },
     [data, dispatch],
@@ -371,7 +375,12 @@ export default () => {
     );
   };
 
+  const handleAddPhoneNumber = useCallback(() => {
+    verifyPhoneNumberExist(phoneValue)(dispatch);
+  }, [phoneValue]);
+
   return {
+    handleAddPhoneNumber,
     personalInfoData,
     setPersonalInfoData,
     errors,

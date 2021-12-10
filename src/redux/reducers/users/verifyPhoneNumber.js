@@ -40,6 +40,8 @@ export default (state, { type, payload }) => {
         verifyPhoneNumber: {
           ...payload,
           loading: false,
+          error: null,
+          isValid: false,
         },
       };
     default:

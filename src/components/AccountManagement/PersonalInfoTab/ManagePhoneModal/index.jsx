@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import PropTypes from 'prop-types';
 import {
@@ -17,6 +17,7 @@ import './style.scss';
 import InfoMessage from 'components/common/Alert/InfoMessage';
 import PINInput from 'components/common/PINInput';
 import ErrorMessage from 'components/common/Alert/Danger';
+import { clearPhoneNumber } from 'redux/actions/users/verifyPhoneNumber';
 
 const ManagePhoneModal = ({
   open,
@@ -33,24 +34,34 @@ const ManagePhoneModal = ({
     handleSetPrimary,
     settingPrimaryPhone,
     OTP,
-    updateUserPhoneList,
     setOTP,
     handleDelete,
     secondOpen,
     setSecondOpen,
     verifyOTP,
     deletePhone,
+    handleAddPhoneNumber,
   } = personalInfo;
+
   const [addingPhone, setIAddingPhone] = useState(false);
   const [sendOtp, setSendOtp] = useState(false);
   const [verifyPhoneLoading, setVerifyPhoneLoading] = useState(false);
   const [currentPhone, setCurrentPhone] = useState(null);
-  const { loading, success } = updateUserPhoneList;
-
+  const dispatch = useDispatch();
   const updatePhoneListData = useSelector(
     ({ userAccountManagement: { updateUserPhoneList } }) =>
       updateUserPhoneList,
   );
+
+  const { loading, isValid, error } = useSelector(
+    ({ user: { verifyPhoneNumber } }) => verifyPhoneNumber,
+  );
+
+  useEffect(() => {
+    if (isValid && !error?.message) {
+      handleSendOTP();
+    }
+  }, [isValid, handleSendOTP, error?.message]);
 
   useEffect(() => {
     if (sendOTP.success) {
@@ -167,7 +178,10 @@ const ManagePhoneModal = ({
                     >
                       <span
                         onClick={() => {
-                          handleSetPrimary(phone.Phone);
+                          handleSetPrimary({
+                            PhoneNumber: phone.Phone,
+                            PhoneCountryCode: phone.NumberCountryCode,
+                          });
                           handleClick(phone.Phone);
                         }}
                       >
@@ -240,7 +254,7 @@ const ManagePhoneModal = ({
             </Table>
             <div className="add-phones-actions">
               <Button
-                className="btn-add-phone btn--confirm"
+                className="btn-add-phone"
                 onClick={() => setIAddingPhone(true)}
               >
                 <Image src={AddPhoneIcon} />{' '}
@@ -273,7 +287,7 @@ const ManagePhoneModal = ({
                 }}
               />
             </div>
-            {duplicatePhoneNumber && (
+            {(duplicatePhoneNumber || error?.message) && (
               <div className="error-message">
                 <ErrorMessage
                   message={global.translate(
@@ -285,20 +299,25 @@ const ManagePhoneModal = ({
             <div className="add-phone-actions">
               <Button
                 className="back-button"
-                onClick={() => setIAddingPhone(false)}
+                onClick={() => {
+                  setIAddingPhone(false);
+                  setPhoneValue('');
+                  clearPhoneNumber()(dispatch);
+                }}
               >
                 {global.translate('Back')}
               </Button>
               <Button
                 className="add-button"
                 onClick={() => {
-                  handleSendOTP();
+                  handleAddPhoneNumber();
                 }}
-                loading={sendOTP.loading}
+                loading={sendOTP.loading || loading}
                 disabled={
                   !phoneValue ||
                   phoneValue?.length < 11 ||
-                  duplicatePhoneNumber
+                  duplicatePhoneNumber ||
+                  (phoneValue.length === 11 && error?.message)
                 }
               >
                 {global.translate('Add')}

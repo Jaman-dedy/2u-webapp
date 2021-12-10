@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import queryString from 'query-string';
 import clearWalletForm from 'redux/actions/users/clearWalletForm';
 import clearDeleteWallet from 'redux/actions/users/clearDeleteWallet';
 import clearEditWallet from 'redux/actions/users/clearEditWallet';
@@ -12,12 +15,10 @@ import getUserNetworth from 'redux/actions/users/getUserNetworth';
 import setAsDefault, {
   clearSetDefaultWallet,
 } from 'redux/actions/users/setAsDefault';
-import { useHistory, useLocation } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import queryString from 'query-string';
 
 import getMyWalletsAction from 'redux/actions/users/getMyWallets';
 import addWallets from 'redux/actions/users/addWallet';
+
 export default () => {
   const dispatch = useDispatch();
   const locationParams = useLocation();
