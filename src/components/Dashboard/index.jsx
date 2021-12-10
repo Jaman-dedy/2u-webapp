@@ -330,7 +330,7 @@ const Dashboard = ({
             <div className="dash-card" data-tut="fifth-step">
               <h2>
                 {global.translate(`Transfer money to`)}
-                <Link to="/contacts">
+                <Link to="/contacts?ref=send-money">
                   {global.translate('SEE ALL').toUpperCase()}
                 </Link>
               </h2>
