@@ -1,8 +1,5 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import AddPhoneIcon from 'assets/images/profile/add-phone.svg';
-import ErrorMessage from 'components/common/Alert/Danger';
-import checkEmail from 'helpers/checkEmail';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -14,6 +11,9 @@ import {
   Modal,
   Table,
 } from 'semantic-ui-react';
+import checkEmail from 'helpers/checkEmail';
+import ErrorMessage from 'components/common/Alert/Danger';
+import AddPhoneIcon from 'assets/images/profile/add-phone.svg';
 import './style.scss';
 
 const ManageEmailModal = ({
@@ -32,6 +32,7 @@ const ManageEmailModal = ({
     handleDeleteEmail,
     updateUserEmailList,
   } = personalInfo;
+
   const location = useLocation();
   const history = useHistory();
 
@@ -47,6 +48,9 @@ const ManageEmailModal = ({
   }, [formEmail?.email]);
 
   const isValidEmail = email => {
+    if (!email || !email.length) {
+      return false;
+    }
     const isValid = checkEmail(email);
     setEmailError(!isValid ? true : null);
     return isValid;
@@ -244,6 +248,7 @@ const ManageEmailModal = ({
                 placeholder="john@gmail.com"
                 onChange={handleEmailInputChange}
                 name="email"
+                value={formEmail?.email}
                 error={emailError}
               />
             </div>
@@ -264,8 +269,8 @@ const ManageEmailModal = ({
                 {global.translate('Back')}
               </Button>
               <Button
-                loading={sendEmail.loading}
-                disabled={!formEmail?.email}
+                loading={sendEmail?.loading}
+                disabled={!checkEmail(formEmail?.email)}
                 className="add-button"
                 onClick={() =>
                   isValidEmail(formEmail?.email) &&
