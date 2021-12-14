@@ -100,7 +100,7 @@ const Card = ({ card, onClick, detail, userData }) => {
             </span>
             {!detail && (
               <Button basic onClick={() => onClick(card)}>
-                {global.translate('View', 1900)}
+                {global.translate('View')}
               </Button>
             )}
           </div>

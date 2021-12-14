@@ -218,10 +218,8 @@ const WalletCarousel = ({
               {!walletTitle
                 ? !myWallets?.walletList?.length
                   ? global.translate(
-                      'All wallets are associated with cards',
-                      2244,
-                    )
-                  : global.translate('Select wallet', 2167)
+                      'All wallets are associated with cards')
+                  : global.translate('Select wallet')
                 : walletTitle}
             </h3>
           )}
@@ -240,7 +238,7 @@ const WalletCarousel = ({
                 src={plusWalletImg}
                 style={{ marginRight: '7px', marginTop: '2px' }}
               />
-              {global.translate('Add a wallet', 2169)}
+              {global.translate('Add a wallet')}
             </Button>
           )}
         </div>

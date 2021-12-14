@@ -44,7 +44,7 @@ const ConfirmWithPINModal = ({
           }}
           disabled={loading}
         >
-          {global.translate('Cancel', 26)}
+          {global.translate('Cancel')}
         </Button>
         <Button
           color="green"
@@ -54,7 +54,7 @@ const ConfirmWithPINModal = ({
           }}
           disabled={disabled || loading}
         >
-          {global.translate('Proceed', 1752)}
+          {global.translate('Proceed')}
         </Button>
       </Modal.Actions>
     </Modal>

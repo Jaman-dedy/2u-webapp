@@ -114,7 +114,7 @@ const ManageContacts = ({
   const options = [
     {
       image: TransactionsImage,
-      name: global.translate('Transfer Money', 1950),
+      name: global.translate('Transfer Money'),
       onClick: item => {
         setDestinationContact(item);
         setSendMoneyOpen(true);
@@ -123,7 +123,7 @@ const ManageContacts = ({
 
     {
       image: TransactionsImage,
-      name: global.translate('Send cash', 1948),
+      name: global.translate('Send cash'),
       onClick: item => {
         setDestinationContact(item);
         setSendCashOpen(true);
@@ -131,7 +131,7 @@ const ManageContacts = ({
     },
     {
       image: SendVoucherIcon,
-      name: global.translate('Send a Voucher', 763),
+      name: global.translate('Send a Voucher'),
       onClick: item => {
         setDestinationContact(item);
         history.push({
@@ -152,7 +152,7 @@ const ManageContacts = ({
     },
     {
       image: TopuUpImage,
-      name: global.translate('Buy Airtime', 1552),
+      name: global.translate('Buy Airtime'),
 
       onClick: item => {
         setIsTopingUp(dispatch);
@@ -162,7 +162,7 @@ const ManageContacts = ({
     },
     {
       image: SendOthersImage,
-      name: global.translate('Other networks', 581),
+      name: global.translate('Other networks'),
 
       onClick: item => {
         setIsSendingOhters(dispatch);
@@ -173,7 +173,7 @@ const ManageContacts = ({
 
     {
       image: ViewHistoryImage,
-      name: global.translate('View transactions', 143),
+      name: global.translate('View transactions'),
 
       onClick: item => {
         history.push({
@@ -193,7 +193,7 @@ const ManageContacts = ({
     },
     {
       image: ContactInfoImage,
-      name: global.translate('Contact Info', 1220),
+      name: global.translate('Contact Info'),
       onClick: item => {
         setContact(item);
         setIsDetail(true);
@@ -208,7 +208,7 @@ const ManageContacts = ({
     },
     {
       image: DeleteContactImage,
-      name: global.translate('Delete Contact', 1703),
+      name: global.translate('Delete Contact'),
       onClick: item => {
         setContact(item);
         setIsDeletingContact(true);

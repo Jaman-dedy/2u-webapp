@@ -113,19 +113,19 @@ const UnPaidCashList = ({
       },
     );
   const pendingVoucherHeaders = [
-    { key: 'Date', value: global.translate('Date', 1258) },
-    { key: 'FirstName', value: global.translate('Name', 276) },
+    { key: 'Date', value: global.translate('Date') },
+    { key: 'FirstName', value: global.translate('Name') },
     {
       key: 'SourceAmount',
-      value: global.translate('Amount Sent', 1259),
+      value: global.translate('Amount Sent'),
     },
     {
       key: 'Store',
-      value: global.translate('Store Name', 837),
+      value: global.translate('Store Name'),
     },
     {
       key: 'SourceAccountNumber',
-      value: global.translate('Source Wallet', 1260),
+      value: global.translate('Source Wallet'),
     },
     {
       key: 'DisplayTransferNumber',
@@ -138,8 +138,8 @@ const UnPaidCashList = ({
   ];
 
   const tableHeadersAllTrasactions = [
-    { key: 'Date', value: global.translate('Date', 1258) },
-    { key: 'FirstName', value: global.translate('Name', 276) },
+    { key: 'Date', value: global.translate('Date') },
+    { key: 'FirstName', value: global.translate('Name') },
     {
       key: 'SourceAmount',
       value: global.translate('Amount Sent', 1260),
@@ -164,20 +164,20 @@ const UnPaidCashList = ({
     },
   ];
   const tableHeadersSingleContactTransactions = [
-    { key: 'Date', value: global.translate('Date', 1258) },
+    { key: 'Date', value: global.translate('Date') },
     {
       key: 'SourceAmount',
-      value: global.translate('Amount Sent', 1259),
+      value: global.translate('Amount Sent'),
     },
     {
       key: 'DestAmount',
-      value: global.translate('Amount To Be Received', 397),
+      value: global.translate('Amount To Be Received'),
     },
     showAll && {
       key: 'SourceAccountNumber',
-      value: global.translate('Source Wallet', 1260),
+      value: global.translate('Source Wallet'),
     },
-    { key: 'StatusCode', value: global.translate('Status', 339) },
+    { key: 'StatusCode', value: global.translate('Status') },
   ];
   return (
     <div className="main-container">

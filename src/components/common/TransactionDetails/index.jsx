@@ -76,9 +76,8 @@ const TransactionDetails = ({
       return {
         sourceWallet: item.SourceAccountNumber,
         sourceCurrency: item.SourceCurrencyFlag,
-        targetWallet: `${item.PhonePrefix ? item.PhonePrefix : ''} ${
-          item.Phone ? item.Phone : ''
-        }`,
+        targetWallet: `${item.PhonePrefix ? item.PhonePrefix : ''} ${item.Phone ? item.Phone : ''
+          }`,
         targetCurrency: item.DestCurrencyFlag,
       };
     }
@@ -105,8 +104,8 @@ const TransactionDetails = ({
           </div>
           <h2 className="head-title">
             {item?.isOnStore
-              ? global.translate('Voucher details', 2276)
-              : global.translate('Transaction details', 2277)}
+              ? global.translate('Voucher details')
+              : global.translate('Transaction details')}
           </h2>
           <div className="clear" />
         </div>
@@ -134,8 +133,8 @@ const TransactionDetails = ({
             <DisplayWallet
               title={
                 item?.isOnStore
-                  ? global.translate('Sender', 1145)
-                  : global.translate('Source account', 2176)
+                  ? global.translate('Sender')
+                  : global.translate('Source account')
               }
               walletNumber={walletInfos().sourceWallet}
               walletFlag={walletInfos().sourceCurrency}
@@ -145,8 +144,8 @@ const TransactionDetails = ({
               <DisplayWallet
                 title={
                   selectedCard === 3 || item?.isOnStore
-                    ? global.translate('Store', 803)
-                    : global.translate('Target account', 1611)
+                    ? global.translate('Store')
+                    : global.translate('Target account')
                 }
                 walletNumber={walletInfos().targetWallet}
                 walletFlag={walletInfos().targetCurrency}
@@ -166,7 +165,7 @@ const TransactionDetails = ({
         <div className="goto-transactions">
           {!item?.isOnStore && (
             <Button onClick={() => history.push('/transactions')}>
-              {global.translate('Go to all transactions', 2214)}
+              {global.translate('Go to all transactions')}
             </Button>
           )}
           {item?.isOnStore && (
@@ -179,7 +178,7 @@ const TransactionDetails = ({
               </Button>
 
               <Button onClick={onRejectVoucher}>
-                {global.translate('Reject voucher', 1338)}
+                {global.translate('Reject voucher')}
               </Button>
             </>
           )}
@@ -189,7 +188,7 @@ const TransactionDetails = ({
                 setCancelOpen(true);
               }}
             >
-              {global.translate('Cancel transaction', 1103)}
+              {global.translate('Cancel transaction',)}
             </Button>
           )}
         </div>
@@ -226,20 +225,20 @@ TransactionDetails.propTypes = {
 TransactionDetails.defaultProps = {
   item: {},
   selectedCard: 1,
-  setPhoneValue: () => {},
+  setPhoneValue: () => { },
   phoneValue: '',
-  onOptionChange: () => {},
+  onOptionChange: () => { },
   form: {},
-  modifyOneTransaction: () => {},
+  modifyOneTransaction: () => { },
   updating: false,
   updatingData: {},
   updatingError: {},
   openEditTransaction: false,
-  setOpenEditTransaction: () => {},
+  setOpenEditTransaction: () => { },
   storeName: '',
   withdraw: false,
-  onRejectVoucher: () => {},
-  setPIN: () => {},
+  onRejectVoucher: () => { },
+  setPIN: () => { },
   PIN: '',
 };
 

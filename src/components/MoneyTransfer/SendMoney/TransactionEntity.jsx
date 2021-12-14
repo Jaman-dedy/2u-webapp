@@ -124,7 +124,7 @@ const TransactionEntity = ({
                 Object.keys(destinationContact).length > 0 && (
                   <>
                     <span className="destination">
-                      {global.translate('To', 115)}{' '}
+                      {global.translate('To')}{' '}
                     </span>
                     <Thumbnail
                       width={75}

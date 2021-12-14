@@ -195,28 +195,24 @@ const CreditCardDetails = ({ creditCardDetails }) => {
         <Modal.Header>
           {global.translate(
             'Remove this card from your wallet',
-            2127,
           )}
         </Modal.Header>
         <Modal.Content>
           <Header as="h4" color="red">
             {global.translate(
               'Deleting this card will permanently remove it from your wallet, Would you like to proceed?',
-              2128,
             )}
           </Header>
 
           <p className="verification-message">
             {global.translate(
               'This action can lead to data loss. To prevent accidental actions we ask you to confirm your intention.',
-              1856,
             )}
           </p>
 
           <p>
             {global.translate(
               'Please type the following text to proceed',
-              2129,
             )}{' '}
             <span className="ui label">{`${wallet?.Last4Digits}`}</span>
           </p>

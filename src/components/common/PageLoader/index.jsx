@@ -8,7 +8,7 @@ const PageLoader = () => {
     <div className="PageLoader">
       <Loader active size="massive">
         <span className="text-grey">
-          {global.translate('Loading', 194)}...
+          {global.translate('Loading')}...
         </span>
       </Loader>
     </div>

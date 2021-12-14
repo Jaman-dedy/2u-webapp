@@ -63,7 +63,7 @@ const ProfileComponent = ({ userPID }) => {
     {
       menuItem: {
         key: 'Posts',
-        content: global.translate('My Posts', 2109),
+        content: global.translate('My Posts'),
       },
       render: () => (
         <Tab.Pane as="div">
@@ -80,7 +80,7 @@ const ProfileComponent = ({ userPID }) => {
     {
       menuItem: {
         key: 'bookmark',
-        content: global.translate('Saved', 2111),
+        content: global.translate('Saved'),
       },
       render: () => (
         <Tab.Pane as="div">
@@ -90,7 +90,7 @@ const ProfileComponent = ({ userPID }) => {
             allowCreate={false}
             disableEmptyAdd
             emptyMessage={{
-              title: global.translate('No saved posts yet', 2112),
+              title: global.translate('No saved posts yet'),
               body: global.translate(
                 'All products and services you bookmark will appear here',
                 2113,

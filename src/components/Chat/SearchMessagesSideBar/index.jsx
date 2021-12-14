@@ -45,7 +45,7 @@ const SearchMessagesSidebar = ({
         ...rest,
         owner:
           sender === data?.PID
-            ? global.translate('Me', 1658)
+            ? global.translate('Me')
             : contacts?.find(
                 item =>
                   item.ContactPID === currentChatTarget?.ContactPID ||

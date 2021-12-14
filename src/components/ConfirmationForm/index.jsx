@@ -67,7 +67,7 @@ const ConfirmationForm = ({
           <div className="amount-to-be-recieved-break-down">
             <div className="fees-item">
               <p className="left" style={{ marginTop: '13px' }}>
-                {global.translate('Total', 269)}:
+                {global.translate('Total')}:
               </p>
               <p className="right">
                 <strong
@@ -80,7 +80,7 @@ const ConfirmationForm = ({
             </div>
             <div className="fees-item">
               <p className="left" style={{ marginTop: '13px' }}>
-                {global.translate('Amount to be received', 397)}:
+                {global.translate('Amount to be received')}:
               </p>
               <p className="right">
                 <strong

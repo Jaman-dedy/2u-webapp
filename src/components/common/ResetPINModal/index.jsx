@@ -133,7 +133,7 @@ const ResetPIN = ({ open, setOpen, close, isOnResetPassword }) => {
             <p>{global.translate('Type a new password')}</p>
             <Form.Field>
               <PasswordInput
-                placeholder={global.translate('Password', 2)}
+                placeholder={global.translate('Password')}
                 onChange={(e, { value }) => setNewPassword(value)}
                 type="password"
                 value={newPassword}
@@ -234,7 +234,7 @@ const ResetPIN = ({ open, setOpen, close, isOnResetPassword }) => {
         >
           {step === 1
             ? global.translate('Cancel')
-            : global.translate('Back', 174)}
+            : global.translate('Back')}
         </Button>
 
         {step !== 2 && (

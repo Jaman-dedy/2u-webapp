@@ -72,7 +72,7 @@ const DeleteContactModal = ({
             setOpen(!open);
           }}
         >
-          {global.translate('Cancel', 86)}
+          {global.translate('Cancel')}
         </Button>
 
         <Button
@@ -87,8 +87,8 @@ const DeleteContactModal = ({
             }
           }}
         >
-          {error && global.translate('Retry', 1952)}
-          {!data && !error && global.translate('ok', 69)}
+          {error && global.translate('Retry')}
+          {!data && !error && global.translate('ok')}
         </Button>
       </Modal.Actions>
     </Modal>

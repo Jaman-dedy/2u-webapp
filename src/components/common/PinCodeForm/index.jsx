@@ -50,7 +50,7 @@ const PinCodeForm = ({
 
   return (
     <div className="pin-input-form">
-      <span>{global.translate('Enter your 4 digit PIN', 1431)}</span>
+      <span>{global.translate('Enter your 4 digit PIN')}</span>
       <Form.Field className="pin-input-group">
         {Array(4)
           .fill()

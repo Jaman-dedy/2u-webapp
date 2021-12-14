@@ -172,7 +172,7 @@ const AddMoney = ({
         value={date}
         onClick={onClick}
         error={errors.date || false}
-        placeholder={global.translate('Date', 1258)}
+        placeholder={global.translate('Date')}
       />
     );
   };
@@ -275,7 +275,7 @@ const AddMoney = ({
       <Prompt
         when={formIsHalfFilledOut}
         message={JSON.stringify({
-          header: global.translate('Confirm', 1750),
+          header: global.translate('Confirm'),
           content: global.translate(
             'You have unsaved changes, Are you sure you want to leave?',
             1751,
@@ -290,7 +290,7 @@ const AddMoney = ({
               <GoBack style onClickHandler={onClickHandler} />
             </div>
             <h2 className="head-title">
-              {global.translate('Top Up your wallet', 2220)}
+              {global.translate('Top Up your wallet')}
             </h2>
             <div className="clear" />
           </div>
@@ -299,7 +299,7 @@ const AddMoney = ({
         <div className="wrap__container">
           <div className="display-steps">
             <ShowStep
-              title={global.translate('Select', 2217)}
+              title={global.translate('Select')}
               subTitle={global.translate(
                 'Choose a provider and wallet',
                 2218,
@@ -310,7 +310,7 @@ const AddMoney = ({
               number={1}
             />
             <ShowStep
-              title={global.translate('Top Up', 542)}
+              title={global.translate('Top Up')}
               subTitle={global.translate('Add money to your wallet')}
               levelNumber={levelTwo ? levelTwoVisited : Step2Img}
               visited={levelTwo}
@@ -390,7 +390,7 @@ const AddMoney = ({
                   positive
                   onClick={() => setStep(step + 1)}
                 >
-                  {global.translate('Next', 10)}
+                  {global.translate('Next')}
                 </Button>
               </div>
             )}

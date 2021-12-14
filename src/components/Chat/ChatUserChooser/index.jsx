@@ -92,9 +92,9 @@ const ChooseChatUserModal = ({ open, setOpen }) => {
         <ModalHeader
           setOpen={() => setOpen(false)}
           selectedContacts={selectedContacts}
-          title={global.translate('New Chat', 1650)}
+          title={global.translate('New Chat')}
           closeIcon="arrow left"
-          confirmContent={global.translate('Next', 10)}
+          confirmContent={global.translate('Next')}
           nextDisabled={!selectedContacts.length}
           onConfirmClick={() => {
             if (selectedContacts.length === 1) {

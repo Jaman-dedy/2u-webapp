@@ -94,7 +94,7 @@ const ListItem = ({
             onClickNo={() => {
               setIsModalOpened(false);
             }}
-            message={`${global.translate('Remove', 415)}  ${
+            message={`${global.translate('Remove')}  ${
               thisItem.FirstName
             } ${thisItem.LastName} ?`}
           />

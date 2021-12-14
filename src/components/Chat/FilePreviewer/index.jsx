@@ -62,7 +62,7 @@ const FilePreview = ({
       open={visible}
     >
       <Modal.Header className="modal-title">
-        {global.translate('Preview', 1462)}
+        {global.translate('Preview')}
       </Modal.Header>
       <Modal.Content className="preview-segment" padded={false}>
         <div className="body">

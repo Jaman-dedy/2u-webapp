@@ -70,7 +70,6 @@ const SelectLanguage = ({ pointing, hasLabel, open, setOpen }) => {
                     src={languageIcon}
                     title={global.translate(
                       'Select a language',
-                      1585,
                     )}
                   />
                 </div>

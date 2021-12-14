@@ -48,7 +48,7 @@ const Comments = ({
           {comments && comments.loading && (
             <Segment style={{ marginTop: '10px' }}>
               <LoaderComponent
-                loaderContent={global.translate('Working...', 412)}
+                loaderContent={global.translate('Working...')}
               />
             </Segment>
           )}
@@ -67,7 +67,6 @@ const Comments = ({
                         <div className="comment-lebel">
                           {global.translate(
                             'What do you think about this store?',
-                            1741,
                           )}
                         </div>
                         <TextArea
@@ -86,7 +85,7 @@ const Comments = ({
                           style={{ marginTop: '5px', float: 'right' }}
                           onClick={() => postCommentHelper()}
                         >
-                          {global.translate('Comment', 488)}
+                          {global.translate('Comment')}
                         </Button>
                       </div>
                     </Form>
@@ -127,7 +126,7 @@ const Comments = ({
             !comments?.data[0]?.Comments?.length && (
               <Message
                 error={false}
-                message={global.translate('No comment', 871)}
+                message={global.translate('No comment')}
                 style={{
                   width: '100%',
                   margin: 'auto',

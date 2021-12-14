@@ -81,7 +81,7 @@ const ConfirmTopUpFromBank = ({
         className="btn--confirm"
         onClick={() => setOpenPINModal(true)}
       >
-        {global.translate('Confirm & Top Up', 2224)}
+        {global.translate('Confirm & Top Up')}
       </Button>
       <Button
         onClick={() => {
@@ -89,7 +89,7 @@ const ConfirmTopUpFromBank = ({
         }}
         basic
       >
-        {global.translate('Back', 174)}
+        {global.translate('Back')}
       </Button>
 
       <PINConfirmationModal
