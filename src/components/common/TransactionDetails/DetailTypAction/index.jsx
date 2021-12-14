@@ -33,11 +33,11 @@ const DetailTypeAction = ({
             displayTransactionType(item?.TransactionType)
               ?.Description}
           {selectedCard === 2 &&
-            global.translate('Pending transaction', 916)}
+            global.translate('Pending transaction')}
           {selectedCard === 3 &&
-            global.translate('Pending voucher', 858)}
+            global.translate('Pending voucher')}
           {selectedCard === 4 &&
-            global.translate('External transfer', 2212)}
+            global.translate('External transfer')}
         </span>
       </div>
       <div>
@@ -61,7 +61,7 @@ const DetailTypeAction = ({
             }}
             className="btn--confirm"
           >
-            {global.translate('Edit', 820)}
+            {global.translate('Edit')}
           </Button>
         )}
       </div>

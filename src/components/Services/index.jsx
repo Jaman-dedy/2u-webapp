@@ -88,13 +88,13 @@ const MoneyTransfer = ({ userData }) => {
               />
               <ComingSoon
                 image={crowdFundingIcon}
-                title={global.translate('Crowdfunding', 1012)}
-                subtitle={global.translate('Crowdfunding', 1012)}
+                title={global.translate('Crowdfunding')}
+                subtitle={global.translate('Crowdfunding')}
               />
               <ComingSoon
                 image={savingWalletIcon}
-                title={global.translate('Saving wallet', 2023)}
-                subtitle={global.translate('Saving wallet', 2023)}
+                title={global.translate('Saving wallet')}
+                subtitle={global.translate('Saving wallet')}
               />
             </div>
           </div>

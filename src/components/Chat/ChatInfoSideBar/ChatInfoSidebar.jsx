@@ -140,7 +140,7 @@ const ChatInfoSideBar = ({
                 basic
                 className="btn--primary"
                 onClick={() => setEditModalOpen(true)}
-                content={global.translate('Edit', 820)}
+                content={global.translate('Edit')}
               />
             )}
           </div>
@@ -148,7 +148,7 @@ const ChatInfoSideBar = ({
         {currentChatType === 'GROUP' && (
           <Segment>
             <h4 className="sidebar-subtitle">
-              {global.translate('People', 1638)}
+              {global.translate('People')}
             </h4>
             <hr />
             <div className="bottom-recents-list">
@@ -193,12 +193,12 @@ const ChatInfoSideBar = ({
                 setBlockUserConfirmOpen(false);
                 setChatInfoOpen(true);
               }}
-              content={global.translate('Cancel', 86)}
+              content={global.translate('Cancel')}
             />
           }
           confirmButton={
             <Button
-              content={global.translate('Yes', 732)}
+              content={global.translate('Yes')}
               positive
               onClick={e => {
                 e.preventDefault();
@@ -222,12 +222,12 @@ const ChatInfoSideBar = ({
               onClick={() => {
                 setDeleteChatOpen(false);
               }}
-              content={global.translate('Cancel', 86)}
+              content={global.translate('Cancel')}
             />
           }
           confirmButton={
             <Button
-              content={global.translate('Yes', 732)}
+              content={global.translate('Yes')}
               positive
               onClick={() => {
                 setGlobalChat({
@@ -238,7 +238,7 @@ const ChatInfoSideBar = ({
                 clearChatThread({
                   id: activeLastMessageThread?.id,
                 });
-                toast.success(global.translate('Chat Deleted', 1641));
+                toast.success(global.translate('Chat Deleted');
                 setDeleteChatOpen(false);
                 onHide();
               }}
@@ -247,12 +247,12 @@ const ChatInfoSideBar = ({
         />
         <Segment className="notification-segment">
           <h4 className="sidebar-subtitle">
-            {global.translate('Notifications', 771)}
+            {global.translate('Notifications')}
           </h4>
           <hr />
           <div className="mute">
             <div className="contained-header">
-              <p>{global.translate('Mute Discussion', 1642)}</p>
+              <p>{global.translate('Mute Discussion')}</p>
               <ToggleSwitch
                 id="notifications"
                 name="notifications"

@@ -439,7 +439,7 @@ const AddEditStoreForm = ({
                 options={hours.flat()}
               />
               <span className="to-label">
-                {global.translate('to', 115)}
+                {global.translate('to')}
               </span>
               <Form.Dropdown
                 name="ClosingHour"
@@ -505,7 +505,7 @@ const AddEditStoreForm = ({
           </Form.Field>
 
           <Form.Field>
-            <span>{global.translate('City', 294)}</span>
+            <span>{global.translate('City')}</span>
             <Form.Input
               name="City"
               value={addStoreData.City}
@@ -543,8 +543,8 @@ const AddEditStoreForm = ({
           }
         >
           {addStoreData.StoreID === ''
-            ? global.translate('Create', 355)
-            : global.translate('Update', 368)}
+            ? global.translate('Create')
+            : global.translate('Update')}
         </Form.Button>
       </Form>
     </>

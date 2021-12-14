@@ -25,7 +25,7 @@ const EditGeneralInfo = ({ emailAndPhone }) => {
   const options = [
     {
       key: 1,
-      text: global.translate('Private', 301),
+      text: global.translate('Private'),
       value: 1,
     },
     {

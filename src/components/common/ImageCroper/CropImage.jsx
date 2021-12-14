@@ -43,7 +43,7 @@ const CropImage = ({
       closeOnDimmerClick={false}
     >
       <Modal.Header>
-        {global.translate('Select a Picture', 2027)}
+        {global.translate('Select a Picture')}
       </Modal.Header>
       <Modal.Content>
         {!loading && (
@@ -96,7 +96,7 @@ const CropImage = ({
               onClick={() => setOpen(false)}
               type="button"
             >
-              {global.translate('Close', 186)}
+              {global.translate('Close')}
             </Button>
             {chooseImage && (
               <Button
@@ -105,7 +105,7 @@ const CropImage = ({
                 onClick={chooseImage}
                 type="button"
               >
-                {global.translate('Change', 739)}
+                {global.translate('Change')}
               </Button>
             )}
 
@@ -125,7 +125,7 @@ const CropImage = ({
                 return false;
               }}
             >
-              {global.translate('Upload', 2029)}
+              {global.translate('Upload')}
             </Button>
           </div>
         </Form>

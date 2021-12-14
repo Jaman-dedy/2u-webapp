@@ -14,7 +14,7 @@ const HelpDropDown = ({ setTourStep }) => {
   return (
     <Wrapper>
       <Dropdown
-        title={global.translate('Help', 373)}
+        title={global.translate('Help')}
         trigger={<Image src={helpIcon} />}
         className="help-dropdown"
       >

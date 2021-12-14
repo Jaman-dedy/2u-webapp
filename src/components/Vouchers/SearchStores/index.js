@@ -115,7 +115,7 @@ const SearchStores = ({
               searchStoreList={searchStoreList}
               options={options}
               selectingStore={selectingStore}
-              title={global.translate('Stores', 1624)}
+              title={global.translate('Stores')}
             />
           </div>
           <div className="searchStorePage__stores-list__item">

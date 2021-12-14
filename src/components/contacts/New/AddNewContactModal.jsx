@@ -86,7 +86,7 @@ const AddNewContactModal = ({
                     fluid
                     label={
                       <Button
-                        content={global.translate('Search', 278)}
+                        content={global.translate('Search')}
                         positive
                         disabled={addNewUserData.loading}
                         name="search"
@@ -177,7 +177,7 @@ const AddNewContactModal = ({
                         632,
                       )}
                       {global
-                        .translate('Your contact', 378)
+                        .translate('Your contact')
                         .toLowerCase()}
                     </div>
                   )}
@@ -215,14 +215,14 @@ const AddNewContactModal = ({
           onChange={onChange}
           disabled={addNewUserData.loading}
           value={form.firstName || ''}
-          placeholder={global.translate('First Name', 8)}
+          placeholder={global.translate('First Name')}
         />
         <Input
           name="lastName"
           onChange={onChange}
           disabled={addNewUserData.loading}
           value={form.lastName || ''}
-          placeholder={global.translate('Last Name', 9)}
+          placeholder={global.translate('Last Name')}
         />
 
         <div className="">
@@ -271,13 +271,13 @@ const AddNewContactModal = ({
       >
         {contactType === 'INTERNAL' && (
           <Modal.Header className="modal-title">
-            {global.translate('Add Contact', 1732)}
+            {global.translate('Add Contact')}
           </Modal.Header>
         )}
 
         {contactType !== 'INTERNAL' && (
           <Modal.Header className="modal-title">
-            {global.translate('Add External Contact', 1714)}
+            {global.translate('Add External Contact')}
           </Modal.Header>
         )}
         {renderContent()}
@@ -292,9 +292,9 @@ const AddNewContactModal = ({
                 clearSuccess();
               }}
               disabled={addNewUserData.loading}
-              content={global.translate('Cancel', 86)}
+              content={global.translate('Cancel')}
             >
-              {global.translate('Cancel', 86)}
+              {global.translate('Cancel')}
             </Button>
 
             {contactType === 'INTERNAL' && (

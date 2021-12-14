@@ -84,7 +84,7 @@ const PinModal = ({
           className="btn--cancel"
           onClick={() => setOpenPinModal(false)}
         >
-          {global.translate('Cancel', 86)}
+          {global.translate('Cancel')}
         </Button>
         <Button
           loading={loadOnChangePwd}
@@ -92,7 +92,7 @@ const PinModal = ({
           onClick={handleChangeCreditCardPin}
           positive
         >
-          {global.translate('Change PIN', 2226)}
+          {global.translate('Change PIN')}
         </Button>
       </Modal.Actions>
     </Modal>

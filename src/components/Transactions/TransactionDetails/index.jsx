@@ -115,8 +115,8 @@ const TransactionDetails = ({
             <DisplayWallet
               title={
                 item?.isOnStore
-                  ? global.translate('Sender', 1145)
-                  : global.translate('Source account', 2225)
+                  ? global.translate('Sender')
+                  : global.translate('Source account')
               }
               walletNumber={walletInfos().sourceWallet}
               walletFlag={walletInfos().sourceCurrency}
@@ -126,8 +126,8 @@ const TransactionDetails = ({
               <DisplayWallet
                 title={
                   selectedCard === 3 || item?.isOnStore
-                    ? global.translate('Store', 803)
-                    : global.translate('Target account', 1611)
+                    ? global.translate('Store')
+                    : global.translate('Target account')
                 }
                 walletNumber={walletInfos().targetWallet}
                 walletFlag={walletInfos().targetCurrency}

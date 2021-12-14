@@ -19,8 +19,8 @@ const SimpleLineChart = ({
   stroke1,
   stroke2,
 }) => {
-  const key1 = global.translate('Debit', 1230);
-  const key2 = global.translate('Credit', 1231);
+  const key1 = global.translate('Debit');
+  const key2 = global.translate('Credit');
   const chartData =
     data &&
     data.map(data => {
@@ -118,12 +118,12 @@ const SimpleLineChart = ({
             />
             <Line
               type="monotone"
-              dataKey={global.translate('Credit', 1231)}
+              dataKey={global.translate('Credit')}
               stroke={stroke1}
             />
             <Line
               type="monotone"
-              dataKey={global.translate('Debit', 1230)}
+              dataKey={global.translate('Debit')}
               stroke={stroke2}
             />
           </LineChart>

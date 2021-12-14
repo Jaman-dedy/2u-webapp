@@ -6,18 +6,18 @@ const InstallApp = ({ onInstall, onCancel }) => {
   return (
     <div className="flex flex-column">
       <span className="medium-text text-light-black medium-padding border-bottom-1 b-light-grey medium-margin-bottom">
-        {global.translate('Add to home screen', 2256)}
+        {global.translate('Add to home screen')}
       </span>
       <div className="flex flex-row justify-content-flex-end">
         <Button
           onClick={onInstall}
-          content={global.translate('Install', 2257)}
+          content={global.translate('Install')}
           className="install-btn btn--cancel"
           icon="plus"
           labelPosition="right"
         />
         <Button
-          content={global.translate('Cancel', 86)}
+          content={global.translate('Cancel')}
           onClick={onCancel}
         />
       </div>

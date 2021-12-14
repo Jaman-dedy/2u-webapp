@@ -179,9 +179,9 @@ const AddNewContactModal = ({
                 setOpen(false);
               }}
               disabled={addAgentLoading}
-              content={global.translate('Cancel', 86)}
+              content={global.translate('Cancel')}
             >
-              {global.translate('Cancel', 86)}
+              {global.translate('Cancel')}
             </Button>
 
             <Button

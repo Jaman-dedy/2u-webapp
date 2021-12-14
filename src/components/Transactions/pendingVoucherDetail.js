@@ -43,7 +43,7 @@ const PendingVoucherDetails = ({ item, language }) => {
       <List divided>
         <List.Item className="list-item-wrapper">
           <List.Content className="list-item-content">
-            {global.translate('Amount', 116)}
+            {global.translate('Amount')}
           </List.Content>
           <List.Content className="list-item-right">
             <Image
@@ -85,7 +85,7 @@ const PendingVoucherDetails = ({ item, language }) => {
 
             <List.Item className="list-item-wrapper">
               <List.Content className="list-item-content">
-                {global.translate('Country', 275)}
+                {global.translate('Country')}
               </List.Content>
               <List.Content className="list-item-right">
                 <Image
@@ -104,7 +104,7 @@ const PendingVoucherDetails = ({ item, language }) => {
 
             <List.Item className="list-item-wrapper">
               <List.Content className="list-item-content">
-                {global.translate('Reference', 124)}
+                {global.translate('Reference')}
               </List.Content>
               <List.Content className="list-item-right">
                 {item.Reference}
@@ -112,7 +112,7 @@ const PendingVoucherDetails = ({ item, language }) => {
             </List.Item>
             <List.Item className="list-item-wrapper">
               <List.Content className="list-item-content">
-                {global.translate('Store name', 837)}
+                {global.translate('Store name')}
               </List.Content>
               <List.Content className="list-item-right">
                 {' '}

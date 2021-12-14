@@ -187,7 +187,7 @@ const ProfileDropdown = ({
                               ?.PointsValue,
                           )}
                         </strong>{' '}
-                        {global.translate('points', 1917)}
+                        {global.translate('points')}
                       </span>
                     )}
                   </div>
@@ -197,17 +197,17 @@ const ProfileDropdown = ({
           </Dropdown.Header>
           {[
             {
-              label: global.translate('Dashboard', 1239),
+              label: global.translate('Dashboard'),
               to: '/',
               icon: 'home',
             },
             {
-              label: global.translate('My profile', 83),
+              label: global.translate('My profile'),
               to: '/account-management',
               icon: 'user',
             },
             {
-              label: global.translate('Marketplace', 2190),
+              label: global.translate('Marketplace'),
               to: `/marketplace`,
               icon: 'buysellads',
             },

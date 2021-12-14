@@ -108,7 +108,7 @@ const Notifications = ({ userData, notifications }) => {
       },
       chat: {
         image: chatIcon,
-        name: global.translate('Chat', 577),
+        name: global.translate('Chat'),
         onClick: () => {
           const contact =
             allContacts.data &&
@@ -178,7 +178,7 @@ const Notifications = ({ userData, notifications }) => {
               <GoBack style onClickHandler={onClickHandler} />
             </div>
             <h2 className="head-title">
-              {global.translate('Notifications', 771)}
+              {global.translate('Notifications')}
             </h2>
             <div className="clear" />
           </div>

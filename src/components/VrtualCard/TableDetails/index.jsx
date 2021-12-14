@@ -79,25 +79,25 @@ const TableDetails = ({
                 className="table-button"
               >
                 {card?.Enabled === 'NO'
-                  ? global.translate('Enable', 2047)
-                  : global.translate('Disable', 1762)}
+                  ? global.translate('Enable')
+                  : global.translate('Disable')}
               </Button>
             </Table.Cell>
             <Table.Cell textAlign="right">
               {card?.Enabled === 'NO' &&
-                global.translate('Card is disabled', 2135)}
+                global.translate('Card is disabled')}
               {card?.Enabled === 'YES' &&
-                global.translate('Card is enabled', 2136)}
+                global.translate('Card is enabled')}
             </Table.Cell>
           </Table.Row>
 
           <Table.Row>
             <Table.Cell>
               <span className="action-heading">
-                {global.translate('Add money', 89)}
+                {global.translate('Add money')}
               </span>
               <span>
-                {global.translate('Add money to your wallet', 173)}
+                {global.translate('Add money to your wallet')}
               </span>
             </Table.Cell>
 
@@ -111,7 +111,7 @@ const TableDetails = ({
                 }}
                 className="table-button"
               >
-                {global.translate('Add money', 89)}
+                {global.translate('Add money')}
               </Button>
             </Table.Cell>
           </Table.Row>
@@ -139,7 +139,7 @@ const TableDetails = ({
                 disabled={card?.Balance === '0.00'}
                 className="table-button"
               >
-                {global.translate('Redeem money', 1689)}
+                {global.translate('Redeem money')}
               </Button>
             </Table.Cell>
           </Table.Row>
@@ -147,7 +147,7 @@ const TableDetails = ({
           <Table.Row>
             <Table.Cell>
               <span className="table-wallet-section">
-                {global.translate('Currency', 2138)}
+                {global.translate('Currency')}
               </span>
               <span className="table-wallet-number">
                 {card?.Currency}

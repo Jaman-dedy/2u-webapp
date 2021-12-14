@@ -81,7 +81,7 @@ const Feedback = ({
               className="close cursor-pointer"
               onClick={close}
             >
-              {global.translate('Close', 186)}
+              {global.translate('Close')}
             </button>
           )}
         </div>

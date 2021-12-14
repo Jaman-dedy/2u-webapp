@@ -153,7 +153,7 @@ const NotificationDropdown = ({
 
   return (
     <Dropdown
-      title={global.translate('Notifications', 771)}
+      title={global.translate('Notifications')}
       className="notifications-dropdown"
       trigger={
         <>

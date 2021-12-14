@@ -110,7 +110,7 @@ const CountryFilter = ({
             <div className="filter-actions">
               <Button
                 className="btn--cancel"
-                content={global.translate('Cancel', 86)}
+                content={global.translate('Cancel')}
                 onClick={() => setOpen(false)}
               />
 
@@ -121,7 +121,7 @@ const CountryFilter = ({
                   setOpen(false);
                   setForm({});
                 }}
-                content={global.translate('Apply', 234)}
+                content={global.translate('Apply')}
               />
             </div>
           </Dropdown.Menu>

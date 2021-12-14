@@ -191,7 +191,7 @@ const ConfirmCancelTransaction = ({
               active
               onClick={() => setOpen(false)}
             >
-              {global.translate('Close', 186)}
+              {global.translate('Close')}
             </Button>
           )}
           {step === 2 && (
@@ -200,7 +200,7 @@ const ConfirmCancelTransaction = ({
               className="btn--cancel"
               onClick={() => setStep(step - 1)}
             >
-              {global.translate('Back', 174)}
+              {global.translate('Back')}
             </Button>
           )}
           <Button
@@ -215,8 +215,8 @@ const ConfirmCancelTransaction = ({
               }
             }}
           >
-            {step === 1 && global.translate('Yes', 732)}
-            {step === 2 && global.translate('Save', 614)}
+            {step === 1 && global.translate('Yes')}
+            {step === 2 && global.translate('Save')}
           </Button>
         </Modal.Actions>
       </Modal>
