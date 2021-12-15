@@ -21,17 +21,15 @@ const GetHelp = ({
   return (
     <DashboardLayout>
       <WelcomeBar>
-        {!isAppDisplayedInWebView && (
-          <div className="head-content">
-            <div className="go-back">
-              <GoBack style onClickHandler={onClickHandler} />
-            </div>
-            <h2 className="head-title">
-              {global.translate('Get help', 1975)}
-            </h2>
-            <div className="clear" />
+        <div className="head-content">
+          <div className="go-back">
+            <GoBack style onClickHandler={onClickHandler} />
           </div>
-        )}
+          <h2 className="head-title">
+            {global.translate('Get help', 1975)}
+          </h2>
+          <div className="clear" />
+        </div>
       </WelcomeBar>
       <div className={classes.GetHelp}>
         <Grid stackable columns={2}>
