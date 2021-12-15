@@ -118,17 +118,20 @@ const SearchStores = ({
               title={global.translate('Stores')}
             />
           </div>
-          <div className="searchStorePage__stores-list__item">
-            <Stores
-              searchStoreList={recentStores?.data}
-              selectingStore={selectingStore}
-              options={options}
-              title={global.translate(
-                'Recently visited stores',
-                1739,
-              )}
-            />
-          </div>
+          {recentStores.data &&
+            recentStores.data[0]?.Error !== '2016' && (
+              <div className="searchStorePage__stores-list__item">
+                <Stores
+                  searchStoreList={recentStores?.data}
+                  selectingStore={selectingStore}
+                  options={options}
+                  title={global.translate(
+                    'Recently visited stores',
+                    1739,
+                  )}
+                />
+              </div>
+            )}
         </div>
         <SendVoucherModalComp SendVoucherModal={SendVoucherModal} />{' '}
       </div>
