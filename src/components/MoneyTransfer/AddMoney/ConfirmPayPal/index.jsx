@@ -3,8 +3,8 @@ import { useDispatch } from 'react-redux';
 import { Item, Button, Message } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import clearPayPalOperationFees from 'redux/actions/addMoney/clearPayPalOperationFees';
-import Placeholder from './PlaceHolder';
 import Info from 'components/common/Alert/Info';
+import Placeholder from './PlaceHolder';
 
 const ConfirmPayPal = ({
   step,
@@ -62,6 +62,7 @@ const ConfirmPayPal = ({
           </span>
         </Item>
       </Item.Group>
+      <Info message={payPalOperationFees.Warning} />
       <Info
         message={global.translate(
           'You are going to be redirected to PayPal website',
@@ -105,12 +106,14 @@ ConfirmPayPal.propTypes = {
   addMoneyFromPayPal: PropTypes.instanceOf(Object),
   clearAddMoneyData: PropTypes.func,
   setLevelThree: PropTypes.func,
+  handlePullPayPal: PropTypes.func,
 };
 ConfirmPayPal.defaultProps = {
   addMoneyData: {},
-  cardOperationFees: {},
   addMoneyFromPayPal: {},
+  payPalOperationFees: {},
   clearAddMoneyData: () => {},
   setLevelThree: () => {},
+  handlePullPayPal: () => {},
 };
 export default ConfirmPayPal;

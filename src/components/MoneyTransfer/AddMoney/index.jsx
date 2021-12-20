@@ -471,6 +471,7 @@ const AddMoney = ({
                 handlePullPayPal={handlePullPayPal}
                 clearAddMoneyData={clearAddMoneyData}
                 setLevelThree={setLevelThree}
+                payPalOperationFees={payPalOperationFees}
               />
             )}
           </div>
