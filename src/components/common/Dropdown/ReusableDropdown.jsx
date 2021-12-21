@@ -312,6 +312,9 @@ ReusableDropdown.defaultProps = {
   placeholder: '',
   customstyle: false,
   customStyleSelector: false,
+  bottomAction: false,
+  actionLabel: '',
+  actionHandler: () => {},
 };
 
 ReusableDropdown.propTypes = {
@@ -327,12 +330,6 @@ ReusableDropdown.propTypes = {
   bottomAction: PropTypes.bool,
   actionLabel: PropTypes.string,
   actionHandler: PropTypes.func,
-};
-
-ReusableDropdown.defaultProps = {
-  bottomAction: false,
-  actionLabel: '',
-  actionHandler: () => {},
 };
 
 export default ReusableDropdown;
