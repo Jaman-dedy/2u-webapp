@@ -49,6 +49,7 @@ const Dashboard = ({
   openSetPasswordModal,
   setOpenSetPasswordModal,
   loadSetPwd,
+  onUserOnboarded,
 }) => {
   const [hasError, setHasError] = useState(false);
   const [isShowing, setShowing] = useState(true);
@@ -86,6 +87,7 @@ const Dashboard = ({
       if (userData.data?.FirstTimeLogin === 'YES') {
         setIsTourOpen(true);
         setIsReferOpen(true);
+        onUserOnboarded();
       }
     }
   }, [userData]);
@@ -391,15 +393,6 @@ const Dashboard = ({
       </DashboardLayout>
     </div>
   );
-};
-Dashboard.propTypes = {
-  authData: PropTypes.objectOf(PropTypes.any),
-  userData: PropTypes.objectOf(PropTypes.any).isRequired,
-  chartList: PropTypes.objectOf(PropTypes.any),
-  favoriteContacts: PropTypes.objectOf(PropTypes.any),
-  loadingFavoriteContacts: PropTypes.objectOf(PropTypes.any),
-  getTransactions: PropTypes.objectOf(PropTypes.any),
-  loadingTransaction: PropTypes.objectOf(PropTypes.any),
 };
 Dashboard.defaultProps = {
   authData: {},
