@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import CalendarArrow from 'assets/images/transactions/calendar-arrow.svg';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import { Button, Dropdown, Image } from 'semantic-ui-react';
+import CalendarArrow from 'assets/images/transactions/calendar-arrow.svg';
 import './style.scss';
 
 const DatePickerSelect = ({ form, setForm, getTransactions }) => {
@@ -52,6 +52,7 @@ const DatePickerSelect = ({ form, setForm, getTransactions }) => {
                 selectsStart
                 startDate={startDate}
                 endDate={endDate}
+                maxDate={new Date()}
                 inline
                 dropdownMode="select"
               />
@@ -62,6 +63,7 @@ const DatePickerSelect = ({ form, setForm, getTransactions }) => {
                 startDate={startDate}
                 endDate={endDate}
                 minDate={startDate}
+                maxDate={new Date()}
                 inline
                 dropdownMode="select"
               />

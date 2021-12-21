@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 
 import PhoneInput from 'react-phone-input-2';
@@ -13,6 +13,7 @@ import TermsAndConditions from '../TermAndConditions';
 
 import './style.scss';
 import 'assets/styles/spinner.scss';
+import { getDateFromNow } from 'utils';
 
 const IdentityForm = ({
   registrationData,
@@ -52,8 +53,8 @@ const IdentityForm = ({
     }
   }, [registrationData, phonevalue, startDate, errors]);
 
-  const date = new Date();
-  const minDate = date.setFullYear(date.getFullYear() - 100);
+  const minDate = useMemo(() => getDateFromNow(-100), []);
+  const maxDate = useMemo(() => getDateFromNow(-13), []);
 
   return (
     <div>
@@ -142,9 +143,7 @@ const IdentityForm = ({
               </div>
               <DatePicker
                 onDateChange={date => setStartDate(date)}
-                maxDate={new Date().setFullYear(
-                  new Date().getFullYear() - 13,
-                )}
+                maxDate={maxDate}
                 dateFormat="yyyy-MM-dd"
                 minDate={minDate}
                 placeholder="YYYY-MM-DD"

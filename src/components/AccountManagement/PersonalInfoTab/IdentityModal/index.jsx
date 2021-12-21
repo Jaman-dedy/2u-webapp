@@ -13,7 +13,7 @@ import DatePicker from 'react-datepicker';
 import ReactFlagsSelect from 'react-flags-select';
 import queryString from 'query-string';
 import { useLocation, useHistory } from 'react-router-dom';
-
+import { getDateFromNow } from 'utils';
 import validateImg from 'helpers/image/validateImg';
 import ZoomDocIcon from 'assets/images/profile/zoom-doc.svg';
 import EditDoc from 'assets/images/profile/edit-doc.svg';
@@ -131,9 +131,7 @@ const IdentityModal = ({
                     'Provide date of issue',
                   )}
                   className="date-issue"
-                  showYearDropdown
-                  showMonthDropdown
-                  dropdownMode="select"
+                  minDate={getDateFromNow(-100)}
                 />
               </div>
               <div className="date-of-birth">
@@ -148,9 +146,6 @@ const IdentityModal = ({
                     'Provide the expiry date',
                   )}
                   className="expiry-date"
-                  showYearDropdown
-                  showMonthDropdown
-                  dropdownMode="select"
                 />
               </div>
             </Form.Group>

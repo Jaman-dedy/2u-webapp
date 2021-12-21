@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Container, Form, Loader } from 'semantic-ui-react';
 
 import PhoneInput from 'components/common/PhoneInput';
 import DatePicker from 'components/common/DatePicker';
 import countries from 'utils/countryCodes';
+import { getDateFromNow } from 'utils';
 
 import './UserInfoForm.scss';
 import AlertDanger from 'components/common/Alert/Danger';
@@ -56,6 +57,9 @@ const UserInfoForm = ({
     onInputChange({ target: { name: 'DOB', value } });
   };
 
+  const minDate = useMemo(() => getDateFromNow(-100), []);
+  const maxDate = useMemo(() => getDateFromNow(-13), []);
+
   return (
     <>
       <Container className="userinfo">
@@ -104,11 +108,12 @@ const UserInfoForm = ({
           <Form.Field>
             <DatePicker
               name="dob"
-              maxDate={new Date()}
+              maxDate={maxDate}
               onDateChange={date => {
                 handleDOB({ value: date });
                 clearError();
               }}
+              minDate={minDate}
               date={resetPasswordData.DOB}
               dateFormat="yyyy-MM-dd"
               placeholder={global.translate('YYYY-MM-DD')}

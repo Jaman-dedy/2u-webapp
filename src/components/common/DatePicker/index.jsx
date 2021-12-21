@@ -1,7 +1,7 @@
-import calendar from 'assets/images/calendar.png';
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import DatePicker from 'react-datepicker';
+import calendar from 'assets/images/calendar.png';
 import 'react-datepicker/dist/react-datepicker.css';
 import { validateDate } from 'utils/formatDate';
 import './DatePicker.scss';
@@ -14,6 +14,8 @@ const DateInput = ({
   label,
   setFocused,
   focused,
+  minDate,
+  maxDate,
 }) => {
   /** START  Enable users to type in the date input */
   const [inputValue, setInputValue] = useState(value);
@@ -32,8 +34,21 @@ const DateInput = ({
     } else {
       newValue = value;
     }
+
+    if (value.trim().length > 9) {
+      const typedDate = new Date(value).getTime();
+
+      if (typedDate < minDate?.getTime()) {
+        newValue = minDate?.toISOString().substr(0, 10);
+      }
+      if (typedDate > maxDate?.getTime()) {
+        newValue = maxDate?.toISOString().substr(0, 10);
+      }
+    }
+
     setInputValue(newValue);
   };
+
   useEffect(() => {
     setInputValue(value);
   }, [value]);
@@ -126,6 +141,8 @@ const CustomDatePicker = props => {
           setFocused={setFocused}
           onClick
           placeholder
+          minDate={minDate}
+          maxDate={maxDate}
         />
       }
       dateFormat={dateFormat}
@@ -133,9 +150,10 @@ const CustomDatePicker = props => {
       minDate={minDate}
       showYearDropdown
       showMonthDropdown
+      yearDropdownItemNumber={100}
+      scrollableYearDropdown
       adjustDateOnChange
       placeholderText={placeholder}
-      dropdownMode="select"
     />
   );
 };

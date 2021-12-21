@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Modal, Button, Form } from 'semantic-ui-react';
 import ReactFlagsSelect from 'react-flags-select';
 import DatePicker from 'components/common/DatePicker';
-
+import { getDateFromNow } from 'utils';
 import './style.scss';
 
 const UpdateInfoModal = ({ open, setOpen, personalInfo }) => {
@@ -26,17 +26,10 @@ const UpdateInfoModal = ({ open, setOpen, personalInfo }) => {
     bornCountry,
   } = personalInfo;
 
-  const maxDate = useMemo(() => {
-    const date = new Date();
-    date.setYear(new Date().getFullYear() - 13);
-    return date;
-  }, []);
+  const maxDate = useMemo(() => getDateFromNow(-13), []);
 
-  const minDate = useMemo(() => {
-    const date = new Date();
-    date.setYear(new Date().getFullYear() - 13);
-    return date;
-  }, []);
+  const minDate = useMemo(() => getDateFromNow(-100), []);
+
   return (
     <Modal onOpen={() => setOpen(true)} open={open} size="small">
       <Modal.Content>
@@ -87,7 +80,6 @@ const UpdateInfoModal = ({ open, setOpen, personalInfo }) => {
                   date={selectedDate}
                   minDate={minDate}
                   onDateChange={date => setSelectedDate(date)}
-                  dropdownMode="select"
                   dateFormat="yyyy-MM-dd"
                   placeholder="YYYY-MM-DD"
                 />
@@ -158,7 +150,7 @@ const UpdateInfoModal = ({ open, setOpen, personalInfo }) => {
                 label="Profession"
                 placeholder="Select your profession"
                 options={professionOptions}
-                onChange={(target, { name, value }) => {
+                onChange={(_, { name, value }) => {
                   setCurrentOption(value);
                   setPersonalInfoData({
                     ...personalInfoData,
