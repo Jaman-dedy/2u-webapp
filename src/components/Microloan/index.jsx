@@ -102,7 +102,7 @@ const MicroLoan = ({ listData, listLoading, userData }) => {
       );
       setBody(bodyText);
       setModalIcon(dangerCross);
-      setButtonText('Okay', 2554);
+      setButtonText('Okay');
     }
     if (
       accountAgeSuitableForLoan === 'NO' &&

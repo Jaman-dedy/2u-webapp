@@ -101,7 +101,7 @@ const RedeemVoucherModal = ({ open, setOpen, item }) => {
                   form={form}
                   label={global.translate(
                     'Enter the voucher token ',
-                    941,
+
                   )}
                   onInputChange={onChange}
                   name="VoucherNumber"

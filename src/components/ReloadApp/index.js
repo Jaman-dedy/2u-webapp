@@ -8,7 +8,7 @@ const ReloadApp = ({ onReload }) => {
       <span className="medium-text text-light-black medium-padding border-bottom-1 b-light-grey medium-margin-bottom">
         {global.translate(
           'A new version is available, reload and close all tabs',
-          2018,
+
         )}
         !
       </span>

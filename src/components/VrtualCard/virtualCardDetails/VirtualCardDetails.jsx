@@ -123,7 +123,7 @@ const VirtualCardDetails = ({
             <GoBack style onClickHandler={onClickHandler} />
           </div>
           <h2 className="head-title">
-            {global.translate('O-Card', 1999)}
+            {global.translate('O-Card')}
           </h2>
           <div className="clear" />
         </div>
@@ -174,7 +174,7 @@ const VirtualCardDetails = ({
               description={global.translate(
                 `This card is currently disabled. When your O-Card is disabled, it will not be used
             for any online transaction, until you enable it again`,
-                2142,
+
               )}
               className="virtual-card-info"
             />
@@ -246,40 +246,40 @@ VirtualCardDetails.propTypes = {
 };
 VirtualCardDetails.defaultProps = {
   selectedWallet: {},
-  setSelectedWallet: () => {},
-  onOptionsChange: () => {},
+  setSelectedWallet: () => { },
+  onOptionsChange: () => { },
   form: {},
-  setForm: () => {},
-  onAddMoneyToVirtualCard: () => {},
+  setForm: () => { },
+  onAddMoneyToVirtualCard: () => { },
   isViewingDetail: false,
-  setIsViewingDetail: () => {},
+  setIsViewingDetail: () => { },
   userLocationData: {},
   step: null,
-  setStep: () => {},
-  setErrors: () => {},
+  setStep: () => { },
+  setErrors: () => { },
   errors: null,
-  checkTransactionConfirmation: () => {},
+  checkTransactionConfirmation: () => { },
   confirmationData: {},
   confirmationError: null,
   checking: false,
   loading: false,
   addMoneyOpen: false,
-  setAddMoneyOpen: () => {},
-  setCardStatus: () => {},
-  onUpdateCardStatus: () => {},
+  setAddMoneyOpen: () => { },
+  setCardStatus: () => { },
+  onUpdateCardStatus: () => { },
   loadingStatus: false,
-  onRenewVirtualCard: () => {},
+  onRenewVirtualCard: () => { },
   renewCardLoad: false,
-  onRedeeMoney: () => {},
-  setisRedeeming: () => {},
+  onRedeeMoney: () => { },
+  setisRedeeming: () => { },
   isRedeeming: false,
   loadRedeeMoney: false,
   error: null,
   userData: {},
   confirmRedeem: false,
-  setConfirmRedeem: () => {},
+  setConfirmRedeem: () => { },
   openConfirmModal: false,
-  setOpenConfirmModal: () => {},
+  setOpenConfirmModal: () => { },
   shouldClear: false,
   canProceed: false,
 };

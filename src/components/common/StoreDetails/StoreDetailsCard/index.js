@@ -209,8 +209,8 @@ const StoreInfoTab = ({
               <Icon name="calendar alternate" />
               <span className="durations">
                 {currentStore.OpenOnWEText === 'YES'
-                  ? global.translate('Monday - Sunday', 785)
-                  : global.translate('Monday - Friday', 786)}
+                  ? global.translate('Monday - Sunday')
+                  : global.translate('Monday - Friday')}
               </span>
             </div>
             <div>
@@ -245,9 +245,9 @@ StoreInfoTab.propTypes = {
 
 StoreInfoTab.defaultProps = {
   currentStore: {},
-  likeStore: () => {},
-  dislikeStore: () => {},
-  rateStore: () => {},
+  likeStore: () => { },
+  dislikeStore: () => { },
+  rateStore: () => { },
   isDisabled: false,
 };
 

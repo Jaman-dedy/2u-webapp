@@ -54,14 +54,14 @@ const SearchStores = ({
   const options = item => {
     return [
       {
-        name: global.translate('View Details', 1256),
+        name: global.translate('View Details'),
         image: ViewEyeImage,
         onClick: () => {
           selectingStore(item);
         },
       },
       {
-        name: global.translate('Send Voucher', 863),
+        name: global.translate('Send Voucher'),
         image: ViewVouchersImage,
         onClick: () => {
           setSelectedStore(dispatch, item, false);
@@ -87,7 +87,7 @@ const SearchStores = ({
           </div>
           <h2 className="head-title">
             <span>
-              {global.translate('Choose the voucher store', 2036)}
+              {global.translate('Choose the voucher store')}
             </span>
           </h2>
           <div className="clear" />
@@ -125,7 +125,7 @@ const SearchStores = ({
                   options={options}
                   title={global.translate(
                     'Recently visited stores',
-                    1739,
+
                   )}
                 />
               </div>
@@ -168,7 +168,7 @@ SearchStores.defaultProps = {
   searchStoreList: [],
   recentStores: null,
   SendVoucherModal: {},
-  setSelectedStore: () => {},
+  setSelectedStore: () => { },
   selectedStore: {},
 };
 

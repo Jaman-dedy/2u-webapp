@@ -147,7 +147,7 @@ const NewServiceContainer = () => {
           toast.error(
             global.translate(
               'Invalid video, Video shouldn’t be more than 5 minutes',
-              1851,
+
             ),
           );
         } else {
@@ -183,12 +183,12 @@ const NewServiceContainer = () => {
   ) => {
     let Media = [];
     if (!form.Category) {
-      toast.error(global.translate('Please choose a category', 1849));
+      toast.error(global.translate('Please choose a category'));
       return;
     }
 
     if (!form.Address) {
-      toast.error(global.translate('Please choose an address', 1850));
+      toast.error(global.translate('Please choose an address'));
       return;
     }
 
@@ -236,10 +236,10 @@ const NewServiceContainer = () => {
       const { data } =
         filesToUpload.length > 0
           ? await saveTemporarily(
-              filesToUpload.map((item, messageIndex) => ({
-                [`file${messageIndex}`]: item.file,
-              })),
-            )
+            filesToUpload.map((item, messageIndex) => ({
+              [`file${messageIndex}`]: item.file,
+            })),
+          )
           : { data: [] };
 
       const getFileExtension = file => {
@@ -270,17 +270,17 @@ const NewServiceContainer = () => {
         const mediaToSave = !editMedia
           ? data
           : [
-              ...existingMedia,
-              ...data,
-              ...filesToDelete.map(
-                ({ Extension, MediaURL, MediaNumber }) => ({
-                  Action: DELETE_FILE,
-                  Extension,
-                  MediaURL,
-                  MediaNumber,
-                }),
-              ),
-            ];
+            ...existingMedia,
+            ...data,
+            ...filesToDelete.map(
+              ({ Extension, MediaURL, MediaNumber }) => ({
+                Action: DELETE_FILE,
+                Extension,
+                MediaURL,
+                MediaNumber,
+              }),
+            ),
+          ];
         Media = mediaToSave.map(file => {
           return {
             Extension: getFileExtension(file),
@@ -343,7 +343,7 @@ const NewServiceContainer = () => {
   useEffect(() => {
     if (data) {
       toast.success(
-        global.translate('Your post was created successfully', 2114),
+        global.translate('Your post was created successfully'),
       );
       history.push({
         pathname: `/marketplace/user/me`,
@@ -363,7 +363,7 @@ const NewServiceContainer = () => {
   useEffect(() => {
     if (updateServiceData) {
       toast.success(
-        global.translate('Your post was updated successfully', 2115),
+        global.translate('Your post was updated successfully'),
       );
       resetState();
       openEditPricingModal({ open: false, service: null })(dispatch);

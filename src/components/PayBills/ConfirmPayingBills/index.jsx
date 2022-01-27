@@ -59,7 +59,7 @@ const ConfirmPayingBills = ({
                     ...errors,
                     Amount: global.translate(
                       'The amount should not be zero.',
-                      2006,
+
                     ),
                   });
                 }
@@ -68,7 +68,7 @@ const ConfirmPayingBills = ({
                     ...errors,
                     Amount: global.translate(
                       'The amount should not be less than zero.',
-                      2007,
+
                     ),
                   });
                 }
@@ -83,7 +83,7 @@ const ConfirmPayingBills = ({
                   ...errors,
                   Amount: global.translate(
                     'The amount should not be zero.',
-                    2006,
+
                   ),
                 });
               }
@@ -92,7 +92,7 @@ const ConfirmPayingBills = ({
                   ...errors,
                   Amount: global.translate(
                     'The amount should not be less than zero.',
-                    2007,
+
                   ),
                 });
               }
@@ -101,7 +101,7 @@ const ConfirmPayingBills = ({
           }}
           error={!!errors.Amount || false}
           autoComplete="off"
-          placeholder={global.translate('Enter the Amount', 432)}
+          placeholder={global.translate('Enter the Amount')}
         />
       </div>
       {transferConfirmation.error && (
@@ -110,7 +110,7 @@ const ConfirmPayingBills = ({
             error
             message={global.translate(
               'You do not have enough money in this wallet for this operation',
-              394,
+
             )}
           />
         </div>
@@ -121,56 +121,56 @@ const ConfirmPayingBills = ({
           <span> {global.translate('Fees')} </span> :{' '}
           <span>
             {transferConfirmation.loading
-              ? global.translate('Working...', 412)
+              ? global.translate('Working...')
               : formatNumber(transferConfirmation.data.Fees, {
-                  locales: preferred,
-                  currency:
-                    transferConfirmation.data.Fees &&
-                    transferConfirmation.data.Fees.split(' ')[1],
-                }) || 0}
+                locales: preferred,
+                currency:
+                  transferConfirmation.data.Fees &&
+                  transferConfirmation.data.Fees.split(' ')[1],
+              }) || 0}
           </span>
         </div>
         <div className="external-fees">
-          <span> {global.translate('External fees', 121)} </span> :{' '}
+          <span> {global.translate('External fees')} </span> :{' '}
           <span>
             {transferConfirmation.loading
-              ? global.translate('Working...', 412)
+              ? global.translate('Working...')
               : formatNumber(transferConfirmation.data.ExternalFees, {
-                  locales: preferred,
-                  currency:
-                    transferConfirmation.data.ExternalFees &&
-                    transferConfirmation.data.ExternalFees.split(
-                      ' ',
-                    )[1],
-                }) || 0}
+                locales: preferred,
+                currency:
+                  transferConfirmation.data.ExternalFees &&
+                  transferConfirmation.data.ExternalFees.split(
+                    ' ',
+                  )[1],
+              }) || 0}
           </span>
         </div>
         <div className="exchange-fees">
-          <span> {global.translate('Exchange Fees', 120)} </span> :{' '}
+          <span> {global.translate('Exchange Fees')} </span> :{' '}
           <span>
             {transferConfirmation.loading
-              ? global.translate('Working...', 412)
+              ? global.translate('Working...')
               : formatNumber(transferConfirmation.data.ExchangeFees, {
-                  locales: preferred,
-                  currency:
-                    transferConfirmation.data.ExchangeFees &&
-                    transferConfirmation.data.ExchangeFees.split(
-                      ' ',
-                    )[1],
-                }) || 0}
+                locales: preferred,
+                currency:
+                  transferConfirmation.data.ExchangeFees &&
+                  transferConfirmation.data.ExchangeFees.split(
+                    ' ',
+                  )[1],
+              }) || 0}
           </span>
         </div>
         <div className="fees">
           <span> {global.translate('Taxes')} </span> :{' '}
           <span>
             {transferConfirmation.loading
-              ? global.translate('Working...', 412)
+              ? global.translate('Working...')
               : formatNumber(transferConfirmation.data.Taxes, {
-                  locales: preferred,
-                  currency:
-                    transferConfirmation.data.Taxes &&
-                    transferConfirmation.data.Taxes.split(' ')[1],
-                }) || 0}
+                locales: preferred,
+                currency:
+                  transferConfirmation.data.Taxes &&
+                  transferConfirmation.data.Taxes.split(' ')[1],
+              }) || 0}
           </span>
         </div>
       </div>
@@ -186,36 +186,36 @@ const ConfirmPayingBills = ({
               {transferConfirmation.loading
                 ? global.translate('Working...')
                 : formatNumber(
-                    transferConfirmation.data.TotalAmount,
-                    {
-                      locales: preferred,
-                      currency:
-                        transferConfirmation.data.TotalAmount &&
-                        transferConfirmation.data.TotalAmount.split(
-                          ' ',
-                        )[1],
-                    },
-                  ) || 0}
+                  transferConfirmation.data.TotalAmount,
+                  {
+                    locales: preferred,
+                    currency:
+                      transferConfirmation.data.TotalAmount &&
+                      transferConfirmation.data.TotalAmount.split(
+                        ' ',
+                      )[1],
+                  },
+                ) || 0}
             </span>
           </div>
           <div>
             <span>
-              {global.translate('Amount to be received', 397)}:
+              {global.translate('Amount to be received')}:
             </span>{' '}
             <span>
               {transferConfirmation.loading
-                ? global.translate('Working...', 412)
+                ? global.translate('Working...')
                 : formatNumber(
-                    transferConfirmation.data.AmountToBeSent,
-                    {
-                      locales: preferred,
-                      currency:
-                        transferConfirmation.data.AmountToBeSent &&
-                        transferConfirmation.data.AmountToBeSent.split(
-                          ' ',
-                        )[1],
-                    },
-                  ) || 0}
+                  transferConfirmation.data.AmountToBeSent,
+                  {
+                    locales: preferred,
+                    currency:
+                      transferConfirmation.data.AmountToBeSent &&
+                      transferConfirmation.data.AmountToBeSent.split(
+                        ' ',
+                      )[1],
+                  },
+                ) || 0}
             </span>
           </div>
         </div>

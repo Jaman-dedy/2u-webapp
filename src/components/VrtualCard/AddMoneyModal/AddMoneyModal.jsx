@@ -182,8 +182,8 @@ const AddMoneyModal = ({
                       message={
                         confirmationError[0].Description
                           ? global.translate(
-                              confirmationError[0].Description,
-                            )
+                            confirmationError[0].Description,
+                          )
                           : global.translate(confirmationError.error)
                       }
                     />
@@ -199,7 +199,7 @@ const AddMoneyModal = ({
                     <LoaderComponent
                       loaderContent={global.translate(
                         'Working…',
-                        412,
+
                       )}
                     />
                   )}
@@ -311,7 +311,7 @@ const AddMoneyModal = ({
                     shouldClear={shouldClear}
                     label={global.translate(
                       'Confirm  your PIN number',
-                      941,
+
                     )}
                     onChange={onOptionsChange}
                     name="pin"
@@ -469,24 +469,24 @@ AddMoneyModal.propTypes = {
 AddMoneyModal.defaultProps = {
   loading: false,
   errors: null,
-  checkTransactionConfirmation: () => {},
+  checkTransactionConfirmation: () => { },
   checking: false,
-  setForm: () => {},
-  onOptionsChange: () => {},
-  setOpen: () => {},
+  setForm: () => { },
+  onOptionsChange: () => { },
+  setOpen: () => { },
   walletList: [],
   isSendingCash: PropTypes.bool,
   addMoneyOpen: false,
-  setAddMoneyOpen: () => {},
+  setAddMoneyOpen: () => { },
   selectedWallet: {},
-  setSelectedWallet: () => {},
-  onAddMoneyToVirtualCard: () => {},
+  setSelectedWallet: () => { },
+  onAddMoneyToVirtualCard: () => { },
   isViewingDetail: false,
-  onRedeemMoney: () => {},
+  onRedeemMoney: () => { },
   isRedeeming: false,
   loadRedeemMoney: false,
-  setIsRedeeming: () => {},
+  setIsRedeeming: () => { },
   openConfirmModal: false,
-  setOpenConfirmModal: () => {},
+  setOpenConfirmModal: () => { },
 };
 export default AddMoneyModal;

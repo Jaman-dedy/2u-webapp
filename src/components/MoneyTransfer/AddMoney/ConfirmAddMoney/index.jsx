@@ -34,10 +34,10 @@ const ConfirmAddMoney = ({
 
   return (
     <div className="transfer-summary">
-      <h3>{global.translate('Top Up summary', 2222)}</h3>
+      <h3>{global.translate('Top Up summary')}</h3>
       <Item.Group divided>
         <Item style={{ display: 'block' }}>
-          <span>{global.translate('Top up amount', 2221)}</span>
+          <span>{global.translate('Top up amount')}</span>
           <span className="moneyAmount">
             {Fees ? `${Amount} ${Currency}` : <Placeholder />}
           </span>
@@ -45,7 +45,7 @@ const ConfirmAddMoney = ({
 
         <Item style={{ display: 'block' }}>
           <span>
-            {global.translate('Credit card company fees', 2170)}
+            {global.translate('Credit card company fees')}
           </span>
           <span className="moneyAmount">
             {Fees ? `${Fees} ${Currency}` : <Placeholder />}
@@ -53,7 +53,7 @@ const ConfirmAddMoney = ({
         </Item>
 
         <Item style={{ display: 'block' }}>
-          <span>{global.translate(`Total amount`, 2223)}</span>
+          <span>{global.translate(`Total amount`)}</span>
           <span className="moneyAmount">
             {TotalAmount ? (
               `${TotalAmount} ${Currency}`
@@ -63,19 +63,19 @@ const ConfirmAddMoney = ({
           </span>
         </Item>
         <Item style={{ display: 'block' }}>
-          <span>{global.translate(`Name on card`, 493)}</span>
+          <span>{global.translate(`Name on card`)}</span>
           <span className="moneyAmount">
             {TotalAmount ? `${NameOnCard}` : <Placeholder />}
           </span>
         </Item>
         <Item style={{ display: 'block' }}>
-          <span>{global.translate(`Card number`, 491)}</span>
+          <span>{global.translate(`Card number`)}</span>
           <span className="moneyAmount">
             {TotalAmount ? `${CardNumber}` : <Placeholder />}
           </span>
         </Item>
         <Item style={{ display: 'block' }}>
-          <span>{global.translate(`Wallet number`, 98)}</span>
+          <span>{global.translate(`Wallet number`)}</span>
           <span className="moneyAmount">
             {TotalAmount ? `${WalletNumber}` : <Placeholder />}
           </span>
@@ -97,8 +97,8 @@ const ConfirmAddMoney = ({
         }
       >
         {error
-          ? global.translate('Try again', 1996)
-          : global.translate('Confirm & Top Up', 2224)}
+          ? global.translate('Try again')
+          : global.translate('Confirm & Top Up')}
       </Button>
       <Button
         disabled={loading}
@@ -127,7 +127,7 @@ ConfirmAddMoney.defaultProps = {
   addMoneyData: {},
   cardOperationFees: {},
   addMoneyFromCreditCard: {},
-  clearAddMoneyData: () => {},
-  setLevelThree: () => {},
+  clearAddMoneyData: () => { },
+  setLevelThree: () => { },
 };
 export default ConfirmAddMoney;

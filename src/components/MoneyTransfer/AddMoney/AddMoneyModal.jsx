@@ -94,7 +94,7 @@ const AddMoneyModal = ({
             setOpen(false);
           }}
           secondary
-          content={global.translate('Try Again', 1996)}
+          content={global.translate('Try Again')}
         />
       );
     }
@@ -142,7 +142,7 @@ const AddMoneyModal = ({
         className="add-money-modal"
       >
         <Modal.Header>
-          {global.translate('Add money to your wallet', 173)}
+          {global.translate('Add money to your wallet')}
         </Modal.Header>
         <Modal.Content className={` ${error && 'error-content'}`}>
           {displayContent()}

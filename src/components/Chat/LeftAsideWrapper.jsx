@@ -82,24 +82,24 @@ const ChartListComponent = ({
             receiver: contactDetails?.ContactType
               ? contactDetails
               : {
-                  FirstName:
-                    currentAuthUser?.PID === receiver
-                      ? sender
-                      : receiver,
-                  LastName: '',
-                  IsContact: 'NO',
-                  ContactPID:
-                    currentAuthUser?.PID === receiver
-                      ? sender
-                      : receiver,
-                },
+                FirstName:
+                  currentAuthUser?.PID === receiver
+                    ? sender
+                    : receiver,
+                LastName: '',
+                IsContact: 'NO',
+                ContactPID:
+                  currentAuthUser?.PID === receiver
+                    ? sender
+                    : receiver,
+              },
             ...rest,
           };
         });
 
     setRecentChatData(
       removeDuplicatesBy(x => x.receiver.ContactPID, formattedData) ||
-        [],
+      [],
     );
   };
   useEffect(() => {
@@ -303,8 +303,7 @@ const ChartListComponent = ({
           <div className="main-upper-nav-lower">
             <SearchInput
               placeholder={global.translate(
-                'Search messages and favorites',
-                1670,
+                'Search messages and favorites'
               )}
               onKeyUp={handleItemsSearch}
               onChange={handleItemsSearch}
@@ -313,7 +312,7 @@ const ChartListComponent = ({
             {recentUserData.length === 0 && !userFavorite.loading && (
               <Message
                 fluid
-                message={global.translate('No Favorites found', 1253)}
+                message={global.translate('No Favorites found')}
                 error={false}
               />
             )}
@@ -439,7 +438,7 @@ const ChartListComponent = ({
                 itemDescription={formatLastMessage(
                   (Array.isArray(item.directMessages) &&
                     formatMessageBody(item.directMessages[0])) ||
-                    '',
+                  '',
                 )}
                 topRightText={formatTime(item.updatedAt)}
                 imageURL={item.receiver.PictureURL}

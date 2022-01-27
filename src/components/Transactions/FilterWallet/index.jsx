@@ -17,12 +17,12 @@ const FilterDropDown = ({
   <div>
     <Dropdown
       closeOnBlur={false}
-      text={global.translate('Filter wallets', 2175)}
+      text={global.translate('Filter wallets')}
       pointing
       className="custom-dropdown-box"
     >
       <Dropdown.Menu className="wallet-select">
-        <div>{global.translate('Source account', 2176)}</div>
+        <div>{global.translate('Source account')}</div>
         <WalletDropDown
           source
           setSourceWallet={setSourceWallet}
@@ -30,7 +30,7 @@ const FilterDropDown = ({
           wallet={sourceWallet}
           allTransactionData={allTransactionData}
         />
-        <div>{global.translate('Target account', 1611)}</div>
+        <div>{global.translate('Target account')}</div>
         <WalletDropDown
           target
           setTargetWallet={setTargetWallet}
@@ -62,13 +62,13 @@ FilterDropDown.propTypes = {
   allTransactionData: PropTypes.arrayOf(PropTypes.any),
 };
 FilterDropDown.defaultProps = {
-  walletList: () => {},
-  setTargetWallet: () => {},
-  setSourceWallet: () => {},
+  walletList: () => { },
+  setTargetWallet: () => { },
+  setSourceWallet: () => { },
   targetWallet: {},
   sourceWallet: {},
-  onFilterWallet: () => {},
-  fetchAllTransaction: () => {},
+  onFilterWallet: () => { },
+  fetchAllTransaction: () => { },
   allTransactionData: [],
 };
 

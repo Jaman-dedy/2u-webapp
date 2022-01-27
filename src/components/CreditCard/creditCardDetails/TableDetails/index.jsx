@@ -184,8 +184,7 @@ const TableDetails = ({
               </span>
               <span>
                 {global.translate(
-                  'Disable and delete the card',
-                  2231,
+                  'Disable and delete the card'
                 )}
               </span>
             </Table.Cell>
@@ -241,19 +240,19 @@ TableDetails.propTypes = {
 };
 TableDetails.defaultProps = {
   openPinModal: false,
-  setOpenPinModal: () => {},
+  setOpenPinModal: () => { },
   pinDigit: {},
-  setPinDigit: () => {},
-  setError: () => {},
+  setPinDigit: () => { },
+  setError: () => { },
   error: {},
-  setConfirmPinDigit: () => {},
+  setConfirmPinDigit: () => { },
   confirmPinDigit: false,
-  setUserPinDigit: () => {},
+  setUserPinDigit: () => { },
   userPinDigit: {},
-  handleChangeCreditCardPin: () => {},
+  handleChangeCreditCardPin: () => { },
   disabled: false,
   loadOnChangePwd: false,
-  setIsDeletingCard: () => {},
+  setIsDeletingCard: () => { },
 };
 
 export default TableDetails;

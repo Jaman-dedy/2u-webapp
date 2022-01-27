@@ -107,8 +107,7 @@ const MyReferrals = ({ referrals }) => {
                 {loading && (
                   <Loader
                     loaderContent={global.translate(
-                      'Working...',
-                      412,
+                      'Working...'
                     )}
                   />
                 )}

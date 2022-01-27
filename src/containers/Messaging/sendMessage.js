@@ -22,7 +22,7 @@ export default async ({
     toast.error(
       global.translate(
         '2UMoney cannot connect to the internet.',
-        161,
+
       ),
     );
     return;

@@ -103,7 +103,7 @@ const AgentsView = ({ currentStore, setIsOpenAddAgent }) => {
           <Message
             message={global.translate(
               'The search returned no result',
-              1253,
+
             )}
             error={false}
             style={{ margin: '0px 25px' }}
@@ -111,13 +111,13 @@ const AgentsView = ({ currentStore, setIsOpenAddAgent }) => {
         )}
       {deleteAgentLoading ? (
         <LoaderComponent
-          loaderContent={global.translate('Working…', 412)}
+          loaderContent={global.translate('Working…')}
         />
       ) : (
         <>
           {initialInternalUsers &&
             initialInternalUsers.filter(item => !item.Error).length >
-              0 && (
+            0 && (
               <div className="contact-list">
                 {initialInternalUsers &&
                   initialInternalUsers

@@ -32,11 +32,11 @@ const SearchResultsComponent = ({ searchResults }) => {
               emptyMessage={{
                 title: global.translate(
                   'No products or services matched',
-                  2105,
+
                 ),
                 body: global.translate(
                   'No results found for your search.',
-                  1878,
+
                 ),
               }}
             />

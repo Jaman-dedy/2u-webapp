@@ -65,8 +65,7 @@ const AddMoneyModal = ({ open, setOpen, payBills }) => {
             </span>
             <span className="message">
               {global.translate(
-                'Your transaction has been completed successfully',
-                2004,
+                'Your transaction has been completed successfully'
               )}
             </span>
           </div>
@@ -197,13 +196,13 @@ const AddMoneyModal = ({ open, setOpen, payBills }) => {
       <Modal.Header>
         {payBillsData.SupplierName ? (
           <span>
-            {global.translate('Pay Bills to', 2225)}{' '}
+            {global.translate('Pay Bills to')}{' '}
             <span className="supplier-name">
               {payBillsData.SupplierName}
             </span>
           </span>
         ) : (
-          global.translate('Pay Bills', 67)
+          global.translate('Pay Bills')
         )}
       </Modal.Header>
       <Modal.Content>{displayContent()}</Modal.Content>

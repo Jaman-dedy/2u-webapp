@@ -100,7 +100,7 @@ const WalletComponents = ({ userWallets }) => {
 
   const options = [
     {
-      name: global.translate('Set as default', 93),
+      name: global.translate('Set as default'),
       image: SetDefault,
 
       onClick: () => {
@@ -109,7 +109,7 @@ const WalletComponents = ({ userWallets }) => {
     },
 
     {
-      name: global.translate('View transactions', 143),
+      name: global.translate('View transactions'),
       image: EyeIcon,
       onClick: () => {
         history.push({
@@ -121,7 +121,7 @@ const WalletComponents = ({ userWallets }) => {
       },
     },
     {
-      name: global.translate('Order an M-Card', 2171),
+      name: global.translate('Order an M-Card'),
       image: CreditCardIcon,
       onClick: item => {
         history.push({
@@ -133,21 +133,21 @@ const WalletComponents = ({ userWallets }) => {
       },
     },
     {
-      name: global.translate('Delete Wallet', 557),
+      name: global.translate('Delete Wallet'),
       image: TrashIcon,
       onClick: () => {
         setModalOpen(true);
       },
     },
     {
-      name: global.translate('Rename wallet', 2172),
+      name: global.translate('Rename wallet'),
       image: EditIcon,
       onClick: () => {
         openEdit();
       },
     },
     {
-      name: global.translate('Add money to your wallet', 173),
+      name: global.translate('Add money to your wallet'),
       image: AddMoneyIcon,
       onClick: () => {
         history.push({
@@ -159,7 +159,7 @@ const WalletComponents = ({ userWallets }) => {
       },
     },
     {
-      name: global.translate('Currency exchange', 87),
+      name: global.translate('Currency exchange'),
       image: CurrencyExchangeIcon,
       onClick: wallet => {
         setSelectedWallet(wallet);
@@ -188,9 +188,8 @@ const WalletComponents = ({ userWallets }) => {
         close={() => setModalOpen(false)}
         isOpened={isModalOpened}
         onClickYes={deleteWalletFX}
-        message={`${global.translate('Delete Wallet', 557)} : ${
-          form?.AccountNumber
-        } ${form?.AccountName ? `(${form?.AccountName})` : ''} ?`}
+        message={`${global.translate('Delete Wallet')} : ${form?.AccountNumber
+          } ${form?.AccountName ? `(${form?.AccountName})` : ''} ?`}
       />
       <div className="wallets">
         <div className="all-wallets">
@@ -203,20 +202,20 @@ const WalletComponents = ({ userWallets }) => {
 
           {createWallet?.error && Array.isArray(createWallet?.error)
             ? createWallet?.error.map(err => (
-                <>
-                  <Message
-                    message={
-                      err?.Description ||
-                      global.translate('Something went wrong', 1933)
-                    }
-                    action={{
-                      onClick: () => {
-                        handleDismis();
-                      },
-                    }}
-                  />
-                </>
-              ))
+              <>
+                <Message
+                  message={
+                    err?.Description ||
+                    global.translate('Something went wrong')
+                  }
+                  action={{
+                    onClick: () => {
+                      handleDismis();
+                    },
+                  }}
+                />
+              </>
+            ))
             : ''}
           {!loading && showingWallets && (
             <div className="wallets_table">

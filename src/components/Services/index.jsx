@@ -34,7 +34,7 @@ const MoneyTransfer = ({ userData }) => {
                 <span className="bold">
                   {userData.data && userData.data?.FirstName}
                 </span>
-                , {global.translate('enjoy our services', 2020)}
+                , {global.translate('enjoy our services')}
               </h2>
               <div className="clear" />
             </div>
@@ -49,11 +49,11 @@ const MoneyTransfer = ({ userData }) => {
             <div className="services-cards">
               <CardComponent
                 image={storeIcon}
-                title={global.translate('My stores', 848)}
+                title={global.translate('My stores')}
                 to="/my-stores"
                 subtitle={global.translate(
                   'Find store or create one.',
-                  2021,
+
                 )}
               />
               <CardComponent
@@ -62,7 +62,7 @@ const MoneyTransfer = ({ userData }) => {
                 title={global.translate(`Marketplace`)}
                 subtitle={global.translate(
                   `Find products and services near you`,
-                  2183,
+
                 )}
               />
               <CardComponent
@@ -80,10 +80,10 @@ const MoneyTransfer = ({ userData }) => {
             <div className="soon-cards">
               <ComingSoon
                 image={agricultureIcon}
-                title={global.translate('Farmers Corner', 2022)}
+                title={global.translate('Farmers Corner')}
                 subtitle={global.translate(
                   'Agriculture supply chain',
-                  1920,
+
                 )}
               />
               <ComingSoon

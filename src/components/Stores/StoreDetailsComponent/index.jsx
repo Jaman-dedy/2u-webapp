@@ -46,8 +46,8 @@ const SettingView = props => {
       menuItem:
         width > 700
           ? `${global.translate('Edit')} ${global
-              .translate('Your store')
-              .toLowerCase()}`
+            .translate('Your store')
+            .toLowerCase()}`
           : global.translate('Edit'),
       render: ({ currentStore }) => (
         <Tab.Pane>
@@ -192,7 +192,7 @@ const StoreDetailsComponent = ({
     {
       menuItem: (
         <Menu.Item key="Pending Vouchers">
-          {global.translate('Pending vouchers', 2030)}
+          {global.translate('Pending vouchers')}
           <Label as={Link} color="orange">
             {storeVouchers?.length ?? 0}
           </Label>
@@ -205,7 +205,7 @@ const StoreDetailsComponent = ({
             style={{
               padding:
                 !loadingPendingVouchers &&
-                !pendingVouchers?.data?.length
+                  !pendingVouchers?.data?.length
                   ? 10
                   : 0,
               border: '1px solid #ccc',
@@ -218,7 +218,7 @@ const StoreDetailsComponent = ({
                 <EmptyCard
                   header={global.translate(
                     'This store has no pending vouchers',
-                    2558,
+
                   )}
                   body={global.translate(
                     'No unused vouchers has been sent from this store',
@@ -358,14 +358,14 @@ const StoreDetailsComponent = ({
         userData.data?.PID?.toLowerCase()
       ) {
         setLocalError(
-          global.translate('You cannot add your self', 2559),
+          global.translate('You cannot add your self'),
         );
         return;
       }
       if (checkExists()) {
         setLocalError(
           form.PID?.trim() +
-            global.translate('is already your agent', 2560),
+          global.translate('is already your agent'),
         );
         return;
       }
@@ -530,6 +530,6 @@ StoreDetailsComponent.defaultProps = {
   onEditChange: () => null,
   getPendingStoreVouchers: () => null,
   activeTab: 1,
-  setActiveTab: () => {},
+  setActiveTab: () => { },
 };
 export default StoreDetailsComponent;

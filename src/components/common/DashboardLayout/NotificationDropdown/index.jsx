@@ -140,8 +140,8 @@ const NotificationDropdown = ({
       return x.status === 'unseen'
         ? -1
         : y.status === 'unseen'
-        ? 1
-        : 0;
+          ? 1
+          : 0;
     });
   }
   if (Array.isArray(data) && data.length !== 0) {
@@ -256,7 +256,7 @@ const NotificationDropdown = ({
         <Dropdown.Item className="dropdown-footer center-align">
           <Link to="/notifications">
             <div className="center-align">
-              <span>{global.translate('See more...', 1737)}</span>
+              <span>{global.translate('See more...')}</span>
             </div>
           </Link>
         </Dropdown.Item>

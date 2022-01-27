@@ -57,7 +57,7 @@ const AddStore = ({
               <GoBack style onClickHandler={onClickHandler} />
             </div>
             <h2 className="head-title">
-              {global.translate('Create a store', 1243)}
+              {global.translate('Create a store')}
             </h2>
             <div className="clear" />
           </div>

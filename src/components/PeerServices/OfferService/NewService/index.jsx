@@ -155,10 +155,10 @@ const NewService = ({
           onSubmit={
             editMedia && service
               ? () =>
-                  onSubmit({
-                    updateMedia: true,
-                    updateDetails: false,
-                  })
+                onSubmit({
+                  updateMedia: true,
+                  updateDetails: false,
+                })
               : undefined
           }
           setManageAllMedia={setManageAllMedia}
@@ -183,15 +183,15 @@ const NewService = ({
               />
             )}
             {service && !editMedia && (
-              <span>{global.translate('Update Service', 1869)}</span>
+              <span>{global.translate('Update Service')}</span>
             )}
 
             {!service && (
-              <span>{global.translate('Create Post', 2108)}</span>
+              <span>{global.translate('Create Post')}</span>
             )}
 
             {editMedia && (
-              <span>{global.translate('Edit Media', 1870)}</span>
+              <span>{global.translate('Edit Media')}</span>
             )}
           </Modal.Header>
           <Modal.Content>
@@ -202,8 +202,8 @@ const NewService = ({
                 setFiles={setFiles}
                 setFileToRemove={setFileToRemove}
                 fileToRemove={fileToRemove}
-                setVisible={() => {}}
-                setSelectedFile={() => {}}
+                setVisible={() => { }}
+                setSelectedFile={() => { }}
                 selectedFile={{}}
                 classes={{}}
                 onFileRemoved={onFileRemoved}
@@ -241,9 +241,8 @@ const NewService = ({
                       setTextareaHeight(height > 42 ? height : 42);
                     }}
                     style={{
-                      minHeight: `${
-                        form.Body ? textareaHeight || 42 : 42
-                      }px`,
+                      minHeight: `${form.Body ? textareaHeight || 42 : 42
+                        }px`,
                     }}
                     value={form.Body || ''}
                     rows={1}
@@ -272,7 +271,7 @@ const NewService = ({
                           <p className="manage-all-text">
                             {global.translate(
                               'Manage all media',
-                              2273,
+
                             )}
                           </p>
                         </Segment>
@@ -283,8 +282,8 @@ const NewService = ({
                           setFiles={setFiles}
                           setFileToRemove={setFileToRemove}
                           fileToRemove={fileToRemove}
-                          setVisible={() => {}}
-                          setSelectedFile={() => {}}
+                          setVisible={() => { }}
+                          setSelectedFile={() => { }}
                           selectedFile={{}}
                           classes={{}}
                           disableAdd
@@ -306,7 +305,7 @@ const NewService = ({
                       search
                       noResultsMessage={global.translate(
                         'The search returns no result',
-                        1253,
+
                       )}
                       onChange={onChange}
                       value={form.Category || ''}
@@ -319,7 +318,7 @@ const NewService = ({
                         inputProps={{
                           placeholder: global.translate(
                             'Add Tags',
-                            1874,
+
                           ),
                         }}
                         onChange={handleTagsChange}
@@ -357,14 +356,14 @@ const NewService = ({
                       value={form.LinkURL || ''}
                       placeholder={global.translate(
                         'External Link',
-                        1875,
+
                       )}
                     />
                   </Form.Group>
                   {!service && (
                     <>
                       <Header>
-                        {global.translate('Add Price', 1876)}
+                        {global.translate('Add Price')}
                       </Header>
                       <Pricing
                         onChange={onPricingFormChange}

@@ -95,11 +95,11 @@ const CustomisedAudienceTab = ({
       />
       <Form className="customised-audience-form">
         <div className="form-label">
-          {global.translate('Select a wallet', 1286)}
+          {global.translate('Select a wallet')}
         </div>
         <WalletDropdown
           keyName="SourceWallet"
-          placeholder={global.translate('Select a wallet', 1286)}
+          placeholder={global.translate('Select a wallet')}
           options={(data && data.Wallets) || []}
           currentOption={selectedWallet}
           onChange={e => handleInputChange(e)}
@@ -107,12 +107,12 @@ const CustomisedAudienceTab = ({
         />
         <br />
         <div className="form-label">
-          {global.translate('What is your budget?', 1562)}
+          {global.translate('What is your budget?')}
         </div>
         <Form.Input
           placeholder={global.translate(
             'Provide your budget here',
-            1568,
+
           )}
           value={executePublicityData.Budget || ''}
           error={errors.Budget || false}
@@ -175,7 +175,7 @@ const CustomisedAudienceTab = ({
         <Form.Input
           placeholder={global.translate(
             'Provide the audience here',
-            1567,
+
           )}
           value={executePublicityData.Audience || ''}
           error={errors.Audience || false}
@@ -217,7 +217,6 @@ const CustomisedAudienceTab = ({
         <div className="form-label">
           {global.translate(
             'Select the countries you are targeting',
-            1564,
           )}
         </div>
         {sample.map(
@@ -491,9 +490,9 @@ CustomisedAudienceTab.propTypes = {
 CustomisedAudienceTab.defaultProps = {
   userData: {},
   currentPublicity: {},
-  handleInputChange: () => {},
-  handleSubmit: () => {},
-  executeCampaing: () => {},
+  handleInputChange: () => { },
+  handleSubmit: () => { },
+  executeCampaing: () => { },
   setOpen: () => false,
   open: false,
   executePublicityData: {},

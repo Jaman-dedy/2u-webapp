@@ -174,7 +174,7 @@ const TransactionDetails = ({
                 onClick={modifyOneTransaction}
                 className={disabled ? 'disabled' : ''}
               >
-                {global.translate('Redeem Voucher', 2215)}
+                {global.translate('Redeem Voucher')}
               </Button>
 
               <Button onClick={onRejectVoucher}>

@@ -69,39 +69,39 @@ const FilePreview = ({
           {selectedFile?.file?.type?.startsWith(
             'application/pdf',
           ) && (
-            <>
-              <PDFViewer
-                css="customViewer"
-                hideNavbar
-                navigation={{
-                  css: {
-                    previousPageBtn: 'customPrevBtn',
-                    nextPageBtn: 'customNextBtn',
-                    pages: 'customPages',
-                    wrapper: 'customWrapper',
-                  },
-                }}
-                document={{
-                  url: selectedFile?.file?.preview,
-                }}
-              />
-              <div className="input-section">
-                <Input
-                  placeholder={global.translate('Add Caption', 1995)}
-                  value={selectedFile?.caption || ''}
-                  name={selectedFile?.file?.id}
-                  onChange={onChange}
+              <>
+                <PDFViewer
+                  css="customViewer"
+                  hideNavbar
+                  navigation={{
+                    css: {
+                      previousPageBtn: 'customPrevBtn',
+                      nextPageBtn: 'customNextBtn',
+                      pages: 'customPages',
+                      wrapper: 'customWrapper',
+                    },
+                  }}
+                  document={{
+                    url: selectedFile?.file?.preview,
+                  }}
                 />
-              </div>
-            </>
-          )}
+                <div className="input-section">
+                  <Input
+                    placeholder={global.translate('Add Caption')}
+                    value={selectedFile?.caption || ''}
+                    name={selectedFile?.file?.id}
+                    onChange={onChange}
+                  />
+                </div>
+              </>
+            )}
 
           {selectedFile?.file?.type?.startsWith('image') && (
             <>
               <Image src={selectedFile?.file?.preview} height={250} />
               <div className="input-section">
                 <Input
-                  placeholder={global.translate('Add caption', 1995)}
+                  placeholder={global.translate('Add caption')}
                   value={selectedFile?.caption || ''}
                   name={selectedFile?.file?.id}
                   onChange={onChange}
@@ -129,7 +129,7 @@ const FilePreview = ({
 
               <div className="input-section">
                 <Input
-                  placeholder={global.translate('Add caption', 1995)}
+                  placeholder={global.translate('Add caption')}
                   value={selectedFile?.caption || ''}
                   name={selectedFile?.file?.id}
                   onChange={onChange}

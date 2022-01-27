@@ -73,14 +73,14 @@ const UnPaidCashList = ({
     if (showAll) {
       allSourceFilterOptions = fromVouchers
         ? pendingVouchersOnWallets &&
-          pendingVouchersOnWallets.map(i => i.SourceAccountNumber)
+        pendingVouchersOnWallets.map(i => i.SourceAccountNumber)
         : data.map(item => item.SourceAccountNumber);
 
       allDestFilterOptions = fromVouchers
         ? pendingVouchersOnWallets &&
-          pendingVouchersOnWallets
-            .filter(item => item && item.PhoneNumber)
-            .map(item => item && item.PhoneNumber)
+        pendingVouchersOnWallets
+          .filter(item => item && item.PhoneNumber)
+          .map(item => item && item.PhoneNumber)
         : data.map(item => item.PhoneNumber);
     } else if (unpaidVouchers) {
       allSourceFilterOptions = [walletNumber];
@@ -142,15 +142,15 @@ const UnPaidCashList = ({
     { key: 'FirstName', value: global.translate('Name') },
     {
       key: 'SourceAmount',
-      value: global.translate('Amount Sent', 1260),
+      value: global.translate('Amount Sent'),
     },
     {
       key: 'DestAmount',
-      value: global.translate('Amount To Be Received', 397),
+      value: global.translate('Amount To Be Received'),
     },
     {
       key: 'SourceAccountNumber',
-      value: global.translate('Source Wallet', 1260),
+      value: global.translate('Source Wallet'),
     },
     {
       key: 'DisplayTransferNumber',
@@ -199,7 +199,7 @@ const UnPaidCashList = ({
               },
             }}
             floated={!noItems ? 'right' : 'none'}
-            content={global.translate('View all', 1753)}
+            content={global.translate('View all')}
             icon="eye"
             label={{
               basic: true,
@@ -214,7 +214,7 @@ const UnPaidCashList = ({
           {loading && (
             <LoaderComponent
               style={{ marginTop: 20, marginLeft: 10 }}
-              loaderContent={global.translate('Working…', 412)}
+              loaderContent={global.translate('Working…')}
             />
           )}
 
@@ -223,16 +223,16 @@ const UnPaidCashList = ({
               header={
                 unpaidVouchers
                   ? global.translate(
-                      `Looks like you don’t have any pending vouchers sent.`,
-                    )
+                    `Looks like you don’t have any pending vouchers sent.`,
+                  )
                   : global.translate(
-                      `Looks like you don’t have any pending cash sent.`,
-                      917,
-                    )
+                    `Looks like you don’t have any pending cash sent.`,
+
+                  )
               }
               createText={global.translate(
                 'View across all wallets',
-                1710,
+
               )}
               onAddClick={() => {
                 history.replace({
@@ -256,7 +256,7 @@ const UnPaidCashList = ({
               message={
                 error.error
                   ? global.translate(error.error)
-                  : global.translate(error[0].Description, 195)
+                  : global.translate(error[0].Description)
               }
               action={{
                 onClick: () => {
@@ -307,7 +307,7 @@ const UnPaidCashList = ({
               showOptions
               options={[
                 {
-                  name: global.translate('Cancel Voucher', 2034),
+                  name: global.translate('Cancel Voucher'),
                   image: CancelTransactionImage,
                   onClick: () => {
                     setSelectedItem(selectedItem);
@@ -351,7 +351,7 @@ const UnPaidCashList = ({
               showOptions
               options={[
                 {
-                  name: global.translate('Edit Transaction', 2035),
+                  name: global.translate('Edit Transaction'),
                   image: EditTransactionImage,
                   onClick: () => {
                     setSelectedItem(selectedItem);
@@ -359,7 +359,7 @@ const UnPaidCashList = ({
                   },
                 },
                 {
-                  name: global.translate('Cancel Transaction', 1103),
+                  name: global.translate('Cancel Transaction'),
                   image: CancelTransactionImage,
                   onClick: () => {
                     setSelectedItem(selectedItem);
@@ -407,8 +407,8 @@ UnPaidCashList.propTypes = {
 UnPaidCashList.defaultProps = {
   showAll: false,
   getUnPaidCashList: () => null,
-  onCancelTransactionConfirm: () => {},
-  cancelTransactionData: () => {},
+  onCancelTransactionConfirm: () => { },
+  cancelTransactionData: () => { },
   walletNumber: null,
   unpaidVouchers: false,
   contactType: 'DEFAULT',

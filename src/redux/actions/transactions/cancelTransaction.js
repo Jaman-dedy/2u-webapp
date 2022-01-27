@@ -20,7 +20,7 @@ export default (requestData, history) => dispatch => {
         toast.success(
           global.translate(
             'Your Cash transaction has been cancelled.',
-            1117,
+
           ),
         );
 

@@ -53,7 +53,7 @@ const MyStores = ({ userData, myStores }) => {
               </div>
             )}
             <h2 className="head-title">
-              {global.translate('My stores', 848)}
+              {global.translate('My stores')}
             </h2>
             <div className="head-buttons">
               <button
@@ -62,13 +62,13 @@ const MyStores = ({ userData, myStores }) => {
                   setIsOpenRedeemVoucherModal(true);
                 }}
               >
-                {global.translate('Redeem a voucher', 810)}
+                {global.translate('Redeem a voucher')}
               </button>
               <button
                 type="button"
                 onClick={() => history.push('/add-store')}
               >
-                {global.translate('Create a store', 1243)}
+                {global.translate('Create a store')}
               </button>
             </div>
             <div className="clear" />
@@ -99,22 +99,22 @@ const MyStores = ({ userData, myStores }) => {
             {!myStores.loading && !error && (
               <div className="my-store-list">
                 {myStores.storeList &&
-                myStores.storeList[0] &&
-                myStores.storeList[0].Error === '2016' &&
-                !myStores.loading ? (
+                  myStores.storeList[0] &&
+                  myStores.storeList[0].Error === '2016' &&
+                  !myStores.loading ? (
                   <EmptyCard
                     createText={global.translate(
                       'Create store',
-                      2358,
+
                     )}
                     onAddClick={() => history.push('/add-store')}
                     header={global.translate(
                       'Looks like you do not have a store yet',
-                      1777,
+
                     )}
                     body={global.translate(
                       'You can create your own store and offer any service you want across our platforms',
-                      1778,
+
                     )}
                   />
                 ) : (

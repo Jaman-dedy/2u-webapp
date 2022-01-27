@@ -166,11 +166,11 @@ const ChatInfoSideBar = ({
                       'From your Contacts',
                       1640,
                     )}
-                    onItemClick={() => () => {}}
+                    onItemClick={() => () => { }}
                   />
                 ))}
               <Button
-                content={global.translate('Add People', 1712)}
+                content={global.translate('Add People')}
                 basic
                 className="btn--primary"
               />
@@ -259,13 +259,13 @@ const ChatInfoSideBar = ({
                 toggle
                 value="notifications"
                 defaultChecked={false}
-                onChange={() => {}}
+                onChange={() => { }}
               />
             </div>
             <small>
               {global.translate(
-                'Disable Notifications in this Conversation',
-                1643,
+                'Disable Notifications in this Conversation'
+
               )}
             </small>
             <ToggleSwitch defaultChecked />
@@ -302,8 +302,8 @@ const ChatInfoSideBar = ({
           }}
         >
           {currentChatTarget?.IsContact === 'NO'
-            ? global.translate('Add to my contacts', 435)
-            : global.translate('Manage Contact', 1644)}
+            ? global.translate('Add to my contacts')
+            : global.translate('Manage Contact')}
         </Segment>
         <Segment
           className="cursor-pointer"
@@ -312,18 +312,18 @@ const ChatInfoSideBar = ({
               setDeleteChatOpen(true);
             } else {
               toast.error(
-                global.translate('You are in offline mode.', 162),
+                global.translate('You are in offline mode.'),
               );
             }
           }}
         >
-          {global.translate('Delete Chat', 1645)}
+          {global.translate('Delete Chat')}
         </Segment>
         {currentChatType === 'GROUP' && (
           <Segment>
             <Item.Content color="red">
               {' '}
-              {global.translate('Leave Conversation', 1646)}
+              {global.translate('Leave Conversation')}
             </Item.Content>
           </Segment>
         )}
@@ -342,8 +342,8 @@ const ChatInfoSideBar = ({
             <Item.Content color="red">
               {' '}
               {isBlocked(currentChatTarget)
-                ? global.translate('Unlock this person', 1648)
-                : global.translate('Block this person', 1647)}
+                ? global.translate('Unlock this person')
+                : global.translate('Block this person')}
             </Item.Content>
           </Segment>
         )}

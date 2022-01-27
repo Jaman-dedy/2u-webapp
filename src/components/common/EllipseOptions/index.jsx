@@ -46,7 +46,7 @@ const EllipseMenu = ({
           {options &&
             options.map((item, i) => (
               <div
-                onKeyPress={() => {}}
+                onKeyPress={() => { }}
                 key={i.toString()}
                 className="innerOptions"
                 onClick={() => {
@@ -72,9 +72,8 @@ const EllipseMenu = ({
                   <p className="itemName">
                     {wallet?.HasACreditCard === 'YES' && i === 2
                       ? global.translate(
-                          'Manage my credit card',
-                          1764,
-                        )
+                        'Manage my credit card'
+                      )
                       : item.name}
                   </p>
                 </div>
@@ -107,9 +106,9 @@ EllipseMenu.defaultProps = {
   direction: 'left',
   currentItem: {},
   wallet: {},
-  onClick: () => {},
-  hadleLoadCardOptions: () => {},
-  onSelectItem: () => {},
+  onClick: () => { },
+  hadleLoadCardOptions: () => { },
+  onSelectItem: () => { },
   iconColor: '',
 };
 export default EllipseMenu;

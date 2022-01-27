@@ -244,7 +244,7 @@ const Transactions = ({
             <Message.Header>
               {global.translate(
                 "We're sorry we can not display your transactions for now",
-                2561,
+
               )}
             </Message.Header>
             <p>{error.message}</p>
@@ -293,7 +293,7 @@ const Transactions = ({
                 transactionTypeImage={
                   size.width > 600 && ExternalTransferImg
                 }
-                title={global.translate('External transfers', 2212)}
+                title={global.translate('External transfers')}
                 onClick={handleSelectedCard}
                 card={4}
                 selected={selectedCard === 4}
@@ -468,15 +468,15 @@ Transactions.defaultProps = {
   walletList: [],
   amountChartData: {},
   chartData: {},
-  getTransactions: () => {},
-  setCurrentOption: () => {},
+  getTransactions: () => { },
+  setCurrentOption: () => { },
   currentOption: {},
-  fetchAllTransaction: () => {},
+  fetchAllTransaction: () => { },
   form: {},
-  setForm: () => {},
-  getMoreResults: () => {},
+  setForm: () => { },
+  getMoreResults: () => { },
   unPaidCashList: {},
-  getUnPaidCashList: () => {},
+  getUnPaidCashList: () => { },
   pendingVouchers: [],
   pendingOtherData: {},
 };

@@ -18,15 +18,14 @@ const PaymentAction = ({
 }) => {
   return (
     <div className="pay-detail-info">
-      <h4>{global.translate('Pay prior to due date', 2448)}</h4>
+      <h4>{global.translate('Pay prior to due date')}</h4>
       <div>
         {global.translate(
           'Pay on time helps you to increase your credit scores and stay on top of your finances.',
-          2548,
         )}
       </div>
       <Button onClick={() => setPayLoanModal(true)}>
-        <Icon name="plus" /> {global.translate('Repay now', 2449)}
+        <Icon name="plus" /> {global.translate('Repay now')}
       </Button>
       <PayLoanModal
         open={payLoanModal}
@@ -58,13 +57,13 @@ PaymentAction.propTypes = {
 };
 PaymentAction.defaultProps = {
   payLoanModal: false,
-  setPayLoanModal: () => {},
+  setPayLoanModal: () => { },
   loan: {},
-  setPaymentOption: () => {},
+  setPaymentOption: () => { },
   paymentOption: 'Total',
-  handleConfirmPayLoan: () => {},
-  confirmLoanLoading: () => {},
-  payLoanLoading: () => {},
+  handleConfirmPayLoan: () => { },
+  confirmLoanLoading: () => { },
+  payLoanLoading: () => { },
   confirmLoanData: {},
   walletList: [],
 };

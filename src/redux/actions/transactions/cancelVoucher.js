@@ -22,7 +22,7 @@ export default (requestData, history) => dispatch => {
         toast.success(
           global.translate(
             'Voucher transaction has been cancelled.',
-            2116,
+
           ),
         );
         history.push('/transactions');

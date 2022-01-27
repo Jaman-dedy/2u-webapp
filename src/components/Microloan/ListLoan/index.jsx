@@ -19,11 +19,11 @@ const ListLoan = ({ listData, setOpenModal, loading }) => {
     <div className="loan-list-container">
       <div className="info-part">
         <div className="request-part">
-          <h3>{global.translate('Instant loans', 2544)}</h3>
+          <h3>{global.translate('Instant loans')}</h3>
           <div>
             {global.translate(
               'Request microloans on the go and get your money directly into your wallet in just seconds',
-              2545,
+
             )}
           </div>
         </div>
@@ -34,7 +34,7 @@ const ListLoan = ({ listData, setOpenModal, loading }) => {
           }}
         >
           <Icon name="plus" />{' '}
-          {global.translate('Request a loan', 2482)}
+          {global.translate('Request a loan')}
         </Button>
       </div>
       {listData?.Data?.map(loan => (
@@ -75,7 +75,7 @@ ListLoan.propTypes = {
 };
 ListLoan.defaultProps = {
   listData: {},
-  setOpenModal: () => {},
+  setOpenModal: () => { },
   loading: false,
 };
 

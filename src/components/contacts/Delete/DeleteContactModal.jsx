@@ -30,13 +30,13 @@ const DeleteContactModal = ({
   return (
     <Modal size="tiny" open={open} onOpen={() => setOpen(!open)}>
       <Modal.Header className="modal-title">
-        {global.translate(`Delete`, 415)}{' '}
+        {global.translate(`Delete`)}{' '}
         {contact && contact.FirstName}{' '}
       </Modal.Header>
       <Modal.Content>
         {loading && !error && (
           <LoaderComponent
-            loaderContent={global.translate('Working...', 412)}
+            loaderContent={global.translate('Working...')}
           />
         )}
         {!loading && !error && (
@@ -47,8 +47,7 @@ const DeleteContactModal = ({
             </strong>{' '}
             <span>
               {global.translate(
-                'will be removed from your contacts.',
-                441,
+                'will be removed from your contacts.'
               )}
             </span>{' '}
           </div>
@@ -109,7 +108,7 @@ DeleteContactModal.propTypes = {
 
 DeleteContactModal.defaultProps = {
   loading: false,
-  setOpen: () => {},
+  setOpen: () => { },
   open: false,
   contact: null,
   deleteContact: () => null,

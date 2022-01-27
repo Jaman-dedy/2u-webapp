@@ -141,11 +141,10 @@ const ManageContacts = ({
             contact: item,
             targetStore,
             isFromContactInfo: true,
-            contactInfoURL: `/contacts/${
-              item.ContactType === 'INTERNAL'
-                ? item.ContactPID
-                : item.PhoneNumber
-            }?type=${item.ContactType}`,
+            contactInfoURL: `/contacts/${item.ContactType === 'INTERNAL'
+              ? item.ContactPID
+              : item.PhoneNumber
+              }?type=${item.ContactType}`,
           },
         });
       },
@@ -182,11 +181,10 @@ const ManageContacts = ({
           state: {
             contact: item,
             isFromContactInfo: true,
-            contactInfoURL: `/contacts/${
-              item.ContactType === 'INTERNAL'
-                ? item.ContactPID
-                : item.PhoneNumber
-            }?type=${item.ContactType}`,
+            contactInfoURL: `/contacts/${item.ContactType === 'INTERNAL'
+              ? item.ContactPID
+              : item.PhoneNumber
+              }?type=${item.ContactType}`,
           },
         });
       },
@@ -198,10 +196,9 @@ const ManageContacts = ({
         setContact(item);
         setIsDetail(true);
         history.push(
-          `/contacts/${
-            item.ContactType === 'INTERNAL'
-              ? item.ContactPID
-              : item.PhoneNumber
+          `/contacts/${item.ContactType === 'INTERNAL'
+            ? item.ContactPID
+            : item.PhoneNumber
           }?type=${item.ContactType}`,
         );
       },
@@ -218,9 +215,9 @@ const ManageContacts = ({
   const initializeContacts = () => {
     setIUsers(
       allContacts.data &&
-        allContacts.data.filter(
-          item => item.ContactType === 'INTERNAL',
-        ),
+      allContacts.data.filter(
+        item => item.ContactType === 'INTERNAL',
+      ),
     );
     setAllContacts(allContacts.data?.filter(item => !item.Error));
     setIsSearching(false);
@@ -274,9 +271,9 @@ const ManageContacts = ({
     if (isSendingMoney) {
       setIUsers(
         allContacts.data &&
-          allContacts.data.filter(
-            item => item.ContactType === 'INTERNAL',
-          ),
+        allContacts.data.filter(
+          item => item.ContactType === 'INTERNAL',
+        ),
       );
     }
   }, [allContacts, isSendingMoney]);
@@ -365,46 +362,46 @@ const ManageContacts = ({
                 isTopingUp ||
                 isSendingVoucher ||
                 isSendingOthers) && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    history.push('/withdraw-money');
-                  }}
-                >
-                  {global.translate('Withdraw money')}
-                </button>
-              )}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      history.push('/withdraw-money');
+                    }}
+                  >
+                    {global.translate('Withdraw money')}
+                  </button>
+                )}
               {(isSendingMoney ||
                 isManagingContacts ||
                 isSendingCash ||
                 isTopingUp ||
                 isSendingVoucher ||
                 isSendingOthers) && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    setOpen(true);
-                    setNewContactType('INTERNAL');
-                  }}
-                >
-                  {global.translate('Add Contact')}
-                </button>
-              )}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setOpen(true);
+                      setNewContactType('INTERNAL');
+                    }}
+                  >
+                    {global.translate('Add Contact')}
+                  </button>
+                )}
               {(isSendingCash ||
                 isManagingContacts ||
                 isTopingUp ||
                 isSendingVoucher ||
                 isSendingOthers) && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    setOpen(true);
-                    setNewContactType('EXTERNAL');
-                  }}
-                >
-                  {global.translate('Add External Contact')}
-                </button>
-              )}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setOpen(true);
+                      setNewContactType('EXTERNAL');
+                    }}
+                  >
+                    {global.translate('Add External Contact')}
+                  </button>
+                )}
             </div>
           )}
           <div className="clear" />
@@ -426,10 +423,9 @@ const ManageContacts = ({
             setIsDetail(true);
 
             history.push(
-              `/contacts/${
-                contact.ContactType === 'INTERNAL'
-                  ? contact.ContactPID
-                  : contact.PhoneNumber
+              `/contacts/${contact.ContactType === 'INTERNAL'
+                ? contact.ContactPID
+                : contact.PhoneNumber
               }?type=${contact.ContactType}`,
             );
           }
@@ -475,12 +471,10 @@ const ManageContacts = ({
         {!isSearching && allMyContacts?.length === 0 && (
           <EmptyCard
             header={global.translate(
-              "Looks like you don't have any contact yet",
-              2245,
+              "Looks like you don't have any contact yet"
             )}
             body={global.translate(
-              'You can add new contacts to your list',
-              2246,
+              'You can add new contacts to your list'
             )}
             imgSrc={EmptyContactList}
             createText={global.translate('Add contact')}
@@ -497,8 +491,7 @@ const ManageContacts = ({
           allMyContacts.length === 0 && (
             <Message
               message={global.translate(
-                'The search returned no result',
-                1253,
+                'The search returned no result'
               )}
               error={false}
               style={{ margin: '0px 25px' }}
@@ -540,20 +533,20 @@ const ManageContacts = ({
                 moreOptions={
                   item.ContactType === 'INTERNAL'
                     ? [
-                        {
-                          image: ChatImage,
-                          name: global.translate('Chat'),
-                          onClick: item => {
-                            setGlobalChat({
-                              currentChatType: ONE_TO_ONE,
-                              currentChatTarget: item,
-                              isChattingWithSingleUser: true,
-                            })(dispatch);
-                            openChatList()(dispatch);
-                          },
+                      {
+                        image: ChatImage,
+                        name: global.translate('Chat'),
+                        onClick: item => {
+                          setGlobalChat({
+                            currentChatType: ONE_TO_ONE,
+                            currentChatTarget: item,
+                            isChattingWithSingleUser: true,
+                          })(dispatch);
+                          openChatList()(dispatch);
                         },
-                        ...options,
-                      ]
+                      },
+                      ...options,
+                    ]
                     : options.filter((item, i) => i !== 0)
                 }
                 onItemClick={item => {
@@ -569,10 +562,9 @@ const ManageContacts = ({
                     setIsDetail(true);
                     setContact(item);
                     history.push(
-                      `/contacts/${
-                        item?.ContactType === 'INTERNAL'
-                          ? item.ContactPID
-                          : item.PhoneNumber
+                      `/contacts/${item?.ContactType === 'INTERNAL'
+                        ? item.ContactPID
+                        : item.PhoneNumber
                       }?type=${item.ContactType}`,
                     );
                   }
@@ -619,20 +611,20 @@ const ManageContacts = ({
                 moreOptions={
                   item.ContactType === 'INTERNAL'
                     ? [
-                        {
-                          image: ChatImage,
-                          name: global.translate('Chat'),
-                          onClick: item => {
-                            setGlobalChat({
-                              currentChatType: ONE_TO_ONE,
-                              currentChatTarget: item,
-                              isChattingWithSingleUser: true,
-                            })(dispatch);
-                            openChatList()(dispatch);
-                          },
+                      {
+                        image: ChatImage,
+                        name: global.translate('Chat'),
+                        onClick: item => {
+                          setGlobalChat({
+                            currentChatType: ONE_TO_ONE,
+                            currentChatTarget: item,
+                            isChattingWithSingleUser: true,
+                          })(dispatch);
+                          openChatList()(dispatch);
                         },
-                        ...options,
-                      ]
+                      },
+                      ...options,
+                    ]
                     : options.filter((item, i) => i !== 0)
                 }
                 onItemClick={item => {
@@ -836,53 +828,53 @@ ManageContacts.defaultProps = {
   open: false,
   destinationContact: null,
   userData: {},
-  onSearchUser: () => {},
+  onSearchUser: () => { },
   loading: false,
   form: {},
-  setOpen: () => {},
+  setOpen: () => { },
   data: {},
   searchData: {},
   clearSuccess: {},
-  getContacts: () => {},
+  getContacts: () => { },
   isSendingCash: false,
   isSendingOthers: false,
   isTopingUp: false,
   sendCashOpen: false,
   topUpOpen: false,
-  setSendCashOpen: () => {},
-  setTopUpOpen: () => {},
-  setDestinationContact: () => {},
-  setForm: () => {},
-  setLocalError: () => {},
+  setSendCashOpen: () => { },
+  setTopUpOpen: () => { },
+  setDestinationContact: () => { },
+  setForm: () => { },
+  setLocalError: () => { },
   isSendingMoney: false,
   isSendingVoucher: false,
-  setSendMoneyOpen: () => {},
+  setSendMoneyOpen: () => { },
   sendMoneyOpen: false,
   addNewUserData: {},
   error: {},
   localError: null,
-  removeUserContact: () => {},
-  deleteContactData: () => {},
-  clearDeleteContact: () => {},
-  onEditChange: () => {},
+  removeUserContact: () => { },
+  deleteContactData: () => { },
+  clearDeleteContact: () => { },
+  onEditChange: () => { },
   editForm: {},
-  handleEditInfo: () => {},
+  handleEditInfo: () => { },
   editErrors: PropTypes.bool,
-  setEditForm: () => {},
+  setEditForm: () => { },
   contact: {},
-  setContact: () => {},
-  setEditErrors: () => {},
-  setIsDetail: () => {},
+  setContact: () => { },
+  setEditErrors: () => { },
+  setIsDetail: () => { },
   isDetail: false,
   setIsSharingNewWallet: false,
   isSharingNewWallet: false,
   isManagingContacts: false,
-  handleFavouriteStatusChange: () => {},
-  addRemoveFavorite: () => {},
+  handleFavouriteStatusChange: () => { },
+  addRemoveFavorite: () => { },
   allContacts: {},
   country: {},
-  setCountry: () => {},
-  handleCreateExternalContact: () => {},
+  setCountry: () => { },
+  handleCreateExternalContact: () => { },
   targetStore: {},
 };
 export default ManageContacts;

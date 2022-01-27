@@ -27,7 +27,7 @@ export default function ProfileCardOptions() {
             >
               <Image src={WalletIcon} />
               <List.Content className="item-content">
-                {global.translate('My Wallets', 68)}
+                {global.translate('My Wallets')}
               </List.Content>
             </Segment>
             <Segment
@@ -38,7 +38,7 @@ export default function ProfileCardOptions() {
             >
               <Image src={paybillsIcon} />
               <List.Content className="item-content">
-                {global.translate('Pay Bills', 67)}
+                {global.translate('Pay Bills')}
               </List.Content>
             </Segment>
             <Segment
@@ -52,7 +52,7 @@ export default function ProfileCardOptions() {
             >
               <Image src={SendCashIcon} />
               <List.Content className="item-content">
-                {global.translate('Send Cash', 915)}
+                {global.translate('Send Cash')}
               </List.Content>
             </Segment>
             <Segment
@@ -63,7 +63,7 @@ export default function ProfileCardOptions() {
             >
               <Image src={SettingsIcon} />
               <List.Content className="item-content">
-                {global.translate('Manage my account', 1269)}
+                {global.translate('Manage my account')}
               </List.Content>
             </Segment>
           </List>

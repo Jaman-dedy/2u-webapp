@@ -110,7 +110,7 @@ const StorePendingVoucherTab = ({
       {loading && (
         <LoaderComponent
           style={{ marginTop: 20, marginLeft: 10 }}
-          loaderContent={global.translate('Working…', 412)}
+          loaderContent={global.translate('Working…')}
         />
       )}
       {noItems && !loading && (
@@ -145,7 +145,7 @@ const StorePendingVoucherTab = ({
           style={{ backgroundColor: '#282b4e', color: '#ffffff' }}
           onClick={() => setOpenRedeemVoucher(true)}
         >
-          {global.translate('Redeem a voucher', 820)}
+          {global.translate('Redeem a voucher')}
         </Button>
       )}
 
@@ -196,8 +196,8 @@ StorePendingVoucherTab.defaultProps = {
   pendingVouchers: {},
   getPendingStoreVouchers: {},
   selectedItem: {},
-  setSelectedItem: () => {},
-  onRejectVoucher: () => {},
+  setSelectedItem: () => { },
+  onRejectVoucher: () => { },
 };
 
 export default StorePendingVoucherTab;

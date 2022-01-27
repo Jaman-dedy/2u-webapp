@@ -93,7 +93,7 @@ const ProfileComponent = ({ userPID }) => {
               title: global.translate('No saved posts yet'),
               body: global.translate(
                 'All products and services you bookmark will appear here',
-                2113,
+
               ),
             }}
             deleteServiceStore={deleteServiceStore}
@@ -108,12 +108,12 @@ const ProfileComponent = ({ userPID }) => {
       <Helmet>
         <meta charSet="utf-8" />
         <title>
-          {global.translate('Peer Services', 610)} |
-          {global.translate('Offers Services', 2271)}
+          {global.translate('Peer Services')} |
+          {global.translate('Offers Services')}
         </title>
         <meta
           name="description"
-          content={global.translate('Find services near you', 1240)}
+          content={global.translate('Find services near you')}
         />
         <meta name="robots" content="index, nofollow" />
         <meta property="og:type" content="article" />
@@ -130,8 +130,8 @@ const ProfileComponent = ({ userPID }) => {
       <ResponsiveContainer
         title={
           userPID === user?.PID?.toLowerCase() || userPID === 'me'
-            ? global.translate('My Posts', 2109)
-            : global.translate('User Posts', 2272)
+            ? global.translate('My Posts')
+            : global.translate('User Posts')
         }
       >
         <EditPricingModal
@@ -157,7 +157,7 @@ const ProfileComponent = ({ userPID }) => {
               className="menu tabs-menu"
             >
               {userPID === user?.PID?.toLowerCase() ||
-              userPID === 'me' ? (
+                userPID === 'me' ? (
                 <Tab
                   panes={panes}
                   activeIndex={activeIndex}
@@ -166,9 +166,8 @@ const ProfileComponent = ({ userPID }) => {
 
                     history.push({
                       pathname: history.location.pathname,
-                      search: `?activeIndex=${
-                        data.activeIndex === 1 ? 'saved' : 'all'
-                      }`,
+                      search: `?activeIndex=${data.activeIndex === 1 ? 'saved' : 'all'
+                        }`,
                     });
                   }}
                 />

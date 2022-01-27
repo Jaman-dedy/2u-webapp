@@ -76,7 +76,7 @@ const PendingVoucherDetails = ({ item, language }) => {
           <>
             <List.Item className="list-item-wrapper">
               <List.Content className="list-item-content">
-                {global.translate('Phone number', 13)}
+                {global.translate('Phone number')}
               </List.Content>
               <List.Content className="list-item-right">
                 {item.PhoneNumber}

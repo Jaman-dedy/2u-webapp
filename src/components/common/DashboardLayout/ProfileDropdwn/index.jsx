@@ -110,7 +110,7 @@ const ProfileDropdown = ({
             {Object.keys(profileData).length && (
               <div
                 className="dropdown-header__content"
-                title={global.translate('My Profile', 83)}
+                title={global.translate('My Profile')}
               >
                 {Object.keys(profileData).length !== 0 ? (
                   <Thumbnail
@@ -140,8 +140,7 @@ const ProfileDropdown = ({
                     <div
                       className="verified-icon"
                       title={global.translate(
-                        'Account verified',
-                        1458,
+                        'Account verified'
                       )}
                     >
                       <Image src={VerifiedIcon} />
@@ -212,12 +211,12 @@ const ProfileDropdown = ({
               icon: 'buysellads',
             },
             {
-              label: global.translate('My wallets', 68),
+              label: global.translate('My wallets'),
               to: '/wallets',
               icon: 'money',
             },
             {
-              label: global.translate('2U and I', 1316),
+              label: global.translate('2U and I'),
               to: '/fidelity',
               icon: 'gift',
             },

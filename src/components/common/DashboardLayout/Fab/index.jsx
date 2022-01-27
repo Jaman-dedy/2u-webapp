@@ -30,7 +30,7 @@ const Fab = ({
           <>
             <li>
               <span className="fab-label">
-                {global.translate('Send voucher', 863)}
+                {global.translate('Send voucher')}
               </span>
               <div onClick={goToVoucher} className="fab-icon-holder">
                 <Icon name="gift" />
@@ -38,7 +38,7 @@ const Fab = ({
             </li>
             <li>
               <span className="fab-label">
-                {global.translate('Send cash', 915)}
+                {global.translate('Send cash')}
               </span>
               <div onClick={goToSendCash} className="fab-icon-holder">
                 <Icon name="money bill alternate" />
@@ -54,7 +54,7 @@ const Fab = ({
             </li>
             <li>
               <span className="fab-label">
-                {global.translate('Get paid', 482)}
+                {global.translate('Get paid')}
               </span>
               <div onClick={goToGetPaid} className="fab-icon-holder">
                 <Icon name="qrcode" />
@@ -62,7 +62,7 @@ const Fab = ({
             </li>
             <li>
               <span className="fab-label">
-                {global.translate('Send money', 65)}
+                {global.translate('Send money')}
               </span>
               <div
                 onClick={goToSendMoney}
@@ -73,7 +73,7 @@ const Fab = ({
             </li>
             <li>
               <span className="fab-label">
-                {global.translate('Quick pay', 431)}
+                {global.translate('Quick pay')}
               </span>
               <div onClick={goToQuickPay} className="fab-icon-holder">
                 <Icon name="dollar sign" />

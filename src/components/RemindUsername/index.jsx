@@ -26,7 +26,7 @@ const RemindUsername = ({
       }
       rightHeadlineText={global.translate(
         'Get back your username',
-        1698,
+
       )}
     >
       <div>
@@ -64,7 +64,7 @@ RemindUsername.propTypes = {
 RemindUsername.defaultProps = {
   loading: false,
   error: null,
-  onKeyDown: () => {},
+  onKeyDown: () => { },
 };
 
 export default RemindUsername;

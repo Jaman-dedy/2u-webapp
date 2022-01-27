@@ -148,7 +148,7 @@ const AddCard = ({
           </div>
 
           <h2 className="head-title">
-            {global.translate('My M-Cards', 2159)}
+            {global.translate('My M-Cards')}
           </h2>
           <div className="clear" />
         </div>
@@ -201,8 +201,7 @@ const AddCard = ({
               {!cardOptions && !loading && (
                 <InfoMessage
                   description={global.translate(
-                    'To proceed with your M-Card creation, you need to select a wallet among the wallet list above.',
-                    2248,
+                    'To proceed with your M-Card creation, you need to select a wallet among the wallet list above.'
                   )}
                 />
               )}
@@ -293,8 +292,7 @@ const AddCard = ({
           <>
             <EmptyCard
               header={global.translate(
-                'Looks like all your wallets have cards!',
-                2148,
+                'Looks like all your wallets have cards!'
               )}
               body={global.translate(
                 'To continue ordering a card, add a new wallet',
@@ -355,28 +353,28 @@ AddCard.propTypes = {
 };
 
 AddCard.defaultProps = {
-  onOptionsChange: () => {},
+  onOptionsChange: () => { },
   form: {},
-  setForm: () => {},
+  setForm: () => { },
   hasNotAgreed: false,
-  setHasNotAgreed: () => {},
+  setHasNotAgreed: () => { },
   pinDigit: {},
-  setPinDigit: () => {},
-  setError: () => {},
-  setConfirmPinDigit: () => {},
+  setPinDigit: () => { },
+  setError: () => { },
+  setConfirmPinDigit: () => { },
   confirmPinDigit: {},
-  setUserPinDigit: () => {},
+  setUserPinDigit: () => { },
   userPinDigit: {},
   openPinModal: false,
-  setOpenPinModal: () => {},
+  setOpenPinModal: () => { },
   error: '',
-  submitCreditCard: () => {},
+  submitCreditCard: () => { },
   errors: {},
   createCardLoading: false,
   pinData: {},
   preSelectedWallet: {},
-  selectedProvider: () => {},
-  setSelectedProvider: () => {},
+  selectedProvider: () => { },
+  setSelectedProvider: () => { },
   cardTypes: [],
 };
 export default AddCard;

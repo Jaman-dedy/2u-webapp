@@ -57,7 +57,7 @@ const MyWallets = ({ myWallets, selectWallet }) => {
   return (
     <div className="my-wallet">
       <span className="title">
-        {global.translate('My wallets', 68)}
+        {global.translate('My wallets')}
       </span>
       <div className="wallet-list">
         <Image
@@ -80,11 +80,10 @@ const MyWallets = ({ myWallets, selectWallet }) => {
                 Default,
               }) => (
                 <div
-                  className={`${
-                    AccountNumber === selectedWallet.AccountNumber
+                  className={`${AccountNumber === selectedWallet.AccountNumber
                       ? 'selected'
                       : ''
-                  } wallet`}
+                    } wallet`}
                   key={AccountNumber}
                   role="button"
                   tabIndex={0}

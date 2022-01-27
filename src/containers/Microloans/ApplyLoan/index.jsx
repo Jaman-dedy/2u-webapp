@@ -74,7 +74,7 @@ const ApplyLoan = () => {
       setPinErrors({
         Description: global.translate(
           'Please provide your PIN number.',
-          944,
+
         ),
       });
       return true;

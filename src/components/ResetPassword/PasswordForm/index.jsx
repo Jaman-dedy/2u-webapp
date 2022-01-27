@@ -121,23 +121,23 @@ const PasswordForm = ({
           {(((resetPasswordPrequalification &&
             resetPasswordPrequalification.loading) ||
             verifyOTP?.loading) && (
-            <div className="Loader">
-              <Loader active inline />
-            </div>
-          )) || (
-            <div>
-              <span>
-                {global.translate('Haven’t receive it yet')}
-              </span>
-              <button
-                type="button"
-                className="resendBtn"
-                onClick={() => resendOTP(true)}
-              >
-                {global.translate('Resend a new code')}
-              </button>
-            </div>
-          )}
+              <div className="Loader">
+                <Loader active inline />
+              </div>
+            )) || (
+              <div>
+                <span>
+                  {global.translate('Haven’t receive it yet')}
+                </span>
+                <button
+                  type="button"
+                  className="resendBtn"
+                  onClick={() => resendOTP(true)}
+                >
+                  {global.translate('Resend a new code')}
+                </button>
+              </div>
+            )}
         </div>
       </div>
 
@@ -163,7 +163,7 @@ const PasswordForm = ({
         {(loading && (
           <Loader active inverted inline size="small" />
         )) ||
-          global.translate('CHANGE PASSWORD', 1943)}
+          global.translate('CHANGE PASSWORD')}
       </button>
       {!isAppDisplayedInWebView() && (
         <>

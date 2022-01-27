@@ -212,19 +212,19 @@ export default () => {
         personalInfoData?.Gender === data?.Gender?.Number &&
         personalInfoData?.DateOfBirth === data?.DateOfBirth &&
         personalInfoData?.FatherFName ===
-          data?.UserExtraKYC?.FatherFName &&
+        data?.UserExtraKYC?.FatherFName &&
         personalInfoData?.MotherFName ===
-          data?.UserExtraKYC?.MotherFName &&
+        data?.UserExtraKYC?.MotherFName &&
         personalInfoData?.Profession ===
-          data?.UserExtraKYC?.Profession &&
+        data?.UserExtraKYC?.Profession &&
         personalInfoData?.SpouseName ===
-          data?.UserExtraKYC?.SpouseName &&
+        data?.UserExtraKYC?.SpouseName &&
         personalInfoData?.CityOfBirth ===
-          data?.UserExtraKYC?.CityOfBirth &&
+        data?.UserExtraKYC?.CityOfBirth &&
         bornCountry?.toLowerCase() ===
-          data?.UserExtraKYC?.CountryOfBirth?.toLowerCase() &&
+        data?.UserExtraKYC?.CountryOfBirth?.toLowerCase() &&
         personalInfoData?.Nationality ===
-          data?.UserExtraKYC?.Nationality.toLowerCase())
+        data?.UserExtraKYC?.Nationality.toLowerCase())
     ) {
       setDisableButton(true);
     } else {
@@ -273,7 +273,7 @@ export default () => {
         );
       } else
         toast.error(
-          global.translate('Please, choose an image format', 2056),
+          global.translate('Please, choose an image format'),
         );
     }
   };

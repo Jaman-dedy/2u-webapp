@@ -109,31 +109,31 @@ const PublicityDetail = () => {
     const SourceWalletError = executePublicityData.SourceWallet
       ? ''
       : global.translate(
-          'Please select a wallet for the campaign',
-          2079,
-        );
+        'Please select a wallet for the campaign',
+
+      );
 
     const BudgetError = executePublicityData.Budget
       ? ''
       : global.translate(
-          'Please provide the budget for the campaign',
-          2080,
-        );
+        'Please provide the budget for the campaign',
+
+      );
     const AudienceError = executePublicityData.Audience
       ? ''
       : global.translate(
-          'Please provide the expected audience for your campaign',
-          2081,
-        );
+        'Please provide the expected audience for your campaign',
+
+      );
     const AgeError = executePublicityData.Age.length
       ? ''
       : global.translate(
-          'Please select at least one Age range',
-          2082,
-        );
+        'Please select at least one Age range',
+
+      );
     const GenderError = executePublicityData.Gender
       ? ''
-      : global.translate('Please select at least one Gender', 2083);
+      : global.translate('Please select at least one Gender');
 
     setErrors({
       ...errors,
@@ -195,7 +195,7 @@ const PublicityDetail = () => {
 
   useEffect(() => {
     if (deleteCampaign.data) {
-      toast.success(global.translate('Campaign deleted', 987));
+      toast.success(global.translate('Campaign deleted'));
 
       history.replace({
         pathname: '/publicity',

@@ -33,7 +33,7 @@ const StoreCard = ({ store, onClick }) => {
 
   const options = [
     {
-      name: global.translate('View Details', 1556),
+      name: global.translate('View Details'),
       image: ViewEyeImage,
       onClick: () => {
         history.push({
@@ -48,7 +48,7 @@ const StoreCard = ({ store, onClick }) => {
       },
     },
     {
-      name: global.translate('View Vouchers', 2147),
+      name: global.translate('View Vouchers'),
       image: ViewVochersImage,
       onClick: () => {
         history.push({
@@ -65,7 +65,6 @@ const StoreCard = ({ store, onClick }) => {
     {
       name: `${global.translate('Edit')} ${global.translate(
         'Store',
-        803,
       )}`,
       image: EditTransactionImage,
       onClick: () => {
@@ -81,7 +80,7 @@ const StoreCard = ({ store, onClick }) => {
       },
     },
     {
-      name: `${global.translate('Manage campaigns', 128)}`,
+      name: `${global.translate('Manage campaigns')}`,
       image: Advertisementsmage,
       onClick: () => {
         history.push({
@@ -101,7 +100,7 @@ const StoreCard = ({ store, onClick }) => {
       },
     },
     {
-      name: `${global.translate('Send Voucher', 128)}`,
+      name: `${global.translate('Send Voucher')}`,
       image: VoucherImage,
       onClick: () => {
         history.push({
@@ -133,7 +132,7 @@ const StoreCard = ({ store, onClick }) => {
       <div className="store-info">
         <h3 className="store-name">{StoreName}</h3>
         <span className="store-open-time">
-          {global.translate('Open from', 1625)} {OpeningHour}{' '}
+          {global.translate('Open from')} {OpeningHour}{' '}
           {global.translate('to')} {ClosingHour}
         </span>
         <span className="store-address">{Address}</span>

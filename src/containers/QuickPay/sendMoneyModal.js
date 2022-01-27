@@ -69,7 +69,7 @@ export default ({
 
     if (!pinIsValid()) {
       setErrors(
-        global.translate('Please provide your PIN number.', 543),
+        global.translate('Please provide your PIN number.'),
       );
       return;
     }
@@ -85,13 +85,13 @@ export default ({
       }
       if (form.startDate === '' || !form.startDate) {
         setErrors(
-          global.translate('Please provide the starting date', 1288),
+          global.translate('Please provide the starting date'),
         );
         return;
       }
       if (form.endDate === '' || !form.endDate) {
         setErrors(
-          global.translate('Please provide the ending date', 1289),
+          global.translate('Please provide the ending date'),
         );
         return;
       }
@@ -100,14 +100,14 @@ export default ({
         setErrors(
           global.translate(
             'Please choose an end date thats later than the start date',
-            2076,
+
           ),
         );
         return;
       }
     }
     setErrors(null);
-    moveFunds(data)(dispatch)(data => {});
+    moveFunds(data)(dispatch)(data => { });
   };
   useEffect(() => {
     if (data && data[0]) {

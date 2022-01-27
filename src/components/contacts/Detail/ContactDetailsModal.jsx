@@ -354,8 +354,7 @@ const ContactDetailsModal = ({
     const getShareWalletTitle = () => {
       if (contact && contact.FirstName) {
         return `${global.translate(`Share `)} ${global.translate(
-          'Wallets',
-          61,
+          'Wallets'
         )} ${global.translate('with')} ${contact.FirstName}`;
       }
       return global.translate('Please wait a moment.');
@@ -387,10 +386,9 @@ const ContactDetailsModal = ({
             setHasError(false);
             setDestinationContact(null);
             history.push(
-              `/contacts/${
-                contact.ContactPID
-                  ? contact.ContactPID
-                  : contact.PhoneNumber
+              `/contacts/${contact.ContactPID
+                ? contact.ContactPID
+                : contact.PhoneNumber
               }?redirect_back=1`,
             );
           }}
@@ -408,10 +406,9 @@ const ContactDetailsModal = ({
               floated="right"
               onClick={() => {
                 history.push(
-                  `/contacts/${
-                    contact.ContactPID
-                      ? contact.ContactPID
-                      : contact.PhoneNumber
+                  `/contacts/${contact.ContactPID
+                    ? contact.ContactPID
+                    : contact.PhoneNumber
                   }?redirect_back=1`,
                 );
               }}
@@ -450,10 +447,9 @@ const ContactDetailsModal = ({
               onClick={() => {
                 clearDeleteContact();
                 history.push(
-                  `/contacts/${
-                    contact.ContactPID
-                      ? contact.ContactPID
-                      : contact.PhoneNumber
+                  `/contacts/${contact.ContactPID
+                    ? contact.ContactPID
+                    : contact.PhoneNumber
                   }?redirect_back=1`,
                 );
               }}
@@ -488,12 +484,11 @@ const ContactDetailsModal = ({
   const getContactDetailModalTitle = () => {
     if (contact.FirstName) {
       return `${global.translate(`Contact`)} ${global.translate(
-        'details',
-        94,
+        'details'
       )}`;
     }
     return global.translate('Please wait a moment.');
-};
+  };
   return (
     <>
       {isSharingNewWallet && shareWallets()}
@@ -561,7 +556,7 @@ const ContactDetailsModal = ({
                           className="zoom-image"
                           onClick={() => setOpenPreviewImgModal(true)}
                           role="button"
-                          onKeyDown={() => {}}
+                          onKeyDown={() => { }}
                         />
                       )}
                       <Thumbnail
@@ -708,15 +703,15 @@ const ContactDetailsModal = ({
                           style: { margin: 'auto' },
                           name:
                             contact &&
-                            contact.Favorite &&
-                            contact.Favorite !== 'NO'
+                              contact.Favorite &&
+                              contact.Favorite !== 'NO'
                               ? 'heart'
                               : 'heart outline',
                           size: 'large',
                           color:
                             contact &&
-                            contact.Favorite &&
-                            contact.Favorite !== 'NO'
+                              contact.Favorite &&
+                              contact.Favorite !== 'NO'
                               ? 'red'
                               : 'white',
                         }}
@@ -763,8 +758,7 @@ const ContactDetailsModal = ({
                           setIsSendingMoney(dispatch);
                         }}
                         text={global.translate(
-                          'Transfer Money',
-                          1950,
+                          'Transfer Money'
                         )}
                       />
                       <ActionOption
@@ -801,8 +795,7 @@ const ContactDetailsModal = ({
                       <ActionOption
                         image={toOthersactionsImage}
                         text={global.translate(
-                          'Other networks',
-                          2247,
+                          'Other networks'
                         )}
                         onClick={() => {
                           setIsSendingOhters(dispatch);
@@ -814,15 +807,13 @@ const ContactDetailsModal = ({
                         image={EditWalletImage}
                         onClick={() => {
                           history.push(
-                            `/contacts/${
-                              contact.ContactPID
+                            `/contacts/${contact.ContactPID
                             }/share-wallets?type=${contact.ContactType ||
-                              ''}`,
+                            ''}`,
                           );
                         }}
                         text={global.translate(
-                          'Share Wallet numbers',
-                          1956,
+                          'Share Wallet numbers'
                         )}
                       />
                       <ActionOption
@@ -857,43 +848,40 @@ const ContactDetailsModal = ({
                     {contact.MySharedWallets?.filter(
                       item => item.WalletNumber !== '',
                     )?.length > 0 && (
-                      <WalletCarousel
-                        enableAdd={false}
-                        showControls={shouldShowArrows()}
-                        showOptions={false}
-                        onAddClick={() => {
-                          history.push(
-                            `/contacts/${
-                              contact.ContactPID
-                            }/share-wallets?type=${contact.ContactType ||
+                        <WalletCarousel
+                          enableAdd={false}
+                          showControls={shouldShowArrows()}
+                          showOptions={false}
+                          onAddClick={() => {
+                            history.push(
+                              `/contacts/${contact.ContactPID
+                              }/share-wallets?type=${contact.ContactType ||
                               ''}`,
-                          );
-                        }}
-                        addTitle={global.translate(
-                          'Visible Wallet numbers',
-                          1957,
-                        )}
-                        walletTitle={global.translate(
-                          'Visible Wallet numbers',
-                          1957,
-                        )}
-                        myWallets={{
-                          loading: false,
-                          walletList: contact.MySharedWallets?.filter(
-                            item => item.WalletNumber !== '',
-                          ).map((item, ...rest) => {
-                            return {
-                              AccountNumber: item.WalletNumber,
-                              AccountName: item.WalletName,
-                              Balance: item.Balance,
-                              Flag: item.Flag,
-                              CurrencyCode: item.Currency,
-                              ...rest,
-                            };
-                          }),
-                        }}
-                      />
-                    )}
+                            );
+                          }}
+                          addTitle={global.translate(
+                            'Visible Wallet numbers'
+                          )}
+                          walletTitle={global.translate(
+                            'Visible Wallet numbers'
+                          )}
+                          myWallets={{
+                            loading: false,
+                            walletList: contact.MySharedWallets?.filter(
+                              item => item.WalletNumber !== '',
+                            ).map((item, ...rest) => {
+                              return {
+                                AccountNumber: item.WalletNumber,
+                                AccountName: item.WalletName,
+                                Balance: item.Balance,
+                                Flag: item.Flag,
+                                CurrencyCode: item.Currency,
+                                ...rest,
+                              };
+                            }),
+                          }}
+                        />
+                      )}
                   </div>
                 )}
                 <div className="graph_">
@@ -948,11 +936,11 @@ const ContactDetailsModal = ({
   );
 };
 ContactDetailsModal.defaultProps = {
-  setEditErrors: () => {},
-  setIsSharingNewWallet: () => {},
+  setEditErrors: () => { },
+  setIsSharingNewWallet: () => { },
   isSharingNewWallet: false,
   userData: null,
-  setOpen: () => {},
+  setOpen: () => { },
   open: false,
   localContact: null,
   setDestinationContact: () => null,

@@ -136,11 +136,11 @@ const MyVirtualCards = ({
   const renderNoCardsFound = () => {
     return (
       <EmptyCard
-        header={global.translate('No O-Card found', 1582)}
-        createText={global.translate('Create an O-Card', 2152)}
+        header={global.translate('No O-Card found')}
+        createText={global.translate('Create an O-Card')}
         body={global.translate(
           'You can create your credit card and use them for your online payment',
-          2153,
+
         )}
         onAddClick={() => {
           if (userData.data?.AccountVerified === 'YES') {
@@ -188,7 +188,7 @@ const MyVirtualCards = ({
               </div>
             )}
             <h2 className="head-title">
-              {global.translate('My O-Cards', 2038)}
+              {global.translate('My O-Cards')}
             </h2>
             <div className="head-buttons">
               <button
@@ -274,15 +274,15 @@ MyVirtualCards.propTypes = {
 };
 
 MyVirtualCards.defaultProps = {
-  onOptionsChange: () => {},
-  onAddVirtualCard: () => {},
-  setSelectedCard: () => {},
-  setSelectedCurrency: () => {},
-  setErrors: () => {},
-  addVirtualCard: () => {},
+  onOptionsChange: () => { },
+  onAddVirtualCard: () => { },
+  setSelectedCard: () => { },
+  setSelectedCurrency: () => { },
+  setErrors: () => { },
+  addVirtualCard: () => { },
   errors: {},
-  setOpen: () => {},
-  setSize: () => {},
+  setOpen: () => { },
+  setSize: () => { },
 };
 
 export default MyVirtualCards;

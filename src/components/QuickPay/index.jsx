@@ -75,7 +75,7 @@ const QuickPay = ({
     if (
       form.Amount &&
       parseInt(form?.Amount?.replace(/,/g, ''), 10) >
-        parseInt(selectWallet?.Balance.replace(/,/g, ''), 10)
+      parseInt(selectWallet?.Balance.replace(/,/g, ''), 10)
     ) {
       return true;
     }
@@ -100,7 +100,7 @@ const QuickPay = ({
             <GoBack style onClickHandler={onClickHandler} />
           </div>
           <h2 className="head-title">
-            {global.translate('Quick pay', 1975)}
+            {global.translate('Quick pay')}
           </h2>
           <div className="clear" />
         </div>

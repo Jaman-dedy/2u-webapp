@@ -40,7 +40,7 @@ const Card = ({ card, onClick, detail, userData }) => {
                 <strong>
                   {userData && Object.keys(userData).length
                     ? card?.NameOnCard ??
-                      `${userData?.FirstName} ${userData?.LastName}`
+                    `${userData?.FirstName} ${userData?.LastName}`
                     : null}
                 </strong>
               </span>
@@ -67,7 +67,7 @@ const Card = ({ card, onClick, detail, userData }) => {
                       className="card-detail-info"
                     >
                       <Image src={CopyIcon} />
-                      {global.translate('Copy card number', 2145)}
+                      {global.translate('Copy card number')}
                     </span>
                   }
                 />
@@ -81,13 +81,13 @@ const Card = ({ card, onClick, detail, userData }) => {
                         copyToClipBoard(
                           e,
                           card?.CVV,
-                          global.translate('CVV copied!', 2146),
+                          global.translate('CVV copied!'),
                         )
                       }
                       className="card-detail-info"
                     >
                       <Image src={CopyIcon} />
-                      {global.translate('Copy card CVV', 2147)}
+                      {global.translate('Copy card CVV')}
                     </span>
                   }
                 />

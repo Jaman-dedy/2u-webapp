@@ -21,7 +21,7 @@ const ExternalMediaForm = ({ form, onChange }) => {
   return (
     <>
       {' '}
-      <Header>{global.translate('Add External Media', 2267)}</Header>
+      <Header>{global.translate('Add External Media')}</Header>
       <Form>
         {inputRows.fill().map((value, idx) => {
           return (
@@ -33,7 +33,7 @@ const ExternalMediaForm = ({ form, onChange }) => {
                 <Form.Field width={14}>
                   <Form.Input
                     className="input"
-                    placeholder={global.translate('Add a link', 2268)}
+                    placeholder={global.translate('Add a link')}
                     name={`Link${idx}`}
                     value={form[`Link${idx}`] || ''}
                     onChange={onChange}

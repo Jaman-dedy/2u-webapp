@@ -30,13 +30,13 @@ const Congratulation = ({ congratulationPage }) => {
           <div>
             {global.translate(
               'Your account has been successfully created',
-              1206,
+
             )}
           </div>
           <div>
             {global.translate(
               'We have created a wallet for you in 2U Money',
-              548,
+
             )}
           </div>
         </div>
@@ -55,7 +55,7 @@ const Congratulation = ({ congratulationPage }) => {
             className="submit"
             onClick={() => restoreRegisterUser()(dispatch)}
           >
-            {global.translate('Get started', 190)}
+            {global.translate('Get started')}
           </Link>
         </div>
       </div>

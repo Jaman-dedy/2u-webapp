@@ -26,11 +26,10 @@ const PublicityInfoTab = ({
           {`${global.translate(
             'Viewed',
             2012,
-          )} ${currentPublicity.Views || 0} ${
-            currentPublicity.Views !== '1'
-              ? global.translate('times')
-              : global.translate('time')
-          }`}
+          )} ${currentPublicity.Views || 0} ${currentPublicity.Views !== '1'
+            ? global.translate('times')
+            : global.translate('time')
+            }`}
         </Label>
         <Img
           className="publicity-picture"
@@ -73,12 +72,11 @@ const PublicityInfoTab = ({
               <div className="executed-count">
                 {`${global.translate(
                   'Executed',
-                  1630,
-                )} ${currentPublicity.ExecutionCount || 0} ${
-                  currentPublicity.ExecutionCount !== '1'
-                    ? global.translate('times')
-                    : global.translate('time')
-                }`}
+
+                )} ${currentPublicity.ExecutionCount || 0} ${currentPublicity.ExecutionCount !== '1'
+                  ? global.translate('times')
+                  : global.translate('time')
+                  }`}
               </div>
             </div>
 
@@ -88,7 +86,7 @@ const PublicityInfoTab = ({
                 className="btn--primary"
                 content={`${global.translate(
                   'Share with my contacts',
-                  1559,
+
                 )}`}
                 onClick={() => setOpen(true)}
               />
@@ -117,7 +115,7 @@ PublicityInfoTab.propTypes = {
 PublicityInfoTab.defaultProps = {
   currentPublicity: {},
   item: {},
-  executeCampaing: () => {},
+  executeCampaing: () => { },
 };
 
 export default PublicityInfoTab;

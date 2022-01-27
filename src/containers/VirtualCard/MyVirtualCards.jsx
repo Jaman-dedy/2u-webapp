@@ -104,12 +104,12 @@ const MyVirtualCardsContainer = () => {
     };
     if (!form?.VirtualCard) {
       setErrors(
-        global.translate('Please provide the O-Card type.', 2100),
+        global.translate('Please provide the O-Card type.'),
       );
     }
     if (!form?.CurrencyCode) {
       setErrors(
-        global.translate('You did not select any currency.', 144),
+        global.translate('You did not select any currency.'),
       );
     }
     setErrors(null);

@@ -71,11 +71,11 @@ const AddVirtualCard = ({
         onClose={() => setOpen(false)}
       >
         <Modal.Header style={{ textAlign: 'center' }}>
-          {global.translate(`Add a new O-Card`, 2041)}
+          {global.translate(`Add a new O-Card`)}
         </Modal.Header>
         <Modal.Content>
           <div style={{ width: '60%', margin: 'auto' }}>
-            <span>{global.translate(`Select a currency`, 1307)}</span>
+            <span>{global.translate(`Select a currency`)}</span>
             <ReusableDropdown
               customstyle
               search
@@ -85,7 +85,7 @@ const AddVirtualCard = ({
               placeholder={
                 currencyOption.length
                   ? global.translate('Currency')
-                  : global.translate('No remaining currency', 3013)
+                  : global.translate('No remaining currency')
               }
               onChange={e => {
                 onOptionsChange(e, {
@@ -98,7 +98,7 @@ const AddVirtualCard = ({
           <br />
           <div style={{ width: '60%', margin: 'auto' }}>
             <span>
-              {global.translate(`Select the O-Card type`, 2042)}
+              {global.translate(`Select the O-Card type`)}
             </span>
             <ReusableDropdown
               customstyle
@@ -169,13 +169,13 @@ AddVirtualCard.propTypes = {
 
 AddVirtualCard.defaultProps = {
   open: false,
-  setOpen: () => {},
-  onOptionsChange: () => {},
-  onAddVirtualCard: () => {},
-  setSelectedCurrency: () => {},
-  setSelectedCard: () => {},
+  setOpen: () => { },
+  onOptionsChange: () => { },
+  onAddVirtualCard: () => { },
+  setSelectedCurrency: () => { },
+  setSelectedCard: () => { },
   errors: '',
-  setErrors: () => {},
+  setErrors: () => { },
 };
 
 export default AddVirtualCard;

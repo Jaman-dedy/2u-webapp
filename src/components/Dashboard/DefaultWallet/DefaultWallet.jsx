@@ -25,7 +25,7 @@ const DefaultWallet = ({
           <div className="dash-wallet">
             <h3>
               {wallet?.AccountName}{' '}
-              <span>({global.translate(`Default`, 641)})</span>
+              <span>({global.translate(`Default`)})</span>
             </h3>
             <div>{wallet?.AccountNumber}</div>
             <div className="wallet-info">
@@ -67,7 +67,7 @@ const DefaultWallet = ({
             message={
               error.error.error
                 ? global.translate(error.error.error)
-                : global.translate('Something went wrong', 1933)
+                : global.translate('Something went wrong')
             }
             action={{
               onClick: () => {
@@ -87,7 +87,7 @@ DefaultWallet.propTypes = {
   wallet: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 DefaultWallet.defaultProps = {
-  refreshWallet: () => {},
+  refreshWallet: () => { },
   loading: false,
 };
 export default DefaultWallet;

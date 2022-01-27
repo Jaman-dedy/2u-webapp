@@ -22,9 +22,9 @@ export default ({ payBillsData }) => {
     const AmountError = Amount
       ? ''
       : global.translate(
-          'You must enter the amount for this operation.',
-          393,
-        );
+        'You must enter the amount for this operation.',
+
+      );
     const AmountErrorZero =
       Amount !== 0
         ? ''
@@ -36,7 +36,7 @@ export default ({ payBillsData }) => {
 
     const PinError = Pin
       ? ''
-      : global.translate('Please provide your PIN number', 543);
+      : global.translate('Please provide your PIN number',);
 
     setErrors({
       ...errors,
@@ -60,7 +60,7 @@ export default ({ payBillsData }) => {
     return true;
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   return {
     handleNext,

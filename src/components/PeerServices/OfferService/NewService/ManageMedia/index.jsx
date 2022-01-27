@@ -128,8 +128,8 @@ const ManageMediaModal = ({
             setFiles={setFiles}
             setFileToRemove={setFileToRemove}
             fileToRemove={fileToRemove}
-            setVisible={() => {}}
-            setSelectedFile={() => {}}
+            setVisible={() => { }}
+            setSelectedFile={() => { }}
             selectedFile={{}}
             classes={{}}
             onFileRemoved={onFileRemoved}
@@ -155,8 +155,8 @@ const ManageMediaModal = ({
             setFiles={setFiles}
             setFileToRemove={setFileToRemove}
             fileToRemove={fileToRemove}
-            setVisible={() => {}}
-            setSelectedFile={() => {}}
+            setVisible={() => { }}
+            setSelectedFile={() => { }}
             selectedFile={{}}
             classes={{}}
             onFileRemoved={onFileRemoved}
@@ -235,8 +235,8 @@ const ManageMediaModal = ({
             setFiles={setFiles}
             setFileToRemove={setFileToRemove}
             fileToRemove={fileToRemove}
-            setVisible={() => {}}
-            setSelectedFile={() => {}}
+            setVisible={() => { }}
+            setSelectedFile={() => { }}
             selectedFile={{}}
             classes={{}}
             onFileRemoved={onFileRemoved}
@@ -266,7 +266,7 @@ const ManageMediaModal = ({
                     onChange={onChange}
                     placeholder={global.translate(
                       'Add video URL here',
-                      1904,
+
                     )}
                   />
                 </Form.Field>
@@ -278,7 +278,7 @@ const ManageMediaModal = ({
                     className="bg-orange"
                     style={{ color: 'white' }}
                   >
-                    {global.translate('Insert video', 1903)}
+                    {global.translate('Insert video')}
                   </Button>
                 </Form.Field>
               </Form.Group>

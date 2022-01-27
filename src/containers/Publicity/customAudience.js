@@ -212,7 +212,7 @@ export default ({
       if (!el.CountryCode)
         error = global.translate(
           'Please, fill all the countries',
-          2078,
+
         );
       return totalPercentage;
     });
@@ -231,7 +231,7 @@ export default ({
           error ||
           global.translate(
             'The total percentage should be 100',
-            1576,
+
           ),
       });
     } else {

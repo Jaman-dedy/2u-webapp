@@ -58,7 +58,7 @@ const ConfirmCancelTransaction = ({
       toast.success(
         global.translate(
           'Your Cash transaction has been cancelled.',
-          1117,
+
         ),
       );
     }
@@ -121,7 +121,7 @@ const ConfirmCancelTransaction = ({
     const PIN = `${digit0}${digit1}${digit2}${digit3}`;
     if (PIN.length !== 4) {
       setError(
-        global.translate('Please provide your PIN number.', 543),
+        global.translate('Please provide your PIN number.'),
       );
       return;
     }
@@ -142,12 +142,12 @@ const ConfirmCancelTransaction = ({
           {fromVouchers &&
             global.translate(
               'Are you sure, you want to cancel this Voucher?',
-              2031,
+
             )}
           {!fromVouchers &&
             global.translate(
               'Are you sure, you want to cancel this transaction?',
-              23,
+
             )}
         </Modal.Header>
         <Modal.Content centered className="main-content">
@@ -162,7 +162,7 @@ const ConfirmCancelTransaction = ({
               <PinCodeForm
                 label={global.translate(
                   'Confirm  your PIN number',
-                  941,
+
                 )}
                 onChange={onChange}
                 shouldClear={shouldClear}

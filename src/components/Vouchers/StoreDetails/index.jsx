@@ -49,7 +49,7 @@ const StoreDetails = ({
           </div>
           <h2 className="head-title">
             {userData.data && userData.data?.FirstName}
-            <span>, {global.translate('Send a Voucher', 763)}</span>
+            <span>, {global.translate('Send a Voucher')}</span>
           </h2>
           <div className="clear" />
         </div>
@@ -61,7 +61,7 @@ const StoreDetails = ({
             className="sendVoucherTop"
             onClick={() => toggleOpenSendModal()}
           >
-            {global.translate('Send voucher', 863)}
+            {global.translate('Send voucher')}
           </Button>
         </div>
 

@@ -36,7 +36,7 @@ const QuestionsForm = ({
       <div className="text-darken-blue white-space-nowrap">
         {global.translate(
           'Kindly provide answers to these questions',
-          1720,
+
         )}
       </div>
       <br />

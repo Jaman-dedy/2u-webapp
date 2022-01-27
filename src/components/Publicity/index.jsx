@@ -63,7 +63,7 @@ const MyStores = ({
                   <Loader
                     loaderContent={global.translate(
                       'Working...',
-                      412,
+
                     )}
                   />
                 </p>
@@ -96,7 +96,7 @@ const MyStores = ({
                     <Message
                       message={global.translate(
                         'You don’t have any advertisement campaign yet.',
-                        1434,
+
                       )}
                     />
                   </div>

@@ -22,8 +22,8 @@ const SettingView = props => {
       menuItem:
         width > 700
           ? `${global.translate('Edit')} ${global
-              .translate('Your campaign', 2011)
-              .toLowerCase()}`
+            .translate('Your campaign')
+            .toLowerCase()}`
           : global.translate('Edit'),
       render: ({ currentPublicity }) => (
         <Tab.Pane>
@@ -106,7 +106,6 @@ const PublicityDetailsComponent = ({
     {
       menuItem: global.translate(
         'Share with a customized audience',
-        1561,
       ),
       render: () => {
         return (

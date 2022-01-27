@@ -48,7 +48,7 @@ const WithdrawMoney = () => {
   const validate = () => {
     if (!pinIsValid()) {
       setAllErrors(
-        global.translate('Please provide your PIN number.', 944),
+        global.translate('Please provide your PIN number.'),
       );
       return true;
     }

@@ -58,7 +58,7 @@ const CreateServiceTrigger = () => {
             {' '}
             {global.translate(
               'What product or service are you offering?',
-              1852,
+
             )}
           </span>
         </div>

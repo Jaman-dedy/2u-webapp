@@ -92,26 +92,26 @@ export default ({
   const validate = () => {
     const TitleError = campaingData.Title
       ? ''
-      : global.translate('The  campaign title cannot be empty.', 387);
+      : global.translate('The  campaign title cannot be empty.');
 
     const SubTitleError = campaingData.SubTitle
       ? ''
       : global.translate(
-          'Please provide the subtitle for your campaign',
-        );
+        'Please provide the subtitle for your campaign',
+      );
     const DetailError = campaingData.Detail
       ? ''
       : global.translate(
-          'Please provide the detail for your campaign',
-          1579,
-        );
+        'Please provide the detail for your campaign',
+
+      );
 
     const LinkError = validateURL(campaingData.Link)
       ? ''
       : `${global.translate(
-          'Please provide a valid url',
-          1580,
-        )} (http://www.mysite.com/...)`;
+        'Please provide a valid url',
+
+      )} (http://www.mysite.com/...)`;
 
     setErrors({
       ...errors,
@@ -161,7 +161,7 @@ export default ({
       if (addPublicity.isEditing) {
         // change the tab from setting to Details
         toast.success(
-          global.translate('Your campaign is updated', 390),
+          global.translate('Your campaign is updated'),
         );
         setCurrentPublicity({
           ...currentPublicity,

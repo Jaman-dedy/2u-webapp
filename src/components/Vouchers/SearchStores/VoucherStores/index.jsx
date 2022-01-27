@@ -77,8 +77,8 @@ const Stores = ({
                   <div className="voucher-stores__items__item__details flex flex-column">
                     <h4>{item.StoreName}</h4>
                     <div className="voucher-stores__items__item__details__row">
-                      {global.translate('From', 114)}{' '}
-                      {item.OpeningHour} {global.translate('To', 115)}{' '}
+                      {global.translate('From')}{' '}
+                      {item.OpeningHour} {global.translate('To')}{' '}
                       {item.ClosingHour}
                     </div>
                     <div className="voucher-stores__items__item__details__row">
@@ -141,7 +141,7 @@ const Stores = ({
                         </span>
                         <div className="rating-count">
                           {item.RatingCount}{' '}
-                          {global.translate('Reviews', 783)}
+                          {global.translate('Reviews')}
                         </div>
                       </span>
                     </div>
@@ -166,7 +166,7 @@ const Stores = ({
             error={false}
             message={global.translate(
               'The search returns no result',
-              1253,
+
             )}
             style={{ width: '100%' }}
           />

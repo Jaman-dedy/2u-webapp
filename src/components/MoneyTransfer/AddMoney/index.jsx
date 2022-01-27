@@ -139,13 +139,13 @@ const AddMoney = ({
       const newOptions = option
         ? defaultOptions
         : [
-            ...defaultOptions,
-            {
-              key: Currency.toLowerCase(),
-              text: Currency,
-              value: Currency,
-            },
-          ];
+          ...defaultOptions,
+          {
+            key: Currency.toLowerCase(),
+            text: Currency,
+            value: Currency,
+          },
+        ];
 
       setOptions(newOptions);
     }
@@ -278,7 +278,6 @@ const AddMoney = ({
           header: global.translate('Confirm'),
           content: global.translate(
             'You have unsaved changes, Are you sure you want to leave?',
-            1751,
           ),
         })}
       />
@@ -302,7 +301,6 @@ const AddMoney = ({
               title={global.translate('Select')}
               subTitle={global.translate(
                 'Choose a provider and wallet',
-                2218,
               )}
               levelNumber={levelOne ? levelOneVisited : Step1Img}
               visited={levelOne}

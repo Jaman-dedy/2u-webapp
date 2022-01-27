@@ -33,7 +33,7 @@ const EditWalletModal = ({
       onClose={() => openEdtWalletModalFx()}
     >
       <Modal.Header className="modal-title">
-        {global.translate('Edit wallet name', 88)}{' '}
+        {global.translate('Edit wallet name')}{' '}
         {form?.AccountNumber}
       </Modal.Header>
       <Modal.Content>
@@ -42,7 +42,7 @@ const EditWalletModal = ({
             <Form className="wallet-form">
               <Form.Input
                 className="input"
-                placeholder={global.translate('Wallet name', 97)}
+                placeholder={global.translate('Wallet name')}
                 name="Name"
                 value={form?.Name || ''}
                 onChange={onChange}
@@ -85,11 +85,11 @@ EditWalletModal.propTypes = {
 
 EditWalletModal.defaultProps = {
   open: false,
-  openEdtWalletModalFx: () => {},
-  onChange: () => {},
+  openEdtWalletModalFx: () => { },
+  onChange: () => { },
   form: null,
-  onSubmit: () => {},
+  onSubmit: () => { },
   addWallet: null,
-  getMyWalletsFX: () => {},
+  getMyWalletsFX: () => { },
 };
 export default EditWalletModal;

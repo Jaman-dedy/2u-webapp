@@ -49,7 +49,7 @@ const AddNewContactModal = ({
     state => state.stores.addStoreAgents,
   );
 
-  useEffect(() => {}, [locateError]);
+  useEffect(() => { }, [locateError]);
 
   return (
     <>
@@ -90,7 +90,7 @@ const AddNewContactModal = ({
                 className="input"
                 placeholder={global.translate(
                   'Provide the username ',
-                  1702,
+
                 )}
                 disabled={addNewUserData?.loading}
                 name="PID"
@@ -106,7 +106,7 @@ const AddNewContactModal = ({
                     className="loading"
                     loaderContent={global.translate(
                       'Please wait a moment.',
-                      413,
+
                     )}
                   />
                 </>
@@ -232,9 +232,9 @@ AddNewContactModal.propTypes = {
 AddNewContactModal.defaultProps = {
   open: false,
   localError: null,
-  setOpen: () => {},
-  setForm: () => {},
-  setLocalError: () => {},
+  setOpen: () => { },
+  setForm: () => { },
+  setLocalError: () => { },
 };
 
 export default AddNewContactModal;

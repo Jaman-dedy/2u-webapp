@@ -97,8 +97,7 @@ const AddNewContactModal = ({
                     }
                     labelPosition="right"
                     placeholder={global.translate(
-                      'Provide the contact`s username',
-                      1702,
+                      'Provide the contact`s username'
                     )}
                     disabled={addNewUserData.loading}
                     name="PID"
@@ -112,8 +111,7 @@ const AddNewContactModal = ({
                       <LoaderComponent
                         className="loading"
                         loaderContent={global.translate(
-                          'Please wait a moment.',
-                          413,
+                          'Please wait a moment.'
                         )}
                       />
                     </>
@@ -173,8 +171,7 @@ const AddNewContactModal = ({
                   {!addNewUserData.loading && (
                     <div className="wallet-text">
                       {global.translate(
-                        'Select Wallets to be visible to ',
-                        632,
+                        'Select Wallets to be visible to '
                       )}
                       {global
                         .translate('Your contact')
@@ -193,8 +190,7 @@ const AddNewContactModal = ({
                         value={form.wallets || []}
                         onChange={onChange}
                         placeholder={global.translate(
-                          'Select wallets',
-                          1696,
+                          'Select wallets'
                         )}
                         renderLabel={renderLabel}
                       />
@@ -362,11 +358,11 @@ AddNewContactModal.propTypes = {
 AddNewContactModal.defaultProps = {
   open: false,
   localError: null,
-  setOpen: () => {},
+  setOpen: () => { },
   walletList: [],
-  setForm: () => {},
+  setForm: () => { },
   contactType: 'INTERNAL',
-  setLocalError: () => {},
-  clearSuccess: () => {},
+  setLocalError: () => { },
+  clearSuccess: () => { },
 };
 export default AddNewContactModal;

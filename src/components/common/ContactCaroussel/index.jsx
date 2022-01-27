@@ -55,7 +55,7 @@ const ContactCaroussel = React.memo(
       });
     const userFavorites = isSendingMoney
       ? userFavorites1 &&
-        userFavorites1.filter(item => item.ContactPID)
+      userFavorites1.filter(item => item.ContactPID)
       : userFavorites1;
 
     const listContainerRef = useRef(null);
@@ -100,7 +100,7 @@ const ContactCaroussel = React.memo(
                 message={
                   error[0]
                     ? global.translate(error[0].Description)
-                    : global.translate(error.error, 162)
+                    : global.translate(error.error)
                 }
               />
             )}
@@ -113,12 +113,11 @@ const ContactCaroussel = React.memo(
                 .map(user => (
                   <div
                     key={user.ContactPID}
-                    className={`single-item-container ${
-                      selectedItem.ContactPID &&
+                    className={`single-item-container ${selectedItem.ContactPID &&
                       user.ContactPID === selectedItem.ContactPID
-                        ? 'active'
-                        : ''
-                    }`}
+                      ? 'active'
+                      : ''
+                      }`}
                     onClick={() => onItemClick(user)}
                   >
                     {' '}

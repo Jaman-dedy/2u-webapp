@@ -43,7 +43,7 @@ const OTPForm = ({
               <p className="otpTitle">
                 {global.translate(
                   'Please provide the verification code sent to your phone via SMS',
-                  24,
+
                 )}
               </p>
               <Form.Field className="otp-input-group">

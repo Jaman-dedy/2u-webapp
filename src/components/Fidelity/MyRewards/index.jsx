@@ -20,7 +20,7 @@ const MyRewards = ({ userData }) => {
     ({ user }) => user,
   );
 
-  const printUCard = () => {};
+  const printUCard = () => { };
 
   const { data, loading } = userData;
 
@@ -57,10 +57,9 @@ const MyRewards = ({ userData }) => {
                       <span className="points">
                         {data.Rewards.LevelPoints &&
                           data.Rewards.StatusCode !== '0' &&
-                          `${
-                            data.Rewards.LevelPoints[
-                              `PointsValue${data.Rewards.StatusCode}`
-                            ]
+                          `${data.Rewards.LevelPoints[
+                          `PointsValue${data.Rewards.StatusCode}`
+                          ]
                           } pts`}
                       </span>
                       <LevelImage
@@ -100,8 +99,7 @@ const MyRewards = ({ userData }) => {
                       <span className="congrats cong-title">
                         {global.translate('Congratulations')},{' '}
                         {global.translate(
-                          'Your current level is',
-                          1441,
+                          'Your current level is'
                         )}
                       </span>
                     </div>
@@ -116,8 +114,7 @@ const MyRewards = ({ userData }) => {
                       <span className="congratsPointsItem">
                         <span>
                           {global.translate(
-                            'Points earned this year',
-                            1190,
+                            'Points earned this year'
                           )}
                         </span>
                         <span className="yearpoints">
@@ -137,7 +134,7 @@ const MyRewards = ({ userData }) => {
                         <span>
                           {global.translate(
                             'Inbound transactions count',
-                            1187,
+
                           )}
                         </span>
                         <span className="inbound">
@@ -157,7 +154,7 @@ const MyRewards = ({ userData }) => {
                         <span>
                           {global.translate(
                             'Outbound transactions count',
-                            1188,
+
                           )}
                         </span>
                         <span className="outbound">
@@ -179,7 +176,7 @@ const MyRewards = ({ userData }) => {
                         className="levelBtns bigBtn"
                         content={global.translate(
                           'View my membership card',
-                          1619,
+
                         )}
                         onClick={() => setOpenModal(true)}
                       />
@@ -191,7 +188,7 @@ const MyRewards = ({ userData }) => {
                           data.Rewards && data.Rewards.LearnMoreURL
                         }
                       >
-                        {global.translate('Learn more', 1620)}
+                        {global.translate('Learn more')}
                       </a>
                     </div>
                   </div>
@@ -201,7 +198,7 @@ const MyRewards = ({ userData }) => {
             <Grid.Row columns={2}>
               <Grid.Column mobile={16} tablet={8} computer={8}>
                 <div className="GetPointsGuideTitle">
-                  {global.translate('How to get points?', 1439)}
+                  {global.translate('How to get points?')}
                 </div>
                 <div className="GetPointsGuide">
                   <div>
@@ -218,7 +215,7 @@ const MyRewards = ({ userData }) => {
                           <span>
                             {global.translate(
                               'Earn these points for every person you refer to us.',
-                              1422,
+
                             )}
 
                             <span
@@ -246,7 +243,7 @@ const MyRewards = ({ userData }) => {
                           <span>
                             {global.translate(
                               'Number of transactions required for change of level',
-                              1423,
+
                             )}
 
                             <span
@@ -274,7 +271,7 @@ const MyRewards = ({ userData }) => {
                           <span>
                             {global.translate(
                               'Additional points needed for next level',
-                              1192,
+
                             )}
 
                             <span
@@ -293,7 +290,7 @@ const MyRewards = ({ userData }) => {
                   <div className="btnsContainer">
                     <Button
                       className="levelBtns smallBtn moreGuideBtn"
-                      content={global.translate('Learn more', 1620)}
+                      content={global.translate('Learn more')}
                       rel="noopener noreferrer"
                       target="_blank"
                       href={

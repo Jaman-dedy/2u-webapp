@@ -105,7 +105,7 @@ const EditContactContents = ({
       >
         <Modal open={open} onClose={() => setOpen(false)}>
           <Modal.Header className="modal-title">
-            {global.translate(`Edit Contact`, 1958)}
+            {global.translate(`Edit Contact`)}
           </Modal.Header>
           <div className="contents-inner">
             <div className="avatar-user-image ">
@@ -150,7 +150,7 @@ const EditContactContents = ({
                     name="firstName"
                     id="firstName"
                     value={editForm.firstName}
-                    placeholder={global.translate('First Name', 8)}
+                    placeholder={global.translate('First Name')}
                     onChange={onEditChange}
                   />
                 </div>
@@ -158,7 +158,7 @@ const EditContactContents = ({
               <div className="last-name">
                 <FlatInput
                   name="lastName"
-                  placeholder={global.translate('Last Name', 9)}
+                  placeholder={global.translate('Last Name')}
                   value={editForm.lastName}
                   onChange={onEditChange}
                 />
@@ -169,7 +169,7 @@ const EditContactContents = ({
                     type="tel"
                     pattern="[0-9]"
                     name="phoneNumber"
-                    placeholder={global.translate('Phone number', 13)}
+                    placeholder={global.translate('Phone number')}
                     value={editForm.phoneNumber}
                     onChange={onEditChange}
                     className="phone-number-input"

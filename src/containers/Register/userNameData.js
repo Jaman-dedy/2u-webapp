@@ -78,52 +78,52 @@ export default ({
   const validate = () => {
     const personalIdError = personalId
       ? ''
-      : global.translate('Please provide a valid Username', 2071);
+      : global.translate('Please provide a valid Username');
 
     const personalIdSpecialCharacterError =
       personalId.search(/[@!#$%^&*]/) === -1
         ? ''
         : global.translate(
-            'Your personal Id should not contain special characters',
-          );
+          'Your personal Id should not contain special characters',
+        );
 
     const noSpaceAllowedError =
       /\s/.test(personalId) === false
         ? ''
         : global.translate(
-            'Your personal Id should not contain spaces',
-          );
+          'Your personal Id should not contain spaces',
+        );
     const passwordError = password
       ? ''
-      : global.translate('Please Enter your password', 2085);
+      : global.translate('Please Enter your password');
     const pinError = pin
       ? ''
       : global.translate(
-          'Please provide a valid PIN number. It must contains 4 digits.',
-          944,
-        );
+        'Please provide a valid PIN number. It must contains 4 digits.',
+
+      );
     const pinLengthError =
       pin.length === 4
         ? ''
         : global.translate(
-            'Please provide a valid PIN number. It must contains 4 digits.',
-            944,
-          );
+          'Please provide a valid PIN number. It must contains 4 digits.',
+
+        );
 
     const pinCharacterError =
       pin.search(/[A-Z]/) === -1 &&
-      pin.search(/[a-z]/) === -1 &&
-      pin.search(/[@!#$%^&*]/) === -1
+        pin.search(/[a-z]/) === -1 &&
+        pin.search(/[@!#$%^&*]/) === -1
         ? ''
-        : global.translate('PIN should only contain numbers', 1723);
+        : global.translate('PIN should only contain numbers');
     const sequenceError = checkSequence(pin)
       ? ''
       : global.translate(
-          'Consecutive numbers are not allowed.',
-          1707,
-        );
+        'Consecutive numbers are not allowed.',
+
+      );
     const equalityError = !checkDigitsEquality(pin)
-      ? global.translate('Your PIN is very weak!', 1708)
+      ? global.translate('Your PIN is very weak!')
       : '';
 
     setErrors({

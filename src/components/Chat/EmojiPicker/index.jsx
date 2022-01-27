@@ -36,7 +36,7 @@ const EmojiPicker = ({ style, onEmojiSelected }) => {
   return (
     <Picker
       style={style}
-      title={global.translate('Pick an emoji', 1349)}
+      title={global.translate('Pick an emoji')}
       emoji="point_up"
       color="#f2711c"
       onSelect={onEmojiSelected}
@@ -52,7 +52,7 @@ EmojiPicker.propTypes = {
 
 EmojiPicker.defaultProps = {
   style: {},
-  onEmojiSelected: () => {},
+  onEmojiSelected: () => { },
 };
 
 export default EmojiPicker;

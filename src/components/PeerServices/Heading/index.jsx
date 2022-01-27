@@ -25,7 +25,7 @@ const SearchInput = () => {
 
   const history = useHistory();
   const [form, setForm] = useState(
-    global.translate('All Categories', 199),
+    global.translate('All Categories'),
   );
   const location = useLocation();
 
@@ -45,7 +45,7 @@ const SearchInput = () => {
     {
       key: 'all',
       value: 'all',
-      text: `-${global.translate('All Categories', 199)}-`,
+      text: `-${global.translate('All Categories')}-`,
     },
     ...categories.map(item => ({
       key: item.Category,
@@ -85,7 +85,7 @@ const SearchInput = () => {
   return (
     <div id="search-input-wrapper">
       <Input
-        placeholder={global.translate('Search here...', 1859)}
+        placeholder={global.translate('Search here...')}
         name="keyword"
         value={form.keyword}
         onChange={onChange}
@@ -100,7 +100,7 @@ const SearchInput = () => {
           control={Select}
           value={form.category}
           search
-          placeholder={global.translate('All Categories', 199)}
+          placeholder={global.translate('All Categories')}
           className="category-drop-down"
           id="category-drop-down"
           options={options}
@@ -133,7 +133,7 @@ const HomepageHeading = ({ disableSearch, title }) => {
   const params = queryString.parse(history.location.search);
 
   const [currentFilter, setCurrentFilter] = useState(
-    global.translate('Filter by proximity', 1860),
+    global.translate('Filter by proximity'),
   );
 
   const [isFilterActive, setIsFilterActive] = useState(false);
@@ -143,27 +143,27 @@ const HomepageHeading = ({ disableSearch, title }) => {
     setCountriesCurrentFilter,
   ] = useState(
     localStorage.countryName ||
-      global.translate('Select Country', 2165),
+    global.translate('Select Country'),
   );
   const filterOptions = [
     {
       key: '10',
-      text: global.translate('Below 10 kilometers', 1863),
+      text: global.translate('Below 10 kilometers'),
       value: '10',
     },
     {
       key: '25',
-      text: global.translate('Below 25 kilometers', 1862),
+      text: global.translate('Below 25 kilometers'),
       value: '25',
     },
     {
       key: '50',
-      text: global.translate('Below 50 kilometers', 1861),
+      text: global.translate('Below 50 kilometers'),
       value: '50',
     },
     {
       key: '500',
-      text: global.translate('Above 50 kilometers', 2119),
+      text: global.translate('Above 50 kilometers'),
       value: '500',
     },
   ];
@@ -173,7 +173,7 @@ const HomepageHeading = ({ disableSearch, title }) => {
       setIsFilterActive(true);
       setCurrentFilter(
         filterOptions.find(item => item.value === params.proximity)
-          ?.text || global.translate('Filter by proximity', 1860),
+          ?.text || global.translate('Filter by proximity'),
       );
     } else {
       setIsFilterActive(false);
@@ -203,7 +203,7 @@ const HomepageHeading = ({ disableSearch, title }) => {
         setIsFilterActive(false);
         setCountriesCurrentFilter(
           localStorage.countryName ||
-            global.translate('Country'),
+          global.translate('Country'),
         );
       } else {
         setIsFilterActive(true);
@@ -249,14 +249,13 @@ const HomepageHeading = ({ disableSearch, title }) => {
     history.replace({
       pathname: '/market-place/results',
       search: `?keyword=${params.keyword ||
-        ''}&categories=${params.categories || 'all'}&countries=${
-        countries.length > 0
+        ''}&categories=${params.categories || 'all'}&countries=${countries.length > 0
           ? countries
-              .filter(i => i.length < 3)
-              .join(',')
-              .toLowerCase()
+            .filter(i => i.length < 3)
+            .join(',')
+            .toLowerCase()
           : 'all'
-      }&proximity=${params.proximity || ''}`,
+        }&proximity=${params.proximity || ''}`,
     });
   };
 

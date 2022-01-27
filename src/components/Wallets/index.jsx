@@ -244,9 +244,8 @@ const WalletComponents = ({
               close={() => setModalOpen(false)}
               isOpened={isModalOpened}
               onClickYes={deleteWalletFX}
-              message={`${global.translate('Delete Wallet')} : ${
-                form.AccountNumber
-              } ${form.AccountName ? `(${form.AccountName})` : ''} ?`}
+              message={`${global.translate('Delete Wallet')} : ${form.AccountNumber
+                } ${form.AccountName ? `(${form.AccountName})` : ''} ?`}
             />
             <div className="wallets">
               <div className="all-wallets">
@@ -259,25 +258,25 @@ const WalletComponents = ({
                 )}
 
                 {createWallet.error &&
-                Array.isArray(createWallet.error)
+                  Array.isArray(createWallet.error)
                   ? createWallet.error.map(err => (
-                      <>
-                        <Message
-                          message={
-                            err.Description ||
-                            global.translate(
-                              'Something went wrong',
-                              1933,
-                            )
-                          }
-                          action={{
-                            onClick: () => {
-                              handleDismis();
-                            },
-                          }}
-                        />
-                      </>
-                    ))
+                    <>
+                      <Message
+                        message={
+                          err.Description ||
+                          global.translate(
+                            'Something went wrong',
+
+                          )
+                        }
+                        action={{
+                          onClick: () => {
+                            handleDismis();
+                          },
+                        }}
+                      />
+                    </>
+                  ))
                   : ''}
                 {showingWallets && (
                   <div className="wallets_table">

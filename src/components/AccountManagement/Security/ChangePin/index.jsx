@@ -77,8 +77,7 @@ const ChangePIN = ({ changePIN }) => {
     <Form className="change-pin-container large-padding border-1 b-light-grey border-radius-4 medium-v-margin xlarge-h-margin">
       <PinCodeForm
         label={global.translate(
-          'Provide the current PIN number',
-          2188,
+          'Provide the current PIN number'
         )}
         onChange={e => onChange({ ...e, input: 'currentPin' })}
         pinError={errors.currentPin}
@@ -105,7 +104,7 @@ const ChangePIN = ({ changePIN }) => {
         color="gray"
         onClick={() => !updatePIN.loading && handleSubmit()}
       >
-        {global.translate('Change PIN Number', 735)}
+        {global.translate('Change PIN Number')}
       </Form.Button>
     </Form>
   );

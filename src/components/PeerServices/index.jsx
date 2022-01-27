@@ -109,7 +109,7 @@ const ServiceFeedList = () => {
               title: global.translate('No saved posts yet'),
               body: global.translate(
                 'All products and services you bookmark will appear here',
-                2113,
+
               ),
             }}
           />

@@ -94,7 +94,7 @@ const MembershipCard = ({ userData, ucardRef }) => {
                 </span>
                 <span>
                   {' '}
-                  {global.translate('Membership ID', 1623)}
+                  {global.translate('Membership ID')}
                 </span>
                 <span>
                   {userData &&

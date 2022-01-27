@@ -149,7 +149,7 @@ const TransacOverview = ({ transactionOverview }) => {
   return (
     <div className="transcoverview-container">
       <div className="select-overview-currency flex align-item-center">
-        <span>{global.translate('Reference currency', 1971)}: </span>{' '}
+        <span>{global.translate('Reference currency')}: </span>{' '}
         <div>
           <CustomDropdown
             options={currencyOptions || []}
@@ -171,8 +171,8 @@ const TransacOverview = ({ transactionOverview }) => {
           </span>
           {(walletList.length === 0 ||
             transactionsOverview.loading) && (
-            <ChartPlaceholder width={440} height={280} />
-          )}
+              <ChartPlaceholder width={440} height={280} />
+            )}
           {walletList.length !== 0 &&
             !transactionsOverview.loading && (
               <WalletCharts
@@ -184,12 +184,12 @@ const TransacOverview = ({ transactionOverview }) => {
         <div className="wallet-balance">
           <span>
             {global.translate('Wallet')} /{' '}
-            {global.translate('Number of transactions', 1972)}
+            {global.translate('Number of transactions')}
           </span>
           {(walletsNumberOfTransactions.length === 0 ||
             transactionsOverview.loading) && (
-            <ChartPlaceholder width={440} height={280} />
-          )}
+              <ChartPlaceholder width={440} height={280} />
+            )}
           {walletsNumberOfTransactions.length !== 0 &&
             !transactionsOverview.loading && (
               <WalletNumberTrans data={walletsNumberOfTransactions} />
@@ -202,8 +202,8 @@ const TransacOverview = ({ transactionOverview }) => {
           </span>
           {(walletsAmountOfTransactions.length === 0 ||
             transactionsOverview.loading) && (
-            <ChartPlaceholder width={440} height={280} />
-          )}
+              <ChartPlaceholder width={440} height={280} />
+            )}
           {walletsAmountOfTransactions.length !== 0 &&
             !transactionsOverview.loading && (
               <WalletNumberTrans data={walletsAmountOfTransactions} />
@@ -217,8 +217,8 @@ const TransacOverview = ({ transactionOverview }) => {
           </span>
           {(cashInCashOutOfTransactions.length === 0 ||
             transactionsOverview.loading) && (
-            <ChartPlaceholder width={440} height={280} />
-          )}
+              <ChartPlaceholder width={440} height={280} />
+            )}
           {cashInCashOutOfTransactions.length !== 0 &&
             !transactionsOverview.loading && (
               <PieChart
@@ -229,13 +229,12 @@ const TransacOverview = ({ transactionOverview }) => {
         </div>
       </div>
       <div className="contact-transaction">
-        <span>{global.translate('Select a contact', 485)}</span>
+        <span>{global.translate('Select a contact')}</span>
         <div className="contact-search large-v-margin">
           <Form>
             <Form.Input
               placeholder={global.translate(
                 'Search for a contact',
-                1974,
               )}
               icon="search"
               iconPosition="left"

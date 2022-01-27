@@ -19,7 +19,7 @@ const Trigger = ({ onClick }) => {
     <>
       <div
         className="messages-wrapper"
-        title={global.translate('Open Chat', 1716)}
+        title={global.translate('Open Chat')}
       >
         {!!(totalNewMessages && Number(totalNewMessages) !== 0) && (
           <span className="floating-message-count" onClick={onClick}>

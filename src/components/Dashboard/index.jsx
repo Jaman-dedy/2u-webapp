@@ -230,8 +230,7 @@ const Dashboard = ({
                     <h4>{global.translate(`Money transfer`)}</h4>
                     <div>
                       {global.translate(
-                        `Transfer funds to a wallet`,
-                        1951,
+                        `Transfer funds to a wallet`
                       )}{' '}
                     </div>
                   </div>

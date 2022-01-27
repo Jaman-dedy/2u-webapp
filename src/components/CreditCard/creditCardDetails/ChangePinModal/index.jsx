@@ -27,12 +27,12 @@ const PinModal = ({
       size="mini"
     >
       <Modal.Header>
-        {global.translate('Change your card PIN Number', 1983)}
+        {global.translate('Change your card PIN Number')}
       </Modal.Header>
       <Modal.Content>
         <div className="card-pin">
           <div>
-            <h4>{global.translate('Change card PIN', 2227)}</h4>
+            <h4>{global.translate('Change card PIN')}</h4>
             <PinCodeForm
               onChange={({ target: { value, name } }) => {
                 setError(null);
@@ -43,7 +43,7 @@ const PinModal = ({
           </div>
           <br />
           <PinCodeForm
-            label={global.translate('Retype the new PIN', 2228)}
+            label={global.translate('Retype the new PIN')}
             onChange={({ target: { value, name } }) => {
               setError(null);
               setConfirmPinDigit({
@@ -60,9 +60,9 @@ const PinModal = ({
           )}
         </div>
         <div className="user-pin">
-          <h4>{global.translate('Your PIN Number', 2229)}</h4>
+          <h4>{global.translate('Your PIN Number')}</h4>
           <PinCodeForm
-            label={global.translate('Provide your PIN Number', 543)}
+            label={global.translate('Provide your PIN Number')}
             onChange={({ target: { value, name } }) => {
               setUserPinDigit({
                 ...userPinDigit,
@@ -117,15 +117,15 @@ PinModal.propTypes = {
 };
 PinModal.defaultProps = {
   pinDigit: '',
-  setPinDigit: () => {},
-  setError: () => {},
-  setConfirmPinDigit: () => {},
+  setPinDigit: () => { },
+  setError: () => { },
+  setConfirmPinDigit: () => { },
   confirmPinDigit: {},
-  setUserPinDigit: () => {},
+  setUserPinDigit: () => { },
   userPinDigit: {},
   error: '',
   errors: {},
-  handleChangeCreditCardPin: () => {},
+  handleChangeCreditCardPin: () => { },
   disabled: false,
   loadOnChangePwd: false,
 };

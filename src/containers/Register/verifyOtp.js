@@ -42,9 +42,9 @@ export default ({
     const otpError = OTPNumber
       ? ''
       : global.translate(
-          'Please enter the verification code sent via SMS',
-          2088,
-        );
+        'Please enter the verification code sent via SMS',
+
+      );
 
     setErrors({ ...errors, OTP: otpError });
 

@@ -57,7 +57,7 @@ const FilePickerList = ({
                   >
                     <Icon
                       name="close"
-                      title={global.translate('Remove file', 2237)}
+                      title={global.translate('Remove file')}
                       className="center cursor-pointer"
                       style={{
                         cursor: 'pointer',
@@ -84,7 +84,7 @@ const FilePickerList = ({
                       }}
                     />
                     <Icon
-                      title={global.translate('Add a file', 2238)}
+                      title={global.translate('Add a file')}
                       name={getFileTypeIcon(file.file)}
                       size="huge"
                     />
@@ -101,7 +101,7 @@ const FilePickerList = ({
                   >
                     <Icon
                       name="close"
-                      title={global.translate('Remove file', 2237)}
+                      title={global.translate('Remove file')}
                       className="center cursor-pointer"
                       style={{
                         cursor: 'pointer',
@@ -150,7 +150,7 @@ const FilePickerList = ({
                   >
                     <Icon
                       name="close"
-                      title={global.translate('Remove file', 2237)}
+                      title={global.translate('Remove file')}
                       style={{
                         cursor: 'pointer',
 
@@ -198,7 +198,7 @@ const FilePickerList = ({
                   >
                     <Icon
                       name="close"
-                      title={global.translate('Remove file', 2237)}
+                      title={global.translate('Remove file')}
                       className="center cursor-pointer"
                       style={{
                         cursor: 'pointer',
@@ -273,7 +273,7 @@ FilePickerList.propTypes = {
 };
 
 FilePickerList.defaultProps = {
-  onFileRemoved: () => {},
+  onFileRemoved: () => { },
   disableAdd: false,
   selectedFile: {},
   accept: 'image/*',

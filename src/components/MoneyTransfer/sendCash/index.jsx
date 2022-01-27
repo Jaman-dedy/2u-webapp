@@ -80,7 +80,7 @@ const SendCashModal = ({
     }
   }, [error]);
 
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   useEffect(() => {
     const newOptions =
@@ -105,16 +105,16 @@ const SendCashModal = ({
       const phoneCountry =
         destinationContact.PhonePrefix !== ''
           ? countries.find(
-              item =>
-                item.value === `+${destinationContact.PhonePrefix}`,
-            )
+            item =>
+              item.value === `+${destinationContact.PhonePrefix}`,
+          )
           : null;
       const defaultCountry = phoneCountry
         ? countries.find(
-            country =>
-              country.flag.toLowerCase() ===
-              phoneCountry.flag.toLowerCase(),
-          )
+          country =>
+            country.flag.toLowerCase() ===
+            phoneCountry.flag.toLowerCase(),
+        )
         : {};
       setCountry(defaultCountry);
     }
@@ -187,11 +187,11 @@ const SendCashModal = ({
     ) {
       setCurrentOption(
         appCountries &&
-          appCountries.find(
-            c =>
-              c.CountryCode.toUpperCase() ===
-              destinationContact.CountryCode.toUpperCase(),
-          ),
+        appCountries.find(
+          c =>
+            c.CountryCode.toUpperCase() ===
+            destinationContact.CountryCode.toUpperCase(),
+        ),
       );
     }
   }, [destinationContact]);
@@ -251,7 +251,7 @@ const SendCashModal = ({
               <h4 className="available">
                 {global.translate(
                   'Available Balance in the Selected Wallet',
-                  1223,
+
                 )}
                 <p className="available-value">
                   {formatNumber(balanceOnWallet, {
@@ -346,28 +346,26 @@ const SendCashModal = ({
             <div className="wrap-money-form">
               {(destinationContact?.MainPhoneNumber ||
                 destinationContact?.Phone) && (
-                <div
-                  style={{
-                    textAlign: 'center',
-                    backgroundColor: '#F1F1F1',
-                    padding: '15px',
-                    marginBottom: '10px',
-                  }}
-                >
-                  {global.translate(`Default phone number`)} :{' '}
-                  <strong>
-                    {`+${
-                      destinationContact?.PhonePrefix
-                        ? destinationContact?.PhonePrefix
-                        : destinationContact?.MainPhonePrefix
-                    } ${
-                      destinationContact?.Phone
-                        ? destinationContact?.Phone
-                        : destinationContact?.MainPhoneNumber
-                    }`}
-                  </strong>
-                </div>
-              )}
+                  <div
+                    style={{
+                      textAlign: 'center',
+                      backgroundColor: '#F1F1F1',
+                      padding: '15px',
+                      marginBottom: '10px',
+                    }}
+                  >
+                    {global.translate(`Default phone number`)} :{' '}
+                    <strong>
+                      {`+${destinationContact?.PhonePrefix
+                          ? destinationContact?.PhonePrefix
+                          : destinationContact?.MainPhonePrefix
+                        } ${destinationContact?.Phone
+                          ? destinationContact?.Phone
+                          : destinationContact?.MainPhoneNumber
+                        }`}
+                    </strong>
+                  </div>
+                )}
 
               <div className="wrap-money-input">
                 <div>{global.translate('Amount')}</div>
@@ -388,10 +386,10 @@ const SendCashModal = ({
 
           <div className="loader-section">
             {parseInt(form.amount, 10) >
-            parseInt(
-              formatNumber(balanceOnWallet).replace(/[^\w\s]/gi, ''),
-              10,
-            ) ? (
+              parseInt(
+                formatNumber(balanceOnWallet).replace(/[^\w\s]/gi, ''),
+                10,
+              ) ? (
               <Message
                 message={global.translate(
                   'The amount entered is greater than your available balance',
@@ -404,8 +402,8 @@ const SendCashModal = ({
                 message={
                   confirmationError[0].Description
                     ? global.translate(
-                        confirmationError[0].Description,
-                      )
+                      confirmationError[0].Description,
+                    )
                     : global.translate(confirmationError.error)
                 }
               />
@@ -480,13 +478,13 @@ const SendCashModal = ({
               loadingOther ||
               !form.amount ||
               parseInt(form.amount, 10) >
-                parseInt(
-                  formatNumber(balanceOnWallet).replace(
-                    /[^\w\s]/gi,
-                    '',
-                  ),
-                  10,
-                )
+              parseInt(
+                formatNumber(balanceOnWallet).replace(
+                  /[^\w\s]/gi,
+                  '',
+                ),
+                10,
+              )
             }
             loading={checking || loading || updating || loadingOther}
             onClick={() => {
@@ -546,17 +544,17 @@ SendCashModal.propTypes = {
 };
 
 SendCashModal.defaultProps = {
-  moveFundsToToUWallet: () => {},
+  moveFundsToToUWallet: () => { },
   loading: false,
   errors: null,
-  setDestinationContact: () => {},
+  setDestinationContact: () => { },
   currency: null,
-  checkTransactionConfirmation: () => {},
+  checkTransactionConfirmation: () => { },
   checking: false,
   balanceOnWallet: 0,
-  setForm: () => {},
-  onOptionsChange: () => {},
-  setOpen: () => {},
+  setForm: () => { },
+  onOptionsChange: () => { },
+  setOpen: () => { },
   walletList: [],
   open: false,
   isSendingCash: true,

@@ -44,7 +44,7 @@ const SetPasswordModal = ({
             {global.translate('Password')}
           </div>
           <PasswordInput
-            placeholder={global.translate('Enter your password', 2)}
+            placeholder={global.translate('Enter your password')}
             name="password"
             type="password"
             value={password}
@@ -129,10 +129,10 @@ SetPasswordModal.propTypes = {
 };
 SetPasswordModal.defaultProps = {
   open: false,
-  setOpen: () => {},
-  onInputChange: () => {},
+  setOpen: () => { },
+  onInputChange: () => { },
   form: {},
-  handleSetPassword: () => {},
+  handleSetPassword: () => { },
   loading: false,
 };
 

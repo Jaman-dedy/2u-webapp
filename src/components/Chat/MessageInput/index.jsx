@@ -13,7 +13,7 @@ const MessageInput = ({
   return (
     <div className="message-input">
       <Form.TextArea
-        placeholder={global.translate('Type a message', 2239)}
+        placeholder={global.translate('Type a message')}
         rows={1}
         className="textMessageInput"
         name="chat-textarea"
@@ -26,9 +26,8 @@ const MessageInput = ({
           setTextareaHeight(height > 42 ? height : 42);
         }}
         style={{
-          minHeight: `${
-            formValue.body ? textareaHeight || 42 : 42
-          }px`,
+          minHeight: `${formValue.body ? textareaHeight || 42 : 42
+            }px`,
         }}
         onKeyDown={handleKeyDown}
       />

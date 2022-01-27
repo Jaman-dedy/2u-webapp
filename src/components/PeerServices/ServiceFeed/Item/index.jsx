@@ -315,7 +315,7 @@ const Index = React.forwardRef(({ service, allowView }, ref) => {
                 />
                 <Dropdown.Divider />
                 <Dropdown.Item
-                  text={global.translate('Other options', 1846)}
+                  text={global.translate('Other options')}
                 />
                 <Dropdown.Item
                   icon="nintendo switch"
@@ -324,8 +324,8 @@ const Index = React.forwardRef(({ service, allowView }, ref) => {
                   }}
                   text={
                     service.Available === 'YES'
-                      ? global.translate('Turn off temporarily', 1879)
-                      : global.translate('Turn on', 1880)
+                      ? global.translate('Turn off temporarily')
+                      : global.translate('Turn on')
                   }
                 />
                 <Dropdown.Item
@@ -433,9 +433,8 @@ const Index = React.forwardRef(({ service, allowView }, ref) => {
                       : {}
                   }
                   disabled={!user?.PID}
-                  text={`${global.translate('Like')}  (${
-                    service.Likes
-                  })`}
+                  text={`${global.translate('Like')}  (${service.Likes
+                    })`}
                 />
                 <InlineActionItem
                   disabled={!user?.PID}
@@ -449,9 +448,8 @@ const Index = React.forwardRef(({ service, allowView }, ref) => {
                       ? { color: 'black' }
                       : {}
                   }
-                  text={`${global.translate('Dislike')}  (${
-                    service.DisLikes
-                  })`}
+                  text={`${global.translate('Dislike')}  (${service.DisLikes
+                    })`}
                 />
                 <InlineActionItem
                   disabled={!user?.PID}

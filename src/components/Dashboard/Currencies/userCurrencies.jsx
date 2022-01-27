@@ -24,7 +24,7 @@ const UserCurrencies = ({ currencies, userData, dispatch }) => {
         <div className="dash-card" data-tut="second-step">
           <div className="user-currencies">
             <h3 className="user-currencies__heading">
-              {global.translate('My currencies', 1248)}
+              {global.translate('My currencies')}
             </h3>
             <Currencies
               data={currencies.data}

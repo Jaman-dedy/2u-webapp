@@ -63,9 +63,8 @@ const SingleLoanView = ({ loan, onClick, detail }) => {
             {loan?.NextDueDate
               ? `${global.translate(
                 'Next payment due date :',
-                2547,
               )} ${loan.NextDueDate} `
-              : `${global.translate('Closed on ', 2446)} ${loan?.ClosedDate
+              : `${global.translate('Closed on ')} ${loan?.ClosedDate
               }`}
           </div>
         </div>

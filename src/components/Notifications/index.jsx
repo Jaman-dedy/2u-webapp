@@ -82,13 +82,13 @@ const Notifications = ({ userData, notifications }) => {
     const notifActions = {
       sendMoney: {
         image: notifRequest,
-        name: global.translate('Transfer money', 1950),
+        name: global.translate('Transfer money'),
         onClick: () =>
           history.push(`/contacts?ref=send-money&PID=${PID}`),
       },
       viewTransaction: {
         image: notifTransac,
-        name: global.translate('View transactions', 143),
+        name: global.translate('View transactions'),
         onClick: () => {
           const contact =
             allContacts.data &&
@@ -128,7 +128,7 @@ const Notifications = ({ userData, notifications }) => {
       },
       delete: {
         image: deleteIcon,
-        name: global.translate('Delete notification', 372),
+        name: global.translate('Delete notification'),
         onClick: () =>
           userData.data &&
           deleteNotifications({ IDs: [id], PID: userData.data?.PID })(
@@ -137,7 +137,7 @@ const Notifications = ({ userData, notifications }) => {
       },
       more: {
         image: notifLink,
-        name: global.translate('More info', 2003),
+        name: global.translate('More info'),
         onClick: () => linkData && openStorePublicity(true, linkData),
       },
     };

@@ -28,7 +28,7 @@ const HelpDropDown = ({ setTourStep }) => {
               <List.Item>
                 <List.Icon name="help" />
                 <List.Content>
-                  {global.translate(`Get help`, 1975)}
+                  {global.translate(`Get help`)}
                 </List.Content>
               </List.Item>
             </List>
@@ -45,7 +45,7 @@ const HelpDropDown = ({ setTourStep }) => {
                 <List.Icon name="lightbulb outline" />
 
                 <List.Content>
-                  {global.translate(`Tips for getting started`, 2192)}
+                  {global.translate(`Tips for getting started`)}
                 </List.Content>
                 {/* </a> */}
               </List.Item>
@@ -60,7 +60,7 @@ const HelpDropDown = ({ setTourStep }) => {
               <List.Item>
                 <List.Icon name="video play" />
                 <List.Content>
-                  {global.translate(`Watch the video tour`, 2193)}
+                  {global.translate(`Watch the video tour`)}
                 </List.Content>
               </List.Item>
             </List>
@@ -74,7 +74,7 @@ const HelpDropDown = ({ setTourStep }) => {
               <List.Item>
                 <List.Icon name="add" />
                 <List.Content>
-                  {global.translate(`What's new`, 2194)}
+                  {global.translate(`What's new`)}
                   <Label
                     style={{ marginLeft: '.4rem' }}
                     circulor

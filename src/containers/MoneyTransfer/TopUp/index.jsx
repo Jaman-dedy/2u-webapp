@@ -165,8 +165,8 @@ const TopUpContainer = ({
   useEffect(() => {
     const actionType = isTopingUp
       ? {
-          TopUp: 'Yes',
-        }
+        TopUp: 'Yes',
+      }
       : { TopUp: 'No' };
     if (!providersCountries.data && isTopingUp) {
       getProvidersCountries(actionType)(dispatch);
@@ -264,7 +264,7 @@ const TopUpContainer = ({
     let hasError = false;
     if (parseFloat(form.amount, 10) === 0) {
       setErrors(
-        global.translate('The Transfer amount can not be zero', 1738),
+        global.translate('The Transfer amount can not be zero'),
       );
       hasError = true;
     }
@@ -272,7 +272,7 @@ const TopUpContainer = ({
       setErrors(
         global.translate(
           'The transfer amount cannot be negative',
-          2077,
+
         ),
       );
       hasError = true;
@@ -281,7 +281,7 @@ const TopUpContainer = ({
       setErrors(
         global.translate(
           'You do not have enough money in this wallet for this operation',
-          394,
+
         ),
       );
       hasError = true;
@@ -292,7 +292,7 @@ const TopUpContainer = ({
       setErrors(
         global.translate(
           'You must enter the amount for this operation.',
-          393,
+
         ),
       );
       hasError = true;
@@ -301,7 +301,7 @@ const TopUpContainer = ({
       setErrors(
         global.translate(
           'You must select a provider for this operation',
-          1551,
+
         ),
       );
       hasError = true;
@@ -437,9 +437,9 @@ const TopUpContainer = ({
     } else {
       setDestCountryCode(
         form?.CountryCode ||
-          (destinationContact && destinationContact.CountryCode) ||
-          destinationContact?.Country ||
-          (selectedCountry && selectedCountry.CountryCode),
+        (destinationContact && destinationContact.CountryCode) ||
+        destinationContact?.Country ||
+        (selectedCountry && selectedCountry.CountryCode),
       );
     }
   }, [form, destinationContact, selectedCountry]);
@@ -501,7 +501,7 @@ const TopUpContainer = ({
     };
     if (!pinIsValid()) {
       setErrors(
-        global.translate('Please provide your PIN number.', 543),
+        global.translate('Please provide your PIN number.'),
       );
       return;
     }
@@ -510,20 +510,20 @@ const TopUpContainer = ({
         setErrors(
           global.translate(
             'Please provide the payment day of the month.',
-            1290,
+
           ),
         );
         return;
       }
       if (form.startDate === '' || !form.startDate) {
         setErrors(
-          global.translate('Please provide the starting date', 1288),
+          global.translate('Please provide the starting date',),
         );
         return;
       }
       if (form.endDate === '' || !form.endDate) {
         setErrors(
-          global.translate('Please provide the ending date', 1289),
+          global.translate('Please provide the ending date'),
         );
         return;
       }
@@ -532,7 +532,7 @@ const TopUpContainer = ({
         setErrors(
           global.translate(
             'Please choose an end date thats later than the start date',
-            2076,
+
           ),
         );
         return;

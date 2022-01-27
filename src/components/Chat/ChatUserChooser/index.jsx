@@ -112,8 +112,7 @@ const ChooseChatUserModal = ({ open, setOpen }) => {
             <SearchInput
               fluid
               placeholder={global.translate(
-                'Search for people',
-                1651,
+                'Search for people'
               )}
               onChange={filterItems}
             />
@@ -135,8 +134,7 @@ const ChooseChatUserModal = ({ open, setOpen }) => {
                     secondaryContent={
                       <span
                         title={global.translate(
-                          'Remove from List',
-                          1652,
+                          'Remove from List'
                         )}
                       >
                         <Icon
@@ -170,7 +168,7 @@ const ChooseChatUserModal = ({ open, setOpen }) => {
             {appContacts?.length === 0 && !loading && (
               <Message
                 fluid
-                message={global.translate('No results found', 1253)}
+                message={global.translate('No results found')}
                 error={false}
               />
             )}
@@ -188,8 +186,7 @@ const ChooseChatUserModal = ({ open, setOpen }) => {
                     item.AccountVerified === 'YES' && (
                       <span
                         title={global.translate(
-                          'Account verified',
-                          1458,
+                          'Account verified'
                         )}
                       >
                         <Image
@@ -203,8 +200,7 @@ const ChooseChatUserModal = ({ open, setOpen }) => {
                     )
                   }
                   itemDescription={global.translate(
-                    'From your Contacts',
-                    1653,
+                    'From your Contacts'
                   )}
                   onItemClick={() => addItemToSelected(item)}
                   bottomRightContext={
@@ -225,6 +221,6 @@ ChooseChatUserModal.propTypes = {
 
 ChooseChatUserModal.defaultProps = {
   open: false,
-  setOpen: () => {},
+  setOpen: () => { },
 };
 export default ChooseChatUserModal;

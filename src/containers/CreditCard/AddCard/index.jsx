@@ -94,7 +94,7 @@ const AddCardContainer = () => {
   const pinIsValid = () => pin && pin.length === 4;
   const validate = () => {
     if (cardPin !== confirmPin) {
-      setError('The PIN numbers do not match.', 2068);
+      setError('The PIN numbers do not match.');
       return true;
     }
     if (
@@ -103,7 +103,7 @@ const AddCardContainer = () => {
       cardPin.search(/[@!#$%^&*]/) === 0
     ) {
       setError(
-        global.translate('PIN should only contain numbers', 1723),
+        global.translate('PIN should only contain numbers'),
       );
       return true;
     }
@@ -111,26 +111,26 @@ const AddCardContainer = () => {
       setError(
         global.translate(
           'Consecutive numbers are not allowed.',
-          1707,
+
         ),
       );
       return true;
     }
     if (!pinIsValid()) {
       setError(
-        global.translate('Please provide your PIN number.', 944),
+        global.translate('Please provide your PIN number.'),
       );
       return true;
     }
     if (!selectedProvider) {
       setError(
-        global.translate('Please choose the card type', 2069),
+        global.translate('Please choose the card type'),
       );
       return true;
     }
     if (!form?.cardLevel) {
       setError(
-        global.translate('Please select the card level', 2070),
+        global.translate('Please select the card level'),
       );
       return true;
     }

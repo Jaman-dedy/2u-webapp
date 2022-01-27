@@ -27,7 +27,7 @@ const NotFoundPage = () => {
         <h2>
           {global.translate(
             `Oops, looks like the page you are looking for is not found`,
-            2265,
+
           )}
         </h2>
         <div>
@@ -35,7 +35,7 @@ const NotFoundPage = () => {
           {global.translate(
             `You can navigate to other pages or you can click on this
           button below to navigate to the home page`,
-            2266,
+
           )}
         </div>
         <div>
@@ -71,14 +71,14 @@ const NotFoundPage = () => {
       <h2>
         {global.translate(
           `Oops, looks like the page you are looking for is not found`,
-          2265,
+
         )}
       </h2>
       <div>
         {global.translate(
           `You can navigate to other pages or you can click on this
           button below to navigate to the home page`,
-          2266,
+
         )}
       </div>
       <div>

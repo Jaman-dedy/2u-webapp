@@ -212,7 +212,7 @@ const VirtualCardDetailsContainer = () => {
     let hasError = false;
     if (parseFloat(form.amount, 10) === 0) {
       setErrors(
-        global.translate('The Transfer amount can not be zero', 992),
+        global.translate('The Transfer amount can not be zero'),
       );
       hasError = true;
     }
@@ -220,7 +220,7 @@ const VirtualCardDetailsContainer = () => {
       setErrors(
         global.translate(
           'The Transfer amount can not be less than zero',
-          992,
+
         ),
       );
       hasError = true;
@@ -229,7 +229,7 @@ const VirtualCardDetailsContainer = () => {
       setErrors(
         global.translate(
           "You don't have enough money in this wallet for this operation",
-          394,
+
         ),
       );
       hasError = true;
@@ -240,7 +240,7 @@ const VirtualCardDetailsContainer = () => {
       setErrors(
         global.translate(
           'You must enter the amount for this operation.',
-          393,
+
         ),
       );
       hasError = true;
@@ -306,7 +306,7 @@ const VirtualCardDetailsContainer = () => {
 
     if (!pinIsValid()) {
       setErrors(
-        global.translate('Please provide your PIN number.', 944),
+        global.translate('Please provide your PIN number.'),
       );
       return;
     }
@@ -314,13 +314,13 @@ const VirtualCardDetailsContainer = () => {
       setErrors(
         global.translate(
           'Please provide the amount to be added',
-          393,
+
         ),
       );
     }
     if (!form?.AccountNumber) {
       setErrors(
-        global.translate('You did not select any wallet', 437),
+        global.translate('You did not select any wallet'),
       );
     }
     setErrors(null);
@@ -379,7 +379,7 @@ const VirtualCardDetailsContainer = () => {
     };
     if (!pinIsValid()) {
       setErrors(
-        global.translate('Please provide your PIN number.', 944),
+        global.translate('Please provide your PIN number.'),
       );
       return;
     }
