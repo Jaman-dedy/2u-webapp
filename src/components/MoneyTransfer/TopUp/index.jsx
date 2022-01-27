@@ -566,11 +566,11 @@ const TopUpModal = ({
                     )}
                   {currentProviderOption?.Category === PAYPAL && (
                     <div className="add-new-phone">
-                      <span>
+                      <p>
                         {global.translate(
-                          `Provide you email address`,
+                          `Provide your email address`,
                         )}
-                      </span>
+                      </p>
                       <div className="form-information">
                         <Input
                           name="email"
