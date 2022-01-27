@@ -147,6 +147,10 @@ export default ({
     }
   }, [nationalityCountry]);
 
+  useEffect(() => {
+    verifyPhoneNumber.error = null;
+  }, []);
+
   return {
     handleNext,
     validate,
