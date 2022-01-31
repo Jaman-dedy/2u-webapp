@@ -145,6 +145,7 @@ const QuickPay = () => {
       TargetCurrency: form.TargetCurrency,
       TargetType: CELINE_MONEY,
       SourceWallet: form?.SourceWallet,
+      targetWallet: form.AccountNumber,
     };
     confirmTransaction(data)(dispatch);
   };

@@ -160,7 +160,7 @@ const NavBar = ({
                     }
                   }}
                 >
-                  {Object.keys(data).length ? (
+                  {data && Object.keys(data).length ? (
                     <ProfileDropdown
                       setOpenProfile={setOpenProfile}
                       openProfile={openProfile}

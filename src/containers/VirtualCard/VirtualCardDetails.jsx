@@ -220,7 +220,6 @@ const VirtualCardDetailsContainer = () => {
       setErrors(
         global.translate(
           'The Transfer amount can not be less than zero',
-
         ),
       );
       hasError = true;
@@ -229,7 +228,6 @@ const VirtualCardDetailsContainer = () => {
       setErrors(
         global.translate(
           "You don't have enough money in this wallet for this operation",
-
         ),
       );
       hasError = true;
@@ -240,7 +238,6 @@ const VirtualCardDetailsContainer = () => {
       setErrors(
         global.translate(
           'You must enter the amount for this operation.',
-
         ),
       );
       hasError = true;
@@ -248,7 +245,6 @@ const VirtualCardDetailsContainer = () => {
 
     return hasError;
   };
-
   const checkTransactionConfirmation = () => {
     const data = {
       Amount: form.amount && form.amount.toString(),
@@ -305,23 +301,16 @@ const VirtualCardDetailsContainer = () => {
     };
 
     if (!pinIsValid()) {
-      setErrors(
-        global.translate('Please provide your PIN number.'),
-      );
+      setErrors(global.translate('Please provide your PIN number.'));
       return;
     }
     if (!form?.amount) {
       setErrors(
-        global.translate(
-          'Please provide the amount to be added',
-
-        ),
+        global.translate('Please provide the amount to be added'),
       );
     }
     if (!form?.AccountNumber) {
-      setErrors(
-        global.translate('You did not select any wallet'),
-      );
+      setErrors(global.translate('You did not select any wallet'));
     }
     setErrors(null);
     addMoneyToVCard(data, '/AddMoneyToVirtualCard')(dispatch);
@@ -378,9 +367,7 @@ const VirtualCardDetailsContainer = () => {
       TargetWallet: selectedWallet?.AccountNumber,
     };
     if (!pinIsValid()) {
-      setErrors(
-        global.translate('Please provide your PIN number.'),
-      );
+      setErrors(global.translate('Please provide your PIN number.'));
       return;
     }
     redeeMyMoney(data, '/RedeemVirtualCardBalance')(dispatch);

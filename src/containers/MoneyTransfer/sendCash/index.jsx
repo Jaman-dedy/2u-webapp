@@ -337,6 +337,7 @@ const SendCashContainer = ({
       updateMoneyTransferStep(1)(dispatch);
     }
   };
+
   const checkTransactionConfirmation = () => {
     if (!form.sourceWallet) {
       setForm({ ...form, sourceWallet: usersData.DefaultWallet });
@@ -348,6 +349,7 @@ const SendCashContainer = ({
       TargetCurrency: form.destCurrency,
       TargetType: CASH_OUT,
       SourceWallet: form.sourceWallet || usersData.DefaultWallet,
+      TargetWallet: '',
     };
 
     setErrors(null);

@@ -129,10 +129,7 @@ const CurrencyExchangeContainer = ({
     }
     if (parseFloat(form.amount, 10) < 0) {
       setErrors(
-        global.translate(
-          'The Exchange amount cannot be negative',
-
-        ),
+        global.translate('The Exchange amount cannot be negative'),
       );
       hasError = true;
     }
@@ -140,7 +137,6 @@ const CurrencyExchangeContainer = ({
       setErrors(
         global.translate(
           'You do not have enough money in this wallet for this operation',
-
         ),
       );
       hasError = true;
@@ -151,22 +147,18 @@ const CurrencyExchangeContainer = ({
       setErrors(
         global.translate(
           'You must enter the amount for this operation.',
-
         ),
       );
       hasError = true;
     }
     if (form.user2wallets === '' || !form.user2wallets) {
       setErrors(
-        global.translate(
-          'Please provide the target wallet number.',
-
-        ),
+        global.translate('Please provide the target wallet number.'),
       );
       hasError = true;
     }
     if (form.sourceWallet === '' || !form.sourceWallet) {
-      setErrors('Please provide the source wallet number.',);
+      setErrors('Please provide the source wallet number.');
       hasError = true;
     }
     if (form.sourceWallet === !'' || form.sourceWallet) {
@@ -174,7 +166,6 @@ const CurrencyExchangeContainer = ({
         setErrors(
           global.translate(
             'The source wallet and the target wallet must not be the same',
-
           ),
         );
         hasError = true;
@@ -193,6 +184,7 @@ const CurrencyExchangeContainer = ({
         ).CurrencyCode,
       TargetType: CELINE_MONEY,
       SourceWallet: form.sourceWallet,
+      TargetWallet: form.user2wallets,
     };
     setErrors(null);
     if (!validate()) {
@@ -217,9 +209,7 @@ const CurrencyExchangeContainer = ({
     };
 
     if (!pinIsValid()) {
-      setErrors(
-        global.translate('Please provide your PIN number.'),
-      );
+      setErrors(global.translate('Please provide your PIN number.'));
       return;
     }
 
@@ -228,7 +218,7 @@ const CurrencyExchangeContainer = ({
       data,
       '/TransferFunds2UWallet',
       'currency-exchange',
-    )(dispatch)(data => { });
+    )(dispatch)(data => {});
   };
 
   useEffect(() => {

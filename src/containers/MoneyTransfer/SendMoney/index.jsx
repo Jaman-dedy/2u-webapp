@@ -165,7 +165,6 @@ const SendMoneyContainer = ({
       setErrors(
         global.translate(
           'You do not have enough money in this wallet for this operation',
-
         ),
       );
       hasError = true;
@@ -176,17 +175,13 @@ const SendMoneyContainer = ({
       setErrors(
         global.translate(
           'You must enter the amount for this operation.',
-
         ),
       );
       hasError = true;
     }
     if (form.user2wallets === '' || !form.user2wallets) {
       setErrors(
-        global.translate(
-          'Please provide the target wallet number.',
-
-        ),
+        global.translate('Please provide the target wallet number.'),
       );
       hasError = true;
     }
@@ -203,6 +198,7 @@ const SendMoneyContainer = ({
         (form.user2wallets && form.user2wallets.substr(0, 3)),
       TargetType: CELINE_MONEY,
       SourceWallet: form.sourceWallet,
+      TargetWallet: form.user2wallets,
     };
     setErrors(null);
     if (!validate()) {
@@ -233,9 +229,7 @@ const SendMoneyContainer = ({
     };
 
     if (!pinIsValid()) {
-      setErrors(
-        global.translate('Please provide your PIN number.'),
-      );
+      setErrors(global.translate('Please provide your PIN number.'));
       return;
     }
     if (form.isRecurring) {
@@ -243,7 +237,6 @@ const SendMoneyContainer = ({
         setErrors(
           global.translate(
             'Please provide the payment day of the month.',
-
           ),
         );
         return;
@@ -255,9 +248,7 @@ const SendMoneyContainer = ({
         return;
       }
       if (form.endDate === '' || !form.endDate) {
-        setErrors(
-          global.translate('Please provide the ending date'),
-        );
+        setErrors(global.translate('Please provide the ending date'));
         return;
       }
 
@@ -265,14 +256,13 @@ const SendMoneyContainer = ({
         setErrors(
           global.translate(
             'Please choose an end date thats later than the start date',
-
           ),
         );
         return;
       }
     }
     setErrors(null);
-    moveFunds(data)(dispatch)(data => { });
+    moveFunds(data)(dispatch)(data => {});
   };
 
   useEffect(() => {
